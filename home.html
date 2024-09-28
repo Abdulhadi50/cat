@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>تصميم القط المحسن</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,500..900;1,500..900&display=swap">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Rubik', sans-serif;
+            background: linear-gradient(to bottom, #000000, #0A2DA1, #0081E9);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+            color: white;
+            user-select: none;
+        }
+        .container {
+            text-align: center;
+            padding-bottom: 100px; /* Space for the footer */
+        }
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            flex-direction: row-reverse;
+        }
+        .header img {
+          padding: 10px;
+            width: 30px;
+            height: 30px;
+        }
+        .coins {
+            font-size: 30px;
+            margin-right: 10px;
+        }
+        .status {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            font-size: 18px;
+            color: #6fef97;
+        }
+        .status span {
+            margin-left: 10px;
+        }
+        .cat-image {
+            margin-top: 30px;
+            position: relative;
+        }
+        .cat-image img {
+            width: 250px;
+            height: auto;
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* Effect for plus one */
+        @keyframes fadeOut {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-200px); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+        .plus-one {
+            position: absolute;
+            color: #fff;
+            font-size: 40px;
+            animation: fadeOut 1.6s forwards;
+            pointer-events: none;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* White glow */
+        }
+
+        /* Glow effect on click */
+        .cat-image img.pulsing {
+            animation: pulse 0.1s ease-in-out;
+        }
+
+        /* Navigation Bar */
+        .nav-container {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #202020;
+            padding: 10px 0;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.5);
+        }
+        .nav {
+            display: flex;
+            justify-content: space-around;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .nav button {
+            font-family: 'Rubik', sans-serif;
+            background-color: transparent;
+            color: white;
+            border: none;
+            text-align: center;
+            flex: 1;
+            font-size: 14px;
+        }
+        .nav button img {
+            display: block;
+            margin: 0 auto;
+            width: 30px;
+            height: 30px;
+        }
+        .nav button.active img {
+            background-color: #F9A028;
+            border-radius: 50%;
+        }
+        .nav button span {
+            display: block;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header section -->
+        <div class="header">
+            <img src="https://www.arabsharing.com/do.php?img=327868" alt="Coin">
+            <div class="coins">0</div>
+        </div>
+
+        <!-- Status section -->
+        <div class="status">
+            <span>الدخل</span>
+            <span>النقر 1</span>
+        </div>
+
+        <!-- Cat Image -->
+        <div class="cat-image" onclick="incrementPoints(event)">
+            <img id="catImage" src="https://up6.cc/2024/09/172747111575051.png" alt="Cat Image">
+        </div>
+
+        <!-- Progress section -->
+        <div class="progress">
+            <span></span>
+        </div>
+    </div>
+
+    <!-- Navigation Container -->
+    <div class="nav-container">
+        <div class="nav">
+            <button onclick="navigateTo('tasks.html')" class="active">
+                <img src="https://img.icons8.com/ios-filled/999/ffffff/todo-list.png" alt="Tasks">
+                <span>المهام</span>
+            </button>
+            <button onclick="navigateTo('earnings.html')">
+                <img src="https://img.icons8.com/ios-filled/999/ffffff/money.png" alt="Earnings">
+                <span>الأرباح</span>
+            </button>
+            <button onclick="navigateTo('friends.html')">
+                <img src="https://img.icons8.com/ios-filled/999/ffffff/groups.png" alt="Friends">
+                <span>الأصدقاء</span>
+            </button>
+            <button onclick="navigateTo('win.html')">
+                <img src="https://img.icons8.com/ios-filled/999/ffffff/gift.png" alt="Win">
+                <span>1 win</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Retrieve points from localStorage
+        function getPoints() {
+            return parseFloat(localStorage.getItem('currency2')) || 0;
+        }
+
+        // Save points to localStorage
+        function setPoints(points) {
+            localStorage.setItem('currency2', points);
+            updateDisplay(points);
+            updateCatImage(points); // Update cat image based on points
+        }
+
+        // Update the points display
+        function updateDisplay(points) {
+            document.querySelector('.coins').textContent = points;
+        }
+
+        // Update cat image based on points
+        function updateCatImage(points) {
+            const catImage = document.getElementById('catImage');
+            if (points >= 1000000) {
+                catImage.src = "https://up6.cc/2024/09/172729686061351.png";
+            } else if (points >= 500000) {
+                catImage.src = "https://up6.cc/2024/09/172682288016881.png";
+                
+            } else if (points >= 100000) {
+                  catImage.src = "https://up6.cc/2024/09/172682288016881.png";
+                  
+            } else if (points >= 50000) {
+                    catImage.src = "https://up6.cc/2024/09/172682288016881.png";
+                    
+            } else if (points >= 10000) {
+                      catImage.src = "https://up6.cc/2024/09/172682288016881.png";
+                      
+            } else if (points >= 5000) {
+                        catImage.src = "https://up6.cc/2024/09/172682288016881.png";
+                        
+                        
+            } else if (points >= 1000) {
+                catImage.src = "https://up6.cc/2024/09/172639189798991.png";
+            } else {
+                catImage.src = "https://up6.cc/2024/09/172747111575051.png"; // Default image
+            }
+        }
+
+        // Increment points when clicking the cat image
+        function incrementPoints(event) {
+            let points = getPoints() + 1;
+            setPoints(points);
+            showPlusOne(event.clientX, event.clientY);
+            triggerPulseEffect();
+        }
+
+        // Show the "+1" effect at the click position
+        function showPlusOne(x, y) {
+            const plusOne = document.createElement('div');
+            plusOne.className = 'plus-one';
+            plusOne.textContent = '1+';
+            document.body.appendChild(plusOne);
+
+            plusOne.style.left = `${x}px`;
+            plusOne.style.top = `${y}px`;
+
+            // Remove the element after animation
+            plusOne.addEventListener('animationend', () => {
+                plusOne.remove();
+            });
+        }
+
+        // Trigger pulse effect on the cat image
+        function triggerPulseEffect() {
+            const catImage = document.querySelector('.cat-image img');
+            catImage.classList.add('pulsing');
+            setTimeout(() => {
+                catImage.classList.remove('pulsing');
+            }, 200); // Effect lasts for 200ms
+        }
+
+        // Update the balance on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateDisplay(getPoints());
+            updateCatImage(getPoints()); // Update the cat image on load
+        });
+
+        // Function to navigate to different HTML pages
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+    </script>
+
+</body>
+</html>
