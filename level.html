@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>المستويات المتاحة</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,500..900;1,500..900&display=swap">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Rubik', sans-serif;
+            background: linear-gradient(to bottom, #000000, #0A2DA1, #0081E9);
+            color: white;
+            user-select: none;
+            overflow-y: auto; /* Enable vertical scrolling */
+            height: 100vh; /* Make body height 100% of viewport height */
+        }
+        .container {
+            padding: 20px;
+            text-align: center;
+            overflow-y: auto; /* Allow scrolling within the container */
+            max-height: calc(100vh - 80px); /* Adjust max-height for scrolling */
+        }
+        .coins {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .level {
+            margin: 20px 0;
+            border: 1px solid #fff;
+            border-radius: 10px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .level img {
+            width: 100px;
+            height: auto;
+            margin: 10px 0;
+        }
+        .level-info {
+            font-size: 18px;
+        }
+        .nav-container {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #202020;
+            padding: 10px 0;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.5);
+        }
+        .nav {
+            display: flex;
+            justify-content: space-around;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .nav button {
+            font-family: 'Rubik', sans-serif;
+            background-color: transparent;
+            color: white;
+            border: none;
+            text-align: center;
+            flex: 1;
+            font-size: 14px;
+        }
+        .nav button img {
+            display: block;
+            margin: 0 auto;
+            width: 30px;
+            height: 30px;
+        }
+        .nav button span {
+            display: block;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="coins">عدد العملات: <span id="currencyCount">0</span></div>
+
+        <h2>المستويات المتاحة</h2>
+        <div id="levels"></div>
+    </div>
+
+    <div class="nav-container">
+        <div class="nav">
+            <button onclick="navigateTo('home.html')">
+                <img src="home.png">
+                <span>رئيسية</span>
+            </button>
+            <button onclick="navigateTo('energy.html')">
+                <img src="1727606284417.png">
+                <span>طاقة</span>
+            </button>
+            <button onclick="navigateTo('money.html')">
+                <img src="1727601870247.png">
+                <span>اموال</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Retrieve points and currency from localStorage
+        function getPoints() {
+            return parseFloat(localStorage.getItem('currency2')) || 0;
+        }
+
+        // Update the currency display
+        function updateCurrencyDisplay() {
+            const currencyCount = getPoints();
+            document.getElementById('currencyCount').textContent = currencyCount;
+        }
+
+        // Load levels
+        function loadLevels() {
+            const levels = [
+                { image: "lv1.png", requiredPoints: 1000 },
+                
+                { image: "lv2.png", requiredPoints: 10000 },
+                { image: "lv3.png", requiredPoints: 50000 },
+                { image: "lv4.png", requiredPoints: 100000 },
+                { image: "lv5.png", requiredPoints: 250000 },
+                { image: "lv6.png", requiredPoints: 500000 },
+                { image: "lv7.png", requiredPoints: 1000000 },
+                { image: "lv8.png", requiredPoints: 2500000 },
+                { image: "lv9.png", requiredPoints: 5000000 },
+                { image: "lv10.png", requiredPoints: 10000000 },
+               
+            ];
+
+            const levelsContainer = document.getElementById('levels');
+            levels.forEach((level, index) => {
+                const levelDiv = document.createElement('div');
+                levelDiv.className = 'level';
+                levelDiv.innerHTML = `
+                    <img src="${level.image}" alt="مستوى ${index + 1}">
+                    <div class="level-info">مستوى ${index + 1}: ${level.requiredPoints} نقطة</div>
+                `;
+                levelsContainer.appendChild(levelDiv);
+            });
+        }
+
+        // Navigate to different page
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCurrencyDisplay();
+            loadLevels();
+        });
+    </script>
+</body>
+</html>
