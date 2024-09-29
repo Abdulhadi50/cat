@@ -224,76 +224,97 @@
     </div>
 
     <script>
-        let spinning = false;
-
-        // تحديث الرصيد عند دخول الصفحة
-        document.addEventListener("DOMContentLoaded", function() {
-            let currency = parseFloat(localStorage.getItem('currency2')) || 0;
-            updateDisplay(currency);
-        });
-
-        function confirmSpin() {
-            let currency = parseFloat(localStorage.getItem('currency2')) || 0;
-
-            if (currency < 5000) {
-                showPopup("ليس لديك ما يكفي من النقاط!");
-                return;
-            }
-
-            // عرض رسالة تأكيد الخصم
-            document.getElementById('confirm-popup').style.display = 'flex';
-        }
-
-        function confirmDeduction() {
-            let currency = parseFloat(localStorage.getItem('currency2')) || 0;
-            currency -= 5000; // خصم 5000 نقطة
-            localStorage.setItem('currency2', currency); // تحديث الرصيد في التخزين المحلي
-            updateDisplay(currency); // تحديث العرض قبل التدوير
-            spinWheel();
-            closeConfirmPopup(); // إغلاق نافذة التأكيد
-        }
-
-        function closeConfirmPopup() {
-            document.getElementById('confirm-popup').style.display = 'none';
-        }
-
-        function spinWheel() {
-            spinning = true;
-            document.getElementById('spin-wheel').style.animation = 'spin 7s ease-out';
-            setTimeout(() => {
-                let giftAmounts = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000];
-                let randomIndex = Math.floor(Math.random() * giftAmounts.length);
-                let selectedAmount = giftAmounts[randomIndex];
-
-                let currency = parseFloat(localStorage.getItem('currency2')) || 0; // استرجاع الرصيد بعد الخصم
-                currency += selectedAmount;
-
-                showPopup(`تهانينا! لقد حصلت على ${selectedAmount} نقطة. الإجمالي: ${currency} نقاط`);
-                localStorage.setItem('currency2', currency);
-                updateDisplay(currency);
-
-                spinning = false;
-                document.getElementById('spin-wheel').style.animation = 'none';
-            }, 7000);
-            }
+       
+                let spinning = false;
             
-            function updateDisplay(currency) {
-              document.querySelector('.coins').textContent = currency;
-            }
+                // تحديث الرصيد عند دخول الصفحة
+                document.addEventListener("DOMContentLoaded", function() {
+                    let currency = parseFloat(localStorage.getItem('currency2')) || 0;
+                    updateDisplay(currency);
+                });
             
-            function showPopup(message) {
-              const popup = document.getElementById('popup-overlay');
-              popup.querySelector('p').textContent = message;
-              popup.style.display = 'flex';
-            }
+                function confirmSpin() {
+                    let currency = parseFloat(localStorage.getItem('currency2')) || 0;
             
-            function closePopup() {
-              document.getElementById('popup-overlay').style.display = 'none';
-            }
+                    if (currency < 5000) {
+                        showPopup("ليس لديك ما يكفي من النقاط!");
+                        return;
+                    }
             
-            function navigateTo(page) {
-              window.location.href = page;
-            }
+                    // عرض رسالة تأكيد الخصم
+                    document.getElementById('confirm-popup').style.display = 'flex';
+                }
+            
+                function confirmDeduction() {
+                    let currency = parseFloat(localStorage.getItem('currency2')) || 0;
+                    currency -= 5000; // خصم 5000 نقطة
+                    localStorage.setItem('currency2', currency); // تحديث الرصيد في التخزين المحلي
+                    updateDisplay(currency); // تحديث العرض قبل التدوير
+                    spinWheel();
+                    closeConfirmPopup(); // إغلاق نافذة التأكيد
+                }
+            
+                function closeConfirmPopup() {
+                    document.getElementById('confirm-popup').style.display = 'none';
+                }
+            
+                function spinWheel() {
+                    spinning = true;
+                    document.getElementById('spin-wheel').style.animation = 'spin 7s ease-out';
+                    setTimeout(() => {
+                        let giftAmounts = [
+                            { amount: 1000, chance: 0.15 }, // 0.05%
+                            { amount: 3000, chance: 0.5 },   // 5.00%
+                            { amount: 9100, chance: 0.01 },   // 0.10%
+                            { amount: 5500, chance: 0.15 },    // 1.00%
+                            { amount: 6000, chance: 0.05 },    // 1.00%
+                            { amount: 999, chance: 0.25 },      // 50.00%
+                            { amount: 9999, chance: 0.001 },   // 0.10%
+                            { amount: 0, chance: 0.2 }         // 40.00%
+                        ];
+            
+                        let selectedAmount = 0;
+                        let randomValue = Math.random(); // قيمة عشوائية بين 0 و 1
+                        let cumulativeChance = 0;
+            
+                        for (let gift of giftAmounts) {
+                            cumulativeChance += gift.chance;
+                            if (randomValue < cumulativeChance) {
+                                selectedAmount = gift.amount;
+                                break;
+                            }
+                        }
+            
+                        let currency = parseFloat(localStorage.getItem('currency2')) || 0; // استرجاع الرصيد بعد الخصم
+                        currency += selectedAmount;
+            
+                        showPopup(`تهانينا! لقد حصلت على ${selectedAmount} نقطة. الإجمالي: ${currency} نقاط`);
+                        localStorage.setItem('currency2', currency);
+                        updateDisplay(currency);
+            
+                        spinning = false;
+                        document.getElementById('spin-wheel').style.animation = 'none';
+                    }, 7000);
+                }
+                
+                function updateDisplay(currency) {
+                    document.querySelector('.coins').textContent = currency;
+                }
+                
+                function showPopup(message) {
+                    const popup = document.getElementById('popup-overlay');
+                    popup.querySelector('p').textContent = message;
+                    popup.style.display = 'flex';
+                }
+                
+                function closePopup() {
+                    document.getElementById('popup-overlay').style.display = 'none';
+                }
+                
+                function navigateTo(page) {
+                    window.location.href = page;
+                }
+            
             </script>
             </body>
 </html>
