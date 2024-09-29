@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>تصميم عجلة الحظ</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,500..900;1,500..900&display=swap">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Rubik', sans-serif;
+            background: linear-gradient(to bottom, #000000, #0A2DA1, #0081E9);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+            color: white;
+            user-select: none;
+        }
+        .container {
+            text-align: center;
+            padding-bottom: 100px;
+        }
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            flex-direction: row-reverse;
+        }
+        .header img {
+            padding: 10px;
+            width: 30px;
+            height: 30px;
+        }
+        .coins {
+            font-size: 30px;
+            margin-right: 10px;
+        }
+        .status {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            font-size: 18px;
+            color: #6fef97;
+        }
+        .status span {
+            margin-left: 10px;
+        }
+
+        /* Wheel Image */
+        .wheel-image {
+            margin-top: 130px;
+            position: relative;
+        }
+        .wheel-image img {
+            width: 300px;
+            height: auto;
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* Spin Button */
+        .spin-button {
+            font-family: 'Rubik', sans-serif;
+            margin-top: 20px;
+            padding: 8px 15px;
+            background-color: #28ADEE;
+            color: white;
+            font-size: 20px;
+            border: none;
+            border-radius: 20px;
+        }
+
+        /* Wheel Animation */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(3600deg); } /* Spins 10 full rotations */
+        }
+
+        /* Navigation Bar */
+        .nav-container {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #202020;
+            padding: 10px 0;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.5);
+        }
+        .nav {
+            display: flex;
+            justify-content: space-around;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .nav button {
+            font-family: 'Rubik', sans-serif;
+            background-color: transparent;
+            color: white;
+            border: none;
+            text-align: center;
+            flex: 1;
+            font-size: 14px;
+        }
+        .nav button img {
+            display: block;
+            margin: 0 auto;
+            width: 30px;
+            height: 30px;
+        }
+        .nav button span {
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* Timer Display */
+        #timer {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #FFD700;
+        }
+
+        /* Popup Styles */
+        .popup {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .popup-content {
+            background-color: #fff;
+            border-radius: 25px;
+            padding: 20px;
+            text-align: center;
+            width: 80%;
+            max-width: 400px;
+            position: relative;
+        }
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 24px;
+            color: #000;
+            cursor: pointer;
+        }
+        .popup button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 15px;
+            background: linear-gradient(to right, #0E43F1, #862AD0, #FF12B0);
+            color: #fff;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header section -->
+        <div class="header">
+            <img src="1000166057.png">
+            <div class="coins">0</div>
+        </div>
+
+        <!-- Status section -->
+        <div class="status">
+            <span>عجلة الحظ</span>
+            
+        </div>
+
+        <!-- Wheel Image -->
+        <div class="wheel-image">
+            <img id="spin-wheel" src="spin1.png">
+        </div>
+
+        <!-- Spin Button -->
+        <button class="spin-button" onclick="spinWheel()">دور العجلة</button>
+
+        <!-- Timer -->
+        <div id="timer">Next spin in 24h 00m 00s</div>
+    </div>
+
+    <!-- Navigation Container -->
+    <div class="nav-container">
+        <div class="nav">
+            <button onclick="navigateTo('level.html')" class="active">
+                <img src="1727602009584.png">
+                <span>مستوى</span>
+            </button>
+            <button onclick="navigateTo('spin.html')">
+                <img src="spin1.png">
+                <span>عجلة الحظ</span>
+            </button>
+            <button onclick="navigateTo('money.html')">
+                <img src="1727601870247.png">
+                <span>اموال</span>
+            </button>
+            <button onclick="navigateTo('home.html')">
+              <img src="home.png">
+              <span>رئيسية</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Popup -->
+    <div id="popup-overlay" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <p></p>
+            <button onclick="closePopup()">إغلاق</button>
+        </div>
+    </div>
+
+    <script>
+        let spinning = false;
+
+        function spinWheel() {
+            let timerActive = isTimerActive();
+            if (!spinning && !timerActive) {
+                spinning = true;
+                document.getElementById('spin-wheel').style.animation = 'spin 7s ease-out';
+                setTimeout(() => {
+                    let giftAmounts = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000];
+                    let randomIndex = Math.floor(Math.random() * giftAmounts.length);
+                    let selectedAmount = giftAmounts[randomIndex];
+
+                    let currency = parseFloat(localStorage.getItem('currency2')) || 0;
+                    currency += selectedAmount;
+
+                    showPopup(`تهانينا! لقد حصلت على ${selectedAmount} نقطة. الإجمالي: ${currency} نقاط`);
+                    localStorage.setItem('currency2', currency);
+                    updateDisplay(currency);
+
+                    spinning = false;
+                    document.getElementById('spin-wheel').style.animation = 'none';
+
+                    let currentTime = Math.floor(Date.now() / 1000);
+                    localStorage.setItem('spinTimer', currentTime);
+
+                    // بدء العداد بعد تدوير العجلة
+                    updateTimer();
+                }, 7000); // 7 seconds for spinning animation
+            }
+        }
+
+        function updateDisplay(points) {
+            document.querySelector('.coins').textContent = points;
+        }
+
+        function updateTimer() {
+            let previousTime = parseInt(localStorage.getItem('spinTimer')) || 0;
+            let currentTime = Math.floor(Date.now() / 1000);
+            let elapsedTime = currentTime - previousTime;
+            let remainingTime = Math.max(24 * 60 * 60 - elapsedTime, 0);
+
+            const timerInterval = setInterval(() => {
+                let hours = Math.floor(remainingTime / 3600);
+                let minutes = Math.floor((remainingTime % 3600) / 60);
+                let seconds = remainingTime % 60;
+
+                document.getElementById('timer').textContent = `يتبقى: ${hours} س, ${minutes} د, ${seconds} ث`;
+
+                remainingTime--;
+
+                if (remainingTime < 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById('timer').textContent = "العجلة جاهزة للدوران!";
+                }
+            }, 1000);}
+            
+            function isTimerActive() {
+              let previousTime = parseInt(localStorage.getItem('spinTimer')) || 0;
+              let currentTime = Math.floor(Date.now() / 1000);
+              return (currentTime - previousTime < 24 * 60 * 60);
+            }
+            
+            function showPopup(message) {
+              document.querySelector('.popup-content p').textContent = message;
+              document.getElementById('popup-overlay').style.display = 'flex';
+            }
+            
+            function closePopup() {
+              document.getElementById('popup-overlay').style.display = 'none';
+            }
+            
+            // عند تحميل الصفحة، تحديث العرض
+            document.addEventListener('DOMContentLoaded', () => {
+              let currency = parseFloat(localStorage.getItem('currency2')) || 0;
+              updateDisplay(currency);
+              if (isTimerActive()) {
+                updateTimer();
+              } else {
+                document.getElementById('timer').textContent = "العجلة جاهزة للدوران!";
+              }
+            });
+            </script>
+            </body>
+            </html>
