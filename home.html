@@ -185,7 +185,7 @@
 
         <!-- Cat Image -->
         <div class="cat-image" onclick="incrementPoints(event)">
-            <img id="catImage" src="lv1.png">
+            <img id="catImage" src="lv.png">
         </div>
 
         <!-- Progress section -->
@@ -261,25 +261,25 @@
         // Update cat image based on points
         function updateCatImage(points) {
               const catImage = document.getElementById('catImage');
-              if (points >= 1000000) {
+              if (points >= 10000000) {
                 catImage.src = "lv10.png"; // صورة المستوى 10
-              } else if (points >= 500000) {
+              } else if (points >= 5000000) {
                 catImage.src = "lv9.png"; // صورة المستوى 9
-              } else if (points >= 250000) {
+              } else if (points >= 2500000) {
                 catImage.src = "lv8.png"; // صورة المستوى 8
-              } else if (points >= 100000) {
+              } else if (points >= 1000000) {
                 catImage.src = "lv7.png"; // صورة المستوى 7
-              } else if (points >= 50000) {
+              } else if (points >= 500000) {
                 catImage.src = "lv6.png"; // صورة المستوى 6
-              } else if (points >= 25000) {
+              } else if (points >= 250000) {
                 catImage.src = "lv5.png"; // صورة المستوى 5
-              } else if (points >= 10000) {
+              } else if (points >= 100000) {
                 catImage.src = "lv4.png"; // صورة المستوى 4
-              } else if (points >= 5000) {
+              } else if (points >= 50000) {
                 catImage.src = "lv3.png"; // صورة المستوى 3
-              } else if (points >= 1000) {
+              } else if (points >= 10000) {
                 catImage.src = "lv2.png"; // صورة المستوى 2
-              } else {
+              } else if (points >= 1000) {
                 catImage.src = "lv1.png"; // صورة المستوى 1
               }
             }
