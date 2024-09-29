@@ -64,13 +64,13 @@
         }
 
         .complete-button, .verify-button {
-            margin-top: 10px;
-            padding: 10px 20px;
+          font-family: 'Rubik', sans-serif;
+            margin-top: 40px;
+            padding: 8px 15px;
             color: white;
             font-size: 18px;
             border: none;
             border-radius: 20px;
-            cursor: pointer;
             transition: background-color 0.3s ease;
         }
 
@@ -194,7 +194,7 @@
             taskDiv.classList.add('task');
             taskDiv.setAttribute('data-task-id', task.id);
             taskDiv.innerHTML = `
-                <img src="telegram.png" alt="Task Logo">
+                <img src="https://up6.cc/2024/09/172764426406561.png" alt="Task Logo">
                 <span class="description">${task.description}</span>
                 <button class="complete-button">أكمل المهمة</button>
                 <button class="verify-button">تحقق</button>
