@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>المهام الاجتماعية</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,500..900;1,500..900&display=swap">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Rubik', sans-serif;
+            background: linear-gradient(to bottom, #000000, #0A2DA1, #0081E9);
+            background-attachment: fixed; /* يجعل الخلفية ثابتة */
+            color: white;
+            user-select: none;
+        }
+
+        .container {
+            text-align: center;
+            padding-bottom: 100px;
+            overflow-y: auto; /* يتيح التمرير العمودي إذا لزم الأمر */
+            height: calc(100vh - 100px); /* يضمن أن تكون الحاوية قابلة للتمرير */
+        }
+
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            flex-direction: row-reverse;
+        }
+
+        .header img {
+            padding: 10px;
+            width: 30px;
+            height: 30px;
+        }
+
+        .coins {
+            font-size: 30px;
+            margin-right: 10px;
+        }
+
+        .task {
+            background-color: #202020;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .task img {
+            width: 50px;
+            height: 50px;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+
+        .task .description {
+            font-size: 18px;
+            vertical-align: middle;
+        }
+
+        .complete-button, .verify-button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .complete-button {
+            background-color: #28ADEE;
+        }
+
+        .complete-button:hover {
+            background-color: #1a6f92; /* لون مختلف عند التحويم */
+        }
+
+        .verify-button {
+            display: none; /* إخفاء زر التحقق افتراضيًا */
+            background-color: #5cb85c; /* لون زر التحقق */
+        }
+
+        .verify-button:hover {
+            background-color: #4cae4c; /* لون مختلف عند التحويم */
+        }
+
+        .completed {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #6fef97;
+        }
+
+        .nav-container {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #202020;
+            padding: 10px 0;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-around;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .nav button {
+            background-color: transparent;
+            color: white;
+            border: none;
+            text-align: center;
+            flex: 1;
+            font-size: 14px;
+        }
+
+        .nav button img {
+            display: block;
+            margin: 0 auto;
+            width: 30px;
+            height: 30px;
+        }
+
+        .nav button span {
+            display: block;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header section -->
+        <div class="header">
+            <img src="1000166057.png">
+            <div class="coins">0</div>
+        </div>
+
+        <!-- Task section -->
+        <div id="tasks-container"></div> <!-- حاوية المهام -->
+
+    </div>
+
+    <!-- Navigation Container -->
+    <div class="nav-container">
+        <div class="nav">
+            <button onclick="navigateTo('level.html')" class="active">
+                <img src="1727602009584.png">
+                <span>مستوى</span>
+            </button>
+            <button onclick="navigateTo('spin.html')">
+                <img src="spin1.png">
+                <span>مهام</span>
+            </button>
+            <button onclick="navigateTo('money.html')">
+                <img src="1727601870247.png">
+                <span>اموال</span>
+            </button>
+            <button onclick="navigateTo('home.html')">
+                <img src="home.png">
+                <span>رئيسية</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // تعريف المهام في مصفوفة
+        const tasks = [
+            { id: 9, description: "اشترك في قناة Telegram للحصول على 1000 نقطة", points: 1000, url: "https://t.me/Night_cat_token" } // المهمة الجديدة فقط
+        ];
+
+        // إعداد العملة
+        let currency = parseFloat(localStorage.getItem('currency2')) || 0;
+        document.querySelector('.coins').textContent = currency;
+
+        // تحميل المهام المنجزة من التخزين المحلي
+        let completedTasks = JSON.parse(localStorage.getItem('completedTasks')) || {};
+
+        // تهيئة المهام عند التحميل
+        const tasksContainer = document.getElementById('tasks-container');
+
+        tasks.forEach(task => {
+            // إنشاء عناصر المهمة
+            const taskDiv = document.createElement('div');
+            taskDiv.classList.add('task');
+            taskDiv.setAttribute('data-task-id', task.id);
+            taskDiv.innerHTML = `
+                <img src="telegram.png" alt="Task Logo">
+                <span class="description">${task.description}</span>
+                <button class="complete-button">أكمل المهمة</button>
+                <button class="verify-button">تحقق</button>
+                <div class="completed"></div>
+            `;
+
+            tasksContainer.appendChild(taskDiv);
+
+            if (completedTasks[task.id]) {
+                taskDiv.querySelector('.completed').textContent = "تمت إكمال المهمة";
+                taskDiv.querySelector('.verify-button').style.display = 'none';
+                taskDiv.querySelector('.complete-button').style.display = 'none';
+            } else {
+                taskDiv.querySelector('.verify-button').style.display = 'none'; // إخفاء زر التحقق عند التحميل
+                taskDiv.querySelector('.complete-button').style.display = 'block'; // إظهار زر الإكمال
+            }
+
+            // عند النقر على زر الإكمال
+            taskDiv.querySelector('.complete-button').addEventListener('click', function() {
+                window.open(task.url, '_blank'); // توجيه المستخدم إلى رابط المهمة
+                taskDiv.querySelector('.complete-button').style.display = 'none'; // إخفاء زر الإكمال
+                taskDiv.querySelector('.verify-button').style.display = 'block'; // إظهار زر التحقق عند العودة
+
+                // عند النقر على زر التحقق
+                taskDiv.querySelector('.verify-button').onclick = function() {
+                    setTimeout(function() {
+                        currency += task.points; // إضافة النقاط حسب المهمة
+                        localStorage.setItem('currency2', currency);
+                        document.querySelector('.coins').textContent = currency;
+
+                        taskDiv.querySelector('.verify-button').style.display = 'none'; // إخفاء زر التحقق
+                        taskDiv.querySelector('.completed').textContent = "تمت إكمال المهمة";
+
+                        completedTasks[task.id] = true; // تحديث حالة المهمة
+                        localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
+                    }, 3000); // تأخير 3 ثوانٍ قبل إضافة النقاط
+                };
+            });
+        });
+
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+    </script>
+
+</body>
+</html>
