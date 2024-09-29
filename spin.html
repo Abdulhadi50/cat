@@ -115,13 +115,6 @@
             margin-top: 5px;
         }
 
-        /* Timer Display */
-        #timer {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #FFD700;
-        }
-
         /* Popup Styles */
         .popup {
             display: none;
@@ -143,8 +136,10 @@
             width: 80%;
             max-width: 400px;
             position: relative;
+            color: black; /* تأكد من أن لون النص أسود */
         }
         .close-btn {
+          font-family: 'Rubik', sans-serif;
             position: absolute;
             top: 5px;
             right: 10px;
@@ -153,10 +148,11 @@
             cursor: pointer;
         }
         .popup button {
-            padding: 10px 20px;
+          font-family: 'Rubik', sans-serif;
+            padding: 8px 15px;
             border: none;
             border-radius: 15px;
-            background: linear-gradient(to right, #0E43F1, #862AD0, #FF12B0);
+            background: linear-gradient(to right, #0741C9, #0A2F9A, #131625);
             color: #fff;
             font-size: 16px;
             margin-top: 15px;
@@ -175,7 +171,6 @@
         <!-- Status section -->
         <div class="status">
             <span>عجلة الحظ</span>
-            
         </div>
 
         <!-- Wheel Image -->
@@ -184,10 +179,7 @@
         </div>
 
         <!-- Spin Button -->
-        <button class="spin-button" onclick="spinWheel()">دور العجلة</button>
-
-        <!-- Timer -->
-        <div id="timer">Next spin in 24h 00m 00s</div>
+        <button class="spin-button" onclick="confirmSpin()">دور العجلة</button>
     </div>
 
     <!-- Navigation Container -->
@@ -221,93 +213,87 @@
         </div>
     </div>
 
+    <!-- Confirmation Popup -->
+    <div id="confirm-popup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closeConfirmPopup()">&times;</span>
+            <p>هل أنت متأكد من أنك تريد خصم 5000 نقطة لتدوير العجلة؟</p>
+            <button onclick="confirmDeduction()">نعم</button>
+            <button onclick="closeConfirmPopup()">لا</button>
+        </div>
+    </div>
+
     <script>
         let spinning = false;
 
-        function spinWheel() {
-            let timerActive = isTimerActive();
-            if (!spinning && !timerActive) {
-                spinning = true;
-                document.getElementById('spin-wheel').style.animation = 'spin 7s ease-out';
-                setTimeout(() => {
-                    let giftAmounts = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000];
-                    let randomIndex = Math.floor(Math.random() * giftAmounts.length);
-                    let selectedAmount = giftAmounts[randomIndex];
+        // تحديث الرصيد عند دخول الصفحة
+        document.addEventListener("DOMContentLoaded", function() {
+            let currency = parseFloat(localStorage.getItem('currency2')) || 0;
+            updateDisplay(currency);
+        });
 
-                    let currency = parseFloat(localStorage.getItem('currency2')) || 0;
-                    currency += selectedAmount;
+        function confirmSpin() {
+            let currency = parseFloat(localStorage.getItem('currency2')) || 0;
 
-                    showPopup(`تهانينا! لقد حصلت على ${selectedAmount} نقطة. الإجمالي: ${currency} نقاط`);
-                    localStorage.setItem('currency2', currency);
-                    updateDisplay(currency);
-
-                    spinning = false;
-                    document.getElementById('spin-wheel').style.animation = 'none';
-
-                    let currentTime = Math.floor(Date.now() / 1000);
-                    localStorage.setItem('spinTimer', currentTime);
-
-                    // بدء العداد بعد تدوير العجلة
-                    updateTimer();
-                }, 7000); // 7 seconds for spinning animation
+            if (currency < 5000) {
+                showPopup("ليس لديك ما يكفي من النقاط!");
+                return;
             }
+
+            // عرض رسالة تأكيد الخصم
+            document.getElementById('confirm-popup').style.display = 'flex';
         }
 
-        function updateDisplay(points) {
-            document.querySelector('.coins').textContent = points;
+        function confirmDeduction() {
+            let currency = parseFloat(localStorage.getItem('currency2')) || 0;
+            currency -= 5000; // خصم 5000 نقطة
+            localStorage.setItem('currency2', currency); // تحديث الرصيد في التخزين المحلي
+            updateDisplay(currency); // تحديث العرض قبل التدوير
+            spinWheel();
+            closeConfirmPopup(); // إغلاق نافذة التأكيد
         }
 
-        function updateTimer() {
-            let previousTime = parseInt(localStorage.getItem('spinTimer')) || 0;
-            let currentTime = Math.floor(Date.now() / 1000);
-            let elapsedTime = currentTime - previousTime;
-            let remainingTime = Math.max(24 * 60 * 60 - elapsedTime, 0);
+        function closeConfirmPopup() {
+            document.getElementById('confirm-popup').style.display = 'none';
+        }
 
-            const timerInterval = setInterval(() => {
-                let hours = Math.floor(remainingTime / 3600);
-                let minutes = Math.floor((remainingTime % 3600) / 60);
-                let seconds = remainingTime % 60;
+        function spinWheel() {
+            spinning = true;
+            document.getElementById('spin-wheel').style.animation = 'spin 7s ease-out';
+            setTimeout(() => {
+                let giftAmounts = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000];
+                let randomIndex = Math.floor(Math.random() * giftAmounts.length);
+                let selectedAmount = giftAmounts[randomIndex];
 
-                document.getElementById('timer').textContent = `يتبقى: ${hours} س, ${minutes} د, ${seconds} ث`;
+                let currency = parseFloat(localStorage.getItem('currency2')) || 0; // استرجاع الرصيد بعد الخصم
+                currency += selectedAmount;
 
-                remainingTime--;
+                showPopup(`تهانينا! لقد حصلت على ${selectedAmount} نقطة. الإجمالي: ${currency} نقاط`);
+                localStorage.setItem('currency2', currency);
+                updateDisplay(currency);
 
-                if (remainingTime < 0) {
-                    clearInterval(timerInterval);
-                    document.getElementById('timer').textContent = "العجلة جاهزة للدوران!";
-                }
-            }, 1000);}
+                spinning = false;
+                document.getElementById('spin-wheel').style.animation = 'none';
+            }, 7000);
+            }
             
-            function isTimerActive() {
-              let previousTime = parseInt(localStorage.getItem('spinTimer')) || 0;
-              let currentTime = Math.floor(Date.now() / 1000);
-              return (currentTime - previousTime < 24 * 60 * 60);
+            function updateDisplay(currency) {
+              document.querySelector('.coins').textContent = currency;
             }
             
             function showPopup(message) {
-              document.querySelector('.popup-content p').textContent = message;
-              document.getElementById('popup-overlay').style.display = 'flex';
+              const popup = document.getElementById('popup-overlay');
+              popup.querySelector('p').textContent = message;
+              popup.style.display = 'flex';
             }
             
             function closePopup() {
               document.getElementById('popup-overlay').style.display = 'none';
             }
             
-            // عند تحميل الصفحة، تحديث العرض
-            document.addEventListener('DOMContentLoaded', () => {
-              let currency = parseFloat(localStorage.getItem('currency2')) || 0;
-              updateDisplay(currency);
-              if (isTimerActive()) {
-                updateTimer();
-              } else {
-                document.getElementById('timer').textContent = "العجلة جاهزة للدوران!";
-              }
-            });
-            
             function navigateTo(page) {
               window.location.href = page;
             }
-            
             </script>
             </body>
 </html>
