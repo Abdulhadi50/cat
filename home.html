@@ -26,7 +26,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 20px;
+            margin-top: 60px;
             flex-direction: row-reverse;
         }
         .header img {
@@ -114,14 +114,58 @@
             width: 30px;
             height: 30px;
         }
-        .nav button.active img {
-            background-color: #F9A028;
-            border-radius: 50%;
-        }
+
         .nav button span {
             display: block;
             margin-top: 5px;
         }
+
+        /* Popup styles */
+        .popup {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            border-radius: 25px;
+            padding: 20px;
+            text-align: center;
+            width: 80%;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 24px;
+            color: #000;
+        }
+
+        .popup button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 15px;
+            background: linear-gradient(to right, #0E43F1, #862AD0, #FF12B0);
+            color: #fff;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+        
+        .popup-text {
+    color: #000; /* تغيير اللون إلى الأسود */
+}
+
     </style>
 </head>
 <body>
@@ -129,19 +173,19 @@
     <div class="container">
         <!-- Header section -->
         <div class="header">
-            <img src="https://www.arabsharing.com/do.php?img=327868" alt="Coin">
+            <img src="coin.png">
             <div class="coins">0</div>
         </div>
 
         <!-- Status section -->
         <div class="status">
-            <span>الدخل</span>
-            <span>النقر 1</span>
+            <span>دخل</span>
+            <span>النقرة 1</span>
         </div>
 
         <!-- Cat Image -->
         <div class="cat-image" onclick="incrementPoints(event)">
-            <img id="catImage" src="https://up6.cc/2024/09/172747111575051.png" alt="Cat Image">
+            <img id="catImage" src="https://up6.cc/2024/09/172747111575051.png">
         </div>
 
         <!-- Progress section -->
@@ -153,22 +197,28 @@
     <!-- Navigation Container -->
     <div class="nav-container">
         <div class="nav">
-            <button onclick="navigateTo('tasks.html')" class="active">
-                <img src="https://img.icons8.com/ios-filled/999/ffffff/todo-list.png" alt="Tasks">
-                <span>المهام</span>
+            <button onclick="navigateTo('level.html')" class="active">
+                <img src="1727602009584.png">
+                <span>مستوى</span>
             </button>
-            <button onclick="navigateTo('earnings.html')">
-                <img src="https://img.icons8.com/ios-filled/999/ffffff/money.png" alt="Earnings">
-                <span>الأرباح</span>
+            <button onclick="navigateTo('energy.html')">
+                <img src="1727606284417.png">
+                <span>طاقة</span>
             </button>
-            <button onclick="navigateTo('friends.html')">
-                <img src="https://img.icons8.com/ios-filled/999/ffffff/groups.png" alt="Friends">
-                <span>الأصدقاء</span>
+           
+            <button onclick="navigateTo('money.html')">
+                <img src="1727601870247.png">
+                <span>اموال</span>
             </button>
-            <button onclick="navigateTo('win.html')">
-                <img src="https://img.icons8.com/ios-filled/999/ffffff/gift.png" alt="Win">
-                <span>1 win</span>
-            </button>
+        </div>
+    </div>
+
+    <!-- Popup for reward message -->
+    <div id="popupMessage" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">×</span>
+            <span class="popup-text">تهانينا! لقد وصلت إلى المستوى 10 وحصلت على مكافأة قدرها 5000 عملة!</span>
+            <button onclick="closePopup()">إغلاق</button>
         </div>
     </div>
 
@@ -180,6 +230,12 @@
 
         // Save points to localStorage
         function setPoints(points) {
+            // Check for level up and reward
+            if (points >= 1000000 && points < 1000000 + 5000) {
+                points += 5000; // Add reward points
+                showRewardMessage(); // Show reward message
+            }
+
             localStorage.setItem('currency2', points);
             updateDisplay(points);
             updateCatImage(points); // Update cat image based on points
@@ -192,76 +248,88 @@
 
         // Update cat image based on points
         function updateCatImage(points) {
-            const catImage = document.getElementById('catImage');
-            if (points >= 1000000) {
-                catImage.src = "https://up6.cc/2024/09/172729686061351.png";
-            } else if (points >= 500000) {
-                catImage.src = "https://up6.cc/2024/09/172682288016881.png";
-                
-            } else if (points >= 100000) {
-                  catImage.src = "https://up6.cc/2024/09/172682288016881.png";
-                  
-            } else if (points >= 50000) {
-                    catImage.src = "https://up6.cc/2024/09/172682288016881.png";
-                    
-            } else if (points >= 10000) {
-                      catImage.src = "https://up6.cc/2024/09/172682288016881.png";
-                      
-            } else if (points >= 5000) {
-                        catImage.src = "https://up6.cc/2024/09/172682288016881.png";
-                        
-                        
-            } else if (points >= 1000) {
-                catImage.src = "https://up6.cc/2024/09/172639189798991.png";
-            } else {
-                catImage.src = "https://up6.cc/2024/09/172747111575051.png"; // Default image
+              const catImage = document.getElementById('catImage');
+              if (points >= 1000000) {
+                catImage.src = "https://up6.cc/2024/09/172729686061351.png"; // صورة المستوى 10
+              } else if (points >= 500000) {
+                catImage.src = "https://up6.cc/2024/09/172682288016881.png"; // صورة المستوى 9
+              } else if (points >= 250000) {
+                catImage.src = "https://up6.cc/2024/09/172682288016881.png"; // صورة المستوى 8
+              } else if (points >= 100000) {
+                catImage.src = "https://up6.cc/2024/09/172639189798991.png"; // صورة المستوى 7
+              } else if (points >= 50000) {
+                catImage.src = "https://up6.cc/2024/09/172682288016881.png"; // صورة المستوى 6
+              } else if (points >= 25000) {
+                catImage.src = "https://up6.cc/2024/09/172682288016881.png"; // صورة المستوى 5
+              } else if (points >= 10000) {
+                catImage.src = "https://up6.cc/2024/09/172682288016881.png"; // صورة المستوى 4
+              } else if (points >= 5000) {
+                catImage.src = "https://up6.cc/2024/09/172682288016881.png"; // صورة المستوى 3
+              } else if (points >= 1000) {
+                catImage.src = "https://up6.cc/2024/09/172639189798991.png"; // صورة المستوى 2
+              } else {
+                catImage.src = "https://up6.cc/2024/09/172747111575051.png"; // صورة المستوى 1
+              }
             }
-        }
-
-        // Increment points when clicking the cat image
-        function incrementPoints(event) {
-            let points = getPoints() + 1;
-            setPoints(points);
-            showPlusOne(event.clientX, event.clientY);
-            triggerPulseEffect();
-        }
-
-        // Show the "+1" effect at the click position
-        function showPlusOne(x, y) {
-            const plusOne = document.createElement('div');
-            plusOne.className = 'plus-one';
-            plusOne.textContent = '1+';
-            document.body.appendChild(plusOne);
-
-            plusOne.style.left = `${x}px`;
-            plusOne.style.top = `${y}px`;
-
-            // Remove the element after animation
-            plusOne.addEventListener('animationend', () => {
+            
+            // Increment points and show animation
+            function incrementPoints(event) {
+              const points = getPoints();
+              const newPoints = points + 1; // إضافة نقطة جديدة
+              setPoints(newPoints);
+              showPlusOne(event); // عرض تأثير النقطة الجديدة
+            }
+            
+            // Show plus one effect
+            function showPlusOne(event) {
+              const plusOne = document.createElement('div');
+              plusOne.textContent = '+1';
+              plusOne.className = 'plus-one';
+              document.body.appendChild(plusOne);
+            
+              const { clientX, clientY } = event;
+              plusOne.style.left = `${clientX}px`;
+              plusOne.style.top = `${clientY}px`;
+            
+              setTimeout(() => {
+                plusOne.style.opacity = 0;
+                plusOne.style.transform = 'translateY(-200px)';
+              }, 0);
+            
+              setTimeout(() => {
                 plusOne.remove();
-            });
-        }
-
-        // Trigger pulse effect on the cat image
-        function triggerPulseEffect() {
-            const catImage = document.querySelector('.cat-image img');
-            catImage.classList.add('pulsing');
-            setTimeout(() => {
+              }, 1600);
+              // إضافة تأثير للرسمة عند النقر
+              const catImage = document.getElementById('catImage');
+              catImage.classList.add('pulsing');
+              setTimeout(() => {
                 catImage.classList.remove('pulsing');
-            }, 200); // Effect lasts for 200ms
-        }
-
-        // Update the balance on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            updateDisplay(getPoints());
-            updateCatImage(getPoints()); // Update the cat image on load
-        });
-
-        // Function to navigate to different HTML pages
-        function navigateTo(page) {
-            window.location.href = page;
-        }
-    </script>
-
-</body>
+              }, 100);
+            }
+            
+            // Show reward message
+            function showRewardMessage() {
+              const popup = document.getElementById('popupMessage');
+              popup.style.display = 'flex';
+            }
+            
+            // Close the popup
+            function closePopup() {
+              const popup = document.getElementById('popupMessage');
+              popup.style.display = 'none';
+            }
+            
+            // Navigate to a different page
+            function navigateTo(page) {
+              window.location.href = page;
+            }
+            
+            // Initialize points on load
+            document.addEventListener('DOMContentLoaded', () => {
+              const points = getPoints();
+              updateDisplay(points);
+              updateCatImage(points);
+            });
+            </script>
+            </body>
 </html>
