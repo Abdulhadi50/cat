@@ -217,7 +217,7 @@
     <div id="confirm-popup" class="popup">
         <div class="popup-content">
             <span class="close-btn" onclick="closeConfirmPopup()">&times;</span>
-            <p>هل أنت متأكد من أنك تريد خصم 5000 نقطة لتدوير العجلة؟</p>
+            <p>هل أنت متأكد من أنك تريد خصم 5000 عملة لتدوير العجلة؟</p>
             <button onclick="confirmDeduction()">نعم</button>
             <button onclick="closeConfirmPopup()">لا</button>
         </div>
@@ -247,7 +247,7 @@
             
                 function confirmDeduction() {
                     let currency = parseFloat(localStorage.getItem('currency2')) || 0;
-                    currency -= 5000; // خصم 5000 نقطة
+                    currency -= 5000; // خصم 5000 عملة
                     localStorage.setItem('currency2', currency); // تحديث الرصيد في التخزين المحلي
                     updateDisplay(currency); // تحديث العرض قبل التدوير
                     spinWheel();
@@ -288,7 +288,7 @@
                         let currency = parseFloat(localStorage.getItem('currency2')) || 0; // استرجاع الرصيد بعد الخصم
                         currency += selectedAmount;
             
-                        showPopup(`تهانينا! لقد حصلت على ${selectedAmount} نقطة. الإجمالي: ${currency} نقاط`);
+                        showPopup(`تهانينا! لقد حصلت على ${selectedAmount} عملة. الإجمالي: ${currency} عملات`);
                         localStorage.setItem('currency2', currency);
                         updateDisplay(currency);
             
