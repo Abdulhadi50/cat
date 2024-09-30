@@ -174,6 +174,7 @@
             { id: 2, description: "اشترك في بوت تلجرام واحصل على 500 عملة", points: 500, url: "https://example.com/share" },
             { id: 3, description: "قم بمتابعة حسابنا على إنستغرام للحصول على 500 عملة", points: 500, url: "https://www.instagram.com/cattoken.bot?igsh=MTdxMzgzY2MweWg5cw==" },
             { id: 4, description: "تابع حسابنا على 𝕏 و احصل على 500 عملة", points: 500, url: "https://x.com/CatToken_coin?t=zk3aPxIxELHHBgSB0NRTTQ&s=09" },
+            { id: 6, description: "شاهد اعلان ورابح 100 عملة", points: 100, url: "https://outrightsham.com/dughn6vge?key=b36f57c6db6f26bef36320c27f05a993" },
             { id: 5, description: "اتبعنا على يوت يوب واحصل على 700 عملة", points: 700, url: "https://www.youtube.com/@CatToken_coin" }
         ];
 
@@ -229,7 +230,7 @@
 
                         completedTasks[task.id] = true; // تحديث حالة المهمة
                         localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
-                    }, 3000); // تأخير 3 ثوانٍ قبل إضافة النقاط
+                    }, 1000); // تأخير 3 ثوانٍ قبل إضافة النقاط
                 };
             });
         });
