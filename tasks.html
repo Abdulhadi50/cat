@@ -43,7 +43,7 @@
         }
 
         .task {
-            background-color: #202020;
+            background-color: #017DF1;
             margin: 20px;
             padding: 20px;
             border-radius: 15px;
@@ -65,31 +65,25 @@
 
         .complete-button, .verify-button {
           font-family: 'Rubik', sans-serif;
-            margin-top: 40px;
+            margin-top: 10px;
             padding: 8px 15px;
             color: white;
-            font-size: 18px;
+            font-size: 15px;
             border: none;
-            border-radius: 20px;
+            border-radius: 15px;
             transition: background-color 0.3s ease;
         }
 
         .complete-button {
-            background-color: #28ADEE;
+            background-color: #0B2B98;
         }
 
-        .complete-button:hover {
-            background-color: #1a6f92; /* لون مختلف عند التحويم */
-        }
 
         .verify-button {
             display: none; /* إخفاء زر التحقق افتراضيًا */
-            background-color: #5cb85c; /* لون زر التحقق */
+            background-color: #F9A028; /* لون زر التحقق */
         }
 
-        .verify-button:hover {
-            background-color: #4cae4c; /* لون مختلف عند التحويم */
-        }
 
         .completed {
             margin-top: 10px;
@@ -115,6 +109,7 @@
         }
 
         .nav button {
+          font-family: 'Rubik', sans-serif;
             background-color: transparent;
             color: white;
             border: none;
@@ -175,7 +170,11 @@
     <script>
         // تعريف المهام في مصفوفة
         const tasks = [
-            { id: 9, description: "اشترك في قناة Telegram للحصول على 1000 نقطة", points: 1000, url: "https://t.me/Night_cat_token" } // المهمة الجديدة فقط
+            { id: 1, description: "اشترك في قناة Telegram للحصول على 1000 عملة", points: 1000, url: "https://t.me/Night_cat_token" },
+            { id: 2, description: "اشترك في بوت تلجرام واحصل على 500 عملة", points: 500, url: "https://example.com/share" },
+            { id: 3, description: "قم بمتابعة حسابنا على إنستغرام للحصول على 500 عملة", points: 500, url: "https://www.instagram.com/cattoken.bot?igsh=MTdxMzgzY2MweWg5cw==" },
+            { id: 4, description: "تابع حسابنا على 𝕏 و احصل على 500 عملة", points: 500, url: "https://x.com/CatToken_coin?t=zk3aPxIxELHHBgSB0NRTTQ&s=09" },
+            { id: 5, description: "اتبعنا على يوت يوب واحصل على 700 عملة", points: 700, url: "https://www.youtube.com/@CatToken_coin" }
         ];
 
         // إعداد العملة
@@ -194,7 +193,7 @@
             taskDiv.classList.add('task');
             taskDiv.setAttribute('data-task-id', task.id);
             taskDiv.innerHTML = `
-                <img src="https://up6.cc/2024/09/172764426406561.png" alt="Task Logo">
+                <img src="coin.png">
                 <span class="description">${task.description}</span>
                 <button class="complete-button">أكمل المهمة</button>
                 <button class="verify-button">تحقق</button>
