@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة الإحالة</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>مرحبًا <span id="user-name"></span></h1>
+        <p>هذا هو رابط الإحالة الخاص بك:</p>
+        <a id="referral-link" href="#" target="_blank">رابط الإحالة</a>
+    </div>
+
+    <script>
+        // استخراج اسم المستخدم من الرابط
+        var urlParams = new URLSearchParams(window.location.search);
+        var userName = urlParams.get('username') || "Guest";
+        var referralCode = userName;
+
+        // رابط البوت الخاص بك على تلجرام
+        var botName = "NightCat_Token_bot"; // قم بتغيير اسم البوت هنا
+        var referralLink = "https://t.me/" + botName + "?start=" + referralCode;
+
+        // تحديث عناصر الصفحة باسم المستخدم ورابط الإحالة
+        document.getElementById("user-name").textContent = userName;
+        document.getElementById("referral-link").setAttribute("href", referralLink);
+        document.getElementById("referral-link").textContent = referralLink;
+    </script>
+</body>
+</html>
