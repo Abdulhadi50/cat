@@ -1,182 +1,276 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تنزيل تطبيق Smart Pay</title>
+    <title>Point - تطبيق النقاط الربحي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #7B00FF;
+            --primary-light: #F0E6FF;
+            --secondary: #F0B90B;
+            --dark: #1A1A1A;
+            --light: #FFFFFF;
+            --gray: #6B7280;
+            --gradient: linear-gradient(135deg, #7B00FF 0%, #9D4EFF 100%);
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #fff;
+            background: var(--light);
+            color: var(--dark);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             padding: 20px;
-            color: #333;
         }
-        
-        .app-container {
-            background-color: #ffffff;
-            border-radius: 12px;
-            
-            max-width: 400px;
+
+        .container {
+            max-width: 500px;
             width: 100%;
             text-align: center;
         }
-        
-        .app-header img {
-            width: 80px;
-            height: 80px;
-            border-radius: 20px;
-            margin-bottom: 10px;
-        }
-        .app-title {
-            font-size: 1.8em;
-            color: #333;
-            font-weight: bold;
-        }
-        .app-info {
-            color: #0033CC;
-            font-weight: bold;
-            margin: 5px 0;
-        }
-        
-        .app-details {
-            display: flex;
-            justify-content: space-between;
-            margin: 15px 0;
-            font-size: 0.9em;
-            color: #666;
-            padding: 10px;
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .install-button {
-            background-color: #0033CC;
-            color: white;
-            padding: 12px 25px;
-            text-decoration: none;
-            font-size: 1.1em;
-            border-radius: 15px;
-            display: inline-block;
-            margin: 15px 0;
-            transition: background-color 0.3s ease;
-            box-shadow: 0px 4px 10px rgba(52, 168, 83, 0.2);
-        }
-        .install-button:hover {
-            background-color: #0033CC;
-        }
-        
-        .screenshots {
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-            margin-top: 15px;
-        }
-        .screenshots img {
-            width: 100%;
-            max-width: 110px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            
-            transition: transform 0.3s ease;
-        }
-        .screenshots img:hover {
-            transform: scale(1.05);
+
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 25px;
+            margin: 0 auto 20px;
+            box-shadow: var(--shadow);
+            border: 4px solid var(--primary-light);
+            animation: float 3s ease-in-out infinite;
         }
 
-        /* تصميم النافذة المنبثقة */
-        .popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
-        .popup img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 10px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+
+        .app-title {
+            font-size: 2.5em;
+            font-weight: 800;
+            margin-bottom: 5px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .popup:target {
+
+        .app-company {
+            font-size: 1.1em;
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+
+        .app-tagline {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+
+        .stats {
             display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 25px 0;
         }
-        
-        /* زر الإغلاق */
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: #ffffff;
-            font-size: 30px;
-            font-weight: bold;
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: var(--gray);
+            margin-top: 5px;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .stars {
+            color: var(--secondary);
+            margin-left: 8px;
+        }
+
+        .rating-value {
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
+        .install-button {
+            background: var(--gradient);
+            color: white;
+            padding: 16px 35px;
             text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 700;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(123, 0, 255, 0.3);
+        }
+
+        .install-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(123, 0, 255, 0.4);
+        }
+
+        .install-button i {
+            margin-left: 10px;
+        }
+
+        .screenshots {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .screenshot {
+            width: 160px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .feature {
+            background: var(--primary-light);
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .feature i {
+            font-size: 1.5em;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .feature-text {
+            font-size: 0.9em;
+            font-weight: 600;
         }
 
         footer {
-            margin-top: 20px;
+            margin-top: 30px;
+            color: var(--gray);
             font-size: 0.9em;
-            color: #999;
             text-align: center;
+        }
+
+        @media (max-width: 480px) {
+            .app-title {
+                font-size: 2em;
+            }
+            
+            .stats {
+                gap: 20px;
+            }
+            
+            .screenshot {
+                width: 140px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <img src="https://www2.0zz0.com/2025/10/30/15/673042675.jpg" alt="Point" class="app-icon">
+        
+        <h1 class="app-title">Point</h1>
+        <div class="app-company">Syr App</div>
+        <div class="app-tagline">ربح النقاط واستبدلها بمكافآت حقيقية</div>
 
-    <div class="app-container">
-        <div class="app-header">
-            <img src="https://www2.0zz0.com/2025/09/21/16/203411304.jpg" alt="App Icon">
-            <div class="app-title">Cashna</div>
-            <div class="app-info">Cashna LTD</div>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value">35 MB</div>
+                <div class="stat-label">الحجم</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">4.8</div>
+                <div class="stat-label">التقييم</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">7K+</div>
+                <div class="stat-label">التنزيلات</div>
+            </div>
         </div>
 
-        <div class="app-details">
-            <div><strong>35 MB</strong></div>
-            <div></div>
-            <div><strong>12585+ تنزيلات</strong></div>
+        <div class="rating">
+            <div class="rating-value">4.8</div>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
         </div>
 
-        <a href="https://apk.e-droid.net/apk/app3751568-beh8mg.apk?v=1" class="install-button" target="_blank">تنزيل التطبيق</a>
+        <a href="https://apk.e-droid.net/apk/app3768860-bha386.apk?v=2" class="install-button" target="_blank">
+            <i class="fas fa-download"></i>
+            تنزيل التطبيق
+        </a>
 
-        <!-- صور لقطات الشاشة -->
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-coins"></i>
+                <div class="feature-text">ربح النقاط</div>
+            </div>
+            <div class="feature">
+                <i class="fas fa-gift"></i>
+                <div class="feature-text">مكافآت حقيقية</div>
+            </div>
+           
+            <div class="feature">
+                <i class="fas fa-users"></i>
+                <div class="feature-text">إحالة الأصدقاء</div>
+            </div>
+        </div>
+
         <div class="screenshots">
-            <a href="#popup1"><img src="https://www2.0zz0.com/2025/09/21/16/656120510.jpg" alt="Screenshot 1"></a>
-            <a href="#popup2"><img src="https://www2.0zz0.com/2025/09/21/16/298483318.jpg" alt="Screenshot 2"></a>
-            <a href="#popup3"><img src="https://www2.0zz0.com/2025/09/21/16/900713066.jpg" alt="Screenshot 3"></a>
+            <img src="https://www2.0zz0.com/2025/10/30/16/755440222.jpg" alt="لقطة 1" class="screenshot">
+            <img src="https://www2.0zz0.com/2025/10/30/16/785077446.jpg" alt="لقطة 2" class="screenshot">
         </div>
     </div>
 
-    <!-- النافذة المنبثقة للصورة الأولى -->
-    <div id="popup1" class="popup">
-        <a href="#" class="close-btn">&times;</a>
-        <img src="https://www2.0zz0.com/2025/09/21/16/656120510.jpg" alt="Screenshot 1">
-    </div>
-
-    <!-- النافذة المنبثقة للصورة الثانية -->
-    <div id="popup2" class="popup">
-        <a href="#" class="close-btn">&times;</a>
-        <img src="https://www2.0zz0.com/2025/09/21/16/298483318.jpg" alt="Screenshot 2">
-    </div>
-
-    <!-- النافذة المنبثقة للصورة الثالثة -->
-    <div id="popup3" class="popup">
-        <a href="#" class="close-btn">&times;</a>
-        <img src="https://www2.0zz0.com/2025/09/21/16/900713066.jpg" alt="Screenshot 3">
-    </div>
-
-    <footer>&copy; 2025 جميع الحقوق محفوظة | تطبيق Cashna</footer>
-
+    <footer>
+        &copy; 2026 Point - Syr App. جميع الحقوق محفوظة
+    </footer>
 </body>
 </html>
