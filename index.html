@@ -187,6 +187,20 @@ input{font:inherit;color:inherit}
 .toast.err{border-color:var(--red)}
 .spn{display:inline-block;width:16px;height:16px;border:2.5px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:sp .6s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
+
+/* sky & grass */
+.sky{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.sky i{position:absolute;color:rgba(255,255,255,.85);animation:cm linear infinite}
+.sky i:nth-child(1){top:7%;left:-25%;font-size:60px;animation-duration:50s}
+.sky i:nth-child(2){top:22%;left:-35%;font-size:84px;animation-duration:70s;animation-delay:-30s}
+.sky i:nth-child(3){top:40%;left:-20%;font-size:46px;animation-duration:58s;animation-delay:-18s}
+.sky i:nth-child(4){top:58%;left:-30%;font-size:70px;animation-duration:66s;animation-delay:-45s}
+@keyframes cm{to{transform:translateX(160vw)}}
+.grass{position:absolute;left:0;right:0;bottom:0;height:90px;pointer-events:none;background:linear-gradient(180deg,#6FE23E,#35B51A)}
+.grass::before{content:'';position:absolute;left:0;right:0;top:-15px;height:16px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='16'%3E%3Cpath d='M0 16L4 3 8 16 12 6 16 16 20 0 26 16Z' fill='%236FE23E'/%3E%3C/svg%3E") repeat-x bottom}
+.top,.main{position:relative;z-index:1}
+.codebox{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 8px 8px 14px;margin-bottom:12px;border-radius:16px;background:#FFF9E8;border:2px solid var(--edge)}
+.codebox b{font-size:20px;letter-spacing:1px;direction:ltr}
 </style>
 </head>
 <body>
@@ -197,6 +211,7 @@ input{font:inherit;color:inherit}
 </div>
 
 <div class="app" id="app" style="display:none">
+  <div class="sky" aria-hidden="true"><i class="fas fa-cloud"></i><i class="fas fa-cloud"></i><i class="fas fa-cloud"></i><i class="fas fa-cloud"></i></div><div class="grass"></div>
   <div class="top">
     <div class="pill"><span class="ico i-sky"><i class="fas fa-gem"></i></span><div><b id="gemTop">0</b><small id="gemUsd">$0.00</small></div></div>
     <div class="pill"><span class="ico i-gold"><i class="fas fa-coins"></i></span><b id="coinTop">0</b></div>
@@ -338,6 +353,15 @@ input{font:inherit;color:inherit}
     <!-- REFERRAL -->
     <section class="screen" id="screen-referral">
       <div class="sec"><span class="ico i-gold"><i class="fas fa-user-plus"></i></span> دعوة الأصدقاء</div>
+      <div class="duo">
+        <div class="tileR"><div class="ico i-sky"><i class="fas fa-users"></i></div><b id="refCount">0</b><span class="sub">عدد الدعوات</span></div>
+        <div class="tileR me"><div class="ico i-gold"><i class="fas fa-gem"></i></div><b id="refEarn">0</b><span class="sub">أرباح الدعوات 💎</span></div>
+      </div>
+      <div class="card" id="enterCard" style="display:none">
+        <div class="ttl">هل دعاك صديق؟</div><div class="sub">أدخل معرّف الدعوة لتحصل على +20 💎</div>
+        <input class="inp" id="codeInput" inputmode="numeric" placeholder="معرّف الدعوة">
+        <button class="btn b-g" id="codeSubmit" style="margin-top:10px"><i class="fas fa-check"></i> تأكيد الكود</button>
+      </div>
       <div class="card">
         <div class="duo">
           <div class="tileR me"><div class="ico i-sky"><i class="fas fa-gem"></i></div><b>+50</b><span class="sub">جوهرة لك عن كل صديق</span></div>
@@ -348,6 +372,8 @@ input{font:inherit;color:inherit}
           <div><div class="ico i-green"><i class="fas fa-user-check"></i></div>صديقك ينضم</div>
           <div><div class="ico i-green"><i class="fas fa-gem"></i></div>تستلمان الجواهر</div>
         </div>
+        <div class="sub" style="margin-bottom:6px">معرّف الدعوة الخاص بك</div>
+        <div class="codebox"><b id="refCode">...</b><button class="btn b-y b-sm" id="codeCopy"><i class="fas fa-copy"></i> نسخ</button></div>
         <div class="link" id="refLink">...</div>
         <button class="btn b-g" id="refShare"><i class="fas fa-paper-plane"></i> مشاركة الرابط</button>
         <div style="height:10px"></div>
@@ -392,7 +418,7 @@ const CONFIG={
   levelCoins:n=>100+n*50,
   wd:{min:5000,rate:0.0001},
   spins:2,
-  prizes:[[ 'gems',25,'#F4B900'],['coins',500,'#35C915'],['gems',50,'#2FB8DC'],['coins',1000,'#F4B900'],['gems',100,'#35C915'],['coins',2000,'#2FB8DC'],['gems',75,'#F4B900'],['gems',200,'#35C915']],
+  prizes:[500,750,1000,1500,2000,2500,3500,5000].map((v,i)=>['coins',v,['#F4B900','#35C915','#2FB8DC'][i%3]]),
   daily:[[200,20],[300,30],[500,50],[700,70],[1000,100],[1500,150],[3000,300]],
   tg:'https://t.me/PuppyMerge'
 };
@@ -411,7 +437,7 @@ const rewardTxt=r=>'+'+(r.coins||0)+' 🪙'+(r.gems?' + '+r.gems+' 💎':'');
 /* ═══ SFX ═══ */
 const SFX={ctx:null,
   tone(f,d,t='square',v=.2,w=0){try{this.ctx=this.ctx||new(window.AudioContext||window.webkitAudioContext)();const c=this.ctx,s=c.currentTime+w,o=c.createOscillator(),g=c.createGain();o.type=t;o.frequency.value=f;g.gain.setValueAtTime(.0001,s);g.gain.linearRampToValueAtTime(v,s+.01);g.gain.exponentialRampToValueAtTime(.001,s+d);o.connect(g);g.connect(c.destination);o.start(s);o.stop(s+d+.05)}catch(e){}},
-  play(n){const m={tap:[[900,.05]],select:[[700,.07]],match:[[880,.09],[1320,.1,.04]],invalid:[[200,.13,0,'sawtooth']],
+  play(n){const m={tap:[[520,.07,0,'sine'],[780,.06,.035,'sine']],select:[[1000,.05,0,'triangle']],match:[[880,.09],[1320,.1,.04]],invalid:[[200,.13,0,'sawtooth']],
     win:[523,659,784,1047,1319].map((f,i)=>[f,.2,i*.07]),lose:[400,350,300,220].map((f,i)=>[f,.18,i*.07,'sawtooth']),
     reward:[880,1108,1320,1760].map((f,i)=>[f,.14,i*.05]),wheel:[523,659,784,1047,1319,1568].map((f,i)=>[f,.12,i*.06])}[n]||[];
     m.forEach(([f,d,w,t])=>this.tone(f,d,t||'square',.2,w||0))}
@@ -448,7 +474,7 @@ const S={user:null,busy:false,wd:0,ex:0,lb:'',lbAt:0};
 const newUser=()=>({telegramId:TG.id,name:(TG.user.first_name||'')+(TG.user.last_name?' '+TG.user.last_name:''),username:TG.user.username||null,photoUrl:TG.user.photo_url||null,
   coins:0,gems:0,energy:CONFIG.energyMax,energyUpdatedAt:Date.now(),level:1,totalScore:0,completedLevels:[],
   referralCode:TG.id,referredBy:null,referralCount:0,referralEarnings:0,referralUsed:false,
-  wheelSpins:CONFIG.spins,wheelLastDate:null,dailyRewards:{},dailyLogin:{streak:0,lastClaimDate:null},levelMissions:{},inviteMissions:{},inviteBase:0,
+  wheelSpins:CONFIG.spins,wheelLastDate:null,dailyRewards:{},dailyLogin:{streak:0,lastClaimDate:null},levelMissions:{},inviteMissions:{},inviteBases:{},
   createdAt:Date.now(),updatedAt:Date.now()});
 
 /* ═══ UI ═══ */
@@ -498,6 +524,8 @@ function renderAll(){
   $('wdGems').textContent=fmt(u.gems);$('wdUsd').textContent='$'+usd(u.gems||0);
   $('refLink').textContent='https://t.me/'+CONFIG.bot.username+'/'+CONFIG.bot.appName+'?startapp=ref_'+(u.referralCode||TG.id);
   $('exBal').textContent=fmt(u.coins)+' 🪙';
+  $('refCount').textContent=u.referralCount||0;$('refEarn').textContent=fmt(u.referralEarnings||0);$('refCode').textContent=u.referralCode||TG.id;
+  $('enterCard').style.display=u.referralUsed?'none':'block';
   $('wheelBadge').style.display=spinsLeft()>0?'inline-block':'none';
   renderEnergy();renderMissions();renderWheel();updateEx();updateWd();
 }
@@ -505,7 +533,7 @@ function go(s){
   const el=$('screen-'+s);if(!el)return;
   document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));el.classList.add('active');
   document.querySelectorAll('.dock button').forEach(b=>b.classList.toggle('on',b.dataset.nav===s));
-  $('mainScroll').scrollTop=0;SFX.play('tap');
+  $('mainScroll').scrollTop=0;
   if(s==='withdraw')loadWdHistory();
   if(s==='referral')loadLeaderboard();
 }
@@ -514,7 +542,7 @@ function go(s){
 const TILES=['fa-cat','fa-dog','fa-frog','fa-dove','fa-fish','fa-horse'];
 const Game={size:6,board:[],els:[],score:0,moves:0,target:0,level:1,sel:null,busy:false,ended:false,
   async start(n){
-    this.level=n;this.target=100+(n-1)*100;this.moves=Math.min(40,20+Math.floor((n-1)/2));
+    this.level=n;this.target=100+(n-1)*50;this.moves=Math.ceil(this.target/30*1.5)+3;
     this.score=0;this.sel=null;this.busy=false;this.ended=false;
     $('gameLevel').textContent=n;$('gameTarget').textContent=fmt(this.target);$('gameScore').textContent=0;$('gameMoves').textContent=this.moves;
     $('boardTarget').textContent='الهدف: '+fmt(this.target)+' نقطة';
@@ -523,7 +551,12 @@ const Game={size:6,board:[],els:[],score:0,moves:0,target:0,level:1,sel:null,bus
   build(){
     this.board=[];
     for(let r=0;r<this.size;r++){this.board[r]=[];for(let c=0;c<this.size;c++){let t,g=0;do{t=Math.floor(Math.random()*6);g++}while(this.would(r,c,t)&&g<50);this.board[r][c]=t}}
+    if(!this.findMove())this.build();
   },
+  findMove(){const b=this.board,n=this.size;
+    for(let r=0;r<n;r++)for(let c=0;c<n;c++)for(const[dr,dc]of[[0,1],[1,0]]){const r2=r+dr,c2=c+dc;if(r2>=n||c2>=n)continue;
+      [b[r][c],b[r2][c2]]=[b[r2][c2],b[r][c]];const ok=this.matches().length>0;[b[r][c],b[r2][c2]]=[b[r2][c2],b[r][c]];if(ok)return[r,c,r2,c2]}
+    return null},
   would(r,c,t){const b=this.board;return(c>=2&&b[r][c-1]===t&&b[r][c-2]===t)||(r>=2&&b[r-1][c]===t&&b[r-2][c]===t)},
   render(){
     const el=$('board');el.innerHTML='';this.els=[];
@@ -543,12 +576,11 @@ const Game={size:6,board:[],els:[],score:0,moves:0,target:0,level:1,sel:null,bus
     this.busy=true;const b=this.board;
     [b[r1][c1],b[r2][c2]]=[b[r2][c2],b[r1][c1]];this.paint(r1,c1);this.paint(r2,c2);SFX.play('tap');
     await sleep(150);
-    this.moves--;$('gameMoves').textContent=this.moves;
     if(!this.matches().length){
       [b[r1][c1],b[r2][c2]]=[b[r2][c2],b[r1][c1]];this.paint(r1,c1);this.paint(r2,c2);
       [this.els[r1][c1],this.els[r2][c2]].forEach(e=>{e.classList.add('bad');setTimeout(()=>e.classList.remove('bad'),400)});
       SFX.play('invalid');
-    }else await this.resolve();
+    }else{this.moves--;$('gameMoves').textContent=this.moves;await this.resolve()}
     this.busy=false;this.check();
   },
   matches(){
@@ -573,16 +605,16 @@ const Game={size:6,board:[],els:[],score:0,moves:0,target:0,level:1,sel:null,bus
       for(let r=this.size-1;r>=0;r--)if(b[r][c]!==-1){b[w][c]=b[r][c];if(w!==r)b[r][c]=-1;w--}
       for(let r=w;r>=0;r--)b[r][c]=Math.floor(Math.random()*6)}
   },
-  check(){if(this.ended)return;if(this.score>=this.target)this.win();else if(this.moves<=0)this.lose()},
+  check(){if(this.ended)return;if(this.score>=this.target)this.win();else if(this.moves<=0)this.lose();else if(!this.findMove()){this.build();this.render();toast('تم خلط اللوحة تلقائياً','info')}},
   async win(){
     this.ended=true;await Energy.use(1);
-    const g=Math.floor(this.score/CONFIG.score.divisor)*CONFIG.score.perUnit,c=CONFIG.levelCoins(this.level),u=S.user;
-    u.gems+=g;u.coins+=c;u.totalScore=(u.totalScore||0)+this.score;
+    const g=this.level%10===0?50:0,u=S.user;
+    u.gems+=g;u.totalScore=(u.totalScore||0)+this.score;
     if(!u.completedLevels.includes(this.level))u.completedLevels.push(this.level);
     const next=this.level+1;if(next>(u.level||1))u.level=next;
     await save({totalScore:u.totalScore,completedLevels:u.completedLevels,level:u.level});
     SFX.play('win');renderAll();
-    showModal({icon:'fa-trophy',title:'ممتاز! اكتمل المستوى',sub:'أكملت المستوى '+this.level,amount:'+'+c+' 🪙 + '+g+' 💎',btn:'المستوى التالي',
+    showModal({icon:'fa-trophy',title:'ممتاز! اكتمل المستوى',sub:'أكملت المستوى '+this.level,amount:g?'+'+g+' 💎 (مكافأة كل 10 مستويات)':'',btn:'المستوى التالي',
       onClose:()=>Energy.cur(S.user)>0?Game.start(next):(go('home'),toast('لا توجد طاقة — انتظر التجديد','info'))});
   },
   async lose(){
@@ -647,8 +679,8 @@ async function spinWheel(){
 
 /* ═══ MISSIONS ═══ */
 const DAILY_M=[{id:'tg_channel',title:'انضم لقناة تيليجرام',desc:'انضم للقناة الرسمية @PuppyMerge',reward:{gems:10}}];
-const LEVEL_M=[[5,500],[10,1000],[15,2000],[20,4000]].map(([l,c])=>({id:'lvl'+l,level:l,reward:{coins:c}}));
-const INVITE_M=[[1,100],[3,500],[10,1000],[25,2500],[50,10000]].map(([n,c])=>({id:'inv'+n,count:n,reward:{coins:c}}));
+const LEVEL_M=Array.from({length:30},(_,i)=>{const l=(i+1)*5;return{id:'lvl'+l,level:l,reward:{coins:l*100}}});
+const INVITE_M=[[1,5],[3,15],[5,30],[10,60],[20,100]].map(([n,g])=>({id:'inv'+n,count:n,reward:{gems:g}}));
 
 function mCard(icon,cls,title,desc,reward,btn,prog){
   return'<div class="card m-card"><span class="ico '+cls+'"><i class="fas '+icon+'"></i></span><div class="grow"><div class="ttl">'+title+'</div><div class="sub">'+desc+'</div><div>'+reward+'</div>'+
@@ -668,19 +700,14 @@ function renderMissions(){
   $('missionsDaily').querySelectorAll('[data-dm]').forEach(b=>b.onclick=()=>doDaily(b.dataset.dm));
 
   const lv=u.level||1,ld=u.levelMissions||{};
-  $('missionsLevel').innerHTML=LEVEL_M.map(m=>mCard('fa-trophy','i-gold','أوصل المستوى '+m.level,'مكافأة فورية عند الوصول',rewardHtml(m.reward),
+  $('missionsLevel').innerHTML=LEVEL_M.filter(m=>!ld[m.id]).slice(0,5).map(m=>mCard('fa-trophy','i-gold','أوصل المستوى '+m.level,'مكافأة فورية عند الوصول',rewardHtml(m.reward),
     ld[m.id]?bDone:lv>=m.level?bClaim('data-lm="'+m.id+'"'):bLock,[Math.min(lv,m.level),m.level])).join('');
   $('missionsLevel').querySelectorAll('[data-lm]').forEach(b=>b.onclick=()=>claimLevel(b.dataset.lm));
 
-  const id=u.inviteMissions||{},prog=(u.referralCount||0)-(u.inviteBase||0);
-  let cur=INVITE_M.findIndex(m=>!id[m.id]);if(cur<0)cur=INVITE_M.length;
-  $('missionsInvite').innerHTML=INVITE_M.map((m,i)=>{
-    if(i>cur)return'';
-    const done=id[m.id],ok=i===cur&&prog>=m.count;
-    return mCard('fa-user-plus','i-gold','ادعُ '+m.count+(m.count===1?' صديق':' أصدقاء'),'مكافأة عند إتمام العدد',rewardHtml(m.reward),
-      done?bDone:ok?bClaim('data-im="'+m.id+'"'):'<button class="btn b-sm b-s" data-go="referral"><i class="fas fa-user-plus"></i> ادعُ</button>',
-      [done?m.count:Math.min(prog,m.count),m.count]);
-  }).join('');
+  const ib=u.inviteBases||{},rc=u.referralCount||0;
+  $('missionsInvite').innerHTML=INVITE_M.map(m=>{const p=rc-(ib[m.id]||0),ok=p>=m.count;
+    return mCard('fa-user-plus','i-gold','ادعُ '+m.count+(m.count===1?' صديق':' أصدقاء'),'تتكرر من الصفر بعد الاستلام',rewardHtml(m.reward),
+      ok?bClaim('data-im="'+m.id+'"'):'<button class="btn b-sm b-s" data-go="referral"><i class="fas fa-user-plus"></i> ادعُ</button>',[Math.min(p,m.count),m.count])}).join('');
   $('missionsInvite').querySelectorAll('[data-im]').forEach(b=>b.onclick=()=>claimInvite(b.dataset.im));
   $('missionsInvite').querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go('referral'));
 }
@@ -711,10 +738,10 @@ async function claimLevel(id){
 }
 async function claimInvite(id){
   const m=INVITE_M.find(x=>x.id===id),u=S.user;if(!m||S.busy)return;
-  if((u.referralCount||0)-(u.inviteBase||0)<m.count)return toast('لم تكمل الدعوات','err');
-  const d=u.inviteMissions||{};if(d[id])return;
-  S.busy=true;d[id]=true;u.inviteMissions=d;u.inviteBase=u.referralCount||0;
-  await grant(m.reward,{inviteMissions:d,inviteBase:u.inviteBase},{icon:'fa-user-plus',title:'مكافأة الدعوات',sub:'شكراً لدعوة '+m.count+' أصدقاء'});S.busy=false;
+  const ib=u.inviteBases||{};
+  if((u.referralCount||0)-(ib[id]||0)<m.count)return toast('لم تكمل الدعوات','err');
+  S.busy=true;ib[id]=u.referralCount||0;u.inviteBases=ib;
+  await grant(m.reward,{inviteBases:ib},{icon:'fa-user-plus',title:'مكافأة الدعوات',sub:'شكراً لدعوة '+m.count+(m.count===1?' صديق':' أصدقاء')});S.busy=false;
 }
 
 /* ═══ EXCHANGE / WITHDRAW ═══ */
@@ -770,20 +797,21 @@ async function loadWdHistory(){
 }
 
 /* ═══ REFERRAL ═══ */
-async function checkReferral(){
-  const sp=TG.start;if(!sp||!sp.startsWith('ref_')||S.user.referralUsed)return;
-  const code=sp.slice(4);if(!/^\d{6,15}$/.test(code)||code===TG.id)return;
+async function applyCode(code){
+  const u=S.user;if(u.referralUsed)return false;
+  if(!/^\d{6,15}$/.test(code)||code===TG.id){toast('معرّف غير صالح','err');return false}
   try{
     const q=await db.collection(CONFIG.col).where('referralCode','==',code).limit(1).get();
-    if(q.empty||q.docs[0].id===TG.id)return;
-    const rid=q.docs[0].id,u=S.user;
+    if(q.empty||q.docs[0].id===TG.id){toast('الكود غير موجود','err');return false}
+    const rid=q.docs[0].id;
     u.referralUsed=true;u.referredBy=rid;u.gems+=CONFIG.ref.newUser;
     await FB.set({referralUsed:true,referredBy:rid,gems:u.gems});
-    const rr=db.collection(CONFIG.col).doc(rid),inc=firebase.firestore.FieldValue.increment;
-    await rr.update({gems:inc(CONFIG.ref.referrer),referralCount:inc(1),referralEarnings:inc(CONFIG.ref.referrer),updatedAt:Date.now()});
-    toast('🎉 +'+CONFIG.ref.newUser+' جوهرة من الإحالة!');
-  }catch(e){}
+    const inc=firebase.firestore.FieldValue.increment;
+    await db.collection(CONFIG.col).doc(rid).update({gems:inc(CONFIG.ref.referrer),referralCount:inc(1),referralEarnings:inc(CONFIG.ref.referrer),updatedAt:Date.now()});
+    SFX.play('reward');toast('🎉 +'+CONFIG.ref.newUser+' جوهرة من الإحالة!');renderAll();return true;
+  }catch(e){u.referralUsed=false;toast('تعذر التحقق من الكود','err');return false}
 }
+async function checkReferral(){const sp=TG.start;if(sp&&sp.startsWith('ref_'))await applyCode(sp.slice(4))}
 async function loadLeaderboard(){
   const l=$('lbList');
   if(S.lb&&Date.now()-S.lbAt<60000){l.innerHTML=S.lb;return}
@@ -821,6 +849,9 @@ function bind(){
   $('exSubmit').onclick=doExchange;$('wdSubmit').onclick=doWithdraw;
   const link=()=>$('refLink').textContent;
   $('refShare').onclick=()=>TG.share(link(),'🐾 انضم إلى Puppy Merge واربح الجواهر!');
+  $('codeCopy').onclick=()=>navigator.clipboard?navigator.clipboard.writeText($('refCode').textContent).then(()=>toast('تم نسخ المعرّف')):toast('تعذر النسخ','err');
+  $('codeSubmit').onclick=()=>withBtn($('codeSubmit'),'جاري التحقق...',()=>applyCode($('codeInput').value.trim().replace(/^ref_/,'')));
+  document.addEventListener('click',e=>{if(e.target.closest('.btn,.amt,.g-btn,.dock button,.quick .card'))SFX.play('tap')});
   $('refCopy').onclick=()=>navigator.clipboard?navigator.clipboard.writeText(link()).then(()=>toast('تم نسخ الرابط')):toast('تعذر النسخ','err');
 }
 async function boot(){
