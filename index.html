@@ -6,6 +6,7 @@
 <meta name="theme-color" content="#A8DCF0">
 <title>Puppy Merge - دمج الجراء</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src='//libtl.com/sdk.js' data-zone='12008608' data-sdk='show_12008608'></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
@@ -48,7 +49,10 @@ input{font:inherit;color:inherit}
 .b-s{background:linear-gradient(180deg,#8CEBFF,#59D7F2 70%,#2FB8DC);color:#fff;text-shadow:0 2px 0 var(--sky-d);box-shadow:0 5px 0 var(--sky-d),inset 0 3px 0 rgba(255,255,255,.55)}
 .b-s:active{box-shadow:0 2px 0 var(--sky-d)}
 .b-sm{height:38px;width:auto;padding:0 14px;font-size:12px;border-radius:14px}
-.b-off{background:#D5D5D5;color:#777;box-shadow:0 4px 0 #A5A5A5;text-shadow:none}
+/* Button labels use white lettering with a warm brown outline. */
+.btn,.dock button,.g-btn,.amt,.menu button{color:#fff!important;-webkit-text-stroke:.32px #6B4200;text-shadow:-.7px 0 #6B4200,.7px 0 #6B4200,0 -.7px #6B4200,0 .7px #6B4200}
+.b-y{color:#fff;text-shadow:-.7px 0 #6B4200,.7px 0 #6B4200,0 -.7px #6B4200,0 .7px #6B4200}
+.b-off{background:#D5D5D5;color:#fff;box-shadow:0 4px 0 #A5A5A5;text-shadow:-.7px 0 #6B4200,.7px 0 #6B4200,0 -.7px #6B4200,0 .7px #6B4200}
 
 /* loader */
 .loader{position:fixed;inset:0;z-index:9999;background:linear-gradient(180deg,#1A1F3A,#2A2F52);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;color:#fff;text-align:center;transition:opacity .4s}
@@ -180,6 +184,13 @@ input{font:inherit;color:inherit}
 .modal.show{display:flex}
 .modal .card{max-width:360px;width:100%;text-align:center;padding:26px 20px 20px;animation:po .35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 8px 0 var(--edge-d),0 20px 40px rgba(0,0,0,.4)}
 @keyframes po{from{transform:scale(.75);opacity:0}}
+.text-modal .card{max-width:420px;max-height:84dvh;overflow:hidden;display:flex;flex-direction:column;text-align:right;padding:16px}
+.content-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.text-modal .content-head .ico{width:44px;height:44px;margin:0;font-size:18px;flex-shrink:0}
+.content-body{overflow-y:auto;min-height:0;padding:2px 2px 12px;line-height:1.8;text-align:right;user-select:text;-webkit-user-select:text}
+.content-body h4{font-size:15px;margin:10px 0 3px;color:#8A5A00}
+.content-body p{font-size:12.5px;margin:0 0 8px;color:var(--ink2)}
+.content-body .policy-box{background:#FFF9E8;border:1.5px solid var(--edge);border-radius:13px;padding:10px;margin-bottom:9px}
 .modal .ico{width:80px;height:80px;font-size:38px;margin:0 auto 12px}
 .m-amt{font-size:32px;font-weight:900;direction:ltr;color:var(--gold-d);margin:6px 0 16px}
 .toast{position:fixed;top:16px;left:50%;transform:translate(-50%,-200px);z-index:2000;padding:11px 18px;border-radius:22px;font-weight:800;font-size:13.5px;max-width:90%;background:#fff;border:2.5px solid var(--edge);box-shadow:0 5px 0 var(--edge-d);transition:transform .35s cubic-bezier(.34,1.4,.64,1);pointer-events:none}
@@ -244,6 +255,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
           <div class="timer" id="energyTimer">ممتلئة</div>
         </div>
         <div class="bar"><i id="energyFill" style="width:100%"></i></div>
+        <button class="btn b-s" id="energyAdBtn" style="height:44px;margin-top:12px"><i class="fas fa-play-circle"></i> مشاهدة إعلان +1 طاقة</button>
       </div>
 
       <div class="quick">
@@ -287,6 +299,10 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
       <button class="btn b-g spin" id="wheelSpinBtn">
         <span style="font-size:18px"><i class="fas fa-dharmachakra"></i> لف العجلة</span>
         <span class="m"><b><i class="fas fa-ticket"></i> <span id="spinsLeft">2</span> لفات</b><b><i class="fas fa-clock"></i> <span id="wheelTimer">جاهز</span></b></span>
+      </button>
+      <button class="btn b-s" id="wheelAdBtn" style="height:58px;flex-direction:column;gap:1px;margin-top:10px">
+        <span><i class="fas fa-circle-play"></i> شاهد إعلان واربح</span>
+        <small style="font-size:11px;font-weight:800"><i class="fas fa-clock"></i> <span id="wheelAdTimer">متاح</span></small>
       </button>
     </section>
 
@@ -355,6 +371,8 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
         <button data-go="referral"><span class="ico i-sky"><i class="fas fa-user-plus"></i></span><span class="grow">دعوة الأصدقاء</span><i class="fas fa-chevron-left"></i></button>
         <button data-go="exchange"><span class="ico i-green"><i class="fas fa-right-left"></i></span><span class="grow">تبديل العملات</span><i class="fas fa-chevron-left"></i></button>
         <button data-go="withdraw"><span class="ico i-gold"><i class="fas fa-money-bill-transfer"></i></span><span class="grow">سحب الأموال</span><i class="fas fa-chevron-left"></i></button>
+        <button id="openPolicy"><span class="ico i-sky"><i class="fas fa-shield-halved"></i></span><span class="grow">معلومات التطبيق وسياسة الخصوصية</span><i class="fas fa-chevron-left"></i></button>
+        <button id="openHelp"><span class="ico i-green"><i class="fas fa-circle-question"></i></span><span class="grow">مركز المساعدة</span><i class="fas fa-chevron-left"></i></button>
       </div>
     </section>
 
@@ -413,6 +431,13 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
   <div style="height:10px"></div>
   <button class="btn b-s lang-pick" data-lang="en">🇺🇸 English</button>
 </div></div>
+<div class="modal text-modal" id="contentModal" style="z-index:1600">
+  <div class="card">
+    <div class="content-head"><span class="ico i-sky" id="contentIcon"><i class="fas fa-circle-info"></i></span><div class="grow ttl" style="font-size:18px" id="contentTitle">معلومات التطبيق</div><button class="g-btn" id="contentClose" aria-label="إغلاق"><i class="fas fa-xmark"></i></button></div>
+    <div class="content-body" id="contentBody"></div>
+    <button class="btn b-y" id="contentDone"><i class="fas fa-check"></i> إغلاق</button>
+  </div>
+</div>
 <div class="toast" id="toast"></div>
 
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
@@ -424,7 +449,7 @@ const CONFIG={
   firebase:{apiKey:"AIzaSyCDkO_uCCiHG3HHPDeQQ9j-v43sDhyua-w",authDomain:"dolphinbot-1.firebaseapp.com",projectId:"dolphinbot-1",storageBucket:"dolphinbot-1.firebasestorage.app",messagingSenderId:"385194736167",appId:"1:385194736167:web:53987f3857f5d56343ec02"},
   bot:{username:'PuppyMerge_bot',appName:'PuppyMerge'},
   col:'puppy_users',wdCol:'puppy_withdrawals',txCol:'puppy_transactions',timeCol:'_puppy_time',
-  energyMax:10,regenMs:300000,hintPrice:30,shufflePrice:50,
+  energyMax:10,regenMs:600000,hintPrice:30,shufflePrice:50,
   ref:{referrer:50,newUser:20},
   ex:{min:1000,rate:0.01},
   score:{divisor:1000,perUnit:100},
@@ -442,7 +467,7 @@ const fmt=n=>Number(n||0).toLocaleString('en-US');
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const usd=g=>(g*CONFIG.wd.rate).toFixed(2);
-const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const today=()=>new Date(TIME.now()).toISOString().slice(0,10);
 const pad=n=>String(n).padStart(2,'0');
 const rewardHtml=r=>(r.gems?'<span class="rw"><i class="fas fa-gem"></i>'+r.gems+'</span>':'')+(r.coins?'<span class="rw"><i class="fas fa-coins"></i>'+r.coins+'</span>':'');
 const rewardTxt=r=>'+'+(r.coins||0)+' 🪙'+(r.gems?' + '+r.gems+' 💎':'');
@@ -475,19 +500,20 @@ const FB={
 const save=(extra={})=>FB.set(Object.assign({coins:S.user.coins,gems:S.user.gems,updatedAt:Date.now()},extra));
 
 /* ═══ TIME ANTI-CHEAT ═══ */
-const TIME={offset:0,locked:false,
+const TIME={serverAt:0,perfAt:0,synced:false,locked:false,
+  now(){return this.synced?this.serverAt+(performance.now()-this.perfAt):Date.now()},
   async sync(){if(!db)return;try{const r=db.collection(CONFIG.timeCol).doc('t_'+TG.id),t0=performance.now();
     await r.set({ping:firebase.firestore.FieldValue.serverTimestamp()},{merge:true});
     const s=await r.get({source:'server'}),t1=performance.now(),ts=s.data()&&s.data().ping;
-    if(ts){this.offset=ts.toMillis()+(t1-t0)/2-Date.now();this.locked=Math.abs(this.offset)>60000;if(this.locked)toast('تم اكتشاف تلاعب بالوقت — اضبط وقت الجهاز تلقائياً','err')}}catch(e){}}
+    if(ts){this.serverAt=ts.toMillis()+(t1-t0)/2;this.perfAt=t1;this.synced=true;this.locked=Math.abs(this.serverAt-Date.now())>60000;if(this.locked)toast('تم اكتشاف تلاعب بالوقت — اضبط وقت الجهاز تلقائياً','err')}}catch(e){}}
 };
 
 /* ═══ STATE ═══ */
 const S={user:null,busy:false,wd:0,ex:0,lb:'',lbAt:0};
 const newUser=()=>({telegramId:TG.id,name:(TG.user.first_name||'')+(TG.user.last_name?' '+TG.user.last_name:''),username:TG.user.username||null,photoUrl:TG.user.photo_url||null,
-  coins:0,gems:0,energy:CONFIG.energyMax,energyUpdatedAt:Date.now(),level:1,totalScore:0,completedLevels:[],
+  coins:0,gems:0,energy:CONFIG.energyMax,energyUpdatedAt:TIME.now(),level:1,totalScore:0,completedLevels:[],
   referralCode:TG.id,referredBy:null,referralCount:0,referralEarnings:0,referralUsed:false,
-  wheelSpins:CONFIG.spins,wheelLastDate:null,dailyRewards:{},dailyLogin:{streak:0,lastClaimDate:null},levelMissions:{},inviteMissions:{},inviteBase:0,lang:null,
+  wheelSpins:CONFIG.spins,wheelLastDate:null,wheelSpinCount:0,wheelMissionClaimed:false,wheelAdLastAt:0,dailyRewards:{},dailyLogin:{streak:0,lastClaimDate:null},levelMissions:{},inviteMissions:{},inviteBase:0,lang:null,
   createdAt:Date.now(),updatedAt:Date.now()});
 
 /* ═══ UI ═══ */
@@ -507,14 +533,14 @@ $('modal').onclick=e=>{if(e.target.id==='modal')closeModal()};
 
 /* ═══ ENERGY ═══ */
 const Energy={
-  cur(u){const st=u.energy||0;if(st>=CONFIG.energyMax)return CONFIG.energyMax;return Math.min(CONFIG.energyMax,st+Math.floor((Date.now()-(u.energyUpdatedAt||Date.now()))/CONFIG.regenMs))},
-  next(u){if(this.cur(u)>=CONFIG.energyMax)return 0;return CONFIG.regenMs-((Date.now()-(u.energyUpdatedAt||Date.now()))%CONFIG.regenMs)},
+  cur(u){const st=Number(u.energy||0);if(st>=CONFIG.energyMax)return CONFIG.energyMax;const now=TIME.now(),rawLast=Number(u.energyUpdatedAt||now),last=rawLast>now+60000?now:rawLast,elapsed=Math.max(0,now-last);return Math.min(CONFIG.energyMax,Math.max(0,st+Math.floor(elapsed/CONFIG.regenMs)))},
+  next(u){if(this.cur(u)>=CONFIG.energyMax)return 0;const now=TIME.now(),rawLast=Number(u.energyUpdatedAt||now),last=rawLast>now+60000?now:rawLast,elapsed=Math.max(0,now-last);return CONFIG.regenMs-(elapsed%CONFIG.regenMs)},
   async use(n=1){const c=this.cur(S.user);if(c<n)return false;
-    // keep regen progress when energy was not full
-    const wasFull=c>=CONFIG.energyMax;
+    // Keep earned regeneration progress while consuming energy.
+    const now=TIME.now(),rawLast=Number(S.user.energyUpdatedAt||now),last=rawLast>now+60000?now:rawLast,wasFull=c>=CONFIG.energyMax;
     S.user.energy=c-n;
-    if(wasFull)S.user.energyUpdatedAt=Date.now();
-    else S.user.energyUpdatedAt=(S.user.energyUpdatedAt||Date.now())+Math.floor((Date.now()-(S.user.energyUpdatedAt||Date.now()))/CONFIG.regenMs)*CONFIG.regenMs;
+    if(wasFull)S.user.energyUpdatedAt=now;
+    else S.user.energyUpdatedAt=last+Math.floor((now-last)/CONFIG.regenMs)*CONFIG.regenMs;
     await FB.set({energy:S.user.energy,energyUpdatedAt:S.user.energyUpdatedAt});renderEnergy();return true}
 };
 function renderEnergy(){
@@ -622,13 +648,14 @@ const Game={size:6,board:[],els:[],score:0,moves:0,target:0,level:1,sel:null,bus
   check(){if(this.ended)return;if(this.score>=this.target)this.win();else if(this.moves<=0)this.lose();else if(!this.findMove()){this.build();this.render();toast('تم خلط اللوحة تلقائياً','info')}},
   async win(){
     this.ended=true;await Energy.use(1);
-    const g=this.level%10===0?50:0,u=S.user;
-    u.gems+=g;u.totalScore=(u.totalScore||0)+this.score;
-    if(!u.completedLevels.includes(this.level))u.completedLevels.push(this.level);
+    const u=S.user;if(!Array.isArray(u.completedLevels))u.completedLevels=[];
+    const firstCompletion=!u.completedLevels.includes(this.level),g=this.level%10===0&&firstCompletion?10:0;
+    u.gems=Number(u.gems||0)+g;u.totalScore=(u.totalScore||0)+this.score;
+    if(firstCompletion)u.completedLevels.push(this.level);
     const next=this.level+1;if(next>(u.level||1))u.level=next;
     await save({totalScore:u.totalScore,completedLevels:u.completedLevels,level:u.level});
     SFX.play('win');renderAll();
-    showModal({icon:'fa-trophy',title:'ممتاز! اكتمل المستوى',sub:'أكملت المستوى '+this.level,amount:g?'+'+g+' 💎 (مكافأة كل 10 مستويات)':'',btn:'المستوى التالي',
+    showModal({icon:g?'fa-gem':'fa-trophy',title:g?'+'+g+' 💎':'المستوى '+this.level,sub:'',amount:'',btn:'التالي',
       onClose:()=>Energy.cur(S.user)>0?Game.start(next):(go('home'),toast('لا توجد طاقة — انتظر التجديد','info'))});
   },
   async lose(){
@@ -659,6 +686,7 @@ const Game={size:6,board:[],els:[],score:0,moves:0,target:0,level:1,sel:null,bus
 /* ═══ WHEEL ═══ */
 let rot=0;
 function spinsLeft(){const u=S.user;return u.wheelLastDate===today()?(u.wheelSpins||0):CONFIG.spins}
+function wheelAdRemaining(){const last=Number(S.user&&S.user.wheelAdLastAt||0);return last?Math.max(0,3600000-(TIME.now()-last)):0}
 function buildWheel(){
   const svg=$('wheelSvg');if(svg.dataset.ok)return;svg.dataset.ok=1;
   const N=CONFIG.prizes.length,A=360/N,P=(d,r)=>{const a=(d-90)*Math.PI/180;return[100+r*Math.cos(a),100+r*Math.sin(a)]};
@@ -671,28 +699,51 @@ function buildWheel(){
 function renderWheel(){buildWheel();const n=spinsLeft();$('spinsLeft').textContent=n;$('wheelSpinBtn').disabled=n<=0||S.busy;wheelTimer()}
 function wheelTimer(){
   if(!S.user)return;
-  const t=new Date(),m=new Date(t);m.setHours(24,0,0,0);const d=m-t;
-  $('wheelTimer').textContent=pad(Math.floor(d/3600000))+':'+pad(Math.floor(d%3600000/60000))+':'+pad(Math.floor(d%60000/1000));
+  const now=TIME.now(),d=new Date(now),midnight=Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate()+1),remain=Math.max(0,midnight-now);
+  $('wheelTimer').textContent=pad(Math.floor(remain/3600000))+':'+pad(Math.floor(remain%3600000/60000))+':'+pad(Math.floor(remain%60000/1000));
+  const adRemain=wheelAdRemaining(),ab=$('wheelAdBtn');
+  if(ab){ab.disabled=S.busy||adRemain>0;$('wheelAdTimer').textContent=adRemain<=0?'متاح':pad(Math.floor(adRemain/3600000))+':'+pad(Math.floor(adRemain%3600000/60000))+':'+pad(Math.floor(adRemain%60000/1000))}
+}
+function trustedTimeReady(){if(!TIME.synced)return toast('تعذر التحقق من الوقت، تحقق من الاتصال ثم أعد المحاولة','err'),false;if(Math.abs(TIME.now()-Date.now())>60000)TIME.locked=true;if(TIME.locked)return toast('اضبط ساعة الجهاز تلقائياً لإكمال اللعب','err'),false;return true}
+async function performWheelSpin(fromAd=false){
+  const u=S.user,t=today(),n=spinsLeft();
+  const i=Math.floor(Math.random()*CONFIG.prizes.length),A=360/CONFIG.prizes.length,[type,val]=CONFIG.prizes[i];
+  if(!fromAd){u.wheelSpins=n-1;u.wheelLastDate=t}
+  u[type]=Number(u[type]||0)+val;u.wheelSpinCount=(u.wheelSpinCount||0)+1;
+  const patch={wheelSpinCount:u.wheelSpinCount};
+  if(!fromAd){patch.wheelSpins=u.wheelSpins;patch.wheelLastDate=t}
+  if(fromAd){u.wheelAdLastAt=TIME.now();patch.wheelAdLastAt=u.wheelAdLastAt}
+  // Commit the result before the animation so closing the page cannot erase a completed spin.
+  await save(patch);
+  SFX.play('wheel');rot=Math.ceil(rot/360)*360+360*6+(360-(i*A+A/2));$('wheel').style.transform='rotate('+rot+'deg)';
+  await sleep(5100);
+  SFX.play('win');S.busy=false;renderAll();
+  showModal({icon:type==='gems'?'fa-gem':'fa-coins',title:'+'+fmt(val)+(type==='gems'?' 💎':' 🪙'),sub:'',amount:'',btn:'موافق'});
 }
 async function spinWheel(){
   if(S.busy)return;
-  const u=S.user,t=today();let n=spinsLeft();
-  if(n<=0)return toast('لا توجد لفات — عد غداً','err');
-  S.busy=true;$('wheelSpinBtn').disabled=true;SFX.play('wheel');
-  u.wheelSpins=n-1;u.wheelLastDate=t;
-  const i=Math.floor(Math.random()*CONFIG.prizes.length),A=360/CONFIG.prizes.length;
-  rot=Math.ceil(rot/360)*360+360*6+(360-(i*A+A/2));
-  $('wheel').style.transform='rotate('+rot+'deg)';
-  const[type,val]=CONFIG.prizes[i];
-  await sleep(5000);
-  u[type]=(u[type]||0)+val;
-  await save({wheelSpins:u.wheelSpins,wheelLastDate:t});
-  SFX.play('win');S.busy=false;renderAll();
-  showModal({icon:'fa-gift',title:'مبروك!',sub:'ربحت من عجلة الحظ',amount:'+'+fmt(val)+(type==='gems'?' 💎':' 🪙'),btn:'رائع!'});
+  if(!trustedTimeReady())return;
+  const n=spinsLeft();if(n<=0)return toast('لا توجد لفات — عد غداً','err');
+  S.busy=true;renderWheel();
+  try{await performWheelSpin(false)}catch(e){S.busy=false;renderAll();toast('تعذر تدوير العجلة، حاول مجدداً','err')}
+}
+async function watchWheelAd(){
+  if(S.busy)return;
+  if(!trustedTimeReady())return;
+  const rem=wheelAdRemaining();if(rem>0)return toast('إعلان العجلة متاح بعد انتهاء العداد','err');
+  if(typeof window.show_12008608!=='function')return toast('الإعلان غير متاح حالياً، حاول لاحقاً','err');
+  S.busy=true;renderWheel();const started=performance.now();
+  try{
+    await window.show_12008608();
+    const elapsed=performance.now()-started;
+    if(elapsed<15000){S.busy=false;renderAll();return toast('لم تُحتسب المكافأة لأن مشاهدة الإعلان أقل من 15 ثانية','err')}
+    // One rewarded spin, without adding or consuming the free-spin counter.
+    await performWheelSpin(true);
+  }catch(e){S.busy=false;renderAll();toast('لم تكتمل مشاهدة الإعلان','err')}
 }
 
 /* ═══ MISSIONS ═══ */
-const DAILY_M=[{id:'tg_channel',title:'انضم لقناة تيليجرام',desc:'انضم للقناة الرسمية @PuppyMerge',reward:{gems:10}}];
+const DAILY_M=[{id:'tg_channel',title:'انضم لقناة تيليجرام',desc:'انضم للقناة الرسمية @PuppyMerge',reward:{gems:10}},{id:'wheel_10',kind:'wheel',title:'أدر عجلة الحظ 10 مرات',desc:'أكمل 10 لفات',reward:{coins:5000}}];
 const LEVEL_M=Array.from({length:30},(_,i)=>{const l=(i+1)*5;return{id:'lvl'+l,level:l,reward:{coins:l*100}}});
 const INVITE_M=[[1,5],[3,15],[5,30],[10,60],[20,100]].map(([n,g])=>({id:'inv'+n,count:n,reward:{gems:g}}));
 
@@ -709,9 +760,17 @@ function renderMissions(){
   $('dailyGrid').innerHTML=CONFIG.daily.map((d,i)=>'<div class="day'+(i<dl.streak?' done':i===next&&can?' claim':'')+'" data-d="'+i+'">يوم '+(i+1)+'<i class="fas fa-gift"></i>+'+d[0]+'</div>').join('');
   $('dailyGrid').querySelectorAll('.claim').forEach(e=>e.onclick=()=>claimDaily(+e.dataset.d));
 
-  $('missionsDaily').innerHTML=DAILY_M.map(m=>mCard('fa-paper-plane','i-sky',esc(m.title),esc(m.desc),rewardHtml(m.reward),
-    (u.dailyRewards||{})[m.id]===t?bDone:'<button class="btn b-sm b-s" data-dm="'+m.id+'"><i class="fas fa-external-link-alt"></i> انضم</button>')).join('');
+  $('missionsDaily').innerHTML=DAILY_M.map(m=>{
+    if(m.kind==='wheel'){
+      const count=Number(u.wheelSpinCount||0),claimed=!!u.wheelMissionClaimed;
+      const action=claimed?bDone:count>=10?'<button class="btn b-sm b-g" data-wm="'+m.id+'"><i class="fas fa-gift"></i> استلم</button>':bLock;
+      return mCard('fa-dharmachakra','i-gold',esc(m.title),esc(m.desc),rewardHtml(m.reward),action,[Math.min(count,10),10]);
+    }
+    return mCard('fa-paper-plane','i-sky',esc(m.title),esc(m.desc),rewardHtml(m.reward),
+      (u.dailyRewards||{})[m.id]===t?bDone:'<button class="btn b-sm b-s" data-dm="'+m.id+'"><i class="fas fa-external-link-alt"></i> انضم</button>');
+  }).join('');
   $('missionsDaily').querySelectorAll('[data-dm]').forEach(b=>b.onclick=()=>doDaily(b.dataset.dm));
+  $('missionsDaily').querySelectorAll('[data-wm]').forEach(b=>b.onclick=()=>claimWheelMission());
 
   const lv=u.level||1,ld=u.levelMissions||{};
   $('missionsLevel').innerHTML=LEVEL_M.filter(m=>!ld[m.id]).slice(0,5).map(m=>mCard('fa-trophy','i-gold','أوصل المستوى '+m.level,'مكافأة فورية عند الوصول',rewardHtml(m.reward),
@@ -742,6 +801,13 @@ async function doDaily(id){
   S.busy=true;TG.open(CONFIG.tg);toast('انتظر ثوانٍ لنتحقق...','info');await sleep(5000);
   const dr=S.user.dailyRewards||{};dr[id]=t;S.user.dailyRewards=dr;
   await grant(m.reward,{dailyRewards:dr});toast('تم استلام المكافأة!');S.busy=false;
+}
+async function claimWheelMission(){
+  const u=S.user;if(S.busy||u.wheelMissionClaimed)return;
+  if(Number(u.wheelSpinCount||0)<10)return toast('أكمل 10 لفات أولاً','err');
+  S.busy=true;u.wheelMissionClaimed=true;
+  await grant({coins:5000},{wheelMissionClaimed:true},{icon:'fa-dharmachakra',title:'+5,000 🪙',sub:''});
+  S.busy=false;renderMissions();
 }
 async function claimLevel(id){
   const m=LEVEL_M.find(x=>x.id===id),u=S.user;if(!m||S.busy||(u.level||1)<m.level)return;
@@ -835,7 +901,7 @@ async function loadLeaderboard(){
       const r=i+1,x=o.x,me=o.id===TG.id;
       return'<div class="lb'+(me?' me':'')+'"><div class="rank'+(r<=3?' r'+r:'')+'">'+(r===1?'<i class="fas fa-crown"></i>':r)+'</div>'+
         '<div class="av">'+(x.photoUrl?'<img src="'+esc(x.photoUrl)+'" referrerpolicy="no-referrer" onerror="this.outerHTML=\'<i class=\\\'fas fa-dog\\\'></i>\'">':'<i class="fas fa-dog"></i>')+'</div>'+
-        '<div class="grow"><div class="ttl">'+esc(x.name||'لاعب')+(me?' <span class="rw">أنت</span>':'')+'</div>'+(x.username?'<div class="sub" style="direction:ltr;text-align:right">@'+esc(x.username)+'</div>':'')+'</div>'+
+        '<div class="grow"><div class="ttl">'+esc(x.name||'لاعب')+(me?' <span class="rw">أنت</span>':'')+'</div></div>'+
         '<div class="cnt">'+x.referralCount+'</div></div>';
     }).join(''):'<div class="empty"><i class="fas fa-crown"></i><br>لا يوجد مدعون بعد — كن الأول!</div>';
     S.lbAt=Date.now();l.innerHTML=S.lb;
@@ -844,6 +910,7 @@ async function loadLeaderboard(){
 
 
 const EN={
+'مشاهدة إعلان':'Watch an ad','شاهد إعلان واربح':'Watch an ad & win','جاري مشاهدة الإعلان':'Watching ad...','متاح':'Available','مركز المساعدة':'Help center','معلومات التطبيق وسياسة الخصوصية':'App information & privacy','إغلاق':'Close','أدر عجلة الحظ 10 مرات':'Spin the wheel 10 times','أكمل 10 لفات':'Complete 10 spins',
 'دمج الجراء':'Merge the Puppies','ادمج 3 جراء متشابهة واكسب كنوز المملكة!':'Merge 3 matching puppies and win the kingdom treasures!',
 'المستوى التالي':'Next level','ممتاز! اكتمل المستوى':'Excellent! Level complete','أكملت المستوى':'You completed level','مكافأة كل 10 مستويات':'reward every 10 levels',
 'المستوى':'Level','ابدأ اللعب':'Play','الطاقة':'Energy','ممتلئة':'Full','عجلة الحظ':'Lucky Wheel','لفّتان يومياً':'2 spins daily','مجاناً':'Free',
@@ -907,6 +974,45 @@ function initLang(){
   if(l)applyLang(l,false);else $('langModal').classList.add('show');
 }
 
+async function watchEnergyAd(){
+  const btn=$('energyAdBtn');if(S.busy)return;
+  if(Energy.cur(S.user)>=CONFIG.energyMax)return toast('الطاقة ممتلئة بالفعل','info');
+  if(typeof window.show_12008608!=='function')return toast('الإعلان غير متاح حالياً، حاول لاحقاً','err');
+  S.busy=true;btn.disabled=true;const original=btn.innerHTML;btn.innerHTML='<span class="spn"></span> جاري مشاهدة الإعلان';
+  const started=performance.now();
+  try{
+    await window.show_12008608();
+    const elapsed=performance.now()-started;
+    if(elapsed<15000){toast('لم تُحتسب الطاقة لأن مشاهدة الإعلان أقل من 15 ثانية','err');return}
+    const u=S.user,now=TIME.now(),current=Energy.cur(u),last=u.energyUpdatedAt||now;
+    if(current>=CONFIG.energyMax)return toast('الطاقة ممتلئة بالفعل','info');
+    u.energy=current+1;
+    if(u.energy>=CONFIG.energyMax)u.energyUpdatedAt=now;
+    else u.energyUpdatedAt=last+Math.floor((now-last)/CONFIG.regenMs)*CONFIG.regenMs;
+    await FB.set({energy:u.energy,energyUpdatedAt:u.energyUpdatedAt});renderEnergy();toast('+1 ⚡');SFX.play('reward');
+  }catch(e){toast('لم تكتمل مشاهدة الإعلان','err')}
+  finally{S.busy=false;btn.disabled=false;btn.innerHTML=original;renderWheel()}
+}
+
+function openContentModal(kind){
+  const en=LANG==='en';
+  const policy=kind==='policy';
+  $('contentIcon').className='ico '+(policy?'i-sky':'i-green');
+  $('contentIcon').innerHTML='<i class="fas '+(policy?'fa-shield-halved':'fa-circle-question')+'"></i>';
+  $('contentTitle').textContent=policy?(en?'App information & privacy':'معلومات التطبيق وسياسة الخصوصية'):(en?'Help center':'مركز المساعدة');
+  if(policy){
+    $('contentBody').innerHTML=en?
+      '<div class="policy-box"><h4>About Puppy Merge</h4><p>Puppy Merge is a casual matching game. Coins, gems, energy, level progress and referral rewards are used to operate your in-app experience.</p></div><div class="policy-box"><h4>Information used</h4><p>The app uses your Telegram account identifier, display name, profile photo when available, balances, game progress, referral activity and withdrawal details you submit to provide its features, track rewards, review withdrawals and reduce abuse.</p></div><div class="policy-box"><h4>Privacy</h4><p>Use only an account and payout details you are authorized to use. Information may be processed by the services needed to run the app, such as Telegram and Firebase, or where legally required. Do not share passwords, verification codes or private account credentials in support messages.</p></div><div class="policy-box"><h4>Rewards and withdrawals</h4><p>Rewards are subject to the app rules and technical availability. Suspicious activity or invalid payout details may require review. Contact support from the app for questions or corrections.</p></div>' :
+      '<div class="policy-box"><h4>عن Puppy Merge</h4><p>لعبة دمج وترفيه تجمع فيها العملات والجواهر وتتقدم عبر المستويات والمهام والإحالات.</p></div><div class="policy-box"><h4>المعلومات المستخدمة</h4><p>يستخدم التطبيق معرّف حساب تيليجرام واسم العرض وصورة الحساب إن توفرت، إضافةً إلى الرصيد والطاقة وتقدم اللعب والإحالات وبيانات السحب التي تدخلها، لتشغيل الميزات وتسجيل المكافآت ومراجعة طلبات السحب والحد من إساءة الاستخدام.</p></div><div class="policy-box"><h4>الخصوصية</h4><p>قد تتم معالجة البيانات عبر الخدمات اللازمة لتشغيل التطبيق مثل تيليجرام وفايربيس، أو عند وجود متطلب قانوني. لا ترسل كلمات المرور أو رموز التحقق أو بيانات الدخول السرية إلى الدعم.</p></div><div class="policy-box"><h4>المكافآت والسحب</h4><p>تخضع المكافآت للتعليمات والتوفر التقني. قد تخضع العمليات المشبوهة أو بيانات السحب غير الصحيحة للمراجعة. تواصل مع مركز المساعدة عند وجود سؤال أو طلب تصحيح.</p></div>';
+  }else{
+    $('contentBody').innerHTML=en?
+      '<div class="policy-box"><h4>How to play</h4><p>Swap adjacent tiles to match at least three identical animals and reach the level target. Completing a stage consumes one energy point. Energy regenerates by one point every 10 minutes, up to the maximum.</p></div><div class="policy-box"><h4>Lucky wheel</h4><p>Use the available free spins. You can also watch a rewarded ad for one additional wheel result; this ad-spin option has a one-hour cooldown and does not add a free spin.</p></div><div class="policy-box"><h4>Coins and gems</h4><p>Open Exchange to see the current coin-to-gem rate and select an amount.</p></div><div class="policy-box"><h4>Invite friends</h4><p>Open Invite Friends and copy or share your referral link. Your friend must join through that link for the referral to be registered and applicable rewards to be credited.</p></div>' :
+      '<div class="policy-box"><h4>كيف تلعب؟</h4><p>بدّل أماكن القطع المتجاورة لتكوين ثلاثة حيوانات متشابهة أو أكثر، وحاول بلوغ هدف المستوى. عند إنهاء المرحلة تُستهلك نقطة طاقة، وتتجدد نقطة واحدة كل 10 دقائق حتى الحد الأقصى.</p></div><div class="policy-box"><h4>عجلة الحظ</h4><p>استخدم اللفات المجانية المتاحة. يمكنك أيضاً مشاهدة إعلان للحصول على نتيجة إضافية من العجلة؛ يتجدد هذا الخيار كل ساعة ولا يضيف لفة مجانية إلى رصيد اللفات.</p></div><div class="policy-box"><h4>العملات والجواهر</h4><p>افتح صفحة تبديل العملات لمعرفة سعر التحويل الحالي، ثم اختر عدد العملات واضغط تبديل.</p></div><div class="policy-box"><h4>كيف أدعو أصدقاء؟</h4><p>افتح صفحة دعوة الأصدقاء، وانسخ رابط الدعوة أو شاركه. يجب أن ينضم صديقك عبر هذا الرابط حتى يُسجَّل ضمن إحالاتك وتُحتسب المكافآت المستحقة.</p></div>';
+  }
+  $('contentModal').classList.add('show');
+}
+function closeContentModal(){$('contentModal').classList.remove('show')}
+
 /* ═══ BOOT ═══ */
 function bind(){
   document.querySelectorAll('[data-nav]').forEach(b=>b.onclick=()=>go(b.dataset.nav));
@@ -923,6 +1029,11 @@ function bind(){
   $('hintBtn').onclick=()=>Game.hint();
   $('shuffleBtn').onclick=()=>Game.shuffle();
   $('wheelSpinBtn').onclick=spinWheel;
+  $('wheelAdBtn').onclick=watchWheelAd;
+  $('energyAdBtn').onclick=watchEnergyAd;
+  $('openPolicy').onclick=()=>openContentModal('policy');$('openHelp').onclick=()=>openContentModal('help');
+  $('contentClose').onclick=closeContentModal;$('contentDone').onclick=closeContentModal;
+  $('contentModal').onclick=e=>{if(e.target.id==='contentModal')closeContentModal()};
   pick('#exAmounts','ex',updateEx);pick('#wdAmounts','wd',updateWd);
   $('exSubmit').onclick=doExchange;$('wdSubmit').onclick=doWithdraw;
   const link=()=>$('refLink').textContent;
@@ -946,6 +1057,7 @@ async function boot(){
   bind();renderAll();initLang();
   setInterval(()=>{renderEnergy();wheelTimer()},1000);
   setInterval(()=>TIME.sync(),300000);
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')TIME.sync()});
 }
 document.addEventListener('DOMContentLoaded',boot);
 </script>
