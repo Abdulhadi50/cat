@@ -28,6 +28,7 @@ input{font:inherit;color:inherit}
 .card{background:linear-gradient(180deg,#fff,var(--cream) 60%,#E8FAFF);border:3px solid var(--edge);border-radius:var(--r);padding:14px;margin-bottom:12px;box-shadow:0 5px 0 var(--edge-d),0 8px 16px rgba(0,0,0,.08),inset 0 3px 0 rgba(255,255,255,.7)}
 .sub{font-size:11px;font-weight:700;color:var(--ink2)}
 .row{display:flex;align-items:center;gap:10px}
+.wd-method{cursor:pointer;transition:border-color .15s,transform .15s}.wd-method:active{transform:scale(.99)}
 .grow{flex:1;min-width:0}
 .ttl{font-size:14px;font-weight:800}
 
@@ -335,7 +336,17 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
     <!-- WITHDRAW -->
     <section class="screen" id="screen-withdraw">
       <div class="hero2"><div class="sub">رصيدك القابل للسحب</div><div class="big"><i class="fas fa-gem" style="color:var(--sky-d)"></i> <span id="wdGems">0</span></div><div class="ttl" id="wdUsd">$0.00</div></div>
-      <div class="card row"><span class="ico i-gold"><i class="fab fa-bitcoin"></i></span><div class="grow"><div class="ttl">Binance Pay</div><div class="sub">5,000 💎 = $0.50</div></div><i class="fas fa-circle-check" style="color:var(--green-d);font-size:22px"></i></div>
+      <div class="ttl" style="margin:4px 0 10px">اختر طريقة السحب</div>
+      <div class="card row wd-method selected" data-method="binance" role="button" tabindex="0" style="border-color:var(--gold-d)">
+        <img src="https://up6.cc/2026/09/178982889076391.png" alt="Binance" style="width:46px;height:46px;object-fit:contain;border-radius:12px" onerror="this.style.display='none'">
+        <div class="grow"><div class="ttl">Binance Pay</div><div class="sub">الحد الأدنى 5,000 💎 = $0.50</div></div>
+        <i class="fas fa-circle-check wd-check" style="color:var(--green-d);font-size:22px"></i>
+      </div>
+      <div class="card row wd-method" data-method="sham_cash" role="button" tabindex="0">
+        <img src="https://up6.cc/2026/09/178975725154411.png" alt="Sham Cash" style="width:46px;height:46px;object-fit:contain;border-radius:12px" onerror="this.style.display='none'">
+        <div class="grow"><div class="ttl">Sham Cash — شام كاش</div><div class="sub">الحد الأدنى 1,000 💎 = 100 ل.س</div></div>
+        <i class="fas fa-circle-check wd-check" style="color:var(--green-d);font-size:22px;visibility:hidden"></i>
+      </div>
       <div class="card">
         <div class="ttl" style="margin-bottom:10px">اختر المبلغ</div>
         <div class="amts" id="wdAmounts" style="grid-template-columns:1fr 1fr">
@@ -344,8 +355,8 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
         </div>
       </div>
       <div class="card">
-        <div class="ttl">معرّف Binance Pay</div>
-        <div class="sub">أدخل معرّف Binance Pay أو البريد الإلكتروني لاستلام السحب</div>
+        <div class="ttl" id="wdAccountTitle">معرّف Binance Pay</div>
+        <div class="sub" id="wdAccountHelp">أدخل معرّف Binance Pay أو البريد الإلكتروني لاستلام السحب</div>
         <input class="inp" id="wdAccount" placeholder="Binance Pay ID أو البريد الإلكتروني" autocomplete="off">
       </div>
       <div class="info"><div>المبلغ المختار<b id="wdChosen">0 💎</b></div><div>ما يعادل<b id="wdReceive">$0.00</b></div></div>
@@ -457,7 +468,7 @@ const CONFIG={
   ex:{min:1000,rate:0.01},
   score:{divisor:1000,perUnit:100},
   levelCoins:n=>100+n*50,
-  wd:{min:5000,rate:0.0001},
+  wd:{min:5000,rate:0.0001,shamMin:1000,shamSypPerGem:0.1},
   spins:2,
   prizes:[500,750,1000,1500,2000,2500,3500,5000].map((v,i)=>['coins',v,['#F4B900','#35C915','#2FB8DC'][i%3]]),
   daily:[[200,20],[300,30],[500,50],[700,70],[1000,100],[1500,150],[3000,300]],
@@ -512,7 +523,7 @@ const TIME={serverAt:0,perfAt:0,synced:false,locked:false,
 };
 
 /* ═══ STATE ═══ */
-const S={user:null,busy:false,wd:0,ex:0,lb:'',lbAt:0};
+const S={user:null,busy:false,wd:0,wdMethod:'binance',ex:0,lb:'',lbAt:0};
 const newUser=()=>({telegramId:TG.id,name:(TG.user.first_name||'')+(TG.user.last_name?' '+TG.user.last_name:''),username:TG.user.username||null,photoUrl:TG.user.photo_url||null,
   coins:0,gems:0,energy:CONFIG.energyMax,energyUpdatedAt:TIME.now(),level:1,totalScore:0,completedLevels:[],
   referralCode:TG.id,referredBy:null,referralCount:0,referralEarnings:0,referralUsed:false,
@@ -835,7 +846,27 @@ function pick(sel,key,cb){
 }
 function clearPick(sel){document.querySelectorAll(sel+' .amt').forEach(x=>x.classList.remove('on'))}
 function updateEx(){$('exChosen').textContent=fmt(S.ex)+' 🪙';$('exReceive').textContent=fmt(Math.floor(S.ex*CONFIG.ex.rate))+' 💎'}
-function updateWd(){$('wdChosen').textContent=fmt(S.wd)+' 💎';$('wdReceive').textContent='$'+usd(S.wd)}
+function updateWd(){
+  $('wdChosen').textContent=fmt(S.wd)+' 💎';
+  $('wdReceive').textContent=S.wdMethod==='sham_cash'?(fmt(Math.round(S.wd*CONFIG.wd.shamSypPerGem))+' ل.س'):'$'+usd(S.wd);
+}
+function setWdMethod(method){
+  S.wdMethod=method;S.wd=0;clearPick('#wdAmounts');
+  document.querySelectorAll('.wd-method').forEach(el=>{
+    const on=el.dataset.method===method;el.classList.toggle('selected',on);
+    el.style.borderColor=on?'var(--gold-d)':'var(--edge)';
+    const check=el.querySelector('.wd-check');if(check)check.style.visibility=on?'visible':'hidden';
+  });
+  const amountBox=$('wdAmounts');
+  if(method==='sham_cash'){
+    amountBox.innerHTML='<button class="amt" data-amt="1000">1,000 💎</button><button class="amt" data-amt="2000">2,000 💎</button><button class="amt" data-amt="5000">5,000 💎</button><button class="amt" data-amt="10000">10,000 💎</button><button class="amt" data-amt="50000">50,000 💎</button>';
+    $('wdAccountTitle').textContent='رقم حساب شام كاش';$('wdAccountHelp').textContent='أدخل رقم الهاتف المرتبط بحساب شام كاش';$('wdAccount').placeholder='رقم الهاتف في شام كاش';
+  }else{
+    amountBox.innerHTML='<button class="amt" data-amt="5000">5,000 💎</button><button class="amt" data-amt="10000">10,000 💎</button><button class="amt" data-amt="50000">50,000 💎</button><button class="amt" data-amt="100000">100,000 💎</button>';
+    $('wdAccountTitle').textContent='معرّف Binance Pay';$('wdAccountHelp').textContent='أدخل معرّف Binance Pay أو البريد الإلكتروني لاستلام السحب';$('wdAccount').placeholder='Binance Pay ID أو البريد الإلكتروني';
+  }
+  pick('#wdAmounts','wd',updateWd);updateWd();
+}
 async function withBtn(btn,html,fn){
   if(S.busy)return;S.busy=true;const old=btn.innerHTML;btn.disabled=true;btn.innerHTML='<span class="spn"></span> '+html;
   try{await fn()}catch(e){console.warn(e);toast('حدثت مشكلة، حاول مجدداً','err')}
@@ -854,14 +885,16 @@ async function doExchange(){
   });
 }
 async function doWithdraw(){
-  const a=S.wd,u=S.user,acc=$('wdAccount').value.trim();
-  if(!a||a<CONFIG.wd.min)return toast('الحد الأدنى '+fmt(CONFIG.wd.min)+' جوهرة','err');
+  const a=S.wd,u=S.user,acc=$('wdAccount').value.trim(),method=S.wdMethod;
+  const min=method==='sham_cash'?CONFIG.wd.shamMin:CONFIG.wd.min;
+  if(!a||a<min)return toast('الحد الأدنى '+fmt(min)+' جوهرة','err');
   if(a>u.gems)return toast('رصيد الجواهر غير كافٍ','err');
-  if(acc.length<4)return toast('أدخل معرّف Binance صحيح','err');
+  if(acc.length<4)return toast(method==='sham_cash'?'أدخل رقم حساب شام كاش صحيح':'أدخل معرّف Binance صحيح','err');
   await withBtn($('wdSubmit'),'جاري الإرسال...',async()=>{
-    const payout='$'+usd(a);u.gems-=a;await save();
-    await db.collection(CONFIG.wdCol).add({userId:TG.id,userName:u.name||'لاعب',username:u.username||null,method:'binance',amount:a,payout,account:acc,status:'pending',createdAt:Date.now()});
-    await db.collection(CONFIG.txCol).add({userId:TG.id,type:'withdraw',amount:-a,currency:'gems',meta:{method:'binance',payout},createdAt:Date.now()});
+    const payout=method==='sham_cash'?(fmt(Math.round(a*CONFIG.wd.shamSypPerGem))+' ل.س'):'$'+usd(a);
+    u.gems-=a;await save();
+    await db.collection(CONFIG.wdCol).add({userId:TG.id,userName:u.name||'لاعب',username:u.username||null,method,amount:a,payout,account:acc,status:'pending',createdAt:Date.now()});
+    await db.collection(CONFIG.txCol).add({userId:TG.id,type:'withdraw',amount:-a,currency:'gems',meta:{method,payout},createdAt:Date.now()});
     SFX.play('reward');S.wd=0;$('wdAccount').value='';clearPick('#wdAmounts');renderAll();loadWdHistory();
     showModal({icon:'fa-check',title:'تم إرسال طلب السحب',sub:'سيتم معالجة طلبك خلال 24-72 ساعة',amount:fmt(a)+' 💎 ≈ '+payout,btn:'حسناً'});
   });
@@ -874,7 +907,7 @@ async function loadWdHistory(){
     const it=[];q.forEach(d=>it.push(d.data()));it.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
     const map={pending:'قيد المراجعة',approved:'مقبول',processing:'قيد التنفيذ',completed:'مكتمل',rejected:'مرفوض'};
     l.innerHTML=it.slice(0,15).map(w=>'<div class="card hist"><div><div class="ttl" style="direction:ltr;text-align:right">'+fmt(w.amount)+' 💎 → '+esc(w.payout||'$0')+'</div><div class="sub">'+
-      new Date(w.createdAt||Date.now()).toLocaleDateString((LANG==='en'?'en-US':'ar-EG'),{day:'numeric',month:'short',year:'numeric'})+' • Binance</div></div><span class="st '+esc(w.status||'pending')+'">'+(map[w.status]||'قيد المراجعة')+'</span></div>').join('');
+      new Date(w.createdAt||Date.now()).toLocaleDateString((LANG==='en'?'en-US':'ar-EG'),{day:'numeric',month:'short',year:'numeric'})+' • '+(w.method==='sham_cash'?'شام كاش':'Binance')+'</div></div><span class="st '+esc(w.status||'pending')+'">'+(map[w.status]||'قيد المراجعة')+'</span></div>').join('');
   }catch(e){l.innerHTML='<div class="empty">تعذر التحميل</div>'}
 }
 
@@ -1038,6 +1071,7 @@ function bind(){
   $('contentClose').onclick=closeContentModal;$('contentDone').onclick=closeContentModal;
   $('contentModal').onclick=e=>{if(e.target.id==='contentModal')closeContentModal()};
   pick('#exAmounts','ex',updateEx);pick('#wdAmounts','wd',updateWd);
+  document.querySelectorAll('.wd-method').forEach(el=>{el.onclick=()=>setWdMethod(el.dataset.method);el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setWdMethod(el.dataset.method)}}});
   $('exSubmit').onclick=doExchange;$('wdSubmit').onclick=doWithdraw;
   const link=()=>$('refLink').textContent;
   $('refShare').onclick=()=>TG.share(link(),trText('🐾 انضم إلى Puppy Merge واربح الجواهر!'));
