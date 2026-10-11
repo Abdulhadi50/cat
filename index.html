@@ -201,6 +201,10 @@ input{font:inherit;color:inherit}
 .top,.main{position:relative;z-index:1}
 .codebox{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 8px 8px 14px;margin-bottom:12px;border-radius:16px;background:#FFF9E8;border:2px solid var(--edge)}
 .codebox b{font-size:20px;letter-spacing:1px;direction:ltr}
+.mini{display:flex;align-items:center;margin-top:12px;padding:8px 4px;border-radius:16px;background:#FFF9E8;border:2px solid var(--edge)}
+.mini>div:not(.sep){flex:1;text-align:center}.mini .sep{width:2px;height:34px;background:var(--edge)}
+.mini i{color:var(--sky-d);font-size:13px}.mini b{display:block;font-size:18px;line-height:1.1;direction:ltr}.mini span{font-size:10.5px;font-weight:700;color:var(--ink2)}
+html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1)}
 </style>
 </head>
 <body>
@@ -343,6 +347,10 @@ input{font:inherit;color:inherit}
         <div class="card"><span class="ico i-green"><i class="fas fa-trophy"></i></span><div><b id="profLevel">1</b><span class="sub">المستوى</span></div></div>
         <div class="card"><span class="ico i-sky"><i class="fas fa-users"></i></span><div><b id="profRefs">0</b><span class="sub">إحالات</span></div></div>
       </div>
+      <div class="card">
+        <div class="ttl" style="margin-bottom:10px"><i class="fas fa-language"></i> تغيير اللغة</div>
+        <div class="g-act"><button class="btn b-s lang-btn" data-lang="ar">🇸🇦 العربية</button><button class="btn b-s lang-btn" data-lang="en">🇺🇸 English</button></div>
+      </div>
       <div class="card menu">
         <button data-go="referral"><span class="ico i-sky"><i class="fas fa-user-plus"></i></span><span class="grow">دعوة الأصدقاء</span><i class="fas fa-chevron-left"></i></button>
         <button data-go="exchange"><span class="ico i-green"><i class="fas fa-right-left"></i></span><span class="grow">تبديل العملات</span><i class="fas fa-chevron-left"></i></button>
@@ -353,10 +361,6 @@ input{font:inherit;color:inherit}
     <!-- REFERRAL -->
     <section class="screen" id="screen-referral">
       <div class="sec"><span class="ico i-gold"><i class="fas fa-user-plus"></i></span> دعوة الأصدقاء</div>
-      <div class="duo">
-        <div class="tileR"><div class="ico i-sky"><i class="fas fa-users"></i></div><b id="refCount">0</b><span class="sub">عدد الدعوات</span></div>
-        <div class="tileR me"><div class="ico i-gold"><i class="fas fa-gem"></i></div><b id="refEarn">0</b><span class="sub">أرباح الدعوات 💎</span></div>
-      </div>
       <div class="card" id="enterCard" style="display:none">
         <div class="ttl">هل دعاك صديق؟</div><div class="sub">أدخل معرّف الدعوة لتحصل على +20 💎</div>
         <input class="inp" id="codeInput" inputmode="numeric" placeholder="معرّف الدعوة">
@@ -378,6 +382,7 @@ input{font:inherit;color:inherit}
         <button class="btn b-g" id="refShare"><i class="fas fa-paper-plane"></i> مشاركة الرابط</button>
         <div style="height:10px"></div>
         <button class="btn b-y" id="refCopy"><i class="fas fa-copy"></i> نسخ الرابط</button>
+        <div class="mini"><div><i class="fas fa-users"></i><b id="refCount">0</b><span>عدد الدعوات</span></div><div class="sep"></div><div><i class="fas fa-gem"></i><b id="refEarn">0</b><span>أرباح الدعوات</span></div></div>
       </div>
       <div class="sec"><span class="ico i-gold"><i class="fas fa-crown"></i></span> أعلى 10 دعوات</div>
       <div class="card" id="lbList" style="padding:8px"><div class="empty">جاري التحميل...</div></div>
@@ -399,6 +404,14 @@ input{font:inherit;color:inherit}
   <div class="sub" style="font-size:13.5px;margin-top:4px" id="mSub"></div>
   <div class="m-amt" id="mAmt"></div>
   <button class="btn b-y" id="mBtn"><i class="fas fa-check"></i> <span>موافق</span></button>
+</div></div>
+<div class="modal" id="langModal" style="z-index:1500"><div class="card">
+  <div class="ico i-sky"><i class="fas fa-language"></i></div>
+  <div class="ttl" style="font-size:20px">اختر اللغة · Choose language</div>
+  <div style="height:16px"></div>
+  <button class="btn b-y lang-pick" data-lang="ar">🇸🇦 العربية</button>
+  <div style="height:10px"></div>
+  <button class="btn b-s lang-pick" data-lang="en">🇺🇸 English</button>
 </div></div>
 <div class="toast" id="toast"></div>
 
@@ -474,7 +487,7 @@ const S={user:null,busy:false,wd:0,ex:0,lb:'',lbAt:0};
 const newUser=()=>({telegramId:TG.id,name:(TG.user.first_name||'')+(TG.user.last_name?' '+TG.user.last_name:''),username:TG.user.username||null,photoUrl:TG.user.photo_url||null,
   coins:0,gems:0,energy:CONFIG.energyMax,energyUpdatedAt:Date.now(),level:1,totalScore:0,completedLevels:[],
   referralCode:TG.id,referredBy:null,referralCount:0,referralEarnings:0,referralUsed:false,
-  wheelSpins:CONFIG.spins,wheelLastDate:null,dailyRewards:{},dailyLogin:{streak:0,lastClaimDate:null},levelMissions:{},inviteMissions:{},inviteBases:{},
+  wheelSpins:CONFIG.spins,wheelLastDate:null,dailyRewards:{},dailyLogin:{streak:0,lastClaimDate:null},levelMissions:{},inviteMissions:{},inviteBase:0,lang:null,
   createdAt:Date.now(),updatedAt:Date.now()});
 
 /* ═══ UI ═══ */
@@ -542,7 +555,7 @@ function go(s){
 const TILES=['fa-cat','fa-dog','fa-frog','fa-dove','fa-fish','fa-horse'];
 const Game={size:6,board:[],els:[],score:0,moves:0,target:0,level:1,sel:null,busy:false,ended:false,
   async start(n){
-    this.level=n;this.target=100+(n-1)*50;this.moves=Math.ceil(this.target/30*1.5)+3;
+    this.level=n;this.target=100+(n-1)*50;this.moves=Math.ceil(this.target/30)+2;
     this.score=0;this.sel=null;this.busy=false;this.ended=false;
     $('gameLevel').textContent=n;$('gameTarget').textContent=fmt(this.target);$('gameScore').textContent=0;$('gameMoves').textContent=this.moves;
     $('boardTarget').textContent='الهدف: '+fmt(this.target)+' نقطة';
@@ -576,11 +589,12 @@ const Game={size:6,board:[],els:[],score:0,moves:0,target:0,level:1,sel:null,bus
     this.busy=true;const b=this.board;
     [b[r1][c1],b[r2][c2]]=[b[r2][c2],b[r1][c1]];this.paint(r1,c1);this.paint(r2,c2);SFX.play('tap');
     await sleep(150);
+    this.moves--;$('gameMoves').textContent=this.moves;
     if(!this.matches().length){
       [b[r1][c1],b[r2][c2]]=[b[r2][c2],b[r1][c1]];this.paint(r1,c1);this.paint(r2,c2);
       [this.els[r1][c1],this.els[r2][c2]].forEach(e=>{e.classList.add('bad');setTimeout(()=>e.classList.remove('bad'),400)});
       SFX.play('invalid');
-    }else{this.moves--;$('gameMoves').textContent=this.moves;await this.resolve()}
+    }else await this.resolve();
     this.busy=false;this.check();
   },
   matches(){
@@ -704,10 +718,9 @@ function renderMissions(){
     ld[m.id]?bDone:lv>=m.level?bClaim('data-lm="'+m.id+'"'):bLock,[Math.min(lv,m.level),m.level])).join('');
   $('missionsLevel').querySelectorAll('[data-lm]').forEach(b=>b.onclick=()=>claimLevel(b.dataset.lm));
 
-  const ib=u.inviteBases||{},rc=u.referralCount||0;
-  $('missionsInvite').innerHTML=INVITE_M.map(m=>{const p=rc-(ib[m.id]||0),ok=p>=m.count;
-    return mCard('fa-user-plus','i-gold','ادعُ '+m.count+(m.count===1?' صديق':' أصدقاء'),'تتكرر من الصفر بعد الاستلام',rewardHtml(m.reward),
-      ok?bClaim('data-im="'+m.id+'"'):'<button class="btn b-sm b-s" data-go="referral"><i class="fas fa-user-plus"></i> ادعُ</button>',[Math.min(p,m.count),m.count])}).join('');
+  const idn=u.inviteMissions||{},prog=(u.referralCount||0)-(u.inviteBase||0),im=INVITE_M.find(x=>!idn[x.id]);
+  $('missionsInvite').innerHTML=im?mCard('fa-user-plus','i-gold','ادعُ '+im.count+(im.count===1?' صديق':' أصدقاء'),'مكافأة عند إتمام العدد',rewardHtml(im.reward),
+    prog>=im.count?bClaim('data-im="'+im.id+'"'):'<button class="btn b-sm b-s" data-go="referral"><i class="fas fa-user-plus"></i> ادعُ</button>',[Math.min(prog,im.count),im.count]):'<div class="card empty">أكملت كل مهام الدعوات</div>';
   $('missionsInvite').querySelectorAll('[data-im]').forEach(b=>b.onclick=()=>claimInvite(b.dataset.im));
   $('missionsInvite').querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go('referral'));
 }
@@ -738,10 +751,10 @@ async function claimLevel(id){
 }
 async function claimInvite(id){
   const m=INVITE_M.find(x=>x.id===id),u=S.user;if(!m||S.busy)return;
-  const ib=u.inviteBases||{};
-  if((u.referralCount||0)-(ib[id]||0)<m.count)return toast('لم تكمل الدعوات','err');
-  S.busy=true;ib[id]=u.referralCount||0;u.inviteBases=ib;
-  await grant(m.reward,{inviteBases:ib},{icon:'fa-user-plus',title:'مكافأة الدعوات',sub:'شكراً لدعوة '+m.count+(m.count===1?' صديق':' أصدقاء')});S.busy=false;
+  const d=u.inviteMissions||{};if(d[id])return;
+  if((u.referralCount||0)-(u.inviteBase||0)<m.count)return toast('لم تكمل الدعوات','err');
+  S.busy=true;d[id]=true;u.inviteMissions=d;u.inviteBase=u.referralCount||0;
+  await grant(m.reward,{inviteMissions:d,inviteBase:u.inviteBase},{icon:'fa-user-plus',title:'مكافأة الدعوات',sub:'شكراً لدعوة '+m.count+(m.count===1?' صديق':' أصدقاء')});S.busy=false;
 }
 
 /* ═══ EXCHANGE / WITHDRAW ═══ */
@@ -792,7 +805,7 @@ async function loadWdHistory(){
     const it=[];q.forEach(d=>it.push(d.data()));it.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
     const map={pending:'قيد المراجعة',approved:'مقبول',processing:'قيد التنفيذ',completed:'مكتمل',rejected:'مرفوض'};
     l.innerHTML=it.slice(0,15).map(w=>'<div class="card hist"><div><div class="ttl" style="direction:ltr;text-align:right">'+fmt(w.amount)+' 💎 → '+esc(w.payout||'$0')+'</div><div class="sub">'+
-      new Date(w.createdAt||Date.now()).toLocaleDateString('ar-EG',{day:'numeric',month:'short',year:'numeric'})+' • Binance</div></div><span class="st '+esc(w.status||'pending')+'">'+(map[w.status]||'قيد المراجعة')+'</span></div>').join('');
+      new Date(w.createdAt||Date.now()).toLocaleDateString((LANG==='en'?'en-US':'ar-EG'),{day:'numeric',month:'short',year:'numeric'})+' • Binance</div></div><span class="st '+esc(w.status||'pending')+'">'+(map[w.status]||'قيد المراجعة')+'</span></div>').join('');
   }catch(e){l.innerHTML='<div class="empty">تعذر التحميل</div>'}
 }
 
@@ -829,6 +842,71 @@ async function loadLeaderboard(){
   }catch(e){l.innerHTML='<div class="empty">تعذر تحميل القائمة</div>'}
 }
 
+
+const EN={
+'دمج الجراء':'Merge the Puppies','ادمج 3 جراء متشابهة واكسب كنوز المملكة!':'Merge 3 matching puppies and win the kingdom treasures!',
+'المستوى التالي':'Next level','ممتاز! اكتمل المستوى':'Excellent! Level complete','أكملت المستوى':'You completed level','مكافأة كل 10 مستويات':'reward every 10 levels',
+'المستوى':'Level','ابدأ اللعب':'Play','الطاقة':'Energy','ممتلئة':'Full','عجلة الحظ':'Lucky Wheel','لفّتان يومياً':'2 spins daily','مجاناً':'Free',
+'المهام اليومية':'Daily Missions','مهام المستويات':'Level Missions','مهام الدعوات':'Invite Missions','المهام':'Missions','مكافآت يومية':'Daily rewards',
+'النقاط':'Score','الهدف':'Goal','الحركات':'Moves','نقطة':'pts','تلميح':'Hint','خلط':'Shuffle','لف العجلة':'Spin','لفات':'spins',
+'التسجيل اليومي':'Daily Login','يوم ':'Day ','تبديل العملات':'Exchange Coins','اتجاه واحد فقط':'One way only','اختر عدد العملات':'Choose coin amount',
+'العملات المُحوّلة':'Coins to convert','الجواهر المستقبلة':'Gems received','رصيدك القابل للسحب':'Withdrawable balance','رصيدك':'Your balance','تبديل الآن':'Exchange now',
+'اختر المبلغ':'Choose amount','ما يعادل':'Equivalent','المبلغ المختار':'Selected amount','تقديم طلب السحب':'Submit withdrawal','سجل السحوبات':'Withdrawal history',
+'Binance Pay ID أو البريد الإلكتروني':'Binance Pay ID or email','لاعب':'Player','عملات':'Coins','جواهر':'Gems','إحالات':'Referrals','تغيير اللغة':'Language',
+'دعوة الأصدقاء':'Invite Friends','سحب الأموال':'Withdraw','عدد الدعوات':'Invites','أرباح الدعوات':'Invite earnings','هل دعاك صديق؟':'Did a friend invite you?',
+'أدخل معرّف الدعوة لتحصل على':'Enter the invite ID to get','تأكيد الكود':'Confirm code','جوهرة لك عن كل صديق':'gems for you per friend','هدية ترحيب لصديقك':'welcome gift for your friend',
+'شارك رابطك':'Share your link','صديقك ينضم':'Friend joins','تستلمان الجواهر':'You both get gems','معرّف الدعوة الخاص بك':'Your invite ID','معرّف الدعوة':'Invite ID',
+'مشاركة الرابط':'Share link','نسخ الرابط':'Copy link','نسخ':'Copy','أعلى 10 دعوات':'Top 10 Inviters','جاري التحميل':'Loading','الرئيسية':'Home','العجلة':'Wheel','الإحالة':'Referral','حسابي':'Profile',
+'موافق':'OK','حسناً':'Okay','انضم لقناة تيليجرام':'Join Telegram channel','انضم للقناة الرسمية':'Join the official channel','انضم':'Join','تم':'Done','استلم':'Claim','ادعُ':'Invite',
+'أصدقاء':'friends','صديق':'friend','أوصل المستوى':'Reach level','مكافأة فورية عند الوصول':'Instant reward on reaching','مكافأة عند إتمام العدد':'Reward on completion','أكملت كل مهام الدعوات':'All invite missions completed',
+'تم اكتشاف تلاعب بالوقت — اضبط وقت الجهاز تلقائياً':'Time tampering detected — set device time to automatic','تم خلط اللوحة تلقائياً':'Board shuffled automatically','تم خلط اللوحة!':'Board shuffled!',
+'لا يوجد تلميح متاح':'No hint available','تحتاج':'You need','عملة':'coins','جوهرة':'gems','لا توجد لفات — عد غداً':'No spins left — come back tomorrow','استلمت مكافأة اليوم':'Today reward already claimed',
+'استلم المكافآت بالترتيب':'Claim rewards in order','انتظر ثوانٍ لنتحقق...':'Wait a few seconds...','تم استلام المكافأة!':'Reward claimed!','لم تكمل الدعوات':'Invites not complete',
+'الحد الأدنى':'Minimum','رصيد العملات غير كافٍ':'Not enough coins','رصيد الجواهر غير كافٍ':'Not enough gems','أدخل معرّف Binance صحيح':'Enter a valid Binance ID',
+'حدثت مشكلة، حاول مجدداً':'Something went wrong, try again','جاري التحويل...':'Converting...','جاري الإرسال...':'Sending...','جاري التحقق...':'Verifying...','تم التبديل!':'Exchanged!',
+'حوّلت':'You converted','إلى جواهر':'to gems','تم إرسال طلب السحب':'Withdrawal request sent','سيتم معالجة طلبك خلال 24-72 ساعة':'Your request will be processed within 24-72 hours',
+'قيد المراجعة':'Pending','مقبول':'Approved','قيد التنفيذ':'Processing','مكتمل':'Completed','مرفوض':'Rejected','لا يوجد سجل سحب بعد':'No withdrawals yet',
+'تعذر التحميل':'Failed to load','معرّف غير صالح':'Invalid ID','الكود غير موجود':'Code not found','من الإحالة':'from referral','تعذر التحقق من الكود':'Could not verify code',
+'أنت':'You','لا يوجد مدعون بعد — كن الأول!':'No inviters yet — be the first!','تعذر تحميل القائمة':'Failed to load list','تعذر النسخ':'Copy failed','تم نسخ الرابط':'Link copied','تم نسخ المعرّف':'ID copied',
+'انضم إلى Puppy Merge واربح الجواهر!':'Join Puppy Merge and win gems!','اللعب مجمد — وقت الجهاز غير صحيح':'Game locked — device time is wrong','لا توجد طاقة — انتظر التجديد':'No energy — wait for regeneration','لا توجد طاقة':'No energy',
+'انتهت الحركات!':'Out of moves!',' من ':' of ','فقدت':'lost','طاقة':'energy','متبقي':'left','حاول مجدداً':'Try again','مبروك!':'Congrats!','ربحت من عجلة الحظ':'You won from the Lucky Wheel',
+'رائع!':'Awesome!','رائع':'Great','مكافأة اليوم':'Day reward','أكملت الأسبوع! تسلسل جديد غداً':'Week complete! New streak tomorrow','عد غداً لمكافأة أكبر':'Come back tomorrow for a bigger reward',
+'مكافأة المستوى':'Level reward','استلمت مكافأة إنجاز':'You claimed an achievement reward','مكافأة الدعوات':'Invite reward','شكراً لدعوة':'Thanks for inviting','استلمت المكافأة':'Already claimed'
+};
+const KEYS=Object.keys(EN).sort((a,b)=>b.length-a.length),AR=/[\u0600-\u06FF]/,orig=new WeakMap();
+let LANG=null,trBusy=false,trRaf=0;
+function trText(v){
+  if(LANG!=='en')return v;
+  for(const k of KEYS){if(k.length<4){if(v.trim()===k)v=v.replace(k,EN[k])}else if(v.includes(k))v=v.split(k).join(EN[k])}
+  return v;
+}
+function translateAll(){
+  trBusy=true;
+  try{
+    const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;
+    while(n=w.nextNode()){
+      const p=n.parentNode;if(p&&(p.tagName==='SCRIPT'||p.tagName==='STYLE'))continue;
+      const v=n.nodeValue,rec=orig.get(n);
+      if(rec&&v===rec.t){if(LANG!=='en'){n.nodeValue=rec.o;orig.delete(n)}continue}
+      if(LANG==='en'&&AR.test(v)){const t=trText(v);if(t!==v){orig.set(n,{o:v,t});n.nodeValue=t}}
+    }
+    document.querySelectorAll('[placeholder]').forEach(e=>{if(!e.dataset.ph)e.dataset.ph=e.placeholder;e.placeholder=LANG==='en'?trText(e.dataset.ph):e.dataset.ph});
+  }finally{trBusy=false}
+}
+new MutationObserver(()=>{if(LANG==='en'&&!trBusy&&!trRaf)trRaf=requestAnimationFrame(()=>{trRaf=0;translateAll()})}).observe(document.body,{childList:true,subtree:true,characterData:true});
+function applyLang(l,persist){
+  LANG=l;try{localStorage.setItem('pm_lang',l)}catch(e){}
+  document.documentElement.lang=l;document.documentElement.dir=l==='en'?'ltr':'rtl';
+  document.querySelectorAll('#screen-profile .lang-btn').forEach(b=>{const on=b.dataset.lang===l;b.classList.toggle('b-g',on);b.classList.toggle('b-s',!on)});
+  if(persist&&S.user){S.user.lang=l;FB.set({lang:l})}
+  renderAll();translateAll();
+}
+function initLang(){
+  let l=null;try{l=localStorage.getItem('pm_lang')}catch(e){}
+  l=l||(S.user&&S.user.lang);
+  if(l)applyLang(l,false);else $('langModal').classList.add('show');
+}
+
 /* ═══ BOOT ═══ */
 function bind(){
   document.querySelectorAll('[data-nav]').forEach(b=>b.onclick=()=>go(b.dataset.nav));
@@ -848,7 +926,9 @@ function bind(){
   pick('#exAmounts','ex',updateEx);pick('#wdAmounts','wd',updateWd);
   $('exSubmit').onclick=doExchange;$('wdSubmit').onclick=doWithdraw;
   const link=()=>$('refLink').textContent;
-  $('refShare').onclick=()=>TG.share(link(),'🐾 انضم إلى Puppy Merge واربح الجواهر!');
+  $('refShare').onclick=()=>TG.share(link(),trText('🐾 انضم إلى Puppy Merge واربح الجواهر!'));
+  document.querySelectorAll('.lang-pick').forEach(b=>b.onclick=()=>{applyLang(b.dataset.lang,true);$('langModal').classList.remove('show')});
+  document.querySelectorAll('#screen-profile .lang-btn').forEach(b=>b.onclick=()=>applyLang(b.dataset.lang,true));
   $('codeCopy').onclick=()=>navigator.clipboard?navigator.clipboard.writeText($('refCode').textContent).then(()=>toast('تم نسخ المعرّف')):toast('تعذر النسخ','err');
   $('codeSubmit').onclick=()=>withBtn($('codeSubmit'),'جاري التحقق...',()=>applyCode($('codeInput').value.trim().replace(/^ref_/,'')));
   document.addEventListener('click',e=>{if(e.target.closest('.btn,.amt,.g-btn,.dock button,.quick .card'))SFX.play('tap')});
@@ -863,7 +943,7 @@ async function boot(){
   try{const ex=await FB.get();if(ex)S.user=Object.assign(newUser(),ex);else{S.user=newUser();await FB.set(S.user,false)}}catch(e){S.user=newUser()}
   await checkReferral();
   $('loader').classList.add('hide');$('app').style.display='flex';
-  bind();renderAll();
+  bind();renderAll();initLang();
   setInterval(()=>{renderEnergy();wheelTimer()},1000);
   setInterval(()=>TIME.sync(),300000);
 }
