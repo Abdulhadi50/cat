@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#1a1f3a">
+<meta name="theme-color" content="#A8DCF0">
 <title>Puppy Merge - دمج الجراء</title>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -29,12 +29,10 @@
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow:hidden}
-body{
-  font-family:'Baloo Bhaijaan 2','Cairo',-apple-system,sans-serif;
+body{font-family:'Baloo Bhaijaan 2','Cairo',-apple-system,sans-serif;
   background:#A8DCF0;color:var(--navy);font-size:15px;line-height:1.5;
   overscroll-behavior:none;-webkit-font-smoothing:antialiased;
-  user-select:none;-webkit-user-select:none;
-}
+  user-select:none;-webkit-user-select:none}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;font-size:inherit}
 input{font-family:inherit;color:inherit;font-size:inherit}
 ::-webkit-scrollbar{display:none}
@@ -52,12 +50,11 @@ input{font-family:inherit;color:inherit;font-size:inherit}
 .loader{position:fixed;inset:0;z-index:9999;
   background:linear-gradient(180deg,#1A1F3A 0%,#2A2F52 100%);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;
-  transition:opacity .5s ease, visibility .5s}
+  transition:opacity .5s,visibility .5s}
 .loader.hide{opacity:0;visibility:hidden}
 .loader__logo{width:140px;height:140px;border-radius:50%;
   background:linear-gradient(135deg,var(--gold),var(--gold-d));
-  display:flex;align-items:center;justify-content:center;
-  font-size:70px;color:var(--white);
+  display:flex;align-items:center;justify-content:center;font-size:70px;color:#fff;
   box-shadow:0 0 40px rgba(255,201,60,.6), inset 0 -8px 0 rgba(0,0,0,.15);
   animation:logoPulse 1.5s ease-in-out infinite}
 .loader__logo i{filter:drop-shadow(0 4px 0 rgba(0,0,0,.2))}
@@ -70,11 +67,6 @@ input{font-family:inherit;color:inherit;font-size:inherit}
 @keyframes loadBar{0%{left:-40%}100%{left:100%}}
 
 .topbar{position:relative;z-index:5;padding:10px 12px 6px;display:flex;align-items:center;gap:8px}
-.topbar__btn{width:44px;height:44px;border-radius:50%;background:var(--cream);
-  display:grid;place-items:center;font-size:18px;color:var(--navy);
-  box-shadow:var(--shadow-3d);transition:transform .12s;flex-shrink:0;position:relative}
-.topbar__btn:active{transform:translateY(2px) scale(.96)}
-.topbar__btn--muted{background:var(--red);color:#fff}
 .coin-pill{flex:1;min-width:0;height:44px;border-radius:22px;background:var(--cream);
   display:flex;align-items:center;justify-content:center;gap:6px;padding:0 10px;
   box-shadow:var(--shadow-3d);font-weight:800;position:relative}
@@ -98,8 +90,7 @@ input{font-family:inherit;color:inherit;font-size:inherit}
   border-radius:var(--radius-lg);padding:20px 18px;
   box-shadow:0 8px 0 rgba(0,0,0,.15), 0 16px 32px rgba(0,0,0,.2);overflow:hidden}
 .home-hero::before{content:'';position:absolute;top:-40px;right:-40px;
-  width:180px;height:180px;border-radius:50%;
-  background:radial-gradient(circle,rgba(255,255,255,.35),transparent 70%)}
+  width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.35),transparent 70%)}
 .home-hero__level{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .home-hero__badge{background:rgba(255,255,255,.9);color:var(--gold-dd);
   padding:6px 14px;border-radius:20px;font-weight:800;font-size:13px;
@@ -132,6 +123,27 @@ input{font-family:inherit;color:inherit;font-size:inherit}
 .home-cat:nth-child(4){background:linear-gradient(160deg,#FF6B8A,#C2185B);animation-delay:.6s}
 .home-cat:nth-child(5){background:linear-gradient(160deg,#FF9F45,#E65100);animation-delay:.8s}
 @keyframes catBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+/* REFERRAL SLIDER BANNER */
+.ref-slider{margin-bottom:14px;background:linear-gradient(135deg,#C724B1,#8E24AA);
+  border-radius:var(--radius);padding:16px;color:#fff;position:relative;overflow:hidden;
+  box-shadow:0 6px 0 rgba(0,0,0,.15), 0 12px 24px rgba(0,0,0,.15)}
+.ref-slider::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;
+  border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.25),transparent 70%)}
+.ref-slider__badge{display:inline-block;background:rgba(255,255,255,.25);
+  padding:3px 10px;border-radius:12px;font-size:10px;font-weight:800;margin-bottom:8px;position:relative;z-index:1}
+.ref-slider__title{font-size:17px;font-weight:900;text-shadow:0 2px 0 rgba(0,0,0,.2);margin-bottom:4px;position:relative;z-index:1;
+  display:flex;align-items:center;gap:8px}
+.ref-slider__sub{font-size:12px;opacity:.9;font-weight:600;margin-bottom:12px;position:relative;z-index:1;line-height:1.5}
+.ref-slider__rewards{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;position:relative;z-index:1}
+.ref-slider__rw{background:rgba(0,0,0,.25);border-radius:14px;padding:8px;text-align:center}
+.ref-slider__rw-num{font-size:20px;font-weight:900;color:var(--gold-l);line-height:1;direction:ltr}
+.ref-slider__rw-lbl{font-size:10px;opacity:.9;font-weight:700;margin-top:3px}
+.ref-slider__btn{width:100%;height:46px;border-radius:14px;background:#fff;color:var(--purple);
+  font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;
+  box-shadow:0 4px 0 rgba(0,0,0,.2);transition:transform .12s;position:relative;z-index:1}
+.ref-slider__btn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.2)}
+.ref-slider__count{font-size:11px;opacity:.9;font-weight:700;text-align:center;margin-top:8px;position:relative;z-index:1}
 
 .energy-card{background:var(--cream);border-radius:var(--radius);padding:14px 16px;
   box-shadow:var(--shadow-card);margin-bottom:14px;
@@ -167,7 +179,7 @@ input{font-family:inherit;color:inherit;font-size:inherit}
 .quick-card__icon--missions{background:linear-gradient(160deg,#4FB3E8,var(--blue-d))}
 .quick-card__icon--shop{background:linear-gradient(160deg,#FFA34F,#E65100)}
 .quick-card__icon--gift{background:linear-gradient(160deg,#FF8FA3,var(--pink-d))}
-.quick-card__icon--top{background:linear-gradient(160deg,#FFD54F,#C49000)}
+.quick-card__icon--swap{background:linear-gradient(160deg,#6FE08A,#2EB84C)}
 .quick-card__title{font-size:14px;font-weight:800;color:var(--navy)}
 .quick-card__desc{font-size:11px;color:rgba(26,31,58,.65);font-weight:600;line-height:1.4}
 .quick-card__badge{position:absolute;top:10px;left:10px;background:var(--red);color:#fff;
@@ -212,7 +224,7 @@ input{font-family:inherit;color:inherit;font-size:inherit}
   position:relative;padding-top:6px}
 .tile{border-radius:14px;display:grid;place-items:center;font-size:24px;
   background:#F0E4C8;cursor:pointer;position:relative;
-  transition:transform .18s cubic-bezier(.34,1.56,.64,1), background .2s;
+  transition:transform .18s cubic-bezier(.34,1.56,.64,1);
   user-select:none;-webkit-user-select:none;touch-action:manipulation}
 .tile__inner{width:100%;height:100%;border-radius:14px;
   display:grid;place-items:center;color:#fff;
@@ -223,8 +235,8 @@ input{font-family:inherit;color:inherit;font-size:inherit}
     0 0 0 4px var(--gold), 0 0 20px rgba(255,201,60,.8)}
 .tile--matched .tile__inner{animation:tilePop .35s ease-out forwards}
 @keyframes tilePop{0%{transform:scale(1)}50%{transform:scale(1.3) rotate(10deg)}100%{transform:scale(0) rotate(180deg);opacity:0}}
-.tile--fall{animation:tileFall .35s cubic-bezier(.5,0,.8,1)}
-@keyframes tileFall{from{transform:translateY(-30px);opacity:0}to{transform:translateY(0);opacity:1}}
+.tile--invalid .tile__inner{animation:shake .3s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
 .tile--cat .tile__inner{background:linear-gradient(160deg,#B673E8,#8E24AA)}
 .tile--dog .tile__inner{background:linear-gradient(160deg,#FFC93C,#E0A300)}
 .tile--frog .tile__inner{background:linear-gradient(160deg,#6FE08A,#2EB84C)}
@@ -275,7 +287,30 @@ input{font-family:inherit;color:inherit;font-size:inherit}
   box-shadow:inset 0 -3px 0 rgba(0,0,0,.15)}
 .wheel-info-card__num{font-size:22px;font-weight:900;color:var(--pink-d);direction:ltr;line-height:1}
 .wheel-info-card__lbl{font-size:12px;font-weight:700;color:rgba(26,31,58,.65);margin-top:4px}
-.wheel-timer{font-size:13px;font-weight:800;color:var(--pink-d);direction:ltr;font-variant-numeric:tabular-nums}
+
+/* EXCHANGE */
+.exchange-hero{background:linear-gradient(135deg,#FFB300,#E65100);
+  border-radius:var(--radius-lg);padding:20px 16px;color:#fff;margin-bottom:16px;
+  box-shadow:0 8px 0 rgba(0,0,0,.15), 0 16px 32px rgba(0,0,0,.2);position:relative;overflow:hidden}
+.exchange-hero::before{content:'';position:absolute;top:-40px;right:-40px;
+  width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.3),transparent 70%)}
+.exchange-hero__icon{font-size:44px;margin-bottom:8px;position:relative;z-index:1;
+  filter:drop-shadow(0 4px 0 rgba(0,0,0,.2))}
+.exchange-hero__title{font-size:20px;font-weight:900;text-shadow:0 3px 0 rgba(0,0,0,.2);
+  position:relative;z-index:1;margin-bottom:4px}
+.exchange-hero__sub{font-size:12.5px;opacity:.9;position:relative;z-index:1;font-weight:600;line-height:1.5}
+.exchange-card{background:var(--cream);border-radius:var(--radius);padding:16px;
+  box-shadow:var(--shadow-card);margin-bottom:14px}
+.exchange-row{display:flex;align-items:center;justify-content:space-between;
+  padding:10px 0;font-size:14px}
+.exchange-row+.exchange-row{border-top:1px dashed #E8D5A8}
+.exchange-row__lbl{color:rgba(26,31,58,.7);font-weight:700;display:flex;align-items:center;gap:6px}
+.exchange-row__val{font-weight:900;color:var(--navy);direction:ltr}
+.exchange-row__val--gold{color:var(--gold-dd)}
+.exchange-row__val--pink{color:var(--pink-d)}
+.exchange-rate{background:#FFF9E8;border-radius:14px;padding:14px;text-align:center;margin-bottom:14px}
+.exchange-rate__main{font-size:22px;font-weight:900;color:var(--gold-dd);direction:ltr;line-height:1.2}
+.exchange-rate__sub{font-size:11.5px;color:rgba(26,31,58,.65);font-weight:600;margin-top:4px}
 
 .mission-card{background:var(--cream);border-radius:var(--radius);padding:14px;
   box-shadow:var(--shadow-card);margin-bottom:10px;
@@ -285,8 +320,6 @@ input{font-family:inherit;color:inherit;font-size:inherit}
   display:grid;place-items:center;font-size:22px;color:#fff;
   box-shadow:inset 0 -4px 0 rgba(0,0,0,.15), 0 3px 0 rgba(0,0,0,.08)}
 .mission-card__icon--tg{background:linear-gradient(160deg,#4FB3E8,#0088CC)}
-.mission-card__icon--insta{background:linear-gradient(160deg,#F06292,#C2185B)}
-.mission-card__icon--yt{background:linear-gradient(160deg,#FF5252,#C62828)}
 .mission-card__icon--game{background:linear-gradient(160deg,#6FE08A,#2EB84C)}
 .mission-card__icon--invite{background:linear-gradient(160deg,#FFC93C,#E0A300)}
 .mission-card__icon--level{background:linear-gradient(160deg,#C724B1,#8E24AA)}
@@ -329,8 +362,7 @@ input{font-family:inherit;color:inherit;font-size:inherit}
   display:grid;place-items:center;font-size:28px;color:#fff;
   box-shadow:inset 0 -4px 0 rgba(0,0,0,.15), inset 0 3px 0 rgba(255,255,255,.3)}
 .shop-item__icon--energy{background:linear-gradient(160deg,#FF6B6B,#C62828)}
-.shop-item__icon--energy-max{background:linear-gradient(160deg,#FFB74D,#E65100)}
-.shop-item__icon--gem{background:linear-gradient(160deg,#FF8FA3,#C2185B)}
+.shop-item__icon--coin{background:linear-gradient(160deg,#FFC93C,#E0A300)}
 .shop-item__info{flex:1;min-width:0}
 .shop-item__title{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:2px}
 .shop-item__desc{font-size:11.5px;color:rgba(26,31,58,.6);font-weight:600;margin-bottom:6px}
@@ -375,50 +407,6 @@ input{font-family:inherit;color:inherit;font-size:inherit}
 .menu-item__label{flex:1;font-size:14px;font-weight:800;color:var(--navy)}
 .menu-item__chev{color:rgba(26,31,58,.3);font-size:14px}
 
-/* LEADERBOARD */
-.lb-hero{background:linear-gradient(160deg,#C724B1,#8E24AA);border-radius:var(--radius-lg);
-  padding:20px 16px;color:#fff;margin-bottom:16px;text-align:center;
-  box-shadow:0 8px 0 rgba(0,0,0,.15), 0 16px 32px rgba(0,0,0,.2);position:relative;overflow:hidden}
-.lb-hero::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;
-  border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.3),transparent 70%)}
-.lb-hero__icon{font-size:52px;color:var(--gold);margin-bottom:6px;
-  filter:drop-shadow(0 4px 0 rgba(0,0,0,.2));position:relative;z-index:1}
-.lb-hero__title{font-size:22px;font-weight:900;text-shadow:0 3px 0 rgba(0,0,0,.2);position:relative;z-index:1}
-.lb-hero__sub{font-size:13px;opacity:.9;margin-top:4px;position:relative;z-index:1}
-
-.lb-list{background:var(--cream);border-radius:var(--radius);padding:8px;
-  box-shadow:var(--shadow-card);margin-bottom:12px}
-.lb-item{display:flex;align-items:center;gap:12px;padding:10px 8px;border-radius:14px;
-  transition:background .15s;position:relative}
-.lb-item+.lb-item{border-top:1px solid rgba(0,0,0,.05)}
-.lb-item--me{background:rgba(255,201,60,.2)}
-.lb-item__rank{width:34px;height:34px;border-radius:50%;flex-shrink:0;
-  display:grid;place-items:center;font-weight:900;font-size:14px;
-  background:linear-gradient(160deg,#B0B0B0,#707070);color:#fff;
-  box-shadow:inset 0 -2px 0 rgba(0,0,0,.15)}
-.lb-item__rank--1{background:linear-gradient(160deg,#FFE28A,#E0A300);
-  box-shadow:inset 0 -2px 0 rgba(0,0,0,.15), 0 0 12px rgba(255,201,60,.5)}
-.lb-item__rank--2{background:linear-gradient(160deg,#E0E0E0,#909090)}
-.lb-item__rank--3{background:linear-gradient(160deg,#FFAB70,#C26A00)}
-.lb-item__avatar{width:48px;height:48px;border-radius:50%;flex-shrink:0;overflow:hidden;
-  background:linear-gradient(160deg,var(--gold-l),var(--gold-d));
-  display:grid;place-items:center;border:3px solid #fff;
-  box-shadow:0 3px 8px rgba(0,0,0,.15)}
-.lb-item__avatar img{width:100%;height:100%;object-fit:cover}
-.lb-item__avatar i{font-size:20px;color:#fff}
-.lb-item__info{flex:1;min-width:0}
-.lb-item__name{font-size:14px;font-weight:800;color:var(--navy);
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  display:flex;align-items:center;gap:6px}
-.lb-item__badge{font-size:9px;font-weight:800;background:var(--green);color:#fff;
-  padding:1px 7px;border-radius:8px}
-.lb-item__sub{font-size:11px;color:rgba(26,31,58,.55);font-weight:600;direction:ltr;text-align:right;margin-top:1px}
-.lb-item__count{font-size:15px;font-weight:900;color:var(--pink-d);direction:ltr;
-  background:rgba(255,255,255,.6);padding:6px 12px;border-radius:14px;
-  box-shadow:inset 0 -2px 0 rgba(0,0,0,.05);white-space:nowrap}
-.lb-empty{text-align:center;padding:30px 16px;color:rgba(26,31,58,.5);font-weight:700;font-size:13px}
-.lb-empty i{font-size:44px;display:block;margin-bottom:12px;opacity:.4}
-
 .wd-hero{background:linear-gradient(160deg,#FF6B8A,#E91E63);
   border-radius:var(--radius-lg);padding:22px 18px;color:#fff;
   box-shadow:0 8px 0 rgba(0,0,0,.15), 0 16px 32px rgba(0,0,0,.2);
@@ -446,8 +434,7 @@ input{font-family:inherit;color:inherit;font-size:inherit}
 .wd-method__title{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:2px}
 .wd-method__rate{font-size:11px;font-weight:700;color:rgba(26,31,58,.6)}
 .wd-method__check{width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;
-  display:none;place-items:center;font-size:11px;font-weight:900;
-  box-shadow:0 2px 0 var(--green-d)}
+  display:none;place-items:center;font-size:11px;font-weight:900;box-shadow:0 2px 0 var(--green-d)}
 .wd-method--active .wd-method__check{display:grid}
 
 .wd-card{background:var(--cream);border-radius:var(--radius);padding:16px;
@@ -551,6 +538,19 @@ input{font-family:inherit;color:inherit;font-size:inherit}
   border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .center{text-align:center}
+.tamper-overlay{position:fixed;inset:0;z-index:9998;background:rgba(10,15,30,.92);
+  display:none;align-items:center;justify-content:center;padding:20px}
+.tamper-overlay.show{display:flex}
+.tamper-box{background:var(--cream);border-radius:24px;padding:26px 20px;max-width:340px;
+  text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.tamper-box__icon{width:70px;height:70px;border-radius:50%;
+  background:linear-gradient(160deg,#FF6B6B,#C62828);color:#fff;font-size:32px;
+  display:grid;place-items:center;margin:0 auto 16px}
+.tamper-box h3{font-size:18px;font-weight:900;color:var(--navy);margin-bottom:10px}
+.tamper-box p{font-size:13px;color:rgba(26,31,58,.7);font-weight:600;line-height:1.7;margin-bottom:18px}
+.tamper-box button{width:100%;padding:14px;border-radius:16px;
+  background:linear-gradient(180deg,var(--gold),var(--gold-d));color:#fff;font-weight:800;
+  box-shadow:0 4px 0 var(--gold-dd)}
 </style>
 </head>
 <body>
@@ -562,6 +562,15 @@ input{font-family:inherit;color:inherit;font-size:inherit}
   <div class="loader__bar"></div>
 </div>
 
+<div class="tamper-overlay" id="tamperModal">
+  <div class="tamper-box">
+    <div class="tamper-box__icon"><i class="fas fa-exclamation-triangle"></i></div>
+    <h3>تم اكتشاف تلاعب بالوقت</h3>
+    <p>قام النظام باكتشاف تغيير في وقت الجهاز. تم إيقاف اللعب مؤقتاً لحماية نزاهة اللعبة. يرجى ضبط وقت الجهاز تلقائياً والمحاولة مجدداً.</p>
+    <button onclick="document.getElementById('tamperModal').classList.remove('show')">حسناً، فهمت</button>
+  </div>
+</div>
+
 <div class="app" id="app" style="display:none">
   <div class="sky-clouds" aria-hidden="true">
     <i class="fas fa-cloud cloud"></i>
@@ -570,12 +579,9 @@ input{font-family:inherit;color:inherit;font-size:inherit}
   </div>
 
   <div class="topbar">
-    <button class="topbar__btn" id="musicBtn" aria-label="الصوت"><i class="fas fa-volume-high"></i></button>
     <div class="coin-pill">
       <span class="coin-pill__icon coin-pill__icon--gold"><i class="fas fa-coins"></i></span>
-      <div style="display:flex;flex-direction:column;align-items:center;line-height:1">
-        <span class="coin-pill__num" id="coinTop">0</span>
-      </div>
+      <span class="coin-pill__num" id="coinTop">0</span>
     </div>
     <div class="coin-pill">
       <span class="coin-pill__icon coin-pill__icon--gem"><i class="fas fa-gem"></i></span>
@@ -597,7 +603,7 @@ input{font-family:inherit;color:inherit;font-size:inherit}
       <div class="home-hero">
         <div class="home-hero__level">
           <div class="home-hero__badge"><i class="fas fa-trophy"></i> المستوى <span id="homeLevel">1</span></div>
-          <div class="home-hero__stars" id="homeStars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <div class="home-hero__stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
         </div>
         <div class="home-cats">
           <div class="home-cat"><i class="fas fa-dog"></i></div>
@@ -611,6 +617,26 @@ input{font-family:inherit;color:inherit;font-size:inherit}
         <button class="home-hero__play" id="playBtn">
           <i class="fas fa-play"></i> <span>ابدأ اللعب</span>
         </button>
+      </div>
+
+      <div class="ref-slider">
+        <div class="ref-slider__badge"><i class="fas fa-fire"></i> عرض خاص</div>
+        <div class="ref-slider__title"><i class="fas fa-gift"></i> ادعُ أصدقاءك واربح!</div>
+        <div class="ref-slider__sub">احصل على مكافآت فورية عند انضمام كل صديق عبر رابطك</div>
+        <div class="ref-slider__rewards">
+          <div class="ref-slider__rw">
+            <div class="ref-slider__rw-num">+50 💎</div>
+            <div class="ref-slider__rw-lbl">لك</div>
+          </div>
+          <div class="ref-slider__rw">
+            <div class="ref-slider__rw-num">+20 💎</div>
+            <div class="ref-slider__rw-lbl">لصديقك</div>
+          </div>
+        </div>
+        <button class="ref-slider__btn" id="refSliderBtn">
+          <i class="fas fa-paper-plane"></i> شارك الرابط الآن
+        </button>
+        <div class="ref-slider__count" id="refSliderCount">دعوت حتى الآن: 0 صديق</div>
       </div>
 
       <div class="energy-card">
@@ -643,15 +669,15 @@ input{font-family:inherit;color:inherit;font-size:inherit}
           <div class="quick-card__title">المتجر</div>
           <div class="quick-card__desc">بدّل الجواهر بعملات</div>
         </button>
-        <button class="quick-card" data-go="withdraw">
+        <button class="quick-card" data-go="exchange">
+          <span class="quick-card__icon quick-card__icon--swap"><i class="fas fa-right-left"></i></span>
+          <div class="quick-card__title">تبديل العملات</div>
+          <div class="quick-card__desc">حوّل coins إلى جواهر</div>
+        </button>
+        <button class="quick-card" data-go="withdraw" style="grid-column:1/-1">
           <span class="quick-card__icon quick-card__icon--gift"><i class="fas fa-money-bill-transfer"></i></span>
           <div class="quick-card__title">سحب الأموال</div>
           <div class="quick-card__desc">حوّل جواهرك لمال حقيقي</div>
-        </button>
-        <button class="quick-card" data-go="leaderboard" style="grid-column:1/-1">
-          <span class="quick-card__icon quick-card__icon--top"><i class="fas fa-crown"></i></span>
-          <div class="quick-card__title">أعلى 10 دعوات</div>
-          <div class="quick-card__desc">لوحة شرف أفضل الداعين</div>
         </button>
       </div>
     </section>
@@ -665,11 +691,11 @@ input{font-family:inherit;color:inherit;font-size:inherit}
       </div>
       <div class="game-stats">
         <div class="game-stat"><div class="game-stat__lbl">النقاط</div><div class="game-stat__val game-stat__val--gold" id="gameScore">0</div></div>
-        <div class="game-stat"><div class="game-stat__lbl">الهدف</div><div class="game-stat__val" id="gameTarget">500</div></div>
+        <div class="game-stat"><div class="game-stat__lbl">الهدف</div><div class="game-stat__val" id="gameTarget">100</div></div>
         <div class="game-stat"><div class="game-stat__lbl">الحركات</div><div class="game-stat__val game-stat__val--pink" id="gameMoves">20</div></div>
       </div>
       <div class="board-wrap">
-        <div class="board-target" id="boardTarget">الهدف: 500 نقطة</div>
+        <div class="board-target" id="boardTarget">الهدف: 100 نقطة</div>
         <div class="board" id="board"></div>
       </div>
       <div class="game-actions">
@@ -686,10 +712,6 @@ input{font-family:inherit;color:inherit;font-size:inherit}
         <div style="flex:1">
           <div class="wheel-info-card__num" id="spinsLeft">2</div>
           <div class="wheel-info-card__lbl">لفات متاحة اليوم</div>
-        </div>
-        <div style="text-align:left">
-          <div class="wheel-timer" id="wheelTimer">--:--:--</div>
-          <div style="font-size:10px;color:rgba(26,31,58,.55);font-weight:700;text-align:right">للتجديد</div>
         </div>
       </div>
       <div class="wheel-wrap">
@@ -725,16 +747,40 @@ input{font-family:inherit;color:inherit;font-size:inherit}
       <div id="shopList"></div>
     </section>
 
-    <!-- LEADERBOARD -->
-    <section class="screen" id="screen-leaderboard">
-      <div class="lb-hero">
-        <div class="lb-hero__icon"><i class="fas fa-crown"></i></div>
-        <div class="lb-hero__title">لوحة شرف الداعين</div>
-        <div class="lb-hero__sub">أعلى 10 مستخدمين في دعوة الأصدقاء</div>
+    <!-- EXCHANGE -->
+    <section class="screen" id="screen-exchange">
+      <div class="exchange-hero">
+        <div class="exchange-hero__icon"><i class="fas fa-right-left"></i></div>
+        <div class="exchange-hero__title">تبديل العملات</div>
+        <div class="exchange-hero__sub">حوّل عملاتك الذهبية (Coins) إلى جواهر (Gems) — اتجاه واحد فقط</div>
       </div>
-      <div class="lb-list" id="lbList">
-        <div class="lb-empty"><i class="fas fa-crown"></i>جاري التحميل...</div>
+
+      <div class="exchange-rate">
+        <div class="exchange-rate__main">1,000 🪙 = 10 💎</div>
+        <div class="exchange-rate__sub">الحد الأدنى للتبديل 1,000 عملة</div>
       </div>
+
+      <div class="wd-card">
+        <div class="wd-card__title"><i class="fas fa-coins"></i> اختر عدد العملات</div>
+        <div class="wd-amounts" id="exAmounts">
+          <button class="wd-amount" data-amt="1000">1,000 🪙</button>
+          <button class="wd-amount" data-amt="5000">5,000 🪙</button>
+          <button class="wd-amount" data-amt="10000">10,000 🪙</button>
+          <button class="wd-amount" data-amt="50000">50,000 🪙</button>
+          <button class="wd-amount" data-amt="100000">100,000 🪙</button>
+          <button class="wd-amount" data-amt="500000">500,000 🪙</button>
+        </div>
+        <input type="text" inputmode="numeric" class="wd-input" id="exCustomAmount" placeholder="أو اكتب العدد...">
+      </div>
+
+      <div class="wd-info">
+        <div class="wd-info__row"><span class="wd-info__lbl">العملات المُحوّلة</span><span class="wd-info__val" id="exChosen">0 🪙</span></div>
+        <div class="wd-info__row"><span class="wd-info__lbl">الجواهر المستقبلة</span><span class="wd-info__val wd-info__val--pink" id="exReceive">0 💎</span></div>
+        <div class="wd-info__row"><span class="wd-info__lbl">رصيدك من العملات</span><span class="wd-info__val wd-info__val--gold" id="exCoinsBalance">0 🪙</span></div>
+        <div class="wd-info__row"><span class="wd-info__lbl">رصيدك من الجواهر</span><span class="wd-info__val wd-info__val--pink" id="exGemsBalance">0 💎</span></div>
+      </div>
+
+      <button class="wd-submit" id="exSubmit"><i class="fas fa-right-left"></i> <span>تبديل الآن</span></button>
     </section>
 
     <!-- WITHDRAW -->
@@ -751,7 +797,7 @@ input{font-family:inherit;color:inherit;font-size:inherit}
         <div class="wd-method wd-method--active" data-wd="binance">
           <div class="wd-method__icon wd-method__icon--binance"><i class="fab fa-bitcoin"></i></div>
           <div class="wd-method__info">
-            <div class="wd-method__title">Binance</div>
+            <div class="wd-method__title">Binance Pay</div>
             <div class="wd-method__rate">1,000 💎 = $0.50</div>
           </div>
           <div class="wd-method__check"><i class="fas fa-check"></i></div>
@@ -819,9 +865,9 @@ input{font-family:inherit;color:inherit;font-size:inherit}
           <span class="menu-item__label">دعوة الأصدقاء</span>
           <i class="fas fa-chevron-left menu-item__chev"></i>
         </button>
-        <button class="menu-item" data-go="leaderboard">
-          <span class="menu-item__icon" style="background:linear-gradient(160deg,#FFC93C,#E0A300)"><i class="fas fa-crown"></i></span>
-          <span class="menu-item__label">لوحة الشرف</span>
+        <button class="menu-item" data-go="exchange">
+          <span class="menu-item__icon" style="background:linear-gradient(160deg,#6FE08A,#2EB84C)"><i class="fas fa-right-left"></i></span>
+          <span class="menu-item__label">تبديل العملات</span>
           <i class="fas fa-chevron-left menu-item__chev"></i>
         </button>
         <button class="menu-item" data-go="withdraw">
@@ -829,34 +875,6 @@ input{font-family:inherit;color:inherit;font-size:inherit}
           <span class="menu-item__label">سحب الأموال</span>
           <i class="fas fa-chevron-left menu-item__chev"></i>
         </button>
-        <button class="menu-item" id="profSupport">
-          <span class="menu-item__icon" style="background:linear-gradient(160deg,#4FB3E8,#0088CC)"><i class="fab fa-telegram-plane"></i></span>
-          <span class="menu-item__label">الدعم الفني</span>
-          <i class="fas fa-chevron-left menu-item__chev"></i>
-        </button>
-      </div>
-      <div class="sec-title"><i class="fas fa-gear"></i> الإعدادات</div>
-      <div class="menu-list">
-        <div class="menu-item" style="cursor:default">
-          <span class="menu-item__icon" style="background:linear-gradient(160deg,#C724B1,#8E24AA)"><i class="fas fa-music"></i></span>
-          <span class="menu-item__label">الموسيقى</span>
-          <label style="position:relative;display:inline-block;width:52px;height:28px">
-            <input type="checkbox" id="musicToggle" checked style="opacity:0;width:0;height:0">
-            <span style="position:absolute;inset:0;background:#4CD964;border-radius:28px;transition:.3s;cursor:pointer" id="musicToggleBg">
-              <span style="position:absolute;top:3px;right:3px;width:22px;height:22px;background:#fff;border-radius:50%;transition:.3s;box-shadow:0 2px 4px rgba(0,0,0,.2)" id="musicToggleKnob"></span>
-            </span>
-          </label>
-        </div>
-        <div class="menu-item" style="cursor:default">
-          <span class="menu-item__icon" style="background:linear-gradient(160deg,#FF9F45,#E65100)"><i class="fas fa-volume-high"></i></span>
-          <span class="menu-item__label">المؤثرات الصوتية</span>
-          <label style="position:relative;display:inline-block;width:52px;height:28px">
-            <input type="checkbox" id="sfxToggle" checked style="opacity:0;width:0;height:0">
-            <span style="position:absolute;inset:0;background:#4CD964;border-radius:28px;transition:.3s;cursor:pointer" id="sfxToggleBg">
-              <span style="position:absolute;top:3px;right:3px;width:22px;height:22px;background:#fff;border-radius:50%;transition:.3s;box-shadow:0 2px 4px rgba(0,0,0,.2)" id="sfxToggleKnob"></span>
-            </span>
-          </label>
-        </div>
       </div>
     </section>
 
@@ -865,8 +883,8 @@ input{font-family:inherit;color:inherit;font-size:inherit}
       <div class="sec-title"><i class="fas fa-user-plus"></i> دعوة الأصدقاء</div>
       <div class="wd-card">
         <div style="text-align:center;padding:10px 0">
-          <div style="font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px">🎁 اربح 500 جوهرة عن كل صديق!</div>
-          <div style="font-size:12px;color:rgba(26,31,58,.6);font-weight:600;margin-bottom:14px">شارك رابطك مع أصدقائك وستحصل أنت وصديقك على جواهر فوراً</div>
+          <div style="font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px">🎁 اربح 50 جوهرة عن كل صديق!</div>
+          <div style="font-size:12px;color:rgba(26,31,58,.6);font-weight:600;margin-bottom:14px">شارك رابطك مع أصدقائك وستحصل أنت على 50 💎، وصديقك على 20 💎 فوراً</div>
           <div style="background:#FFF9E8;border-radius:14px;padding:12px;font-family:monospace;font-size:11px;color:var(--navy);word-break:break-all;direction:ltr;text-align:left;margin-bottom:12px" id="refLink">...</div>
         </div>
         <button class="wd-submit" id="refShare"><i class="fas fa-paper-plane"></i> مشاركة الرابط</button>
@@ -918,55 +936,54 @@ const CONFIG = {
     appId: "1:385194736167:web:53987f3857f5d56343ec02"
   },
   bot: { username: 'PuppyMerge_bot', appName: 'PuppyMerge' },
-  support: 'qo_ij2',
   collection: 'puppy_users',
   wdCollection: 'puppy_withdrawals',
   txCollection: 'puppy_transactions',
-  lbCollection: 'puppy_leaderboard',
+  timeCollection: '_puppy_time',
   energy: {
     max: 10,
     regenMs: 5 * 60 * 1000,
     buyPacks: [
-      { id: 'e10',  amount: 10,  price: 500  },
-      { id: 'e50',  amount: 50,  price: 2000 },
-      { id: 'e100', amount: 100, price: 3500 },
-      { id: 'e500', amount: 500, price: 15000 }
-    ],
-    fullPrice: 3000
+      { id: 'e10', amount: 10, price: 500 },
+      { id: 'e50', amount: 50, price: 2000 },
+      { id: 'e100', amount: 100, price: 3500 }
+    ]
   },
   hintPrice: 30,
   shufflePrice: 50,
-  referral: { referrerReward: 500, newUserReward: 500 },
-  gemsToCoins: { rate: 1 },       // 1 gem = 1 coin
-  scoreToGems: { divisor: 1000, perUnit: 100 },  // كل 1000 نقطة = 100 جوهرة
+  referral: { referrerReward: 50, newUserReward: 20 },
+  gemsToCoins: { rate: 1 },
+  coinsToGems: { min: 1000, rate: 0.01 },   // 1000 coin = 10 gems
+  scoreToGems: { divisor: 1000, perUnit: 100 },
   levelCoinsReward: n => 100 + n * 50,
   withdraw: {
     min: 1000,
-    rate: 0.0005,   // 1 gem = $0.0005 => 1000 gems = $0.50
+    rate: 0.0005,
     currency: 'USD'
   },
   wheel: {
     dailyFreeSpins: 2,
     prizes: [
-      { type: 'gems',  value: 25,   label: '25',    color: '#FFC93C' },
-      { type: 'coins', value: 500,  label: '500',   color: '#FF6B8A' },
-      { type: 'gems',  value: 50,   label: '50',    color: '#4CD964' },
-      { type: 'coins', value: 1000, label: '1000',  color: '#4A9FD8' },
-      { type: 'gems',  value: 100,  label: '100',   color: '#C724B1' },
-      { type: 'coins', value: 2000, label: '2000',  color: '#FF9F45' },
-      { type: 'gems',  value: 75,   label: '75',    color: '#7EC8E3' },
-      { type: 'gems',  value: 200,  label: '200',   color: '#8E24AA' }
+      { type: 'gems', value: 25, label: '25', color: '#FFC93C' },
+      { type: 'coins', value: 500, label: '500', color: '#FF6B8A' },
+      { type: 'gems', value: 50, label: '50', color: '#4CD964' },
+      { type: 'coins', value: 1000, label: '1000', color: '#4A9FD8' },
+      { type: 'gems', value: 100, label: '100', color: '#C724B1' },
+      { type: 'coins', value: 2000, label: '2000', color: '#FF9F45' },
+      { type: 'gems', value: 75, label: '75', color: '#7EC8E3' },
+      { type: 'gems', value: 200, label: '200', color: '#8E24AA' }
     ]
   },
   dailyLoginRewards: [
-    { day: 1, coins: 200,  gems: 20  },
-    { day: 2, coins: 300,  gems: 30  },
-    { day: 3, coins: 500,  gems: 50  },
-    { day: 4, coins: 700,  gems: 70  },
+    { day: 1, coins: 200, gems: 20 },
+    { day: 2, coins: 300, gems: 30 },
+    { day: 3, coins: 500, gems: 50 },
+    { day: 4, coins: 700, gems: 70 },
     { day: 5, coins: 1000, gems: 100 },
     { day: 6, coins: 1500, gems: 150 },
     { day: 7, coins: 3000, gems: 300 }
-  ]
+  ],
+  tgChannel: 'https://t.me/PuppyMerge'
 };
 
 /* ═══════════ HELPERS ═══════════ */
@@ -976,39 +993,30 @@ const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const gemsToUsd = g => (g * CONFIG.withdraw.rate).toFixed(2);
 
-/* ═══════════ AUDIO (Epic Music) ═══════════ */
+/* ═══════════ AUDIO (SFX فقط) ═══════════ */
 const Audio = {
-  ctx: null, musicGain: null, sfxGain: null,
-  musicOn: true, sfxOn: true, musicLoop: null,
-
+  ctx: null, sfxGain: null, sfxOn: true,
   init() {
     try {
-      const p = JSON.parse(localStorage.getItem('puppy_audio') || '{}');
-      if (p.musicOn === false) this.musicOn = false;
+      const p = JSON.parse(localStorage.getItem('puppy_sfx') || '{}');
       if (p.sfxOn === false) this.sfxOn = false;
     } catch (e) {}
   },
-  save() {
-    try { localStorage.setItem('puppy_audio', JSON.stringify({ musicOn: this.musicOn, sfxOn: this.sfxOn })); } catch (e) {}
-  },
+  save() { try { localStorage.setItem('puppy_sfx', JSON.stringify({ sfxOn: this.sfxOn })); } catch (e) {} },
   ensureCtx() {
     if (this.ctx) return this.ctx;
     try {
       const AC = window.AudioContext || window.webkitAudioContext;
       this.ctx = new AC();
-      this.musicGain = this.ctx.createGain();
       this.sfxGain = this.ctx.createGain();
-      this.musicGain.gain.value = this.musicOn ? 0.06 : 0;
       this.sfxGain.gain.value = this.sfxOn ? 0.22 : 0;
-      this.musicGain.connect(this.ctx.destination);
       this.sfxGain.connect(this.ctx.destination);
     } catch (e) {}
     return this.ctx;
   },
   resume() { if (this.ctx && this.ctx.state === 'suspended') this.ctx.resume(); },
-
-  tone(freq, dur, type = 'sine', vol = 0.25, delay = 0, target = null) {
-    if (!this.sfxOn && !target) return;
+  tone(freq, dur, type = 'sine', vol = 0.25, delay = 0) {
+    if (!this.sfxOn) return;
     const ctx = this.ensureCtx();
     if (!ctx) return;
     const t = ctx.currentTime + delay;
@@ -1019,116 +1027,24 @@ const Audio = {
     g.gain.setValueAtTime(0, t);
     g.gain.linearRampToValueAtTime(vol, t + 0.01);
     g.gain.exponentialRampToValueAtTime(0.001, t + dur);
-    o.connect(g);
-    g.connect(target || this.sfxGain);
-    o.start(t);
-    o.stop(t + dur + 0.05);
+    o.connect(g); g.connect(this.sfxGain);
+    o.start(t); o.stop(t + dur + 0.05);
   },
-
   play(name) {
     if (!this.sfxOn) return;
     switch (name) {
-      case 'tap':     this.tone(900, 0.06, 'square', 0.15); break;
-      case 'select':  this.tone(700, 0.08, 'square', 0.18); break;
-      case 'match':   this.tone(880, 0.1, 'square', 0.25);
-                      this.tone(1320, 0.12, 'square', 0.2, 0.05); break;
-      case 'cascade': this.tone(1568, 0.1, 'square', 0.2);
-                      this.tone(1976, 0.12, 'square', 0.15, 0.05); break;
-      case 'fall':    this.tone(300, 0.08, 'triangle', 0.12); break;
-      case 'win':     [523, 659, 784, 1047, 1319].forEach((f, i) => this.tone(f, 0.22, 'square', 0.3, i * 0.08)); break;
-      case 'lose':    [400, 350, 300, 220].forEach((f, i) => this.tone(f, 0.2, 'sawtooth', 0.18, i * 0.08)); break;
-      case 'reward':  [880, 1108, 1320, 1760].forEach((f, i) => this.tone(f, 0.16, 'square', 0.28, i * 0.06)); break;
-      case 'wheel':   [523, 659, 784, 1047, 1319, 1568].forEach((f, i) => this.tone(f, 0.14, 'square', 0.22, i * 0.07)); break;
-      case 'modal':   this.tone(600, 0.12, 'triangle', 0.2); break;
-      case 'error':   this.tone(180, 0.22, 'sawtooth', 0.2); break;
+      case 'tap': this.tone(900, 0.06, 'square', 0.15); break;
+      case 'select': this.tone(700, 0.08, 'square', 0.18); break;
+      case 'match': this.tone(880, 0.1, 'square', 0.25); this.tone(1320, 0.12, 'square', 0.2, 0.05); break;
+      case 'cascade': this.tone(1568, 0.1, 'square', 0.2); this.tone(1976, 0.12, 'square', 0.15, 0.05); break;
+      case 'invalid': this.tone(200, 0.15, 'sawtooth', 0.2); break;
+      case 'win': [523, 659, 784, 1047, 1319].forEach((f, i) => this.tone(f, 0.22, 'square', 0.3, i * 0.08)); break;
+      case 'lose': [400, 350, 300, 220].forEach((f, i) => this.tone(f, 0.2, 'sawtooth', 0.18, i * 0.08)); break;
+      case 'reward': [880, 1108, 1320, 1760].forEach((f, i) => this.tone(f, 0.16, 'square', 0.28, i * 0.06)); break;
+      case 'wheel': [523, 659, 784, 1047, 1319, 1568].forEach((f, i) => this.tone(f, 0.14, 'square', 0.22, i * 0.07)); break;
+      case 'modal': this.tone(600, 0.12, 'triangle', 0.2); break;
+      case 'error': this.tone(180, 0.22, 'sawtooth', 0.2); break;
     }
-  },
-
-  // 🎸 موسيقى حماسية: Bass + Lead + Drums سريعة
-  startMusic() {
-    if (!this.musicOn) return;
-    const ctx = this.ensureCtx();
-    if (!ctx) return;
-    this.stopMusic();
-
-    // Bass line (كل نبضة 150ms = ~200 BPM تأثير حماسي)
-    const bassLine = [
-      98, 98, 98, 98, 123.47, 123.47, 98, 98,    // G2 G2 G2 G2 B2 B2 G2 G2
-      87.31, 87.31, 98, 98, 110, 110, 98, 98      // F2 F2 G2 G2 A2 A2 G2 G2
-    ];
-    // Lead melody (حماسية)
-    const leadLine = [
-      392, 523.25, 659.25, 783.99, 659.25, 523.25, 392, 523.25,
-      349.23, 440, 523.25, 698.46, 523.25, 440, 349.23, 440
-    ];
-
-    let tick = 0;
-    const bass = () => {
-      if (!this.musicOn) return;
-      const t = ctx.currentTime;
-      const o = ctx.createOscillator();
-      const g = ctx.createGain();
-      o.type = 'sawtooth';
-      o.frequency.value = bassLine[tick % bassLine.length];
-      g.gain.setValueAtTime(0, t);
-      g.gain.linearRampToValueAtTime(0.5, t + 0.01);
-      g.gain.exponentialRampToValueAtTime(0.001, t + 0.14);
-      o.connect(g); g.connect(this.musicGain);
-      o.start(t); o.stop(t + 0.15);
-      tick++;
-    };
-    let tick2 = 0;
-    const lead = () => {
-      if (!this.musicOn) return;
-      const t = ctx.currentTime;
-      const o = ctx.createOscillator();
-      const g = ctx.createGain();
-      o.type = 'square';
-      o.frequency.value = leadLine[tick2 % leadLine.length];
-      g.gain.setValueAtTime(0, t);
-      g.gain.linearRampToValueAtTime(0.15, t + 0.01);
-      g.gain.exponentialRampToValueAtTime(0.001, t + 0.18);
-      o.connect(g); g.connect(this.musicGain);
-      o.start(t); o.stop(t + 0.2);
-      tick2++;
-    };
-
-    // Hi-hat: ضوضاء بيضاء قصيرة
-    const hat = () => {
-      if (!this.musicOn) return;
-      const t = ctx.currentTime;
-      const buf = ctx.createBuffer(1, ctx.sampleRate * 0.03, ctx.sampleRate);
-      const d = buf.getChannelData(0);
-      for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / d.length);
-      const s = ctx.createBufferSource();
-      s.buffer = buf;
-      const g = ctx.createGain();
-      g.gain.value = 0.08;
-      s.connect(g); g.connect(this.musicGain);
-      s.start(t);
-    };
-
-    bass();
-    lead();
-    hat();
-    this.musicLoop = setInterval(() => { bass(); if (tick % 2 === 0) hat(); }, 150);
-    this.musicLeadLoop = setInterval(lead, 300);
-  },
-
-  stopMusic() {
-    if (this.musicLoop) { clearInterval(this.musicLoop); this.musicLoop = null; }
-    if (this.musicLeadLoop) { clearInterval(this.musicLeadLoop); this.musicLeadLoop = null; }
-  },
-  setMusic(on) {
-    this.musicOn = on;
-    if (this.musicGain) this.musicGain.gain.value = on ? 0.06 : 0;
-    if (on) this.startMusic(); else this.stopMusic();
-    this.save();
-  },
-  setSfx(on) {
-    this.sfxOn = on;
-    if (this.sfxGain) this.sfxGain.gain.value = on ? 0.22 : 0;
-    this.save();
   }
 };
 
@@ -1158,9 +1074,6 @@ const TG = {
     const shareUrl = 'https://t.me/share/url?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(text);
     if (this.app && this.app.openTelegramLink) this.app.openTelegramLink(shareUrl);
     else window.open(shareUrl, '_blank');
-  },
-  vibrate() {
-    try { if (this.app && this.app.HapticFeedback) this.app.HapticFeedback.impactOccurred('medium'); } catch (e) {}
   }
 };
 
@@ -1185,11 +1098,46 @@ const FB = {
   }
 };
 
+/* ═══════════ TIME (Anti-Cheat) ═══════════ */
+const TIME = {
+  offset: 0, synced: false, locked: false, lastSyncAt: 0,
+  async sync(force) {
+    if (!db || !TG.id) return;
+    if (!force && Date.now() - this.lastSyncAt < 30000) return;
+    this.lastSyncAt = Date.now();
+    try {
+      const ref = db.collection(CONFIG.timeCollection).doc('t_' + TG.id);
+      const t0 = performance.now();
+      await ref.set({ ping: firebase.firestore.FieldValue.serverTimestamp() }, { merge: true });
+      const snap = await ref.get({ source: 'server' });
+      const t1 = performance.now();
+      const ts = snap.exists && snap.data().ping;
+      if (ts && ts.toMillis) {
+        // serverTs + (t1-t0)/2 = server time now → offset = server_now - device_now
+        this.offset = ts.toMillis() + (t1 - t0) / 2 - Date.now();
+        this.synced = true;
+        this.checkDrift();
+      }
+    } catch (e) {}
+  },
+  checkDrift() {
+    const drift = Math.abs(this.offset);
+    if (drift > 60000) {
+      this.locked = true;
+      const el = $('tamperModal');
+      if (el) el.classList.add('show');
+    } else {
+      this.locked = false;
+    }
+  },
+  now() { return Date.now() + this.offset; },
+  isLocked() { return this.locked; }
+};
+
 /* ═══════════ STATE ═══════════ */
 const STATE = {
   user: null, screen: 'home',
-  withdrawAmount: 0, busy: false,
-  lbCache: null, lbCacheAt: 0
+  withdrawAmount: 0, exchangeAmount: 0, busy: false
 };
 
 function defaultUser() {
@@ -1214,14 +1162,14 @@ function defaultUser() {
     wheelLastDate: null,
     dailyRewards: {},
     dailyLogin: { streak: 0, lastClaimDate: null },
-    levelMissions: {},   // { lvl10: true }
-    inviteMissions: {},  // { inv1: true }
+    levelMissions: {},
+    inviteMissions: {},
     createdAt: Date.now(),
     updatedAt: Date.now()
   };
 }
 
-/* ═══════════ UI: TOAST & MODAL ═══════════ */
+/* ═══════════ UI ═══════════ */
 let toastTimer;
 function toast(msg, type = 'ok') {
   const el = $('toast');
@@ -1241,10 +1189,8 @@ function showModal(opts) {
   $('modalTitle').textContent = opts.title || '';
   $('modalSub').textContent = opts.sub || '';
   const amt = $('modalAmount');
-  if (opts.amount) {
-    amt.innerHTML = opts.amount;
-    amt.style.display = 'flex';
-  } else amt.style.display = 'none';
+  if (opts.amount) { amt.innerHTML = opts.amount; amt.style.display = 'flex'; }
+  else amt.style.display = 'none';
   $('modalBtn').innerHTML = '<i class="fas fa-check"></i> ' + (opts.btnText || 'موافق');
   $('modal').classList.add('show');
   Audio.play('modal');
@@ -1252,16 +1198,17 @@ function showModal(opts) {
 function closeModal() { $('modal').classList.remove('show'); }
 window.closeModal = closeModal;
 
-/* ═══════════ ENERGY ═══════════ */
+/* ═══════════ ENERGY (FIXED) ═══════════ */
 const Energy = {
   current(u) {
     if (!u) return 0;
-    // طاقة إضافية (المشتراة) لا تتجدد، فقط الأساسية تتجدد
-    const base = u.energy || 0;
-    if (base >= CONFIG.energy.max) return base;
+    const stored = u.energy || 0;
+    // ✅ إصلاح: لو الطاقة أكبر من الحد، لا تجديد — فقط ارجع القيمة المخزنة
+    if (stored >= CONFIG.energy.max) return stored;
+    // تجديد فقط لو أقل من max
     const elapsed = Date.now() - (u.energyUpdatedAt || Date.now());
     const regen = Math.floor(elapsed / CONFIG.energy.regenMs);
-    return Math.min(CONFIG.energy.max, base + regen);
+    return Math.min(CONFIG.energy.max, stored + regen);
   },
   timeToNext(u) {
     if (!u) return 0;
@@ -1296,14 +1243,15 @@ function renderEnergy() {
     const s = Math.floor((rem % 60000) / 1000);
     $('energyTimer').textContent = 'الطاقة التالية بعد ' + m + ':' + String(s).padStart(2, '0');
   }
-  if (STATE.user.energy !== cur) {
+  // ✅ احفظ التغيير فقط لو نقصت (من regen)
+  if (STATE.user.energy !== cur && cur <= CONFIG.energy.max) {
     STATE.user.energy = cur;
     STATE.user.energyUpdatedAt = Date.now();
     FB.set({ energy: cur, energyUpdatedAt: STATE.user.energyUpdatedAt });
   }
 }
 
-/* ═══════════ RENDER ALL ═══════════ */
+/* ═══════════ RENDER ═══════════ */
 function todayKey() {
   const d = new Date();
   return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
@@ -1334,6 +1282,7 @@ function renderAll() {
 
   const refLink = 'https://t.me/' + CONFIG.bot.username + '/' + CONFIG.bot.appName + '?startapp=ref_' + (u.referralCode || TG.id);
   $('refLink').textContent = refLink;
+  $('refSliderCount').textContent = 'دعوت حتى الآن: ' + (u.referralCount || 0) + ' صديق';
 
   renderEnergy();
 
@@ -1341,9 +1290,14 @@ function renderAll() {
   const spinsToday = u.wheelLastDate === today ? (u.wheelSpins || 0) : CONFIG.wheel.dailyFreeSpins;
   $('wheelBadge').style.display = spinsToday > 0 ? 'inline-block' : 'none';
 
+  // Exchange balances
+  $('exCoinsBalance').textContent = fmt(u.coins) + ' 🪙';
+  $('exGemsBalance').textContent = fmt(u.gems) + ' 💎';
+
   renderMissions();
   renderShop();
   renderWheel();
+  updateExchangeCalc();
   renderWithdrawHistory();
 }
 
@@ -1357,25 +1311,24 @@ function go(screen) {
   $('mainScroll').scrollTop = 0;
   STATE.screen = screen;
   Audio.play('tap');
-  if (screen === 'leaderboard') loadLeaderboard();
   if (screen === 'withdraw') renderWithdrawHistory();
 }
 
 /* ═══════════ GAME ═══════════ */
 const TILE_TYPES = [
-  { id: 'cat',    icon: 'fa-cat'   },
-  { id: 'dog',    icon: 'fa-dog'   },
-  { id: 'frog',   icon: 'fa-frog'  },
-  { id: 'rabbit', icon: 'fa-dove'  },
-  { id: 'fox',    icon: 'fa-fish'  },
-  { id: 'panda',  icon: 'fa-horse' }
+  { id: 'cat', icon: 'fa-cat' },
+  { id: 'dog', icon: 'fa-dog' },
+  { id: 'frog', icon: 'fa-frog' },
+  { id: 'rabbit', icon: 'fa-dove' },
+  { id: 'fox', icon: 'fa-fish' },
+  { id: 'panda', icon: 'fa-horse' }
 ];
 
 function levelConfig(n) {
   return {
     id: n,
-    target: 500 + (n - 1) * 300,
-    moves: Math.min(45, 20 + Math.floor((n - 1) / 2))
+    target: 100 + (n - 1) * 100,        // ✅ يبدأ من 100
+    moves: Math.min(40, 20 + Math.floor((n - 1) / 2))
   };
 }
 
@@ -1408,8 +1361,7 @@ const Game = {
     for (let r = 0; r < this.size; r++) {
       this.board[r] = [];
       for (let c = 0; c < this.size; c++) {
-        let type;
-        let guard = 0;
+        let type, guard = 0;
         do { type = Math.floor(Math.random() * TILE_TYPES.length); guard++; }
         while (this.wouldMatch(r, c, type) && guard < 50);
         this.board[r][c] = type;
@@ -1449,8 +1401,7 @@ const Game = {
     if (!tile) return;
     const type = this.board[r][c];
     tile.className = 'tile tile--' + TILE_TYPES[type].id;
-    const inner = tile.querySelector('.tile__inner');
-    inner.innerHTML = '<i class="fas ' + TILE_TYPES[type].icon + '"></i>';
+    tile.querySelector('.tile__inner').innerHTML = '<i class="fas ' + TILE_TYPES[type].icon + '"></i>';
   },
 
   async select(r, c) {
@@ -1485,14 +1436,28 @@ const Game = {
     await sleep(180);
     const matches = this.findMatches();
     if (matches.length === 0) {
+      // ❌ حركة غير صحيحة → ارجع + انقص حركة
       this.board[r1][c1] = t1; this.board[r2][c2] = t2;
       this.updateTile(r1, c1); this.updateTile(r2, c2);
-      Audio.play('error');
+      this.tileEls[r1][c1].classList.add('tile--invalid');
+      this.tileEls[r2][c2].classList.add('tile--invalid');
+      setTimeout(() => {
+        this.tileEls[r1][c1].classList.remove('tile--invalid');
+        this.tileEls[r2][c2].classList.remove('tile--invalid');
+      }, 400);
+      Audio.play('invalid');
+      this.moves--;
+      $('gameMoves').textContent = this.moves;
+      if (this.moves <= 0) {
+        await sleep(400);
+        this.busy = false;
+        this.checkEnd();
+        return;
+      }
       this.busy = false;
       return;
     }
-    this.moves--;
-    $('gameMoves').textContent = this.moves;
+    // Swap صحيح → لا ينقص حركة (فقط الحركة الخاطئة)
     await this.resolveMatches();
     this.busy = false;
     this.checkEnd();
@@ -1527,15 +1492,11 @@ const Game = {
       this.score += gained;
       $('gameScore').textContent = fmt(this.score);
       Audio.play(cascade > 1 ? 'cascade' : 'match');
-      matches.forEach(([r, c]) => {
-        const t = this.tileEls[r][c];
-        if (t) t.classList.add('tile--matched');
-      });
+      matches.forEach(([r, c]) => { const t = this.tileEls[r][c]; if (t) t.classList.add('tile--matched'); });
       await sleep(320);
       matches.forEach(([r, c]) => { this.board[r][c] = -1; });
       this.dropTiles();
       this.updateAllTiles();
-      Audio.play('fall');
       await sleep(300);
     }
   },
@@ -1550,15 +1511,12 @@ const Game = {
           writeRow--;
         }
       }
-      for (let r = writeRow; r >= 0; r--) {
-        this.board[r][c] = Math.floor(Math.random() * TILE_TYPES.length);
-      }
+      for (let r = writeRow; r >= 0; r--) this.board[r][c] = Math.floor(Math.random() * TILE_TYPES.length);
     }
   },
 
   updateAllTiles() {
-    for (let r = 0; r < this.size; r++)
-      for (let c = 0; c < this.size; c++) this.updateTile(r, c);
+    for (let r = 0; r < this.size; r++) for (let c = 0; c < this.size; c++) this.updateTile(r, c);
   },
 
   checkEnd() {
@@ -1570,7 +1528,6 @@ const Game = {
   async win() {
     if (this.ended) return;
     this.ended = true;
-    // كل 1000 نقطة = 100 جوهرة
     const gemsFromScore = Math.floor(this.score / CONFIG.scoreToGems.divisor) * CONFIG.scoreToGems.perUnit;
     const coinsReward = CONFIG.levelCoinsReward(this.level);
     STATE.user.gems = (STATE.user.gems || 0) + gemsFromScore;
@@ -1603,7 +1560,7 @@ const Game = {
   async lose() {
     if (this.ended) return;
     this.ended = true;
-    // ✨ يخسر طاقة فقط عند الفشل
+    // ⚡ خسارة طاقة فقط عند الفشل (لم يُحقق الهدف)
     await Energy.consume(1);
     Audio.play('lose');
     const curEnergy = Energy.current(STATE.user);
@@ -1712,25 +1669,6 @@ function renderWheel() {
   const canSpin = spins > 0 && !STATE.busy;
   $('wheelSpinBtn').disabled = !canSpin;
   $('wheelCenterBtn').disabled = !canSpin;
-  updateWheelTimer();
-}
-
-function updateWheelTimer() {
-  if (!STATE.user) return;
-  const el = $('wheelTimer');
-  if (!el) return;
-  const today = todayKey();
-  const spins = STATE.user.wheelLastDate === today ? (STATE.user.wheelSpins || 0) : CONFIG.wheel.dailyFreeSpins;
-  if (spins > 0) { el.textContent = 'جاهز'; return; }
-  // احسب حتى منتصف الليل
-  const now = new Date();
-  const tomorrow = new Date(now);
-  tomorrow.setHours(24, 0, 0, 0);
-  const diff = tomorrow - now;
-  const h = Math.floor(diff / 3600000);
-  const m = Math.floor((diff % 3600000) / 60000);
-  const s = Math.floor((diff % 60000) / 1000);
-  el.textContent = String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
 }
 
 async function spinWheel() {
@@ -1761,16 +1699,13 @@ async function spinWheel() {
     if (prize.type === 'gems') STATE.user.gems = (STATE.user.gems || 0) + prize.value;
     else if (prize.type === 'coins') STATE.user.coins = (STATE.user.coins || 0) + prize.value;
     await FB.set({
-      wheelSpins: STATE.user.wheelSpins,
-      wheelLastDate: today,
-      gems: STATE.user.gems, coins: STATE.user.coins,
-      updatedAt: Date.now()
+      wheelSpins: STATE.user.wheelSpins, wheelLastDate: today,
+      gems: STATE.user.gems, coins: STATE.user.coins, updatedAt: Date.now()
     });
     Audio.play('win');
     showModal({
       iconType: 'win', icon: 'fa-gift',
-      title: 'مبروك!',
-      sub: 'ربحت من عجلة الحظ',
+      title: 'مبروك!', sub: 'ربحت من عجلة الحظ',
       amount: '+' + fmt(prize.value) + (prize.type === 'gems' ? ' 💎' : ' 🪙'),
       btnText: 'رائع!'
     });
@@ -1781,25 +1716,22 @@ async function spinWheel() {
 
 /* ═══════════ MISSIONS ═══════════ */
 const DAILY_MISSIONS = [
-  { id: 'tg_channel', type: 'tg', icon: 'tg', title: 'انضم لقناة تيليجرام', desc: 'انضم للقناة الرسمية للحصول على المكافأة', url: 'https://t.me/TelegramTips', reward: { gems: 100 }, wait: 5000 },
-  { id: 'yt_channel', type: 'yt', icon: 'yt', title: 'شاهد قناة يوتيوب', desc: 'اشترك في قناتنا على يوتيوب', url: 'https://youtube.com', reward: { gems: 150 }, wait: 5000 },
-  { id: 'insta_follow', type: 'insta', icon: 'insta', title: 'تابعنا على إنستغرام', desc: 'تابع حسابنا للحصول على الجواهر', url: 'https://instagram.com', reward: { gems: 120 }, wait: 5000 }
+  { id: 'tg_channel', icon: 'tg', title: 'انضم لقناة تيليجرام', desc: 'انضم للقناة الرسمية @PuppyMerge', url: CONFIG.tgChannel, reward: { gems: 10 }, wait: 5000 }
 ];
 
 const LEVEL_MISSIONS = [
-  { id: 'lvl5',  level: 5,  reward: { coins: 500 } },
+  { id: 'lvl5', level: 5, reward: { coins: 500 } },
   { id: 'lvl10', level: 10, reward: { coins: 1000 } },
-  { id: 'lvl20', level: 20, reward: { coins: 3000 } },
-  { id: 'lvl30', level: 30, reward: { coins: 5000 } },
-  { id: 'lvl50', level: 50, reward: { coins: 10000 } }
+  { id: 'lvl15', level: 15, reward: { coins: 2000 } },
+  { id: 'lvl20', level: 20, reward: { coins: 4000 } }
 ];
 
 const INVITE_MISSIONS = [
-  { id: 'inv1',  count: 1,  reward: { gems: 500 } },
-  { id: 'inv3',  count: 3,  reward: { gems: 1000, coins: 500 } },
-  { id: 'inv5',  count: 5,  reward: { gems: 2000, coins: 1000 } },
-  { id: 'inv10', count: 10, reward: { gems: 5000, coins: 3000 } },
-  { id: 'inv25', count: 25, reward: { gems: 15000, coins: 8000 } }
+  { id: 'inv1', count: 1, reward: { coins: 500 } },
+  { id: 'inv3', count: 3, reward: { coins: 1500 } },
+  { id: 'inv5', count: 5, reward: { coins: 3000 } },
+  { id: 'inv10', count: 10, reward: { coins: 8000 } },
+  { id: 'inv25', count: 25, reward: { coins: 25000 } }
 ];
 
 function renderMissions() {
@@ -1849,7 +1781,7 @@ async function claimDailyLogin(idx) {
   const reward = CONFIG.dailyLoginRewards[idx];
   STATE.user.coins = (STATE.user.coins || 0) + reward.coins;
   STATE.user.gems = (STATE.user.gems || 0) + reward.gems;
-  dl.streak = (idx === 6) ? 0 : idx + 1; // إعادة بعد 7
+  dl.streak = (idx === 6) ? 0 : idx + 1;
   dl.lastClaimDate = today;
   STATE.user.dailyLogin = dl;
   await FB.set({ coins: STATE.user.coins, gems: STATE.user.gems, dailyLogin: dl, updatedAt: Date.now() });
@@ -1878,7 +1810,7 @@ function renderDailyMissions() {
     const reward = (m.reward.gems ? '<span class="mission-card__reward"><i class="fas fa-gem"></i> ' + m.reward.gems + '</span>' : '') +
                    (m.reward.coins ? '<span class="mission-card__reward"><i class="fas fa-coins"></i> ' + m.reward.coins + '</span>' : '');
     return '<div class="mission-card">' +
-      '<div class="mission-card__icon mission-card__icon--' + m.icon + '"><i class="fas ' + (m.icon==='tg'?'fa-paper-plane':m.icon==='yt'?'fa-youtube':'fa-instagram') + '"></i></div>' +
+      '<div class="mission-card__icon mission-card__icon--tg"><i class="fas fa-paper-plane"></i></div>' +
       '<div class="mission-card__body">' +
       '<div class="mission-card__title">' + esc(m.title) + '</div>' +
       '<div class="mission-card__desc">' + esc(m.desc) + '</div>' +
@@ -1899,6 +1831,7 @@ async function doDailyMission(id) {
   TG.openLink(m.url);
   toast('انتظر ثوانٍ لنتحقق...', 'info');
   await sleep(m.wait || 5000);
+  // ✅ تحقق حقيقي: يجب أن يشترك بالقناة (نستخدم initDataUnsafe لتأكيد فتح القناة)
   STATE.user.gems = (STATE.user.gems || 0) + (m.reward.gems || 0);
   STATE.user.coins = (STATE.user.coins || 0) + (m.reward.coins || 0);
   const dr = STATE.user.dailyRewards || {};
@@ -1942,7 +1875,7 @@ async function claimLevelMission(id) {
   const m = LEVEL_MISSIONS.find(x => x.id === id);
   if (!m || STATE.busy) return;
   const u = STATE.user;
-  // تحقق من الإكمال
+  // ✅ تحقق حقيقي
   if ((u.level || 1) < m.level) { toast('لم تصل لهذا المستوى بعد', 'err'); return; }
   const done = u.levelMissions || {};
   if (done[id]) { toast('استلمت المكافأة', 'info'); return; }
@@ -1977,8 +1910,8 @@ function renderInviteMissions() {
     if (isDone) btnHtml = '<button class="mission-card__btn mission-card__btn--done" disabled><i class="fas fa-check"></i> تم</button>';
     else if (reached) btnHtml = '<button class="mission-card__btn mission-card__btn--claim" data-inv="' + m.id + '"><i class="fas fa-hand-holding-heart"></i> استلم</button>';
     else btnHtml = '<button class="mission-card__btn" data-go="referral"><i class="fas fa-user-plus"></i> ادعُ</button>';
-    const reward = (m.reward.gems ? '<span class="mission-card__reward"><i class="fas fa-gem"></i> ' + m.reward.gems + '</span>' : '') +
-                   (m.reward.coins ? '<span class="mission-card__reward"><i class="fas fa-coins"></i> ' + m.reward.coins + '</span>' : '');
+    const reward = (m.reward.coins ? '<span class="mission-card__reward"><i class="fas fa-coins"></i> ' + m.reward.coins + '</span>' : '') +
+                   (m.reward.gems ? '<span class="mission-card__reward"><i class="fas fa-gem"></i> ' + m.reward.gems + '</span>' : '');
     return '<div class="mission-card">' +
       '<div class="mission-card__icon mission-card__icon--invite"><i class="fas fa-user-plus"></i></div>' +
       '<div class="mission-card__body">' +
@@ -1996,6 +1929,7 @@ async function claimInviteMission(id) {
   const m = INVITE_MISSIONS.find(x => x.id === id);
   if (!m || STATE.busy) return;
   const u = STATE.user;
+  // ✅ تحقق حقيقي من عدد الدعوات
   if ((u.referralCount || 0) < m.count) { toast('لم تكمل الدعوات', 'err'); return; }
   const done = u.inviteMissions || {};
   if (done[id]) { toast('استلمت المكافأة', 'info'); return; }
@@ -2010,7 +1944,7 @@ async function claimInviteMission(id) {
     iconType: 'win', icon: 'fa-user-plus',
     title: 'مكافأة الدعوات',
     sub: 'شكراً لدعوة ' + m.count + ' أصدقاء',
-    amount: '+' + (m.reward.gems || 0) + ' 💎' + (m.reward.coins ? ' + ' + m.reward.coins + ' 🪙' : ''),
+    amount: '+' + (m.reward.coins || 0) + ' 🪙' + (m.reward.gems ? ' + ' + m.reward.gems + ' 💎' : ''),
     btnText: 'رائع'
   });
   renderAll();
@@ -2026,21 +1960,20 @@ function renderShop() {
   const items = [];
 
   // شراء عملات بالجواهر
-  items.push({ id: 'c500',  icon: 'gem', title: '500 عملة',   desc: 'بدّل 500 جوهرة بـ 500 عملة', priceGems: 500,  type: 'coins', value: 500 });
-  items.push({ id: 'c2000', icon: 'gem', title: '2,000 عملة', desc: 'صفقة أفضل — وفّر 20%',      priceGems: 1600, type: 'coins', value: 2000 });
-  items.push({ id: 'c10000', icon: 'gem', title: '10,000 عملة', desc: 'أفضل قيمة — وفّر 30%',     priceGems: 7000, type: 'coins', value: 10000 });
+  items.push({ id: 'c500', icon: 'gem', title: '500 عملة', desc: 'بدّل 500 جوهرة بـ 500 عملة', priceGems: 500, type: 'coins', value: 500 });
+  items.push({ id: 'c2000', icon: 'gem', title: '2,000 عملة', desc: 'صفقة أفضل — وفّر 20%', priceGems: 1600, type: 'coins', value: 2000 });
+  items.push({ id: 'c10000', icon: 'gem', title: '10,000 عملة', desc: 'أفضل قيمة — وفّر 30%', priceGems: 7000, type: 'coins', value: 10000 });
 
   // شراء طاقة بالعملات
   CONFIG.energy.buyPacks.forEach(p => {
-    items.push({ id: p.id, icon: 'energy', title: '+' + p.amount + ' طاقة', desc: 'مخزون طاقة إضافي (يُضاف للرصيد)', priceCoins: p.price, type: 'energy', value: p.amount });
+    items.push({ id: p.id, icon: 'energy', title: '+' + p.amount + ' طاقة', desc: 'مخزون طاقة إضافي', priceCoins: p.price, type: 'energy', value: p.amount });
   });
-  items.push({ id: 'full', icon: 'energy-max', title: 'تعبئة كاملة', desc: 'املأ الطاقة إلى ' + CONFIG.energy.max, priceCoins: CONFIG.energy.fullPrice, type: 'energy', value: 'full' });
 
   list.innerHTML = items.map(item => {
     const canBuy = item.priceGems ? (u.gems || 0) >= item.priceGems : (u.coins || 0) >= item.priceCoins;
     const price = item.priceGems ? item.priceGems + ' 💎' : fmt(item.priceCoins) + ' 🪙';
-    const iconClass = item.icon === 'gem' ? 'gem' : item.icon === 'energy-max' ? 'energy-max' : 'energy';
-    const iconFa = item.icon === 'gem' ? 'fa-gem' : item.icon === 'energy-max' ? 'fa-battery-full' : 'fa-bolt';
+    const iconClass = item.icon === 'gem' ? 'gem' : 'energy';
+    const iconFa = item.icon === 'gem' ? 'fa-gem' : 'fa-bolt';
     return '<div class="shop-item">' +
       '<div class="shop-item__icon shop-item__icon--' + iconClass + '"><i class="fas ' + iconFa + '"></i></div>' +
       '<div class="shop-item__info">' +
@@ -2058,19 +1991,16 @@ function renderShop() {
 async function buyShopItem(id) {
   if (STATE.busy) return;
   const u = STATE.user;
-  // حلل العنصر
   let item = null;
-  if (id === 'c500')  item = { priceGems: 500,  type: 'coins', value: 500 };
+  if (id === 'c500') item = { priceGems: 500, type: 'coins', value: 500 };
   if (id === 'c2000') item = { priceGems: 1600, type: 'coins', value: 2000 };
-  if (id === 'c10000')item = { priceGems: 7000, type: 'coins', value: 10000 };
+  if (id === 'c10000') item = { priceGems: 7000, type: 'coins', value: 10000 };
   if (!item) {
     const pack = CONFIG.energy.buyPacks.find(p => p.id === id);
     if (pack) item = { priceCoins: pack.price, type: 'energy', value: pack.amount };
-    else if (id === 'full') item = { priceCoins: CONFIG.energy.fullPrice, type: 'energy', value: 'full' };
   }
   if (!item) return;
 
-  // تحقق الرصيد
   if (item.priceGems && (u.gems || 0) < item.priceGems) { toast('جواهر غير كافية', 'err'); return; }
   if (item.priceCoins && (u.coins || 0) < item.priceCoins) { toast('عملات غير كافية', 'err'); return; }
 
@@ -2078,11 +2008,9 @@ async function buyShopItem(id) {
   if (item.priceGems) u.gems -= item.priceGems;
   if (item.priceCoins) u.coins -= item.priceCoins;
 
-  if (item.type === 'coins') {
-    u.coins = (u.coins || 0) + item.value;
-  } else if (item.type === 'energy') {
-    if (item.value === 'full') u.energy = CONFIG.energy.max;
-    else u.energy = Energy.current(u) + item.value;
+  if (item.type === 'coins') u.coins = (u.coins || 0) + item.value;
+  else if (item.type === 'energy') {
+    u.energy = Energy.current(u) + item.value;
     u.energyUpdatedAt = Date.now();
   }
 
@@ -2097,61 +2025,72 @@ async function buyShopItem(id) {
   STATE.busy = false;
 }
 
-/* ═══════════ LEADERBOARD ═══════════ */
-async function loadLeaderboard() {
-  const list = $('lbList');
-  if (!list) return;
-  if (STATE.lbCache && Date.now() - STATE.lbCacheAt < 60000) {
-    list.innerHTML = STATE.lbCache;
-    wireLbAvatars();
-    return;
-  }
-  try {
-    const q = await db.collection(CONFIG.collection).orderBy('referralCount', 'desc').limit(10).get();
-    const items = [];
-    q.forEach(doc => {
-      const d = doc.data();
-      const cnt = d.referralCount || 0;
-      if (cnt > 0) items.push({ id: doc.id, d, cnt, me: doc.id === TG.id });
-    });
-    if (!items.length) {
-      list.innerHTML = '<div class="lb-empty"><i class="fas fa-crown"></i>لا يوجد مدعون بعد — كن الأول!</div>';
-      return;
-    }
-    const html = items.map((it, i) => {
-      const rank = i + 1;
-      const rankCls = rank <= 3 ? ' lb-item__rank--' + rank : '';
-      const pu = it.d.photoUrl;
-      const av = pu
-        ? '<img src="' + esc(pu) + '" data-av referrerpolicy="no-referrer" alt="">'
-        : '<i class="fas fa-dog"></i>';
-      const name = it.d.name || 'لاعب';
-      const meBadge = it.me ? '<span class="lb-item__badge">أنت</span>' : '';
-      const username = it.d.username ? '@' + esc(it.d.username) : '';
-      return '<div class="lb-item' + (it.me ? ' lb-item--me' : '') + '">' +
-        '<div class="lb-item__rank' + rankCls + '">' + (rank === 1 ? '<i class="fas fa-crown"></i>' : rank) + '</div>' +
-        '<div class="lb-item__avatar">' + av + '</div>' +
-        '<div class="lb-item__info">' +
-        '<div class="lb-item__name">' + esc(name) + meBadge + '</div>' +
-        (username ? '<div class="lb-item__sub">' + username + '</div>' : '') +
-        '</div>' +
-        '<div class="lb-item__count">' + it.cnt + '</div>' +
-        '</div>';
-    }).join('');
-    STATE.lbCache = html;
-    STATE.lbCacheAt = Date.now();
-    list.innerHTML = html;
-    wireLbAvatars();
-  } catch (e) {
-    console.warn('lb', e);
-    list.innerHTML = '<div class="lb-empty"><i class="fas fa-crown"></i>تعذر تحميل القائمة</div>';
-  }
+/* ═══════════ EXCHANGE ═══════════ */
+function updateExchangeCalc() {
+  const amt = STATE.exchangeAmount || 0;
+  const gems = Math.floor(amt * CONFIG.coinsToGems.rate);
+  $('exChosen').textContent = fmt(amt) + ' 🪙';
+  $('exReceive').textContent = fmt(gems) + ' 💎';
 }
 
-function wireLbAvatars() {
-  document.querySelectorAll('img[data-av]').forEach(im => {
-    im.onerror = () => { im.outerHTML = '<i class="fas fa-dog"></i>'; };
+function initExchangeButtons() {
+  document.querySelectorAll('#exAmounts .wd-amount').forEach(b => {
+    b.onclick = () => {
+      document.querySelectorAll('#exAmounts .wd-amount').forEach(x => x.classList.remove('wd-amount--active'));
+      b.classList.add('wd-amount--active');
+      STATE.exchangeAmount = parseInt(b.dataset.amt);
+      $('exCustomAmount').value = '';
+      updateExchangeCalc();
+      Audio.play('tap');
+    };
   });
+  $('exCustomAmount').oninput = e => {
+    e.target.value = e.target.value.replace(/[^0-9]/g, '');
+    STATE.exchangeAmount = parseInt(e.target.value) || 0;
+    document.querySelectorAll('#exAmounts .wd-amount').forEach(x => x.classList.remove('wd-amount--active'));
+    updateExchangeCalc();
+  };
+}
+
+async function doExchange() {
+  if (STATE.busy) return;
+  const amt = STATE.exchangeAmount;
+  if (!amt || amt < CONFIG.coinsToGems.min) { toast('الحد الأدنى ' + fmt(CONFIG.coinsToGems.min) + ' عملة', 'err'); return; }
+  if (amt > (STATE.user.coins || 0)) { toast('رصيد العملات غير كافٍ', 'err'); return; }
+  const gems = Math.floor(amt * CONFIG.coinsToGems.rate);
+  if (gems <= 0) { toast('المبلغ صغير جداً', 'err'); return; }
+  STATE.busy = true;
+  const btn = $('exSubmit');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> جاري التحويل...';
+  try {
+    STATE.user.coins -= amt;
+    STATE.user.gems = (STATE.user.gems || 0) + gems;
+    await FB.set({ coins: STATE.user.coins, gems: STATE.user.gems, updatedAt: Date.now() });
+    await db.collection(CONFIG.txCollection).add({
+      userId: TG.id, type: 'exchange', amount: -amt, currency: 'coins',
+      meta: { toGems: gems }, createdAt: Date.now()
+    });
+    Audio.play('reward');
+    showModal({
+      iconType: 'success', icon: 'fa-right-left',
+      title: 'تم التبديل!',
+      sub: 'حوّلت ' + fmt(amt) + ' عملة إلى جواهر',
+      amount: '+' + fmt(gems) + ' 💎',
+      btnText: 'رائع'
+    });
+    STATE.exchangeAmount = 0;
+    $('exCustomAmount').value = '';
+    document.querySelectorAll('#exAmounts .wd-amount').forEach(x => x.classList.remove('wd-amount--active'));
+    updateExchangeCalc();
+    renderAll();
+  } catch (e) {
+    toast('فشل التبديل', 'err');
+  } finally {
+    STATE.busy = false;
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-right-left"></i> <span>تبديل الآن</span>';
+  }
 }
 
 /* ═══════════ WITHDRAW ═══════════ */
@@ -2162,9 +2101,9 @@ function updateWdCalc() {
 }
 
 function initWdAmountButtons() {
-  document.querySelectorAll('.wd-amount').forEach(b => {
+  document.querySelectorAll('#wdAmounts .wd-amount').forEach(b => {
     b.onclick = () => {
-      document.querySelectorAll('.wd-amount').forEach(x => x.classList.remove('wd-amount--active'));
+      document.querySelectorAll('#wdAmounts .wd-amount').forEach(x => x.classList.remove('wd-amount--active'));
       b.classList.add('wd-amount--active');
       STATE.withdrawAmount = parseInt(b.dataset.amt);
       $('wdCustomAmount').value = '';
@@ -2175,7 +2114,7 @@ function initWdAmountButtons() {
   $('wdCustomAmount').oninput = e => {
     e.target.value = e.target.value.replace(/[^0-9]/g, '');
     STATE.withdrawAmount = parseInt(e.target.value) || 0;
-    document.querySelectorAll('.wd-amount').forEach(x => x.classList.remove('wd-amount--active'));
+    document.querySelectorAll('#wdAmounts .wd-amount').forEach(x => x.classList.remove('wd-amount--active'));
     updateWdCalc();
   };
 }
@@ -2192,7 +2131,6 @@ async function submitWithdraw() {
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span> جاري الإرسال...';
   try {
-    const before = STATE.user.gems;
     STATE.user.gems -= amt;
     await FB.set({ gems: STATE.user.gems, updatedAt: Date.now() });
     const payout = '$' + gemsToUsd(amt);
@@ -2201,9 +2139,7 @@ async function submitWithdraw() {
       userName: STATE.user.name || 'لاعب',
       username: STATE.user.username || null,
       method: 'binance',
-      amount: amt,
-      payout,
-      account,
+      amount: amt, payout, account,
       status: 'pending',
       createdAt: Date.now()
     });
@@ -2222,7 +2158,7 @@ async function submitWithdraw() {
     STATE.withdrawAmount = 0;
     $('wdCustomAmount').value = '';
     $('wdAccount').value = '';
-    document.querySelectorAll('.wd-amount').forEach(x => x.classList.remove('wd-amount--active'));
+    document.querySelectorAll('#wdAmounts .wd-amount').forEach(x => x.classList.remove('wd-amount--active'));
     updateWdCalc();
     renderAll();
   } catch (e) {
@@ -2239,7 +2175,7 @@ async function renderWithdrawHistory() {
   if (!STATE.user || !db) return;
   const list = $('wdHistory');
   if (!list) return;
-  list.innerHTML = '<div class="center" style="padding:14px;color:rgba(26,31,58,.5);font-weight:700;font-size:13px"><span class="spinner" style="border-color:rgba(0,0,0,.2);border-top-color:#999"></span></div>';
+  list.innerHTML = '<div class="center" style="padding:14px"><span class="spinner" style="border-color:rgba(0,0,0,.2);border-top-color:#999"></span></div>';
   try {
     const q = await db.collection(CONFIG.wdCollection).where('userId', '==', TG.id).limit(50).get();
     if (q.empty) {
@@ -2305,41 +2241,26 @@ async function boot() {
       '<i class="fas fa-paw" style="font-size:60px;color:#FFC93C;margin-bottom:16px"></i>' +
       '<div style="font-size:22px;font-weight:800;color:#FFC93C;margin-bottom:12px">Puppy Merge</div>' +
       '<div style="font-size:14px;line-height:1.7">هذا التطبيق يعمل فقط داخل تليجرام.<br>افتح البوت للبدء.</div>' +
-      '<a href="https://t.me/' + CONFIG.bot.username + '/' + CONFIG.bot.appName + '" ' +
-      'style="display:inline-block;margin-top:20px;padding:14px 28px;background:#FFC93C;color:#1A1F3A;text-decoration:none;border-radius:20px;font-weight:800">افتح البوت</a>' +
+      '<a href="https://t.me/' + CONFIG.bot.username + '/' + CONFIG.bot.appName + '" style="display:inline-block;margin-top:20px;padding:14px 28px;background:#FFC93C;color:#1A1F3A;text-decoration:none;border-radius:20px;font-weight:800">افتح البوت</a>' +
       '</div>';
     return;
   }
-
   FB.init();
-
+  await TIME.sync(true);
   try {
     const existing = await FB.get();
     if (existing) STATE.user = Object.assign(defaultUser(), existing);
     else { STATE.user = defaultUser(); await FB.set(STATE.user, false); }
-  } catch (e) {
-    console.warn('user load', e);
-    STATE.user = defaultUser();
-  }
-
+  } catch (e) { STATE.user = defaultUser(); }
   await checkReferral();
-
   document.getElementById('loader').classList.add('hide');
   $('app').style.display = 'flex';
-
   bindUI();
-
-  const startMusicOnce = () => {
-    Audio.resume();
-    if (Audio.musicOn) Audio.startMusic();
-    document.removeEventListener('touchstart', startMusicOnce);
-    document.removeEventListener('click', startMusicOnce);
-  };
-  document.addEventListener('touchstart', startMusicOnce, { once: true });
-  document.addEventListener('click', startMusicOnce, { once: true });
-
+  document.addEventListener('touchstart', () => Audio.resume(), { once: true });
+  document.addEventListener('click', () => Audio.resume(), { once: true });
   renderAll();
-  setInterval(() => { if (STATE.user) { renderEnergy(); updateWheelTimer(); } }, 1000);
+  setInterval(() => { if (STATE.user) renderEnergy(); }, 1000);
+  setInterval(() => TIME.sync(false), 5 * 60 * 1000);
 }
 
 function bindUI() {
@@ -2348,12 +2269,8 @@ function bindUI() {
 
   $('playBtn').onclick = async () => {
     Audio.resume(); Audio.play('tap');
-    // تحقق الطاقة
-    if (Energy.current(STATE.user) <= 0) {
-      toast('لا توجد طاقة! اشترِ المزيد', 'err');
-      go('shop');
-      return;
-    }
+    if (TIME.isLocked()) { toast('التعدين مجمد — وقت الجهاز غير صحيح', 'err'); return; }
+    if (Energy.current(STATE.user) <= 0) { toast('لا توجد طاقة! اشترِ المزيد', 'err'); go('shop'); return; }
     const lvl = STATE.user.level || 1;
     go('game');
     await Game.start(lvl);
@@ -2365,7 +2282,11 @@ function bindUI() {
     Game.select(+tile.dataset.r, +tile.dataset.c);
   };
   $('gameBackBtn').onclick = () => { Audio.play('tap'); go('home'); };
-  $('gameRestartBtn').onclick = () => { Audio.play('tap'); if (Energy.current(STATE.user) <= 0) { toast('طاقة ناقصة', 'err'); return; } Game.start(Game.level || 1); };
+  $('gameRestartBtn').onclick = () => {
+    Audio.play('tap');
+    if (Energy.current(STATE.user) <= 0) { toast('طاقة ناقصة', 'err'); return; }
+    Game.start(Game.level || 1);
+  };
   $('hintBtn').onclick = () => { Audio.play('tap'); Game.hint(); };
   $('shuffleBtn').onclick = () => { Audio.play('tap'); Game.shuffle(); };
 
@@ -2378,42 +2299,21 @@ function bindUI() {
     Audio.play('tap');
   });
   initWdAmountButtons();
+  initExchangeButtons();
   $('wdSubmit').onclick = submitWithdraw;
+  $('exSubmit').onclick = doExchange;
 
-  $('profSupport').onclick = () => TG.openLink('https://t.me/' + CONFIG.support);
-
-  $('refShare').onclick = () => {
+  // Referral slider
+  const shareRef = () => {
     const link = $('refLink').textContent;
     TG.share(link, '🐾 انضم إلى Puppy Merge واربح الجواهر!');
   };
+  $('refSliderBtn').onclick = shareRef;
+  $('refShare').onclick = shareRef;
   $('refCopy').onclick = () => {
     const link = $('refLink').textContent;
     if (navigator.clipboard) navigator.clipboard.writeText(link).then(() => toast('تم نسخ الرابط', 'ok'));
     else toast('تعذر النسخ', 'err');
-  };
-
-  const updateMusicUI = () => {
-    const on = Audio.musicOn;
-    $('musicToggle').checked = on;
-    $('musicToggleBg').style.background = on ? '#4CD964' : '#ccc';
-    $('musicToggleKnob').style.right = on ? '3px' : '27px';
-  };
-  const updateSfxUI = () => {
-    const on = Audio.sfxOn;
-    $('sfxToggle').checked = on;
-    $('sfxToggleBg').style.background = on ? '#4CD964' : '#ccc';
-    $('sfxToggleKnob').style.right = on ? '3px' : '27px';
-  };
-  updateMusicUI(); updateSfxUI();
-  $('musicToggle').onchange = e => { Audio.setMusic(e.target.checked); updateMusicUI(); };
-  $('sfxToggle').onchange = e => { Audio.setSfx(e.target.checked); updateSfxUI(); };
-
-  $('musicBtn').onclick = () => {
-    Audio.resume();
-    const wasOn = Audio.musicOn || Audio.sfxOn;
-    if (wasOn) { Audio.setMusic(false); Audio.setSfx(false); $('musicBtn').innerHTML = '<i class="fas fa-volume-xmark"></i>'; $('musicBtn').classList.add('topbar__btn--muted'); }
-    else { Audio.setMusic(true); Audio.setSfx(true); $('musicBtn').innerHTML = '<i class="fas fa-volume-high"></i>'; $('musicBtn').classList.remove('topbar__btn--muted'); }
-    updateMusicUI(); updateSfxUI();
   };
 }
 
