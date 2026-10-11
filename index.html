@@ -49,10 +49,10 @@ input{font:inherit;color:inherit}
 .b-s{background:linear-gradient(180deg,#8CEBFF,#59D7F2 70%,#2FB8DC);color:#fff;text-shadow:0 2px 0 var(--sky-d);box-shadow:0 5px 0 var(--sky-d),inset 0 3px 0 rgba(255,255,255,.55)}
 .b-s:active{box-shadow:0 2px 0 var(--sky-d)}
 .b-sm{height:38px;width:auto;padding:0 14px;font-size:12px;border-radius:14px}
-/* Button labels use white lettering with a warm brown outline. */
-.btn,.dock button,.g-btn,.amt,.menu button{color:#fff!important;-webkit-text-stroke:.32px #6B4200;text-shadow:-.7px 0 #6B4200,.7px 0 #6B4200,0 -.7px #6B4200,0 .7px #6B4200}
-.b-y{color:#fff;text-shadow:-.7px 0 #6B4200,.7px 0 #6B4200,0 -.7px #6B4200,0 .7px #6B4200}
-.b-off{background:#D5D5D5;color:#fff;box-shadow:0 4px 0 #A5A5A5;text-shadow:-.7px 0 #6B4200,.7px 0 #6B4200,0 -.7px #6B4200,0 .7px #6B4200}
+/* Restore the original warm-brown button labels. */
+.btn,.dock button,.g-btn,.amt,.menu button{color:var(--ink)!important;-webkit-text-stroke:0;text-shadow:none}
+.b-g,.b-s{color:var(--ink);text-shadow:none}
+.b-off{background:#D5D5D5;color:var(--ink);box-shadow:0 4px 0 #A5A5A5;text-shadow:none}
 
 /* loader */
 .loader{position:fixed;inset:0;z-index:9999;background:linear-gradient(180deg,#1A1F3A,#2A2F52);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;color:#fff;text-align:center;transition:opacity .4s}
@@ -342,7 +342,11 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
           <button class="amt" data-amt="5000">5,000 💎</button><button class="amt" data-amt="10000">10,000 💎</button>
           <button class="amt" data-amt="50000">50,000 💎</button><button class="amt" data-amt="100000">100,000 💎</button>
         </div>
-        <input class="inp" id="wdAccount" placeholder="Binance Pay ID أو البريد الإلكتروني">
+      </div>
+      <div class="card">
+        <div class="ttl">معرّف Binance Pay</div>
+        <div class="sub">أدخل معرّف Binance Pay أو البريد الإلكتروني لاستلام السحب</div>
+        <input class="inp" id="wdAccount" placeholder="Binance Pay ID أو البريد الإلكتروني" autocomplete="off">
       </div>
       <div class="info"><div>المبلغ المختار<b id="wdChosen">0 💎</b></div><div>ما يعادل<b id="wdReceive">$0.00</b></div></div>
       <button class="btn b-g" id="wdSubmit"><i class="fas fa-paper-plane"></i> تقديم طلب السحب</button>
@@ -368,7 +372,6 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
         <div class="g-act"><button class="btn b-s lang-btn" data-lang="ar">🇸🇦 العربية</button><button class="btn b-s lang-btn" data-lang="en">🇺🇸 English</button></div>
       </div>
       <div class="card menu">
-        <button data-go="referral"><span class="ico i-sky"><i class="fas fa-user-plus"></i></span><span class="grow">دعوة الأصدقاء</span><i class="fas fa-chevron-left"></i></button>
         <button data-go="exchange"><span class="ico i-green"><i class="fas fa-right-left"></i></span><span class="grow">تبديل العملات</span><i class="fas fa-chevron-left"></i></button>
         <button data-go="withdraw"><span class="ico i-gold"><i class="fas fa-money-bill-transfer"></i></span><span class="grow">سحب الأموال</span><i class="fas fa-chevron-left"></i></button>
         <button id="openPolicy"><span class="ico i-sky"><i class="fas fa-shield-halved"></i></span><span class="grow">معلومات التطبيق وسياسة الخصوصية</span><i class="fas fa-chevron-left"></i></button>
