@@ -331,6 +331,17 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
       </div>
       <div class="info"><div>العملات المُحوّلة<b id="exChosen">0 🪙</b></div><div>الجواهر المستقبلة<b id="exReceive">0 💎</b></div><div>رصيدك<b id="exBal">0 🪙</b></div></div>
       <button class="btn b-g" id="exSubmit"><i class="fas fa-right-left"></i> تبديل الآن</button>
+      <div class="sec" style="margin-top:24px"><span class="ico i-gold"><i class="fas fa-wallet"></i></span> شحن الجواهر عبر Crypto Pay</div>
+      <div class="card">
+        <div class="ttl" style="margin-bottom:6px">اختر مبلغ الشحن بالدولار</div>
+        <div class="sub" style="margin-bottom:12px">كل 1 USD = 10,000 💎 • الدفع عبر USDT أو TON</div>
+        <div class="amts" id="cpAmounts">
+          <button class="amt" data-usd="1">$1</button><button class="amt" data-usd="2">$2</button><button class="amt" data-usd="5">$5</button><button class="amt" data-usd="10">$10</button><button class="amt" data-usd="20">$20</button>
+        </div>
+        <div class="info" style="margin-top:12px"><div>المبلغ<b id="cpChosen">$1</b></div><div>الجواهر المستلمة<b id="cpGems">10,000 💎</b></div></div>
+        <button class="btn b-y" id="cpDepositBtn" style="margin-top:12px"><i class="fas fa-credit-card"></i> إنشاء فاتورة دفع</button>
+        <div class="sub" style="margin-top:10px">تُضاف الجواهر بعد تأكيد الدفع من Crypto Pay، وليس بمجرد فتح رابط الدفع.</div>
+      </div>
     </section>
 
     <!-- WITHDRAW -->
@@ -476,6 +487,7 @@ const CONFIG={
 };
 
 /* ═══ HELPERS ═══ */
+const CRYPTOPAY_WORKER_URL='https://puppy-merge-api.YOUR-SUBDOMAIN.workers.dev'; // استبدله بعنوان Worker الحقيقي بعد النشر
 const $=id=>document.getElementById(id);
 const fmt=n=>Number(n||0).toLocaleString('en-US');
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -872,6 +884,24 @@ async function withBtn(btn,html,fn){
   try{await fn()}catch(e){console.warn(e);toast('حدثت مشكلة، حاول مجدداً','err')}
   finally{S.busy=false;btn.disabled=false;btn.innerHTML=old}
 }
+let cpDepositUsd=1;
+function updateCryptoDeposit(){
+  const c=$('cpChosen'),g=$('cpGems');
+  if(c)c.textContent='$'+cpDepositUsd;
+  if(g)g.textContent=fmt(cpDepositUsd*10000)+' 💎';
+}
+async function createCryptoInvoice(){
+  const btn=$('cpDepositBtn');
+  if(!TG.app||!TG.app.initData)return toast('افتح اللعبة من داخل تيليجرام أولاً','err');
+  if(!CRYPTOPAY_WORKER_URL||CRYPTOPAY_WORKER_URL.includes('YOUR-SUBDOMAIN'))return toast('يجب وضع رابط Cloudflare Worker أولاً','err');
+  await withBtn(btn,'جاري إنشاء الفاتورة...',async()=>{
+    const r=await fetch(CRYPTOPAY_WORKER_URL+'/create-invoice',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData:TG.app.initData,usd:cpDepositUsd})});
+    const data=await r.json();
+    if(!r.ok||!data.ok||!data.pay_url)throw new Error(data.error||'تعذر إنشاء فاتورة الدفع');
+    showModal({icon:'fa-wallet',title:'تم إنشاء فاتورة الدفع',sub:'ادفع '+('$'+data.usd)+' عبر Crypto Pay. ستضاف الجواهر بعد تأكيد الدفع.',amount:fmt(data.gems)+' 💎',btn:'فتح الدفع',onClose:()=>TG.open(data.pay_url)});
+  });
+}
+
 async function doExchange(){
   const a=S.ex,u=S.user;
   if(!a||a<CONFIG.ex.min)return toast('الحد الأدنى '+fmt(CONFIG.ex.min)+' عملة','err');
@@ -1073,6 +1103,8 @@ function bind(){
   pick('#exAmounts','ex',updateEx);pick('#wdAmounts','wd',updateWd);
   document.querySelectorAll('.wd-method').forEach(el=>{el.onclick=()=>setWdMethod(el.dataset.method);el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setWdMethod(el.dataset.method)}}});
   $('exSubmit').onclick=doExchange;$('wdSubmit').onclick=doWithdraw;
+  document.querySelectorAll('#cpAmounts .amt').forEach(b=>b.onclick=()=>{document.querySelectorAll('#cpAmounts .amt').forEach(x=>x.classList.remove('on'));b.classList.add('on');cpDepositUsd=Number(b.dataset.usd)||1;updateCryptoDeposit();SFX.play('tap')});
+  $('cpDepositBtn').onclick=createCryptoInvoice;updateCryptoDeposit();
   const link=()=>$('refLink').textContent;
   $('refShare').onclick=()=>TG.share(link(),trText('🐾 انضم إلى Puppy Merge واربح الجواهر!'));
   document.querySelectorAll('.lang-pick').forEach(b=>b.onclick=()=>{applyLang(b.dataset.lang,true);$('langModal').classList.remove('show')});
