@@ -212,6 +212,12 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 .pack-tag{display:inline-block;padding:1px 8px;border-radius:8px;font-size:9.5px;font-weight:800;color:#fff;margin-inline-start:6px;vertical-align:middle}
 .pack-tag.hot{background:var(--red)}
 .pack-tag.best{background:var(--green-d)}
+
+/* ═══ DEPOSIT TABS ═══ */
+.dep-tabs{display:flex;gap:8px;margin-bottom:14px;padding:4px;background:rgba(255,253,240,.6);border-radius:22px;border:2px solid var(--edge)}
+.dep-tab{flex:1;height:44px;border-radius:18px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;font-weight:800;color:var(--ink2);transition:all .2s;background:transparent}
+.dep-tab.active{background:linear-gradient(180deg,#FFE95C,#FFD52E 72%,#F4B900);color:var(--ink);box-shadow:0 3px 0 var(--gold-d),inset 0 2px 0 rgba(255,255,255,.7)}
+.dep-tab.active.crypto{background:linear-gradient(180deg,#8CEBFF,#59D7F2 70%,#2FB8DC);color:var(--ink);box-shadow:0 3px 0 var(--sky-d),inset 0 2px 0 rgba(255,255,255,.7)}
 </style>
 </head>
 <body>
@@ -261,8 +267,8 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 
       <button class="card" data-go="deposit" style="width:100%;text-align:start;margin-top:10px">
         <div class="row">
-          <span class="ico i-gold" style="width:50px;height:50px;font-size:22px"><i class="fas fa-star"></i></span>
-          <div class="grow"><div class="ttl">شحن بالنجوم ⭐</div><div class="sub">100 نجمة = 10,000 جوهرة</div></div>
+          <span class="ico i-gold" style="width:50px;height:50px;font-size:22px"><i class="fas fa-wallet"></i></span>
+          <div class="grow"><div class="ttl">إيداع الأموال</div><div class="sub">نجوم ⭐ أو كريبتو 💎</div></div>
           <i class="fas fa-chevron-left" style="color:var(--ink2)"></i>
         </div>
       </button>
@@ -336,35 +342,88 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
       <button class="btn b-g" id="exSubmit"><i class="fas fa-right-left"></i> تبديل الآن</button>
     </section>
 
-    <!-- DEPOSIT (جديد) -->
+    <!-- DEPOSIT (إيداع الأموال — تبويبان: نجوم + كريبتو) -->
     <section class="screen" id="screen-deposit">
       <div class="hero2">
-        <div class="ico i-gold"><i class="fas fa-star"></i></div>
-        <div class="ttl" style="font-size:19px">شحن بالنجوم ⭐</div>
-        <div class="sub">اشترِ النجوم من تلغرام واحصل على جواهر فوراً</div>
+        <div class="ico i-gold"><i class="fas fa-wallet"></i></div>
+        <div class="ttl" style="font-size:19px">إيداع الأموال</div>
+        <div class="sub">اختر طريقة الإيداع المناسبة لك</div>
       </div>
 
-      <div class="card">
-        <div class="row" style="margin-bottom:12px">
-          <span class="ico i-gold" style="width:52px;height:52px"><i class="fas fa-star"></i></span>
-          <div class="grow">
-            <div class="ttl">100 ⭐ = 10,000 💎</div>
-            <div class="sub">كل نجمة تساوي 100 جوهرة</div>
+      <!-- Tabs -->
+      <div class="dep-tabs">
+        <button class="dep-tab active" id="depTabStars" data-tab="stars">
+          <i class="fas fa-star"></i> نجوم ⭐
+        </button>
+        <button class="dep-tab" id="depTabCrypto" data-tab="crypto">
+          <i class="fas fa-coins"></i> كريبتو 💎
+        </button>
+      </div>
+
+      <!-- Tab 1: Stars -->
+      <div id="dep-tab-stars">
+        <div class="card">
+          <div class="row" style="margin-bottom:12px">
+            <span class="ico i-gold" style="width:52px;height:52px"><i class="fas fa-star"></i></span>
+            <div class="grow">
+              <div class="ttl">100 ⭐ = 10,000 💎</div>
+              <div class="sub">كل نجمة تساوي 100 جوهرة</div>
+            </div>
+          </div>
+          <div class="sub" style="text-align:center">اختر الباقة المناسبة لك</div>
+        </div>
+        <div id="starPackages" style="display:grid;gap:10px"></div>
+        <div class="info" style="margin-top:14px">
+          <div>رصيدك الحالي <b id="depGemsStars">0 💎</b></div>
+          <div>طريقة الدفع <b>Telegram Stars ⭐</b></div>
+        </div>
+        <div class="card" style="text-align:center;font-size:12px;color:var(--ink2)">
+          <i class="fas fa-shield-halved" style="color:var(--sky-d)"></i>
+          الدفع آمن عبر تلغرام مباشرة. تصل الجواهر لحسابك فوراً بعد الدفع.
+        </div>
+      </div>
+
+      <!-- Tab 2: Crypto -->
+      <div id="dep-tab-crypto" style="display:none">
+        <div class="card">
+          <div class="row" style="margin-bottom:12px">
+            <span class="ico i-sky" style="width:52px;height:52px"><i class="fas fa-coins"></i></span>
+            <div class="grow">
+              <div class="ttl">ادفع بالكريبتو 💎</div>
+              <div class="sub">USDC / USDT / BTC / ZEC — بدون رسوم منصة</div>
+            </div>
           </div>
         </div>
-        <div class="sub" style="text-align:center">اختر الباقة المناسبة لك</div>
-      </div>
 
-      <div id="starPackages" style="display:grid;gap:10px"></div>
+        <!-- اختيار المبلغ -->
+        <div class="card">
+          <div class="ttl" style="margin-bottom:10px">اختر مبلغ الإيداع (بالدولار)</div>
+          <div class="amts" id="cryptoAmounts" style="grid-template-columns:repeat(3,1fr)">
+            <button class="amt" data-usd="1">$1</button>
+            <button class="amt" data-usd="5">$5</button>
+            <button class="amt" data-usd="10">$10</button>
+            <button class="amt" data-usd="25">$25</button>
+            <button class="amt" data-usd="50">$50</button>
+            <button class="amt" data-usd="100">$100</button>
+          </div>
+          <div class="sub" style="text-align:center;margin-top:12px">أو أدخل مبلغاً مخصصاً</div>
+          <input class="inp" id="cryptoCustomUsd" type="number" min="1" max="1000" step="1" placeholder="$1 - $1000" inputmode="decimal">
+        </div>
 
-      <div class="info" style="margin-top:14px">
-        <div>رصيدك الحالي <b id="depGems">0 💎</b></div>
-        <div>طريقة الدفع <b>Telegram Stars ⭐</b></div>
-      </div>
+        <div class="info">
+          <div>مبلغ الإيداع <b id="cryptoChosenUsd">$0.00</b></div>
+          <div>الجواهر المستقبلة <b id="cryptoReceiveGems">0 💎</b></div>
+          <div>رصيدك الحالي <b id="depGemsCrypto">0 💎</b></div>
+        </div>
 
-      <div class="card" style="text-align:center;font-size:12px;color:var(--ink2)">
-        <i class="fas fa-shield-halved" style="color:var(--sky-d)"></i>
-        الدفع آمن عبر تلغرام مباشرة. تصل الجواهر لحسابك فوراً بعد الدفع.
+        <button class="btn b-g" id="cryptoPayBtn" style="margin-top:10px" disabled>
+          <i class="fas fa-credit-card"></i> إكمال الدفع بالكريبتو
+        </button>
+
+        <div class="card" style="text-align:center;font-size:12px;color:var(--ink2);margin-top:12px">
+          <i class="fas fa-shield-halved" style="color:var(--sky-d)"></i>
+          دفع آمن وغير احتجازي عبر Shieldz. تصل الجواهر لحسابك فوراً بعد التأكيد.
+        </div>
       </div>
     </section>
 
@@ -418,7 +477,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
         <div class="g-act"><button class="btn b-s lang-btn" data-lang="ar">🇸🇦 العربية</button><button class="btn b-s lang-btn" data-lang="en">🇺🇸 English</button></div>
       </div>
       <div class="card menu">
-        <button data-go="deposit"><span class="ico i-gold"><i class="fas fa-star"></i></span><span class="grow">شحن بالنجوم ⭐</span><i class="fas fa-chevron-left"></i></button>
+        <button data-go="deposit"><span class="ico i-gold"><i class="fas fa-wallet"></i></span><span class="grow">إيداع الأموال</span><i class="fas fa-chevron-left"></i></button>
         <button data-go="exchange"><span class="ico i-green"><i class="fas fa-right-left"></i></span><span class="grow">تبديل العملات</span><i class="fas fa-chevron-left"></i></button>
         <button data-go="withdraw"><span class="ico i-gold"><i class="fas fa-money-bill-transfer"></i></span><span class="grow">سحب الأموال</span><i class="fas fa-chevron-left"></i></button>
         <button id="openPolicy"><span class="ico i-sky"><i class="fas fa-shield-halved"></i></span><span class="grow">معلومات التطبيق وسياسة الخصوصية</span><i class="fas fa-chevron-left"></i></button>
@@ -520,6 +579,14 @@ const CONFIG={
     {stars:500,  gems:50000,  label:'500 نجمة'},
     {stars:1000, gems:100000, label:'1000 نجمة', best:true},
   ],
+  // ═══ Shieldz Crypto Payment ═══
+  shieldz:{
+    gemsPerUsd:10000,
+    minUsd:1,
+    maxUsd:1000,
+    pollIntervalMs:5000,
+    pollMaxAttempts:60,
+  },
 };
 
 /* ═══ HELPERS ═══ */
@@ -549,6 +616,7 @@ const TG={app:null,user:null,id:null,start:null,
     try{this.app.ready();this.app.expand();this.app.disableVerticalSwipes&&this.app.disableVerticalSwipes();this.app.setHeaderColor('#A8DCF0');this.app.setBackgroundColor('#A8DCF0')}catch(e){}
     this.user=this.app.initDataUnsafe.user;this.id=String(this.user.id);this.start=this.app.initDataUnsafe.start_param||null;return true},
   open(u){this.app.openTelegramLink&&/^https:\/\/t\.me\//i.test(u)?this.app.openTelegramLink(u):window.open(u,'_blank')},
+  openExternal(u){try{this.app&&this.app.openLink?this.app.openLink(u):window.open(u,'_blank')}catch(e){window.open(u,'_blank')}},
   share(u,t){this.open('https://t.me/share/url?url='+encodeURIComponent(u)+'&text='+encodeURIComponent(t))}
 };
 let db=null;
@@ -636,7 +704,7 @@ function go(s){
   $('mainScroll').scrollTop=0;
   if(s==='withdraw')loadWdHistory();
   if(s==='referral')loadLeaderboard();
-  if(s==='deposit')renderStarPackages();
+  if(s==='deposit'){renderStarPackages();setDepTab('stars')}
 }
 
 /* ═══ GAME ═══ */
@@ -957,11 +1025,12 @@ async function loadWdHistory(){
   }catch(e){l.innerHTML='<div class="empty">تعذر التحميل</div>'}
 }
 
-/* ═══ STAR DEPOSIT (جديد) ═══ */
+/* ═══ STAR DEPOSIT ═══ */
 function renderStarPackages(){
   const el=$('starPackages');if(!el)return;
   const gems=S.user.gems||0;
-  $('depGems').textContent=fmt(gems)+' 💎';
+  $('depGemsStars').textContent=fmt(gems)+' 💎';
+  $('depGemsCrypto').textContent=fmt(gems)+' 💎';
 
   el.innerHTML=CONFIG.starPackages.map(p=>{
     const tag=p.hot?'<span class="pack-tag hot">الأكثر طلباً</span>'
@@ -1033,6 +1102,146 @@ async function startStarPayment(stars){
   }
 }
 
+/* ═══ SHIELDZ CRYPTO DEPOSIT ═══ */
+let cryptoUsd = 0;
+let cryptoPollTimer = null;
+
+function setDepTab(tab){
+  const isStars = tab === 'stars';
+  const tabStars = $('depTabStars'), tabCrypto = $('depTabCrypto');
+  tabStars.classList.toggle('active', isStars);
+  tabStars.classList.remove('crypto');
+  tabCrypto.classList.toggle('active', !isStars);
+  tabCrypto.classList.toggle('crypto', !isStars);
+  $('dep-tab-stars').style.display = isStars ? 'block' : 'none';
+  $('dep-tab-crypto').style.display = isStars ? 'none' : 'block';
+  if (!isStars) updateCryptoAmounts();
+}
+
+function updateCryptoAmounts(){
+  const gems = Math.floor(cryptoUsd * CONFIG.shieldz.gemsPerUsd);
+  $('cryptoChosenUsd').textContent = '$' + cryptoUsd.toFixed(2);
+  $('cryptoReceiveGems').textContent = fmt(gems) + ' 💎';
+  $('depGemsCrypto').textContent = fmt((S.user && S.user.gems) || 0) + ' 💎';
+  $('cryptoPayBtn').disabled = cryptoUsd < CONFIG.shieldz.minUsd || S.busy;
+}
+
+function pickCryptoAmount(el){
+  document.querySelectorAll('#cryptoAmounts .amt').forEach(b => b.classList.remove('on'));
+  el.classList.add('on');
+  cryptoUsd = parseFloat(el.dataset.usd) || 0;
+  $('cryptoCustomUsd').value = '';
+  updateCryptoAmounts();
+  SFX.play('tap');
+}
+
+async function startCryptoPayment(){
+  if (S.busy) return;
+  if (cryptoUsd < CONFIG.shieldz.minUsd) return toast('الحد الأدنى للدفع $' + CONFIG.shieldz.minUsd, 'err');
+  if (cryptoUsd > CONFIG.shieldz.maxUsd) return toast('الحد الأعلى للدفع $' + CONFIG.shieldz.maxUsd, 'err');
+
+  S.busy = true;
+  SFX.play('tap');
+  const btn = $('cryptoPayBtn');
+  const oldHtml = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spn"></span> جاري إنشاء الفاتورة...';
+
+  try {
+    const gems = Math.floor(cryptoUsd * CONFIG.shieldz.gemsPerUsd);
+    const amountCents = Math.round(cryptoUsd * 100);
+    const idempotencyKey = 'pm_' + TG.id + '_' + Date.now();
+
+    const resp = await fetch(CONFIG.api.base + '/api/shieldz/create-invoice', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        userId: TG.id,
+        amount_usd_cents: amountCents,
+        gems: gems,
+        idempotency_key: idempotencyKey,
+      }),
+    });
+
+    const data = await resp.json().catch(() => ({}));
+
+    if (!resp.ok || !data.ok || !data.pay_url) {
+      throw new Error(data.error || data.message || 'فشل إنشاء الفاتورة');
+    }
+
+    // فتح صفحة الدفع في المتصفح الخارجي
+    TG.openExternal(data.pay_url);
+
+    // بدء الاستقصاء
+    startPaymentPolling(data.invoice_id, gems);
+
+  } catch (e) {
+    console.error('Crypto payment error:', e);
+    toast(e.message || 'تعذر بدء الدفع، حاول مجدداً', 'err');
+    S.busy = false;
+    btn.disabled = false;
+    btn.innerHTML = oldHtml;
+  }
+}
+
+function startPaymentPolling(invoiceId, gems){
+  if (cryptoPollTimer) clearInterval(cryptoPollTimer);
+  let attempts = 0;
+
+  const finish = (success) => {
+    clearInterval(cryptoPollTimer);
+    cryptoPollTimer = null;
+    S.busy = false;
+    const btn = $('cryptoPayBtn');
+    if (btn) {
+      btn.innerHTML = '<i class="fas fa-credit-card"></i> إكمال الدفع بالكريبتو';
+      btn.disabled = cryptoUsd < CONFIG.shieldz.minUsd;
+    }
+    if (success) {
+      SFX.play('reward');
+      FB.get().then(fresh => {
+        if (fresh) S.user = Object.assign(S.user, fresh);
+        renderAll();
+        renderStarPackages();
+      }).catch(() => {
+        renderAll();
+        renderStarPackages();
+      });
+      showModal({
+        icon: 'fa-coins',
+        title: '✅ تم استلام الدفع!',
+        sub: 'تمت إضافة الجواهر لحسابك',
+        amount: '+' + fmt(gems) + ' 💎',
+        btn: 'رائع',
+      });
+    }
+  };
+
+  cryptoPollTimer = setInterval(async () => {
+    attempts++;
+    if (attempts > CONFIG.shieldz.pollMaxAttempts) {
+      finish(false);
+      toast('انتهت مهلة التحقق — إذا دفعت، حدّث الصفحة', 'info');
+      return;
+    }
+    try {
+      const resp = await fetch(CONFIG.api.base + '/api/shieldz/invoice/' + encodeURIComponent(invoiceId), {
+        method: 'GET',
+      });
+      const data = await resp.json().catch(() => ({}));
+
+      if (data.status === 'paid') {
+        finish(true);
+      } else if (data.status === 'expired' || data.status === 'failed') {
+        finish(false);
+        toast('انتهت صلاحية الفاتورة أو فشل الدفع', 'err');
+      }
+    } catch (e) {
+      // تجاهل أخطاء الشبكة المؤقتة
+    }
+  }, CONFIG.shieldz.pollIntervalMs);
+}
+
 /* ═══ REFERRAL ═══ */
 async function applyCode(code){
   const u=S.user;if(u.referralUsed)return false;
@@ -1097,14 +1306,24 @@ const EN={
 'انتهت الحركات!':'Out of moves!',' من ':' of ','فقدت':'lost','طاقة':'energy','متبقي':'left','حاول مجدداً':'Try again','مبروك!':'Congrats!','ربحت من عجلة الحظ':'You won from the Lucky Wheel',
 'رائع!':'Awesome!','رائع':'Great','مكافأة اليوم':'Day reward','أكملت الأسبوع! تسلسل جديد غداً':'Week complete! New streak tomorrow','عد غداً لمكافأة أكبر':'Come back tomorrow for a bigger reward',
 'مكافأة المستوى':'Level reward','استلمت مكافأة إنجاز':'You claimed an achievement reward','مكافأة الدعوات':'Invite reward','شكراً لدعوة':'Thanks for inviting','استلمت المكافأة':'Already claimed',
-/* NEW - deposit */
 'شحن بالنجوم':'Buy with Stars','شحن بالنجوم ⭐':'Buy with Stars ⭐','اشترِ النجوم من تلغرام واحصل على جواهر فوراً':'Buy Stars from Telegram and get gems instantly',
 'كل نجمة تساوي 100 جوهرة':'Each Star = 100 gems','اختر الباقة المناسبة لك':'Choose your package','رصيدك الحالي':'Your balance','طريقة الدفع':'Payment method',
 'الدفع آمن عبر تلغرام مباشرة. تصل الجواهر لحسابك فوراً بعد الدفع.':'Payment is secure through Telegram. Gems arrive instantly after payment.',
 'نجمة':'Stars','احصل على':'Get','الأكثر طلباً':'Popular','أفضل قيمة':'Best value',
 'يجب فتح التطبيق داخل تلغرام':'Must open the app inside Telegram','فشل إنشاء الفاتورة':'Failed to create invoice','تعذر بدء الدفع':'Could not start payment',
 'تم الدفع بنجاح!':'Payment successful!','حصلت على':'You got','تم إلغاء الدفع':'Payment cancelled','فشل الدفع، حاول مجدداً':'Payment failed, please try again',
-'جواهر فوراً':'gems instantly','أضف جواهر لحسابك':'Add gems to your account'
+'جواهر فوراً':'gems instantly','أضف جواهر لحسابك':'Add gems to your account',
+'إيداع الأموال':'Deposit Funds','نجوم ⭐ أو كريبتو 💎':'Stars ⭐ or Crypto 💎','اختر طريقة الإيداع المناسبة لك':'Choose your deposit method',
+'نجوم ⭐':'Stars ⭐','كريبتو 💎':'Crypto 💎','ادفع بالكريبتو 💎':'Pay with Crypto 💎',
+'USDC / USDT / BTC / ZEC — بدون رسوم منصة':'USDC / USDT / BTC / ZEC — No platform fees',
+'اختر مبلغ الإيداع (بالدولار)':'Choose deposit amount (USD)','أو أدخل مبلغاً مخصصاً':'Or enter a custom amount',
+'مبلغ الإيداع':'Deposit amount','ادفع بالكريبتو الآن':'Pay with Crypto Now','إكمال الدفع بالكريبتو':'Complete Crypto Payment',
+'دفع آمن وغير احتجازي عبر Shieldz. تصل الجواهر لحسابك فوراً بعد التأكيد.':'Secure non-custodial payment via Shieldz. Gems arrive instantly after confirmation.',
+'جاري إنشاء الفاتورة...':'Creating invoice...','تعذر بدء الدفع، حاول مجدداً':'Could not start payment, try again',
+'انتهت صلاحية الفاتورة أو فشل الدفع':'Invoice expired or payment failed',
+'انتهت مهلة التحقق — إذا دفعت، حدّث الصفحة':'Verification timeout — if you paid, refresh the page',
+'تم استلام الدفع!':'Payment received!','تمت إضافة الجواهر لحسابك':'Gems added to your account',
+'الحد الأدنى للدفع $1':'Minimum payment is $1','الحد الأعلى للدفع $1000':'Maximum payment is $1000',
 };
 const KEYS=Object.keys(EN).sort((a,b)=>b.length-a.length),AR=/[\u0600-\u06FF]/,orig=new WeakMap();
 let LANG=null,trBusy=false,trRaf=0;
@@ -1172,8 +1391,8 @@ function openContentModal(kind){
       '<div class="policy-box"><h4>عن Puppy Merge</h4><p>لعبة دمج وترفيه تجمع فيها العملات والجواهر وتتقدم عبر المستويات والمهام والإحالات.</p></div><div class="policy-box"><h4>المعلومات المستخدمة</h4><p>يستخدم التطبيق معرّف حساب تيليجرام واسم العرض وصورة الحساب إن توفرت، إضافةً إلى الرصيد والطاقة وتقدم اللعب والإحالات وبيانات السحب التي تدخلها، لتشغيل الميزات وتسجيل المكافآت ومراجعة طلبات السحب والحد من إساءة الاستخدام.</p></div><div class="policy-box"><h4>الخصوصية</h4><p>قد تتم معالجة البيانات عبر الخدمات اللازمة لتشغيل التطبيق مثل تيليجرام وفايربيس، أو عند وجود متطلب قانوني.</p></div>';
   }else{
     $('contentBody').innerHTML=en?
-      '<div class="policy-box"><h4>How to play</h4><p>Swap adjacent tiles to match at least three identical animals and reach the level target.</p></div><div class="policy-box"><h4>Buy with Stars</h4><p>Open the profile, choose Buy with Stars, select a package and complete the payment via Telegram. Gems arrive instantly.</p></div>' :
-      '<div class="policy-box"><h4>كيف تلعب؟</h4><p>بدّل أماكن القطع المتجاورة لتكوين ثلاثة حيوانات متشابهة أو أكثر، وحاول بلوغ هدف المستوى.</p></div><div class="policy-box"><h4>الشحن بالنجوم</h4><p>افتح حسابك، اختر "شحن بالنجوم ⭐"، اختر الباقة، وأكمل الدفع عبر تلغرام. تصل الجواهر فوراً.</p></div>';
+      '<div class="policy-box"><h4>How to play</h4><p>Swap adjacent tiles to match at least three identical animals and reach the level target.</p></div><div class="policy-box"><h4>Buy with Stars</h4><p>Open the profile, choose Deposit Funds, select Stars tab, choose a package and complete the payment via Telegram. Gems arrive instantly.</p></div><div class="policy-box"><h4>Pay with Crypto</h4><p>Open the deposit screen, switch to the Crypto tab, choose a USD amount and complete the payment. Gems arrive automatically after confirmation.</p></div>' :
+      '<div class="policy-box"><h4>كيف تلعب؟</h4><p>بدّل أماكن القطع المتجاورة لتكوين ثلاثة حيوانات متشابهة أو أكثر، وحاول بلوغ هدف المستوى.</p></div><div class="policy-box"><h4>الإيداع بالنجوم</h4><p>افتح حسابك، اختر "إيداع الأموال"، اختر تبويب النجوم، ثم اختر الباقة وأكمل الدفع عبر تلغرام. تصل الجواهر فوراً.</p></div><div class="policy-box"><h4>الإيداع بالكريبتو</h4><p>افتح شاشة إيداع الأموال، بدّل إلى تبويب الكريبتو، اختر مبلغاً بالدولار، وأكمل الدفع. تصل الجواهر تلقائياً بعد التأكيد.</p></div>';
   }
   $('contentModal').classList.add('show');
 }
@@ -1209,8 +1428,24 @@ function bind(){
   document.querySelectorAll('#screen-profile .lang-btn').forEach(b=>b.onclick=()=>applyLang(b.dataset.lang,true));
   $('codeCopy').onclick=()=>navigator.clipboard?navigator.clipboard.writeText($('refCode').textContent).then(()=>toast('تم نسخ المعرّف')):toast('تعذر النسخ','err');
   $('codeSubmit').onclick=()=>withBtn($('codeSubmit'),'جاري التحقق...',()=>applyCode($('codeInput').value.trim().replace(/^ref_/,'')));
-  document.addEventListener('click',e=>{if(e.target.closest('.btn,.amt,.g-btn,.dock button,.quick .card,.star-pack'))SFX.play('tap')});
+  document.addEventListener('click',e=>{if(e.target.closest('.btn,.amt,.g-btn,.dock button,.quick .card,.star-pack,.dep-tab'))SFX.play('tap')});
   $('refCopy').onclick=()=>navigator.clipboard?navigator.clipboard.writeText(link()).then(()=>toast('تم نسخ الرابط')):toast('تعذر النسخ','err');
+
+  /* Deposit tabs + crypto bindings */
+  $('depTabStars').onclick=()=>setDepTab('stars');
+  $('depTabCrypto').onclick=()=>setDepTab('crypto');
+
+  document.querySelectorAll('#cryptoAmounts .amt').forEach(b=>b.onclick=()=>pickCryptoAmount(b));
+
+  $('cryptoCustomUsd').oninput=function(){
+    const v=parseFloat(this.value);
+    if(!isNaN(v)&&v>=CONFIG.shieldz.minUsd&&v<=CONFIG.shieldz.maxUsd){
+      cryptoUsd=v;
+      document.querySelectorAll('#cryptoAmounts .amt').forEach(b=>b.classList.remove('on'));
+      updateCryptoAmounts();
+    }
+  };
+  $('cryptoPayBtn').onclick=startCryptoPayment;
 }
 async function boot(){
   if(!TG.init()){
