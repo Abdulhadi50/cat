@@ -219,12 +219,21 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 .dep-tab.active{background:linear-gradient(180deg,#FFE95C,#FFD52E 72%,#F4B900);color:var(--ink);box-shadow:0 3px 0 var(--gold-d),inset 0 2px 0 rgba(255,255,255,.7)}
 .dep-tab.active.crypto{background:linear-gradient(180deg,#8CEBFF,#59D7F2 70%,#2FB8DC);color:var(--ink);box-shadow:0 3px 0 var(--sky-d),inset 0 2px 0 rgba(255,255,255,.7)}
 
-/* ═══ CRYPTO PENDING BANNER ═══ */
 .crypto-pending-banner{background:linear-gradient(180deg,#FFF4D6,#FFE8A8);border:2px solid var(--gold-d);border-radius:16px;padding:12px;margin-bottom:12px;display:none}
 .crypto-pending-banner.show{display:block}
 .crypto-pending-banner .row{margin-bottom:8px}
 .crypto-pending-banner .timer-badge{background:#fff;padding:4px 10px;border-radius:12px;font-weight:800;font-size:12px;direction:ltr;color:var(--gold-d)}
 .crypto-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+
+/* ═══ INVESTMENT ═══ */
+.invest-banner{background:linear-gradient(160deg,#B7FFB8,#4BE51E 55%,#238A12);border:3px solid #1F6B0F;border-radius:24px;padding:16px;margin-bottom:14px;color:#fff;text-align:center;box-shadow:0 6px 0 #16540B,0 10px 20px rgba(0,0,0,.2),inset 0 3px 0 rgba(255,255,255,.4)}
+.invest-banner .paw{font-size:34px;margin-bottom:6px;animation:bn 2s infinite}
+.invest-banner .amount{font-size:38px;font-weight:900;direction:ltr;line-height:1;text-shadow:0 3px 0 rgba(0,0,0,.25)}
+.invest-banner .label{font-size:12px;font-weight:800;margin-top:4px;text-shadow:0 1px 0 rgba(0,0,0,.2)}
+.invest-banner .collect-btn{margin-top:12px;height:52px;background:linear-gradient(180deg,#fff,#FFF9E8);color:var(--green-d);box-shadow:0 5px 0 rgba(0,0,0,.2),inset 0 3px 0 rgba(255,255,255,.7)}
+.invest-active-card{border-color:var(--green-d);background:linear-gradient(180deg,#fff,#E8FFE8 60%,#DFF7DF)}
+.invest-mining-rate{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:14px;background:rgba(75,229,30,.15);border:1.5px solid rgba(35,138,18,.3);font-weight:800;font-size:11px;color:var(--green-d);margin-bottom:10px}
+.invest-mining-rate i{animation:bn 1.6s infinite}
 </style>
 </head>
 <body>
@@ -272,9 +281,17 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
         <button class="card" data-go="missions"><span class="ico i-sky"><i class="fas fa-list-check"></i></span><div class="ttl">المهام</div><div class="sub">مكافآت يومية</div></button>
       </div>
 
+      <button class="card" data-go="invest" style="width:100%;text-align:start;margin-top:10px;border-color:var(--green-d)">
+        <div class="row">
+          <span class="ico i-green" style="width:50px;height:50px;font-size:22px"><i class="fas fa-paw"></i></span>
+          <div class="grow"><div class="ttl">استثمار الجراء</div><div class="sub">اشترِ خطة واكسب الجواهر تلقائياً</div></div>
+          <i class="fas fa-chevron-left" style="color:var(--ink2)"></i>
+        </div>
+      </button>
+
       <button class="card" data-go="deposit" style="width:100%;text-align:start;margin-top:10px">
         <div class="row">
-          <span class="ico i-gold" style="width:50px;height:50px;font-size:22px"><i class="fas fa-wallet"></i></span>
+          <span class="ico i-gold" style="width:50px;height:50px;font-size:22px"><i class="fas fa-gem"></i></span>
           <div class="grow"><div class="ttl">شراء الجواهر</div><div class="sub">نجوم ⭐ أو كريبتو 💎</div></div>
           <i class="fas fa-chevron-left" style="color:var(--ink2)"></i>
         </div>
@@ -349,7 +366,33 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
       <button class="btn b-g" id="exSubmit"><i class="fas fa-right-left"></i> تبديل الآن</button>
     </section>
 
-    <!-- DEPOSIT: شراء الجواهر -->
+    <!-- INVEST: استثمار الجراء -->
+    <section class="screen" id="screen-invest">
+      <div class="hero2">
+        <div class="ico i-green"><i class="fas fa-paw"></i></div>
+        <div class="ttl" style="font-size:19px">استثمار الجراء</div>
+        <div class="sub">اشترِ خطة بالجواهر واكسب أرباحاً تلقائياً</div>
+      </div>
+
+      <!-- Banner: التعدين النشط -->
+      <div class="invest-banner" id="investBanner" style="display:none">
+        <div class="paw"><i class="fas fa-paw"></i></div>
+        <div class="amount" id="investTotalPending">0</div>
+        <div class="label">💎 متاح للجمع الآن</div>
+        <button class="btn collect-btn" id="investCollectAllBtn" style="margin-top:12px">
+          <i class="fas fa-hand-holding-heart"></i> جمع الكل
+        </button>
+      </div>
+
+      <!-- الاستثمارات النشطة -->
+      <div id="investActiveList"></div>
+
+      <!-- الخطط المتاحة -->
+      <div class="sec"><span class="ico i-green"><i class="fas fa-store"></i></span> الخطط المتاحة</div>
+      <div id="investPlansList"></div>
+    </section>
+
+    <!-- DEPOSIT -->
     <section class="screen" id="screen-deposit">
       <div class="hero2">
         <div class="ico i-gold"><i class="fas fa-gem"></i></div>
@@ -366,7 +409,6 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
         </button>
       </div>
 
-      <!-- Tab 1: Stars -->
       <div id="dep-tab-stars">
         <div class="card">
           <div class="row" style="margin-bottom:12px">
@@ -389,10 +431,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
         </div>
       </div>
 
-      <!-- Tab 2: Crypto -->
       <div id="dep-tab-crypto" style="display:none">
-
-        <!-- Crypto Pending Banner -->
         <div class="crypto-pending-banner" id="cryptoPendingBanner">
           <div class="row">
             <span class="ico i-gold" style="width:44px;height:44px;font-size:18px"><i class="fas fa-hourglass-half"></i></span>
@@ -499,6 +538,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
         <div class="g-act"><button class="btn b-s lang-btn" data-lang="ar">🇸🇦 العربية</button><button class="btn b-s lang-btn" data-lang="en">🇺🇸 English</button></div>
       </div>
       <div class="card menu">
+        <button data-go="invest"><span class="ico i-green"><i class="fas fa-paw"></i></span><span class="grow">استثمار الجراء</span><i class="fas fa-chevron-left"></i></button>
         <button data-go="deposit"><span class="ico i-gold"><i class="fas fa-gem"></i></span><span class="grow">شراء الجواهر</span><i class="fas fa-chevron-left"></i></button>
         <button data-go="exchange"><span class="ico i-green"><i class="fas fa-right-left"></i></span><span class="grow">تبديل العملات</span><i class="fas fa-chevron-left"></i></button>
         <button data-go="withdraw"><span class="ico i-gold"><i class="fas fa-money-bill-transfer"></i></span><span class="grow">سحب الأموال</span><i class="fas fa-chevron-left"></i></button>
@@ -553,7 +593,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
     <button class="on" data-nav="home"><i class="fas fa-house"></i><span>الرئيسية</span></button>
     <button data-nav="missions"><i class="fas fa-list-check"></i><span>المهام</span></button>
     <button data-nav="wheel"><i class="fas fa-dharmachakra"></i><span>العجلة</span></button>
-    <button data-nav="referral"><i class="fas fa-user-plus"></i><span>الإحالة</span></button>
+    <button data-nav="invest"><i class="fas fa-paw"></i><span>استثمار</span></button>
     <button data-nav="profile"><i class="fas fa-user"></i><span>حسابي</span></button>
   </nav>
 </div>
@@ -593,9 +633,8 @@ const CONFIG={
   bot:{username:'PuppyMerge_bot',appName:'PuppyMerge'},
   col:'puppy_users',wdCol:'puppy_withdrawals',txCol:'puppy_transactions',timeCol:'_puppy_time',
   energyMax:10,regenMs:600000,hintPrice:30,shufflePrice:50,
-  // ═══ نظام الإحالة الجديد (مستوى 5 = 50، مستوى 10 = 50) ═══
   ref:{
-    newUser:20,              // مكافأة الصديق الجديد (فورية)
+    newUser:20,
     milestones:[
       {level:5,  reward:50},
       {level:10, reward:50},
@@ -604,6 +643,11 @@ const CONFIG={
   ex:{min:1000,rate:0.01},
   score:{divisor:1000,perUnit:100},
   levelCoins:n=>100+n*50,
+  // ═══ مكافآت العب: كل مستوى +100 عملة، كل 10 مستويات +10 جواهر إضافية ═══
+  gameWin:{
+    coinsPerLevel: 100,
+    gemsEvery10: 10,
+  },
   wd:{min:5000,rate:0.0001,shamMin:1000,shamSypPerGem:0.01},
   spins:2,
   prizes:[500,750,1000,1500,2000,2500,3500,5000].map((v,i)=>['coins',v,['#F4B900','#35C915','#2FB8DC'][i%3]]),
@@ -623,8 +667,16 @@ const CONFIG={
     maxUsd:1000,
     pollIntervalMs:5000,
     pollMaxAttempts:60,
-    pendingTimeoutMs: 30 * 60 * 1000,  // 30 دقيقة
+    pendingTimeoutMs: 30 * 60 * 1000,
   },
+  // ═══ خطط الاستثمار ═══
+  investPlans:[
+    {id:'p1', name:'خطة الجرو',    icon:'fa-paw',      days:7,  price:50,   totalReturn:60,   color:'#4BE51E'},
+    {id:'p2', name:'خطة النشيط',   icon:'fa-dog',      days:14, price:150,  totalReturn:185,  color:'#59D7F2'},
+    {id:'p3', name:'خطة المحترف',  icon:'fa-bone',     days:20, price:400,  totalReturn:500,  color:'#FFD52E'},
+    {id:'p4', name:'خطة الخبير',   icon:'fa-crown',    days:25, price:800,  totalReturn:1020, color:'#FF8F8F'},
+    {id:'p5', name:'خطة الأسطورة', icon:'fa-gem',      days:30, price:1500, totalReturn:1950, color:'#C58CE8'},
+  ],
 };
 
 /* ═══ HELPERS ═══ */
@@ -681,6 +733,7 @@ const newUser=()=>({telegramId:TG.id,name:(TG.user.first_name||'')+(TG.user.last
   coins:0,gems:0,energy:CONFIG.energyMax,energyUpdatedAt:TIME.now(),level:1,totalScore:0,completedLevels:[],
   referralCode:TG.id,referredBy:null,referralCount:0,referralEarnings:0,referralUsed:false,
   referralMilestones:{},
+  investments:[],
   wheelSpins:CONFIG.spins,wheelLastDate:null,wheelSpinCount:0,wheelMissionClaimed:false,wheelAdLastAt:0,dailyRewards:{},dailyLogin:{streak:0,lastClaimDate:null},levelMissions:{},inviteMissions:{},inviteBase:0,lang:null,
   createdAt:Date.now(),updatedAt:Date.now()});
 
@@ -735,6 +788,7 @@ function renderAll(){
   $('wheelBadge').style.display=spinsLeft()>0?'inline-block':'none';
   renderEnergy();renderMissions();renderWheel();updateEx();updateWd();
   if($('screen-deposit').classList.contains('active'))renderStarPackages();
+  if($('screen-invest').classList.contains('active'))renderInvestments();
   updatePendingBanner();
 }
 function go(s){
@@ -745,6 +799,7 @@ function go(s){
   if(s==='withdraw')loadWdHistory();
   if(s==='referral')loadLeaderboard();
   if(s==='deposit'){renderStarPackages();setDepTab('stars');}
+  if(s==='invest')renderInvestments();
   if(s !== 'deposit' && cryptoPollTimer){ stopPaymentPolling(); }
 }
 
@@ -820,14 +875,20 @@ const Game={size:6,board:[],els:[],score:0,moves:0,target:0,level:1,sel:null,bus
   async win(){
     this.ended=true;await Energy.use(1);
     const u=S.user;if(!Array.isArray(u.completedLevels))u.completedLevels=[];
-    const firstCompletion=!u.completedLevels.includes(this.level),g=this.level%10===0&&firstCompletion?10:0;
-    u.gems=Number(u.gems||0)+g;u.totalScore=(u.totalScore||0)+this.score;
+    const firstCompletion=!u.completedLevels.includes(this.level);
+    // ═══ مكافآت العب ═══
+    const coinReward = CONFIG.gameWin.coinsPerLevel;  // 100 عملة لكل مستوى
+    const gemReward = (this.level % 10 === 0 && firstCompletion) ? CONFIG.gameWin.gemsEvery10 : 0;  // 10 جواهر كل 10 مستويات
+    u.coins = Number(u.coins || 0) + coinReward;
+    u.gems = Number(u.gems || 0) + gemReward;
+    u.totalScore=(u.totalScore||0)+this.score;
     if(firstCompletion)u.completedLevels.push(this.level);
     const next=this.level+1;if(next>(u.level||1))u.level=next;
     await save({totalScore:u.totalScore,completedLevels:u.completedLevels,level:u.level});
     SFX.play('win');renderAll();
     checkReferralMilestones(TG.id, next).catch(e=>console.warn(e));
-    showModal({icon:g?'fa-gem':'fa-trophy',title:g?'+'+g+' 💎':'المستوى '+this.level,sub:'',amount:'',btn:'التالي',
+    const rewardLines = `+${coinReward} 🪙` + (gemReward ? ` +${gemReward} 💎` : '');
+    showModal({icon:gemReward?'fa-gem':'fa-trophy',title:gemReward?'🎉 مستوى مميز!':'المستوى '+this.level,sub:rewardLines,amount:'',btn:'التالي',
       onClose:()=>Energy.cur(S.user)>0?Game.start(next):(go('home'),toast('لا توجد طاقة — انتظر التجديد','info'))});
   },
   async lose(){
@@ -873,16 +934,15 @@ function renderWheel(){
   const n=spinsLeft();
   $('spinsLeft').textContent=n;
   $('wheelSpinBtn').disabled=n<=0||S.busy;
-  // ═══ لا نعرض العداد إن كانت هناك لفات متبقية ═══
-  // فقط نظهر العداد بعد استنفاد جميع اللفات
   wheelTimer();
 }
 function wheelTimer(){
   if(!S.user)return;
   const n=spinsLeft();
-  // ═══ عداد اليوم التالي يظهر فقط عندما لا توجد لفات ═══
+  // إذا كانت هناك لفات متبقية: أخفِ العداد اليومي
   if(n>0){
-    // لا نعرض العداد اليومي — فقط عداد الإعلان إن كان في فترة انتظار
+    const el=document.querySelector('.next-day-timer');
+    if(el) el.remove();
     const adRemain=wheelAdRemaining(),ab=$('wheelAdBtn');
     if(ab){
       ab.disabled=S.busy||adRemain>0;
@@ -890,20 +950,19 @@ function wheelTimer(){
     }
     return;
   }
-  // لا توجد لفات — اعرض العد التنازلي لليوم التالي
+  // لا توجد لفات: اعرض العداد التنازلي لليوم التالي داخل الزر
   const now=TIME.now(),d=new Date(now),midnight=Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate()+1),remain=Math.max(0,midnight-now);
   const timerStr=pad(Math.floor(remain/3600000))+':'+pad(Math.floor(remain%3600000/60000))+':'+pad(Math.floor(remain%60000/1000));
-  // أضف عنصر العداد داخل الزر
   const btn=$('wheelSpinBtn');
-  if(btn && !btn.querySelector('.next-day-timer')){
-    const span=document.createElement('span');
-    span.className='next-day-timer';
-    span.style.cssText='font-size:11px;font-weight:800;margin-top:2px;display:block';
-    span.innerHTML='<i class="fas fa-clock"></i> '+timerStr;
-    btn.appendChild(span);
-  } else if(btn){
-    const el=btn.querySelector('.next-day-timer');
-    if(el) el.innerHTML='<i class="fas fa-clock"></i> '+timerStr;
+  if(btn){
+    let el=btn.querySelector('.next-day-timer');
+    if(!el){
+      el=document.createElement('span');
+      el.className='next-day-timer';
+      el.style.cssText='font-size:11px;font-weight:800;margin-top:2px;display:block';
+      btn.appendChild(el);
+    }
+    el.innerHTML='<i class="fas fa-clock"></i> '+timerStr;
   }
   const adRemain=wheelAdRemaining(),ab=$('wheelAdBtn');
   if(ab){
@@ -949,8 +1008,21 @@ async function watchWheelAd(){
 
 /* ═══ MISSIONS ═══ */
 const DAILY_M=[{id:'tg_channel',title:'انضم لقناة تيليجرام',desc:'انضم للقناة الرسمية @PuppyMerge',reward:{gems:10}},{id:'wheel_10',kind:'wheel',title:'أدر عجلة الحظ 10 مرات',desc:'أكمل 10 لفات',reward:{coins:5000}}];
-// ═══ مهام المستويات: كل 10 مستويات، ومكافآت أقل ═══
-const LEVEL_M=Array.from({length:30},(_,i)=>{const l=(i+1)*10;return{id:'lvl'+l,level:l,reward:{coins:Math.round(l*15)}}});
+
+// ═══ مهام المستويات الجديدة ═══
+// مستويات 10 إلى 100: المكافأة = المستوى × 100
+// مستويات 110 وما بعدها: المكافأة = 2000 ثابتة
+const LEVEL_M = (() => {
+  const arr = [];
+  for (let level = 10; level <= 100; level += 10) {
+    arr.push({id:'lvl'+level, level:level, reward:{coins: level * 100}});
+  }
+  for (let level = 110; level <= 500; level += 10) {
+    arr.push({id:'lvl'+level, level:level, reward:{coins: 2000}});
+  }
+  return arr;
+})();
+
 const INVITE_M=[[1,5],[3,15],[5,30],[10,60],[20,100]].map(([n,g])=>({id:'inv'+n,count:n,reward:{gems:g}}));
 
 function mCard(icon,cls,title,desc,reward,btn,prog){
@@ -1027,6 +1099,258 @@ async function claimInvite(id){
   if((u.referralCount||0)-(u.inviteBase||0)<m.count)return toast('لم تكمل الدعوات','err');
   S.busy=true;d[id]=true;u.inviteMissions=d;u.inviteBase=u.referralCount||0;
   await grant(m.reward,{inviteMissions:d,inviteBase:u.inviteBase},{icon:'fa-user-plus',title:'مكافأة الدعوات',sub:'شكراً لدعوة '+m.count+(m.count===1?' صديق':' أصدقاء')});S.busy=false;
+}
+
+/* ═══ INVESTMENT (استثمار الجراء) ═══ */
+function getPlanById(id){return CONFIG.investPlans.find(p=>p.id===id)}
+
+function getPending(inv, plan){
+  const now = Date.now();
+  const endAt = inv.startedAt + plan.days * 86400 * 1000;
+  const effectiveNow = Math.min(now, endAt);
+  const elapsedMs = Math.max(0, effectiveNow - inv.startedAt);
+  const totalMined = (plan.totalReturn / (plan.days * 24 * 3600)) * (elapsedMs / 1000);
+  return Math.max(0, Math.floor(totalMined) - inv.collected);
+}
+
+function renderInvestments(){
+  const u=S.user;if(!u)return;
+  const investments = Array.isArray(u.investments) ? u.investments : [];
+
+  const active = investments.map(inv=>{
+    const plan=getPlanById(inv.planId);
+    if(!plan)return null;
+    const pending=getPending(inv,plan);
+    const isDone = inv.collected >= plan.totalReturn;
+    return {inv,plan,pending,isDone};
+  }).filter(x=>x!==null);
+
+  // Banner
+  const totalPending = active.reduce((s,x)=>s+x.pending,0);
+  const banner = $('investBanner');
+  if (active.length > 0) {
+    banner.style.display = 'block';
+    $('investTotalPending').textContent = fmt(totalPending);
+    const collectBtn = $('investCollectAllBtn');
+    collectBtn.disabled = totalPending <= 0;
+  } else {
+    banner.style.display = 'none';
+  }
+
+  // Active list
+  const activeEl = $('investActiveList');
+  if (active.length === 0) {
+    activeEl.innerHTML = '';
+  } else {
+    activeEl.innerHTML = '<div class="sec"><span class="ico i-green"><i class="fas fa-paw"></i></span> استثماراتي النشطة</div>' +
+      active.map(({inv,plan,pending,isDone})=>{
+        const now = Date.now();
+        const endAt = inv.startedAt + plan.days * 86400 * 1000;
+        const effectiveNow = Math.min(now, endAt);
+        const elapsedMs = effectiveNow - inv.startedAt;
+        const totalMs = plan.days * 86400 * 1000;
+        const daysElapsed = (elapsedMs / 86400000).toFixed(1);
+        const timeProgress = Math.min(100, (elapsedMs / totalMs) * 100);
+        const collectedPct = Math.min(100, (inv.collected / plan.totalReturn) * 100);
+        const isFinished = elapsedMs >= totalMs;
+
+        return `<div class="card invest-active-card">
+          <div class="row" style="margin-bottom:10px">
+            <span class="ico" style="background:radial-gradient(circle at 30% 25%,${plan.color},${plan.color}bb);width:50px;height:50px;font-size:22px"><i class="fas ${plan.icon}"></i></span>
+            <div class="grow">
+              <div class="ttl">${esc(plan.name)}</div>
+              <div class="sub">${daysElapsed} / ${plan.days} يوم</div>
+            </div>
+            <div style="text-align:center;min-width:60px">
+              <div style="font-size:22px;font-weight:900;color:var(--green-d);direction:ltr" data-invest-pending="${inv.id}">${fmt(pending)}</div>
+              <div style="font-size:9.5px;font-weight:800;color:var(--ink2)">💎 متاح</div>
+            </div>
+          </div>
+          <div class="bar" style="height:8px;margin-bottom:6px"><i style="width:${collectedPct}%;background:linear-gradient(180deg,${plan.color},${plan.color}cc)"></i></div>
+          <div style="display:flex;justify-content:space-between;font-size:10px;font-weight:800;color:var(--ink2);margin-bottom:8px">
+            <span>تم جمع: ${fmt(inv.collected)} / ${fmt(plan.totalReturn)}</span>
+            <span>${collectedPct.toFixed(0)}%</span>
+          </div>
+          ${isFinished && inv.collected >= plan.totalReturn ?
+            '<div style="text-align:center;font-size:12px;font-weight:800;color:var(--ink2);padding:10px"><i class="fas fa-check-circle" style="color:var(--green-d)"></i> اكتمل الاستثمار</div>' :
+            (pending > 0 ?
+              `<button class="btn b-g" data-invest-collect="${inv.id}" style="height:44px"><i class="fas fa-hand-holding-heart"></i> جمع ${fmt(pending)} 💎</button>` :
+              `<div style="text-align:center;font-size:11px;font-weight:800;color:var(--ink2);padding:8px"><i class="fas fa-hourglass-half"></i> جاري التعدين تلقائياً...</div>`
+            )
+          }
+        </div>`;
+      }).join('');
+  }
+
+  // Plans list
+  const plansEl = $('investPlansList');
+  plansEl.innerHTML = CONFIG.investPlans.map(plan=>{
+    const canAfford = u.gems >= plan.price;
+    const profit = plan.totalReturn - plan.price;
+    const profitPct = ((profit / plan.price) * 100).toFixed(0);
+    return `<div class="card" style="margin-bottom:10px">
+      <div class="row" style="margin-bottom:10px">
+        <span class="ico" style="background:radial-gradient(circle at 30% 25%,${plan.color},${plan.color}bb);width:50px;height:50px;font-size:22px"><i class="fas ${plan.icon}"></i></span>
+        <div class="grow">
+          <div class="ttl">${esc(plan.name)}</div>
+          <div class="sub">${plan.days} أيام · ربح ${profitPct}%</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:18px;font-weight:900;color:var(--gold-d);direction:ltr">${fmt(plan.price)}</div>
+          <div style="font-size:10px;font-weight:800;color:var(--ink2)">💎 سعر</div>
+        </div>
+      </div>
+      <div class="info" style="margin-bottom:10px">
+        <div>الربح الصافي<b>+${fmt(profit)} 💎</b></div>
+        <div>إجمالي الاسترداد<b>${fmt(plan.totalReturn)} 💎</b></div>
+      </div>
+      <button class="btn ${canAfford ? 'b-g' : 'b-off'}" data-invest-buy="${plan.id}" style="height:48px" ${canAfford ? '' : 'disabled'}>
+        <i class="fas fa-shopping-cart"></i> ${canAfford ? 'شراء الخطة' : 'رصيد غير كافٍ'}
+      </button>
+    </div>`;
+  }).join('');
+
+  // Bind buttons
+  activeEl.querySelectorAll('[data-invest-collect]').forEach(b=>{
+    b.onclick=()=>collectInvestment(b.dataset.investCollect);
+  });
+  plansEl.querySelectorAll('[data-invest-buy]').forEach(b=>{
+    b.onclick=()=>buyPlan(b.dataset.investBuy);
+  });
+}
+
+// تحديث أرقام الاستثمار كل ثانية بدون إعادة بناء كامل
+function updateInvestmentsUI(){
+  if(!$('screen-invest').classList.contains('active'))return;
+  const u=S.user;if(!u)return;
+  const investments = Array.isArray(u.investments) ? u.investments : [];
+
+  let totalPending = 0;
+  let needsRerender = false;
+
+  investments.forEach(inv=>{
+    const plan = getPlanById(inv.planId);
+    if(!plan)return;
+    const oldPending = parseInt(document.querySelector(`[data-invest-pending="${inv.id}"]`)?.textContent?.replace(/,/g,'') || '0', 10);
+    const pending = getPending(inv, plan);
+    totalPending += pending;
+
+    if(pending !== oldPending){
+      const el = document.querySelector(`[data-invest-pending="${inv.id}"]`);
+      if(el) el.textContent = fmt(pending);
+      // إذا تغير من 0 إلى قيمة موجبة، أو اختفى، نحتاج إعادة رندر لإظهار/إخفاء زر الجمع
+      if ((pending > 0 && oldPending === 0) || (pending === 0 && oldPending > 0)) {
+        needsRerender = true;
+      } else {
+        // حدّث نص زر الجمع
+        const btn = document.querySelector(`[data-invest-collect="${inv.id}"]`);
+        if (btn && pending > 0) {
+          btn.innerHTML = `<i class="fas fa-hand-holding-heart"></i> جمع ${fmt(pending)} 💎`;
+        }
+      }
+    }
+  });
+
+  const totalEl = $('investTotalPending');
+  if(totalEl) totalEl.textContent = fmt(totalPending);
+  const collectBtn = $('investCollectAllBtn');
+  if(collectBtn) collectBtn.disabled = totalPending <= 0;
+
+  if(needsRerender) renderInvestments();
+}
+
+async function buyPlan(planId){
+  if(S.busy)return;
+  const plan = getPlanById(planId);
+  if(!plan)return;
+  const u = S.user;
+  if(u.gems < plan.price) return toast('رصيد الجواهر غير كافٍ','err');
+
+  S.busy = true;
+  SFX.play('tap');
+
+  try{
+    u.gems -= plan.price;
+    u.investments = Array.isArray(u.investments) ? u.investments : [];
+    u.investments.push({
+      id: 'inv_' + Date.now() + '_' + Math.random().toString(36).slice(2,7),
+      planId: plan.id,
+      startedAt: Date.now(),
+      collected: 0,
+    });
+    await FB.set({gems: u.gems, investments: u.investments});
+    SFX.play('reward');
+    renderAll();
+    showModal({
+      icon:'fa-paw',
+      title:'✅ تم شراء الخطة!',
+      sub: plan.name + ' · ' + plan.days + ' أيام',
+      amount: '-' + fmt(plan.price) + ' 💎',
+      btn:'رائع',
+    });
+  }catch(e){
+    console.error(e);
+    toast('حدثت مشكلة، حاول مجدداً','err');
+  }finally{
+    S.busy = false;
+  }
+}
+
+async function collectInvestment(invId){
+  if(S.busy)return;
+  const u = S.user;
+  const inv = (u.investments || []).find(x => x.id === invId);
+  if(!inv) return;
+  const plan = getPlanById(inv.planId);
+  if(!plan) return;
+  const pending = getPending(inv, plan);
+  if(pending <= 0) return toast('لا يوجد شيء للجمع','info');
+
+  S.busy = true;
+  try{
+    inv.collected += pending;
+    u.gems += pending;
+    await FB.set({gems: u.gems, investments: u.investments});
+    SFX.play('reward');
+    renderAll();
+    toast('+' + fmt(pending) + ' 💎');
+  }catch(e){
+    console.error(e);
+    toast('حدثت مشكلة، حاول مجدداً','err');
+  }finally{
+    S.busy = false;
+  }
+}
+
+async function collectAllInvestments(){
+  if(S.busy)return;
+  const u = S.user;
+  const investments = u.investments || [];
+  let total = 0;
+  for(const inv of investments){
+    const plan = getPlanById(inv.planId);
+    if(!plan) continue;
+    const pending = getPending(inv, plan);
+    if(pending > 0){
+      inv.collected += pending;
+      total += pending;
+    }
+  }
+  if(total <= 0) return toast('لا يوجد شيء للجمع','info');
+
+  S.busy = true;
+  try{
+    u.gems += total;
+    await FB.set({gems: u.gems, investments: u.investments});
+    SFX.play('reward');
+    renderAll();
+    toast('+' + fmt(total) + ' 💎');
+  }catch(e){
+    console.error(e);
+    toast('حدثت مشكلة، حاول مجدداً','err');
+  }finally{
+    S.busy = false;
+  }
 }
 
 /* ═══ EXCHANGE / WITHDRAW ═══ */
@@ -1184,7 +1508,7 @@ async function startStarPayment(stars){
 let cryptoUsd = 0;
 let cryptoPollTimer = null;
 let cryptoPendingTimer = null;
-let cryptoPendingInvoice = null;  // {id, gems, createdAt}
+let cryptoPendingInvoice = null;
 
 function setDepTab(tab){
   const isStars = tab === 'stars';
@@ -1215,7 +1539,6 @@ function pickCryptoAmount(el){
   SFX.play('tap');
 }
 
-// ═══ عرض البانر المعلق ═══
 function updatePendingBanner(){
   const banner = $('cryptoPendingBanner');
   if (!banner) return;
@@ -1228,14 +1551,10 @@ function updatePendingBanner(){
   }
 }
 
-// ═══ عداد الوقت للفاتورة المعلقة ═══
 function startPendingTimer(){
   if (cryptoPendingTimer) clearInterval(cryptoPendingTimer);
   const tick = () => {
-    if (!cryptoPendingInvoice) {
-      stopPendingTimer();
-      return;
-    }
+    if (!cryptoPendingInvoice) { stopPendingTimer(); return; }
     const elapsed = Date.now() - cryptoPendingInvoice.createdAt;
     const remain = Math.max(0, CONFIG.shieldz.pendingTimeoutMs - elapsed);
     if (remain <= 0) {
@@ -1256,20 +1575,13 @@ function startPendingTimer(){
 }
 
 function stopPendingTimer(){
-  if (cryptoPendingTimer) {
-    clearInterval(cryptoPendingTimer);
-    cryptoPendingTimer = null;
-  }
+  if (cryptoPendingTimer) { clearInterval(cryptoPendingTimer); cryptoPendingTimer = null; }
   const el = $('cryptoPendingTimer');
   if (el) el.textContent = '--:--';
 }
 
-// ═══ إيقاف الاستقصاء ═══
 function stopPaymentPolling(){
-  if (cryptoPollTimer) {
-    clearInterval(cryptoPollTimer);
-    cryptoPollTimer = null;
-  }
+  if (cryptoPollTimer) { clearInterval(cryptoPollTimer); cryptoPollTimer = null; }
   S.busy = false;
   const btn = $('cryptoPayBtn');
   if (btn) {
@@ -1290,10 +1602,7 @@ function cancelPendingInvoice(){
 async function checkPendingInvoiceNow(){
   if (!cryptoPendingInvoice || !cryptoPendingInvoice.id) return;
   const btn = $('cryptoCheckBtn');
-  if (btn) {
-    btn.disabled = true;
-    btn.innerHTML = '<span class="spn"></span> جاري التحقق...';
-  }
+  if (btn) { btn.disabled = true; btn.innerHTML = '<span class="spn"></span> جاري التحقق...'; }
   try {
     const resp = await fetch(CONFIG.api.base + '/api/shieldz/invoice/' + encodeURIComponent(cryptoPendingInvoice.id));
     const data = await resp.json().catch(() => ({}));
@@ -1309,13 +1618,7 @@ async function checkPendingInvoiceNow(){
       } catch (e) {}
       renderAll();
       renderStarPackages();
-      showModal({
-        icon: 'fa-coins',
-        title: '✅ تم استلام الدفع!',
-        sub: 'تمت إضافة الجواهر لحسابك',
-        amount: '+' + fmt(gems) + ' 💎',
-        btn: 'رائع',
-      });
+      showModal({ icon: 'fa-coins', title: '✅ تم استلام الدفع!', sub: 'تمت إضافة الجواهر لحسابك', amount: '+' + fmt(gems) + ' 💎', btn: 'رائع' });
     } else if (data.status === 'expired' || data.status === 'failed') {
       cryptoPendingInvoice = null;
       stopPaymentPolling();
@@ -1327,10 +1630,7 @@ async function checkPendingInvoiceNow(){
   } catch (e) {
     toast('تعذر التحقق، حاول مجدداً', 'err');
   } finally {
-    if (btn) {
-      btn.disabled = false;
-      btn.innerHTML = '<i class="fas fa-rotate"></i> تحقق الآن';
-    }
+    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-rotate"></i> تحقق الآن'; }
   }
 }
 
@@ -1354,12 +1654,7 @@ async function startCryptoPayment(){
     const resp = await fetch(CONFIG.api.base + '/api/shieldz/create-invoice', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        userId: TG.id,
-        amount_usd_cents: amountCents,
-        gems: gems,
-        idempotency_key: idempotencyKey,
-      }),
+      body: JSON.stringify({ userId: TG.id, amount_usd_cents: amountCents, gems: gems, idempotency_key: idempotencyKey }),
     });
 
     const data = await resp.json().catch(() => ({}));
@@ -1368,13 +1663,8 @@ async function startCryptoPayment(){
       throw new Error(data.error || data.message || 'فشل إنشاء الفاتورة');
     }
 
-    cryptoPendingInvoice = {
-      id: data.invoice_id,
-      gems: gems,
-      createdAt: Date.now(),
-    };
+    cryptoPendingInvoice = { id: data.invoice_id, gems: gems, createdAt: Date.now() };
     updatePendingBanner();
-
     TG.openExternal(data.pay_url);
     startPaymentPolling(data.invoice_id, gems);
 
@@ -1392,8 +1682,7 @@ function startPaymentPolling(invoiceId, gems){
   let attempts = 0;
 
   const finish = (success) => {
-    clearInterval(cryptoPollTimer);
-    cryptoPollTimer = null;
+    clearInterval(cryptoPollTimer); cryptoPollTimer = null;
     S.busy = false;
     cryptoPendingInvoice = null;
     updatePendingBanner();
@@ -1406,56 +1695,32 @@ function startPaymentPolling(invoiceId, gems){
       SFX.play('reward');
       FB.get().then(fresh => {
         if (fresh) S.user = Object.assign(S.user, fresh);
-        renderAll();
-        renderStarPackages();
-      }).catch(() => {
-        renderAll();
-        renderStarPackages();
-      });
-      showModal({
-        icon: 'fa-coins',
-        title: '✅ تم استلام الدفع!',
-        sub: 'تمت إضافة الجواهر لحسابك',
-        amount: '+' + fmt(gems) + ' 💎',
-        btn: 'رائع',
-      });
+        renderAll(); renderStarPackages();
+      }).catch(() => { renderAll(); renderStarPackages(); });
+      showModal({ icon: 'fa-coins', title: '✅ تم استلام الدفع!', sub: 'تمت إضافة الجواهر لحسابك', amount: '+' + fmt(gems) + ' 💎', btn: 'رائع' });
     }
   };
 
   cryptoPollTimer = setInterval(async () => {
     attempts++;
-
     if (cryptoPendingInvoice && (Date.now() - cryptoPendingInvoice.createdAt) > CONFIG.shieldz.pendingTimeoutMs) {
-      finish(false);
-      cryptoPendingInvoice = null;
-      updatePendingBanner();
+      finish(false); cryptoPendingInvoice = null; updatePendingBanner();
       toast('انتهت صلاحية الفاتورة. يمكنك البدء من جديد.', 'info');
       return;
     }
-
     if (attempts > CONFIG.shieldz.pollMaxAttempts) {
       finish(false);
-      cryptoPendingInvoice = {
-        id: invoiceId,
-        gems: gems,
-        createdAt: cryptoPendingInvoice ? cryptoPendingInvoice.createdAt : Date.now(),
-      };
+      cryptoPendingInvoice = { id: invoiceId, gems: gems, createdAt: cryptoPendingInvoice ? cryptoPendingInvoice.createdAt : Date.now() };
       updatePendingBanner();
       toast('انتهى وقت المراقبة التلقائية. اضغط "تحقق الآن" متى أردت.', 'info');
       return;
     }
     try {
-      const resp = await fetch(CONFIG.api.base + '/api/shieldz/invoice/' + encodeURIComponent(invoiceId), {
-        method: 'GET',
-      });
+      const resp = await fetch(CONFIG.api.base + '/api/shieldz/invoice/' + encodeURIComponent(invoiceId), { method: 'GET' });
       const data = await resp.json().catch(() => ({}));
-
-      if (data.status === 'paid') {
-        finish(true);
-      } else if (data.status === 'expired' || data.status === 'failed') {
-        finish(false);
-        cryptoPendingInvoice = null;
-        updatePendingBanner();
+      if (data.status === 'paid') { finish(true); }
+      else if (data.status === 'expired' || data.status === 'failed') {
+        finish(false); cryptoPendingInvoice = null; updatePendingBanner();
         toast('انتهت صلاحية الفاتورة أو فشل الدفع', 'err');
       }
     } catch (e) {}
@@ -1473,17 +1738,9 @@ async function applyCode(code){
     u.referralUsed=true;u.referredBy=rid;
     u.gems += CONFIG.ref.newUser;
     u.referralMilestones = u.referralMilestones || {};
-    await FB.set({
-      referralUsed:true,
-      referredBy:rid,
-      gems:u.gems,
-      referralMilestones:u.referralMilestones,
-    });
+    await FB.set({ referralUsed:true, referredBy:rid, gems:u.gems, referralMilestones:u.referralMilestones });
     const inc=firebase.firestore.FieldValue.increment;
-    await db.collection(CONFIG.col).doc(rid).update({
-      referralCount:inc(1),
-      updatedAt:Date.now()
-    });
+    await db.collection(CONFIG.col).doc(rid).update({ referralCount:inc(1), updatedAt:Date.now() });
     SFX.play('reward');toast('🎉 +'+CONFIG.ref.newUser+' جوهرة من الإحالة!');renderAll();return true;
   }catch(e){u.referralUsed=false;toast('تعذر التحقق من الكود','err');return false}
 }
@@ -1492,11 +1749,9 @@ async function checkReferralMilestones(telegramId, newLevel) {
   try {
     const userDoc = await db.collection(CONFIG.col).doc(telegramId).get();
     if (!userDoc.exists) return;
-
     const userData = userDoc.data();
     const referredBy = userData.referredBy;
     if (!referredBy) return;
-
     const milestones = userData.referralMilestones || {};
     const newMilestones = {};
     let updated = false;
@@ -1506,38 +1761,24 @@ async function checkReferralMilestones(telegramId, newLevel) {
       if (newLevel >= milestone.level && !milestones[key]) {
         newMilestones[key] = true;
         updated = true;
-
         try {
           await db.collection(CONFIG.col).doc(referredBy).update({
             gems: firebase.firestore.FieldValue.increment(milestone.reward),
             referralEarnings: firebase.firestore.FieldValue.increment(milestone.reward),
             updatedAt: Date.now()
           });
-
           await db.collection(CONFIG.txCol).add({
-            userId: referredBy,
-            type: 'referral_milestone',
-            fromUser: telegramId,
-            level: milestone.level,
-            amount: milestone.reward,
-            currency: 'gems',
-            createdAt: Date.now()
+            userId: referredBy, type: 'referral_milestone', fromUser: telegramId,
+            level: milestone.level, amount: milestone.reward, currency: 'gems', createdAt: Date.now()
           });
-        } catch (e) {
-          console.warn('Failed to grant referral milestone:', e);
-        }
+        } catch (e) { console.warn('Failed to grant referral milestone:', e); }
       }
     }
-
     if (updated) {
       const mergedMilestones = Object.assign({}, milestones, newMilestones);
-      await db.collection(CONFIG.col).doc(telegramId).update({
-        referralMilestones: mergedMilestones
-      });
+      await db.collection(CONFIG.col).doc(telegramId).update({ referralMilestones: mergedMilestones });
     }
-  } catch(e) {
-    console.warn('Referral milestone check error:', e);
-  }
+  } catch(e) { console.warn('Referral milestone check error:', e); }
 }
 
 async function checkReferral(){const sp=TG.start;if(sp&&sp.startsWith('ref_'))await applyCode(sp.slice(4))}
@@ -1546,16 +1787,9 @@ async function loadLeaderboard(){
   const l=$('lbList');
   if(S.lb&&Date.now()-S.lbAt<60000){l.innerHTML=S.lb;return}
   try{
-    const q=await db.collection(CONFIG.col)
-      .where('referralCount', '>', 0)
-      .orderBy('referralCount','desc')
-      .limit(10)
-      .get();
+    const q=await db.collection(CONFIG.col).where('referralCount', '>', 0).orderBy('referralCount','desc').limit(10).get();
     const it=[];
-    q.forEach(d=>{
-      const x=d.data();
-      if((x.referralCount||0)>0) it.push({id:d.id,x});
-    });
+    q.forEach(d=>{const x=d.data();if((x.referralCount||0)>0) it.push({id:d.id,x});});
     S.lb=it.length?it.map((o,i)=>{
       const r=i+1,x=o.x,me=o.id===TG.id;
       return'<div class="lb'+(me?' me':'')+'"><div class="rank'+(r<=3?' r'+r:'')+'">'+(r===1?'<i class="fas fa-crown"></i>':r)+'</div>'+
@@ -1598,16 +1832,15 @@ const EN={
 'تعذر التحميل':'Failed to load','معرّف غير صالح':'Invalid ID','الكود غير موجود':'Code not found','من الإحالة':'from referral','تعذر التحقق من الكود':'Could not verify code',
 'أنت':'You','لا يوجد مدعون بعد — كن الأول!':'No inviters yet — be the first!','تعذر تحميل القائمة':'Failed to load list','تعذر النسخ':'Copy failed','تم نسخ الرابط':'Link copied','تم نسخ المعرّف':'ID copied',
 'انضم إلى Puppy Merge واربح الجواهر!':'Join Puppy Merge and win gems!','اللعب مجمد — وقت الجهاز غير صحيح':'Game locked — device time is wrong','لا توجد طاقة — انتظر التجديد':'No energy — wait for regeneration','لا توجد طاقة':'No energy',
-'انتهت الحركات!':'Out of moves!',' من ':' of ','فقدت':'lost','طاقة':'energy','متبقي':'left','حاول مجدداً':'Try again','مبروك!':'Congrats!','ربحت من عجلة الحظ':'You won from the Lucky Wheel',
+'انتهت الحركات!':'Out of moves!',' من ':' of ','فقدت':'lost','طاقة':'energy','متبقي':'left','حاول مجدداً':'Try again','مبروك!':'Congrats!',
 'رائع!':'Awesome!','رائع':'Great','مكافأة اليوم':'Day reward','أكملت الأسبوع! تسلسل جديد غداً':'Week complete! New streak tomorrow','عد غداً لمكافأة أكبر':'Come back tomorrow for a bigger reward',
 'مكافأة المستوى':'Level reward','استلمت مكافأة إنجاز':'You claimed an achievement reward','مكافأة الدعوات':'Invite reward','شكراً لدعوة':'Thanks for inviting','استلمت المكافأة':'Already claimed',
-'شحن بالنجوم':'Buy with Stars','شحن بالنجوم ⭐':'Buy with Stars ⭐','اشترِ النجوم من تلغرام واحصل على جواهر فوراً':'Buy Stars from Telegram and get gems instantly',
+'شحن بالنجوم':'Buy with Stars','اشترِ النجوم من تلغرام واحصل على جواهر فوراً':'Buy Stars from Telegram and get gems instantly',
 'كل نجمة تساوي 100 جوهرة':'Each Star = 100 gems','اختر الباقة المناسبة لك':'Choose your package','رصيدك الحالي':'Your balance','طريقة الدفع':'Payment method',
 'الدفع آمن عبر تلغرام مباشرة. تصل الجواهر لحسابك فوراً بعد الدفع.':'Payment is secure through Telegram. Gems arrive instantly after payment.',
 'نجمة':'Stars','احصل على':'Get','الأكثر طلباً':'Popular','أفضل قيمة':'Best value',
 'يجب فتح التطبيق داخل تلغرام':'Must open the app inside Telegram','فشل إنشاء الفاتورة':'Failed to create invoice','تعذر بدء الدفع':'Could not start payment',
 'تم الدفع بنجاح!':'Payment successful!','حصلت على':'You got','تم إلغاء الدفع':'Payment cancelled','فشل الدفع، حاول مجدداً':'Payment failed, please try again',
-'جواهر فوراً':'gems instantly','أضف جواهر لحسابك':'Add gems to your account',
 'شراء الجواهر':'Buy Gems','نجوم ⭐ أو كريبتو 💎':'Stars ⭐ or Crypto 💎','اختر طريقة الشراء المناسبة لك':'Choose your purchase method',
 'نجوم ⭐':'Stars ⭐','كريبتو 💎':'Crypto 💎','ادفع بالكريبتو 💎':'Pay with Crypto 💎',
 'USDC / USDT / BTC / ZEC — بدون رسوم إضافية':'USDC / USDT / BTC / ZEC — No extra fees',
@@ -1627,7 +1860,20 @@ const EN={
 'تم إلغاء الطلب. لن يتم إنشاء طلبات جديدة.':'Order cancelled. No new requests will be made.',
 'إجمالي مكافآت الدعوة (مقسمة)':'Total invite rewards (split)','شروط المكافآت':'Reward conditions',
 'عند وصول صديقك للمستوى 5':'When your friend reaches level 5','عند وصول صديقك للمستوى 10':'When your friend reaches level 10',
-'تصل الجواهر لحسابك':'Gems arrive to your account','عملات المستويات':'Level coins',
+/* Investment */
+'استثمار الجراء':'Puppy Investment','اشترِ خطة بالجواهر واكسب أرباحاً تلقائياً':'Buy a plan with gems and earn automatically',
+'اشترِ خطة واكسب الجواهر تلقائياً':'Buy a plan and earn gems automatically',
+'الخطط المتاحة':'Available Plans','استثماراتي النشطة':'My Active Investments',
+'متاح للجمع الآن':'Available to collect','جمع الكل':'Collect All',
+'شراء الخطة':'Buy Plan','رصيد غير كافٍ':'Insufficient balance',
+'الربح الصافي':'Net profit','إجمالي الاسترداد':'Total return',
+'سعر':'Price','ربح':'Profit','يوم':'day','أيام':'days',
+'متاح':'Available','تم جمع':'Collected','اكتمل الاستثمار':'Investment completed',
+'جاري التعدين تلقائياً...':'Auto-mining in progress...','جاري التعدين...':'Mining...',
+'تم شراء الخطة!':'Plan purchased!','لا يوجد شيء للجمع':'Nothing to collect',
+/* Game win */
+'مستوى مميز!':'Special level!',
+'خطة الجرو':'Puppy Plan','خطة النشيط':'Active Plan','خطة المحترف':'Pro Plan','خطة الخبير':'Expert Plan','خطة الأسطورة':'Legend Plan',
 };
 const KEYS=Object.keys(EN).sort((a,b)=>b.length-a.length),AR=/[\u0600-\u06FF]/,orig=new WeakMap();
 let LANG=null,trBusy=false,trRaf=0;
@@ -1695,8 +1941,8 @@ function openContentModal(kind){
       '<div class="policy-box"><h4>عن Puppy Merge</h4><p>لعبة دمج وترفيه تجمع فيها العملات والجواهر وتتقدم عبر المستويات والمهام والإحالات.</p></div><div class="policy-box"><h4>المعلومات المستخدمة</h4><p>يستخدم التطبيق معرّف حساب تيليجرام واسم العرض وصورة الحساب إن توفرت، إضافةً إلى الرصيد والطاقة وتقدم اللعب والإحالات وبيانات السحب التي تدخلها، لتشغيل الميزات وتسجيل المكافآت ومراجعة طلبات السحب والحد من إساءة الاستخدام.</p></div><div class="policy-box"><h4>الخصوصية</h4><p>قد تتم معالجة البيانات عبر الخدمات اللازمة لتشغيل التطبيق مثل تيليجرام وفايربيس، أو عند وجود متطلب قانوني.</p></div>';
   }else{
     $('contentBody').innerHTML=en?
-      '<div class="policy-box"><h4>How to play</h4><p>Swap adjacent tiles to match at least three identical animals and reach the level target.</p></div><div class="policy-box"><h4>Buy Gems with Stars</h4><p>Open the profile, choose Buy Gems, select Stars tab, choose a package and complete the payment via Telegram. Gems arrive instantly.</p></div><div class="policy-box"><h4>Buy Gems with Crypto</h4><p>Open the Buy Gems screen, switch to the Crypto tab, choose a USD amount and complete the payment. Gems arrive automatically after confirmation.</p></div><div class="policy-box"><h4>Referral Rewards</h4><p>Invite friends and earn 100 gems total: +20 when your friend joins (they get 20 too), +50 when they reach level 5, +50 when they reach level 10.</p></div>' :
-      '<div class="policy-box"><h4>كيف تلعب؟</h4><p>بدّل أماكن القطع المتجاورة لتكوين ثلاثة حيوانات متشابهة أو أكثر، وحاول بلوغ هدف المستوى.</p></div><div class="policy-box"><h4>شراء الجواهر بالنجوم</h4><p>افتح حسابك، اختر "شراء الجواهر"، اختر تبويب النجوم، ثم اختر الباقة وأكمل الدفع عبر تلغرام. تصل الجواهر فوراً.</p></div><div class="policy-box"><h4>شراء الجواهر بالكريبتو</h4><p>افتح شاشة شراء الجواهر، بدّل إلى تبويب الكريبتو، اختر مبلغاً بالدولار، وأكمل الدفع. تصل الجواهر تلقائياً بعد التأكيد.</p></div><div class="policy-box"><h4>مكافآت الإحالة</h4><p>ادعُ أصدقاءك واكسب 100 جوهرة إجمالاً: +20 عند انضمام صديقك (وهو يحصل على 20 أيضاً)، +50 عند وصوله للمستوى 5، +50 عند وصوله للمستوى 10.</p></div>';
+      '<div class="policy-box"><h4>How to play</h4><p>Swap adjacent tiles to match at least three identical animals and reach the level target. Each level win gives +100 coins, and every 10th level grants +10 gems bonus.</p></div><div class="policy-box"><h4>Buy Gems</h4><p>Open profile, choose Buy Gems, select Stars or Crypto tab, choose amount and complete payment.</p></div><div class="policy-box"><h4>Puppy Investment</h4><p>Buy investment plans with gems. Each plan mines automatically over its duration and you can collect accumulated gems anytime. After the plan ends, mining stops.</p></div><div class="policy-box"><h4>Referral Rewards</h4><p>Invite friends and earn 100 gems total: +20 when your friend joins (they get 20 too), +50 when they reach level 5, +50 when they reach level 10.</p></div>' :
+      '<div class="policy-box"><h4>كيف تلعب؟</h4><p>بدّل أماكن القطع المتجاورة لتكوين ثلاثة حيوانات متشابهة أو أكثر. كل مستوى تكمله يمنحك +100 عملة، وكل 10 مستويات تحصل على +10 جواهر إضافية.</p></div><div class="policy-box"><h4>شراء الجواهر</h4><p>افتح حسابك، اختر "شراء الجواهر"، اختر تبويب النجوم أو الكريبتو، ثم اختر المبلغ وأكمل الدفع.</p></div><div class="policy-box"><h4>استثمار الجراء</h4><p>اشترِ خطة استثمار بالجواهر. كل خطة تُعدّن أرباحاً تلقائياً على مدار مدتها، ويمكنك جمع الجواهر المتراكمة في أي وقت. بعد انتهاء الخطة، يتوقف التعدين.</p></div><div class="policy-box"><h4>مكافآت الإحالة</h4><p>ادعُ أصدقاءك واكسب 100 جوهرة إجمالاً: +20 عند انضمام صديقك (وهو يحصل على 20 أيضاً)، +50 عند وصوله للمستوى 5، +50 عند وصوله للمستوى 10.</p></div>';
   }
   $('contentModal').classList.add('show');
 }
@@ -1738,9 +1984,7 @@ function bind(){
   /* Deposit tabs + crypto bindings */
   $('depTabStars').onclick=()=>setDepTab('stars');
   $('depTabCrypto').onclick=()=>setDepTab('crypto');
-
   document.querySelectorAll('#cryptoAmounts .amt').forEach(b=>b.onclick=()=>pickCryptoAmount(b));
-
   $('cryptoCustomUsd').oninput=function(){
     const v=parseFloat(this.value);
     if(!isNaN(v)&&v>=CONFIG.shieldz.minUsd&&v<=CONFIG.shieldz.maxUsd){
@@ -1750,16 +1994,16 @@ function bind(){
     }
   };
   $('cryptoPayBtn').onclick=startCryptoPayment;
-
   $('cryptoCheckBtn').onclick=checkPendingInvoiceNow;
   $('cryptoCancelBtn').onclick=cancelPendingInvoice;
+
+  /* Investment bindings */
+  $('investCollectAllBtn').onclick=collectAllInvestments;
 
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') {
       TIME.sync();
-      if (cryptoPendingInvoice && cryptoPendingInvoice.id) {
-        checkPendingInvoiceNow();
-      }
+      if (cryptoPendingInvoice && cryptoPendingInvoice.id) checkPendingInvoiceNow();
     }
   });
 }
@@ -1769,11 +2013,19 @@ async function boot(){
     return;
   }
   FB.init();await TIME.sync();
-  try{const ex=await FB.get();if(ex)S.user=Object.assign(newUser(),ex);else{S.user=newUser();await FB.set(S.user,false)}}catch(e){S.user=newUser()}
+  try{
+    const ex=await FB.get();
+    if(ex){
+      S.user=Object.assign(newUser(),ex);
+      if(!Array.isArray(S.user.investments))S.user.investments=[];
+    }else{
+      S.user=newUser();await FB.set(S.user,false);
+    }
+  }catch(e){S.user=newUser()}
   await checkReferral();
   $('loader').classList.add('hide');$('app').style.display='flex';
   bind();renderAll();initLang();
-  setInterval(()=>{renderEnergy();wheelTimer()},1000);
+  setInterval(()=>{renderEnergy();wheelTimer();updateInvestmentsUI()},1000);
   setInterval(()=>TIME.sync(),300000);
 }
 document.addEventListener('DOMContentLoaded',boot);
