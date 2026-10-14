@@ -1687,12 +1687,12 @@ function startPaymentPolling(invoiceId, gems){
   }, CONFIG.shieldz.pollIntervalMs);
 }
 
-/* ═══ MANUAL DEPOSIT (Binance / Sham Cash) ═══ */
+/* ═══ MANUAL DEPOSIT INFO (Binance / Sham Cash) ═══ */
 const MD={
-  binance:{K:'Binance',acc:'1121748571',min:0.5,gemsPer:10000,cur:'USD',cls:'i-gold',icon:'fa-wallet',
-    title:'الإيداع عبر Binance Pay',minTxt:'الحد الأدنى للإيداع $0.50',accLbl:'معرّف Binance Pay',ph:'المبلغ بالدولار (USD)',minMsg:'$0.50'},
-  sham:{K:'Sham',acc:'334a08ea2d1bbed05f214a7f08e37ae4',min:50,gemsPer:100,cur:'SYP',cls:'i-green',icon:'fa-money-bill-wave',
-    title:'الإيداع عبر شام كاش',minTxt:'الحد الأدنى للإيداع 50 ليرة',accLbl:'معرّف شام كاش',ph:'المبلغ بالليرة (SYP)',minMsg:'50 ليرة'}
+  binance:{K:'Binance',acc:'1121748571',minTxt:'الحد الأدنى للتحويل $0.50',cls:'i-gold',icon:'fa-wallet',
+    title:'الإيداع عبر Binance Pay',accLbl:'معرّف Binance Pay'},
+  sham:{K:'Sham',acc:'334a08ea2d1bbed05f214a7f08e37ae4',minTxt:'الحد الأدنى للتحويل 50 ليرة',cls:'i-green',icon:'fa-money-bill-wave',
+    title:'الإيداع عبر شام كاش',accLbl:'معرّف شام كاش'}
 };
 function buildMd(){
   Object.keys(MD).forEach(k=>{
@@ -1700,33 +1700,14 @@ function buildMd(){
     $('dep-tab-'+k).innerHTML=
     '<div class="card"><div class="row" style="margin-bottom:12px"><span class="ico '+m.cls+'" style="width:52px;height:52px"><i class="fas '+m.icon+'"></i></span>'+
     '<div class="grow"><div class="ttl">'+m.title+'</div><div class="sub">'+m.minTxt+'</div></div></div>'+
-    '<div class="sub" style="margin-bottom:6px">'+m.accLbl+' — أرسل المبلغ إلى هذا المعرّف</div>'+
+    '<div class="sub" style="margin-bottom:6px">'+m.accLbl+' — حوّل المبلغ إلى هذا المعرّف</div>'+
     '<div class="codebox"><b id="mdAcc'+K+'" style="font-size:13px;letter-spacing:0;word-break:break-all">'+m.acc+'</b>'+
     '<button class="btn b-y b-sm" data-copy="mdAcc'+K+'"><i class="fas fa-copy"></i> نسخ</button></div></div>'+
-    '<div class="card" style="border-color:var(--red)"><div class="ttl">⚠️ مهم: ضع معرّفك في الملاحظة</div>'+
-    '<div class="sub" style="margin:4px 0 10px">انسخ معرّفك أدناه والصقه في خانة الملاحظة (Note) عند التحويل، وإلا لن نتمكن من إضافة الجواهر لحسابك.</div>'+
+    '<div class="card" style="border-color:var(--red)"><div class="ttl">مهم: أضف معرّف حسابك في الملاحظة</div>'+
+    '<div class="sub" style="margin:4px 0 10px">انسخ معرّفك والصقه في خانة الملاحظة (Note) عند التحويل حتى يمكن التعرّف على حسابك.</div>'+
     '<div class="codebox"><b id="mdUid'+K+'" style="direction:ltr">'+esc(TG.id)+'</b>'+
-    '<button class="btn b-y b-sm" data-copy="mdUid'+K+'"><i class="fas fa-copy"></i> نسخ</button></div></div>'+
-    '<div class="card"><div class="ttl">بعد التحويل أكّد طلبك</div>'+
-    '<input class="inp" id="mdAmt'+K+'" type="number" min="'+m.min+'" step="any" inputmode="decimal" placeholder="'+m.ph+'">'+
-    '<input class="inp" id="mdRef'+K+'" placeholder="رقم العملية (اختياري)" autocomplete="off"></div>'+
-    '<div class="info"><div>الجواهر المستقبلة<b id="mdGems'+K+'">0 💎</b></div></div>'+
-    '<button class="btn b-g" id="mdSubmit'+K+'"><i class="fas fa-paper-plane"></i> تأكيد التحويل</button>'+
-    '<div class="card" style="text-align:center;font-size:12px;color:var(--ink2);margin-top:12px"><i class="fas fa-shield-halved" style="color:var(--sky-d)"></i> تُضاف الجواهر بعد التحقق من التحويل.</div>';
-    $('mdAmt'+K).oninput=()=>updateMd(k);
-    $('mdSubmit'+K).onclick=()=>submitMd(k);
-  });
-}
-function updateMd(k){const m=MD[k],v=parseFloat($('mdAmt'+m.K).value)||0;$('mdGems'+m.K).textContent=fmt(Math.floor(v*m.gemsPer))+' 💎'}
-async function submitMd(k){
-  const m=MD[k],v=parseFloat($('mdAmt'+m.K).value)||0;
-  if(v<m.min)return toast('الحد الأدنى للإيداع '+m.minMsg,'err');
-  const ref=$('mdRef'+m.K).value.trim(),gems=Math.floor(v*m.gemsPer);
-  await withBtn($('mdSubmit'+m.K),'جاري الإرسال...',async()=>{
-    await db.collection(CONFIG.depCol).add({userId:TG.id,userName:S.user.name||'لاعب',username:S.user.username||null,
-      method:k,amount:v,currency:m.cur,gems,reference:ref||null,note:TG.id,status:'pending',createdAt:Date.now()});
-    $('mdAmt'+m.K).value='';$('mdRef'+m.K).value='';updateMd(k);SFX.play('reward');
-    showModal({icon:'fa-check',title:'تم إرسال طلب الإيداع',sub:'ستتم إضافة الجواهر بعد التحقق من التحويل',amount:'≈ '+fmt(gems)+' 💎',btn:'حسناً'});
+    '<button class="btn b-y b-sm" data-copy="mdUid'+K+'"><i class="fas fa-copy"></i> نسخ المعرّف</button></div></div>'+
+    '<div class="card" style="text-align:center;font-size:12px;color:var(--ink2);margin-top:12px"><i class="fas fa-shield-halved" style="color:var(--sky-d)"></i> بعد إتمام التحويل، تُراجع الدفعة وتُضاف الجواهر إلى حسابك بعد التحقق. لا حاجة لإرسال طلب تأكيد من هذه الصفحة.</div>';
   });
 }
 function copyText(t){
