@@ -216,11 +216,11 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 .invest-banner .collect-btn{margin-top:12px;height:52px;background:linear-gradient(180deg,#fff,#FFF9E8);color:var(--green-d);box-shadow:0 5px 0 rgba(0,0,0,.2),inset 0 3px 0 rgba(255,255,255,.7)}
 .invest-active-card{border-color:var(--green-d);background:linear-gradient(180deg,#fff,#E8FFE8 60%,#DFF7DF)}
 .invest-locked{opacity:.75;filter:grayscale(.3)}
-.lang-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.lang-btn-modern{height:48px;font-size:12px;font-weight:800;padding:0 4px;display:flex;align-items:center;justify-content:center;gap:5px;border-radius:14px;transition:all .15s;background:linear-gradient(180deg,#fff,#E8FAFF);border:2px solid var(--edge);box-shadow:0 3px 0 var(--edge-d);cursor:pointer}
+.lang-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.lang-btn-modern{height:52px;font-size:13px;font-weight:800;padding:0 8px;display:flex;align-items:center;justify-content:center;gap:8px;border-radius:16px;transition:all .15s;background:linear-gradient(180deg,#fff,#E8FAFF);border:2px solid var(--edge);box-shadow:0 3px 0 var(--edge-d);cursor:pointer}
 .lang-btn-modern.on{background:linear-gradient(180deg,#FFE95C,#FFD52E);border-color:var(--gold-d);box-shadow:0 3px 0 var(--gold-d)}
-.lang-btn-modern img{width:20px;height:20px;border-radius:50%;object-fit:cover}
-.lang-btn-modern span{font-size:11px}
+.lang-btn-modern img{width:24px;height:24px;border-radius:50%;object-fit:cover}
+.lang-btn-modern span{font-size:12px}
 </style>
 </head>
 <body>
@@ -495,15 +495,11 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
         <div class="lang-grid">
           <button class="lang-btn-modern on" data-lang="ar" type="button">
             <img src="https://img.icons8.com/color/48/saudi-arabia-circular.png" alt="AR" onerror="this.style.display='none'">
-            <span data-i18n="lang_ar_short">عربي</span>
+            <span>العربية</span>
           </button>
           <button class="lang-btn-modern" data-lang="en" type="button">
             <img src="https://img.icons8.com/color/48/usa-circular.png" alt="EN" onerror="this.style.display='none'">
-            <span data-i18n="lang_en_short">English</span>
-          </button>
-          <button class="lang-btn-modern" data-lang="tr" type="button">
-            <img src="https://img.icons8.com/color/48/turkey-circular.png" alt="TR" onerror="this.style.display='none'">
-            <span data-i18n="lang_tr_short">Türkçe</span>
+            <span>English</span>
           </button>
         </div>
       </div>
@@ -578,18 +574,14 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
   <div class="ico i-sky"><i class="fas fa-language"></i></div>
   <div class="ttl" style="font-size:20px">اختر اللغة · Choose language</div>
   <div style="height:16px"></div>
-  <div class="lang-grid" style="grid-template-columns:1fr">
-    <button class="lang-btn-modern" data-lang="ar" type="button" style="height:54px">
+  <div class="lang-grid">
+    <button class="lang-btn-modern" data-lang="ar" type="button" style="height:58px">
       <img src="https://img.icons8.com/color/48/saudi-arabia-circular.png" alt="AR" onerror="this.style.display='none'">
       <span>العربية</span>
     </button>
-    <button class="lang-btn-modern" data-lang="en" type="button" style="height:54px">
+    <button class="lang-btn-modern" data-lang="en" type="button" style="height:58px">
       <img src="https://img.icons8.com/color/48/usa-circular.png" alt="EN" onerror="this.style.display='none'">
       <span>English</span>
-    </button>
-    <button class="lang-btn-modern" data-lang="tr" type="button" style="height:54px">
-      <img src="https://img.icons8.com/color/48/turkey-circular.png" alt="TR" onerror="this.style.display='none'">
-      <span>Türkçe</span>
     </button>
   </div>
 </div></div>
@@ -1246,23 +1238,24 @@ function setWdMethod(method){
   const wdHelp = $('wdAccountHelp');
   if(method==='sham_cash'){
     amountBox.innerHTML='<button class="amt" data-amt="1000">1,000 💎</button><button class="amt" data-amt="2000">2,000 💎</button><button class="amt" data-amt="5000">5,000 💎</button><button class="amt" data-amt="10000">10,000 💎</button>';
-    // ═══ استخدام T() + تحديث dataset.ph لتفادي استبدال الترجمة ═══
-    const titleTxt = 'معرّف شام كاش';
-    const helpTxt = 'أدخل معرّف شام كاش لاستلام السحب';
-    const phTxt = 'معرّف شام كاش';
-    wdTitle.textContent = T(titleTxt);
-    wdHelp.textContent = T(helpTxt);
-    wdInput.dataset.ph = phTxt;
-    wdInput.placeholder = T(phTxt);
+    const titleTxt='معرّف شام كاش';
+    const helpTxt='أدخل معرّف شام كاش لاستلام السحب';
+    const phTxt='معرّف شام كاش';
+    wdTitle.textContent=T(titleTxt);
+    wdHelp.textContent=T(helpTxt);
+    wdInput.dataset.ph=phTxt;
+    wdInput.dataset.origPh=phTxt;
+    wdInput.placeholder=T(phTxt);
   } else {
     amountBox.innerHTML='<button class="amt" data-amt="5000">5,000 💎</button><button class="amt" data-amt="10000">10,000 💎</button><button class="amt" data-amt="50000">50,000 💎</button><button class="amt" data-amt="100000">100,000 💎</button>';
-    const titleTxt = 'معرّف Binance Pay';
-    const helpTxt = 'أدخل معرّف Binance Pay أو البريد الإلكتروني لاستلام السحب';
-    const phTxt = 'Binance Pay ID أو البريد الإلكتروني';
-    wdTitle.textContent = T(titleTxt);
-    wdHelp.textContent = T(helpTxt);
-    wdInput.dataset.ph = phTxt;
-    wdInput.placeholder = T(phTxt);
+    const titleTxt='معرّف Binance Pay';
+    const helpTxt='أدخل معرّف Binance Pay أو البريد الإلكتروني لاستلام السحب';
+    const phTxt='Binance Pay ID أو البريد الإلكتروني';
+    wdTitle.textContent=T(titleTxt);
+    wdHelp.textContent=T(helpTxt);
+    wdInput.dataset.ph=phTxt;
+    wdInput.dataset.origPh=phTxt;
+    wdInput.placeholder=T(phTxt);
   }
   pick('#wdAmounts','wd',updateWd);updateWd();
 }
@@ -1306,7 +1299,7 @@ async function loadWdHistory(){
     const it=[];q.forEach(d=>it.push(d.data()));it.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
     const statusMap={pending:'قيد المراجعة',approved:'مقبول',processing:'قيد التنفيذ',completed:'مكتمل',rejected:'مرفوض'};
     l.innerHTML=it.slice(0,15).map(w=>'<div class="card hist"><div><div class="ttl" style="direction:ltr;text-align:right">'+fmt(w.amount)+' 💎 → '+esc(w.payout||'$0')+'</div><div class="sub">'+
-      new Date(w.createdAt||Date.now()).toLocaleDateString((LANG==='ar'?'ar-EG':LANG==='tr'?'tr-TR':'en-US'),{day:'numeric',month:'short',year:'numeric'})+' • '+(w.method==='sham_cash'?T('شام كاش'):'Binance')+'</div></div><span class="st '+esc(w.status||'pending')+'">'+T(statusMap[w.status]||'قيد المراجعة')+'</span></div>').join('');
+      new Date(w.createdAt||Date.now()).toLocaleDateString((LANG==='ar'?'ar-EG':'en-US'),{day:'numeric',month:'short',year:'numeric'})+' • '+(w.method==='sham_cash'?T('شام كاش'):'Binance')+'</div></div><span class="st '+esc(w.status||'pending')+'">'+T(statusMap[w.status]||'قيد المراجعة')+'</span></div>').join('');
   }catch(e){l.innerHTML='<div class="empty">'+T('تعذر التحميل')+'</div>'}
 }
 
@@ -1655,7 +1648,7 @@ async function loadLeaderboard(){
   }
 }
 
-/* ═══ TRANSLATIONS ═══ */
+/* ═══ TRANSLATIONS (AR default + EN) ═══ */
 const I18N = {
   en: {
     'دمج الجراء':'Merge Puppies','المستوى':'Level','lvl_label':'Level',
@@ -1761,7 +1754,7 @@ const I18N = {
     'جاري الإرسال...':'Sending...','تعذر التحميل':'Failed to load',
     'لاعب':'Player','عملات':'Coins','جواهر':'Gems','إحالات':'Referrals',
     'تغيير اللغة':'Change language','عربي':'Arabic','lang_ar_short':'عربي',
-    'lang_en_short':'English','lang_tr_short':'Türkçe',
+    'lang_en_short':'English',
     'معلومات التطبيق وسياسة الخصوصية':'App info & privacy','مركز المساعدة':'Help center',
     'سحب الأموال':'Withdraw',
     'دعوة الأصدقاء':'Invite Friends','هل دعاك صديق؟':'Did a friend invite you?',
@@ -1785,7 +1778,7 @@ const I18N = {
     'تعذر التحقق من الكود':'Could not verify code',
     'رائع':'Great','رائع!':'Awesome!','موافق':'OK','حسناً':'Okay',
     'لا توجد طاقة — انتظر التجديد':'No energy — wait for regen','لا توجد طاقة':'No energy',
-    'انتهت الحركات!':'Out of moves!',' حاول مجدداً':'try again','حاول مجدداً':'Try again',
+    'انتهت الحركات!':'Out of moves!','حاول مجدداً':'Try again',
     'حدثت مشكلة، حاول مجدداً':'Something went wrong, try again',
     'لا توجد لفات — عد غداً':'No spins left — come back tomorrow',
     'تعذر تدوير العجلة، حاول مجدداً':'Could not spin, try again',
@@ -1798,162 +1791,15 @@ const I18N = {
     'لا يوجد تلميح متاح':'No hint available',
     'مستوى مميز!':'Special level!','التالي':'Next',
     ' من ':' of ','فقدت':'lost','طاقة':'energy','متبقي':'left',
-    'فتح حساب':'Open Account','هذا التطبيق يعمل فقط داخل تليجرام.':'This app works only inside Telegram.',
+    'هذا التطبيق يعمل فقط داخل تليجرام.':'This app works only inside Telegram.',
     'افتح البوت':'Open Bot',
     'تعذر التحقق من الوقت، تحقق من الاتصال ثم أعد المحاولة':'Could not verify time, check connection and retry',
-    'تعذر التحقق من الوقت، تحقق من الاتصال ثم أعد المحاولة':'Time verification failed, check connection',
-  },
-  tr: {
-    'دمج الجراء':'Köpek Birleştirme','المستوى':'Seviye','lvl_label':'Seviye',
-    'ادمج 3 جراء متشابهة واكسب كنوز المملكة!':'3 benzer köpeği birleştir ve hazineyi kazan!',
-    'ابدأ اللعب':'Oyna','الطاقة':'Enerji','ممتلئة':'Dolu',
-    'مشاهدة إعلان +1 طاقة':'Reklam izle +1 Enerji','جاري مشاهدة الإعلان':'Reklam izleniyor...',
-    'الطاقة ممتلئة بالفعل':'Enerji zaten dolu',
-    'لم تُحتسب الطاقة لأن مشاهدة الإعلان أقل من 15 ثانية':'Enerji sayılmadı — reklam 15 saniyeden az',
-    'لم تكتمل مشاهدة الإعلان':'Reklam tamamlanmadı',
-    'الإعلان غير متاح حالياً، حاول لاحقاً':'Reklam mevcut değil, sonra dene',
-    'عجلة الحظ':'Şans Çarkı','لفّتان يومياً':'Günde 2 tur','مجاناً':'Ücretsiz',
-    'المهام':'Görevler','مكافآت يومية':'Günlük ödüller','استثمار الجراء':'Köpek Yatırımı',
-    'اشترِ خطة واكسب الجواهر تلقائياً':'Plan al ve otomatik mücevher kazan',
-    'شراء الجواهر':'Mücevher Satın Al','نجوم ⭐ أو كريبتو 💎':'Yıldız ⭐ veya Kripto 💎',
-    'النقاط':'Puan','الهدف':'Hedef','الحركات':'Hamle','نقطة':'puan',
-    'الهدف: ':'Hedef: ','تلميح':'İpucu','خلط':'Karıştır',
-    'لف العجلة':'Çarkı Çevir','لفات':'tur','spins_label':'tur',
-    'شاهد إعلان واربح':'Reklam izle ve kazan','متاح':'Mevcut',
-    'التسجيل اليومي':'Günlük Giriş','المهام اليومية':'Günlük Görevler',
-    'مهام المستويات':'Seviye Görevleri','مهام الدعوات':'Davet Görevleri',
-    'انضم لقناة تيليجرام':'Telegram kanalına katıl','انضم للقناة الرسمية':'Resmi kanala katıl','انضم':'Katıl',
-    'أدر عجلة الحظ 10 مرات':'Çarkı 10 kez çevir','أكمل 10 لفات':'10 tur tamamla',
-    'أوصل المستوى':'Seviyeye ulaş','مكافأة فورية عند الوصول':'Ulaşıldığında anında ödül',
-    'ادعُ':'Davet et','صديق':'arkadaş','أصدقاء':'arkadaş','مكافأة عند إتمام العدد':'Tamamlandığında ödül',
-    'استلم':'Topla','تم':'Tamamlandı','استلمت مكافأة إنجاز':'Başarı ödülü alındı',
-    'مكافأة اليوم':'Gün ödülü','عد غداً لمكافأة أكبر':'Yarın daha büyük ödül için gel',
-    'أكملت الأسبوع! تسلسل جديد غداً':'Hafta tamam! Yarın yeni seri',
-    'استلمت مكافأة اليوم':'Bugünkü ödülü zaten aldın',
-    'استلم المكافآت بالترتيب':'Ödülleri sırayla topla',
-    'انتظر ثوانٍ لنتحقق...':'Birkaç saniye bekle...',
-    'تم استلام المكافأة!':'Ödül alındı!','لم تكمل الدعوات':'Davetler tamamlanmadı',
-    'أكمل 10 لفات أولاً':'Önce 10 tur tamamla',
-    'مكافأة المستوى':'Seviye ödülü','مكافأة الدعوات':'Davet ödülü','شكراً لدعوة':'Davet için teşekkürler',
-    'يوم':'Gün','أيام':'gün',
-    'تبديل العملات':'Para Değiştir','اتجاه واحد فقط: 1000 🪙 = 10 💎':'Tek yön: 1000 🪙 = 10 💎',
-    'اختر عدد العملات':'Para miktarını seç','العملات المُحوّلة':'Dönüştürülen para',
-    'الجواهر المستقبلة':'Alınan mücevher','رصيدك':'Bakiye','تبديل الآن':'Şimdi Değiştir',
-    'حوّلت':'Dönüştürdün','عملة إلى جواهر':'para mücevhere','تم التبديل!':'Değiştirildi!','جاري التحويل...':'Dönüştürülüyor...',
-    'رصيد العملات غير كافٍ':'Yetersiz para','رصيد الجواهر غير كافٍ':'Yetersiz mücevher',
-    'الحد الأدنى':'Minimum','عملة':'para','جوهرة':'mücevher',
-    'الخطط المتاحة':'Mevcut Planlar','استثماراتي النشطة':'Aktif Yatırımlarım',
-    'متاح للجمع الآن':'Şimdi toplanabilir','جمع الكل':'Hepsini Topla',
-    'شراء الخطة':'Planı Satın Al','رصيد غير كافٍ':'Yetersiz bakiye',
-    'الربح الصافي':'Net kâr','إجمالي الاسترداد':'Toplam getiri',
-    'سعر':'Fiyat','ربح':'Kâr','تم جمع':'Toplandı',
-    'اكتمل الاستثمار — يمكنك شراء الخطة مرة أخرى':'Yatırım tamam — tekrar satın alabilirsin',
-    'جاري التعدين تلقائياً... استخدم زر "جمع الكل" بالأعلى':'Otomatik madencilik... "Hepsini Topla" kullan',
-    'جاري التعدين تلقائياً...':'Otomatik madencilik...',
-    'الخطة نشطة حالياً':'Plan şu anda aktif','تم شراء الخطة!':'Plan satın alındı!',
-    'لا يوجد شيء للجمع':'Toplanacak bir şey yok','مكتمل':'Tamamlandı',
-    'هذه الخطة نشطة حالياً — انتظر انتهاءها':'Bu plan aktif — bitmesini bekle',
-    'خطة الجرو':'Yavru Planı','خطة النشيط':'Aktif Plan','خطة المحترف':'Pro Plan',
-    'خطة الخبير':'Uzman Planı','خطة الأسطورة':'Efsane Planı',
-    'اختر طريقة الشراء المناسبة لك':'Satın alma yöntemini seç',
-    '100 ⭐ = 10,000 💎':'100 ⭐ = 10.000 💎','كل نجمة تساوي 100 جوهرة':'Her yıldız = 100 mücevher',
-    'اختر الباقة المناسبة لك':'Paketini seç','احصل على':'Al',
-    'رصيدك الحالي':'Mevcut bakiyen','طريقة الدفع':'Ödeme yöntemi',
-    'نجوم تلغرام ⭐':'Telegram Yıldızları ⭐',
-    'دفع آمن عبر تلغرام مباشرة. تصل الجواهر لحسابك فوراً بعد الدفع.':'Telegram ile güvenli ödeme. Mücevher hemen gelir.',
-    'ادفع بالكريبتو 💎':'Kripto ile Öde 💎',
-    'USDC / USDT / BTC / ZEC — بدون رسوم إضافية':'USDC / USDT / BTC / ZEC — Ek ücret yok',
-    'اختر مبلغ الشراء (بالدولار)':'Satın alma tutarını seç (USD)','أو أدخل مبلغاً مخصصاً':'Veya özel tutar gir',
-    'مبلغ الشراء':'Satın alma tutarı','إكمال الدفع بالكريبتو':'Kripto Ödemeyi Tamamla',
-    'دفع آمن ومشفر. تصل الجواهر لحسابك فوراً بعد التأكيد.':'Güvenli şifreli. Onay sonrası mücevher hemen gelir.',
-    'لديك فاتورة معلقة':'Bekleyen faturan var',
-    'اضغط "تحقق الآن" لمراجعة حالة الدفع':'"Şimdi Kontrol Et" ile durumu incele',
-    'تحقق الآن':'Şimdi Kontrol Et','إلغاء الطلب':'İptal Et','جاري التحقق...':'Kontrol ediliyor...',
-    'الفاتورة لا تزال قيد الانتظار':'Fatura hâlâ beklemede',
-    'تعذر التحقق، حاول مجدداً':'Doğrulanamadı, tekrar dene',
-    'انتهت صلاحية الفاتورة':'Fatura süresi doldu',
-    'انتهت صلاحية الفاتورة أو فشل الدفع':'Fatura süresi doldu veya başarısız',
-    'انتهت صلاحية الفاتورة. يمكنك البدء من جديد.':'Fatura süresi doldu. Yeniden başla.',
-    'انتهى وقت المراقبة التلقائية. اضغط "تحقق الآن" متى أردت.':'Otomatik izleme bitti. "Şimdi Kontrol Et"e bas.',
-    'تم إلغاء الطلب. لن يتم إنشاء طلبات جديدة.':'Sipariş iptal edildi. Yeni talep oluşturulmaz.',
-    'الحد الأدنى للدفع $1':'Minimum ödeme $1','الحد الأعلى للدفع $1000':'Maksimum ödeme $1000',
-    'جاري إنشاء الفاتورة...':'Fatura oluşturuluyor...',
-    'تعذر بدء الدفع، حاول مجدداً':'Ödeme başlatılamadı, tekrar dene',
-    'تم استلام الدفع!':'Ödeme alındı!','تمت إضافة الجواهر لحسابك':'Mücevher hesabına eklendi',
-    'فشل إنشاء الفاتورة':'Fatura oluşturulamadı',
-    'يجب فتح التطبيق داخل تلغرام':'Uygulamayı Telegram içinde aç',
-    'تم الدفع بنجاح!':'Ödeme başarılı!','حصلت على':'Aldın',
-    'تم إلغاء الدفع':'Ödeme iptal edildi','فشل الدفع، حاول مجدداً':'Ödeme başarısız, tekrar dene',
-    'تعذر بدء الدفع':'Ödeme başlatılamadı',
-    'الأكثر طلباً':'Popüler','أفضل قيمة':'En iyi değer',
-    '50 نجمة':'50 Yıldız','100 نجمة':'100 Yıldız','250 نجمة':'250 Yıldız','500 نجمة':'500 Yıldız','1000 نجمة':'1000 Yıldız',
-    'نجوم ⭐':'Yıldız ⭐','كريبتو 💎':'Kripto 💎',
-    'رصيدك القابل للسحب':'Çekilebilir Bakiye','اختر طريقة السحب':'Çekim yöntemini seç',
-    'الحد الأدنى 5,000 💎 = $0.50':'Minimum: 5.000 💎 = $0.50',
-    'الحد الأدنى 1,000 💎 = 10 SYP':'Minimum: 1.000 💎 = 10 SYP',
-    'شام كاش':'Sham Cash','Binance':'Binance',
-    'اختر المبلغ':'Miktar seç','معرّف Binance Pay':'Binance Pay ID',
-    'معرّف شام كاش':'Sham Cash ID',
-    'أدخل معرّف Binance Pay أو البريد الإلكتروني لاستلام السحب':'Binance Pay ID veya e-posta gir',
-    'أدخل معرّف شام كاش لاستلام السحب':'Sham Cash ID gir',
-    'Binance Pay ID أو البريد الإلكتروني':'Binance Pay ID veya e-posta',
-    'أدخل معرّف صحيح':'Geçerli ID gir',
-    'المبلغ المختار':'Seçilen miktar','ما يعادل':'Eşdeğer',
-    'تقديم طلب السحب':'Çekim Talebi Gönder','سجل السحوبات':'Çekim Geçmişi',
-    'لا يوجد سجل سحب بعد':'Henüz çekim yok',
-    'قيد المراجعة':'Beklemede','مقبول':'Onaylandı','قيد التنفيذ':'İşleniyor','مرفوض':'Reddedildi',
-    'تم إرسال طلب السحب':'Çekim talebi gönderildi',
-    'سيتم معالجة طلبك خلال 24-72 ساعة':'Talebiniz 24-72 saat içinde işlenir',
-    'جاري الإرسال...':'Gönderiliyor...','تعذر التحميل':'Yüklenemedi',
-    'لاعب':'Oyuncu','عملات':'Para','جواهر':'Mücevher','إحالات':'Davetler',
-    'تغيير اللغة':'Dili değiştir','عربي':'Arapça','lang_ar_short':'عربي',
-    'lang_en_short':'English','lang_tr_short':'Türkçe',
-    'معلومات التطبيق وسياسة الخصوصية':'Uygulama bilgileri','مركز المساعدة':'Yardım merkezi',
-    'سحب الأموال':'Para Çek',
-    'دعوة الأصدقاء':'Arkadaş Davet Et','هل دعاك صديق؟':'Arkadaşın mı davet etti?',
-    'أدخل معرّف الدعوة لتحصل على +20 💎':'Davet ID gir +20 💎 al',
-    'معرّف الدعوة':'Davet ID','تأكيد الكود':'Kodu Onayla',
-    'إجمالي مكافآت الدعوة (مقسمة)':'Toplam davet ödülü (bölünmüş)',
-    'هدية ترحيب لصديقك':'Arkadaşın için hoş geldin',
-    'شروط المكافآت':'Ödül koşulları',
-    'عند وصول صديقك للمستوى 5':'Arkadaş 5. seviyeye ulaştığında',
-    'عند وصول صديقك للمستوى 10':'Arkadaş 10. seviyeye ulaştığında',
-    'شارك رابطك':'Bağlantını paylaş','صديقك ينضم':'Arkadaşın katılır','تستلم المكافآت':'Ödül alırsın',
-    'معرّف الدعوة الخاص بك':'Davet ID\'n','نسخ':'Kopyala',
-    'مشاركة الرابط':'Bağlantıyı Paylaş','نسخ الرابط':'Bağlantıyı Kopyala',
-    'عدد الدعوات':'Davetler','أرباح الدعوات':'Davet kazancı',
-    'أعلى 10 دعوات':'En İyi 10 Davetçi','جاري التحميل...':'Yükleniyor...',
-    'لا يوجد مدعون بعد — كن الأول!':'Henüz davetçi yok — ilk sen ol!',
-    'تعذر تحميل القائمة':'Liste yüklenemedi','تعذر النسخ':'Kopyalanamadı',
-    'تم نسخ الرابط':'Bağlantı kopyalandı','تم نسخ المعرّف':'ID kopyalandı','أنت':'Sen',
-    'جوهرة من الإحالة!':'mücevher davetten!',
-    'معرّف غير صالح':'Geçersiz ID','الكود غير موجود':'Kod bulunamadı',
-    'تعذر التحقق من الكود':'Kod doğrulanamadı',
-    'رائع':'Harika','رائع!':'Muhteşem!','موافق':'Tamam','حسناً':'Peki',
-    'لا توجد طاقة — انتظر التجديد':'Enerji yok — yenilenmeyi bekle','لا توجد طاقة':'Enerji yok',
-    'انتهت الحركات!':'Hamle bitti!',' حاول مجدداً':'tekrar dene','حاول مجدداً':'Tekrar dene',
-    'حدثت مشكلة، حاول مجدداً':'Bir sorun oluştu, tekrar dene',
-    'لا توجد لفات — عد غداً':'Tur kalmadı — yarın gel',
-    'تعذر تدوير العجلة، حاول مجدداً':'Çark çevrilemedi, tekrar dene',
-    'إعلان العجلة متاح بعد انتهاء العداد':'Reklam geri sayımdan sonra',
-    'لم تُحتسب المكافأة لأن مشاهدة الإعلان أقل من 15 ثانية':'Sayılmadı — reklam 15 sn altı',
-    'تم اكتشاف تلاعب بالوقت — اضبط وقت الجهاز تلقائياً':'Zaman hilesi — cihaz saatini otomatik yap',
-    'اضبط ساعة الجهاز تلقائياً لإكمال اللعب':'Devam için saati otomatik yap',
-    'اللعب مجمد — وقت الجهاز غير صحيح':'Oyun kilitli — saat yanlış',
-    'تم خلط اللوحة تلقائياً':'Tahta otomatik karıştı','تم خلط اللوحة!':'Tahta karıştırıldı!',
-    'لا يوجد تلميح متاح':'İpucu yok',
-    'مستوى مميز!':'Özel seviye!','التالي':'İleri',
-    ' من ':' / ','فقدت':'kaybettin','طاقة':'enerji','متبقي':'kaldı',
-    'فتح حساب':'Hesap Aç','هذا التطبيق يعمل فقط داخل تليجرام.':'Bu uygulama yalnızca Telegram içinde çalışır.',
-    'افتح البوت':'Botu Aç',
-    'تعذر التحقق من الوقت، تحقق من الاتصال ثم أعد المحاولة':'Zaman doğrulanamadı, bağlantıyı kontrol et',
-  },
+  }
 };
 
 let LANG = 'ar';
-let trBusy = false, trRaf = 0;
-const origMap = new WeakMap();
-const AR = /[\u0600-\u06FF]/;
+let trBusy = false;
+let observerScheduled = false;
 
 function T(text){
   if(LANG === 'ar' || !LANG) return text;
@@ -1971,101 +1817,102 @@ function T(text){
   return out;
 }
 
-function restoreOriginals(){
-  const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+// استخدام تقنية "علامات ترجمة" عبر data-i18n لتبسيط العملية
+function applyTranslationsToDOM(){
+  // ترجمة النصوص الفردية
+  const textNodesWalker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
   let n;
-  const toRestore = [];
-  while(n = w.nextNode()){
-    if(origMap.has(n)) toRestore.push(n);
+  const nodeMap = new Map(); // لتخزين النص الأصلي العربي
+
+  // أولاً: اجمع كل النصوص العربية الحالية وحوّلها
+  const nodesToProcess = [];
+  while(n = textNodesWalker.nextNode()){
+    const p = n.parentNode;
+    if(!p || p.tagName === 'SCRIPT' || p.tagName === 'STYLE') continue;
+    const v = n.nodeValue;
+    if(v && /[\u0600-\u06FF]/.test(v)){
+      nodesToProcess.push(n);
+    }
   }
-  for(const node of toRestore){
-    try{ node.nodeValue = origMap.get(node); }catch(e){}
-  }
+
+  nodesToProcess.forEach(node => {
+    // احفظ النص الأصلي في dataset العقدة الأب إذا لم يكن محفوظاً
+    if(!node.__originalAr) node.__originalAr = node.nodeValue;
+    const arText = node.__originalAr;
+    const translated = T(arText);
+    if(node.nodeValue !== translated) node.nodeValue = translated;
+  });
+
+  // ترجمة placeholders
+  document.querySelectorAll('[placeholder]').forEach(e => {
+    if(!e.dataset.origPh) e.dataset.origPh = e.placeholder;
+    const arPh = e.dataset.origPh;
+    if(/[\u0600-\u06FF]/.test(arPh)){
+      e.placeholder = T(arPh);
+    }
+  });
 }
 
+function restoreArabicDOM(){
+  const textNodesWalker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  let n;
+  while(n = textNodesWalker.nextNode()){
+    if(n.__originalAr !== undefined){
+      n.nodeValue = n.__originalAr;
+    }
+  }
+  document.querySelectorAll('[placeholder]').forEach(e => {
+    if(e.dataset.origPh) e.placeholder = e.dataset.origPh;
+  });
+}
+
+let translateRaf = 0;
 function translateAll(){
+  if(trBusy) return;
   trBusy = true;
   try{
     if(LANG === 'ar'){
-      // عند العودة للعربية: أعد النصوص الأصلية
-      const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-      let n;
-      const list = [];
-      while(n = w.nextNode()){
-        if(origMap.has(n)) list.push(n);
-      }
-      for(const node of list){
-        try{ node.nodeValue = origMap.get(node); origMap.delete(node); }catch(e){}
-      }
-      document.querySelectorAll('[placeholder]').forEach(e=>{
-        if(e.dataset.origPh !== undefined) e.placeholder = e.dataset.origPh;
-      });
-      return;
+      restoreArabicDOM();
+    } else {
+      applyTranslationsToDOM();
     }
-    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-    let n;
-    while(n = w.nextNode()){
-      const p = n.parentNode;
-      if(p && (p.tagName === 'SCRIPT' || p.tagName === 'STYLE')) continue;
-      const v = n.nodeValue;
-      if(v && AR.test(v)){
-        // احفظ النص الأصلي أول مرة فقط
-        if(!origMap.has(n)) origMap.set(n, v);
-        const original = origMap.get(n);
-        const t = T(original);
-        if(t !== v) n.nodeValue = t;
-      }
-    }
-    document.querySelectorAll('[placeholder]').forEach(e=>{
-      if(e.dataset.origPh === undefined) e.dataset.origPh = e.placeholder;
-      const orig = e.dataset.origPh;
-      if(orig && AR.test(orig)){
-        e.placeholder = T(orig);
-      }
-    });
   } finally {
     trBusy = false;
   }
 }
 
-// مراقبة تغييرات الـ DOM
-let observerScheduled = false;
 new MutationObserver(()=>{
-  if(LANG === 'ar' || trBusy) return;
-  if(observerScheduled) return;
-  observerScheduled = true;
-  setTimeout(()=>{
-    observerScheduled = false;
+  if(LANG === 'ar' || trBusy || translateRaf) return;
+  translateRaf = requestAnimationFrame(()=>{
+    translateRaf = 0;
     translateAll();
-  }, 50);
+  });
 }).observe(document.body, { childList:true, subtree:true, characterData:true });
 
 function applyLang(l, persist){
   LANG = l;
   try{ localStorage.setItem('pm_lang', l); }catch(e){}
-  document.documentElement.lang = l === 'ar' ? 'ar' : l === 'tr' ? 'tr' : 'en';
-  document.documentElement.dir = (l === 'ar') ? 'rtl' : 'ltr';
+  document.documentElement.lang = l === 'en' ? 'en' : 'ar';
+  document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
   document.querySelectorAll('.lang-btn-modern').forEach(b=>{
     b.classList.toggle('on', b.dataset.lang === l);
   });
   if(persist && S.user){ S.user.lang = l; FB.set({lang:l}); }
-  // إعادة رسم العناصر الديناميكية
+  // أعد رسم العناصر الديناميكية ثم ترجم
   renderAll();
   renderMissions();
   renderWheel();
   renderStarPackages();
   if($('screen-invest').classList.contains('active')) renderInvestments();
-  // ترجمة النصوص
-  setTimeout(()=>translateAll(), 10);
+  setTimeout(()=>translateAll(), 20);
 }
 
 function initLang(){
   let l = null;
   try{ l = localStorage.getItem('pm_lang'); }catch(e){}
   l = l || (S.user && S.user.lang) || 'ar';
-  if(!['ar','en','tr'].includes(l)) l = 'ar';
-  if(l !== 'ar'){ applyLang(l, false); }
-  else { LANG = 'ar'; applyLang('ar', false); }
+  if(l !== 'en') l = 'ar';
+  applyLang(l, false);
 }
 
 async function watchEnergyAd(){
@@ -2096,14 +1943,10 @@ function openContentModal(kind){
   if(policy){
     $('contentBody').innerHTML = LANG === 'en' ?
       '<div class="policy-box"><h4>About Puppy Merge</h4><p>Puppy Merge is a casual matching game. Coins, gems, energy, level progress and referral rewards are used to operate your in-app experience.</p></div><div class="policy-box"><h4>Information used</h4><p>The app uses your Telegram account identifier, display name, profile photo when available, balances, game progress, referral activity and withdrawal details.</p></div><div class="policy-box"><h4>Privacy</h4><p>Use only an account and payout details you are authorized to use.</p></div>' :
-      LANG === 'tr' ?
-      '<div class="policy-box"><h4>Puppy Merge Hakkında</h4><p>Puppy Merge bir eşleştirme oyunudur. Para, mücevher, enerji, seviye ilerlemesi ve davet ödülleri uygulama deneyimini yürütmek için kullanılır.</p></div><div class="policy-box"><h4>Kullanılan Bilgiler</h4><p>Uygulama Telegram hesap kimliğinizi, görünen adınızı, profil fotoğrafınızı, bakiyelerinizi, oyun ilerlemenizi ve çekim bilgilerinizi kullanır.</p></div><div class="policy-box"><h4>Gizlilik</h4><p>Yalnızca yetkili olduğunuz bilgileri kullanın.</p></div>' :
       '<div class="policy-box"><h4>عن Puppy Merge</h4><p>لعبة دمج وترفيه تجمع فيها العملات والجواهر وتتقدم عبر المستويات والمهام والإحالات.</p></div><div class="policy-box"><h4>المعلومات المستخدمة</h4><p>يستخدم التطبيق معرّف حساب تيليجرام واسم العرض وصورة الحساب والرصيد وتقدم اللعب والإحالات وبيانات السحب.</p></div><div class="policy-box"><h4>الخصوصية</h4><p>استخدم فقط حساباً وبيانات دفع مصرّحاً لك باستخدامها.</p></div>';
   } else {
     $('contentBody').innerHTML = LANG === 'en' ?
       '<div class="policy-box"><h4>How to play</h4><p>Swap adjacent tiles to match at least three identical animals. Each level grants +100 coins, and every 10th level grants +10 gems.</p></div><div class="policy-box"><h4>Buy Gems</h4><p>Open profile, choose Buy Gems, select Stars or Crypto, choose amount and complete payment.</p></div><div class="policy-box"><h4>Puppy Investment</h4><p>Buy plans with gems. Each plan mines automatically and you can collect accumulated gems. After the plan ends, mining stops and you can buy again.</p></div><div class="policy-box"><h4>Referral Rewards</h4><p>Invite friends and earn 50 gems total: +20 when your friend joins (they get 20 too), +25 at level 5, +25 at level 10.</p></div>' :
-      LANG === 'tr' ?
-      '<div class="policy-box"><h4>Nasıl Oynanır</h4><p>En az üç aynı hayvanı eşleştir. Her seviye +100 para, her 10. seviye +10 mücevher verir.</p></div><div class="policy-box"><h4>Mücevher Al</h4><p>Profilini aç, Mücevher Satın Al, Yıldız veya Kripto seç, tutar seç ve ödemeyi tamamla.</p></div><div class="policy-box"><h4>Köpek Yatırımı</h4><p>Mücevherle yatırım planları al. Her plan otomatik madencilik yapar ve mücevherleri toplayabilirsin. Plan bittikten sonra tekrar alabilirsin.</p></div><div class="policy-box"><h4>Davet Ödülleri</h4><p>Arkadaşlarını davet et ve toplam 50 mücevher kazan: katıldığında +20 (o da 20 alır), 5. seviyede +25, 10. seviyede +25.</p></div>' :
       '<div class="policy-box"><h4>كيف تلعب؟</h4><p>بدّل أماكن القطع المتجاورة لتكوين ثلاثة حيوانات متشابهة. كل مستوى يمنح +100 عملة، وكل 10 مستويات +10 جواهر إضافية.</p></div><div class="policy-box"><h4>شراء الجواهر</h4><p>افتح حسابك، اختر "شراء الجواهر"، اختر تبويب النجوم أو الكريبتو، ثم أكمل الدفع.</p></div><div class="policy-box"><h4>استثمار الجراء</h4><p>اشترِ خطة استثمار بالجواهر. كل خطة تُعدّن أرباحاً تلقائياً، ويمكنك جمع الجواهر. بعد انتهاء الخطة يمكنك شراؤها مرة أخرى.</p></div><div class="policy-box"><h4>مكافآت الإحالة</h4><p>ادعُ أصدقاءك واكسب 50 جوهرة إجمالاً: +20 عند انضمام صديقك، +25 عند المستوى 5، +25 عند المستوى 10.</p></div>';
   }
   $('contentModal').classList.add('show');
@@ -2170,7 +2013,7 @@ function bind(){
 }
 async function boot(){
   if(!TG.init()){
-    $('loader').innerHTML='<div style="padding:30px"><div class="ico i-gold" style="margin:0 auto 16px;width:100px;height:100px;font-size:46px"><i class="fas fa-paw"></i></div><h2>Puppy Merge</h2><p style="margin:10px 0 20px">'+T('هذا التطبيق يعمل فقط داخل تليجرام.')+'</p><a href="https://t.me/'+CONFIG.bot.username+'/'+CONFIG.bot.appName+'" class="btn b-y" style="text-decoration:none">'+T('افتح البوت')+'</a></div>';
+    $('loader').innerHTML='<div style="padding:30px"><div class="ico i-gold" style="margin:0 auto 16px;width:100px;height:100px;font-size:46px"><i class="fas fa-paw"></i></div><h2>Puppy Merge</h2><p style="margin:10px 0 20px">هذا التطبيق يعمل فقط داخل تليجرام.</p><a href="https://t.me/'+CONFIG.bot.username+'/'+CONFIG.bot.appName+'" class="btn b-y" style="text-decoration:none">افتح البوت</a></div>';
     return;
   }
   FB.init();await TIME.sync();
