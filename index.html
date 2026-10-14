@@ -233,6 +233,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 .invest-banner .collect-btn{margin-top:12px;height:52px;background:linear-gradient(180deg,#fff,#FFF9E8);color:var(--green-d);box-shadow:0 5px 0 rgba(0,0,0,.2),inset 0 3px 0 rgba(255,255,255,.7)}
 .invest-active-card{border-color:var(--green-d);background:linear-gradient(180deg,#fff,#E8FFE8 60%,#DFF7DF)}
 .invest-locked{opacity:.75;filter:grayscale(.3)}
+.flag-ico{width:22px;height:22px;border-radius:50%;object-fit:cover;vertical-align:middle;display:inline-block}
 </style>
 </head>
 <body>
@@ -531,7 +532,10 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
       </div>
       <div class="card">
         <div class="ttl" style="margin-bottom:10px"><i class="fas fa-language"></i> تغيير اللغة</div>
-        <div class="g-act"><button class="btn b-s lang-btn" data-lang="ar">🇸🇦 العربية</button><button class="btn b-s lang-btn" data-lang="en">🇺🇸 English</button></div>
+        <div class="g-act">
+          <button class="btn b-s lang-btn" data-lang="ar"><img class="flag-ico" src="https://img.icons8.com/color/48/saudi-arabia-circular.png" alt="AR"> العربية</button>
+          <button class="btn b-s lang-btn" data-lang="en"><img class="flag-ico" src="https://img.icons8.com/color/48/usa-circular.png" alt="EN"> English</button>
+        </div>
       </div>
       <div class="card menu">
         <button data-go="deposit"><span class="ico i-gold"><i class="fas fa-gem"></i></span><span class="grow">شراء الجواهر</span><i class="fas fa-chevron-left"></i></button>
@@ -552,17 +556,17 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
       </div>
       <div class="card">
         <div class="duo">
-          <div class="tileR me"><div class="ico i-sky"><i class="fas fa-gem"></i></div><b>+100</b><span class="sub">إجمالي مكافآت الدعوة (مقسمة)</span></div>
+          <div class="tileR me"><div class="ico i-sky"><i class="fas fa-gem"></i></div><b>+50</b><span class="sub">إجمالي مكافآت الدعوة (مقسمة)</span></div>
           <div class="tileR"><div class="ico i-green"><i class="fas fa-gift"></i></div><b>+20</b><span class="sub">هدية ترحيب لصديقك</span></div>
         </div>
         <div class="card" style="margin-bottom:10px;padding:10px;background:#FFF9E8">
           <div class="ttl" style="margin-bottom:6px;font-size:13px"><i class="fas fa-list-check"></i> شروط المكافآت</div>
           <div class="row" style="padding:4px 0;font-size:12px;font-weight:700">
-            <span class="rw" style="margin:0">+50 💎</span>
+            <span class="rw" style="margin:0">+25 💎</span>
             <span class="grow">عند وصول صديقك للمستوى 5</span>
           </div>
           <div class="row" style="padding:4px 0;font-size:12px;font-weight:700">
-            <span class="rw" style="margin:0">+50 💎</span>
+            <span class="rw" style="margin:0">+25 💎</span>
             <span class="grow">عند وصول صديقك للمستوى 10</span>
           </div>
         </div>
@@ -604,9 +608,9 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
   <div class="ico i-sky"><i class="fas fa-language"></i></div>
   <div class="ttl" style="font-size:20px">اختر اللغة · Choose language</div>
   <div style="height:16px"></div>
-  <button class="btn b-y lang-pick" data-lang="ar">🇸🇦 العربية</button>
+  <button class="btn b-y lang-pick" data-lang="ar"><img class="flag-ico" src="https://img.icons8.com/color/48/saudi-arabia-circular.png" alt="AR"> العربية</button>
   <div style="height:10px"></div>
-  <button class="btn b-s lang-pick" data-lang="en">🇺🇸 English</button>
+  <button class="btn b-s lang-pick" data-lang="en"><img class="flag-ico" src="https://img.icons8.com/color/48/usa-circular.png" alt="EN"> English</button>
 </div></div>
 <div class="modal text-modal" id="contentModal" style="z-index:1600">
   <div class="card">
@@ -631,8 +635,8 @@ const CONFIG={
   ref:{
     newUser:20,
     milestones:[
-      {level:5,  reward:50},
-      {level:10, reward:50},
+      {level:5,  reward:25},
+      {level:10, reward:25},
     ]
   },
   ex:{min:1000,rate:0.01},
@@ -641,7 +645,7 @@ const CONFIG={
   gameWin:{coinsPerLevel: 100, gemsEvery10: 10},
   wd:{min:5000,rate:0.0001,shamMin:1000,shamSypPerGem:0.01},
   spins:2,
-  prizes:[500,750,1000,1500,2000,2500,3500,5000].map((v,i)=>['coins',v,['#F4B900','#35C915','#2FB8DC'][i%3]]),
+  prizes:[1000,1500,2500,3500,5000,6500,8000,10000].map((v,i)=>['coins',v,['#F4B900','#35C915','#2FB8DC'][i%3]]),
   daily:[[200,20],[300,30],[500,50],[700,70],[1000,100],[1500,150],[3000,300]],
   tg:'https://t.me/PuppyMerge',
   api:{base:'https://puppy-merge-api.starlimitedcom.workers.dev'},
@@ -660,13 +664,13 @@ const CONFIG={
     pollMaxAttempts:60,
     pendingTimeoutMs: 30 * 60 * 1000,
   },
-  // ═══ خطط الاستثمار الجديدة (تبدأ من 1000 جوهرة، أرباح متوسطة 10%-30%) ═══
+  // ═══ خطط الاستثمار الجديدة ═══
   investPlans:[
-    {id:'p1', name:'خطة الجرو',    icon:'fa-paw',      days:7,  price:1000,  totalReturn:1100,  color:'#4BE51E'},
-    {id:'p2', name:'خطة النشيط',   icon:'fa-dog',      days:14, price:2500,  totalReturn:2900,  color:'#59D7F2'},
-    {id:'p3', name:'خطة المحترف',  icon:'fa-bone',     days:20, price:5000,  totalReturn:6000,  color:'#FFD52E'},
-    {id:'p4', name:'خطة الخبير',   icon:'fa-crown',    days:25, price:10000, totalReturn:12500, color:'#FF8F8F'},
-    {id:'p5', name:'خطة الأسطورة', icon:'fa-gem',      days:30, price:25000, totalReturn:32500, color:'#C58CE8'},
+    {id:'p1', name:'خطة الجرو',    icon:'fa-paw',      days:7,  price:5000,   totalReturn:5500,   color:'#4BE51E'},
+    {id:'p2', name:'خطة النشيط',   icon:'fa-dog',      days:12, price:20000,  totalReturn:22600,  color:'#59D7F2'},
+    {id:'p3', name:'خطة المحترف',  icon:'fa-bone',     days:18, price:50000,  totalReturn:58000,  color:'#FFD52E'},
+    {id:'p4', name:'خطة الخبير',   icon:'fa-crown',    days:24, price:70000,  totalReturn:84000,  color:'#FF8F8F'},
+    {id:'p5', name:'خطة الأسطورة', icon:'fa-gem',      days:30, price:100000, totalReturn:125000, color:'#C58CE8'},
   ],
 };
 
@@ -916,7 +920,7 @@ function buildWheel(){
   svg.innerHTML=CONFIG.prizes.map((p,i)=>{
     const[x1,y1]=P(i*A,100),[x2,y2]=P((i+1)*A,100),mid=i*A+A/2,[tx,ty]=P(mid,70);
     return'<path d="M100 100L'+x1+' '+y1+'A100 100 0 0 1 '+x2+' '+y2+'Z" fill="'+p[2]+'" stroke="#fff" stroke-width="1.5"/>'+
-      '<text x="'+tx+'" y="'+ty+'" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="800" fill="#fff" transform="rotate('+mid+' '+tx+' '+ty+')" style="paint-order:stroke;stroke:rgba(0,0,0,.35);stroke-width:2px">'+p[1]+'</text>';
+      '<text x="'+tx+'" y="'+ty+'" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="800" fill="#fff" transform="rotate('+mid+' '+tx+' '+ty+')" style="paint-order:stroke;stroke:rgba(0,0,0,.35);stroke-width:2px">'+p[1]+'</text>';
   }).join('');
 }
 function renderWheel(){
@@ -1093,7 +1097,6 @@ function isInvestmentActive(inv){
   const plan=getPlanById(inv.planId);
   if(!plan)return false;
   const endAt = inv.startedAt + plan.days * 86400 * 1000;
-  // نشط إذا لم ينتهِ الوقت أو لم يُجمع كامل المبلغ
   return Date.now() < endAt || inv.collected < plan.totalReturn;
 }
 
@@ -1145,7 +1148,6 @@ function renderInvestments(){
         const endAt = inv.startedAt + plan.days * 86400 * 1000;
         const effectiveNow = Math.min(now, endAt);
         const elapsedMs = effectiveNow - inv.startedAt;
-        const totalMs = plan.days * 86400 * 1000;
         const daysElapsed = (elapsedMs / 86400000).toFixed(1);
         const collectedPct = Math.min(100, (inv.collected / plan.totalReturn) * 100);
 
@@ -1168,10 +1170,7 @@ function renderInvestments(){
           </div>
           ${isDone && inv.collected >= plan.totalReturn ?
             '<div style="text-align:center;font-size:12px;font-weight:800;color:var(--ink2);padding:10px"><i class="fas fa-check-circle" style="color:var(--green-d)"></i> اكتمل الاستثمار — يمكنك شراء الخطة مرة أخرى</div>' :
-            (pending > 0 ?
-              `<button class="btn b-g" data-invest-collect="${inv.id}" style="height:44px"><i class="fas fa-hand-holding-heart"></i> جمع ${fmt(pending)} 💎</button>` :
-              `<div style="text-align:center;font-size:11px;font-weight:800;color:var(--ink2);padding:8px"><i class="fas fa-hourglass-half"></i> جاري التعدين تلقائياً...</div>`
-            )
+            `<div style="text-align:center;font-size:11.5px;font-weight:800;color:var(--ink2);padding:8px"><i class="fas fa-hand-holding-heart" style="color:var(--green-d)"></i> استخدم زر "جمع الكل" بالأعلى لسحب الأرباح</div>`
           }
         </div>`;
       }).join('');
@@ -1215,9 +1214,6 @@ function renderInvestments(){
     </div>`;
   }).join('');
 
-  activeEl.querySelectorAll('[data-invest-collect]').forEach(b=>{
-    b.onclick=()=>collectInvestment(b.dataset.investCollect);
-  });
   plansEl.querySelectorAll('[data-invest-buy]').forEach(b=>{
     b.onclick=()=>buyPlan(b.dataset.investBuy);
   });
@@ -1243,11 +1239,6 @@ function updateInvestmentsUI(){
       if(el) el.textContent = fmt(pending);
       if ((pending > 0 && oldPending === 0) || (pending === 0 && oldPending > 0)) {
         needsRerender = true;
-      } else {
-        const btn = document.querySelector(`[data-invest-collect="${inv.id}"]`);
-        if (btn && pending > 0) {
-          btn.innerHTML = `<i class="fas fa-hand-holding-heart"></i> جمع ${fmt(pending)} 💎`;
-        }
       }
     }
   });
@@ -1266,7 +1257,6 @@ async function buyPlan(planId){
   if(!plan)return;
   const u = S.user;
 
-  // ═══ منع شراء نفس الخطة إذا كانت نشطة ═══
   if(isPlanActive(planId)){
     return toast('هذه الخطة نشطة حالياً — انتظر انتهاءها','err');
   }
@@ -1295,32 +1285,6 @@ async function buyPlan(planId){
       amount: '-' + fmt(plan.price) + ' 💎',
       btn:'رائع',
     });
-  }catch(e){
-    console.error(e);
-    toast('حدثت مشكلة، حاول مجدداً','err');
-  }finally{
-    S.busy = false;
-  }
-}
-
-async function collectInvestment(invId){
-  if(S.busy)return;
-  const u = S.user;
-  const inv = (u.investments || []).find(x => x.id === invId);
-  if(!inv) return;
-  const plan = getPlanById(inv.planId);
-  if(!plan) return;
-  const pending = getPending(inv, plan);
-  if(pending <= 0) return toast('لا يوجد شيء للجمع','info');
-
-  S.busy = true;
-  try{
-    inv.collected += pending;
-    u.gems += pending;
-    await FB.set({gems: u.gems, investments: u.investments});
-    SFX.play('reward');
-    renderAll();
-    toast('+' + fmt(pending) + ' 💎');
   }catch(e){
     console.error(e);
     toast('حدثت مشكلة، حاول مجدداً','err');
@@ -1945,8 +1909,8 @@ function openContentModal(kind){
       '<div class="policy-box"><h4>عن Puppy Merge</h4><p>لعبة دمج وترفيه تجمع فيها العملات والجواهر وتتقدم عبر المستويات والمهام والإحالات.</p></div><div class="policy-box"><h4>المعلومات المستخدمة</h4><p>يستخدم التطبيق معرّف حساب تيليجرام واسم العرض وصورة الحساب إن توفرت، إضافةً إلى الرصيد والطاقة وتقدم اللعب والإحالات وبيانات السحب التي تدخلها، لتشغيل الميزات وتسجيل المكافآت ومراجعة طلبات السحب والحد من إساءة الاستخدام.</p></div><div class="policy-box"><h4>الخصوصية</h4><p>قد تتم معالجة البيانات عبر الخدمات اللازمة لتشغيل التطبيق مثل تيليجرام وفايربيس، أو عند وجود متطلب قانوني.</p></div>';
   }else{
     $('contentBody').innerHTML=en?
-      '<div class="policy-box"><h4>How to play</h4><p>Swap adjacent tiles to match at least three identical animals and reach the level target. Each level win gives +100 coins, and every 10th level grants +10 gems bonus.</p></div><div class="policy-box"><h4>Buy Gems</h4><p>Open profile, choose Buy Gems, select Stars or Crypto tab, choose amount and complete payment.</p></div><div class="policy-box"><h4>Puppy Investment</h4><p>Buy investment plans with gems. Each plan mines automatically over its duration and you can collect accumulated gems anytime. After the plan ends, mining stops and you can buy it again.</p></div><div class="policy-box"><h4>Referral Rewards</h4><p>Invite friends and earn 100 gems total: +20 when your friend joins (they get 20 too), +50 when they reach level 5, +50 when they reach level 10.</p></div>' :
-      '<div class="policy-box"><h4>كيف تلعب؟</h4><p>بدّل أماكن القطع المتجاورة لتكوين ثلاثة حيوانات متشابهة أو أكثر. كل مستوى تكمله يمنحك +100 عملة، وكل 10 مستويات تحصل على +10 جواهر إضافية.</p></div><div class="policy-box"><h4>شراء الجواهر</h4><p>افتح حسابك، اختر "شراء الجواهر"، اختر تبويب النجوم أو الكريبتو، ثم اختر المبلغ وأكمل الدفع.</p></div><div class="policy-box"><h4>استثمار الجراء</h4><p>اشترِ خطة استثمار بالجواهر. كل خطة تُعدّن أرباحاً تلقائياً على مدار مدتها، ويمكنك جمع الجواهر المتراكمة في أي وقت. بعد انتهاء الخطة، يتوقف التعدين ويمكنك شراؤها مرة أخرى.</p></div><div class="policy-box"><h4>مكافآت الإحالة</h4><p>ادعُ أصدقاءك واكسب 100 جوهرة إجمالاً: +20 عند انضمام صديقك (وهو يحصل على 20 أيضاً)، +50 عند وصوله للمستوى 5، +50 عند وصوله للمستوى 10.</p></div>';
+      '<div class="policy-box"><h4>How to play</h4><p>Swap adjacent tiles to match at least three identical animals and reach the level target. Each level win gives +100 coins, and every 10th level grants +10 gems bonus.</p></div><div class="policy-box"><h4>Buy Gems</h4><p>Open profile, choose Buy Gems, select Stars or Crypto tab, choose amount and complete payment.</p></div><div class="policy-box"><h4>Puppy Investment</h4><p>Buy investment plans with gems. Each plan mines automatically over its duration and you can collect accumulated gems anytime. After the plan ends, mining stops and you can buy it again.</p></div><div class="policy-box"><h4>Referral Rewards</h4><p>Invite friends and earn 50 gems total: +20 when your friend joins (they get 20 too), +25 when they reach level 5, +25 when they reach level 10.</p></div>' :
+      '<div class="policy-box"><h4>كيف تلعب؟</h4><p>بدّل أماكن القطع المتجاورة لتكوين ثلاثة حيوانات متشابهة أو أكثر. كل مستوى تكمله يمنحك +100 عملة، وكل 10 مستويات تحصل على +10 جواهر إضافية.</p></div><div class="policy-box"><h4>شراء الجواهر</h4><p>افتح حسابك، اختر "شراء الجواهر"، اختر تبويب النجوم أو الكريبتو، ثم اختر المبلغ وأكمل الدفع.</p></div><div class="policy-box"><h4>استثمار الجراء</h4><p>اشترِ خطة استثمار بالجواهر. كل خطة تُعدّن أرباحاً تلقائياً على مدار مدتها، ويمكنك جمع الجواهر المتراكمة في أي وقت. بعد انتهاء الخطة، يتوقف التعدين ويمكنك شراؤها مرة أخرى.</p></div><div class="policy-box"><h4>مكافآت الإحالة</h4><p>ادعُ أصدقاءك واكسب 50 جوهرة إجمالاً: +20 عند انضمام صديقك (وهو يحصل على 20 أيضاً)، +25 عند وصوله للمستوى 5، +25 عند وصوله للمستوى 10.</p></div>';
   }
   $('contentModal').classList.add('show');
 }
