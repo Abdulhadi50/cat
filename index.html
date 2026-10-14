@@ -530,13 +530,6 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
         <div class="card"><span class="ico i-green"><i class="fas fa-trophy"></i></span><div><b id="profLevel">1</b><span class="sub">المستوى</span></div></div>
         <div class="card"><span class="ico i-sky"><i class="fas fa-users"></i></span><div><b id="profRefs">0</b><span class="sub">إحالات</span></div></div>
       </div>
-      <div class="card">
-        <div class="ttl" style="margin-bottom:10px"><i class="fas fa-language"></i> تغيير اللغة</div>
-        <div class="g-act">
-          <button class="btn b-s lang-btn" data-lang="ar"><img class="flag-ico" src="https://img.icons8.com/color/48/saudi-arabia-circular.png" alt="AR"> العربية</button>
-          <button class="btn b-s lang-btn" data-lang="en"><img class="flag-ico" src="https://img.icons8.com/color/48/usa-circular.png" alt="EN"> English</button>
-        </div>
-      </div>
       <div class="card menu">
         <button data-go="deposit"><span class="ico i-gold"><i class="fas fa-gem"></i></span><span class="grow">شراء الجواهر</span><i class="fas fa-chevron-left"></i></button>
         <button data-go="exchange"><span class="ico i-green"><i class="fas fa-right-left"></i></span><span class="grow">تبديل العملات</span><i class="fas fa-chevron-left"></i></button>
@@ -603,14 +596,6 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
   <div class="sub" style="font-size:13.5px;margin-top:4px" id="mSub"></div>
   <div class="m-amt" id="mAmt"></div>
   <button class="btn b-y" id="mBtn"><i class="fas fa-check"></i> <span>موافق</span></button>
-</div></div>
-<div class="modal" id="langModal" style="z-index:1500"><div class="card">
-  <div class="ico i-sky"><i class="fas fa-language"></i></div>
-  <div class="ttl" style="font-size:20px">اختر اللغة · Choose language</div>
-  <div style="height:16px"></div>
-  <button class="btn b-y lang-pick" data-lang="ar"><img class="flag-ico" src="https://img.icons8.com/color/48/saudi-arabia-circular.png" alt="AR"> العربية</button>
-  <div style="height:10px"></div>
-  <button class="btn b-s lang-pick" data-lang="en"><img class="flag-ico" src="https://img.icons8.com/color/48/usa-circular.png" alt="EN"> English</button>
 </div></div>
 <div class="modal text-modal" id="contentModal" style="z-index:1600">
   <div class="card">
@@ -1394,7 +1379,7 @@ async function loadWdHistory(){
     const it=[];q.forEach(d=>it.push(d.data()));it.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
     const map={pending:'قيد المراجعة',approved:'مقبول',processing:'قيد التنفيذ',completed:'مكتمل',rejected:'مرفوض'};
     l.innerHTML=it.slice(0,15).map(w=>'<div class="card hist"><div><div class="ttl" style="direction:ltr;text-align:right">'+fmt(w.amount)+' 💎 → '+esc(w.payout||'$0')+'</div><div class="sub">'+
-      new Date(w.createdAt||Date.now()).toLocaleDateString((LANG==='en'?'en-US':'ar-EG'),{day:'numeric',month:'short',year:'numeric'})+' • '+(w.method==='sham_cash'?(LANG==='en'?'Sham Cash':'شام كاش'):'Binance')+'</div></div><span class="st '+esc(w.status||'pending')+'">'+(map[w.status]||'قيد المراجعة')+'</span></div>').join('');
+      new Date(w.createdAt||Date.now()).toLocaleDateString('ar-EG',{day:'numeric',month:'short',year:'numeric'})+' • '+(w.method==='sham_cash'?(LANG==='en'?'Sham Cash':'شام كاش'):'Binance')+'</div></div><span class="st '+esc(w.status||'pending')+'">'+(map[w.status]||'قيد المراجعة')+'</span></div>').join('');
   }catch(e){l.innerHTML='<div class="empty">تعذر التحميل</div>'}
 }
 
@@ -1775,106 +1760,25 @@ async function loadLeaderboard(){
   }
 }
 
-/* ═══ LANGUAGE ═══ */
-const EN={
-'مشاهدة إعلان':'Watch an ad','شاهد إعلان واربح':'Watch an ad & win','جاري مشاهدة الإعلان':'Watching ad...','متاح':'Available','مركز المساعدة':'Help center','معلومات التطبيق وسياسة الخصوصية':'App information & privacy','إغلاق':'Close','أدر عجلة الحظ 10 مرات':'Spin the wheel 10 times','أكمل 10 لفات':'Complete 10 spins',
-'دمج الجراء':'Merge the Puppies','ادمج 3 جراء متشابهة واكسب كنوز المملكة!':'Merge 3 matching puppies and win the kingdom treasures!',
-'المستوى التالي':'Next level','ممتاز! اكتمل المستوى':'Excellent! Level complete','أكملت المستوى':'You completed level','مكافأة كل 10 مستويات':'reward every 10 levels',
-'المستوى':'Level','ابدأ اللعب':'Play','الطاقة':'Energy','ممتلئة':'Full','عجلة الحظ':'Lucky Wheel','لفّتان يومياً':'2 spins daily','مجاناً':'Free',
-'المهام اليومية':'Daily Missions','مهام المستويات':'Level Missions','مهام الدعوات':'Invite Missions','المهام':'Missions','مكافآت يومية':'Daily rewards',
-'النقاط':'Score','الهدف':'Goal','الحركات':'Moves','نقطة':'pts','تلميح':'Hint','خلط':'Shuffle','لف العجلة':'Spin','لفات':'spins',
-'التسجيل اليومي':'Daily Login','يوم ':'Day ','تبديل العملات':'Exchange Coins','اتجاه واحد فقط':'One way only','اختر عدد العملات':'Choose coin amount',
-'العملات المُحوّلة':'Coins to convert','الجواهر المستقبلة':'Gems received','رصيدك القابل للسحب':'Withdrawable balance','رصيدك':'Your balance','تبديل الآن':'Exchange now','اختر طريقة السحب':'Choose withdrawal method','الحد الأدنى 5,000 💎 = $0.50':'Minimum: 5,000 💎 = $0.50','الحد الأدنى 1,000 💎 = 10 SYP':'Minimum: 1,000 💎 = 10 SYP','Binance Pay':'Binance Pay','Sham Cash — شام كاش':'Sham Cash','معرّف شام كاش':'Sham Cash ID','أدخل معرّف شام كاش لاستلام السحب':'Enter your Sham Cash ID to receive the withdrawal','معرّف Binance Pay':'Binance Pay ID','أدخل معرّف Binance Pay أو البريد الإلكتروني لاستلام السحب':'Enter your Binance Pay ID or email to receive the withdrawal','سجل السحوبات':'Withdrawal history','لا يوجد سجل سحب بعد':'No withdrawal history yet','ما يعادل':'Equivalent','تم إرسال طلب السحب':'Withdrawal request sent','سيتم معالجة طلبك خلال 24-72 ساعة':'Your request will be processed within 24–72 hours','طلب السحب':'Withdrawal request','جاري الإرسال...':'Submitting...','أدخل معرّف شام كاش صحيح':'Enter a valid Sham Cash ID',
-'اختر المبلغ':'Choose amount','المبلغ المختار':'Selected amount','تقديم طلب السحب':'Submit withdrawal',
-'Binance Pay ID أو البريد الإلكتروني':'Binance Pay ID or email','لاعب':'Player','عملات':'Coins','جواهر':'Gems','إحالات':'Referrals','تغيير اللغة':'Language',
-'دعوة الأصدقاء':'Invite Friends','سحب الأموال':'Withdraw','عدد الدعوات':'Invites','أرباح الدعوات':'Invite earnings','هل دعاك صديق؟':'Did a friend invite you?',
-'أدخل معرّف الدعوة لتحصل على':'Enter the invite ID to get','تأكيد الكود':'Confirm code','جوهرة لك عن كل صديق':'gems for you per friend','هدية ترحيب لصديقك':'welcome gift for your friend',
-'شارك رابطك':'Share your link','صديقك ينضم':'Friend joins','تستلمان الجواهر':'You both get gems','معرّف الدعوة الخاص بك':'Your invite ID','معرّف الدعوة':'Invite ID',
-'مشاركة الرابط':'Share link','نسخ الرابط':'Copy link','نسخ':'Copy','أعلى 10 دعوات':'Top 10 Inviters','جاري التحميل':'Loading','الرئيسية':'Home','العجلة':'Wheel','الإحالة':'Referral','حسابي':'Profile',
-'موافق':'OK','حسناً':'Okay','انضم لقناة تيليجرام':'Join Telegram channel','انضم للقناة الرسمية':'Join the official channel','انضم':'Join','تم':'Done','استلم':'Claim','ادعُ':'Invite',
-'أصدقاء':'friends','صديق':'friend','أوصل المستوى':'Reach level','مكافأة فورية عند الوصول':'Instant reward on reaching','مكافأة عند إتمام العدد':'Reward on completion','أكملت كل مهام الدعوات':'All invite missions completed',
-'تم اكتشاف تلاعب بالوقت — اضبط وقت الجهاز تلقائياً':'Time tampering detected — set device time to automatic','تم خلط اللوحة تلقائياً':'Board shuffled automatically','تم خلط اللوحة!':'Board shuffled!',
-'لا يوجد تلميح متاح':'No hint available','تحتاج':'You need','عملة':'coins','جوهرة':'gems','لا توجد لفات — عد غداً':'No spins left — come back tomorrow','استلمت مكافأة اليوم':'Today reward already claimed',
-'استلم المكافآت بالترتيب':'Claim rewards in order','انتظر ثوانٍ لنتحقق...':'Wait a few seconds...','تم استلام المكافأة!':'Reward claimed!','لم تكمل الدعوات':'Invites not complete',
-'الحد الأدنى':'Minimum','رصيد العملات غير كافٍ':'Not enough coins','رصيد الجواهر غير كافٍ':'Not enough gems','أدخل معرّف Binance صحيح':'Enter a valid Binance ID',
-'حدثت مشكلة، حاول مجدداً':'Something went wrong, try again','جاري التحويل...':'Converting...','جاري الإرسال...':'Sending...','جاري التحقق...':'Verifying...','تم التبديل!':'Exchanged!',
-'حوّلت':'You converted','إلى جواهر':'to gems',
-'قيد المراجعة':'Pending','مقبول':'Approved','قيد التنفيذ':'Processing','مكتمل':'Completed','مرفوض':'Rejected',
-'تعذر التحميل':'Failed to load','معرّف غير صالح':'Invalid ID','الكود غير موجود':'Code not found','من الإحالة':'from referral','تعذر التحقق من الكود':'Could not verify code',
-'أنت':'You','لا يوجد مدعون بعد — كن الأول!':'No inviters yet — be the first!','تعذر تحميل القائمة':'Failed to load list','تعذر النسخ':'Copy failed','تم نسخ الرابط':'Link copied','تم نسخ المعرّف':'ID copied',
-'انضم إلى Puppy Merge واربح الجواهر!':'Join Puppy Merge and win gems!','اللعب مجمد — وقت الجهاز غير صحيح':'Game locked — device time is wrong','لا توجد طاقة — انتظر التجديد':'No energy — wait for regeneration','لا توجد طاقة':'No energy',
-'انتهت الحركات!':'Out of moves!',' من ':' of ','فقدت':'lost','طاقة':'energy','متبقي':'left','حاول مجدداً':'Try again','مبروك!':'Congrats!',
-'رائع!':'Awesome!','رائع':'Great','مكافأة اليوم':'Day reward','أكملت الأسبوع! تسلسل جديد غداً':'Week complete! New streak tomorrow','عد غداً لمكافأة أكبر':'Come back tomorrow for a bigger reward',
-'مكافأة المستوى':'Level reward','استلمت مكافأة إنجاز':'You claimed an achievement reward','مكافأة الدعوات':'Invite reward','شكراً لدعوة':'Thanks for inviting','استلمت المكافأة':'Already claimed',
-'كل نجمة تساوي 100 جوهرة':'Each Star = 100 gems','اختر الباقة المناسبة لك':'Choose your package','رصيدك الحالي':'Your balance','طريقة الدفع':'Payment method',
-'الدفع آمن عبر تلغرام مباشرة. تصل الجواهر لحسابك فوراً بعد الدفع.':'Payment is secure through Telegram. Gems arrive instantly after payment.',
-'نجمة':'Stars','احصل على':'Get','الأكثر طلباً':'Popular','أفضل قيمة':'Best value',
-'يجب فتح التطبيق داخل تلغرام':'Must open the app inside Telegram','فشل إنشاء الفاتورة':'Failed to create invoice','تعذر بدء الدفع':'Could not start payment',
-'تم الدفع بنجاح!':'Payment successful!','حصلت على':'You got','تم إلغاء الدفع':'Payment cancelled','فشل الدفع، حاول مجدداً':'Payment failed, please try again',
-'شراء الجواهر':'Buy Gems','نجوم ⭐ أو كريبتو 💎':'Stars ⭐ or Crypto 💎','اختر طريقة الشراء المناسبة لك':'Choose your purchase method',
-'نجوم ⭐':'Stars ⭐','كريبتو 💎':'Crypto 💎','ادفع بالكريبتو 💎':'Pay with Crypto 💎',
-'USDC / USDT / BTC / ZEC — بدون رسوم إضافية':'USDC / USDT / BTC / ZEC — No extra fees',
-'اختر مبلغ الشراء (بالدولار)':'Choose purchase amount (USD)','أو أدخل مبلغاً مخصصاً':'Or enter a custom amount',
-'مبلغ الشراء':'Purchase amount','ادفع بالكريبتو الآن':'Pay with Crypto Now','إكمال الدفع بالكريبتو':'Complete Crypto Payment',
-'دفع آمن ومشفر. تصل الجواهر لحسابك فوراً بعد التأكيد.':'Secure encrypted payment. Gems arrive instantly after confirmation.',
-'جاري إنشاء الفاتورة...':'Creating invoice...','تعذر بدء الدفع، حاول مجدداً':'Could not start payment, try again',
-'انتهت صلاحية الفاتورة أو فشل الدفع':'Invoice expired or payment failed',
-'تم استلام الدفع!':'Payment received!','تمت إضافة الجواهر لحسابك':'Gems added to your account',
-'الحد الأدنى للدفع $1':'Minimum payment is $1','الحد الأعلى للدفع $1000':'Maximum payment is $1000',
-'لديك فاتورة معلقة':'You have a pending invoice','اضغط "تحقق الآن" لمراجعة حالة الدفع':'Tap "Check now" to review payment status',
-'تحقق الآن':'Check now','إلغاء الطلب':'Cancel order','جاري التحقق...':'Verifying...',
-'الفاتورة لا تزال قيد الانتظار':'Invoice still pending','تعذر التحقق، حاول مجدداً':'Could not verify, try again',
-'انتهى وقت المراقبة التلقائية. اضغط "تحقق الآن" متى أردت.':'Auto-monitoring ended. Tap "Check now" anytime.',
-'انتهت صلاحية الفاتورة. يمكنك البدء من جديد.':'Invoice expired. You can start over.',
-'تم إلغاء الطلب. لن يتم إنشاء طلبات جديدة.':'Order cancelled. No new requests will be made.',
-'إجمالي مكافآت الدعوة (مقسمة)':'Total invite rewards (split)','شروط المكافآت':'Reward conditions',
-'عند وصول صديقك للمستوى 5':'When your friend reaches level 5','عند وصول صديقك للمستوى 10':'When your friend reaches level 10',
-'استثمار الجراء':'Puppy Investment','اشترِ خطة بالجواهر واكسب أرباحاً تلقائياً':'Buy a plan with gems and earn automatically',
-'اشترِ خطة واكسب الجواهر تلقائياً':'Buy a plan and earn gems automatically',
-'الخطط المتاحة':'Available Plans','استثماراتي النشطة':'My Active Investments',
-'متاح للجمع الآن':'Available to collect','جمع الكل':'Collect All',
-'شراء الخطة':'Buy Plan','رصيد غير كافٍ':'Insufficient balance',
-'الربح الصافي':'Net profit','إجمالي الاسترداد':'Total return',
-'سعر':'Price','ربح':'Profit','يوم':'day','أيام':'days',
-'تم جمع':'Collected','اكتمل الاستثمار — يمكنك شراء الخطة مرة أخرى':'Investment completed — you can buy this plan again',
-'جاري التعدين تلقائياً...':'Auto-mining in progress...',
-'تم شراء الخطة!':'Plan purchased!','لا يوجد شيء للجمع':'Nothing to collect',
-'مستوى مميز!':'Special level!','الخطة نشطة حالياً':'Plan is currently active',
-'خطة الجرو':'Puppy Plan','خطة النشيط':'Active Plan','خطة المحترف':'Pro Plan','خطة الخبير':'Expert Plan','خطة الأسطورة':'Legend Plan',
-'هذه الخطة نشطة حالياً — انتظر انتهاءها':'This plan is currently active — wait for it to end',
-};
-const KEYS=Object.keys(EN).sort((a,b)=>b.length-a.length),AR=/[\u0600-\u06FF]/,orig=new WeakMap();
-let LANG=null,trBusy=false,trRaf=0;
-function trText(v){
-  if(LANG!=='en')return v;
-  for(const k of KEYS){if(k.length<4){if(v.trim()===k)v=v.replace(k,EN[k])}else if(v.includes(k))v=v.split(k).join(EN[k])}
-  return v;
-}
+/* ═══ اللغة العربية فقط ═══ */
+let LANG='ar';
+function trText(v){return v;}
 function translateAll(){
-  trBusy=true;
-  try{
-    const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;
-    while(n=w.nextNode()){
-      const p=n.parentNode;if(p&&(p.tagName==='SCRIPT'||p.tagName==='STYLE'))continue;
-      const v=n.nodeValue,rec=orig.get(n);
-      if(rec&&v===rec.t){if(LANG!=='en'){n.nodeValue=rec.o;orig.delete(n)}continue}
-      if(LANG==='en'&&AR.test(v)){const t=trText(v);if(t!==v){orig.set(n,{o:v,t});n.nodeValue=t}}
-    }
-    document.querySelectorAll('[placeholder]').forEach(e=>{if(!e.dataset.ph)e.dataset.ph=e.placeholder;e.placeholder=LANG==='en'?trText(e.dataset.ph):e.dataset.ph});
-  }finally{trBusy=false}
+  document.documentElement.lang='ar';
+  document.documentElement.dir='rtl';
 }
-new MutationObserver(()=>{if(LANG==='en'&&!trBusy&&!trRaf)trRaf=requestAnimationFrame(()=>{trRaf=0;translateAll()})}).observe(document.body,{childList:true,subtree:true,characterData:true});
-function applyLang(l,persist){
-  LANG=l;try{localStorage.setItem('pm_lang',l)}catch(e){}
-  document.documentElement.lang=l;document.documentElement.dir=l==='en'?'ltr':'rtl';
-  document.querySelectorAll('#screen-profile .lang-btn').forEach(b=>{const on=b.dataset.lang===l;b.classList.toggle('b-g',on);b.classList.toggle('b-s',!on)});
-  if(persist&&S.user){S.user.lang=l;FB.set({lang:l})}
-  renderAll();translateAll();
+function applyLang(){
+  LANG='ar';
+  document.documentElement.lang='ar';
+  document.documentElement.dir='rtl';
+  try{localStorage.setItem('pm_lang','ar')}catch(e){}
+  renderAll();
 }
 function initLang(){
-  let l=null;try{l=localStorage.getItem('pm_lang')}catch(e){}
-  l=l||(S.user&&S.user.lang);
-  if(l)applyLang(l,false);else $('langModal').classList.add('show');
+  LANG='ar';
+  document.documentElement.lang='ar';
+  document.documentElement.dir='rtl';
+  try{localStorage.setItem('pm_lang','ar')}catch(e){}
 }
 
 async function watchEnergyAd(){
@@ -1942,8 +1846,6 @@ function bind(){
   $('exSubmit').onclick=doExchange;$('wdSubmit').onclick=doWithdraw;
   const link=()=>$('refLink').textContent;
   $('refShare').onclick=()=>TG.share(link(),trText('🐾 انضم إلى Puppy Merge واربح الجواهر!'));
-  document.querySelectorAll('.lang-pick').forEach(b=>b.onclick=()=>{applyLang(b.dataset.lang,true);$('langModal').classList.remove('show')});
-  document.querySelectorAll('#screen-profile .lang-btn').forEach(b=>b.onclick=()=>applyLang(b.dataset.lang,true));
   $('codeCopy').onclick=()=>navigator.clipboard?navigator.clipboard.writeText($('refCode').textContent).then(()=>toast('تم نسخ المعرّف')):toast('تعذر النسخ','err');
   $('codeSubmit').onclick=()=>withBtn($('codeSubmit'),'جاري التحقق...',()=>applyCode($('codeInput').value.trim().replace(/^ref_/,'')));
   document.addEventListener('click',e=>{if(e.target.closest('.btn,.amt,.g-btn,.dock button,.quick .card,.star-pack,.dep-tab'))SFX.play('tap')});
