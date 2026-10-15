@@ -200,7 +200,6 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 .pack-tag{display:inline-block;padding:1px 8px;border-radius:8px;font-size:9.5px;font-weight:800;color:#fff;margin-inline-start:6px;vertical-align:middle}
 .pack-tag.hot{background:var(--red)}
 .pack-tag.best{background:var(--green-d)}
-.pack-tag.soon{background:#888}
 .dep-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;padding:4px;background:rgba(255,253,240,.6);border-radius:22px;border:2px solid var(--edge)}
 .dep-tab{flex:1;height:44px;border-radius:18px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;font-weight:800;color:var(--ink2);transition:all .2s;background:transparent}
 .dep-tab.active{background:linear-gradient(180deg,#FFE95C,#FFD52E 72%,#F4B900);color:var(--ink);box-shadow:0 3px 0 var(--gold-d),inset 0 2px 0 rgba(255,255,255,.7)}
@@ -382,10 +381,10 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
       </div>
 
       <div class="dep-tabs">
-        <button class="dep-tab active" id="depTabStars" data-tab="stars"><i class="fas fa-star"></i> نجوم ⭐</button>
-        <button class="dep-tab" id="depTabCrypto" data-tab="crypto"><i class="fas fa-coins"></i> كريبتو 💎</button>
+        <button class="dep-tab active" id="depTabStars" data-tab="stars"><i class="fas fa-star"></i> Stars </button>
+        <button class="dep-tab" id="depTabCrypto" data-tab="crypto"><i class="fas fa-coins"></i> USDT </button>
         <button class="dep-tab" data-tab="binance"><i class="fas fa-wallet"></i> Binance Pay</button>
-        <button class="dep-tab" data-tab="sham"><i class="fas fa-money-bill-wave"></i> شام كاش</button>
+        <button class="dep-tab" data-tab="sham"><i class="fas fa-money-bill-wave"></i> Sham Cash </button>
       </div>
 
       <div id="dep-tab-stars">
@@ -475,24 +474,14 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
       <div class="hero2"><div class="sub">رصيدك القابل للسحب</div><div class="big"><i class="fas fa-gem" style="color:var(--sky-d)"></i> <span id="wdGems">0</span></div><div class="ttl" id="wdUsd">$0.00</div></div>
       <div class="ttl" style="margin:4px 0 10px">اختر طريقة السحب</div>
 
-      <!-- USDT TRON (cryptoinfra - تلقائي) -->
+      <!-- USDT Crypto (تلقائي) -->
       <div class="card row wd-method selected" data-method="usdt_crypto" role="button" tabindex="0" style="border-color:var(--gold-d)">
-        <span class="ico i-green" style="width:46px;height:46px;font-size:22px"><i class="fas fa-bolt"></i></span>
+        <span class="ico i-green" style="width:46px;height:46px;font-size:22px"><i class="fas fa-coins"></i></span>
         <div class="grow">
-          <div class="ttl">USDT TRON <span class="pack-tag best" style="font-size:9px">تلقائي</span></div>
-          <div class="sub">الحد الأدنى 12,500 💎 = $1.00</div>
+          <div class="ttl">USDT Crypto <span class="pack-tag best" style="font-size:9px">تلقائي</span></div>
+          <div class="sub">الحد الأدنى 5,000 💎 = $0.40</div>
         </div>
         <i class="fas fa-circle-check wd-check" style="color:var(--green-d);font-size:22px"></i>
-      </div>
-
-      <!-- USDT BSC (NOWPayments - قريباً) -->
-      <div class="card row wd-method" data-method="nowpayments_bsc" role="button" tabindex="0" style="opacity:.7">
-        <span class="ico i-sky" style="width:46px;height:46px;font-size:22px"><i class="fas fa-coins"></i></span>
-        <div class="grow">
-          <div class="ttl">USDT BSC <span class="pack-tag soon" style="font-size:9px">قريباً</span></div>
-          <div class="sub">الحد الأدنى 12,500 💎 = $1.00</div>
-        </div>
-        <i class="fas fa-circle-check wd-check" style="color:var(--green-d);font-size:22px;visibility:hidden"></i>
       </div>
 
       <!-- Binance Pay -->
@@ -512,7 +501,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
       <div class="card">
         <div class="ttl" style="margin-bottom:10px">اختر المبلغ</div>
         <div class="amts" id="wdAmounts" style="grid-template-columns:1fr 1fr">
-          <button class="amt" data-amt="12500">12,500 💎</button><button class="amt" data-amt="25000">25,000 💎</button>
+          <button class="amt" data-amt="5000">5,000 💎</button><button class="amt" data-amt="10000">10,000 💎</button>
           <button class="amt" data-amt="50000">50,000 💎</button><button class="amt" data-amt="100000">100,000 💎</button>
         </div>
       </div>
@@ -528,8 +517,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 
       <div class="card" style="text-align:center;font-size:11.5px;color:var(--ink2);border-color:var(--sky-d);margin-top:10px">
         <i class="fas fa-info-circle" style="color:var(--sky-d)"></i>
-        <div style="margin-top:6px"><b>USDT TRON:</b> يُرسل المبلغ تلقائياً خلال دقائق.</div>
-        <div style="margin-top:4px"><b>USDT BSC:</b> قريباً — يعمل بعد تفعيل حساب NOWPayments.</div>
+        <div style="margin-top:6px"><b>USDT Crypto:</b> يُرسل المبلغ تلقائياً خلال دقائق (TRC20).</div>
         <div style="margin-top:4px"><b>Binance Pay / شام كاش:</b> يُعالج يدوياً خلال 24-72 ساعة.</div>
       </div>
 
@@ -643,17 +631,18 @@ const CONFIG={
   bot:{username:'PuppyMerge_bot',appName:'PuppyMerge'},
   col:'puppy_users',wdCol:'puppy_withdrawals',txCol:'puppy_transactions',timeCol:'_puppy_time',depCol:'puppy_deposits',
   energyMax:10,regenMs:600000,hintPrice:30,shufflePrice:50,
-  ref:{newUser:20,milestones:[{level:5,reward:25},{level:10,reward:25}]},
+  ref:{
+    newUser:20,
+    milestones:[
+      {level:5,  reward:25},
+      {level:10, reward:25},
+    ]
+  },
   ex:{min:10000,rate:0.01},
   score:{divisor:1000,perUnit:100},
   levelCoins:n=>100+n*50,
-  gameWin:{coinsPerLevel:100,gemsEvery10:10},
-  wd:{
-    min:12500,              // ⭐ الحد الأدنى الجديد للسحب التلقائي: 12,500 جوهرة = $1.00
-    rate:0.00008,           // 12,500 💎 = $1.00
-    shamMin:1000,
-    shamSypPerGem:0.01
-  },
+  gameWin:{coinsPerLevel: 100, gemsEvery10: 10},
+  wd:{min:5000,rate:0.00008,shamMin:1000,shamSypPerGem:0.01},
   spins:2,
   prizes:[1000,1500,2500,3500,5000,6500,8000,10000].map((v,i)=>['coins',v,['#F4B900','#35C915','#2FB8DC'][i%3]]),
   daily:[[200,20],[300,30],[500,50],[700,70],[1000,100],[1500,150],[3000,300]],
@@ -672,14 +661,14 @@ const CONFIG={
     maxUsd:1000,
     pollIntervalMs:5000,
     pollMaxAttempts:60,
-    pendingTimeoutMs:30*60*1000,
+    pendingTimeoutMs: 30 * 60 * 1000,
   },
   investPlans:[
-    {id:'p1',name:'خطة الجرو',icon:'fa-paw',days:7,price:5000,totalReturn:5500,color:'#4BE51E'},
-    {id:'p2',name:'خطة النشيط',icon:'fa-dog',days:12,price:20000,totalReturn:22600,color:'#59D7F2'},
-    {id:'p3',name:'خطة المحترف',icon:'fa-bone',days:18,price:50000,totalReturn:58000,color:'#FFD52E'},
-    {id:'p4',name:'خطة الخبير',icon:'fa-crown',days:24,price:70000,totalReturn:84000,color:'#FF8F8F'},
-    {id:'p5',name:'خطة الأسطورة',icon:'fa-gem',days:30,price:100000,totalReturn:125000,color:'#C58CE8'},
+    {id:'p1', name:'خطة الجرو',    icon:'fa-paw',      days:7,  price:5000,   totalReturn:5500,   color:'#4BE51E'},
+    {id:'p2', name:'خطة النشيط',   icon:'fa-dog',      days:12, price:20000,  totalReturn:22600,  color:'#59D7F2'},
+    {id:'p3', name:'خطة المحترف',  icon:'fa-bone',     days:18, price:50000,  totalReturn:58000,  color:'#FFD52E'},
+    {id:'p4', name:'خطة الخبير',   icon:'fa-crown',    days:24, price:70000,  totalReturn:84000,  color:'#FF8F8F'},
+    {id:'p5', name:'خطة الأسطورة', icon:'fa-gem',      days:30, price:100000, totalReturn:125000, color:'#C58CE8'},
   ],
 };
 
@@ -722,7 +711,7 @@ const FB={
 };
 const save=(extra={})=>FB.set(Object.assign({coins:S.user.coins,gems:S.user.gems,updatedAt:Date.now()},extra));
 
-/* ═══ TIME ═══ */
+/* ═══ TIME ANTI-CHEAT ═══ */
 const TIME={serverAt:0,perfAt:0,synced:false,locked:false,
   now(){return this.synced?this.serverAt+(performance.now()-this.perfAt):Date.now()},
   async sync(){if(!db)return;try{const r=db.collection(CONFIG.timeCol).doc('t_'+TG.id),t0=performance.now();
@@ -735,7 +724,9 @@ const TIME={serverAt:0,perfAt:0,synced:false,locked:false,
 const S={user:null,busy:false,wd:0,wdMethod:'usdt_crypto',ex:0,lb:'',lbAt:0};
 const newUser=()=>({telegramId:TG.id,name:(TG.user.first_name||'')+(TG.user.last_name?' '+TG.user.last_name:''),username:TG.user.username||null,photoUrl:TG.user.photo_url||null,
   coins:0,gems:0,energy:CONFIG.energyMax,energyUpdatedAt:TIME.now(),level:1,totalScore:0,completedLevels:[],
-  referralCode:TG.id,referredBy:null,referralCount:0,referralEarnings:0,referralUsed:false,referralMilestones:{},investments:[],
+  referralCode:TG.id,referredBy:null,referralCount:0,referralEarnings:0,referralUsed:false,
+  referralMilestones:{},
+  investments:[],
   wheelSpins:CONFIG.spins,wheelLastDate:null,wheelSpinCount:0,wheelMissionClaimed:false,wheelAdLastAt:0,dailyRewards:{},dailyLogin:{streak:0,lastClaimDate:null},levelMissions:{},inviteMissions:{},inviteBase:0,lang:null,
   createdAt:Date.now(),updatedAt:Date.now()});
 
@@ -878,16 +869,17 @@ const Game={size:6,board:[],els:[],score:0,moves:0,target:0,level:1,sel:null,bus
     this.ended=true;await Energy.use(1);
     const u=S.user;if(!Array.isArray(u.completedLevels))u.completedLevels=[];
     const firstCompletion=!u.completedLevels.includes(this.level);
-    const coinReward=CONFIG.gameWin.coinsPerLevel;
-    const gemReward=(this.level % 10 === 0 && firstCompletion) ? CONFIG.gameWin.gemsEvery10 : 0;
-    u.coins=Number(u.coins||0)+coinReward;u.gems=Number(u.gems||0)+gemReward;
+    const coinReward = CONFIG.gameWin.coinsPerLevel;
+    const gemReward = (this.level % 10 === 0 && firstCompletion) ? CONFIG.gameWin.gemsEvery10 : 0;
+    u.coins = Number(u.coins || 0) + coinReward;
+    u.gems = Number(u.gems || 0) + gemReward;
     u.totalScore=(u.totalScore||0)+this.score;
     if(firstCompletion)u.completedLevels.push(this.level);
     const next=this.level+1;if(next>(u.level||1))u.level=next;
     await save({totalScore:u.totalScore,completedLevels:u.completedLevels,level:u.level});
     SFX.play('win');renderAll();
-    checkReferralMilestones(TG.id,next).catch(e=>console.warn(e));
-    const rewardLines='+'+coinReward+' 🪙'+(gemReward?' +'+gemReward+' 💎':'');
+    checkReferralMilestones(TG.id, next).catch(e=>console.warn(e));
+    const rewardLines = `+${coinReward} 🪙` + (gemReward ? ` +${gemReward} 💎` : '');
     showModal({icon:gemReward?'fa-gem':'fa-trophy',title:gemReward?'🎉 مستوى مميز!':'المستوى '+this.level,sub:rewardLines,amount:'',btn:'التالي',
       onClose:()=>Energy.cur(S.user)>0?Game.start(next):(go('home'),toast('لا توجد طاقة — انتظر التجديد','info'))});
   },
@@ -954,7 +946,12 @@ function wheelTimer(){
   const btn=$('wheelSpinBtn');
   if(btn){
     let el=btn.querySelector('.next-day-timer');
-    if(!el){el=document.createElement('span');el.className='next-day-timer';el.style.cssText='font-size:11px;font-weight:800;margin-top:2px;display:block';btn.appendChild(el);}
+    if(!el){
+      el=document.createElement('span');
+      el.className='next-day-timer';
+      el.style.cssText='font-size:11px;font-weight:800;margin-top:2px;display:block';
+      btn.appendChild(el);
+    }
     el.innerHTML='<i class="fas fa-clock"></i> '+timerStr;
   }
   const adRemain=wheelAdRemaining(),ab=$('wheelAdBtn');
@@ -1001,8 +998,20 @@ async function watchWheelAd(){
 
 /* ═══ MISSIONS ═══ */
 const DAILY_M=[{id:'tg_channel',title:'انضم لقناة تيليجرام',desc:'انضم للقناة الرسمية @PuppyMerge',reward:{gems:10}},{id:'wheel_10',kind:'wheel',title:'أدر عجلة الحظ 10 مرات',desc:'أكمل 10 لفات',reward:{coins:5000}}];
-const LEVEL_M=(()=>{const arr=[];for(let level=10;level<=100;level+=10){arr.push({id:'lvl'+level,level:level,reward:{coins:level*100}});}for(let level=110;level<=500;level+=10){arr.push({id:'lvl'+level,level:level,reward:{coins:2000}});}return arr;})();
+
+const LEVEL_M = (() => {
+  const arr = [];
+  for (let level = 10; level <= 100; level += 10) {
+    arr.push({id:'lvl'+level, level:level, reward:{coins: level * 100}});
+  }
+  for (let level = 110; level <= 500; level += 10) {
+    arr.push({id:'lvl'+level, level:level, reward:{coins: 2000}});
+  }
+  return arr;
+})();
+
 const INVITE_M=[[1,5],[3,15],[5,30],[10,60],[20,100]].map(([n,g])=>({id:'inv'+n,count:n,reward:{gems:g}}));
+
 function mCard(icon,cls,title,desc,reward,btn,prog){
   return'<div class="card m-card"><span class="ico '+cls+'"><i class="fas '+icon+'"></i></span><div class="grow"><div class="ttl">'+title+'</div><div class="sub">'+desc+'</div><div>'+reward+'</div>'+
     (prog?'<div class="prog">'+prog[0]+' / '+prog[1]+'<span class="bar"><i style="width:'+Math.min(100,prog[0]/prog[1]*100)+'%"></i></span></div>':'')+'</div>'+btn+'</div>';
@@ -1010,10 +1019,12 @@ function mCard(icon,cls,title,desc,reward,btn,prog){
 const bDone='<button class="btn b-sm b-off" disabled><i class="fas fa-check"></i> تم</button>';
 const bLock='<button class="btn b-sm b-off" disabled><i class="fas fa-lock"></i></button>';
 const bClaim=a=>'<button class="btn b-sm b-g" '+a+'><i class="fas fa-hand-holding-heart"></i> استلم</button>';
+
 function renderMissions(){
   const u=S.user,t=today(),dl=u.dailyLogin||{streak:0,lastClaimDate:null},can=dl.lastClaimDate!==t,next=dl.streak>=7?0:dl.streak;
   $('dailyGrid').innerHTML=CONFIG.daily.map((d,i)=>'<div class="day'+(i<dl.streak?' done':i===next&&can?' claim':'')+'" data-d="'+i+'">يوم '+(i+1)+'<i class="fas fa-gift"></i>+'+d[0]+'</div>').join('');
   $('dailyGrid').querySelectorAll('.claim').forEach(e=>e.onclick=()=>claimDaily(+e.dataset.d));
+
   $('missionsDaily').innerHTML=DAILY_M.map(m=>{
     if(m.kind==='wheel'){
       const count=Number(u.wheelSpinCount||0),claimed=!!u.wheelMissionClaimed;
@@ -1025,10 +1036,12 @@ function renderMissions(){
   }).join('');
   $('missionsDaily').querySelectorAll('[data-dm]').forEach(b=>b.onclick=()=>doDaily(b.dataset.dm));
   $('missionsDaily').querySelectorAll('[data-wm]').forEach(b=>b.onclick=()=>claimWheelMission());
+
   const lv=u.level||1,ld=u.levelMissions||{};
   $('missionsLevel').innerHTML=LEVEL_M.filter(m=>!ld[m.id]).slice(0,5).map(m=>mCard('fa-trophy','i-gold','أوصل المستوى '+m.level,'مكافأة فورية عند الوصول',rewardHtml(m.reward),
     ld[m.id]?bDone:lv>=m.level?bClaim('data-lm="'+m.id+'"'):bLock,[Math.min(lv,m.level),m.level])).join('');
   $('missionsLevel').querySelectorAll('[data-lm]').forEach(b=>b.onclick=()=>claimLevel(b.dataset.lm));
+
   const idn=u.inviteMissions||{},prog=(u.referralCount||0)-(u.inviteBase||0),im=INVITE_M.find(x=>!idn[x.id]);
   $('missionsInvite').innerHTML=im?mCard('fa-user-plus','i-gold','ادعُ '+im.count+(im.count===1?' صديق':' أصدقاء'),'مكافأة عند إتمام العدد',rewardHtml(im.reward),
     prog>=im.count?bClaim('data-im="'+im.id+'"'):'<button class="btn b-sm b-s" data-go="referral"><i class="fas fa-user-plus"></i> ادعُ</button>',[Math.min(prog,im.count),im.count]):'<div class="card empty">أكملت كل مهام الدعوات</div>';
@@ -1077,56 +1090,65 @@ async function claimInvite(id){
 
 /* ═══ INVESTMENT ═══ */
 function getPlanById(id){return CONFIG.investPlans.find(p=>p.id===id)}
+
 function isInvestmentActive(inv){
   const plan=getPlanById(inv.planId);
   if(!plan)return false;
-  const endAt=inv.startedAt+plan.days*86400*1000;
-  return Date.now()<endAt||inv.collected<plan.totalReturn;
+  const endAt = inv.startedAt + plan.days * 86400 * 1000;
+  return Date.now() < endAt || inv.collected < plan.totalReturn;
 }
-function getPending(inv,plan){
-  const now=Date.now();
-  const endAt=inv.startedAt+plan.days*86400*1000;
-  const effectiveNow=Math.min(now,endAt);
-  const elapsedMs=Math.max(0,effectiveNow-inv.startedAt);
-  const totalMined=(plan.totalReturn/(plan.days*24*3600))*(elapsedMs/1000);
-  return Math.max(0,Math.floor(totalMined)-inv.collected);
+
+function getPending(inv, plan){
+  const now = Date.now();
+  const endAt = inv.startedAt + plan.days * 86400 * 1000;
+  const effectiveNow = Math.min(now, endAt);
+  const elapsedMs = Math.max(0, effectiveNow - inv.startedAt);
+  const totalMined = (plan.totalReturn / (plan.days * 24 * 3600)) * (elapsedMs / 1000);
+  return Math.max(0, Math.floor(totalMined) - inv.collected);
 }
+
 function isPlanActive(planId){
   const u=S.user;
-  const investments=Array.isArray(u.investments)?u.investments:[];
-  return investments.some(inv=>inv.planId===planId && isInvestmentActive(inv));
+  const investments = Array.isArray(u.investments) ? u.investments : [];
+  return investments.some(inv => inv.planId === planId && isInvestmentActive(inv));
 }
+
 function renderInvestments(){
   const u=S.user;if(!u)return;
-  const investments=Array.isArray(u.investments)?u.investments:[];
-  const active=investments.map(inv=>{
+  const investments = Array.isArray(u.investments) ? u.investments : [];
+
+  const active = investments.map(inv=>{
     const plan=getPlanById(inv.planId);
     if(!plan)return null;
     const pending=getPending(inv,plan);
-    const isDone=!isInvestmentActive(inv);
+    const isDone = !isInvestmentActive(inv);
     return {inv,plan,pending,isDone};
   }).filter(x=>x!==null);
-  const totalPending=active.reduce((s,x)=>s+x.pending,0);
-  const banner=$('investBanner');
-  if(active.length>0){
-    banner.style.display='block';
-    $('investTotalPending').textContent=fmt(totalPending);
-    $('investCollectAllBtn').disabled=totalPending<=0;
-  }else{
-    banner.style.display='none';
+
+  const totalPending = active.reduce((s,x)=>s+x.pending,0);
+  const banner = $('investBanner');
+  if (active.length > 0) {
+    banner.style.display = 'block';
+    $('investTotalPending').textContent = fmt(totalPending);
+    const collectBtn = $('investCollectAllBtn');
+    collectBtn.disabled = totalPending <= 0;
+  } else {
+    banner.style.display = 'none';
   }
-  const activeEl=$('investActiveList');
-  if(active.length===0){
-    activeEl.innerHTML='';
-  }else{
-    activeEl.innerHTML='<div class="sec"><span class="ico i-green"><i class="fas fa-paw"></i></span> استثماراتي النشطة</div>'+
+
+  const activeEl = $('investActiveList');
+  if (active.length === 0) {
+    activeEl.innerHTML = '';
+  } else {
+    activeEl.innerHTML = '<div class="sec"><span class="ico i-green"><i class="fas fa-paw"></i></span> استثماراتي النشطة</div>' +
       active.map(({inv,plan,pending,isDone})=>{
-        const now=Date.now();
-        const endAt=inv.startedAt+plan.days*86400*1000;
-        const effectiveNow=Math.min(now,endAt);
-        const elapsedMs=effectiveNow-inv.startedAt;
-        const daysElapsed=(elapsedMs/86400000).toFixed(1);
-        const collectedPct=Math.min(100,(inv.collected/plan.totalReturn)*100);
+        const now = Date.now();
+        const endAt = inv.startedAt + plan.days * 86400 * 1000;
+        const effectiveNow = Math.min(now, endAt);
+        const elapsedMs = effectiveNow - inv.startedAt;
+        const daysElapsed = (elapsedMs / 86400000).toFixed(1);
+        const collectedPct = Math.min(100, (inv.collected / plan.totalReturn) * 100);
+
         return `<div class="card invest-active-card">
           <div class="row" style="margin-bottom:10px">
             <span class="ico" style="background:radial-gradient(circle at 30% 25%,${plan.color},${plan.color}bb);width:50px;height:50px;font-size:22px"><i class="fas ${plan.icon}"></i></span>
@@ -1151,20 +1173,23 @@ function renderInvestments(){
         </div>`;
       }).join('');
   }
-  const plansEl=$('investPlansList');
-  plansEl.innerHTML=CONFIG.investPlans.map(plan=>{
-    const isActive=isPlanActive(plan.id);
-    const canAfford=u.gems>=plan.price;
-    const profit=plan.totalReturn-plan.price;
-    const profitPct=((profit/plan.price)*100).toFixed(0);
+
+  const plansEl = $('investPlansList');
+  plansEl.innerHTML = CONFIG.investPlans.map(plan=>{
+    const isActive = isPlanActive(plan.id);
+    const canAfford = u.gems >= plan.price;
+    const profit = plan.totalReturn - plan.price;
+    const profitPct = ((profit / plan.price) * 100).toFixed(0);
+
     let btnHTML;
     if(isActive){
-      btnHTML='<button class="btn b-off" disabled style="height:48px"><i class="fas fa-lock"></i> الخطة نشطة حالياً</button>';
+      btnHTML = '<button class="btn b-off" disabled style="height:48px"><i class="fas fa-lock"></i> الخطة نشطة حالياً</button>';
     } else if(!canAfford){
-      btnHTML='<button class="btn b-off" disabled style="height:48px"><i class="fas fa-ban"></i> رصيد غير كافٍ</button>';
+      btnHTML = '<button class="btn b-off" disabled style="height:48px"><i class="fas fa-ban"></i> رصيد غير كافٍ</button>';
     } else {
-      btnHTML=`<button class="btn b-g" data-invest-buy="${plan.id}" style="height:48px"><i class="fas fa-shopping-cart"></i> شراء الخطة</button>`;
+      btnHTML = `<button class="btn b-g" data-invest-buy="${plan.id}" style="height:48px"><i class="fas fa-shopping-cart"></i> شراء الخطة</button>`;
     }
+
     return `<div class="card ${isActive ? 'invest-locked' : ''}" style="margin-bottom:10px">
       <div class="row" style="margin-bottom:10px">
         <span class="ico" style="background:radial-gradient(circle at 30% 25%,${plan.color},${plan.color}bb);width:50px;height:50px;font-size:22px"><i class="fas ${plan.icon}"></i></span>
@@ -1184,81 +1209,114 @@ function renderInvestments(){
       ${btnHTML}
     </div>`;
   }).join('');
+
   plansEl.querySelectorAll('[data-invest-buy]').forEach(b=>{
     b.onclick=()=>buyPlan(b.dataset.investBuy);
   });
 }
+
 function updateInvestmentsUI(){
   if(!$('screen-invest').classList.contains('active'))return;
   const u=S.user;if(!u)return;
-  const investments=Array.isArray(u.investments)?u.investments:[];
-  let totalPending=0;
+  const investments = Array.isArray(u.investments) ? u.investments : [];
+
+  let totalPending = 0;
+  let needsRerender = false;
+
   investments.forEach(inv=>{
-    const plan=getPlanById(inv.planId);
+    const plan = getPlanById(inv.planId);
     if(!plan)return;
-    const pending=getPending(inv,plan);
-    totalPending+=pending;
-    const el=document.querySelector(`[data-invest-pending="${inv.id}"]`);
-    if(el) el.textContent=fmt(pending);
+    const oldPending = parseInt(document.querySelector(`[data-invest-pending="${inv.id}"]`)?.textContent?.replace(/,/g,'') || '0', 10);
+    const pending = getPending(inv, plan);
+    totalPending += pending;
+
+    if(pending !== oldPending){
+      const el = document.querySelector(`[data-invest-pending="${inv.id}"]`);
+      if(el) el.textContent = fmt(pending);
+      if ((pending > 0 && oldPending === 0) || (pending === 0 && oldPending > 0)) {
+        needsRerender = true;
+      }
+    }
   });
-  const totalEl=$('investTotalPending');
-  if(totalEl) totalEl.textContent=fmt(totalPending);
-  const collectBtn=$('investCollectAllBtn');
-  if(collectBtn) collectBtn.disabled=totalPending<=0;
+
+  const totalEl = $('investTotalPending');
+  if(totalEl) totalEl.textContent = fmt(totalPending);
+  const collectBtn = $('investCollectAllBtn');
+  if(collectBtn) collectBtn.disabled = totalPending <= 0;
+
+  if(needsRerender) renderInvestments();
 }
+
 async function buyPlan(planId){
   if(S.busy)return;
-  const plan=getPlanById(planId);
+  const plan = getPlanById(planId);
   if(!plan)return;
-  const u=S.user;
+  const u = S.user;
+
   if(isPlanActive(planId)){
     return toast('هذه الخطة نشطة حالياً — انتظر انتهاءها','err');
   }
-  if(u.gems<plan.price) return toast('رصيد الجواهر غير كافٍ','err');
-  S.busy=true;
+
+  if(u.gems < plan.price) return toast('رصيد الجواهر غير كافٍ','err');
+
+  S.busy = true;
   SFX.play('tap');
+
   try{
-    u.gems-=plan.price;
-    u.investments=Array.isArray(u.investments)?u.investments:[];
-    u.investments.push({id:'inv_'+Date.now()+'_'+Math.random().toString(36).slice(2,7),planId:plan.id,startedAt:Date.now(),collected:0});
-    await FB.set({gems:u.gems,investments:u.investments});
+    u.gems -= plan.price;
+    u.investments = Array.isArray(u.investments) ? u.investments : [];
+    u.investments.push({
+      id: 'inv_' + Date.now() + '_' + Math.random().toString(36).slice(2,7),
+      planId: plan.id,
+      startedAt: Date.now(),
+      collected: 0,
+    });
+    await FB.set({gems: u.gems, investments: u.investments});
     SFX.play('reward');
     renderAll();
-    showModal({icon:'fa-paw',title:'✅ تم شراء الخطة!',sub:plan.name+' · '+plan.days+' أيام',amount:'-'+fmt(plan.price)+' 💎',btn:'رائع'});
+    showModal({
+      icon:'fa-paw',
+      title:'✅ تم شراء الخطة!',
+      sub: plan.name + ' · ' + plan.days + ' أيام',
+      amount: '-' + fmt(plan.price) + ' 💎',
+      btn:'رائع',
+    });
   }catch(e){
     console.error(e);
     toast('حدثت مشكلة، حاول مجدداً','err');
   }finally{
-    S.busy=false;
+    S.busy = false;
   }
 }
+
 async function collectAllInvestments(){
   if(S.busy)return;
-  const u=S.user;
-  const investments=u.investments||[];
-  let total=0;
+  const u = S.user;
+  const investments = u.investments || [];
+  let total = 0;
   for(const inv of investments){
-    const plan=getPlanById(inv.planId);
+    const plan = getPlanById(inv.planId);
     if(!plan) continue;
-    const pending=getPending(inv,plan);
-    if(pending>0){
-      inv.collected+=pending;
-      total+=pending;
+    const pending = getPending(inv, plan);
+    if(pending > 0){
+      inv.collected += pending;
+      total += pending;
     }
   }
-  if(total<=0) return toast('لا يوجد شيء للجمع','info');
-  S.busy=true;
+  if(total <= 0) return toast('لا يوجد شيء للجمع','info');
+
+  S.busy = true;
   try{
-    u.gems+=total;
-    await FB.set({gems:u.gems,investments:u.investments});
+    u.gems += total;
+    await FB.set({gems: u.gems, investments: u.investments});
     SFX.play('reward');
     renderAll();
-    toast('+'+fmt(total)+' 💎');
+    toast('+' + fmt(total) + ' 💎');
   }catch(e){
     console.error(e);
     toast('حدثت مشكلة، حاول مجدداً','err');
   }finally{
-    S.busy=false;
+    S.busy = false;
   }
 }
 
@@ -1288,15 +1346,10 @@ function setWdMethod(method){
   const wdHelp=$('wdAccountHelp');
 
   if(method==='usdt_crypto'){
-    amountBox.innerHTML='<button class="amt" data-amt="12500">12,500 💎</button><button class="amt" data-amt="25000">25,000 💎</button><button class="amt" data-amt="50000">50,000 💎</button><button class="amt" data-amt="100000">100,000 💎</button>';
+    amountBox.innerHTML='<button class="amt" data-amt="5000">5,000 💎</button><button class="amt" data-amt="10000">10,000 💎</button><button class="amt" data-amt="50000">50,000 💎</button><button class="amt" data-amt="100000">100,000 💎</button>';
     wdTitle.textContent='عنوان محفظة USDT (TRC20)';
     wdHelp.textContent='أدخل عنوان محفظة TRC20 لاستلام السحب تلقائياً';
     wdInput.placeholder='T...';
-  } else if(method==='nowpayments_bsc'){
-    amountBox.innerHTML='<button class="amt" data-amt="12500">12,500 💎</button><button class="amt" data-amt="25000">25,000 💎</button><button class="amt" data-amt="50000">50,000 💎</button><button class="amt" data-amt="100000">100,000 💎</button>';
-    wdTitle.textContent='عنوان محفظة USDT (BSC)';
-    wdHelp.textContent='أدخل عنوان BSC (يبدأ بـ 0x) لاستلام السحب';
-    wdInput.placeholder='0x...';
   } else if(method==='sham_cash'){
     amountBox.innerHTML='<button class="amt" data-amt="1000">1,000 💎</button><button class="amt" data-amt="2000">2,000 💎</button><button class="amt" data-amt="5000">5,000 💎</button><button class="amt" data-amt="10000">10,000 💎</button>';
     wdTitle.textContent='معرّف شام كاش';
@@ -1327,47 +1380,80 @@ async function doExchange(){
     showModal({icon:'fa-right-left',title:'تم التبديل!',sub:'حوّلت '+fmt(a)+' عملة إلى جواهر',amount:'+'+fmt(g)+' 💎',btn:'رائع'});
   });
 }
+
 async function doWithdraw(){
   const a=S.wd,u=S.user,acc=$('wdAccount').value.trim(),method=S.wdMethod;
   const min=method==='sham_cash'?CONFIG.wd.shamMin:CONFIG.wd.min;
   if(!a||a<min)return toast('الحد الأدنى '+fmt(min)+' جوهرة','err');
   if(a>u.gems)return toast('رصيد الجواهر غير كافٍ','err');
 
-  // ═══ USDT TRON (cryptoinfra) ═══
+  // ═══ حالة USDT Crypto - سحب تلقائي ═══
   if(method==='usdt_crypto'){
     if(!/^T[a-zA-Z0-9]{33}$/.test(acc)){
       return toast('عنوان TRC20 غير صحيح (يبدأ بحرف T و34 حرفاً)','err');
     }
     const usdAmount=(a*CONFIG.wd.rate).toFixed(2);
+    if(parseFloat(usdAmount)<0.10){
+      return toast('الحد الأدنى للسحب 5,000 💎 = $0.40','err');
+    }
     await withBtn($('wdSubmit'),'جاري الإرسال...',async()=>{
       const resp=await fetch(CONFIG.api.base+'/api/crypto/withdraw',{
         method:'POST',
         headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({userId:TG.id,amount:parseFloat(usdAmount),to_address:acc,asset_id:'usdt_trc20'})
+        body:JSON.stringify({
+          userId:TG.id,
+          amount:parseFloat(usdAmount),
+          to_address:acc,
+          asset_id:'usdt_trc20'
+        })
       });
       const data=await resp.json().catch(()=>({}));
-      if(!resp.ok||!data.ok) throw new Error(data.error||'فشل إرسال طلب السحب');
+      if(!resp.ok||!data.ok){
+        throw new Error(data.error||'فشل إرسال طلب السحب');
+      }
 
-      u.gems-=a;await save();
+      // خصم الجواهر
+      u.gems-=a;
+      await save();
+
+      // حفظ السحب
       await db.collection(CONFIG.wdCol).add({
-        userId:TG.id,userName:u.name||'لاعب',username:u.username||null,method:'usdt_crypto',
-        amount:a,payout:'$'+usdAmount+' USDT',account:acc,status:'processing',
-        withdrawalId:data.withdrawal_id||null,txHash:data.tx_hash||null,createdAt:Date.now()
+        userId:TG.id,
+        userName:u.name||'لاعب',
+        username:u.username||null,
+        method:'usdt_crypto',
+        amount:a,
+        payout:'$'+usdAmount+' USDT',
+        account:acc,
+        status:'processing',
+        withdrawalId:data.withdrawal_id||null,
+        txHash:data.tx_hash||null,
+        createdAt:Date.now()
       });
       await db.collection(CONFIG.txCol).add({
-        userId:TG.id,type:'withdraw',amount:-a,currency:'gems',
-        meta:{method:'usdt_crypto',payout:'$'+usdAmount+' USDT'},createdAt:Date.now()
+        userId:TG.id,
+        type:'withdraw',
+        amount:-a,
+        currency:'gems',
+        meta:{method:'usdt_crypto',payout:'$'+usdAmount+' USDT'},
+        createdAt:Date.now()
       });
 
-      SFX.play('reward');S.wd=0;$('wdAccount').value='';clearPick('#wdAmounts');renderAll();loadWdHistory();
-      showModal({icon:'fa-coins',title:'✅ تم إرسال طلب السحب',sub:'سيتحول المبلغ تلقائياً خلال دقائق',amount:fmt(a)+' 💎 ≈ $'+usdAmount+' USDT',btn:'رائع'});
+      SFX.play('reward');
+      S.wd=0;
+      $('wdAccount').value='';
+      clearPick('#wdAmounts');
+      renderAll();
+      loadWdHistory();
+      showModal({
+        icon:'fa-coins',
+        title:'✅ تم إرسال طلب السحب',
+        sub:'سيتحول المبلغ تلقائياً خلال دقائق',
+        amount:fmt(a)+' 💎 ≈ $'+usdAmount+' USDT',
+        btn:'رائع'
+      });
     });
     return;
-  }
-
-  // ═══ USDT BSC (NOWPayments) - قريباً ═══
-  if(method==='nowpayments_bsc'){
-    return toast('USDT BSC قريباً جداً — قيد التفعيل','info');
   }
 
   // ═══ Binance Pay / Sham Cash (يدوي) ═══
@@ -1381,6 +1467,7 @@ async function doWithdraw(){
     showModal({icon:'fa-check',title:'تم إرسال طلب السحب',sub:'سيتم معالجة طلبك خلال 24-72 ساعة',amount:fmt(a)+' 💎 ≈ '+payout,btn:'حسناً'});
   });
 }
+
 async function loadWdHistory(){
   const l=$('wdHistory');if(!db)return;l.innerHTML='<div class="empty">...</div>';
   try{
@@ -1388,7 +1475,7 @@ async function loadWdHistory(){
     if(q.empty){l.innerHTML='<div class="empty"><i class="fas fa-inbox"></i><br>لا يوجد سجل سحب بعد</div>';return}
     const it=[];q.forEach(d=>it.push(d.data()));it.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
     const map={pending:'قيد المراجعة',approved:'مقبول',processing:'قيد التنفيذ',completed:'مكتمل',rejected:'مرفوض'};
-    const methodNames={usdt_crypto:'USDT TRON',nowpayments_bsc:'USDT BSC',sham_cash:'شام كاش',binance:'Binance'};
+    const methodNames={usdt_crypto:'USDT Crypto',sham_cash:'شام كاش',binance:'Binance'};
     l.innerHTML=it.slice(0,15).map(w=>'<div class="card hist"><div><div class="ttl" style="direction:ltr;text-align:right">'+fmt(w.amount)+' 💎 → '+esc(w.payout||'$0')+'</div><div class="sub">'+
       new Date(w.createdAt||Date.now()).toLocaleDateString('ar-EG',{day:'numeric',month:'short',year:'numeric'})+' • '+(methodNames[w.method]||'Binance')+'</div></div><span class="st '+esc(w.status||'pending')+'">'+(map[w.status]||'قيد المراجعة')+'</span></div>').join('');
   }catch(e){l.innerHTML='<div class="empty">تعذر التحميل</div>'}
@@ -1400,6 +1487,7 @@ function renderStarPackages(){
   const gems=S.user.gems||0;
   $('depGemsStars').textContent=fmt(gems)+' 💎';
   $('depGemsCrypto').textContent=fmt(gems)+' 💎';
+
   el.innerHTML=CONFIG.starPackages.map(p=>{
     const tag=p.hot?'<span class="pack-tag hot">الأكثر طلباً</span>'
       :p.best?'<span class="pack-tag best">أفضل قيمة</span>':'';
@@ -1414,10 +1502,12 @@ function renderStarPackages(){
       </div>
     </button>`;
   }).join('');
+
   el.querySelectorAll('.star-pack').forEach(b=>{
     b.onclick=()=>startStarPayment(+b.dataset.stars);
   });
 }
+
 async function startStarPayment(stars){
   if(S.busy)return;
   if(!TG.app||!TG.app.openInvoice){
@@ -1426,6 +1516,7 @@ async function startStarPayment(stars){
   }
   S.busy=true;
   SFX.play('tap');
+
   try{
     const resp=await fetch(CONFIG.api.base+'/api/create-invoice',{
       method:'POST',
@@ -1434,6 +1525,7 @@ async function startStarPayment(stars){
     });
     const data=await resp.json();
     if(!data.ok||!data.invoiceLink)throw new Error(data.error||'فشل إنشاء الفاتورة');
+
     TG.app.openInvoice(data.invoiceLink,(status)=>{
       S.busy=false;
       if(status==='paid'){
@@ -1467,10 +1559,11 @@ async function startStarPayment(stars){
 }
 
 /* ═══ SHIELDZ CRYPTO DEPOSIT ═══ */
-let cryptoUsd=0;
-let cryptoPollTimer=null;
-let cryptoPendingTimer=null;
-let cryptoPendingInvoice=null;
+let cryptoUsd = 0;
+let cryptoPollTimer = null;
+let cryptoPendingTimer = null;
+let cryptoPendingInvoice = null;
+
 function setDepTab(tab){
   ['stars','crypto','binance','sham'].forEach(t=>{
     const b=document.querySelector('.dep-tab[data-tab="'+t+'"]'),p=$('dep-tab-'+t),on=t===tab;
@@ -1479,194 +1572,213 @@ function setDepTab(tab){
   });
   if(tab==='crypto')updateCryptoAmounts();
 }
+
 function updateCryptoAmounts(){
-  const gems=Math.floor(cryptoUsd*CONFIG.shieldz.gemsPerUsd);
-  $('cryptoChosenUsd').textContent='$'+cryptoUsd.toFixed(2);
-  $('cryptoReceiveGems').textContent=fmt(gems)+' 💎';
-  $('depGemsCrypto').textContent=fmt((S.user && S.user.gems)||0)+' 💎';
-  $('cryptoPayBtn').disabled=cryptoUsd<CONFIG.shieldz.minUsd||S.busy;
+  const gems = Math.floor(cryptoUsd * CONFIG.shieldz.gemsPerUsd);
+  $('cryptoChosenUsd').textContent = '$' + cryptoUsd.toFixed(2);
+  $('cryptoReceiveGems').textContent = fmt(gems) + ' 💎';
+  $('depGemsCrypto').textContent = fmt((S.user && S.user.gems) || 0) + ' 💎';
+  $('cryptoPayBtn').disabled = cryptoUsd < CONFIG.shieldz.minUsd || S.busy;
 }
+
 function pickCryptoAmount(el){
-  document.querySelectorAll('#cryptoAmounts .amt').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('#cryptoAmounts .amt').forEach(b => b.classList.remove('on'));
   el.classList.add('on');
-  cryptoUsd=parseFloat(el.dataset.usd)||0;
-  $('cryptoCustomUsd').value='';
+  cryptoUsd = parseFloat(el.dataset.usd) || 0;
+  $('cryptoCustomUsd').value = '';
   updateCryptoAmounts();
   SFX.play('tap');
 }
+
 function updatePendingBanner(){
-  const banner=$('cryptoPendingBanner');
-  if(!banner) return;
-  if(cryptoPendingInvoice && cryptoPendingInvoice.id){
+  const banner = $('cryptoPendingBanner');
+  if (!banner) return;
+  if (cryptoPendingInvoice && cryptoPendingInvoice.id) {
     banner.classList.add('show');
     startPendingTimer();
-  }else{
+  } else {
     banner.classList.remove('show');
     stopPendingTimer();
   }
 }
+
 function startPendingTimer(){
-  if(cryptoPendingTimer) clearInterval(cryptoPendingTimer);
-  const tick=()=>{
-    if(!cryptoPendingInvoice){stopPendingTimer();return;}
-    const elapsed=Date.now()-cryptoPendingInvoice.createdAt;
-    const remain=Math.max(0,CONFIG.shieldz.pendingTimeoutMs-elapsed);
-    if(remain<=0){
-      const el=$('cryptoPendingTimer');
-      if(el) el.textContent='00:00';
-      cryptoPendingInvoice=null;
+  if (cryptoPendingTimer) clearInterval(cryptoPendingTimer);
+  const tick = () => {
+    if (!cryptoPendingInvoice) { stopPendingTimer(); return; }
+    const elapsed = Date.now() - cryptoPendingInvoice.createdAt;
+    const remain = Math.max(0, CONFIG.shieldz.pendingTimeoutMs - elapsed);
+    if (remain <= 0) {
+      const el = $('cryptoPendingTimer');
+      if (el) el.textContent = '00:00';
+      cryptoPendingInvoice = null;
       updatePendingBanner();
-      toast('انتهت صلاحية الفاتورة','info');
+      toast('انتهت صلاحية الفاتورة', 'info');
       return;
     }
-    const mins=Math.floor(remain/60000);
-    const secs=Math.floor((remain%60000)/1000);
-    const el=$('cryptoPendingTimer');
-    if(el) el.textContent=pad(mins)+':'+pad(secs);
+    const mins = Math.floor(remain / 60000);
+    const secs = Math.floor((remain % 60000) / 1000);
+    const el = $('cryptoPendingTimer');
+    if (el) el.textContent = pad(mins) + ':' + pad(secs);
   };
   tick();
-  cryptoPendingTimer=setInterval(tick,1000);
-}
-function stopPendingTimer(){
-  if(cryptoPendingTimer){clearInterval(cryptoPendingTimer);cryptoPendingTimer=null;}
-  const el=$('cryptoPendingTimer');
-  if(el) el.textContent='--:--';
-}
-function stopPaymentPolling(){
-  if(cryptoPollTimer){clearInterval(cryptoPollTimer);cryptoPollTimer=null;}
-  S.busy=false;
-  const btn=$('cryptoPayBtn');
-  if(btn){
-    btn.innerHTML='<i class="fas fa-credit-card"></i> إكمال الدفع بالكريبتو';
-    btn.disabled=cryptoUsd<CONFIG.shieldz.minUsd;
-  }
-}
-function cancelPendingInvoice(){
-  if(!cryptoPendingInvoice) return;
-  cryptoPendingInvoice=null;
-  stopPaymentPolling();
-  updatePendingBanner();
-  toast('تم إلغاء الطلب. لن يتم إنشاء طلبات جديدة.','info');
-  SFX.play('tap');
-}
-async function checkPendingInvoiceNow(){
-  if(!cryptoPendingInvoice || !cryptoPendingInvoice.id) return;
-  const btn=$('cryptoCheckBtn');
-  if(btn){btn.disabled=true;btn.innerHTML='<span class="spn"></span> جاري التحقق...';}
-  try{
-    const resp=await fetch(CONFIG.api.base+'/api/shieldz/invoice/'+encodeURIComponent(cryptoPendingInvoice.id));
-    const data=await resp.json().catch(()=>({}));
-    if(data.status==='paid'){
-      const gems=cryptoPendingInvoice.gems;
-      cryptoPendingInvoice=null;
-      stopPaymentPolling();
-      updatePendingBanner();
-      SFX.play('reward');
-      try{
-        const fresh=await FB.get();
-        if(fresh) S.user=Object.assign(S.user,fresh);
-      }catch(e){}
-      renderAll();
-      renderStarPackages();
-      showModal({icon:'fa-coins',title:'✅ تم استلام الدفع!',sub:'تمت إضافة الجواهر لحسابك',amount:'+'+fmt(gems)+' 💎',btn:'رائع'});
-    }else if(data.status==='expired'||data.status==='failed'){
-      cryptoPendingInvoice=null;
-      stopPaymentPolling();
-      updatePendingBanner();
-      toast('انتهت صلاحية الفاتورة أو فشل الدفع','err');
-    }else{
-      toast('الفاتورة لا تزال قيد الانتظار','info');
-    }
-  }catch(e){
-    toast('تعذر التحقق، حاول مجدداً','err');
-  }finally{
-    if(btn){btn.disabled=false;btn.innerHTML='<i class="fas fa-rotate"></i> تحقق الآن';}
-  }
-}
-async function startCryptoPayment(){
-  if(S.busy) return;
-  if(cryptoUsd<CONFIG.shieldz.minUsd) return toast('الحد الأدنى للدفع $'+CONFIG.shieldz.minUsd,'err');
-  if(cryptoUsd>CONFIG.shieldz.maxUsd) return toast('الحد الأعلى للدفع $'+CONFIG.shieldz.maxUsd,'err');
-  S.busy=true;
-  SFX.play('tap');
-  const btn=$('cryptoPayBtn');
-  const oldHtml=btn.innerHTML;
-  btn.disabled=true;
-  btn.innerHTML='<span class="spn"></span> جاري إنشاء الفاتورة...';
-  try{
-    const gems=Math.floor(cryptoUsd*CONFIG.shieldz.gemsPerUsd);
-    const amountCents=Math.round(cryptoUsd*100);
-    const idempotencyKey='pm_'+TG.id+'_'+Date.now();
-    const resp=await fetch(CONFIG.api.base+'/api/shieldz/create-invoice',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({userId:TG.id,amount_usd_cents:amountCents,gems:gems,idempotency_key:idempotencyKey}),
-    });
-    const data=await resp.json().catch(()=>({}));
-    if(!resp.ok||!data.ok||!data.pay_url){
-      throw new Error(data.error||data.message||'فشل إنشاء الفاتورة');
-    }
-    cryptoPendingInvoice={id:data.invoice_id,gems:gems,createdAt:Date.now()};
-    updatePendingBanner();
-    TG.openExternal(data.pay_url);
-    startPaymentPolling(data.invoice_id,gems);
-  }catch(e){
-    console.error('Crypto payment error:',e);
-    toast(e.message||'تعذر بدء الدفع، حاول مجدداً','err');
-    S.busy=false;
-    btn.disabled=false;
-    btn.innerHTML=oldHtml;
-  }
-}
-function startPaymentPolling(invoiceId,gems){
-  if(cryptoPollTimer) clearInterval(cryptoPollTimer);
-  let attempts=0;
-  const finish=(success)=>{
-    clearInterval(cryptoPollTimer);cryptoPollTimer=null;
-    S.busy=false;
-    cryptoPendingInvoice=null;
-    updatePendingBanner();
-    const btn=$('cryptoPayBtn');
-    if(btn){
-      btn.innerHTML='<i class="fas fa-credit-card"></i> إكمال الدفع بالكريبتو';
-      btn.disabled=cryptoUsd<CONFIG.shieldz.minUsd;
-    }
-    if(success){
-      SFX.play('reward');
-      FB.get().then(fresh=>{
-        if(fresh) S.user=Object.assign(S.user,fresh);
-        renderAll();renderStarPackages();
-      }).catch(()=>{renderAll();renderStarPackages();});
-      showModal({icon:'fa-coins',title:'✅ تم استلام الدفع!',sub:'تمت إضافة الجواهر لحسابك',amount:'+'+fmt(gems)+' 💎',btn:'رائع'});
-    }
-  };
-  cryptoPollTimer=setInterval(async()=>{
-    attempts++;
-    if(cryptoPendingInvoice && (Date.now()-cryptoPendingInvoice.createdAt)>CONFIG.shieldz.pendingTimeoutMs){
-      finish(false);cryptoPendingInvoice=null;updatePendingBanner();
-      toast('انتهت صلاحية الفاتورة. يمكنك البدء من جديد.','info');
-      return;
-    }
-    if(attempts>CONFIG.shieldz.pollMaxAttempts){
-      finish(false);
-      cryptoPendingInvoice={id:invoiceId,gems:gems,createdAt:cryptoPendingInvoice?cryptoPendingInvoice.createdAt:Date.now()};
-      updatePendingBanner();
-      toast('انتهى وقت المراقبة التلقائية. اضغط "تحقق الآن" متى أردت.','info');
-      return;
-    }
-    try{
-      const resp=await fetch(CONFIG.api.base+'/api/shieldz/invoice/'+encodeURIComponent(invoiceId),{method:'GET'});
-      const data=await resp.json().catch(()=>({}));
-      if(data.status==='paid'){finish(true);}
-      else if(data.status==='expired'||data.status==='failed'){
-        finish(false);cryptoPendingInvoice=null;updatePendingBanner();
-        toast('انتهت صلاحية الفاتورة أو فشل الدفع','err');
-      }
-    }catch(e){}
-  },CONFIG.shieldz.pollIntervalMs);
+  cryptoPendingTimer = setInterval(tick, 1000);
 }
 
-/* ═══ MANUAL DEPOSIT INFO ═══ */
+function stopPendingTimer(){
+  if (cryptoPendingTimer) { clearInterval(cryptoPendingTimer); cryptoPendingTimer = null; }
+  const el = $('cryptoPendingTimer');
+  if (el) el.textContent = '--:--';
+}
+
+function stopPaymentPolling(){
+  if (cryptoPollTimer) { clearInterval(cryptoPollTimer); cryptoPollTimer = null; }
+  S.busy = false;
+  const btn = $('cryptoPayBtn');
+  if (btn) {
+    btn.innerHTML = '<i class="fas fa-credit-card"></i> إكمال الدفع بالكريبتو';
+    btn.disabled = cryptoUsd < CONFIG.shieldz.minUsd;
+  }
+}
+
+function cancelPendingInvoice(){
+  if (!cryptoPendingInvoice) return;
+  cryptoPendingInvoice = null;
+  stopPaymentPolling();
+  updatePendingBanner();
+  toast('تم إلغاء الطلب. لن يتم إنشاء طلبات جديدة.', 'info');
+  SFX.play('tap');
+}
+
+async function checkPendingInvoiceNow(){
+  if (!cryptoPendingInvoice || !cryptoPendingInvoice.id) return;
+  const btn = $('cryptoCheckBtn');
+  if (btn) { btn.disabled = true; btn.innerHTML = '<span class="spn"></span> جاري التحقق...'; }
+  try {
+    const resp = await fetch(CONFIG.api.base + '/api/shieldz/invoice/' + encodeURIComponent(cryptoPendingInvoice.id));
+    const data = await resp.json().catch(() => ({}));
+    if (data.status === 'paid') {
+      const gems = cryptoPendingInvoice.gems;
+      cryptoPendingInvoice = null;
+      stopPaymentPolling();
+      updatePendingBanner();
+      SFX.play('reward');
+      try {
+        const fresh = await FB.get();
+        if (fresh) S.user = Object.assign(S.user, fresh);
+      } catch (e) {}
+      renderAll();
+      renderStarPackages();
+      showModal({ icon: 'fa-coins', title: '✅ تم استلام الدفع!', sub: 'تمت إضافة الجواهر لحسابك', amount: '+' + fmt(gems) + ' 💎', btn: 'رائع' });
+    } else if (data.status === 'expired' || data.status === 'failed') {
+      cryptoPendingInvoice = null;
+      stopPaymentPolling();
+      updatePendingBanner();
+      toast('انتهت صلاحية الفاتورة أو فشل الدفع', 'err');
+    } else {
+      toast('الفاتورة لا تزال قيد الانتظار', 'info');
+    }
+  } catch (e) {
+    toast('تعذر التحقق، حاول مجدداً', 'err');
+  } finally {
+    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-rotate"></i> تحقق الآن'; }
+  }
+}
+
+async function startCryptoPayment(){
+  if (S.busy) return;
+  if (cryptoUsd < CONFIG.shieldz.minUsd) return toast('الحد الأدنى للدفع $' + CONFIG.shieldz.minUsd, 'err');
+  if (cryptoUsd > CONFIG.shieldz.maxUsd) return toast('الحد الأعلى للدفع $' + CONFIG.shieldz.maxUsd, 'err');
+
+  S.busy = true;
+  SFX.play('tap');
+  const btn = $('cryptoPayBtn');
+  const oldHtml = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spn"></span> جاري إنشاء الفاتورة...';
+
+  try {
+    const gems = Math.floor(cryptoUsd * CONFIG.shieldz.gemsPerUsd);
+    const amountCents = Math.round(cryptoUsd * 100);
+    const idempotencyKey = 'pm_' + TG.id + '_' + Date.now();
+
+    const resp = await fetch(CONFIG.api.base + '/api/shieldz/create-invoice', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId: TG.id, amount_usd_cents: amountCents, gems: gems, idempotency_key: idempotencyKey }),
+    });
+
+    const data = await resp.json().catch(() => ({}));
+
+    if (!resp.ok || !data.ok || !data.pay_url) {
+      throw new Error(data.error || data.message || 'فشل إنشاء الفاتورة');
+    }
+
+    cryptoPendingInvoice = { id: data.invoice_id, gems: gems, createdAt: Date.now() };
+    updatePendingBanner();
+    TG.openExternal(data.pay_url);
+    startPaymentPolling(data.invoice_id, gems);
+
+  } catch (e) {
+    console.error('Crypto payment error:', e);
+    toast(e.message || 'تعذر بدء الدفع، حاول مجدداً', 'err');
+    S.busy = false;
+    btn.disabled = false;
+    btn.innerHTML = oldHtml;
+  }
+}
+
+function startPaymentPolling(invoiceId, gems){
+  if (cryptoPollTimer) clearInterval(cryptoPollTimer);
+  let attempts = 0;
+
+  const finish = (success) => {
+    clearInterval(cryptoPollTimer); cryptoPollTimer = null;
+    S.busy = false;
+    cryptoPendingInvoice = null;
+    updatePendingBanner();
+    const btn = $('cryptoPayBtn');
+    if (btn) {
+      btn.innerHTML = '<i class="fas fa-credit-card"></i> إكمال الدفع بالكريبتو';
+      btn.disabled = cryptoUsd < CONFIG.shieldz.minUsd;
+    }
+    if (success) {
+      SFX.play('reward');
+      FB.get().then(fresh => {
+        if (fresh) S.user = Object.assign(S.user, fresh);
+        renderAll(); renderStarPackages();
+      }).catch(() => { renderAll(); renderStarPackages(); });
+      showModal({ icon: 'fa-coins', title: '✅ تم استلام الدفع!', sub: 'تمت إضافة الجواهر لحسابك', amount: '+' + fmt(gems) + ' 💎', btn: 'رائع' });
+    }
+  };
+
+  cryptoPollTimer = setInterval(async () => {
+    attempts++;
+    if (cryptoPendingInvoice && (Date.now() - cryptoPendingInvoice.createdAt) > CONFIG.shieldz.pendingTimeoutMs) {
+      finish(false); cryptoPendingInvoice = null; updatePendingBanner();
+      toast('انتهت صلاحية الفاتورة. يمكنك البدء من جديد.', 'info');
+      return;
+    }
+    if (attempts > CONFIG.shieldz.pollMaxAttempts) {
+      finish(false);
+      cryptoPendingInvoice = { id: invoiceId, gems: gems, createdAt: cryptoPendingInvoice ? cryptoPendingInvoice.createdAt : Date.now() };
+      updatePendingBanner();
+      toast('انتهى وقت المراقبة التلقائية. اضغط "تحقق الآن" متى أردت.', 'info');
+      return;
+    }
+    try {
+      const resp = await fetch(CONFIG.api.base + '/api/shieldz/invoice/' + encodeURIComponent(invoiceId), { method: 'GET' });
+      const data = await resp.json().catch(() => ({}));
+      if (data.status === 'paid') { finish(true); }
+      else if (data.status === 'expired' || data.status === 'failed') {
+        finish(false); cryptoPendingInvoice = null; updatePendingBanner();
+        toast('انتهت صلاحية الفاتورة أو فشل الدفع', 'err');
+      }
+    } catch (e) {}
+  }, CONFIG.shieldz.pollIntervalMs);
+}
+
+/* ═══ MANUAL DEPOSIT INFO (Binance / Sham Cash) ═══ */
 const MD={
   binance:{K:'Binance',acc:'1121748571',minTxt:'الحد الأدنى للتحويل $0.50',cls:'i-gold',icon:'fa-wallet',
     title:'الإيداع عبر Binance Pay',accLbl:'معرّف Binance Pay'},
@@ -1704,51 +1816,58 @@ async function applyCode(code){
     if(q.empty||q.docs[0].id===TG.id){toast('الكود غير موجود','err');return false}
     const rid=q.docs[0].id;
     u.referralUsed=true;u.referredBy=rid;
-    u.gems+=CONFIG.ref.newUser;
-    u.referralMilestones=u.referralMilestones||{};
-    await FB.set({referralUsed:true,referredBy:rid,gems:u.gems,referralMilestones:u.referralMilestones});
+    u.gems += CONFIG.ref.newUser;
+    u.referralMilestones = u.referralMilestones || {};
+    await FB.set({ referralUsed:true, referredBy:rid, gems:u.gems, referralMilestones:u.referralMilestones });
     const inc=firebase.firestore.FieldValue.increment;
-    await db.collection(CONFIG.col).doc(rid).update({referralCount:inc(1),updatedAt:Date.now()});
+    await db.collection(CONFIG.col).doc(rid).update({ referralCount:inc(1), updatedAt:Date.now() });
     SFX.play('reward');toast('🎉 +'+CONFIG.ref.newUser+' جوهرة من الإحالة!');renderAll();return true;
   }catch(e){u.referralUsed=false;toast('تعذر التحقق من الكود','err');return false}
 }
-async function checkReferralMilestones(telegramId,newLevel){
-  try{
-    const userDoc=await db.collection(CONFIG.col).doc(telegramId).get();
-    if(!userDoc.exists) return;
-    const userData=userDoc.data();
-    const referredBy=userData.referredBy;
-    if(!referredBy) return;
-    const milestones=userData.referralMilestones||{};
-    const newMilestones={};
-    let updated=false;
-    for(const milestone of CONFIG.ref.milestones){
-      const key='lvl'+milestone.level;
-      if(newLevel>=milestone.level && !milestones[key]){
-        newMilestones[key]=true;
-        updated=true;
-        try{
+
+async function checkReferralMilestones(telegramId, newLevel) {
+  try {
+    const userDoc = await db.collection(CONFIG.col).doc(telegramId).get();
+    if (!userDoc.exists) return;
+    const userData = userDoc.data();
+    const referredBy = userData.referredBy;
+    if (!referredBy) return;
+    const milestones = userData.referralMilestones || {};
+    const newMilestones = {};
+    let updated = false;
+
+    for (const milestone of CONFIG.ref.milestones) {
+      const key = 'lvl' + milestone.level;
+      if (newLevel >= milestone.level && !milestones[key]) {
+        newMilestones[key] = true;
+        updated = true;
+        try {
           await db.collection(CONFIG.col).doc(referredBy).update({
-            gems:firebase.firestore.FieldValue.increment(milestone.reward),
-            referralEarnings:firebase.firestore.FieldValue.increment(milestone.reward),
-            updatedAt:Date.now()
+            gems: firebase.firestore.FieldValue.increment(milestone.reward),
+            referralEarnings: firebase.firestore.FieldValue.increment(milestone.reward),
+            updatedAt: Date.now()
           });
-          await db.collection(CONFIG.txCol).add({userId:referredBy,type:'referral_milestone',fromUser:telegramId,level:milestone.level,amount:milestone.reward,currency:'gems',createdAt:Date.now()});
-        }catch(e){console.warn('Failed to grant referral milestone:',e);}
+          await db.collection(CONFIG.txCol).add({
+            userId: referredBy, type: 'referral_milestone', fromUser: telegramId,
+            level: milestone.level, amount: milestone.reward, currency: 'gems', createdAt: Date.now()
+          });
+        } catch (e) { console.warn('Failed to grant referral milestone:', e); }
       }
     }
-    if(updated){
-      const mergedMilestones=Object.assign({},milestones,newMilestones);
-      await db.collection(CONFIG.col).doc(telegramId).update({referralMilestones:mergedMilestones});
+    if (updated) {
+      const mergedMilestones = Object.assign({}, milestones, newMilestones);
+      await db.collection(CONFIG.col).doc(telegramId).update({ referralMilestones: mergedMilestones });
     }
-  }catch(e){console.warn('Referral milestone check error:',e);}
+  } catch(e) { console.warn('Referral milestone check error:', e); }
 }
+
 async function checkReferral(){const sp=TG.start;if(sp&&sp.startsWith('ref_'))await applyCode(sp.slice(4))}
+
 async function loadLeaderboard(){
   const l=$('lbList');
   if(S.lb&&Date.now()-S.lbAt<60000){l.innerHTML=S.lb;return}
   try{
-    const q=await db.collection(CONFIG.col).where('referralCount','>',0).orderBy('referralCount','desc').limit(10).get();
+    const q=await db.collection(CONFIG.col).where('referralCount', '>', 0).orderBy('referralCount','desc').limit(10).get();
     const it=[];
     q.forEach(d=>{const x=d.data();if((x.referralCount||0)>0) it.push({id:d.id,x});});
     S.lb=it.length?it.map((o,i)=>{
@@ -1760,12 +1879,12 @@ async function loadLeaderboard(){
     }).join(''):'<div class="empty"><i class="fas fa-crown"></i><br>لا يوجد مدعون بعد — كن الأول!</div>';
     S.lbAt=Date.now();l.innerHTML=S.lb;
   }catch(e){
-    console.warn('Leaderboard error:',e);
+    console.warn('Leaderboard error:', e);
     l.innerHTML='<div class="empty">تعذر تحميل القائمة</div>';
   }
 }
 
-/* ═══ اللغة ═══ */
+/* ═══ اللغة العربية فقط ═══ */
 let LANG='ar';
 function trText(v){return v;}
 function translateAll(){document.documentElement.lang='ar';document.documentElement.dir='rtl';}
@@ -1791,6 +1910,7 @@ async function watchEnergyAd(){
   }catch(e){toast('لم تكتمل مشاهدة الإعلان','err')}
   finally{S.busy=false;btn.disabled=false;btn.innerHTML=original;renderWheel()}
 }
+
 function openContentModal(kind){
   const policy=kind==='policy';
   $('contentIcon').className='ico '+(policy?'i-sky':'i-green');
@@ -1801,7 +1921,7 @@ function openContentModal(kind){
       '<div class="policy-box"><h4>عن Puppy Merge</h4><p>لعبة دمج وترفيه تجمع فيها العملات والجواهر وتتقدم عبر المستويات والمهام والإحالات.</p></div><div class="policy-box"><h4>المعلومات المستخدمة</h4><p>يستخدم التطبيق معرّف حساب تيليجرام واسم العرض وصورة الحساب إن توفرت، إضافةً إلى الرصيد والطاقة وتقدم اللعب والإحالات وبيانات السحب التي تدخلها.</p></div><div class="policy-box"><h4>الخصوصية</h4><p>قد تتم معالجة البيانات عبر الخدمات اللازمة لتشغيل التطبيق مثل تيليجرام وفايربيس.</p></div>';
   }else{
     $('contentBody').innerHTML=
-      '<div class="policy-box"><h4>كيف تلعب؟</h4><p>بدّل أماكن القطع المتجاورة لتكوين ثلاثة حيوانات متشابهة أو أكثر. كل مستوى تكمله يمنحك +100 عملة، وكل 10 مستويات تحصل على +10 جواهر إضافية.</p></div><div class="policy-box"><h4>شراء الجواهر</h4><p>اختر تبويب النجوم أو الكريبتو أو Binance Pay أو شام كاش.</p></div><div class="policy-box"><h4>سحب الأموال</h4><p>اختر USDT TRON للتحويل التلقائي الفوري (TRC20)، أو USDT BSC (قريباً)، أو Binance Pay وSham Cash للمعالجة اليدوية.</p></div><div class="policy-box"><h4>استثمار الجراء</h4><p>اشترِ خطة استثمار بالجواهر، وتُعدّن أرباحاً تلقائياً. يمكنك جمع الجواهر المتراكمة في أي وقت.</p></div>';
+      '<div class="policy-box"><h4>كيف تلعب؟</h4><p>بدّل أماكن القطع المتجاورة لتكوين ثلاثة حيوانات متشابهة أو أكثر. كل مستوى تكمله يمنحك +100 عملة، وكل 10 مستويات تحصل على +10 جواهر إضافية.</p></div><div class="policy-box"><h4>شراء الجواهر</h4><p>اختر تبويب النجوم أو الكريبتو أو Binance Pay أو شام كاش. عند التحويل اليدوي ضع معرّفك في الملاحظة.</p></div><div class="policy-box"><h4>سحب الأموال</h4><p>اختر USDT Crypto للتحويل التلقائي الفوري إلى محفظتك (TRC20)، أو Binance Pay وSham Cash للمعالجة اليدوية خلال 24-72 ساعة.</p></div><div class="policy-box"><h4>استثمار الجراء</h4><p>اشترِ خطة استثمار بالجواهر، وتُعدّن أرباحاً تلقائياً على مدار مدتها. يمكنك جمع الجواهر المتراكمة في أي وقت.</p></div>';
   }
   $('contentModal').classList.add('show');
 }
@@ -1837,6 +1957,7 @@ function bind(){
   $('codeSubmit').onclick=()=>withBtn($('codeSubmit'),'جاري التحقق...',()=>applyCode($('codeInput').value.trim().replace(/^ref_/,'')));
   document.addEventListener('click',e=>{if(e.target.closest('.btn,.amt,.g-btn,.dock button,.quick .card,.star-pack,.dep-tab'))SFX.play('tap')});
   $('refCopy').onclick=()=>navigator.clipboard?navigator.clipboard.writeText(link()).then(()=>toast('تم نسخ الرابط')):toast('تعذر النسخ','err');
+
   buildMd();
   document.querySelectorAll('.dep-tab').forEach(b=>b.onclick=()=>setDepTab(b.dataset.tab));
   document.addEventListener('click',e=>{const b=e.target.closest('[data-copy]');if(b)copyText($(b.dataset.copy).textContent.trim())});
@@ -1852,7 +1973,9 @@ function bind(){
   $('cryptoPayBtn').onclick=startCryptoPayment;
   $('cryptoCheckBtn').onclick=checkPendingInvoiceNow;
   $('cryptoCancelBtn').onclick=cancelPendingInvoice;
+
   $('investCollectAllBtn').onclick=collectAllInvestments;
+
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') {
       TIME.sync();
@@ -1860,16 +1983,23 @@ function bind(){
     }
   });
 }
+
 async function boot(){
   if(!TG.init()){
     $('loader').innerHTML='<div style="padding:30px"><div class="ico i-gold" style="margin:0 auto 16px;width:100px;height:100px;font-size:46px"><i class="fas fa-paw"></i></div><h2>Puppy Merge</h2><p style="margin:10px 0 20px">هذا التطبيق يعمل فقط داخل تليجرام.</p><a href="https://t.me/'+CONFIG.bot.username+'/'+CONFIG.bot.appName+'" class="btn b-y" style="text-decoration:none">افتح البوت</a></div>';
     return;
   }
-  const safetyTimer=setTimeout(()=>{try{$('loader').classList.add('hide');$('app').style.display='flex';}catch(e){}},4000);
+
+  const safetyTimer = setTimeout(()=>{
+    try { $('loader').classList.add('hide'); $('app').style.display='flex'; } catch(e){}
+  }, 4000);
+
   try { FB.init(); } catch(e){ console.warn('FB init:', e); }
+
   try {
     await Promise.race([TIME.sync(), new Promise(r => setTimeout(r, 3000))]);
   } catch(e){ console.warn('TIME.sync:', e); }
+
   try {
     const ex = await Promise.race([FB.get(), new Promise(r => setTimeout(() => r(null), 5000))]);
     if(ex){
@@ -1883,15 +2013,19 @@ async function boot(){
     console.warn('User load:', e);
     S.user = newUser();
   }
+
   try {
     await Promise.race([checkReferral(), new Promise(r => setTimeout(r, 2000))]);
   } catch(e){ console.warn('Referral:', e); }
+
   clearTimeout(safetyTimer);
   $('loader').classList.add('hide');
   $('app').style.display='flex';
+
   try { bind(); } catch(e){ console.warn('Bind:', e); }
   try { renderAll(); } catch(e){ console.warn('Render:', e); }
   try { initLang(); } catch(e){ console.warn('Lang:', e); }
+
   setInterval(()=>{ 
     try { renderEnergy(); wheelTimer(); updateInvestmentsUI(); } catch(e){}
   }, 1000);
