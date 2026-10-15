@@ -22,20 +22,17 @@ input{font:inherit;color:inherit}
 .main{flex:1;min-height:0;overflow-y:auto;padding:6px 12px calc(var(--dock) + 24px + var(--sb))}
 .screen{display:none}.screen.active{display:block;animation:in .25s}
 @keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-
 .card{background:linear-gradient(180deg,#fff,var(--cream) 60%,#E8FAFF);border:3px solid var(--edge);border-radius:var(--r);padding:14px;margin-bottom:12px;box-shadow:0 5px 0 var(--edge-d),0 8px 16px rgba(0,0,0,.08),inset 0 3px 0 rgba(255,255,255,.7)}
 .sub{font-size:11px;font-weight:700;color:var(--ink2)}
 .row{display:flex;align-items:center;gap:10px}
 .wd-method{cursor:pointer;transition:border-color .15s,transform .15s}.wd-method:active{transform:scale(.99)}
 .grow{flex:1;min-width:0}
 .ttl{font-size:14px;font-weight:800}
-
 .ico{width:46px;height:46px;border-radius:50%;flex-shrink:0;display:grid;place-items:center;font-size:20px;color:#fff;box-shadow:inset 0 -3px 0 rgba(0,0,0,.2),inset 0 3px 0 rgba(255,255,255,.4),0 3px 0 rgba(0,0,0,.12)}
 .i-gold{background:radial-gradient(circle at 30% 25%,#FFF3A8,#FFD52E 45%,#B97A00)}
 .i-sky{background:radial-gradient(circle at 30% 25%,#CFF4FC,#59D7F2 45%,#1B7FA8)}
 .i-green{background:radial-gradient(circle at 30% 25%,#B7FFB8,#4BE51E 45%,#238A12)}
 .i-red{background:radial-gradient(circle at 30% 25%,#FF8F8F,#FF4D4D 45%,#8B0000)}
-
 .btn{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:800;border-radius:20px;height:54px;width:100%;transition:transform .1s,box-shadow .1s}
 .btn:active{transform:translateY(3px)}
 .btn[disabled]{opacity:.55;filter:grayscale(.4);pointer-events:none}
@@ -51,18 +48,15 @@ input{font:inherit;color:inherit}
 .btn,.dock button,.g-btn,.amt,.menu button{color:var(--ink)!important;-webkit-text-stroke:0;text-shadow:none}
 .b-g,.b-s,.b-r{color:var(--ink);text-shadow:none}
 .b-off{background:#D5D5D5;color:var(--ink);box-shadow:0 4px 0 #A5A5A5;text-shadow:none}
-
 .loader{position:fixed;inset:0;z-index:9999;background:linear-gradient(180deg,#1A1F3A,#2A2F52);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;color:#fff;text-align:center;transition:opacity .4s}
 .loader.hide{opacity:0;pointer-events:none}
 .loader .ico{width:120px;height:120px;font-size:56px;animation:pu 1.4s infinite}
 @keyframes pu{50%{transform:scale(1.07)}}
-
 .top{display:flex;gap:6px;padding:10px 10px 6px}
 .pill{flex:1;min-width:0;height:44px;border-radius:22px;padding:0 8px 0 4px;display:flex;align-items:center;gap:6px;font-weight:800;background:linear-gradient(180deg,#fff,var(--cream) 60%,#E8FAFF);border:2px solid var(--edge);box-shadow:0 3px 0 var(--edge-d),inset 0 2px 0 rgba(255,255,255,.7)}
 .pill .ico{width:32px;height:32px;font-size:14px}
 .pill b{font-size:14px;direction:ltr;display:block;line-height:1.1}
 .pill small{font-size:9px;color:var(--ink2);direction:ltr;display:block}
-
 .hero{border-radius:28px;padding:18px 16px;margin-bottom:12px;text-align:center;border:3px solid var(--gold-d);background:linear-gradient(160deg,#FFE95C,#FFD52E 55%,#F4B900);box-shadow:0 6px 0 #8A5A00,0 12px 24px rgba(0,0,0,.15),inset 0 3px 0 rgba(255,255,255,.6)}
 .hero .lv{display:inline-flex;gap:6px;align-items:center;background:#fff;padding:4px 14px;border-radius:16px;font-weight:800;font-size:12px;margin-bottom:10px}
 .paws{display:flex;justify-content:center;margin-bottom:10px}
@@ -81,7 +75,6 @@ input{font:inherit;color:inherit}
 .quick .card{display:flex;flex-direction:column;gap:6px;text-align:start;position:relative;margin:0;transition:transform .1s}
 .quick .card:active{transform:translateY(3px)}
 .badge{position:absolute;top:10px;left:10px;background:var(--red);color:#fff;font-size:10px;font-weight:800;padding:2px 8px;border-radius:12px}
-
 .g-head{display:flex;gap:10px;margin-bottom:16px}
 .g-btn{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-size:18px;background:linear-gradient(180deg,#fff,var(--cream));border:2px solid var(--edge);box-shadow:0 4px 0 var(--edge-d)}
 .g-ttl{flex:1;height:44px;border-radius:22px;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(180deg,#fff,var(--cream));border:2px solid var(--edge);box-shadow:0 4px 0 var(--edge-d)}
@@ -101,7 +94,6 @@ input{font:inherit;color:inherit}
 .tile.bad i{animation:sh .3s}
 @keyframes sh{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
 .g-act{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-
 .stage{position:relative;max-width:310px;margin:34px auto 50px}
 .pointer{position:absolute;top:-24px;left:50%;transform:translateX(-50%);z-index:5;font-size:44px;color:var(--red);filter:drop-shadow(0 4px 0 rgba(0,0,0,.3))}
 .rim{position:relative;aspect-ratio:1;border-radius:50%;padding:16px;border:4px solid #8A5A00;background:conic-gradient(#FFD52E,#FFF3A8,#FFD52E,#E0A300,#FFD52E);box-shadow:0 8px 0 #8A5A00,0 18px 26px rgba(0,0,0,.22),inset 0 4px 0 rgba(255,255,255,.6)}
@@ -112,7 +104,6 @@ input{font:inherit;color:inherit}
 .spin{height:80px;flex-direction:column;gap:4px;margin-bottom:14px}
 .spin .m{display:flex;gap:8px;font-size:12px}
 .spin .m b{display:flex;gap:5px;align-items:center;padding:2px 10px;border-radius:10px;background:rgba(0,0,0,.18);direction:ltr}
-
 .sec{display:flex;align-items:center;gap:8px;margin:8px 4px 10px;font-weight:800}
 .sec .ico{width:28px;height:28px;font-size:12px}
 .daily{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;padding:10px}
@@ -164,12 +155,10 @@ input{font:inherit;color:inherit}
 .lb .av img{width:100%;height:100%;object-fit:cover}
 .cnt{font-weight:800;padding:4px 11px;border-radius:12px;background:#fff;border:1.5px solid rgba(139,90,0,.2)}
 .empty{text-align:center;padding:24px;font-weight:700;color:var(--ink2)}
-
 .dock{position:absolute;left:10px;right:10px;bottom:calc(10px + var(--sb));height:var(--dock);border-radius:40px;padding:6px;display:flex;z-index:50;background:linear-gradient(180deg,#fff,var(--cream) 60%,#E8FAFF);border:3px solid var(--edge);box-shadow:0 5px 0 var(--edge-d),0 10px 20px rgba(0,0,0,.15)}
 .dock button{flex:1;border-radius:34px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:10px;font-weight:800;color:var(--ink2)}
 .dock i{font-size:22px}
 .dock .on{background:linear-gradient(180deg,#FFE95C,#FFD52E 72%,#F4B900);color:var(--ink);box-shadow:0 3px 0 var(--gold-d),inset 0 3px 0 rgba(255,255,255,.7)}
-
 .modal{position:fixed;inset:0;z-index:1000;background:rgba(10,15,30,.85);display:none;align-items:center;justify-content:center;padding:20px}
 .modal.show{display:flex}
 .modal .card{max-width:360px;width:100%;text-align:center;padding:26px 20px 20px;animation:po .35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 8px 0 var(--edge-d),0 20px 40px rgba(0,0,0,.4)}
@@ -188,7 +177,6 @@ input{font:inherit;color:inherit}
 .toast.err{border-color:var(--red)}
 .spn{display:inline-block;width:16px;height:16px;border:2.5px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:sp .6s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
-
 .sky{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .sky i{position:absolute;color:rgba(255,255,255,.85);animation:cm linear infinite}
 .sky i:nth-child(1){top:7%;left:-25%;font-size:60px;animation-duration:50s}
@@ -205,7 +193,6 @@ input{font:inherit;color:inherit}
 .mini>div:not(.sep){flex:1;text-align:center}.mini .sep{width:2px;height:34px;background:var(--edge)}
 .mini i{color:var(--sky-d);font-size:13px}.mini b{display:block;font-size:18px;line-height:1.1;direction:ltr}.mini span{font-size:10.5px;font-weight:700;color:var(--ink2)}
 html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1)}
-
 .star-pack{position:relative;cursor:pointer;text-align:start;transition:transform .1s,box-shadow .1s}
 .star-pack:active{transform:translateY(3px)}
 .star-pack .ico-star{background:radial-gradient(circle at 30% 25%,#FFF3A8,#FFD52E 45%,#B97A00);width:50px;height:50px;font-size:22px}
@@ -213,19 +200,15 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 .pack-tag{display:inline-block;padding:1px 8px;border-radius:8px;font-size:9.5px;font-weight:800;color:#fff;margin-inline-start:6px;vertical-align:middle}
 .pack-tag.hot{background:var(--red)}
 .pack-tag.best{background:var(--green-d)}
-
 .dep-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;padding:4px;background:rgba(255,253,240,.6);border-radius:22px;border:2px solid var(--edge)}
 .dep-tab{flex:1;height:44px;border-radius:18px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;font-weight:800;color:var(--ink2);transition:all .2s;background:transparent}
 .dep-tab.active{background:linear-gradient(180deg,#FFE95C,#FFD52E 72%,#F4B900);color:var(--ink);box-shadow:0 3px 0 var(--gold-d),inset 0 2px 0 rgba(255,255,255,.7)}
 .dep-tab.active.crypto{background:linear-gradient(180deg,#8CEBFF,#59D7F2 70%,#2FB8DC);color:var(--ink);box-shadow:0 3px 0 var(--sky-d),inset 0 2px 0 rgba(255,255,255,.7)}
-
 .crypto-pending-banner{background:linear-gradient(180deg,#FFF4D6,#FFE8A8);border:2px solid var(--gold-d);border-radius:16px;padding:12px;margin-bottom:12px;display:none}
 .crypto-pending-banner.show{display:block}
 .crypto-pending-banner .row{margin-bottom:8px}
 .crypto-pending-banner .timer-badge{background:#fff;padding:4px 10px;border-radius:12px;font-weight:800;font-size:12px;direction:ltr;color:var(--gold-d)}
 .crypto-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
-
-/* ═══ INVESTMENT ═══ */
 .invest-banner{background:linear-gradient(160deg,#B7FFB8,#4BE51E 55%,#238A12);border:3px solid #1F6B0F;border-radius:24px;padding:16px;margin-bottom:14px;color:#fff;text-align:center;box-shadow:0 6px 0 #16540B,0 10px 20px rgba(0,0,0,.2),inset 0 3px 0 rgba(255,255,255,.4)}
 .invest-banner .paw{font-size:34px;margin-bottom:6px;animation:bn 2s infinite}
 .invest-banner .amount{font-size:38px;font-weight:900;direction:ltr;line-height:1;text-shadow:0 3px 0 rgba(0,0,0,.25)}
@@ -490,16 +473,31 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
     <section class="screen" id="screen-withdraw">
       <div class="hero2"><div class="sub">رصيدك القابل للسحب</div><div class="big"><i class="fas fa-gem" style="color:var(--sky-d)"></i> <span id="wdGems">0</span></div><div class="ttl" id="wdUsd">$0.00</div></div>
       <div class="ttl" style="margin:4px 0 10px">اختر طريقة السحب</div>
-      <div class="card row wd-method selected" data-method="binance" role="button" tabindex="0" style="border-color:var(--gold-d)">
-        <img src="https://up6.cc/2026/09/178982889076391.png" alt="Binance" style="width:46px;height:46px;object-fit:contain;border-radius:12px" onerror="this.style.display='none'">
-        <div class="grow"><div class="ttl">Binance Pay</div><div class="sub">الحد الأدنى 5,000 💎 = $0.40</div></div>
+
+      <!-- USDT Crypto (تلقائي) -->
+      <div class="card row wd-method selected" data-method="usdt_crypto" role="button" tabindex="0" style="border-color:var(--gold-d)">
+        <span class="ico i-green" style="width:46px;height:46px;font-size:22px"><i class="fas fa-coins"></i></span>
+        <div class="grow">
+          <div class="ttl">USDT Crypto <span class="pack-tag best" style="font-size:9px">تلقائي</span></div>
+          <div class="sub">الحد الأدنى 5,000 💎 = $0.40</div>
+        </div>
         <i class="fas fa-circle-check wd-check" style="color:var(--green-d);font-size:22px"></i>
       </div>
+
+      <!-- Binance Pay -->
+      <div class="card row wd-method" data-method="binance" role="button" tabindex="0">
+        <img src="https://up6.cc/2026/09/178982889076391.png" alt="Binance" style="width:46px;height:46px;object-fit:contain;border-radius:12px" onerror="this.style.display='none'">
+        <div class="grow"><div class="ttl">Binance Pay</div><div class="sub">الحد الأدنى 5,000 💎 = $0.40</div></div>
+        <i class="fas fa-circle-check wd-check" style="color:var(--green-d);font-size:22px;visibility:hidden"></i>
+      </div>
+
+      <!-- Sham Cash -->
       <div class="card row wd-method" data-method="sham_cash" role="button" tabindex="0">
         <img src="https://up6.cc/2026/09/178975725154411.png" alt="Sham Cash" style="width:46px;height:46px;object-fit:contain;border-radius:12px" onerror="this.style.display='none'">
         <div class="grow"><div class="ttl">Sham Cash — شام كاش</div><div class="sub">الحد الأدنى 1,000 💎 = 10 SYP</div></div>
         <i class="fas fa-circle-check wd-check" style="color:var(--green-d);font-size:22px;visibility:hidden"></i>
       </div>
+
       <div class="card">
         <div class="ttl" style="margin-bottom:10px">اختر المبلغ</div>
         <div class="amts" id="wdAmounts" style="grid-template-columns:1fr 1fr">
@@ -507,13 +505,22 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
           <button class="amt" data-amt="50000">50,000 💎</button><button class="amt" data-amt="100000">100,000 💎</button>
         </div>
       </div>
+
       <div class="card">
-        <div class="ttl" id="wdAccountTitle">معرّف Binance Pay</div>
-        <div class="sub" id="wdAccountHelp">أدخل معرّف Binance Pay أو البريد الإلكتروني لاستلام السحب</div>
-        <input class="inp" id="wdAccount" placeholder="Binance Pay ID أو البريد الإلكتروني" autocomplete="off">
+        <div class="ttl" id="wdAccountTitle">عنوان محفظة USDT (TRC20)</div>
+        <div class="sub" id="wdAccountHelp">أدخل عنوان محفظة TRC20 لاستلام السحب تلقائياً</div>
+        <input class="inp" id="wdAccount" placeholder="T..." autocomplete="off">
       </div>
+
       <div class="info"><div>المبلغ المختار<b id="wdChosen">0 💎</b></div><div>ما يعادل<b id="wdReceive">$0.00</b></div></div>
       <button class="btn b-g" id="wdSubmit"><i class="fas fa-paper-plane"></i> تقديم طلب السحب</button>
+
+      <div class="card" style="text-align:center;font-size:11.5px;color:var(--ink2);border-color:var(--sky-d);margin-top:10px">
+        <i class="fas fa-info-circle" style="color:var(--sky-d)"></i>
+        <div style="margin-top:6px"><b>USDT Crypto:</b> يُرسل المبلغ تلقائياً خلال دقائق (TRC20).</div>
+        <div style="margin-top:4px"><b>Binance Pay / شام كاش:</b> يُعالج يدوياً خلال 24-72 ساعة.</div>
+      </div>
+
       <div class="sec" style="margin-top:16px"><span class="ico i-gold"><i class="fas fa-clock-rotate-left"></i></span> سجل السحوبات</div>
       <div id="wdHistory"></div>
     </section>
@@ -656,7 +663,6 @@ const CONFIG={
     pollMaxAttempts:60,
     pendingTimeoutMs: 30 * 60 * 1000,
   },
-  // ═══ خطط الاستثمار الجديدة ═══
   investPlans:[
     {id:'p1', name:'خطة الجرو',    icon:'fa-paw',      days:7,  price:5000,   totalReturn:5500,   color:'#4BE51E'},
     {id:'p2', name:'خطة النشيط',   icon:'fa-dog',      days:12, price:20000,  totalReturn:22600,  color:'#59D7F2'},
@@ -715,7 +721,7 @@ const TIME={serverAt:0,perfAt:0,synced:false,locked:false,
 };
 
 /* ═══ STATE ═══ */
-const S={user:null,busy:false,wd:0,wdMethod:'binance',ex:0,lb:'',lbAt:0};
+const S={user:null,busy:false,wd:0,wdMethod:'usdt_crypto',ex:0,lb:'',lbAt:0};
 const newUser=()=>({telegramId:TG.id,name:(TG.user.first_name||'')+(TG.user.last_name?' '+TG.user.last_name:''),username:TG.user.username||null,photoUrl:TG.user.photo_url||null,
   coins:0,gems:0,energy:CONFIG.energyMax,energyUpdatedAt:TIME.now(),level:1,totalScore:0,completedLevels:[],
   referralCode:TG.id,referredBy:null,referralCount:0,referralEarnings:0,referralUsed:false,
@@ -1168,14 +1174,12 @@ function renderInvestments(){
       }).join('');
   }
 
-  // Plans
   const plansEl = $('investPlansList');
   plansEl.innerHTML = CONFIG.investPlans.map(plan=>{
     const isActive = isPlanActive(plan.id);
     const canAfford = u.gems >= plan.price;
     const profit = plan.totalReturn - plan.price;
     const profitPct = ((profit / plan.price) * 100).toFixed(0);
-    const isDisabled = isActive || !canAfford;
 
     let btnHTML;
     if(isActive){
@@ -1337,12 +1341,25 @@ function setWdMethod(method){
     const check=el.querySelector('.wd-check');if(check)check.style.visibility=on?'visible':'hidden';
   });
   const amountBox=$('wdAmounts');
-  if(method==='sham_cash'){
-    amountBox.innerHTML='<button class="amt" data-amt="1000">1,000 💎</button><button class="amt" data-amt="2000">2,000 💎</button><button class="amt" data-amt="5000">5,000 💎</button><button class="amt" data-amt="10000">10,000 💎</button>';
-    $('wdAccountTitle').textContent=LANG==='en'?'Sham Cash ID':'معرّف شام كاش';$('wdAccountHelp').textContent=LANG==='en'?'Enter your Sham Cash ID to receive the withdrawal':'أدخل معرّف شام كاش لاستلام السحب';$('wdAccount').placeholder=LANG==='en'?'Sham Cash ID':'معرّف شام كاش';
-  }else{
+  const wdInput=$('wdAccount');
+  const wdTitle=$('wdAccountTitle');
+  const wdHelp=$('wdAccountHelp');
+
+  if(method==='usdt_crypto'){
     amountBox.innerHTML='<button class="amt" data-amt="5000">5,000 💎</button><button class="amt" data-amt="10000">10,000 💎</button><button class="amt" data-amt="50000">50,000 💎</button><button class="amt" data-amt="100000">100,000 💎</button>';
-    $('wdAccountTitle').textContent=LANG==='en'?'Binance Pay ID':'معرّف Binance Pay';$('wdAccountHelp').textContent=LANG==='en'?'Enter your Binance Pay ID or email to receive the withdrawal':'أدخل معرّف Binance Pay أو البريد الإلكتروني لاستلام السحب';$('wdAccount').placeholder=LANG==='en'?'Binance Pay ID or email':'Binance Pay ID أو البريد الإلكتروني';
+    wdTitle.textContent='عنوان محفظة USDT (TRC20)';
+    wdHelp.textContent='أدخل عنوان محفظة TRC20 لاستلام السحب تلقائياً';
+    wdInput.placeholder='T...';
+  } else if(method==='sham_cash'){
+    amountBox.innerHTML='<button class="amt" data-amt="1000">1,000 💎</button><button class="amt" data-amt="2000">2,000 💎</button><button class="amt" data-amt="5000">5,000 💎</button><button class="amt" data-amt="10000">10,000 💎</button>';
+    wdTitle.textContent='معرّف شام كاش';
+    wdHelp.textContent='أدخل معرّف شام كاش لاستلام السحب';
+    wdInput.placeholder='معرّف شام كاش';
+  } else {
+    amountBox.innerHTML='<button class="amt" data-amt="5000">5,000 💎</button><button class="amt" data-amt="10000">10,000 💎</button><button class="amt" data-amt="50000">50,000 💎</button><button class="amt" data-amt="100000">100,000 💎</button>';
+    wdTitle.textContent='معرّف Binance Pay';
+    wdHelp.textContent='أدخل معرّف Binance Pay أو البريد الإلكتروني لاستلام السحب';
+    wdInput.placeholder='Binance Pay ID أو البريد الإلكتروني';
   }
   pick('#wdAmounts','wd',updateWd);updateWd();
 }
@@ -1363,12 +1380,84 @@ async function doExchange(){
     showModal({icon:'fa-right-left',title:'تم التبديل!',sub:'حوّلت '+fmt(a)+' عملة إلى جواهر',amount:'+'+fmt(g)+' 💎',btn:'رائع'});
   });
 }
+
 async function doWithdraw(){
   const a=S.wd,u=S.user,acc=$('wdAccount').value.trim(),method=S.wdMethod;
   const min=method==='sham_cash'?CONFIG.wd.shamMin:CONFIG.wd.min;
   if(!a||a<min)return toast('الحد الأدنى '+fmt(min)+' جوهرة','err');
   if(a>u.gems)return toast('رصيد الجواهر غير كافٍ','err');
-  if(acc.length<4)return toast(method==='sham_cash'?(LANG==='en'?'Enter a valid Sham Cash ID':'أدخل معرّف شام كاش صحيح'):(LANG==='en'?'Enter a valid Binance ID':'أدخل معرّف Binance صحيح'),'err');
+
+  // ═══ حالة USDT Crypto - سحب تلقائي ═══
+  if(method==='usdt_crypto'){
+    if(!/^T[a-zA-Z0-9]{33}$/.test(acc)){
+      return toast('عنوان TRC20 غير صحيح (يبدأ بحرف T و34 حرفاً)','err');
+    }
+    const usdAmount=(a*CONFIG.wd.rate).toFixed(2);
+    if(parseFloat(usdAmount)<0.10){
+      return toast('الحد الأدنى للسحب 5,000 💎 = $0.40','err');
+    }
+    await withBtn($('wdSubmit'),'جاري الإرسال...',async()=>{
+      const resp=await fetch(CONFIG.api.base+'/api/crypto/withdraw',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          userId:TG.id,
+          amount:parseFloat(usdAmount),
+          to_address:acc,
+          asset_id:'usdt_trc20'
+        })
+      });
+      const data=await resp.json().catch(()=>({}));
+      if(!resp.ok||!data.ok){
+        throw new Error(data.error||'فشل إرسال طلب السحب');
+      }
+
+      // خصم الجواهر
+      u.gems-=a;
+      await save();
+
+      // حفظ السحب
+      await db.collection(CONFIG.wdCol).add({
+        userId:TG.id,
+        userName:u.name||'لاعب',
+        username:u.username||null,
+        method:'usdt_crypto',
+        amount:a,
+        payout:'$'+usdAmount+' USDT',
+        account:acc,
+        status:'processing',
+        withdrawalId:data.withdrawal_id||null,
+        txHash:data.tx_hash||null,
+        createdAt:Date.now()
+      });
+      await db.collection(CONFIG.txCol).add({
+        userId:TG.id,
+        type:'withdraw',
+        amount:-a,
+        currency:'gems',
+        meta:{method:'usdt_crypto',payout:'$'+usdAmount+' USDT'},
+        createdAt:Date.now()
+      });
+
+      SFX.play('reward');
+      S.wd=0;
+      $('wdAccount').value='';
+      clearPick('#wdAmounts');
+      renderAll();
+      loadWdHistory();
+      showModal({
+        icon:'fa-coins',
+        title:'✅ تم إرسال طلب السحب',
+        sub:'سيتحول المبلغ تلقائياً خلال دقائق',
+        amount:fmt(a)+' 💎 ≈ $'+usdAmount+' USDT',
+        btn:'رائع'
+      });
+    });
+    return;
+  }
+
+  // ═══ Binance Pay / Sham Cash (يدوي) ═══
+  if(acc.length<4)return toast(method==='sham_cash'?'أدخل معرّف شام كاش صحيح':'أدخل معرّف Binance صحيح','err');
   await withBtn($('wdSubmit'),'جاري الإرسال...',async()=>{
     const payout=method==='sham_cash'?(fmt(Math.round(a*CONFIG.wd.shamSypPerGem))+' SYP'):'$'+usd(a);
     u.gems-=a;await save();
@@ -1378,6 +1467,7 @@ async function doWithdraw(){
     showModal({icon:'fa-check',title:'تم إرسال طلب السحب',sub:'سيتم معالجة طلبك خلال 24-72 ساعة',amount:fmt(a)+' 💎 ≈ '+payout,btn:'حسناً'});
   });
 }
+
 async function loadWdHistory(){
   const l=$('wdHistory');if(!db)return;l.innerHTML='<div class="empty">...</div>';
   try{
@@ -1385,8 +1475,9 @@ async function loadWdHistory(){
     if(q.empty){l.innerHTML='<div class="empty"><i class="fas fa-inbox"></i><br>لا يوجد سجل سحب بعد</div>';return}
     const it=[];q.forEach(d=>it.push(d.data()));it.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
     const map={pending:'قيد المراجعة',approved:'مقبول',processing:'قيد التنفيذ',completed:'مكتمل',rejected:'مرفوض'};
+    const methodNames={usdt_crypto:'USDT Crypto',sham_cash:'شام كاش',binance:'Binance'};
     l.innerHTML=it.slice(0,15).map(w=>'<div class="card hist"><div><div class="ttl" style="direction:ltr;text-align:right">'+fmt(w.amount)+' 💎 → '+esc(w.payout||'$0')+'</div><div class="sub">'+
-      new Date(w.createdAt||Date.now()).toLocaleDateString('ar-EG',{day:'numeric',month:'short',year:'numeric'})+' • '+(w.method==='sham_cash'?(LANG==='en'?'Sham Cash':'شام كاش'):'Binance')+'</div></div><span class="st '+esc(w.status||'pending')+'">'+(map[w.status]||'قيد المراجعة')+'</span></div>').join('');
+      new Date(w.createdAt||Date.now()).toLocaleDateString('ar-EG',{day:'numeric',month:'short',year:'numeric'})+' • '+(methodNames[w.method]||'Binance')+'</div></div><span class="st '+esc(w.status||'pending')+'">'+(map[w.status]||'قيد المراجعة')+'</span></div>').join('');
   }catch(e){l.innerHTML='<div class="empty">تعذر التحميل</div>'}
 }
 
@@ -1707,7 +1798,7 @@ function buildMd(){
     '<div class="sub" style="margin:4px 0 10px">انسخ معرّفك والصقه في خانة الملاحظة (Note) عند التحويل حتى يمكن التعرّف على حسابك.</div>'+
     '<div class="codebox"><b id="mdUid'+K+'" style="direction:ltr">'+esc(TG.id)+'</b>'+
     '<button class="btn b-y b-sm" data-copy="mdUid'+K+'"><i class="fas fa-copy"></i> نسخ المعرّف</button></div></div>'+
-    '<div class="card" style="text-align:center;font-size:12px;color:var(--ink2);margin-top:12px"><i class="fas fa-shield-halved" style="color:var(--sky-d)"></i> بعد إتمام التحويل، تُراجع الدفعة وتُضاف الجواهر إلى حسابك بعد التحقق. لا حاجة لإرسال طلب تأكيد من هذه الصفحة.</div>';
+    '<div class="card" style="text-align:center;font-size:12px;color:var(--ink2);margin-top:12px"><i class="fas fa-shield-halved" style="color:var(--sky-d)"></i> بعد إتمام التحويل، تُراجع الدفعة وتُضاف الجواهر إلى حسابك بعد التحقق.</div>';
   });
 }
 function copyText(t){
@@ -1796,23 +1887,9 @@ async function loadLeaderboard(){
 /* ═══ اللغة العربية فقط ═══ */
 let LANG='ar';
 function trText(v){return v;}
-function translateAll(){
-  document.documentElement.lang='ar';
-  document.documentElement.dir='rtl';
-}
-function applyLang(){
-  LANG='ar';
-  document.documentElement.lang='ar';
-  document.documentElement.dir='rtl';
-  try{localStorage.setItem('pm_lang','ar')}catch(e){}
-  renderAll();
-}
-function initLang(){
-  LANG='ar';
-  document.documentElement.lang='ar';
-  document.documentElement.dir='rtl';
-  try{localStorage.setItem('pm_lang','ar')}catch(e){}
-}
+function translateAll(){document.documentElement.lang='ar';document.documentElement.dir='rtl';}
+function applyLang(){LANG='ar';document.documentElement.lang='ar';document.documentElement.dir='rtl';try{localStorage.setItem('pm_lang','ar')}catch(e){}renderAll();}
+function initLang(){LANG='ar';document.documentElement.lang='ar';document.documentElement.dir='rtl';try{localStorage.setItem('pm_lang','ar')}catch(e){}}
 
 async function watchEnergyAd(){
   const btn=$('energyAdBtn');if(S.busy)return;
@@ -1835,19 +1912,16 @@ async function watchEnergyAd(){
 }
 
 function openContentModal(kind){
-  const en=LANG==='en';
   const policy=kind==='policy';
   $('contentIcon').className='ico '+(policy?'i-sky':'i-green');
   $('contentIcon').innerHTML='<i class="fas '+(policy?'fa-shield-halved':'fa-circle-question')+'"></i>';
-  $('contentTitle').textContent=policy?(en?'App information & privacy':'معلومات التطبيق وسياسة الخصوصية'):(en?'Help center':'مركز المساعدة');
+  $('contentTitle').textContent=policy?'معلومات التطبيق وسياسة الخصوصية':'مركز المساعدة';
   if(policy){
-    $('contentBody').innerHTML=en?
-      '<div class="policy-box"><h4>About Puppy Merge</h4><p>Puppy Merge is a casual matching game. Coins, gems, energy, level progress and referral rewards are used to operate your in-app experience.</p></div><div class="policy-box"><h4>Information used</h4><p>The app uses your Telegram account identifier, display name, profile photo when available, balances, game progress, referral activity and withdrawal details you submit to provide its features, track rewards, review withdrawals and reduce abuse.</p></div><div class="policy-box"><h4>Privacy</h4><p>Use only an account and payout details you are authorized to use. Information may be processed by the services needed to run the app, such as Telegram and Firebase, or where legally required.</p></div>' :
-      '<div class="policy-box"><h4>عن Puppy Merge</h4><p>لعبة دمج وترفيه تجمع فيها العملات والجواهر وتتقدم عبر المستويات والمهام والإحالات.</p></div><div class="policy-box"><h4>المعلومات المستخدمة</h4><p>يستخدم التطبيق معرّف حساب تيليجرام واسم العرض وصورة الحساب إن توفرت، إضافةً إلى الرصيد والطاقة وتقدم اللعب والإحالات وبيانات السحب التي تدخلها، لتشغيل الميزات وتسجيل المكافآت ومراجعة طلبات السحب والحد من إساءة الاستخدام.</p></div><div class="policy-box"><h4>الخصوصية</h4><p>قد تتم معالجة البيانات عبر الخدمات اللازمة لتشغيل التطبيق مثل تيليجرام وفايربيس، أو عند وجود متطلب قانوني.</p></div>';
+    $('contentBody').innerHTML=
+      '<div class="policy-box"><h4>عن Puppy Merge</h4><p>لعبة دمج وترفيه تجمع فيها العملات والجواهر وتتقدم عبر المستويات والمهام والإحالات.</p></div><div class="policy-box"><h4>المعلومات المستخدمة</h4><p>يستخدم التطبيق معرّف حساب تيليجرام واسم العرض وصورة الحساب إن توفرت، إضافةً إلى الرصيد والطاقة وتقدم اللعب والإحالات وبيانات السحب التي تدخلها.</p></div><div class="policy-box"><h4>الخصوصية</h4><p>قد تتم معالجة البيانات عبر الخدمات اللازمة لتشغيل التطبيق مثل تيليجرام وفايربيس.</p></div>';
   }else{
-    $('contentBody').innerHTML=en?
-      '<div class="policy-box"><h4>How to play</h4><p>Swap adjacent tiles to match at least three identical animals and reach the level target. Each level win gives +100 coins, and every 10th level grants +10 gems bonus.</p></div><div class="policy-box"><h4>Buy Gems</h4><p>Open profile, choose Buy Gems, select Stars, Crypto, Binance or Sham Cash tab, choose amount and complete payment.</p></div><div class="policy-box"><h4>Puppy Investment</h4><p>Buy investment plans with gems. Each plan mines automatically over its duration and you can collect accumulated gems anytime. After the plan ends, mining stops and you can buy it again.</p></div><div class="policy-box"><h4>Referral Rewards</h4><p>Invite friends and earn 50 gems total: +20 when your friend joins (they get 20 too), +25 when they reach level 5, +25 when they reach level 10.</p></div>' :
-      '<div class="policy-box"><h4>كيف تلعب؟</h4><p>بدّل أماكن القطع المتجاورة لتكوين ثلاثة حيوانات متشابهة أو أكثر. كل مستوى تكمله يمنحك +100 عملة، وكل 10 مستويات تحصل على +10 جواهر إضافية.</p></div><div class="policy-box"><h4>شراء الجواهر</h4><p>افتح حسابك، اختر "شراء الجواهر"، اختر تبويب النجوم أو الكريبتو أو Binance Pay أو شام كاش، ثم اختر المبلغ وأكمل الدفع. عند التحويل اليدوي ضع معرّفك في الملاحظة.</p></div><div class="policy-box"><h4>استثمار الجراء</h4><p>اشترِ خطة استثمار بالجواهر. كل خطة تُعدّن أرباحاً تلقائياً على مدار مدتها، ويمكنك جمع الجواهر المتراكمة في أي وقت. بعد انتهاء الخطة، يتوقف التعدين ويمكنك شراؤها مرة أخرى.</p></div><div class="policy-box"><h4>مكافآت الإحالة</h4><p>ادعُ أصدقاءك واكسب 50 جوهرة إجمالاً: +20 عند انضمام صديقك (وهو يحصل على 20 أيضاً)، +25 عند وصوله للمستوى 5، +25 عند وصوله للمستوى 10.</p></div>';
+    $('contentBody').innerHTML=
+      '<div class="policy-box"><h4>كيف تلعب؟</h4><p>بدّل أماكن القطع المتجاورة لتكوين ثلاثة حيوانات متشابهة أو أكثر. كل مستوى تكمله يمنحك +100 عملة، وكل 10 مستويات تحصل على +10 جواهر إضافية.</p></div><div class="policy-box"><h4>شراء الجواهر</h4><p>اختر تبويب النجوم أو الكريبتو أو Binance Pay أو شام كاش. عند التحويل اليدوي ضع معرّفك في الملاحظة.</p></div><div class="policy-box"><h4>سحب الأموال</h4><p>اختر USDT Crypto للتحويل التلقائي الفوري إلى محفظتك (TRC20)، أو Binance Pay وSham Cash للمعالجة اليدوية خلال 24-72 ساعة.</p></div><div class="policy-box"><h4>استثمار الجراء</h4><p>اشترِ خطة استثمار بالجواهر، وتُعدّن أرباحاً تلقائياً على مدار مدتها. يمكنك جمع الجواهر المتراكمة في أي وقت.</p></div>';
   }
   $('contentModal').classList.add('show');
 }
@@ -1878,7 +1952,7 @@ function bind(){
   document.querySelectorAll('.wd-method').forEach(el=>{el.onclick=()=>setWdMethod(el.dataset.method);el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setWdMethod(el.dataset.method)}}});
   $('exSubmit').onclick=doExchange;$('wdSubmit').onclick=doWithdraw;
   const link=()=>$('refLink').textContent;
-  $('refShare').onclick=()=>TG.share(link(),trText('🐾 انضم إلى Puppy Merge واربح الجواهر!'));
+  $('refShare').onclick=()=>TG.share(link(),'🐾 انضم إلى Puppy Merge واربح الجواهر!');
   $('codeCopy').onclick=()=>navigator.clipboard?navigator.clipboard.writeText($('refCode').textContent).then(()=>toast('تم نسخ المعرّف')):toast('تعذر النسخ','err');
   $('codeSubmit').onclick=()=>withBtn($('codeSubmit'),'جاري التحقق...',()=>applyCode($('codeInput').value.trim().replace(/^ref_/,'')));
   document.addEventListener('click',e=>{if(e.target.closest('.btn,.amt,.g-btn,.dock button,.quick .card,.star-pack,.dep-tab'))SFX.play('tap')});
@@ -1909,26 +1983,53 @@ function bind(){
     }
   });
 }
+
 async function boot(){
   if(!TG.init()){
     $('loader').innerHTML='<div style="padding:30px"><div class="ico i-gold" style="margin:0 auto 16px;width:100px;height:100px;font-size:46px"><i class="fas fa-paw"></i></div><h2>Puppy Merge</h2><p style="margin:10px 0 20px">هذا التطبيق يعمل فقط داخل تليجرام.</p><a href="https://t.me/'+CONFIG.bot.username+'/'+CONFIG.bot.appName+'" class="btn b-y" style="text-decoration:none">افتح البوت</a></div>';
     return;
   }
-  FB.init();await TIME.sync();
-  try{
-    const ex=await FB.get();
+
+  const safetyTimer = setTimeout(()=>{
+    try { $('loader').classList.add('hide'); $('app').style.display='flex'; } catch(e){}
+  }, 4000);
+
+  try { FB.init(); } catch(e){ console.warn('FB init:', e); }
+
+  try {
+    await Promise.race([TIME.sync(), new Promise(r => setTimeout(r, 3000))]);
+  } catch(e){ console.warn('TIME.sync:', e); }
+
+  try {
+    const ex = await Promise.race([FB.get(), new Promise(r => setTimeout(() => r(null), 5000))]);
     if(ex){
-      S.user=Object.assign(newUser(),ex);
-      if(!Array.isArray(S.user.investments))S.user.investments=[];
-    }else{
-      S.user=newUser();await FB.set(S.user,false);
+      S.user = Object.assign(newUser(), ex);
+      if(!Array.isArray(S.user.investments)) S.user.investments = [];
+    } else {
+      S.user = newUser();
+      try { await FB.set(S.user, false); } catch(e){}
     }
-  }catch(e){S.user=newUser()}
-  await checkReferral();
-  $('loader').classList.add('hide');$('app').style.display='flex';
-  bind();renderAll();initLang();
-  setInterval(()=>{renderEnergy();wheelTimer();updateInvestmentsUI()},1000);
-  setInterval(()=>TIME.sync(),300000);
+  } catch(e){
+    console.warn('User load:', e);
+    S.user = newUser();
+  }
+
+  try {
+    await Promise.race([checkReferral(), new Promise(r => setTimeout(r, 2000))]);
+  } catch(e){ console.warn('Referral:', e); }
+
+  clearTimeout(safetyTimer);
+  $('loader').classList.add('hide');
+  $('app').style.display='flex';
+
+  try { bind(); } catch(e){ console.warn('Bind:', e); }
+  try { renderAll(); } catch(e){ console.warn('Render:', e); }
+  try { initLang(); } catch(e){ console.warn('Lang:', e); }
+
+  setInterval(()=>{ 
+    try { renderEnergy(); wheelTimer(); updateInvestmentsUI(); } catch(e){}
+  }, 1000);
+  setInterval(()=>TIME.sync(), 300000);
 }
 document.addEventListener('DOMContentLoaded',boot);
 </script>
