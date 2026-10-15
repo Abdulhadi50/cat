@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#A8DCF0">
-<title>Puppy Merge - دمج الجراء</title>
+<title>Puppy Merge — دمج الجراء</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script src='//libtl.com/sdk.js' data-zone='12008608' data-sdk='show_12008608'></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -217,6 +217,87 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 .invest-active-card{border-color:var(--green-d);background:linear-gradient(180deg,#fff,#E8FFE8 60%,#DFF7DF)}
 .invest-locked{opacity:.75;filter:grayscale(.3)}
 .flag-ico{width:22px;height:22px;border-radius:50%;object-fit:cover;vertical-align:middle;display:inline-block}
+
+/* ========== FLY GAME ========== */
+.screen#screen-fly,.screen#screen-flyboard{position:fixed;inset:0;z-index:55;padding:0;margin:0;max-width:none;display:none;flex-direction:column;overflow:hidden}
+.screen#screen-fly.active,.screen#screen-flyboard.active{display:flex;animation:none}
+#screen-fly{background:#87CEEB}
+.fly-canvas-wrap{position:relative;width:100%;height:100%;overflow:hidden;background:#87CEEB}
+#flyCanvas{display:block;width:100%;height:100%;touch-action:none}
+.fly-hud{position:absolute;top:0;left:0;right:0;padding:calc(10px + env(safe-area-inset-top,0px)) 12px 12px;display:flex;justify-content:space-between;align-items:flex-start;pointer-events:none;z-index:5;gap:8px}
+.fly-pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.82);border:2px solid rgba(255,255,255,.95);border-radius:999px;padding:6px 12px;font-weight:800;font-size:13px;color:var(--ink);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 3px 8px rgba(0,0,0,.15)}
+.fly-pill .ico{width:20px;height:20px;font-size:10px}
+.fly-pill b{direction:ltr;font-variant-numeric:tabular-nums}
+.fly-pill.dist{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);font-size:15px;padding:7px 14px}
+.fly-pill.dist b{font-size:17px;margin:0 3px}
+.fly-exit{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));inset-inline-end:12px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.82);border:2px solid #fff;display:grid;place-items:center;color:var(--ink);font-size:16px;pointer-events:auto;box-shadow:0 3px 8px rgba(0,0,0,.15);z-index:6}
+.fly-exit:active{transform:scale(.92)}
+.fly-pills-row{display:flex;gap:6px;align-items:flex-start}
+#flyFloaters{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:6}
+.fly-floater{position:absolute;font-size:30px;font-weight:900;color:#FFD52E;white-space:nowrap;text-shadow:0 0 3px #fff,0 0 3px #fff,-2px -2px 0 #8A5A00,2px -2px 0 #8A5A00,-2px 2px 0 #8A5A00,2px 2px 0 #8A5A00,0 6px 10px rgba(0,0,0,.4);animation:flyFloatUp 1.15s cubic-bezier(.2,.7,.4,1) forwards}
+.fly-floater.gem{color:#59D7F2;text-shadow:0 0 3px #fff,0 0 3px #fff,-2px -2px 0 #1B7FA8,2px -2px 0 #1B7FA8,-2px 2px 0 #1B7FA8,2px 2px 0 #1B7FA8,0 6px 10px rgba(0,0,0,.4)}
+@keyframes flyFloatUp{0%{transform:translate(-50%,-50%) scale(.4);opacity:0}18%{transform:translate(-50%,-95%) scale(1.18);opacity:1}100%{transform:translate(-50%,-230%) scale(1);opacity:0}}
+.fly-overlay{position:absolute;inset:0;display:none;align-items:center;justify-content:center;padding:20px;z-index:10;overflow-y:auto}
+.fly-overlay.show{display:flex}
+#flyReadyOverlay{background:transparent;pointer-events:none}
+.fly-ready-box{background:rgba(0,0,0,.38);color:#fff;padding:20px 28px;border-radius:24px;border:2px solid rgba(255,255,255,.2);backdrop-filter:blur(8px);pointer-events:none;text-align:center}
+.fly-ready-title{font-size:32px;font-weight:900}
+.fly-ready-sub{font-size:14px;font-weight:800;margin-top:8px;opacity:.92}
+.fly-ready-tap{font-size:34px;margin-top:14px;animation:flyBounce 1.1s infinite}
+@keyframes flyBounce{50%{transform:translateY(-10px)}}
+#flyOverOverlay{background:linear-gradient(180deg,#F8E4B8 0%,#F5D6A0 100%);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.fly-over-content{width:100%;max-width:480px;height:100%;display:flex;flex-direction:column;position:relative;padding:20px 20px calc(20px + env(safe-area-inset-bottom,0px))}
+.fly-over-emojis{position:absolute;top:5%;inset-inline-start:5%;width:55%;height:55%;pointer-events:none}
+.fly-over-emojis .emoji{position:absolute;font-size:56px;filter:drop-shadow(0 4px 6px rgba(0,0,0,.15));animation:flyEmoji 3s ease-in-out infinite}
+.fly-over-emojis .e1{top:0;left:15%}
+.fly-over-emojis .e2{top:20%;left:0%;animation-delay:.3s;font-size:64px}
+.fly-over-emojis .e3{top:38%;left:22%;animation-delay:.6s}
+.fly-over-emojis .e4{top:15%;left:42%;animation-delay:.9s;font-size:48px}
+.fly-over-emojis .e5{top:45%;left:6%;animation-delay:1.2s}
+.fly-over-emojis .e6{top:60%;left:28%;animation-delay:1.5s;font-size:52px}
+.fly-over-emojis .e7{top:70%;left:0%;animation-delay:1.8s}
+.fly-over-emojis .e8{top:82%;left:20%;animation-delay:2.1s;font-size:44px}
+.fly-over-emojis .e9{top:55%;left:42%;animation-delay:2.4s;font-size:40px}
+@keyframes flyEmoji{50%{transform:translateY(-8px) rotate(-5deg)}}
+.fly-over-text{font-size:32px;font-weight:900;color:#1A1A1A;line-height:1.45;text-align:end;margin-top:calc(28px + env(safe-area-inset-top,0px));z-index:2;position:relative}
+.fly-over-text b{font-size:52px;color:#1A1A1A;font-weight:900;display:inline-block;margin:0 6px;direction:ltr;vertical-align:middle}
+.fly-over-rewards{display:flex;gap:10px;margin-top:18px;justify-content:flex-end;z-index:2;position:relative}
+.fly-over-rewards .rew{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.75);border:2px solid rgba(255,255,255,.95);border-radius:14px;padding:8px 14px;font-weight:900;font-size:16px;color:#5A3A00;box-shadow:0 3px 8px rgba(0,0,0,.1)}
+.fly-over-rewards .rew i{color:#B97A00}
+.fly-over-rewards .rew i.fa-gem{color:#1B7FA8}
+.fly-over-actions{margin-top:auto;display:flex;flex-direction:column;gap:12px;z-index:2;position:relative}
+.fly-btn-black{background:#0A0A0A;color:#fff;border-radius:16px;height:64px;display:flex;align-items:center;justify-content:center;gap:12px;font-size:22px;font-weight:800;box-shadow:0 4px 0 rgba(0,0,0,.4);transition:transform .08s;width:100%}
+.fly-btn-black:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.4)}
+.fly-btn-black svg{width:26px;height:26px}
+.fly-link-board{color:#1A1A1A;font-size:19px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px;width:100%}
+.fly-link-board svg{width:20px;height:20px}
+#screen-flyboard{background:linear-gradient(180deg,#E8F6FC 0%,#FFFDF0 100%)}
+.fly-board-header{padding:calc(10px + env(safe-area-inset-top,0px)) 12px 12px;display:flex;align-items:center;gap:10px;background:linear-gradient(180deg,#fff,#FFFDF0);border-bottom:2px solid var(--edge);flex-shrink:0}
+.fly-board-title{flex:1;text-align:center;font-weight:800;font-size:16px;color:var(--ink)}
+.fly-board-scroll{flex:1;min-height:0;overflow-y:auto;padding:16px 14px calc(30px + env(safe-area-inset-bottom,0px));-webkit-overflow-scrolling:touch}
+.fly-featured{text-align:center;margin-bottom:22px;padding-top:8px}
+.fly-featured-avatar{width:130px;height:130px;border-radius:50%;margin:14px auto 0;position:relative;overflow:visible}
+.fly-featured-avatar .inner{width:100%;height:100%;border-radius:50%;overflow:hidden;border:4px solid #fff;box-shadow:0 8px 20px rgba(0,0,0,.25);background:#fff;position:relative}
+.fly-featured-avatar .inner img{width:100%;height:100%;object-fit:cover;display:block}
+.fly-featured-avatar .inner canvas{width:100%;height:100%;display:block}
+.fly-featured-avatar .inner::after{content:'';position:absolute;top:-4px;inset-inline-start:-4px;width:calc(100% + 8px);height:calc(100% + 8px);border-radius:50%;pointer-events:none;box-shadow:0 0 0 2px rgba(255,213,46,.6),0 0 24px rgba(255,213,46,.4)}
+.fly-featured-crown{position:absolute;top:-26px;left:50%;transform:translateX(-50%);font-size:34px;z-index:2;filter:drop-shadow(0 4px 4px rgba(0,0,0,.2))}
+.fly-featured-medal{position:absolute;top:-6px;inset-inline-end:-6px;background:linear-gradient(180deg,#FFE95C,#F4B900);color:#5A3A00;font-size:12px;font-weight:900;padding:5px 12px;border-radius:12px;border:2px solid #fff;box-shadow:0 3px 6px rgba(0,0,0,.2);z-index:2}
+.fly-featured-dist{font-size:64px;font-weight:900;color:#1A1A1A;line-height:1;margin-top:14px;direction:ltr;letter-spacing:-1px}
+.fly-featured-name{font-size:15px;font-weight:800;color:var(--ink2);margin-top:4px}
+.fly-board-row{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--edge);border-radius:18px;padding:10px 12px;margin-bottom:9px;box-shadow:0 3px 0 var(--edge-d)}
+.fly-board-row.me{border-color:var(--gold-d);background:linear-gradient(90deg,rgba(255,213,46,.18),rgba(255,213,46,.06))}
+.fly-board-row .rk{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--edge);color:var(--ink);font-weight:900;font-size:13px;flex-shrink:0}
+.fly-board-row .rk.gold{background:radial-gradient(circle at 30% 25%,#FFF3A8,#E0A300 45%,#8A5A00);color:#fff}
+.fly-board-row .rk.silver{background:#B5B5B5;color:#fff}
+.fly-board-row .rk.bronze{background:#C26A00;color:#fff}
+.fly-board-row .av{width:44px;height:44px;border-radius:50%;overflow:hidden;background:var(--gold);border:2px solid #fff;flex-shrink:0}
+.fly-board-row .av img{width:100%;height:100%;object-fit:cover;display:block}
+.fly-board-row .av canvas{width:100%;height:100%;display:block}
+.fly-board-row .nm{flex:1;font-weight:800;color:var(--ink);font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:start}
+.fly-board-row .dist{font-size:20px;font-weight:900;color:#1A1A1A;direction:ltr;flex-shrink:0}
+.fly-board-empty{text-align:center;padding:40px 20px;color:var(--ink2);font-weight:700}
+.fly-board-note{text-align:center;font-size:11px;color:var(--ink2);padding:16px 10px 6px;line-height:1.8;font-weight:700;opacity:.7}
 </style>
 </head>
 <body>
@@ -264,6 +345,14 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
         <button class="card" data-go="missions"><span class="ico i-sky"><i class="fas fa-list-check"></i></span><div class="ttl">المهام</div><div class="sub">مكافآت يومية</div></button>
       </div>
 
+      <button class="card" data-go="fly" style="width:100%;text-align:start;margin-top:10px;border-color:var(--sky-d);background:linear-gradient(160deg,#fff,#E8F6FC 60%,#D0EFFA)">
+        <div class="row">
+          <span class="ico i-sky" style="width:50px;height:50px;font-size:22px"><i class="fas fa-dove"></i></span>
+          <div class="grow"><div class="ttl">لعبة الطيران</div><div class="sub">حلّق واجمع العملات والجواهر</div></div>
+          <i class="fas fa-chevron-left" style="color:var(--ink2)"></i>
+        </div>
+      </button>
+
       <button class="card" data-go="invest" style="width:100%;text-align:start;margin-top:10px;border-color:var(--green-d)">
         <div class="row">
           <span class="ico i-green" style="width:50px;height:50px;font-size:22px"><i class="fas fa-paw"></i></span>
@@ -281,7 +370,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
       </button>
     </section>
 
-    <!-- GAME -->
+    <!-- GAME (Merge) -->
     <section class="screen" id="screen-game">
       <div class="g-head">
         <button class="g-btn" id="gameBack"><i class="fas fa-arrow-right"></i></button>
@@ -474,7 +563,6 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
       <div class="hero2"><div class="sub">رصيدك القابل للسحب</div><div class="big"><i class="fas fa-gem" style="color:var(--sky-d)"></i> <span id="wdGems">0</span></div><div class="ttl" id="wdUsd">$0.00</div></div>
       <div class="ttl" style="margin:4px 0 10px">اختر طريقة السحب</div>
 
-      <!-- USDT Crypto (تلقائي) -->
       <div class="card row wd-method selected" data-method="usdt_crypto" role="button" tabindex="0" style="border-color:var(--gold-d)">
         <span class="ico i-green" style="width:46px;height:46px;font-size:22px"><i class="fas fa-coins"></i></span>
         <div class="grow">
@@ -484,14 +572,12 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
         <i class="fas fa-circle-check wd-check" style="color:var(--green-d);font-size:22px"></i>
       </div>
 
-      <!-- Binance Pay -->
       <div class="card row wd-method" data-method="binance" role="button" tabindex="0">
         <img src="https://up6.cc/2026/09/178982889076391.png" alt="Binance" style="width:46px;height:46px;object-fit:contain;border-radius:12px" onerror="this.style.display='none'">
         <div class="grow"><div class="ttl">Binance Pay</div><div class="sub">الحد الأدنى 5,000 💎 = $0.40</div></div>
         <i class="fas fa-circle-check wd-check" style="color:var(--green-d);font-size:22px;visibility:hidden"></i>
       </div>
 
-      <!-- Sham Cash -->
       <div class="card row wd-method" data-method="sham_cash" role="button" tabindex="0">
         <img src="https://up6.cc/2026/09/178975725154411.png" alt="Sham Cash" style="width:46px;height:46px;object-fit:contain;border-radius:12px" onerror="this.style.display='none'">
         <div class="grow"><div class="ttl">Sham Cash — شام كاش</div><div class="sub">الحد الأدنى 1,000 💎 = 10 SYP</div></div>
@@ -596,6 +682,67 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
     <button data-nav="referral"><i class="fas fa-user-plus"></i><span>الإحالة</span></button>
     <button data-nav="profile"><i class="fas fa-user"></i><span>حسابي</span></button>
   </nav>
+
+  <!-- FLY GAME SCREEN -->
+  <section class="screen" id="screen-fly">
+    <div class="fly-canvas-wrap">
+      <canvas id="flyCanvas"></canvas>
+      <div class="fly-hud">
+        <div class="fly-pills-row">
+          <div class="fly-pill"><span class="ico i-gold"><i class="fas fa-coins"></i></span><b id="flyHudCoins">0</b></div>
+          <div class="fly-pill"><span class="ico i-sky"><i class="fas fa-gem"></i></span><b id="flyHudDiamonds">0</b></div>
+        </div>
+      </div>
+      <div class="fly-pill dist"><i class="fas fa-ruler-horizontal" style="color:var(--sky-d);font-size:13px"></i><b id="flyHudDist">0</b><span style="font-size:11px;opacity:.7">م</span></div>
+      <button class="fly-exit" id="flyExit"><i class="fas fa-arrow-right"></i></button>
+      <div id="flyFloaters"></div>
+
+      <div class="fly-overlay show" id="flyReadyOverlay">
+        <div class="fly-ready-box">
+          <div class="fly-ready-title">استعد!</div>
+          <div class="fly-ready-sub">اضغط في أي مكان للطيران</div>
+          <div class="fly-ready-tap">👆</div>
+        </div>
+      </div>
+
+      <div class="fly-overlay" id="flyOverOverlay">
+        <div class="fly-over-content">
+          <div class="fly-over-emojis">
+            <span class="emoji e1">😂</span><span class="emoji e2">😭</span>
+            <span class="emoji e3">😅</span><span class="emoji e4">🤣</span>
+            <span class="emoji e5">😭</span><span class="emoji e6">😂</span>
+            <span class="emoji e7">😢</span><span class="emoji e8">😅</span>
+            <span class="emoji e9">😭</span>
+          </div>
+          <div class="fly-over-text">لعبت بعد <b id="flyOverDist">0</b> من الأمتار</div>
+          <div class="fly-over-rewards">
+            <div class="rew"><i class="fas fa-coins"></i><span id="flyOverCoins">0</span></div>
+            <div class="rew"><i class="fas fa-gem"></i><span id="flyOverGems">0</span></div>
+          </div>
+          <div class="fly-over-actions">
+            <button class="fly-btn-black" id="flyBtnReplay">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1015.5-6.4L21 8M21 3v5h-5"/></svg>
+              العب مرة أخرى
+            </button>
+            <button class="fly-link-board" id="flyBtnBoard">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M6 4h12v5a6 6 0 01-12 0V4zM4 4h2v3a2 2 0 01-2-2V4zM20 4h-2v3a2 2 0 002-2V4z"/></svg>
+              لوحة المتصدرين طوال الوقت <span style="font-size:14px">&lt;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLY LEADERBOARD SCREEN -->
+  <section class="screen" id="screen-flyboard">
+    <div class="fly-board-header">
+      <button class="g-btn" id="flyBoardBack"><i class="fas fa-arrow-right"></i></button>
+      <div class="fly-board-title">لوحة المتصدرين</div>
+      <div style="width:44px"></div>
+    </div>
+    <div class="fly-board-scroll" id="flyBoardScroll"></div>
+  </section>
 </div>
 
 <div class="modal" id="modal"><div class="card">
@@ -630,6 +777,7 @@ const CONFIG={
 },
   bot:{username:'PuppyMerge_bot',appName:'PuppyMerge'},
   col:'puppy_users',wdCol:'puppy_withdrawals',txCol:'puppy_transactions',timeCol:'_puppy_time',depCol:'puppy_deposits',
+  flyCol:'puppy_fly_scores',
   energyMax:10,regenMs:600000,hintPrice:30,shufflePrice:50,
   ref:{
     newUser:20,
@@ -670,6 +818,15 @@ const CONFIG={
     {id:'p4', name:'خطة الخبير',   icon:'fa-crown',    days:24, price:70000,  totalReturn:84000,  color:'#FF8F8F'},
     {id:'p5', name:'خطة الأسطورة', icon:'fa-gem',      days:30, price:100000, totalReturn:125000, color:'#C58CE8'},
   ],
+  fly:{
+    gravity:1850, flap:-520, maxFall:950, scroll:200, fixedDt:1/120, pxPerM:26,
+    pRMin:16, pRMax:28, oWMin:56, oWMax:88, oWR:0.16,
+    gapR:0.31, gapMin:158, gapMax:270,
+    spR:0.75, spMin:250, spMax:340,
+    grR:0.13, grMin:70, grMax:115,
+    coinPerPair:10, dMin:1, dMax:5,
+    bubbleIntervalMin:5, bubbleIntervalMax:10,
+  },
 };
 
 /* ═══ HELPERS ═══ */
@@ -680,6 +837,7 @@ const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const usd=g=>(g*CONFIG.wd.rate).toFixed(2);
 const today=()=>new Date(TIME.now()).toISOString().slice(0,10);
 const pad=n=>String(n).padStart(2,'0');
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const rewardHtml=r=>(r.gems?'<span class="rw"><i class="fas fa-gem"></i>'+r.gems+'</span>':'')+(r.coins?'<span class="rw"><i class="fas fa-coins"></i>'+r.coins+'</span>':'');
 const rewardTxt=r=>'+'+(r.coins||0)+' 🪙'+(r.gems?' + '+r.gems+' 💎':'');
 
@@ -688,7 +846,8 @@ const SFX={ctx:null,
   tone(f,d,t='square',v=.2,w=0){try{this.ctx=this.ctx||new(window.AudioContext||window.webkitAudioContext)();const c=this.ctx,s=c.currentTime+w,o=c.createOscillator(),g=c.createGain();o.type=t;o.frequency.value=f;g.gain.setValueAtTime(.0001,s);g.gain.linearRampToValueAtTime(v,s+.01);g.gain.exponentialRampToValueAtTime(.001,s+d);o.connect(g);g.connect(c.destination);o.start(s);o.stop(s+d+.05)}catch(e){}},
   play(n){const m={tap:[[520,.07,0,'sine'],[780,.06,.035,'sine']],select:[[1000,.05,0,'triangle']],match:[[880,.09],[1320,.1,.04]],invalid:[[200,.13,0,'sawtooth']],
     win:[523,659,784,1047,1319].map((f,i)=>[f,.2,i*.07]),lose:[400,350,300,220].map((f,i)=>[f,.18,i*.07,'sawtooth']),
-    reward:[880,1108,1320,1760].map((f,i)=>[f,.14,i*.05]),wheel:[523,659,784,1047,1319,1568].map((f,i)=>[f,.12,i*.06])}[n]||[];
+    reward:[880,1108,1320,1760].map((f,i)=>[f,.14,i*.05]),wheel:[523,659,784,1047,1319,1568].map((f,i)=>[f,.12,i*.06]),
+    flap:[[600,.05,0,'sine']]}[n]||[];
     m.forEach(([f,d,w,t])=>this.tone(f,d,t||'square',.2,w||0))}
 };
 
@@ -728,6 +887,7 @@ const newUser=()=>({telegramId:TG.id,name:(TG.user.first_name||'')+(TG.user.last
   referralMilestones:{},
   investments:[],
   wheelSpins:CONFIG.spins,wheelLastDate:null,wheelSpinCount:0,wheelMissionClaimed:false,wheelAdLastAt:0,dailyRewards:{},dailyLogin:{streak:0,lastClaimDate:null},levelMissions:{},inviteMissions:{},inviteBase:0,lang:null,
+  flyBest:0,flyCoins:0,flyGems:0,
   createdAt:Date.now(),updatedAt:Date.now()});
 
 /* ═══ UI ═══ */
@@ -793,10 +953,11 @@ function go(s){
   if(s==='referral')loadLeaderboard();
   if(s==='deposit'){renderStarPackages();setDepTab('stars');}
   if(s==='invest')renderInvestments();
+  if(s==='fly'){FlyGame.enter();return;}
   if(s !== 'deposit' && cryptoPollTimer){ stopPaymentPolling(); }
 }
 
-/* ═══ GAME ═══ */
+/* ═══ GAME (Merge) ═══ */
 const TILES=['fa-cat','fa-dog','fa-frog','fa-dove','fa-fish','fa-horse'];
 const Game={size:6,board:[],els:[],score:0,moves:0,target:0,level:1,sel:null,busy:false,ended:false,
   async start(n){
@@ -1387,7 +1548,6 @@ async function doWithdraw(){
   if(!a||a<min)return toast('الحد الأدنى '+fmt(min)+' جوهرة','err');
   if(a>u.gems)return toast('رصيد الجواهر غير كافٍ','err');
 
-  // ═══ حالة USDT Crypto - سحب تلقائي ═══
   if(method==='usdt_crypto'){
     if(!/^T[a-zA-Z0-9]{33}$/.test(acc)){
       return toast('عنوان TRC20 غير صحيح (يبدأ بحرف T و34 حرفاً)','err');
@@ -1412,11 +1572,9 @@ async function doWithdraw(){
         throw new Error(data.error||'فشل إرسال طلب السحب');
       }
 
-      // خصم الجواهر
       u.gems-=a;
       await save();
 
-      // حفظ السحب
       await db.collection(CONFIG.wdCol).add({
         userId:TG.id,
         userName:u.name||'لاعب',
@@ -1456,7 +1614,6 @@ async function doWithdraw(){
     return;
   }
 
-  // ═══ Binance Pay / Sham Cash (يدوي) ═══
   if(acc.length<4)return toast(method==='sham_cash'?'أدخل معرّف شام كاش صحيح':'أدخل معرّف Binance صحيح','err');
   await withBtn($('wdSubmit'),'جاري الإرسال...',async()=>{
     const payout=method==='sham_cash'?(fmt(Math.round(a*CONFIG.wd.shamSypPerGem))+' SYP'):'$'+usd(a);
@@ -1884,9 +2041,8 @@ async function loadLeaderboard(){
   }
 }
 
-/* ═══ اللغة العربية فقط ═══ */
+/* ═══ LANGUAGE ═══ */
 let LANG='ar';
-function trText(v){return v;}
 function translateAll(){document.documentElement.lang='ar';document.documentElement.dir='rtl';}
 function applyLang(){LANG='ar';document.documentElement.lang='ar';document.documentElement.dir='rtl';try{localStorage.setItem('pm_lang','ar')}catch(e){}renderAll();}
 function initLang(){LANG='ar';document.documentElement.lang='ar';document.documentElement.dir='rtl';try{localStorage.setItem('pm_lang','ar')}catch(e){}}
@@ -1905,7 +2061,7 @@ async function watchEnergyAd(){
     if(current>=CONFIG.energyMax)return toast('الطاقة ممتلئة بالفعل','info');
     u.energy=current+1;
     if(u.energy>=CONFIG.energyMax)u.energyUpdatedAt=now;
-    else u.energyUpdatedAt=last+Math.floor((now-last)/CONFIG.energyRegenMs||600000)*600000;
+    else u.energyUpdatedAt=last+Math.floor((now-last)/(CONFIG.regenMs||600000))*(CONFIG.regenMs||600000);
     await FB.set({energy:u.energy,energyUpdatedAt:u.energyUpdatedAt});renderEnergy();toast('+1 ⚡');SFX.play('reward');
   }catch(e){toast('لم تكتمل مشاهدة الإعلان','err')}
   finally{S.busy=false;btn.disabled=false;btn.innerHTML=original;renderWheel()}
@@ -1921,11 +2077,635 @@ function openContentModal(kind){
       '<div class="policy-box"><h4>عن Puppy Merge</h4><p>لعبة دمج وترفيه تجمع فيها العملات والجواهر وتتقدم عبر المستويات والمهام والإحالات.</p></div><div class="policy-box"><h4>المعلومات المستخدمة</h4><p>يستخدم التطبيق معرّف حساب تيليجرام واسم العرض وصورة الحساب إن توفرت، إضافةً إلى الرصيد والطاقة وتقدم اللعب والإحالات وبيانات السحب التي تدخلها.</p></div><div class="policy-box"><h4>الخصوصية</h4><p>قد تتم معالجة البيانات عبر الخدمات اللازمة لتشغيل التطبيق مثل تيليجرام وفايربيس.</p></div>';
   }else{
     $('contentBody').innerHTML=
-      '<div class="policy-box"><h4>كيف تلعب؟</h4><p>بدّل أماكن القطع المتجاورة لتكوين ثلاثة حيوانات متشابهة أو أكثر. كل مستوى تكمله يمنحك +100 عملة، وكل 10 مستويات تحصل على +10 جواهر إضافية.</p></div><div class="policy-box"><h4>شراء الجواهر</h4><p>اختر تبويب النجوم أو الكريبتو أو Binance Pay أو شام كاش. عند التحويل اليدوي ضع معرّفك في الملاحظة.</p></div><div class="policy-box"><h4>سحب الأموال</h4><p>اختر USDT Crypto للتحويل التلقائي الفوري إلى محفظتك (TRC20)، أو Binance Pay وSham Cash للمعالجة اليدوية خلال 24-72 ساعة.</p></div><div class="policy-box"><h4>استثمار الجراء</h4><p>اشترِ خطة استثمار بالجواهر، وتُعدّن أرباحاً تلقائياً على مدار مدتها. يمكنك جمع الجواهر المتراكمة في أي وقت.</p></div>';
+      '<div class="policy-box"><h4>كيف تلعب؟</h4><p>بدّل أماكن القطع المتجاورة لتكوين ثلاثة حيوانات متشابهة أو أكثر. كل مستوى تكمله يمنحك +100 عملة، وكل 10 مستويات تحصل على +10 جواهر إضافية.</p></div><div class="policy-box"><h4>لعبة الطيران</h4><p>اضغط لترتفع، تجنب الصبّار، واجمع العملات والجواهر. كل عبور موفق للعائق يمنحك +10 عملات، والفقاعات تعطي 1-5 جواهر.</p></div><div class="policy-box"><h4>شراء الجواهر</h4><p>اختر تبويب النجوم أو الكريبتو أو Binance Pay أو شام كاش. عند التحويل اليدوي ضع معرّفك في الملاحظة.</p></div><div class="policy-box"><h4>سحب الأموال</h4><p>اختر USDT Crypto للتحويل التلقائي الفوري إلى محفظتك (TRC20)، أو Binance Pay وSham Cash للمعالجة اليدوية خلال 24-72 ساعة.</p></div>';
   }
   $('contentModal').classList.add('show');
 }
 function closeContentModal(){$('contentModal').classList.remove('show')}
+
+/* =========================================================
+   FLY GAME — integrated with real Telegram user data
+   ========================================================= */
+const FlyGame = (() => {
+  const cvs = document.getElementById('flyCanvas');
+  const ctx = cvs.getContext('2d');
+  let VW=0, VH=0, DPR=1, SZ={};
+  const CFG = CONFIG.fly;
+  const st={mode:'idle',raf:0,lastT:0,acc:0,p:{x:0,y:0,vy:0,rot:0,r:20},readyY:0,readyT:0,
+    worldX:0,obs:[],bub:[],par:[],stars:[],clouds:[],
+    dist:0,rC:0,rD:0,pairs:0,nextB:8,img:null,imgOk:false,
+    pendingCoins:0,pendingGems:0,pendingDist:0,returnTo:'menu',roundClaimed:false};
+
+  function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+
+  function resize(){
+    const r=cvs.parentElement.getBoundingClientRect();
+    VW=r.width;VH=r.height;if(VW<=0||VH<=0){setTimeout(resize,50);return}
+    DPR=Math.min(window.devicePixelRatio||1,2);
+    cvs.width=Math.round(VW*DPR);cvs.height=Math.round(VH*DPR);
+    cvs.style.width=VW+'px';cvs.style.height=VH+'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+    SZ.pR=clamp(VH*0.033,CFG.pRMin,CFG.pRMax);
+    SZ.oW=clamp(VW*CFG.oWR,CFG.oWMin,CFG.oWMax);
+    SZ.gap=clamp(VH*CFG.gapR,CFG.gapMin,CFG.gapMax);
+    SZ.sp=clamp(VW*CFG.spR,CFG.spMin,CFG.spMax);
+    SZ.gr=clamp(VH*CFG.grR,CFG.grMin,CFG.grMax);
+  }
+
+  function loadImg(){
+    st.imgOk=false;st.img=null;
+    const url=(TG.user&&TG.user.photo_url)||(S.user&&S.user.photoUrl);
+    if(!url)return;
+    const im=new Image();
+    im.crossOrigin='anonymous';
+    im.onload=()=>{st.img=im;st.imgOk=true};
+    im.onerror=()=>{st.imgOk=false};
+    im.src=url;
+  }
+
+  function reset(){
+    st.p.x=VW*0.28;st.p.y=VH*0.45;st.p.vy=0;st.p.rot=0;st.p.r=SZ.pR;
+    st.readyY=VH*0.45;st.readyT=0;st.worldX=0;
+    st.obs=[];st.bub=[];st.par=[];
+    st.dist=0;st.rC=0;st.rD=0;st.pairs=0;
+    st.nextB=CFG.bubbleIntervalMin+Math.floor(Math.random()*(CFG.bubbleIntervalMax-CFG.bubbleIntervalMin+1));
+    buildStars();buildClouds();
+    let x=VW+100;for(let i=0;i<3;i++){spawnObs(x);x+=SZ.sp}
+    hud();
+  }
+  function buildStars(){
+    st.stars=[];const n=Math.round((VW*VH*0.5)/20000),rng=mulberry32(99);
+    for(let i=0;i<n;i++)st.stars.push({x:rng()*VW,y:rng()*VH*0.45,r:.5+rng()*1.1,tw:rng()*Math.PI*2,sp:.6+rng()*1.2});
+  }
+  function buildClouds(){
+    st.clouds=[{x:.10,y:.15,s:1.1},{x:.45,y:.28,s:.8},{x:.78,y:.12,s:1},{x:1.15,y:.22,s:.9},{x:1.55,y:.18,s:1.2},{x:1.9,y:.30,s:.75}];
+  }
+  function spawnObs(x){
+    const g=SZ.gap,gY=VH-SZ.gr,minT=60,maxT=gY-60-g,r=Math.max(20,maxT-minT),gapY=minT+Math.random()*r;
+    st.obs.push({x,w:SZ.oW,gapY,gapH:g,passed:false,seed:Math.random()*9999|0});
+  }
+  function spawnBub(x){
+    const gY=VH-SZ.gr,m=90,y=m+Math.random()*Math.max(40,gY-m*2);
+    st.bub.push({x,y,r:Math.max(22,VH*0.034),seed:Math.random()*Math.PI*2,collected:false});
+  }
+  function hud(){
+    $('flyHudCoins').textContent=fmt(st.rC);
+    $('flyHudDiamonds').textContent=fmt(st.rD);
+    $('flyHudDist').textContent=fmt(Math.floor(st.dist));
+  }
+  function floater(text,x,y,type){
+    const el=document.createElement('div');
+    el.className='fly-floater'+(type==='gem'?' gem':'');
+    el.textContent=text;
+    el.style.left=clamp(x,30,VW-30)+'px';
+    el.style.top=clamp(y,60,VH-60)+'px';
+    $('flyFloaters').appendChild(el);
+    setTimeout(()=>el.remove(),1250);
+  }
+  function spawnBurst(x,y){
+    const rng=mulberry32((x*31+y*17)|0);
+    for(let i=0;i<8;i++){
+      const a=(Math.PI*2*i)/8+rng()*0.5,sp=90+rng()*120;
+      st.par.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-60,life:.55+rng()*.35,max:.9,
+        col:i%3===0?'#fff':(i%2===0?'#8CEBFF':'#59D7F2'),r:2+rng()*2.5});
+    }
+  }
+
+  function step(dt){
+    st.p.vy+=CFG.gravity*dt;
+    if(st.p.vy>CFG.maxFall)st.p.vy=CFG.maxFall;
+    st.p.y+=st.p.vy*dt;
+    const targetRot=clamp((st.p.vy/CFG.maxFall)*1.15,-.52,1.15);
+    st.p.rot+=(targetRot-st.p.rot)*Math.min(1,dt*11);
+
+    const dx=CFG.scroll*dt;
+    st.worldX+=dx;
+    st.dist=st.worldX/CFG.pxPerM;
+
+    for(const o of st.obs)o.x-=dx;
+    for(const b of st.bub)b.x-=dx;
+
+    if(st.obs.length&&st.obs[0].x+st.obs[0].w<-60)st.obs.shift();
+    const last=st.obs[st.obs.length-1];
+    if(!last||last.x<VW-SZ.sp)spawnObs(last?last.x+SZ.sp:VW+80);
+
+    for(const o of st.obs){
+      if(!o.passed&&o.x+o.w<st.p.x-st.p.r){
+        o.passed=true;st.pairs++;
+        st.rC+=CFG.coinPerPair;
+        floater('+'+CFG.coinPerPair,st.p.x+st.p.r*1.2,st.p.y-st.p.r*1.6,'coin');
+        hud();
+        if(st.pairs>=st.nextB){
+          spawnBub(VW+60);
+          st.nextB=st.pairs+CFG.bubbleIntervalMin+Math.floor(Math.random()*(CFG.bubbleIntervalMax-CFG.bubbleIntervalMin+1));
+        }
+      }
+    }
+
+    const gY=VH-SZ.gr;
+    const pr=st.p.r*0.88;
+    for(const o of st.obs){
+      if(st.p.x+pr<o.x||st.p.x-pr>o.x+o.w)continue;
+      if(circleRect(st.p.x,st.p.y,pr,o.x,0,o.w,o.gapY)||
+         circleRect(st.p.x,st.p.y,pr,o.x,o.gapY+o.gapH,o.w,gY-(o.gapY+o.gapH))){over();return}
+    }
+    if(st.p.y+st.p.r>=gY){st.p.y=gY-st.p.r;over();return}
+    if(st.p.y-st.p.r<0){st.p.y=st.p.r;if(st.p.vy<0)st.p.vy=0}
+
+    for(const b of st.bub){
+      if(b.collected)continue;
+      const ddx=b.x-st.p.x,ddy=b.y-st.p.y,rr=b.r+st.p.r*0.95;
+      if(ddx*ddx+ddy*ddy<rr*rr){
+        b.collected=true;
+        const reward=CFG.dMin+Math.floor(Math.random()*(CFG.dMax-CFG.dMin+1));
+        st.rD+=reward;
+        floater('+'+reward,b.x,b.y-12,'gem');
+        spawnBurst(b.x,b.y);
+        hud();
+      }
+    }
+    if(st.bub.length)st.bub=st.bub.filter(b=>!b.collected&&b.x+b.r>-60);
+
+    if(st.par.length){
+      for(const pa of st.par){pa.vy+=420*dt;pa.x+=pa.vx*dt;pa.y+=pa.vy*dt;pa.life-=dt}
+      st.par=st.par.filter(p=>p.life>0);
+    }
+  }
+
+  function circleRect(cx,cy,r,rx,ry,rw,rh){
+    if(rw<=0||rh<=0)return false;
+    const nx=Math.max(rx,Math.min(cx,rx+rw));
+    const ny=Math.max(ry,Math.min(cy,ry+rh));
+    const dx=cx-nx,dy=cy-ny;
+    return dx*dx+dy*dy<r*r;
+  }
+
+  function render(){
+    const g=ctx;
+    g.clearRect(0,0,VW,VH);
+    drawSky(g);drawStars(g);drawSun(g);drawPyramids(g);drawClouds(g);drawDunes(g);
+    drawGround(g);drawObs(g);drawBubbles(g);drawParticles(g);drawPlayer(g);
+  }
+
+  function drawSky(g){
+    const gr=g.createLinearGradient(0,0,0,VH);
+    gr.addColorStop(0,'#7EC8E3');gr.addColorStop(0.35,'#A8DCF0');
+    gr.addColorStop(0.65,'#C9EDF7');gr.addColorStop(0.85,'#F2E5B8');
+    gr.addColorStop(1,'#FFE8B8');
+    g.fillStyle=gr;g.fillRect(0,0,VW,VH);
+  }
+  function drawStars(g){
+    const t=performance.now()/1000;
+    for(const s of st.stars){
+      const a=0.20+0.35*(0.5+0.5*Math.sin(t*s.sp+s.tw));
+      g.globalAlpha=a;g.fillStyle='#fff';
+      g.beginPath();g.arc(s.x,s.y,s.r,0,Math.PI*2);g.fill();
+    }
+    g.globalAlpha=1;
+  }
+  function drawSun(g){
+    const x=VW*0.74,y=VH*0.20,r=Math.min(VW,VH)*0.055;
+    const rg=g.createRadialGradient(x,y,r*0.4,x,y,r*3.2);
+    rg.addColorStop(0,'rgba(255,240,200,.95)');
+    rg.addColorStop(0.5,'rgba(255,215,150,.4)');
+    rg.addColorStop(1,'rgba(255,215,150,0)');
+    g.fillStyle=rg;g.beginPath();g.arc(x,y,r*3.2,0,Math.PI*2);g.fill();
+    g.fillStyle='rgba(255,250,220,.98)';
+    g.beginPath();g.arc(x,y,r,0,Math.PI*2);g.fill();
+  }
+  function drawPyramids(g){
+    const gY=VH-SZ.gr,f=0.10,tw=VW*1.5,off=-((st.worldX*f)%tw);
+    const pats=[{x:.18,w:210,h:230,c:'rgba(232,200,150,.55)'},{x:.55,w:270,h:290,c:'rgba(220,185,130,.6)'},{x:1.02,w:170,h:190,c:'rgba(240,210,160,.55)'}];
+    for(let rep=0;rep<2;rep++){const ox=off+rep*tw;
+      for(const py of pats){const cx=ox+py.x*VW;if(cx<-400||cx>VW+400)continue;drawPyr(g,cx,gY,py.w,py.h,py.c)}
+    }
+  }
+  function drawPyr(g,cx,by,w,h,col){
+    g.fillStyle=col;g.beginPath();g.moveTo(cx-w/2,by);g.lineTo(cx,by-h);g.lineTo(cx+w/2,by);g.closePath();g.fill();
+    g.fillStyle='rgba(255,220,170,.28)';
+    g.beginPath();g.moveTo(cx,by-h);g.lineTo(cx+w/2,by);g.lineTo(cx+w*0.14,by);g.closePath();g.fill();
+  }
+  function drawClouds(g){
+    const f=0.28,tw=VW*2.2,off=-((st.worldX*f)%tw);
+    g.fillStyle='rgba(255,255,255,.7)';
+    for(let rep=0;rep<2;rep++){const ox=off+rep*tw;
+      for(const c of st.clouds){const cx=ox+c.x*VW,cy=c.y*VH;if(cx<-220||cx>VW+220)continue;drawCloudShape(g,cx,cy,56*c.s)}
+    }
+  }
+  function drawCloudShape(g,x,y,s){
+    g.beginPath();g.arc(x,y,s,0,Math.PI*2);g.arc(x+s*0.9,y+s*0.15,s*0.75,0,Math.PI*2);
+    g.arc(x-s*0.9,y+s*0.2,s*0.7,0,Math.PI*2);g.arc(x+s*0.25,y-s*0.42,s*0.6,0,Math.PI*2);g.fill();
+  }
+  function drawDunes(g){
+    const gY=VH-SZ.gr,f=0.55,tw=VW*1.15,off=-((st.worldX*f)%tw);
+    g.fillStyle='rgba(230,195,140,.7)';
+    for(let rep=0;rep<2;rep++){const ox=off+rep*tw;
+      g.beginPath();g.moveTo(ox,gY);const steps=26;
+      for(let i=0;i<=steps;i++){const t=i/steps;const x=ox+t*tw;const y=gY-28-Math.sin(t*Math.PI*2)*18-Math.sin(t*Math.PI*5.3)*7;g.lineTo(x,y)}
+      g.lineTo(ox+tw,gY);g.closePath();g.fill();
+    }
+  }
+  function drawGround(g){
+    const gY=VH-SZ.gr;
+    const gr=g.createLinearGradient(0,gY,0,VH);
+    gr.addColorStop(0,'#F5D6A0');gr.addColorStop(0.5,'#E0B87A');gr.addColorStop(1,'#B58447');
+    g.fillStyle=gr;g.fillRect(0,gY,VW,SZ.gr);
+    g.fillStyle='#FFF6DC';g.fillRect(0,gY,VW,3);
+    g.fillStyle='rgba(160,120,60,.35)';g.fillRect(0,gY+3,VW,2);
+    const off=-((st.worldX)%46);
+    g.strokeStyle='rgba(160,120,60,.28)';g.lineWidth=1.5;
+    for(let x=off-46;x<VW+46;x+=46){
+      g.beginPath();
+      g.moveTo(x,gY+14);g.lineTo(x+14,gY+14);
+      g.moveTo(x+22,gY+34);g.lineTo(x+38,gY+34);
+      g.moveTo(x+8,gY+54);g.lineTo(x+22,gY+54);
+      g.stroke();
+    }
+  }
+  function drawObs(g){
+    const gY=VH-SZ.gr;
+    for(const o of st.obs){
+      drawCactus(g,o.x,0,o.w,o.gapY,o.seed,true);
+      const by=o.gapY+o.gapH;
+      drawCactus(g,o.x,by,o.w,gY-by,o.seed+100,false);
+    }
+  }
+  function roundRectPath(g,x,y,w,h,r){
+    r=Math.min(r,w/2,h/2);
+    g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);
+    g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath();
+  }
+  function drawCactus(g,x,y,w,h,seed,isTop){
+    if(h<=4)return;
+    const dirtH=Math.min(26,h*0.32);
+    const bodyY=isTop?y+dirtH:y;
+    const bodyH=h-dirtH;
+    const grad=g.createLinearGradient(x,0,x+w,0);
+    grad.addColorStop(0,'#3F9142');grad.addColorStop(0.35,'#5FB863');
+    grad.addColorStop(0.65,'#4CAF50');grad.addColorStop(1,'#235C25');
+    g.fillStyle=grad;roundRectPath(g,x+3,bodyY,w-6,bodyH,9);g.fill();
+    g.strokeStyle='rgba(20,60,20,.55)';g.lineWidth=1.5;
+    roundRectPath(g,x+3,bodyY,w-6,bodyH,9);g.stroke();
+    g.strokeStyle='rgba(0,60,10,.35)';g.lineWidth=1.4;
+    for(let i=1;i<=3;i++){const lx=x+3+(w-6)*(i/4);g.beginPath();g.moveTo(lx,bodyY+5);g.lineTo(lx,bodyY+bodyH-5);g.stroke()}
+    g.strokeStyle='rgba(255,255,255,.2)';g.lineWidth=2;
+    g.beginPath();g.moveTo(x+w*0.32,bodyY+8);g.lineTo(x+w*0.32,bodyY+bodyH-8);g.stroke();
+    const rng=mulberry32(seed);g.fillStyle='#FFF3D0';g.strokeStyle='rgba(120,80,30,.7)';g.lineWidth=0.8;
+    const step=22,count=Math.max(1,Math.floor(bodyH/step));
+    for(let i=0;i<count;i++){const sy=bodyY+14+i*step;if(sy>bodyY+bodyH-6)break;
+      g.beginPath();g.moveTo(x+3,sy);g.lineTo(x-4,sy+2);g.lineTo(x+3,sy+5);g.closePath();g.fill();g.stroke();
+      g.beginPath();g.moveTo(x+w-3,sy);g.lineTo(x+w+4,sy+2);g.lineTo(x+w-3,sy+5);g.closePath();g.fill();g.stroke();
+    }
+    const dy=isTop?y:y+h-dirtH;
+    const dg=g.createLinearGradient(0,dy,0,dy+dirtH);
+    dg.addColorStop(0,'#A8876A');dg.addColorStop(1,'#6B4A2A');
+    g.fillStyle=dg;roundRectPath(g,x-2,dy,w+4,dirtH,8);g.fill();
+    const rng2=mulberry32(seed+7);g.fillStyle='rgba(40,25,10,.5)';
+    for(let i=0;i<10;i++){const dx=x+rng2()*w,dyy=dy+3+rng2()*(dirtH-6);g.beginPath();g.arc(dx,dyy,0.8+rng2()*1.6,0,Math.PI*2);g.fill()}
+    g.strokeStyle='rgba(255,220,180,.35)';g.lineWidth=1.5;
+    g.beginPath();g.moveTo(x+4,dy+3);g.lineTo(x+w-4,dy+3);g.stroke();
+  }
+  function drawBubbles(g){
+    const t=performance.now()/1000;
+    for(const b of st.bub){
+      if(b.collected)continue;
+      const bob=Math.sin(t*2.4+b.seed)*4,cy=b.y+bob;
+      const rg=g.createRadialGradient(b.x,cy,b.r*0.3,b.x,cy,b.r*1.9);
+      rg.addColorStop(0,'rgba(140,235,255,.75)');rg.addColorStop(1,'rgba(140,235,255,0)');
+      g.fillStyle=rg;g.beginPath();g.arc(b.x,cy,b.r*1.9,0,Math.PI*2);g.fill();
+      const bg=g.createRadialGradient(b.x-b.r*0.32,cy-b.r*0.32,b.r*0.1,b.x,cy,b.r);
+      bg.addColorStop(0,'rgba(255,255,255,.95)');bg.addColorStop(0.55,'rgba(140,235,255,.6)');
+      bg.addColorStop(1,'rgba(70,180,225,.5)');
+      g.fillStyle=bg;g.beginPath();g.arc(b.x,cy,b.r,0,Math.PI*2);g.fill();
+      g.strokeStyle='rgba(255,255,255,.95)';g.lineWidth=2;
+      g.beginPath();g.arc(b.x,cy,b.r,0,Math.PI*2);g.stroke();
+      drawDiamond(g,b.x,cy,b.r*0.6);
+      for(let i=0;i<4;i++){
+        const sa=t*2+i*1.6+b.seed,sr=b.r*1.35;
+        const sx=b.x+Math.cos(sa)*sr,sy=cy+Math.sin(sa)*sr;
+        const aa=0.35+0.65*Math.abs(Math.sin(sa*3));
+        g.fillStyle='rgba(255,255,255,'+aa.toFixed(2)+')';
+        g.beginPath();g.arc(sx,sy,1.6,0,Math.PI*2);g.fill();
+      }
+    }
+  }
+  function drawDiamond(g,x,y,s){
+    g.save();g.translate(x,y);
+    const gr=g.createLinearGradient(0,-s,0,s);
+    gr.addColorStop(0,'#E8FBFF');gr.addColorStop(.5,'#8CEBFF');gr.addColorStop(1,'#1B7FA8');
+    g.fillStyle=gr;
+    g.beginPath();g.moveTo(0,-s);g.lineTo(s*0.85,-s*0.15);g.lineTo(0,s);g.lineTo(-s*0.85,-s*0.15);g.closePath();
+    g.fill();g.strokeStyle='#fff';g.lineWidth=1.5;g.stroke();
+    g.strokeStyle='rgba(255,255,255,.75)';g.lineWidth=1;
+    g.beginPath();g.moveTo(0,-s);g.lineTo(-s*0.28,-s*0.15);g.lineTo(0,s);
+    g.moveTo(0,-s);g.lineTo(s*0.28,-s*0.15);g.lineTo(0,s);
+    g.moveTo(-s*0.85,-s*0.15);g.lineTo(s*0.85,-s*0.15);
+    g.stroke();g.restore();
+  }
+  function drawParticles(g){
+    for(const p of st.par){
+      const a=clamp(p.life/p.max,0,1);
+      g.globalAlpha=a;g.fillStyle=p.col;
+      g.beginPath();g.arc(p.x,p.y,p.r*(0.5+a*0.5),0,Math.PI*2);g.fill();
+    }
+    g.globalAlpha=1;
+  }
+  function drawPlayer(g){
+    const p=st.p,r=p.r;
+    const gY=VH-SZ.gr;
+    const ss=clamp(1-(gY-p.y)/(VH*0.8),0.15,0.7);
+    g.save();g.globalAlpha=0.22*ss;g.fillStyle='#000';
+    g.beginPath();g.ellipse(p.x+4,gY-4,r*0.9*ss,r*0.28*ss,0,0,Math.PI*2);g.fill();g.restore();
+
+    g.save();g.translate(p.x,p.y);g.rotate(p.rot);
+    const gl=g.createRadialGradient(0,0,r*0.85,0,0,r*1.7);
+    gl.addColorStop(0,'rgba(255,213,46,.55)');gl.addColorStop(1,'rgba(255,213,46,0)');
+    g.fillStyle=gl;g.beginPath();g.arc(0,0,r*1.7,0,Math.PI*2);g.fill();
+
+    g.save();g.translate(r*0.1,r*0.14);g.fillStyle='rgba(0,0,0,.28)';
+    g.beginPath();g.arc(0,0,r*1.02,0,Math.PI*2);g.fill();g.restore();
+
+    if(st.imgOk&&st.img){
+      g.save();
+      g.beginPath();g.arc(0,0,r,0,Math.PI*2);g.clip();
+      g.drawImage(st.img,-r,-r,r*2,r*2);
+      g.restore();
+      g.strokeStyle='#fff';g.lineWidth=Math.max(2,r*0.1);
+      g.beginPath();g.arc(0,0,r-g.lineWidth/2,0,Math.PI*2);g.stroke();
+      g.strokeStyle='rgba(255,213,46,.7)';g.lineWidth=Math.max(1,r*0.05);
+      g.beginPath();g.arc(0,0,r,0,Math.PI*2);g.stroke();
+    } else {
+      drawDogAvatar(g,0,0,r,0);
+    }
+    g.restore();
+  }
+
+  function drawDogAvatar(g,cx,cy,r,variant){
+    variant=variant||0;
+    const c1=['#FFF3A8','#D9F6FF','#FFD9E8','#E8FFD9','#FFE8D9'][variant%5];
+    const c2=['#FFD52E','#59D7F2','#FF8FB5','#7FE05A','#FFA95C'][variant%5];
+    const c3=['#B97A00','#1B7FA8','#B8356A','#3E8A12','#B95A00'][variant%5];
+    const gr=g.createRadialGradient(cx-r*0.3,cy-r*0.3,r*0.15,cx,cy,r);
+    gr.addColorStop(0,c1);gr.addColorStop(0.55,c2);gr.addColorStop(1,c3);
+    g.fillStyle=gr;g.beginPath();g.arc(cx,cy,r,0,Math.PI*2);g.fill();
+    g.save();g.beginPath();g.arc(cx,cy,r,0,Math.PI*2);g.clip();
+    g.fillStyle='#6B4200';
+    g.beginPath();g.moveTo(cx-r*0.72,cy-r*0.30);g.lineTo(cx-r*0.50,cy-r*0.92);g.lineTo(cx-r*0.12,cy-r*0.46);g.closePath();g.fill();
+    g.beginPath();g.moveTo(cx+r*0.72,cy-r*0.30);g.lineTo(cx+r*0.50,cy-r*0.92);g.lineTo(cx+r*0.12,cy-r*0.46);g.closePath();g.fill();
+    g.fillStyle='#E8B866';g.beginPath();g.ellipse(cx,cy+r*0.06,r*0.72,r*0.68,0,0,Math.PI*2);g.fill();
+    g.fillStyle='#FFF3D0';g.beginPath();g.ellipse(cx,cy+r*0.36,r*0.42,r*0.32,0,0,Math.PI*2);g.fill();
+    g.fillStyle='#2A1B00';g.beginPath();g.arc(cx-r*0.28,cy-r*0.04,r*0.11,0,Math.PI*2);g.arc(cx+r*0.28,cy-r*0.04,r*0.11,0,Math.PI*2);g.fill();
+    g.fillStyle='#fff';g.beginPath();g.arc(cx-r*0.25,cy-r*0.08,r*0.04,0,Math.PI*2);g.arc(cx+r*0.31,cy-r*0.08,r*0.04,0,Math.PI*2);g.fill();
+    g.fillStyle='#2A1B00';g.beginPath();g.ellipse(cx,cy+r*0.20,r*0.10,r*0.08,0,0,Math.PI*2);g.fill();
+    g.strokeStyle='#2A1B00';g.lineWidth=Math.max(1.5,r*0.06);g.lineCap='round';
+    g.beginPath();g.arc(cx-r*0.11,cy+r*0.30,r*0.13,0,Math.PI);g.stroke();
+    g.beginPath();g.arc(cx+r*0.11,cy+r*0.30,r*0.13,0,Math.PI);g.stroke();
+    g.fillStyle='#FF6B7E';g.beginPath();g.ellipse(cx,cy+r*0.50,r*0.11,r*0.09,0,0,Math.PI);g.fill();
+    g.restore();
+    g.strokeStyle='#fff';g.lineWidth=Math.max(2,r*0.10);
+    g.beginPath();g.arc(cx,cy,r-g.lineWidth/2,0,Math.PI*2);g.stroke();
+  }
+
+  function flap(){st.p.vy=CFG.flap}
+
+  function tick(now){
+    if(st.mode!=='playing'&&st.mode!=='ready')return;
+    st.raf=requestAnimationFrame(tick);
+    const dt=Math.min(0.1,Math.max(0,(now-st.lastT)/1000));
+    st.lastT=now;
+    if(st.mode==='playing'){
+      st.acc+=dt;let it=0;
+      while(st.acc>=CFG.fixedDt&&it<400){step(CFG.fixedDt);st.acc-=CFG.fixedDt;it++;if(st.mode!=='playing')break}
+      if(it>=400)st.acc=0;
+      $('flyHudDist').textContent=fmt(Math.floor(st.dist));
+    } else if(st.mode==='ready'){
+      st.readyT+=dt;st.p.y=st.readyY+Math.sin(st.readyT*3)*8;st.p.rot=Math.sin(st.readyT*3)*0.10;
+    }
+    render();
+  }
+  function startLoop(){if(st.raf)return;st.lastT=performance.now();st.acc=0;st.raf=requestAnimationFrame(tick)}
+  function stopLoop(){if(st.raf){cancelAnimationFrame(st.raf);st.raf=0}}
+
+  function onDown(e){
+    if(st.mode==='ready'){
+      st.mode='playing';$('flyReadyOverlay').classList.remove('show');
+      flap();SFX.play('flap');e.preventDefault();
+    } else if(st.mode==='playing'){
+      flap();SFX.play('flap');e.preventDefault();
+    }
+  }
+
+  function over(){
+    if(st.mode==='over')return;
+    st.mode='over';
+    st.pendingCoins=st.rC;st.pendingGems=st.rD;st.pendingDist=Math.floor(st.dist);
+    st.roundClaimed=false;
+
+    // Save best + wallet (auto-collect to real user)
+    const u=S.user;
+    if(u){
+      if(st.pendingDist>(u.flyBest||0))u.flyBest=st.pendingDist;
+      u.flyCoins=(u.flyCoins||0)+st.pendingCoins;
+      u.flyGems=(u.flyGems||0)+st.pendingGems;
+      u.coins=(u.coins||0)+st.pendingCoins;
+      u.gems=(u.gems||0)+st.pendingGems;
+      st.roundClaimed=true;
+      FB.set({flyBest:u.flyBest,flyCoins:u.flyCoins,flyGems:u.flyGems,coins:u.coins,gems:u.gems}).catch(()=>{});
+      // Save to global fly leaderboard
+      try{
+        if(db)db.collection(CONFIG.flyCol).doc(TG.id).set({
+          userId:TG.id,name:u.name||'لاعب',
+          photoUrl:u.photoUrl||null,
+          best:u.flyBest,updatedAt:Date.now()
+        },{merge:true}).catch(()=>{});
+      }catch(e){}
+    }
+
+    $('flyOverDist').textContent=fmt(st.pendingDist);
+    $('flyOverCoins').textContent=fmt(st.pendingCoins);
+    $('flyOverGems').textContent=fmt(st.pendingGems);
+    $('flyOverOverlay').classList.add('show');
+    renderAll();
+  }
+
+  function enter(){
+    showScreen('fly');
+    resize();
+    setTimeout(()=>{resize();},60);
+    loadImg();
+    st.returnTo='menu';
+    reset();
+    st.mode='ready';
+    $('flyReadyOverlay').classList.add('show');
+    $('flyOverOverlay').classList.remove('show');
+    $('flyFloaters').innerHTML='';
+    startLoop();
+  }
+  function exit(){
+    stopLoop();st.mode='idle';
+    showScreen('home');
+  }
+  function replay(){
+    $('flyOverOverlay').classList.remove('show');
+    reset();st.mode='ready';
+    $('flyReadyOverlay').classList.add('show');
+    $('flyFloaters').innerHTML='';
+    startLoop();
+  }
+
+  function bind(){
+    const wrap=cvs.parentElement;
+    wrap.addEventListener('pointerdown',e=>{
+      if(e.target.closest('.fly-exit')||e.target.closest('button'))return;
+      if(!$('flyOverOverlay').classList.contains('show'))
+        onDown(e);
+    },{passive:false});
+    wrap.addEventListener('contextmenu',e=>e.preventDefault());
+    $('flyExit').addEventListener('pointerdown',e=>{e.stopPropagation()});
+    $('flyExit').addEventListener('click',e=>{e.stopPropagation();exit()});
+    $('flyBtnReplay').addEventListener('click',e=>{e.stopPropagation();replay()});
+    $('flyBtnBoard').addEventListener('click',e=>{e.stopPropagation();FlyBoard.open('fly')});
+    $('flyBoardBack').addEventListener('click',()=>FlyBoard.close());
+
+    window.addEventListener('keydown',e=>{
+      if(!$('screen-fly').classList.contains('active'))return;
+      if(e.code==='Space'||e.code==='ArrowUp'){
+        if(st.mode==='ready'||st.mode==='playing'){e.preventDefault();onDown(e)}
+      }
+    });
+    window.addEventListener('resize',()=>{if($('screen-fly').classList.contains('active'))resize()});
+    window.addEventListener('orientationchange',()=>{if($('screen-fly').classList.contains('active'))setTimeout(resize,150)});
+    document.addEventListener('visibilitychange',()=>{
+      if(document.hidden)st.lastT=performance.now();
+      else st.lastT=performance.now();
+    });
+  }
+
+  return {enter,exit,replay,bind,resize,st};
+})();
+
+/* ═══ FLY LEADERBOARD ═══ */
+const FlyBoard = {
+  open(returnTo){
+    FlyGame.st.returnTo=returnTo||'menu';
+    showScreen('flyboard');
+    this.render();
+  },
+  close(){
+    showScreen(FlyGame.st.returnTo||'menu');
+    if(FlyGame.st.returnTo==='fly')FlyGame.replay();
+  },
+  async render(){
+    const el=$('flyBoardScroll');
+    el.innerHTML='<div class="fly-board-empty">جاري التحميل...</div>';
+    let entries=[];
+    try{
+      if(db){
+        const snap=await db.collection(CONFIG.flyCol).orderBy('best','desc').limit(100).get();
+        snap.forEach(d=>{
+          const x=d.data();
+          entries.push({id:d.id,name:x.name||'لاعب',best:Number(x.best||0),photoUrl:x.photoUrl||null});
+        });
+      }
+    }catch(e){console.warn(e)}
+    // Ensure current user included
+    const u=S.user;
+    const myId=TG.id;
+    const meIdx=entries.findIndex(e=>e.id===myId);
+    if(meIdx===-1&&u&&u.flyBest>0){
+      entries.push({id:myId,name:u.name||'لاعب',best:Number(u.flyBest||0),photoUrl:u.photoUrl||null,isMe:true});
+    } else if(meIdx>=0){
+      entries[meIdx].isMe=true;
+      entries[meIdx].best=Math.max(entries[meIdx].best,Number(u.flyBest||0));
+    }
+    entries.sort((a,b)=>b.best-a.best);
+    const top=entries.slice(0,100);
+
+    if(top.length===0){
+      el.innerHTML='<div class="fly-board-empty">لا يوجد سجل بعد — كن أول المتصدرين!</div>';
+      return;
+    }
+
+    const me=top.find(e=>e.isMe);
+    const myRank=me?top.findIndex(e=>e.isMe)+1:0;
+    const first=top[0];
+
+    let html='';
+    // Featured (first place) big
+    html+=`<div class="fly-featured">
+      <div class="fly-featured-avatar">
+        <div class="fly-featured-crown">👑</div>
+        ${myRank===1?'<div class="fly-featured-medal">أنت!</div>':''}
+        <div class="inner">
+          ${first.photoUrl?`<img src="${esc(first.photoUrl)}" referrerpolicy="no-referrer" onerror="this.outerHTML='<canvas width=200 height=200></canvas>'">`:'<canvas width="200" height="200"></canvas>'}
+        </div>
+      </div>
+      <div class="fly-featured-dist">${fmt(first.best)}</div>
+      <div class="fly-featured-name">${esc(first.name)}</div>
+    </div>`;
+
+    // Rows
+    html+='<div class="fly-board-rows">';
+    top.forEach((e,i)=>{
+      const r=i+1;
+      let rkCls='';
+      if(r===1)rkCls='gold';else if(r===2)rkCls='silver';else if(r===3)rkCls='bronze';
+      const rowPhoto=e.photoUrl
+        ?`<img src="${esc(e.photoUrl)}" referrerpolicy="no-referrer" onerror="this.outerHTML='<canvas width=100 height=100></canvas>'">`
+        :'<canvas width="100" height="100"></canvas>';
+      html+=`<div class="fly-board-row${e.isMe?' me':''}">
+        <div class="rk ${rkCls}">${r}</div>
+        <div class="av">${rowPhoto}</div>
+        <div class="nm">${esc(e.name)}${e.isMe?' <span style="background:#FFD52E;color:#5A3A00;font-size:10px;padding:1px 6px;border-radius:6px;margin-inline-start:4px;font-weight:900">أنت</span>':''}</div>
+        <div class="dist">${fmt(e.best)} م</div>
+      </div>`;
+    });
+    html+='</div>';
+    html+='<div class="fly-board-note">يتم تحديث القائمة تلقائياً بعد كل جولة</div>';
+    el.innerHTML=html;
+
+    // Render fallback avatars
+    el.querySelectorAll('canvas').forEach(cv=>{
+      const c=cv.getContext('2d');const w=cv.width;
+      // Find which entry this canvas belongs to by parent
+      const row=cv.closest('.fly-board-row, .fly-featured-avatar');
+      let variant=0;
+      if(row){
+        const nm=row.querySelector('.nm, .fly-featured-name');
+        if(nm){let h=0;const s=nm.textContent;for(let i=0;i<s.length;i++){h=(h<<5)-h+s.charCodeAt(i);h|=0}variant=Math.abs(h)%5}
+      }
+      c.clearRect(0,0,w,w);
+      // Draw dog avatar (uses same drawer as FlyGame)
+      drawAvatarHelper(c,w/2,w/2,w/2-4,variant);
+    });
+  }
+};
+
+function drawAvatarHelper(g,cx,cy,r,variant){
+  variant=variant||0;
+  const c1=['#FFF3A8','#D9F6FF','#FFD9E8','#E8FFD9','#FFE8D9'][variant%5];
+  const c2=['#FFD52E','#59D7F2','#FF8FB5','#7FE05A','#FFA95C'][variant%5];
+  const c3=['#B97A00','#1B7FA8','#B8356A','#3E8A12','#B95A00'][variant%5];
+  const gr=g.createRadialGradient(cx-r*0.3,cy-r*0.3,r*0.15,cx,cy,r);
+  gr.addColorStop(0,c1);gr.addColorStop(0.55,c2);gr.addColorStop(1,c3);
+  g.fillStyle=gr;g.beginPath();g.arc(cx,cy,r,0,Math.PI*2);g.fill();
+  g.save();g.beginPath();g.arc(cx,cy,r,0,Math.PI*2);g.clip();
+  g.fillStyle='#6B4200';
+  g.beginPath();g.moveTo(cx-r*0.72,cy-r*0.30);g.lineTo(cx-r*0.50,cy-r*0.92);g.lineTo(cx-r*0.12,cy-r*0.46);g.closePath();g.fill();
+  g.beginPath();g.moveTo(cx+r*0.72,cy-r*0.30);g.lineTo(cx+r*0.50,cy-r*0.92);g.lineTo(cx+r*0.12,cy-r*0.46);g.closePath();g.fill();
+  g.fillStyle='#E8B866';g.beginPath();g.ellipse(cx,cy+r*0.06,r*0.72,r*0.68,0,0,Math.PI*2);g.fill();
+  g.fillStyle='#FFF3D0';g.beginPath();g.ellipse(cx,cy+r*0.36,r*0.42,r*0.32,0,0,Math.PI*2);g.fill();
+  g.fillStyle='#2A1B00';g.beginPath();g.arc(cx-r*0.28,cy-r*0.04,r*0.11,0,Math.PI*2);g.arc(cx+r*0.28,cy-r*0.04,r*0.11,0,Math.PI*2);g.fill();
+  g.fillStyle='#fff';g.beginPath();g.arc(cx-r*0.25,cy-r*0.08,r*0.04,0,Math.PI*2);g.arc(cx+r*0.31,cy-r*0.08,r*0.04,0,Math.PI*2);g.fill();
+  g.fillStyle='#2A1B00';g.beginPath();g.ellipse(cx,cy+r*0.20,r*0.10,r*0.08,0,0,Math.PI*2);g.fill();
+  g.strokeStyle='#2A1B00';g.lineWidth=Math.max(1.5,r*0.06);g.lineCap='round';
+  g.beginPath();g.arc(cx-r*0.11,cy+r*0.30,r*0.13,0,Math.PI);g.stroke();
+  g.beginPath();g.arc(cx+r*0.11,cy+r*0.30,r*0.13,0,Math.PI);g.stroke();
+  g.fillStyle='#FF6B7E';g.beginPath();g.ellipse(cx,cy+r*0.50,r*0.11,r*0.09,0,0,Math.PI);g.fill();
+  g.restore();
+  g.strokeStyle='#fff';g.lineWidth=Math.max(2,r*0.10);
+  g.beginPath();g.arc(cx,cy,r-g.lineWidth/2,0,Math.PI*2);g.stroke();
+}
 
 /* ═══ BOOT ═══ */
 function bind(){
@@ -1982,6 +2762,8 @@ function bind(){
       if (cryptoPendingInvoice && cryptoPendingInvoice.id) checkPendingInvoiceNow();
     }
   });
+
+  FlyGame.bind();
 }
 
 async function boot(){
