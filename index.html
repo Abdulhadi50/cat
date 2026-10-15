@@ -57,115 +57,15 @@ input{font:inherit;color:inherit}
 .pill .ico{width:32px;height:32px;font-size:14px}
 .pill b{font-size:14px;direction:ltr;display:block;line-height:1.1}
 .pill small{font-size:9px;color:var(--ink2);direction:ltr;display:block}
-
-/* ===== HOME HERO — Puppy Merge style ===== */
-.hero-pm{
-  position:relative;
-  border-radius:28px;
-  padding:14px;
-  margin-bottom:12px;
-  border:3px solid #8A5A00;
-  background:
-    radial-gradient(circle at 20% 10%, rgba(255,255,255,.45) 0%, transparent 45%),
-    radial-gradient(circle at 85% 20%, rgba(255,240,180,.5) 0%, transparent 40%),
-    linear-gradient(160deg,#7EC8E3 0%,#A8DCF0 45%,#FFE95C 100%);
-  box-shadow:0 6px 0 #8A5A00,0 14px 28px rgba(0,0,0,.18),inset 0 3px 0 rgba(255,255,255,.5);
-  overflow:hidden;
-}
-.hero-pm::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle at 50% 120%, rgba(255,255,255,.35) 0%, transparent 50%);
-  pointer-events:none;
-}
-.hero-pm-hdr{
-  display:flex;align-items:center;justify-content:space-between;
-  gap:8px;
-  margin-bottom:10px;
-  position:relative;
-  z-index:2;
-}
-.hero-pm-logo{
-  display:flex;align-items:center;gap:8px;min-width:0;
-}
-.hero-pm-logo h1{
-  font-size:19px;
-  color:#fff;
-  font-weight:800;
-  text-shadow:0 2px 0 #8A5A00,0 3px 5px rgba(0,0,0,.3);
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-.hero-pm-dist{
-  display:flex;align-items:center;gap:5px;
-  background:rgba(255,255,255,.95);
-  border:2px solid #8A5A00;
-  border-radius:14px;
-  padding:4px 10px;
-  font-weight:800;
-  color:var(--ink);
-  font-size:11px;
-  flex-shrink:0;
-  box-shadow:0 2px 0 rgba(138,90,0,.3);
-}
-.hero-pm-dist i{color:var(--sky-d);font-size:11px}
-.hero-pm-dist b{font-size:15px;direction:ltr;color:var(--ink)}
-.hero-pm-preview{
-  background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(232,250,255,.85));
-  border:2px solid rgba(138,90,0,.3);
-  border-radius:20px;
-  padding:9px;
-  margin-bottom:10px;
-  box-shadow:inset 0 3px 8px rgba(0,0,0,.08);
-  position:relative;
-  z-index:2;
-}
-.pvc{
-  display:grid;
-  grid-template-columns:repeat(6,1fr);
-  gap:5px;
-}
-.pvc-t{
-  aspect-ratio:1;
-  border-radius:10px;
-  display:grid;
-  place-items:center;
-  font-size:15px;
-  color:#fff;
-  box-shadow:inset 0 -3px 0 rgba(0,0,0,.15),inset 0 2px 0 rgba(255,255,255,.35),0 2px 0 rgba(0,0,0,.08);
-  animation:pmBounce 2.4s ease-in-out infinite;
-}
-.pvc-t:nth-child(3n){animation-delay:.3s}
-.pvc-t:nth-child(4n){animation-delay:.6s}
-.pvc-t:nth-child(7n){animation-delay:.9s}
-@keyframes pmBounce{50%{transform:translateY(-3px) scale(1.03)}}
-.pvc-t.pc0{background:linear-gradient(160deg,#C58CE8,#8E24AA)}
-.pvc-t.pc1{background:linear-gradient(160deg,#FFE28A,#E0A300)}
-.pvc-t.pc2{background:linear-gradient(160deg,#7EFF6A,#2BA845)}
-.pvc-t.pc3{background:linear-gradient(160deg,#FFB8D1,#C2185B)}
-.pvc-t.pc4{background:linear-gradient(160deg,#FFB870,#E65100)}
-.pvc-t.pc5{background:linear-gradient(160deg,#A8E2FF,#2874A6)}
-.hero-pm-sub{
-  text-align:center;
-  font-size:12.5px;
-  font-weight:700;
-  color:#5A3A00;
-  margin:2px 0 12px;
-  position:relative;
-  z-index:2;
-  text-shadow:0 1px 0 rgba(255,255,255,.6);
-}
-.hero-pm-play{
-  height:58px !important;
-  font-size:18px !important;
-  position:relative;
-  z-index:2;
-}
-/* ===== end HOME HERO ===== */
-
+.hero{border-radius:28px;padding:18px 16px;margin-bottom:12px;text-align:center;border:3px solid var(--gold-d);background:linear-gradient(160deg,#FFE95C,#FFD52E 55%,#F4B900);box-shadow:0 6px 0 #8A5A00,0 12px 24px rgba(0,0,0,.15),inset 0 3px 0 rgba(255,255,255,.6)}
+.hero .lv{display:inline-flex;gap:6px;align-items:center;background:#fff;padding:4px 14px;border-radius:16px;font-weight:800;font-size:12px;margin-bottom:10px}
+.paws{display:flex;justify-content:center;margin-bottom:10px}
+.paws .ico{width:56px;height:56px;font-size:26px;margin:0 -5px;animation:bn 2s infinite}
+.paws .ico:nth-child(2n){animation-delay:.3s}
+@keyframes bn{50%{transform:translateY(-5px)}}
+.hero h1{font-size:24px;color:#fff;text-shadow:0 2px 0 #8A5A00,0 3px 0 rgba(0,0,0,.2)}
+.hero p{font-size:12.5px;font-weight:700;margin:2px 0 14px;color:#6B4200}
+.hero .btn{height:60px;font-size:19px}
 .bar{height:16px;border-radius:10px;background:#CFF4FC;overflow:hidden;box-shadow:inset 0 3px 6px rgba(0,0,0,.15)}
 .bar i{display:block;height:100%;border-radius:10px;background:linear-gradient(180deg,#B7FFB8,#4BE51E 50%,#35C915);transition:width .4s}
 .en-val{font-size:22px;font-weight:900;direction:ltr;line-height:1;color:#8B0000}
@@ -328,7 +228,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 .fly-pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.82);border:2px solid rgba(255,255,255,.95);border-radius:999px;padding:6px 12px;font-weight:800;font-size:13px;color:var(--ink);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 3px 8px rgba(0,0,0,.15)}
 .fly-pill .ico{width:20px;height:20px;font-size:10px}
 .fly-pill b{direction:ltr;font-variant-numeric:tabular-nums}
-.fly-pill.dist{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);font-size:15px;padding:7px 14px}
+.fly-pill.dist{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);font-size:15px;padding:7px 14px;z-index:5}
 .fly-pill.dist b{font-size:17px;margin:0 3px}
 .fly-exit{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));inset-inline-end:12px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.82);border:2px solid #fff;display:grid;place-items:center;color:var(--ink);font-size:16px;pointer-events:auto;box-shadow:0 3px 8px rgba(0,0,0,.15);z-index:6}
 .fly-exit:active{transform:scale(.92)}
@@ -339,213 +239,32 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 @keyframes flyFloatUp{0%{transform:translate(-50%,-50%) scale(.4);opacity:0}18%{transform:translate(-50%,-95%) scale(1.18);opacity:1}100%{transform:translate(-50%,-230%) scale(1);opacity:0}}
 .fly-overlay{position:absolute;inset:0;display:none;align-items:center;justify-content:center;padding:20px;z-index:10;overflow-y:auto}
 .fly-overlay.show{display:flex}
-#flyReadyOverlay{background:transparent;pointer-events:none}
-.fly-ready-box{background:rgba(0,0,0,.38);color:#fff;padding:20px 28px;border-radius:24px;border:2px solid rgba(255,255,255,.2);backdrop-filter:blur(8px);pointer-events:none;text-align:center}
-.fly-ready-title{font-size:32px;font-weight:900}
-.fly-ready-sub{font-size:14px;font-weight:800;margin-top:8px;opacity:.92}
-.fly-ready-tap{font-size:34px;margin-top:14px;animation:flyBounce 1.1s infinite}
-@keyframes flyBounce{50%{transform:translateY(-10px)}}
+#flyReadyOverlay{z-index:8;background:linear-gradient(180deg,rgba(10,30,60,.10),rgba(10,30,60,.30))}
+.fly-ready-card{width:100%;max-width:320px;text-align:center;padding:22px 18px 18px;margin:0}
+.fly-ready-card .ico{width:64px;height:64px;font-size:30px;margin:0 auto 10px}
+.fly-ready-title{font-size:22px;font-weight:800}
+.fly-ready-sub{font-size:12.5px;font-weight:700;color:var(--ink2);margin:4px 0 16px}
 
-/* ========== GAME OVER REDESIGN ========== */
-#flyOverOverlay{
-  background:
-    radial-gradient(circle at 50% 15%, rgba(255,245,220,.5) 0%, transparent 40%),
-    linear-gradient(180deg,#FFE0A0 0%,#FFB86B 30%,#FF8C42 55%,#D6552A 80%,#8B2E1F 100%);
-  backdrop-filter:blur(6px);
-  -webkit-backdrop-filter:blur(6px);
-  position:relative;
-  overflow:hidden;
-  padding:0;
-}
-#flyOverOverlay::before{
-  content:'';
-  position:absolute;
-  left:-10%;right:-10%;bottom:-8%;
-  height:55%;
-  background:
-    radial-gradient(ellipse at 30% 100%, rgba(139,46,31,.55) 0%, transparent 60%),
-    radial-gradient(ellipse at 70% 100%, rgba(139,46,31,.5) 0%, transparent 60%),
-    linear-gradient(180deg, transparent 0%, rgba(90,26,15,.55) 100%);
-  pointer-events:none;
-}
-#flyOverOverlay::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle at 15% 30%, rgba(255,255,255,.06) 0%, transparent 30%),
-    radial-gradient(circle at 85% 35%, rgba(255,255,255,.05) 0%, transparent 30%);
-  pointer-events:none;
-}
-.fly-over-content{
-  width:100%;
-  max-width:480px;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  position:relative;
-  padding:20px 20px calc(20px + env(safe-area-inset-bottom,0px));
-  z-index:3;
-  gap:14px;
-}
-.fly-over-top{
-  text-align:center;
-  margin-top:calc(20px + env(safe-area-inset-top,0px));
-}
-.fly-over-title{
-  font-size:28px;
-  font-weight:900;
-  color:#fff;
-  text-shadow:0 3px 0 rgba(139,46,31,.75),0 6px 14px rgba(0,0,0,.4);
-  letter-spacing:-0.3px;
-}
-.fly-over-subtitle{
-  font-size:12px;
-  font-weight:800;
-  color:#fff;
-  opacity:.85;
-  margin-top:4px;
-  text-shadow:0 1px 2px rgba(0,0,0,.3);
-}
-.fly-over-center{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  gap:14px;
-}
-.fly-over-dist-box{
-  text-align:center;
-  background:rgba(255,255,255,.16);
-  border:2px solid rgba(255,255,255,.4);
-  border-radius:26px;
-  padding:18px 34px;
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-  box-shadow:0 10px 26px rgba(0,0,0,.22),inset 0 2px 0 rgba(255,255,255,.35);
-}
-.fly-over-dist-label{
-  font-size:13px;
-  font-weight:800;
-  color:#fff;
-  opacity:.95;
-  margin-bottom:4px;
-  text-shadow:0 2px 0 rgba(0,0,0,.25);
-}
-.fly-over-dist-value{
-  font-size:62px;
-  font-weight:900;
-  color:#fff;
-  line-height:1;
-  direction:ltr;
-  letter-spacing:-2px;
-  text-shadow:0 4px 0 rgba(139,46,31,.75),0 8px 16px rgba(0,0,0,.4);
-  display:flex;
-  align-items:baseline;
-  justify-content:center;
-  gap:6px;
-}
-.fly-over-dist-value small{
-  font-size:20px;
-  font-weight:800;
-  opacity:.92;
-}
-.fly-over-balance-box{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  background:#fff;
-  border:3px solid rgba(138,90,0,.35);
-  border-radius:22px;
-  padding:14px 22px;
-  box-shadow:0 6px 0 rgba(138,90,0,.35),0 14px 24px rgba(0,0,0,.25),inset 0 3px 0 rgba(255,255,255,.7);
-}
-.bal-item{
-  display:flex;
-  align-items:center;
-  gap:9px;
-}
-.bal-ico{
-  width:40px;height:40px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  color:#fff;
-  font-size:16px;
-  box-shadow:inset 0 -3px 0 rgba(0,0,0,.2),inset 0 3px 0 rgba(255,255,255,.4);
-}
-.bal-ico.coins{background:radial-gradient(circle at 30% 25%,#FFF3A8,#FFD52E 45%,#B97A00)}
-.bal-ico.gems{background:radial-gradient(circle at 30% 25%,#CFF4FC,#59D7F2 45%,#1B7FA8)}
-.bal-val{
-  font-size:21px;
-  font-weight:900;
-  color:var(--ink);
-  direction:ltr;
-  line-height:1;
-}
-.bal-lbl{
-  font-size:10.5px;
-  font-weight:800;
-  color:var(--ink2);
-  margin-top:2px;
-}
-.bal-sep{
-  width:2px;
-  height:36px;
-  background:rgba(138,90,0,.18);
-}
-.fly-over-actions{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-.fly-btn-main{
-  background:#fff;
-  color:var(--ink);
-  border-radius:16px;
-  height:56px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  font-size:17px;
-  font-weight:900;
-  box-shadow:0 4px 0 rgba(138,90,0,.4),0 8px 16px rgba(0,0,0,.18);
-  transition:transform .08s,box-shadow .08s;
-}
-.fly-btn-main:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(138,90,0,.4)}
-.fly-btn-main svg{width:22px;height:22px}
-.fly-btn-replay{
-  background:linear-gradient(180deg,#76F344,#4BE51E 72%,#35C915);
-  color:#fff;
-  border-radius:16px;
-  height:64px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  font-size:20px;
-  font-weight:900;
-  text-shadow:0 2px 0 #27820D;
-  box-shadow:0 5px 0 #16540B,inset 0 3px 0 rgba(255,255,255,.4),0 10px 18px rgba(0,0,0,.2);
-  transition:transform .08s,box-shadow .08s;
-}
-.fly-btn-replay:active{transform:translateY(3px);box-shadow:0 2px 0 #16540B}
-.fly-btn-replay svg{width:24px;height:24px}
-.fly-link-board{
-  color:#fff;
-  font-size:14px;
-  font-weight:800;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  padding:10px;
-  text-shadow:0 2px 0 rgba(0,0,0,.3);
-  opacity:.92;
-}
-.fly-link-board svg{width:16px;height:16px}
+/* Game over screen */
+#flyOverOverlay{padding:0;overflow:hidden;background:linear-gradient(180deg,#6EC3E6 0%,#A8DCF0 38%,#DDF1F5 62%,#FFE8B8 100%)}
+.fly-over-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.fly-over-sun{position:absolute;top:8%;inset-inline-end:10%;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,#FFFBE0 30%,rgba(255,225,150,.55) 60%,rgba(255,225,150,0) 72%)}
+.fly-over-bg .cl{position:absolute;color:rgba(255,255,255,.85)}
+.fly-over-dunes{position:absolute;left:0;right:0;bottom:0;width:100%;height:36%}
+.fly-over-content{position:relative;z-index:2;width:100%;max-width:480px;height:100%;display:flex;flex-direction:column;padding:calc(26px + env(safe-area-inset-top,0px)) 18px calc(18px + env(safe-area-inset-bottom,0px))}
+.fly-over-head{text-align:center;font-size:20px;font-weight:800;color:var(--ink2)}
+.fly-over-center{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.fly-over-center .card{margin:0}
+.fly-over-distcard{text-align:center;padding:18px 14px}
+.fly-over-dist{direction:ltr;display:flex;align-items:baseline;justify-content:center;gap:8px;line-height:1}
+.fly-over-dist b{font-size:68px;font-weight:900;color:var(--ink)}
+.fly-over-dist span{font-size:20px;font-weight:800;color:var(--ink2)}
+.fly-over-best{margin-top:8px;font-size:13px;font-weight:800;color:var(--sky-d)}
+.fly-over-rewgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fly-over-rewgrid .card{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 8px}
+.fly-over-rewgrid b{font-size:24px;direction:ltr;line-height:1}
+.fly-over-actions{display:flex;flex-direction:column;gap:12px;padding-top:12px}
+.fly-link-board{color:var(--ink);font-size:16px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:8px;padding:8px}
 
 #screen-flyboard{background:linear-gradient(180deg,#E8F6FC 0%,#FFFDF0 100%)}
 .fly-board-header{padding:calc(10px + env(safe-area-inset-top,0px)) 12px 12px;display:flex;align-items:center;gap:10px;background:linear-gradient(180deg,#fff,#FFFDF0);border-bottom:2px solid var(--edge);flex-shrink:0}
@@ -595,23 +314,15 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 
     <!-- HOME -->
     <section class="screen active" id="screen-home">
-      <div class="hero hero-pm">
-        <div class="hero-pm-hdr">
-          <div class="hero-pm-logo">
-            <span class="ico i-gold" style="width:38px;height:38px;font-size:16px"><i class="fas fa-paw"></i></span>
-            <h1>Puppy Merge</h1>
-          </div>
-          <div class="hero-pm-dist">
-            <i class="fas fa-ruler-horizontal"></i>
-            <b id="homeDistance">0</b>
-            <span>م</span>
-          </div>
+      <div class="hero">
+        <div class="lv"><i class="fas fa-trophy"></i> المستوى <span id="homeLevel">1</span></div>
+        <div class="paws">
+          <span class="ico i-sky"><i class="fas fa-dog"></i></span><span class="ico i-gold"><i class="fas fa-cat"></i></span>
+          <span class="ico i-green"><i class="fas fa-dog"></i></span><span class="ico i-gold"><i class="fas fa-cat"></i></span><span class="ico i-sky"><i class="fas fa-dog"></i></span>
         </div>
-        <div class="hero-pm-preview">
-          <div class="pvc" id="pvGrid"></div>
-        </div>
-        <p class="hero-pm-sub">ادمج 3 جراء متشابهة واكسب كنوز المملكة!</p>
-        <button class="btn b-g hero-pm-play" id="playBtn"><i class="fas fa-play"></i> ابدأ اللعب</button>
+        <h1><i class="fas fa-paw"></i> Puppy Merge</h1>
+        <p>ادمج 3 جراء متشابهة واكسب كنوز المملكة!</p>
+        <button class="btn b-g" id="playBtn"><i class="fas fa-play"></i> ابدأ اللعب</button>
       </div>
 
       <div class="card">
@@ -624,18 +335,20 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
         <button class="btn b-s" id="energyAdBtn" style="height:44px;margin-top:12px"><i class="fas fa-play-circle"></i> مشاهدة إعلان +1 طاقة</button>
       </div>
 
+      <div class="hero">
+        <div class="paws">
+          <span class="ico i-sky"><i class="fas fa-cloud"></i></span><span class="ico i-gold"><i class="fas fa-coins"></i></span>
+          <span class="ico i-green"><i class="fas fa-dove"></i></span><span class="ico i-gold"><i class="fas fa-gem"></i></span><span class="ico i-sky"><i class="fas fa-cloud"></i></span>
+        </div>
+        <h1><i class="fas fa-dove"></i> Puppy Fly</h1>
+        <p>حلّق بين الصبّار واجمع العملات والجواهر!</p>
+        <button class="btn b-g" id="flyPlayBtn"><i class="fas fa-play"></i> ابدأ اللعب</button>
+      </div>
+
       <div class="quick">
         <button class="card" data-go="wheel"><span class="ico i-gold"><i class="fas fa-dharmachakra"></i></span><div class="ttl">عجلة الحظ</div><div class="sub">لفّتان يومياً</div><span class="badge" id="wheelBadge" style="display:none">مجاناً</span></button>
         <button class="card" data-go="missions"><span class="ico i-sky"><i class="fas fa-list-check"></i></span><div class="ttl">المهام</div><div class="sub">مكافآت يومية</div></button>
       </div>
-
-      <button class="card" data-go="fly" style="width:100%;text-align:start;margin-top:10px;border-color:var(--sky-d);background:linear-gradient(160deg,#fff,#E8F6FC 60%,#D0EFFA)">
-        <div class="row">
-          <span class="ico i-sky" style="width:50px;height:50px;font-size:22px"><i class="fas fa-dove"></i></span>
-          <div class="grow"><div class="ttl">لعبة الطيران</div><div class="sub">حلّق واجمع العملات والجواهر</div></div>
-          <i class="fas fa-chevron-left" style="color:var(--ink2)"></i>
-        </div>
-      </button>
 
       <button class="card" data-go="invest" style="width:100%;text-align:start;margin-top:10px;border-color:var(--green-d)">
         <div class="row">
@@ -982,56 +695,43 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
       <div id="flyFloaters"></div>
 
       <div class="fly-overlay show" id="flyReadyOverlay">
-        <div class="fly-ready-box">
-          <div class="fly-ready-title">استعد!</div>
-          <div class="fly-ready-sub">اضغط في أي مكان للطيران</div>
-          <div class="fly-ready-tap">👆</div>
+        <div class="card fly-ready-card">
+          <span class="ico i-sky"><i class="fas fa-dove"></i></span>
+          <div class="fly-ready-title">جاهز للطيران؟</div>
+          <div class="fly-ready-sub">اضغط على الشاشة لترتفع وتجنّب الصبّار</div>
+          <button class="btn b-g" id="flyBtnStart"><i class="fas fa-play"></i> ابدأ الطيران</button>
         </div>
       </div>
 
-      <!-- NEW GAME OVER OVERLAY -->
       <div class="fly-overlay" id="flyOverOverlay">
+        <div class="fly-over-bg" aria-hidden="true">
+          <div class="fly-over-sun"></div>
+          <i class="fas fa-cloud cl" style="top:16%;left:6%;font-size:64px"></i>
+          <i class="fas fa-cloud cl" style="top:30%;left:58%;font-size:46px"></i>
+          <svg class="fly-over-dunes" viewBox="0 0 400 140" preserveAspectRatio="none">
+            <path d="M230 70 L275 6 L320 70Z" fill="rgba(220,185,130,.7)"/>
+            <path d="M0 60 Q80 20 160 55 T320 50 T400 40 V140 H0Z" fill="#F0CF92"/>
+            <path d="M0 90 Q100 55 200 88 T400 78 V140 H0Z" fill="#E0B87A"/>
+            <path d="M0 115 Q120 90 240 112 T400 105 V140 H0Z" fill="#C79A5C"/>
+          </svg>
+        </div>
         <div class="fly-over-content">
-          <div class="fly-over-top">
-            <div class="fly-over-title">انتهت الجولة!</div>
-            <div class="fly-over-subtitle">أحسنت، كانت جولة رائعة</div>
-          </div>
+          <div class="fly-over-head">انتهت الجولة</div>
           <div class="fly-over-center">
-            <div class="fly-over-dist-box">
-              <div class="fly-over-dist-label">المسافة المقطوعة</div>
-              <div class="fly-over-dist-value"><span id="flyOverDist">0</span><small>م</small></div>
+            <div class="card fly-over-distcard">
+              <div class="sub">المسافة التي قطعتها</div>
+              <div class="fly-over-dist"><b id="flyOverDist">0</b><span>متر</span></div>
+              <div class="fly-over-best" id="flyOverBest"></div>
             </div>
-            <div class="fly-over-balance-box">
-              <div class="bal-item">
-                <span class="bal-ico coins"><i class="fas fa-coins"></i></span>
-                <div>
-                  <div class="bal-val" id="flyOverCoins">0</div>
-                  <div class="bal-lbl">عملات</div>
-                </div>
-              </div>
-              <div class="bal-sep"></div>
-              <div class="bal-item">
-                <span class="bal-ico gems"><i class="fas fa-gem"></i></span>
-                <div>
-                  <div class="bal-val" id="flyOverGems">0</div>
-                  <div class="bal-lbl">جواهر</div>
-                </div>
-              </div>
+            <div class="fly-over-rewgrid">
+              <div class="card"><span class="ico i-gold"><i class="fas fa-coins"></i></span><b id="flyOverCoins">0</b><span class="sub">عملات</span></div>
+              <div class="card"><span class="ico i-sky"><i class="fas fa-gem"></i></span><b id="flyOverGems">0</b><span class="sub">جواهر</span></div>
             </div>
           </div>
           <div class="fly-over-actions">
-            <button class="fly-btn-main" id="flyBtnMain">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 10v10h14V10"/></svg>
-              الرئيسية
-            </button>
-            <button class="fly-btn-replay" id="flyBtnReplay">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1015.5-6.4L21 8M21 3v5h-5"/></svg>
-              العب مرة أخرى
-            </button>
-            <button class="fly-link-board" id="flyBtnBoard">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M6 4h12v5a6 6 0 01-12 0V4zM4 4h2v3a2 2 0 01-2-2V4zM20 4h-2v3a2 2 0 002-2V4z"/></svg>
-              لوحة المتصدرين
-            </button>
+            <button class="btn b-y" id="flyBtnHome"><i class="fas fa-house"></i> الرئيسية</button>
+            <button class="btn b-g" id="flyBtnReplay"><i class="fas fa-rotate-right"></i> العب مرة أخرى</button>
+            <button class="fly-link-board" id="flyBtnBoard"><i class="fas fa-ranking-star"></i> لوحة المتصدرين</button>
           </div>
         </div>
       </div>
@@ -1191,7 +891,7 @@ const newUser=()=>({telegramId:TG.id,name:(TG.user.first_name||'')+(TG.user.last
   referralMilestones:{},
   investments:[],
   wheelSpins:CONFIG.spins,wheelLastDate:null,wheelSpinCount:0,wheelMissionClaimed:false,wheelAdLastAt:0,dailyRewards:{},dailyLogin:{streak:0,lastClaimDate:null},levelMissions:{},inviteMissions:{},inviteBase:0,lang:null,
-  flyBest:0,flyCoins:0,flyGems:0,
+  flyBest:0,flyCoins:0,flyGems:0,flyTotal:0,
   createdAt:Date.now(),updatedAt:Date.now()});
 
 /* ═══ UI ═══ */
@@ -1229,22 +929,11 @@ function renderEnergy(){
   $('energyTimer').textContent=c>=m?'ممتلئة':Math.floor(r/60000)+':'+pad(Math.floor(r%60000/1000));
 }
 
-/* ═══ HOME PREVIEW GRID ═══ */
-const HOME_TILES=[0,1,2,3,4,5,0,2,4,1,3,5,2,0,5,3,1,4,1,4,0,2,5,3];
-function buildPreviewGrid(){
-  const el=$('pvGrid');if(!el)return;
-  el.innerHTML=HOME_TILES.slice(0,18).map((t,i)=>{
-    const icons=['fa-cat','fa-dog','fa-frog','fa-dove','fa-fish','fa-horse'];
-    return '<div class="pvc-t pc'+t+'"><i class="fas '+icons[t]+'"></i></div>';
-  }).join('');
-}
-
 /* ═══ RENDER ═══ */
 function renderAll(){
   const u=S.user;if(!u)return;
   $('gemTop').textContent=fmt(u.gems);$('gemUsd').textContent='$'+usd(u.gems||0);
-  $('coinTop').textContent=fmt(u.coins);$('homeLevel')&&($('homeLevel').textContent=u.level||1);
-  $('homeDistance').textContent=fmt(u.flyBest||0);
+  $('coinTop').textContent=fmt(u.coins);$('homeLevel').textContent=u.level||1;
   $('profName').textContent=u.name||'لاعب';$('profId').textContent=u.telegramId;
   $('profCoins').textContent=fmt(u.coins);$('profGems').textContent=fmt(u.gems);$('profLevel').textContent=u.level||1;$('profRefs').textContent=u.referralCount||0;
   $('profAvatar').innerHTML=u.photoUrl?'<img src="'+esc(u.photoUrl)+'" referrerpolicy="no-referrer" onerror="this.parentElement.innerHTML=\'<i class=\\\'fas fa-dog\\\'></i>\'">':'<i class="fas fa-dog"></i>';
@@ -1571,12 +1260,14 @@ async function claimInvite(id){
 
 /* ═══ INVESTMENT ═══ */
 function getPlanById(id){return CONFIG.investPlans.find(p=>p.id===id)}
+
 function isInvestmentActive(inv){
   const plan=getPlanById(inv.planId);
   if(!plan)return false;
   const endAt = inv.startedAt + plan.days * 86400 * 1000;
   return Date.now() < endAt || inv.collected < plan.totalReturn;
 }
+
 function getPending(inv, plan){
   const now = Date.now();
   const endAt = inv.startedAt + plan.days * 86400 * 1000;
@@ -1585,11 +1276,13 @@ function getPending(inv, plan){
   const totalMined = (plan.totalReturn / (plan.days * 24 * 3600)) * (elapsedMs / 1000);
   return Math.max(0, Math.floor(totalMined) - inv.collected);
 }
+
 function isPlanActive(planId){
   const u=S.user;
   const investments = Array.isArray(u.investments) ? u.investments : [];
   return investments.some(inv => inv.planId === planId && isInvestmentActive(inv));
 }
+
 function renderInvestments(){
   const u=S.user;if(!u)return;
   const investments = Array.isArray(u.investments) ? u.investments : [];
@@ -2397,7 +2090,7 @@ function openContentModal(kind){
 function closeContentModal(){$('contentModal').classList.remove('show')}
 
 /* =========================================================
-   FLY GAME  — FIXED RESTART BUG & USER PHOTO
+   FLY GAME
    ========================================================= */
 const FlyGame = (() => {
   const cvs = document.getElementById('flyCanvas');
@@ -2406,7 +2099,7 @@ const FlyGame = (() => {
   const CFG = CONFIG.fly;
   const st={mode:'idle',raf:0,lastT:0,acc:0,p:{x:0,y:0,vy:0,rot:0,r:20},readyY:0,readyT:0,
     worldX:0,obs:[],bub:[],par:[],stars:[],clouds:[],
-    dist:0,rC:0,rD:0,pairs:0,nextB:8,img:null,imgOk:false,returnTo:'menu'};
+    dist:0,rC:0,rD:0,pairs:0,nextB:8,img:null,imgOk:false,returnTo:'menu',committed:false};
 
   function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 
@@ -2424,15 +2117,17 @@ const FlyGame = (() => {
     SZ.gr=clamp(VH*CFG.grR,CFG.grMin,CFG.grMax);
   }
 
+  /* صورة المستخدم: بدون crossOrigin لأن روابط تيليغرام لا ترسل CORS (الرسم على canvas لا يحتاجه) */
+  let imgUrl=null;
   function loadImg(){
-    st.imgOk=false;st.img=null;
-    const url=(TG.user&&TG.user.photo_url)||(S.user&&S.user.photoUrl);
-    if(!url)return;
+    const url=(S.user&&S.user.photoUrl)||(TG.user&&TG.user.photo_url)||null;
+    if(!url){st.img=null;st.imgOk=false;imgUrl=null;return}
+    if(url===imgUrl&&st.imgOk)return;
+    imgUrl=url;st.imgOk=false;st.img=null;
     const im=new Image();
-    // NOTE: no crossOrigin — Telegram CDN may not send CORS headers,
-    // but drawing without getImageData works fine.
-    im.onload=()=>{st.img=im;st.imgOk=true};
-    im.onerror=()=>{st.imgOk=false};
+    im.referrerPolicy='no-referrer';
+    im.onload=()=>{if(imgUrl===url){st.img=im;st.imgOk=true}};
+    im.onerror=()=>{if(imgUrl===url)st.imgOk=false};
     im.src=url;
   }
 
@@ -2440,7 +2135,7 @@ const FlyGame = (() => {
     st.p.x=VW*0.28;st.p.y=VH*0.45;st.p.vy=0;st.p.rot=0;st.p.r=SZ.pR;
     st.readyY=VH*0.45;st.readyT=0;st.worldX=0;
     st.obs=[];st.bub=[];st.par=[];
-    st.dist=0;st.rC=0;st.rD=0;st.pairs=0;
+    st.dist=0;st.rC=0;st.rD=0;st.pairs=0;st.committed=false;
     st.nextB=CFG.bubbleIntervalMin+Math.floor(Math.random()*(CFG.bubbleIntervalMax-CFG.bubbleIntervalMin+1));
     buildStars();buildClouds();
     let x=VW+100;for(let i=0;i<3;i++){spawnObs(x);x+=SZ.sp}
@@ -2738,56 +2433,37 @@ const FlyGame = (() => {
     g.save();g.translate(r*0.1,r*0.14);g.fillStyle='rgba(0,0,0,.28)';
     g.beginPath();g.arc(0,0,r*1.02,0,Math.PI*2);g.fill();g.restore();
 
-    if(st.imgOk&&st.img){
-      // USER PHOTO — display it in the flying ball
+    if(st.imgOk&&st.img&&st.img.naturalWidth>0){
       g.save();
       g.beginPath();g.arc(0,0,r,0,Math.PI*2);g.clip();
-      // Cover fit: crop center square from image
-      const iw=st.img.naturalWidth||st.img.width;
-      const ih=st.img.naturalHeight||st.img.height;
-      const s=Math.min(iw,ih);
-      const sx=(iw-s)/2, sy=(ih-s)/2;
-      g.drawImage(st.img, sx, sy, s, s, -r, -r, r*2, r*2);
+      g.drawImage(st.img,-r,-r,r*2,r*2);
       g.restore();
       g.strokeStyle='#fff';g.lineWidth=Math.max(2,r*0.1);
       g.beginPath();g.arc(0,0,r-g.lineWidth/2,0,Math.PI*2);g.stroke();
       g.strokeStyle='rgba(255,213,46,.7)';g.lineWidth=Math.max(1,r*0.05);
       g.beginPath();g.arc(0,0,r,0,Math.PI*2);g.stroke();
     } else {
-      drawDogAvatar(g,0,0,r,0);
+      drawInitialAvatar(g,0,0,r);
     }
     g.restore();
   }
 
-  function drawDogAvatar(g,cx,cy,r,variant){
-    variant=variant||0;
-    const c1=['#FFF3A8','#D9F6FF','#FFD9E8','#E8FFD9','#FFE8D9'][variant%5];
-    const c2=['#FFD52E','#59D7F2','#FF8FB5','#7FE05A','#FFA95C'][variant%5];
-    const c3=['#B97A00','#1B7FA8','#B8356A','#3E8A12','#B95A00'][variant%5];
-    const gr=g.createRadialGradient(cx-r*0.3,cy-r*0.3,r*0.15,cx,cy,r);
-    gr.addColorStop(0,c1);gr.addColorStop(0.55,c2);gr.addColorStop(1,c3);
+  /* بديل عند عدم توفر صورة المستخدم: أول حرف من اسمه */
+  function drawInitialAvatar(g,cx,cy,r){
+    const gr=g.createRadialGradient(cx-r*.3,cy-r*.3,r*.15,cx,cy,r);
+    gr.addColorStop(0,'#FFF3A8');gr.addColorStop(.55,'#FFD52E');gr.addColorStop(1,'#B97A00');
     g.fillStyle=gr;g.beginPath();g.arc(cx,cy,r,0,Math.PI*2);g.fill();
-    g.save();g.beginPath();g.arc(cx,cy,r,0,Math.PI*2);g.clip();
-    g.fillStyle='#6B4200';
-    g.beginPath();g.moveTo(cx-r*0.72,cy-r*0.30);g.lineTo(cx-r*0.50,cy-r*0.92);g.lineTo(cx-r*0.12,cy-r*0.46);g.closePath();g.fill();
-    g.beginPath();g.moveTo(cx+r*0.72,cy-r*0.30);g.lineTo(cx+r*0.50,cy-r*0.92);g.lineTo(cx+r*0.12,cy-r*0.46);g.closePath();g.fill();
-    g.fillStyle='#E8B866';g.beginPath();g.ellipse(cx,cy+r*0.06,r*0.72,r*0.68,0,0,Math.PI*2);g.fill();
-    g.fillStyle='#FFF3D0';g.beginPath();g.ellipse(cx,cy+r*0.36,r*0.42,r*0.32,0,0,Math.PI*2);g.fill();
-    g.fillStyle='#2A1B00';g.beginPath();g.arc(cx-r*0.28,cy-r*0.04,r*0.11,0,Math.PI*2);g.arc(cx+r*0.28,cy-r*0.04,r*0.11,0,Math.PI*2);g.fill();
-    g.fillStyle='#fff';g.beginPath();g.arc(cx-r*0.25,cy-r*0.08,r*0.04,0,Math.PI*2);g.arc(cx+r*0.31,cy-r*0.08,r*0.04,0,Math.PI*2);g.fill();
-    g.fillStyle='#2A1B00';g.beginPath();g.ellipse(cx,cy+r*0.20,r*0.10,r*0.08,0,0,Math.PI*2);g.fill();
-    g.strokeStyle='#2A1B00';g.lineWidth=Math.max(1.5,r*0.06);g.lineCap='round';
-    g.beginPath();g.arc(cx-r*0.11,cy+r*0.30,r*0.13,0,Math.PI);g.stroke();
-    g.beginPath();g.arc(cx+r*0.11,cy+r*0.30,r*0.13,0,Math.PI);g.stroke();
-    g.fillStyle='#FF6B7E';g.beginPath();g.ellipse(cx,cy+r*0.50,r*0.11,r*0.09,0,0,Math.PI);g.fill();
-    g.restore();
-    g.strokeStyle='#fff';g.lineWidth=Math.max(2,r*0.10);
+    const nm=((S.user&&S.user.name)||'').trim(),ch=nm?Array.from(nm)[0].toUpperCase():'?';
+    g.fillStyle='#5A3A00';g.font='900 '+Math.round(r*1.1)+'px "Baloo Bhaijaan 2",sans-serif';
+    g.textAlign='center';g.textBaseline='middle';g.fillText(ch,cx,cy+r*.06);
+    g.strokeStyle='#fff';g.lineWidth=Math.max(2,r*.1);
     g.beginPath();g.arc(cx,cy,r-g.lineWidth/2,0,Math.PI*2);g.stroke();
   }
 
   function flap(){st.p.vy=CFG.flap}
 
   function tick(now){
+    /* إصلاح التجمّد: تصفير المعرّف عند التوقف حتى تعمل startLoop مجدداً */
     if(st.mode!=='playing'&&st.mode!=='ready'){st.raf=0;return}
     st.raf=requestAnimationFrame(tick);
     const dt=Math.min(0.1,Math.max(0,(now-st.lastT)/1000));
@@ -2802,50 +2478,48 @@ const FlyGame = (() => {
     }
     render();
   }
-
-  /* FIXED: always cancel previous frame & start fresh */
-  function startLoop(){
-    if(st.raf){cancelAnimationFrame(st.raf);st.raf=0;}
-    st.lastT=performance.now();
-    st.acc=0;
-    st.raf=requestAnimationFrame(tick);
-  }
+  function startLoop(){stopLoop();st.lastT=performance.now();st.acc=0;st.raf=requestAnimationFrame(tick)}
   function stopLoop(){if(st.raf){cancelAnimationFrame(st.raf);st.raf=0}}
 
+  function begin(){
+    if(st.mode!=='ready')return;
+    st.mode='playing';
+    $('flyReadyOverlay').classList.remove('show');
+    st.lastT=performance.now();st.acc=0;
+    flap();SFX.play('flap');
+  }
   function onDown(e){
-    if(st.mode==='ready'){
-      st.mode='playing';$('flyReadyOverlay').classList.remove('show');
-      flap();SFX.play('flap');e.preventDefault();
-    } else if(st.mode==='playing'){
-      flap();SFX.play('flap');e.preventDefault();
-    }
+    if(st.mode==='playing'){flap();SFX.play('flap');e.preventDefault()}
+  }
+
+  /* حفظ نتيجة الجولة مرة واحدة فقط */
+  function commit(dist){
+    if(st.committed)return false;
+    st.committed=true;
+    const u=S.user;if(!u)return false;
+    const rec=dist>(u.flyBest||0);
+    if(rec)u.flyBest=dist;
+    u.coins=(u.coins||0)+st.rC;u.gems=(u.gems||0)+st.rD;
+    u.flyCoins=(u.flyCoins||0)+st.rC;u.flyGems=(u.flyGems||0)+st.rD;
+    u.flyTotal=(u.flyTotal||0)+dist;
+    FB.set({flyBest:u.flyBest,flyCoins:u.flyCoins,flyGems:u.flyGems,flyTotal:u.flyTotal,coins:u.coins,gems:u.gems,updatedAt:Date.now()}).catch(()=>{});
+    try{
+      if(db&&dist>0)db.collection(CONFIG.flyCol).doc(TG.id).set({
+        userId:TG.id,name:u.name||'لاعب',photoUrl:u.photoUrl||null,
+        best:u.flyBest,updatedAt:Date.now()
+      },{merge:true}).catch(()=>{});
+    }catch(e){}
+    return rec;
   }
 
   function over(){
     if(st.mode==='over')return;
     st.mode='over';
-    // Explicitly stop the loop so restart works
-    stopLoop();
-    const dist=Math.floor(st.dist);
-    const u=S.user;
-    if(u){
-      if(dist>(u.flyBest||0))u.flyBest=dist;
-      u.coins=(u.coins||0)+st.rC;
-      u.gems=(u.gems||0)+st.rD;
-      u.flyCoins=(u.flyCoins||0)+st.rC;
-      u.flyGems=(u.flyGems||0)+st.rD;
-      FB.set({flyBest:u.flyBest,flyCoins:u.flyCoins,flyGems:u.flyGems,coins:u.coins,gems:u.gems}).catch(()=>{});
-      try{
-        if(db)db.collection(CONFIG.flyCol).doc(TG.id).set({
-          userId:TG.id,name:u.name||'لاعب',
-          photoUrl:u.photoUrl||null,
-          best:u.flyBest,updatedAt:Date.now()
-        },{merge:true}).catch(()=>{});
-      }catch(e){}
-    }
+    const dist=Math.floor(st.dist),rec=commit(dist);
     $('flyOverDist').textContent=fmt(dist);
-    $('flyOverCoins').textContent=fmt(st.rC);
-    $('flyOverGems').textContent=fmt(st.rD);
+    $('flyOverCoins').textContent='+'+fmt(st.rC);
+    $('flyOverGems').textContent='+'+fmt(st.rD);
+    $('flyOverBest').textContent=(rec&&dist>0)?'رقم قياسي جديد':'أفضل مسافة: '+fmt((S.user&&S.user.flyBest)||dist)+' م';
     $('flyOverOverlay').classList.add('show');
     renderAll();
   }
@@ -2855,8 +2529,8 @@ const FlyGame = (() => {
     st.returnTo='menu';
     loadImg();
     requestAnimationFrame(()=>{
+      if(!$('screen-fly').classList.contains('active'))return;
       resize();
-      setTimeout(resize,80);
       reset();
       st.mode='ready';
       $('flyReadyOverlay').classList.add('show');
@@ -2865,24 +2539,20 @@ const FlyGame = (() => {
       startLoop();
     });
   }
-  function exit(){
-    stopLoop();st.mode='idle';
-    showScreen('home');
-    document.querySelectorAll('.dock button').forEach(b=>b.classList.toggle('on',b.dataset.nav==='home'));
+  function exit(target){
+    stopLoop();
+    if(st.mode==='playing'){commit(Math.floor(st.dist));renderAll()}
+    st.mode='idle';
+    $('flyOverOverlay').classList.remove('show');
+    go(target||'home');
   }
   function replay(){
-    stopLoop();
     $('flyOverOverlay').classList.remove('show');
+    resize();
     reset();st.mode='ready';
     $('flyReadyOverlay').classList.add('show');
     $('flyFloaters').innerHTML='';
     startLoop();
-  }
-  function goHomeFromOver(){
-    stopLoop();
-    $('flyOverOverlay').classList.remove('show');
-    showScreen('home');
-    document.querySelectorAll('.dock button').forEach(b=>b.classList.toggle('on',b.dataset.nav==='home'));
   }
 
   function bind(){
@@ -2895,16 +2565,17 @@ const FlyGame = (() => {
     },{passive:false});
     wrap.addEventListener('contextmenu',e=>e.preventDefault());
     $('flyExit').addEventListener('pointerdown',e=>{e.stopPropagation()});
-    $('flyExit').addEventListener('click',e=>{e.stopPropagation();exit()});
+    $('flyExit').addEventListener('click',e=>{e.stopPropagation();exit('home')});
+    $('flyBtnStart').addEventListener('click',e=>{e.stopPropagation();begin()});
     $('flyBtnReplay').addEventListener('click',e=>{e.stopPropagation();replay()});
-    $('flyBtnMain').addEventListener('click',e=>{e.stopPropagation();goHomeFromOver()});
+    $('flyBtnHome').addEventListener('click',e=>{e.stopPropagation();exit('home')});
     $('flyBtnBoard').addEventListener('click',e=>{e.stopPropagation();FlyBoard.open('fly')});
     $('flyBoardBack').addEventListener('click',()=>FlyBoard.close());
 
     window.addEventListener('keydown',e=>{
       if(!$('screen-fly').classList.contains('active'))return;
       if(e.code==='Space'||e.code==='ArrowUp'){
-        if(st.mode==='ready'||st.mode==='playing'){e.preventDefault();onDown(e)}
+        if(st.mode==='ready'){e.preventDefault();begin()}else if(st.mode==='playing'){e.preventDefault();onDown(e)}
       }
     });
     window.addEventListener('resize',()=>{if($('screen-fly').classList.contains('active'))resize()});
@@ -2914,7 +2585,7 @@ const FlyGame = (() => {
     });
   }
 
-  return {enter,exit,replay,bind,resize,st};
+  return {enter,exit,replay,bind,resize,st,preload:loadImg};
 })();
 
 /* ═══ FLY LEADERBOARD ═══ */
@@ -2930,8 +2601,7 @@ const FlyBoard = {
       showScreen('fly');
       FlyGame.replay();
     }else{
-      showScreen('home');
-      document.querySelectorAll('.dock button').forEach(b=>b.classList.toggle('on',b.dataset.nav==='home'));
+      go('home');
     }
   },
   async render(){
@@ -2940,7 +2610,7 @@ const FlyBoard = {
     let entries=[];
     try{
       if(db){
-        const snap=await db.collection(CONFIG.flyCol).orderBy('best','desc').limit(100).get();
+        const snap=await db.collection(CONFIG.flyCol).orderBy('best','desc').limit(50).get();
         snap.forEach(d=>{
           const x=d.data();
           entries.push({id:d.id,name:x.name||'لاعب',best:Number(x.best||0),photoUrl:x.photoUrl||null});
@@ -2957,7 +2627,7 @@ const FlyBoard = {
       entries[meIdx].best=Math.max(entries[meIdx].best,Number(u.flyBest||0));
     }
     entries.sort((a,b)=>b.best-a.best);
-    const top=entries.slice(0,100);
+    const top=entries.slice(0,50);
 
     if(top.length===0){
       el.innerHTML='<div class="fly-board-empty">لا يوجد سجل بعد — كن أول المتصدرين!</div>';
@@ -3096,8 +2766,13 @@ function bind(){
     }
   });
 
+  /* الطيران */
+  $('flyPlayBtn').onclick=()=>{
+    SFX.play('tap');
+    if(TIME.locked)return toast('اللعب مجمد — وقت الجهاز غير صحيح','err');
+    go('fly');
+  };
   FlyGame.bind();
-  buildPreviewGrid();
 }
 
 async function boot(){
@@ -3140,6 +2815,7 @@ async function boot(){
 
   try { bind(); } catch(e){ console.warn('Bind:', e); }
   try { renderAll(); } catch(e){ console.warn('Render:', e); }
+  try { FlyGame.preload(); } catch(e){}
   try { initLang(); } catch(e){ console.warn('Lang:', e); }
 
   setInterval(()=>{ 
