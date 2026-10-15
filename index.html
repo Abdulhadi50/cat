@@ -218,39 +218,6 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 .invest-locked{opacity:.75;filter:grayscale(.3)}
 .flag-ico{width:22px;height:22px;border-radius:50%;object-fit:cover;vertical-align:middle;display:inline-block}
 
-/* ========== HOME REDESIGN ========== */
-.home-hero{position:relative;overflow:hidden;border-radius:32px;padding:0;margin-bottom:16px;border:3px solid #C9A968;background:linear-gradient(165deg,#FFE95C 0%,#FFD52E 40%,#F4B900 100%);box-shadow:0 8px 0 #8A5A00,0 16px 32px rgba(0,0,0,.18),inset 0 4px 0 rgba(255,255,255,.6)}
-.home-hero .hero-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.home-hero .hero-bg i{position:absolute;color:rgba(255,255,255,.3);font-size:80px;animation:cm linear infinite}
-.home-hero .hero-bg i:nth-child(1){top:8%;left:-15%;font-size:70px;animation-duration:55s;animation-delay:-10s}
-.home-hero .hero-bg i:nth-child(2){top:55%;left:-25%;font-size:110px;animation-duration:70s;animation-delay:-35s}
-.home-hero .hero-bg i:nth-child(3){top:30%;left:-10%;font-size:55px;animation-duration:48s;animation-delay:-20s}
-.home-hero-inner{position:relative;z-index:1;padding:22px 18px 20px;text-align:center}
-.home-hero .lv{display:inline-flex;gap:6px;align-items:center;background:rgba(255,255,255,.9);padding:5px 16px;border-radius:20px;font-weight:800;font-size:12.5px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
-.home-hero .paws{display:flex;justify-content:center;margin-bottom:8px}
-.home-hero .paws .ico{width:52px;height:52px;font-size:24px;margin:0 -6px;animation:bn 2.4s infinite;border:3px solid rgba(255,255,255,.8);box-shadow:0 4px 10px rgba(0,0,0,.15)}
-.home-hero .paws .ico:nth-child(2n){animation-delay:.4s}
-.home-hero h1{font-size:26px;color:#fff;text-shadow:0 3px 0 #8A5A00,0 4px 8px rgba(0,0,0,.2);letter-spacing:-.5px}
-.home-hero p{font-size:12.5px;font-weight:700;margin:6px 0 16px;color:#6B4200}
-.home-hero .btn{height:58px;font-size:18px;border-radius:24px}
-.home-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
-.home-action-card{display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 10px 16px;text-align:center;border-radius:24px;border:3px solid var(--edge);background:linear-gradient(180deg,#fff,#FFFDF0 50%,#E8FAFF);box-shadow:0 6px 0 var(--edge-d),0 8px 16px rgba(0,0,0,.06);transition:transform .12s;position:relative;overflow:hidden}
-.home-action-card:active{transform:translateY(4px);box-shadow:0 2px 0 var(--edge-d)}
-.home-action-card .ico{width:56px;height:56px;font-size:24px;margin-bottom:4px}
-.home-action-card .ttl{font-size:15px}
-.home-action-card .sub{font-size:10.5px;margin-top:2px}
-.home-action-card .shine{position:absolute;top:-40%;left:-40%;width:80%;height:180%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);transform:rotate(25deg);animation:shine 4s infinite}
-@keyframes shine{0%,100%{left:-60%}50%{left:120%}}
-.home-energy-card{margin-top:12px;border-radius:24px}
-.home-energy-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-.home-energy-head .ico{width:56px;height:56px;font-size:24px;background:radial-gradient(circle at 30% 25%,#FF9B9B,#FF4D4D 45%,#8B0000);box-shadow:inset 0 -3px 0 rgba(0,0,0,.2),inset 0 3px 0 rgba(255,255,255,.4),0 3px 0 rgba(0,0,0,.12)}
-.home-energy-head .en-val{font-size:28px;font-weight:900;direction:ltr;line-height:1}
-.home-energy-head .en-val small{font-size:16px;color:var(--edge-d)}
-.home-energy-head .timer{font-size:14px}
-.home-energy-bar{height:18px;border-radius:12px;background:#FFE0E0;overflow:hidden;box-shadow:inset 0 3px 6px rgba(0,0,0,.12);margin-bottom:12px}
-.home-energy-bar i{display:block;height:100%;border-radius:12px;background:linear-gradient(180deg,#FF9B9B,#FF4D4D 50%,#C62828);transition:width .4s}
-.home-energy-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-
 /* ========== FLY GAME ========== */
 .screen#screen-fly,.screen#screen-flyboard{position:fixed;inset:0;z-index:55;padding:0;margin:0;max-width:none;display:none;flex-direction:column;overflow:hidden}
 .screen#screen-fly.active,.screen#screen-flyboard.active{display:flex;animation:none}
@@ -258,12 +225,12 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 .fly-canvas-wrap{position:relative;width:100%;height:100%;overflow:hidden;background:#87CEEB}
 #flyCanvas{display:block;width:100%;height:100%;touch-action:none}
 .fly-hud{position:absolute;top:0;left:0;right:0;padding:calc(10px + env(safe-area-inset-top,0px)) 12px 12px;display:flex;justify-content:space-between;align-items:flex-start;pointer-events:none;z-index:5;gap:8px}
-.fly-pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.85);border:2px solid rgba(255,255,255,.95);border-radius:999px;padding:6px 12px;font-weight:800;font-size:13px;color:var(--ink);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 3px 10px rgba(0,0,0,.18)}
+.fly-pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.82);border:2px solid rgba(255,255,255,.95);border-radius:999px;padding:6px 12px;font-weight:800;font-size:13px;color:var(--ink);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 3px 8px rgba(0,0,0,.15)}
 .fly-pill .ico{width:20px;height:20px;font-size:10px}
 .fly-pill b{direction:ltr;font-variant-numeric:tabular-nums}
-.fly-pill.dist{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);font-size:15px;padding:7px 16px;z-index:5;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(232,250,255,.95));border:2px solid var(--sky-d);box-shadow:0 4px 12px rgba(0,0,0,.2)}
-.fly-pill.dist b{font-size:18px;margin:0 3px;color:var(--sky-d)}
-.fly-exit{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));inset-inline-end:12px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.9);border:2px solid #fff;display:grid;place-items:center;color:var(--ink);font-size:16px;pointer-events:auto;box-shadow:0 4px 12px rgba(0,0,0,.2);z-index:6}
+.fly-pill.dist{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);font-size:15px;padding:7px 14px;z-index:5}
+.fly-pill.dist b{font-size:17px;margin:0 3px}
+.fly-exit{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));inset-inline-end:12px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.82);border:2px solid #fff;display:grid;place-items:center;color:var(--ink);font-size:16px;pointer-events:auto;box-shadow:0 3px 8px rgba(0,0,0,.15);z-index:6}
 .fly-exit:active{transform:scale(.92)}
 .fly-pills-row{display:flex;gap:6px;align-items:flex-start}
 #flyFloaters{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:6}
@@ -278,6 +245,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 .fly-ready-title{font-size:22px;font-weight:800}
 .fly-ready-sub{font-size:12.5px;font-weight:700;color:var(--ink2);margin:4px 0 16px}
 
+/* Game over screen */
 #flyOverOverlay{padding:0;overflow:hidden;background:linear-gradient(180deg,#6EC3E6 0%,#A8DCF0 38%,#DDF1F5 62%,#FFE8B8 100%)}
 .fly-over-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .fly-over-sun{position:absolute;top:8%;inset-inline-end:10%;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,#FFFBE0 30%,rgba(255,225,150,.55) 60%,rgba(255,225,150,0) 72%)}
@@ -325,43 +293,6 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 .fly-board-row .dist{font-size:20px;font-weight:900;color:#1A1A1A;direction:ltr;flex-shrink:0}
 .fly-board-empty{text-align:center;padding:40px 20px;color:var(--ink2);font-weight:700}
 .fly-board-note{text-align:center;font-size:11px;color:var(--ink2);padding:16px 10px 6px;line-height:1.8;font-weight:700;opacity:.7}
-
-/* ========== MISSIONS REDESIGN ========== */
-.mission-section{margin-bottom:18px}
-.mission-section-title{display:flex;align-items:center;gap:10px;margin:0 4px 12px;font-weight:800;font-size:16px}
-.mission-section-title .ico{width:36px;height:36px;font-size:16px}
-.mission-card{display:flex;align-items:center;gap:12px;padding:14px;margin-bottom:10px;border-radius:22px;border:3px solid var(--edge);background:linear-gradient(180deg,#fff,#FFFDF0 60%,#E8FAFF);box-shadow:0 5px 0 var(--edge-d),0 6px 12px rgba(0,0,0,.06);transition:transform .12s}
-.mission-card:active{transform:translateY(3px)}
-.mission-card .m-ico{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-size:22px;color:#fff;flex-shrink:0;box-shadow:inset 0 -3px 0 rgba(0,0,0,.2),inset 0 3px 0 rgba(255,255,255,.4),0 3px 0 rgba(0,0,0,.12)}
-.mission-card .m-body{flex:1;min-width:0}
-.mission-card .m-title{font-size:14px;font-weight:800}
-.mission-card .m-desc{font-size:11px;font-weight:700;color:var(--ink2);margin:2px 0 4px}
-.mission-card .m-reward{display:inline-flex;gap:5px;align-items:center;padding:3px 10px;border-radius:10px;background:rgba(255,213,46,.35);border:1.5px solid rgba(139,90,0,.3);font-size:12px;font-weight:800;color:var(--gold-d)}
-.mission-card .m-progress{margin-top:6px}
-.mission-card .m-progress .bar{height:8px;border-radius:6px}
-.mission-card .m-progress .bar i{background:linear-gradient(180deg,#FFE95C,#F4B900)}
-.mission-card .m-btn{flex-shrink:0}
-.mission-card.done{opacity:.7;border-color:#C8E6C9}
-.mission-card.done .m-ico{background:linear-gradient(160deg,#C8E6C9,#81C784)}
-
-.daily-login-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;padding:12px;border-radius:22px;border:3px solid var(--edge);background:linear-gradient(180deg,#fff,#FFFDF0 60%,#E8FAFF);box-shadow:0 5px 0 var(--edge-d),0 6px 12px rgba(0,0,0,.06);margin-bottom:18px}
-.daily-day{aspect-ratio:1/1.35;border-radius:14px;background:rgba(232,213,168,.6);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:var(--ink2);border:2px solid transparent;transition:all .2s;position:relative}
-.daily-day i{font-size:16px;color:var(--gold-d);margin:2px 0}
-.daily-day.done{background:linear-gradient(160deg,#FFE95C,#F4B900);color:#fff;border-color:#E0A300}
-.daily-day.done i{color:#fff}
-.daily-day.claim{background:linear-gradient(160deg,#76F344,#35C915);color:#fff;animation:cl 1.2s infinite;border-color:#238A12;cursor:pointer}
-.daily-day.claim i{color:#fff}
-.daily-day.today{border-color:var(--sky-d);box-shadow:0 0 0 3px rgba(89,215,242,.3)}
-
-/* ========== HOME ACTION CARDS REDESIGN ========== */
-.home-feature-card{display:flex;align-items:center;gap:14px;padding:16px;border-radius:24px;border:3px solid var(--edge);background:linear-gradient(135deg,#fff 0%,#FFFDF0 50%,#F0F8FF 100%);box-shadow:0 6px 0 var(--edge-d),0 8px 16px rgba(0,0,0,.06);transition:transform .12s,box-shadow .12s;position:relative;overflow:hidden;width:100%;text-align:start;margin-bottom:12px}
-.home-feature-card:active{transform:translateY(4px);box-shadow:0 2px 0 var(--edge-d)}
-.home-feature-card .fc-ico{width:60px;height:60px;border-radius:20px;display:grid;place-items:center;font-size:26px;color:#fff;flex-shrink:0;box-shadow:inset 0 -4px 0 rgba(0,0,0,.2),inset 0 4px 0 rgba(255,255,255,.4),0 4px 8px rgba(0,0,0,.15)}
-.home-feature-card .fc-body{flex:1;min-width:0}
-.home-feature-card .fc-title{font-size:16px;font-weight:800}
-.home-feature-card .fc-sub{font-size:11.5px;font-weight:700;color:var(--ink2);margin-top:2px}
-.home-feature-card .fc-arrow{font-size:18px;color:var(--ink2);opacity:.5}
-.home-feature-card .shine{position:absolute;top:-40%;left:-40%;width:60%;height:180%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);transform:rotate(25deg);animation:shine 5s infinite}
 </style>
 </head>
 <body>
@@ -376,98 +307,63 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
   <div class="top">
     <div class="pill"><span class="ico i-sky"><i class="fas fa-gem"></i></span><div><b id="gemTop">0</b><small id="gemUsd">$0.00</small></div></div>
     <div class="pill"><span class="ico i-gold"><i class="fas fa-coins"></i></span><b id="coinTop">0</b></div>
-    <div class="pill" style="flex:0 0 auto;min-width:78px"><span class="ico i-green"><i class="fas fa-bolt"></i></span><b id="energyTop">25</b></div>
+    <div class="pill" style="flex:0 0 auto;min-width:78px"><span class="ico i-green"><i class="fas fa-bolt"></i></span><b id="energyTop">10</b></div>
   </div>
 
   <div class="main" id="mainScroll">
 
-    <!-- HOME REDESIGNED -->
+    <!-- HOME -->
     <section class="screen active" id="screen-home">
-      <!-- Hero -->
-      <div class="home-hero">
-        <div class="hero-bg"><i class="fas fa-paw"></i><i class="fas fa-paw"></i><i class="fas fa-paw"></i></div>
-        <div class="home-hero-inner">
-          <div class="lv"><i class="fas fa-trophy"></i> المستوى <span id="homeLevel">1</span></div>
-          <div class="paws">
-            <span class="ico i-sky"><i class="fas fa-dog"></i></span><span class="ico i-gold"><i class="fas fa-cat"></i></span>
-            <span class="ico i-green"><i class="fas fa-dog"></i></span><span class="ico i-gold"><i class="fas fa-cat"></i></span><span class="ico i-sky"><i class="fas fa-dog"></i></span>
-          </div>
-          <h1><i class="fas fa-paw"></i> Puppy Merge</h1>
-          <p>ادمج 3 جراء متشابهة واكسب كنوز المملكة!</p>
-          <button class="btn b-g" id="playBtn"><i class="fas fa-play"></i> ابدأ اللعب</button>
+      <div class="hero">
+        <div class="lv"><i class="fas fa-trophy"></i> المستوى <span id="homeLevel">1</span></div>
+        <div class="paws">
+          <span class="ico i-sky"><i class="fas fa-dog"></i></span><span class="ico i-gold"><i class="fas fa-cat"></i></span>
+          <span class="ico i-green"><i class="fas fa-dog"></i></span><span class="ico i-gold"><i class="fas fa-cat"></i></span><span class="ico i-sky"><i class="fas fa-dog"></i></span>
         </div>
+        <h1><i class="fas fa-paw"></i> Puppy Merge</h1>
+        <p>ادمج 3 جراء متشابهة واكسب كنوز المملكة!</p>
+        <button class="btn b-g" id="playBtn"><i class="fas fa-play"></i> ابدأ اللعب</button>
       </div>
 
-      <!-- Energy Card -->
-      <div class="card home-energy-card">
-        <div class="home-energy-head">
-          <span class="ico" style="background:radial-gradient(circle at 30% 25%,#FF9B9B,#FF4D4D 45%,#8B0000)"><i class="fas fa-bolt"></i></span>
-          <div class="grow">
-            <div class="ttl">الطاقة</div>
-            <div class="en-val"><span id="energyCur">25</span><small> / <span id="energyMax">25</span></small></div>
-          </div>
+      <div class="card">
+        <div class="row" style="margin-bottom:10px">
+          <span class="ico i-red" style="width:52px;height:52px"><i class="fas fa-bolt"></i></span>
+          <div class="grow"><div class="ttl">الطاقة</div><div class="en-val"><span id="energyCur">10</span><small> / <span id="energyMax">10</span></small></div></div>
           <div class="timer" id="energyTimer">ممتلئة</div>
         </div>
-        <div class="home-energy-bar"><i id="energyFill" style="width:100%"></i></div>
-        <div class="home-energy-actions">
-          <button class="btn b-s" id="energyAdBtn" style="height:46px;font-size:13px"><i class="fas fa-play-circle"></i> +1 إعلان</button>
-          <button class="btn b-y" id="energyBuyBtn" style="height:46px;font-size:13px"><i class="fas fa-gem"></i> +1 بجوهرة</button>
-        </div>
+        <div class="bar"><i id="energyFill" style="width:100%"></i></div>
+        <button class="btn b-s" id="energyAdBtn" style="height:44px;margin-top:12px"><i class="fas fa-play-circle"></i> مشاهدة إعلان +1 طاقة</button>
       </div>
 
-      <!-- Fly Hero -->
-      <div class="home-hero" style="background:linear-gradient(165deg,#8CEBFF 0%,#59D7F2 40%,#2FB8DC 100%);border-color:#1B7FA8;box-shadow:0 8px 0 #1B7FA8,0 16px 32px rgba(0,0,0,.18),inset 0 4px 0 rgba(255,255,255,.6)">
-        <div class="hero-bg"><i class="fas fa-cloud" style="color:rgba(255,255,255,.25)"></i><i class="fas fa-dove" style="color:rgba(255,255,255,.2)"></i><i class="fas fa-cloud" style="color:rgba(255,255,255,.2)"></i></div>
-        <div class="home-hero-inner">
-          <div class="paws">
-            <span class="ico" style="background:radial-gradient(circle at 30% 25%,#fff,#E8F8FF 45%,#B0E0F0);color:#2FB8DC"><i class="fas fa-cloud"></i></span>
-            <span class="ico" style="background:radial-gradient(circle at 30% 25%,#FFF3A8,#FFD52E 45%,#B97A00)"><i class="fas fa-coins"></i></span>
-            <span class="ico" style="background:radial-gradient(circle at 30% 25%,#B7FFB8,#4BE51E 45%,#238A12)"><i class="fas fa-dove"></i></span>
-            <span class="ico" style="background:radial-gradient(circle at 30% 25%,#CFF4FC,#59D7F2 45%,#1B7FA8)"><i class="fas fa-gem"></i></span>
-          </div>
-          <h1 style="text-shadow:0 3px 0 #1B7FA8,0 4px 8px rgba(0,0,0,.2)"><i class="fas fa-dove"></i> Puppy Fly</h1>
-          <p style="color:#0E4D6B">حلّق بين الصبّار واجمع العملات والجواهر!</p>
-          <button class="btn b-g" id="flyPlayBtn"><i class="fas fa-play"></i> ابدأ اللعب</button>
+      <div class="hero">
+        <div class="paws">
+          <span class="ico i-sky"><i class="fas fa-cloud"></i></span><span class="ico i-gold"><i class="fas fa-coins"></i></span>
+          <span class="ico i-green"><i class="fas fa-dove"></i></span><span class="ico i-gold"><i class="fas fa-gem"></i></span><span class="ico i-sky"><i class="fas fa-cloud"></i></span>
         </div>
+        <h1><i class="fas fa-dove"></i> Puppy Fly</h1>
+        <p>حلّق بين الصبّار واجمع العملات والجواهر!</p>
+        <button class="btn b-g" id="flyPlayBtn"><i class="fas fa-play"></i> ابدأ اللعب</button>
       </div>
 
-      <!-- Action Cards -->
-      <div class="home-actions">
-        <button class="home-action-card" data-go="wheel">
-          <div class="shine"></div>
-          <span class="ico i-gold"><i class="fas fa-dharmachakra"></i></span>
-          <div class="ttl">عجلة الحظ</div>
-          <div class="sub">لفّتان يومياً</div>
-          <span class="badge" id="wheelBadge" style="display:none">مجاناً</span>
-        </button>
-        <button class="home-action-card" data-go="missions">
-          <div class="shine"></div>
-          <span class="ico i-sky"><i class="fas fa-list-check"></i></span>
-          <div class="ttl">المهام</div>
-          <div class="sub">مكافآت يومية</div>
-        </button>
+      <div class="quick">
+        <button class="card" data-go="wheel"><span class="ico i-gold"><i class="fas fa-dharmachakra"></i></span><div class="ttl">عجلة الحظ</div><div class="sub">لفّتان يومياً</div><span class="badge" id="wheelBadge" style="display:none">مجاناً</span></button>
+        <button class="card" data-go="missions"><span class="ico i-sky"><i class="fas fa-list-check"></i></span><div class="ttl">المهام</div><div class="sub">مكافآت يومية</div></button>
       </div>
 
-      <!-- Invest Card -->
-      <button class="home-feature-card" data-go="invest" style="border-color:var(--green-d)">
-        <div class="shine"></div>
-        <span class="fc-ico" style="background:radial-gradient(circle at 30% 25%,#B7FFB8,#4BE51E 45%,#238A12)"><i class="fas fa-paw"></i></span>
-        <div class="fc-body">
-          <div class="fc-title">استثمار الجراء</div>
-          <div class="fc-sub">اشترِ خطة واكسب الجواهر تلقائياً</div>
+      <button class="card" data-go="invest" style="width:100%;text-align:start;margin-top:10px;border-color:var(--green-d)">
+        <div class="row">
+          <span class="ico i-green" style="width:50px;height:50px;font-size:22px"><i class="fas fa-paw"></i></span>
+          <div class="grow"><div class="ttl">استثمار الجراء</div><div class="sub">اشترِ خطة واكسب الجواهر تلقائياً</div></div>
+          <i class="fas fa-chevron-left" style="color:var(--ink2)"></i>
         </div>
-        <i class="fas fa-chevron-left fc-arrow"></i>
       </button>
 
-      <!-- Deposit Card -->
-      <button class="home-feature-card" data-go="deposit">
-        <div class="shine"></div>
-        <span class="fc-ico" style="background:radial-gradient(circle at 30% 25%,#FFF3A8,#FFD52E 45%,#B97A00)"><i class="fas fa-gem"></i></span>
-        <div class="fc-body">
-          <div class="fc-title">شراء الجواهر</div>
-          <div class="fc-sub">نجوم ⭐ أو كريبتو 💎 أو Binance أو شام كاش</div>
+      <button class="card" data-go="deposit" style="width:100%;text-align:start;margin-top:10px">
+        <div class="row">
+          <span class="ico i-gold" style="width:50px;height:50px;font-size:22px"><i class="fas fa-gem"></i></span>
+          <div class="grow"><div class="ttl">شراء الجواهر</div><div class="sub">نجوم ⭐ أو كريبتو 💎 أو Binance أو شام كاش</div></div>
+          <i class="fas fa-chevron-left" style="color:var(--ink2)"></i>
         </div>
-        <i class="fas fa-chevron-left fc-arrow"></i>
       </button>
     </section>
 
@@ -513,28 +409,16 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
       </button>
     </section>
 
-    <!-- MISSIONS REDESIGNED -->
+    <!-- MISSIONS -->
     <section class="screen" id="screen-missions">
-      <div class="mission-section">
-        <div class="mission-section-title"><span class="ico i-gold"><i class="fas fa-calendar-check"></i></span> التسجيل اليومي</div>
-        <div class="daily-login-grid" id="dailyGrid"></div>
-      </div>
-      <div class="mission-section">
-        <div class="mission-section-title"><span class="ico i-sky"><i class="fas fa-dove"></i></span> مهام الطيران</div>
-        <div id="missionsFly"></div>
-      </div>
-      <div class="mission-section">
-        <div class="mission-section-title"><span class="ico i-gold"><i class="fas fa-list-check"></i></span> المهام اليومية</div>
-        <div id="missionsDaily"></div>
-      </div>
-      <div class="mission-section">
-        <div class="mission-section-title"><span class="ico i-gold"><i class="fas fa-medal"></i></span> مهام المستويات</div>
-        <div id="missionsLevel"></div>
-      </div>
-      <div class="mission-section">
-        <div class="mission-section-title"><span class="ico i-gold"><i class="fas fa-user-plus"></i></span> مهام الدعوات</div>
-        <div id="missionsInvite"></div>
-      </div>
+      <div class="sec"><span class="ico i-gold"><i class="fas fa-calendar-check"></i></span> التسجيل اليومي</div>
+      <div class="card daily" id="dailyGrid"></div>
+      <div class="sec"><span class="ico i-gold"><i class="fas fa-list-check"></i></span> المهام اليومية</div>
+      <div id="missionsDaily"></div>
+      <div class="sec"><span class="ico i-gold"><i class="fas fa-medal"></i></span> مهام المستويات</div>
+      <div id="missionsLevel"></div>
+      <div class="sec"><span class="ico i-gold"><i class="fas fa-user-plus"></i></span> مهام الدعوات</div>
+      <div id="missionsInvite"></div>
     </section>
 
     <!-- EXCHANGE -->
@@ -898,7 +782,7 @@ const CONFIG={
   bot:{username:'PuppyMerge_bot',appName:'PuppyMerge'},
   col:'puppy_users',wdCol:'puppy_withdrawals',txCol:'puppy_transactions',timeCol:'_puppy_time',depCol:'puppy_deposits',
   flyCol:'puppy_fly_scores',
-  energyMax:25,regenMs:600000,hintPrice:30,shufflePrice:50,
+  energyMax:10,regenMs:600000,hintPrice:30,shufflePrice:50,
   ref:{
     newUser:20,
     milestones:[
@@ -937,13 +821,6 @@ const CONFIG={
     {id:'p3', name:'خطة المحترف',  icon:'fa-bone',     days:18, price:50000,  totalReturn:58000,  color:'#FFD52E'},
     {id:'p4', name:'خطة الخبير',   icon:'fa-crown',    days:24, price:70000,  totalReturn:84000,  color:'#FF8F8F'},
     {id:'p5', name:'خطة الأسطورة', icon:'fa-gem',      days:30, price:100000, totalReturn:125000, color:'#C58CE8'},
-  ],
-  /* تم إضافة مهمة الطيران: قطع 1000 متر مقابل 10 جواهر */
-  flyMissions:[
-    {id:'fly1000', dist:1000, reward:{gems:10}, title:'قطع 1000 متر', desc:'حلّق لمسافة 1000 متر في جولة واحدة أو مجموع الجولات'},
-    {id:'fly500', dist:500, reward:{coins:5000}, title:'قطع 500 متر', desc:'حلّق لمسافة 500 متر في جولة واحدة أو مجموع الجولات'},
-    {id:'fly2000', dist:2000, reward:{gems:25}, title:'قطع 2000 متر', desc:'حلّق لمسافة 2000 متر في جولة واحدة أو مجموع الجولات'},
-    {id:'fly3000', dist:3000, reward:{gems:50}, title:'قطع 3000 متر', desc:'حلّق لمسافة 3000 متر في جولة واحدة أو مجموع الجولات'},
   ],
   fly:{
     gravity:1850, flap:-520, maxFall:950, scroll:200, fixedDt:1/120, pxPerM:26,
@@ -1014,7 +891,7 @@ const newUser=()=>({telegramId:TG.id,name:(TG.user.first_name||'')+(TG.user.last
   referralMilestones:{},
   investments:[],
   wheelSpins:CONFIG.spins,wheelLastDate:null,wheelSpinCount:0,wheelMissionClaimed:false,wheelAdLastAt:0,dailyRewards:{},dailyLogin:{streak:0,lastClaimDate:null},levelMissions:{},inviteMissions:{},inviteBase:0,lang:null,
-  flyBest:0,flyCoins:0,flyGems:0,flyTotal:0,flyMissions:{},
+  flyBest:0,flyCoins:0,flyGems:0,flyTotal:0,
   createdAt:Date.now(),updatedAt:Date.now()});
 
 /* ═══ UI ═══ */
@@ -1032,7 +909,7 @@ function showModal(o){
 const closeModal=()=>$('modal').classList.remove('show');
 $('modal').onclick=e=>{if(e.target.id==='modal')closeModal()};
 
-/* ═══ ENERGY (MAX 25, REGEN 10 MIN) ═══ */
+/* ═══ ENERGY ═══ */
 const Energy={
   cur(u){const st=Number(u.energy||0);if(st>=CONFIG.energyMax)return CONFIG.energyMax;const now=TIME.now(),rawLast=Number(u.energyUpdatedAt||now),last=rawLast>now+60000?now:rawLast,elapsed=Math.max(0,now-last);return Math.min(CONFIG.energyMax,Math.max(0,st+Math.floor(elapsed/CONFIG.regenMs)))},
   next(u){if(this.cur(u)>=CONFIG.energyMax)return 0;const now=TIME.now(),rawLast=Number(u.energyUpdatedAt||now),last=rawLast>now+60000?now:rawLast,elapsed=Math.max(0,now-last);return CONFIG.regenMs-(elapsed%CONFIG.regenMs)},
@@ -1041,19 +918,7 @@ const Energy={
     S.user.energy=c-n;
     if(wasFull)S.user.energyUpdatedAt=now;
     else S.user.energyUpdatedAt=last+Math.floor((now-last)/CONFIG.regenMs)*CONFIG.regenMs;
-    await FB.set({energy:S.user.energy,energyUpdatedAt:S.user.energyUpdatedAt});renderEnergy();return true},
-  async add(n=1){
-    const u=S.user;if(!u)return false;
-    const current=this.cur(u);
-    if(current>=CONFIG.energyMax)return false;
-    const now=TIME.now(),rawLast=Number(u.energyUpdatedAt||now),last=rawLast>now+60000?now:rawLast;
-    u.energy=current+n;
-    if(u.energy>=CONFIG.energyMax)u.energyUpdatedAt=now;
-    else u.energyUpdatedAt=last+Math.floor((now-last)/CONFIG.regenMs)*CONFIG.regenMs;
-    await FB.set({energy:u.energy,energyUpdatedAt:u.energyUpdatedAt});
-    renderEnergy();
-    return true;
-  }
+    await FB.set({energy:S.user.energy,energyUpdatedAt:S.user.energyUpdatedAt});renderEnergy();return true}
 };
 function renderEnergy(){
   if(!S.user)return;
@@ -1301,11 +1166,8 @@ async function watchWheelAd(){
   }catch(e){S.busy=false;renderAll();toast('لم تكتمل مشاهدة الإعلان','err')}
 }
 
-/* ═══ MISSIONS (REDESIGNED) ═══ */
-const DAILY_M=[
-  {id:'tg_channel',title:'انضم لقناة تيليجرام',desc:'انضم للقناة الرسمية @PuppyMerge',reward:{gems:10}},
-  {id:'wheel_10',kind:'wheel',title:'أدر عجلة الحظ 10 مرات',desc:'أكمل 10 لفات',reward:{coins:5000}}
-];
+/* ═══ MISSIONS ═══ */
+const DAILY_M=[{id:'tg_channel',title:'انضم لقناة تيليجرام',desc:'انضم للقناة الرسمية @PuppyMerge',reward:{gems:10}},{id:'wheel_10',kind:'wheel',title:'أدر عجلة الحظ 10 مرات',desc:'أكمل 10 لفات',reward:{coins:5000}}];
 
 const LEVEL_M = (() => {
   const arr = [];
@@ -1320,67 +1182,38 @@ const LEVEL_M = (() => {
 
 const INVITE_M=[[1,5],[3,15],[5,30],[10,60],[20,100]].map(([n,g])=>({id:'inv'+n,count:n,reward:{gems:g}}));
 
-function missionCard(icon,icoColor,title,desc,reward,btnHTML,prog){
-  return `<div class="mission-card">
-    <div class="m-ico" style="background:${icoColor}"><i class="fas ${icon}"></i></div>
-    <div class="m-body">
-      <div class="m-title">${title}</div>
-      <div class="m-desc">${desc}</div>
-      <div class="m-reward">${reward}</div>
-      ${prog?`<div class="m-progress"><div class="bar"><i style="width:${Math.min(100,prog[0]/prog[1]*100)}%"></i></div><div style="font-size:10px;font-weight:800;color:var(--ink2);margin-top:3px;direction:ltr">${prog[0]} / ${prog[1]}</div></div>`:''}
-    </div>
-    <div class="m-btn">${btnHTML}</div>
-  </div>`;
+function mCard(icon,cls,title,desc,reward,btn,prog){
+  return'<div class="card m-card"><span class="ico '+cls+'"><i class="fas '+icon+'"></i></span><div class="grow"><div class="ttl">'+title+'</div><div class="sub">'+desc+'</div><div>'+reward+'</div>'+
+    (prog?'<div class="prog">'+prog[0]+' / '+prog[1]+'<span class="bar"><i style="width:'+Math.min(100,prog[0]/prog[1]*100)+'%"></i></span></div>':'')+'</div>'+btn+'</div>';
 }
 const bDone='<button class="btn b-sm b-off" disabled><i class="fas fa-check"></i> تم</button>';
 const bLock='<button class="btn b-sm b-off" disabled><i class="fas fa-lock"></i></button>';
 const bClaim=a=>'<button class="btn b-sm b-g" '+a+'><i class="fas fa-hand-holding-heart"></i> استلم</button>';
 
 function renderMissions(){
-  const u=S.user;
-  if(!u)return;
-  const t=today(),dl=u.dailyLogin||{streak:0,lastClaimDate:null},can=dl.lastClaimDate!==t,next=dl.streak>=7?0:dl.streak;
-
-  // Daily login
-  $('dailyGrid').innerHTML=CONFIG.daily.map((d,i)=>'<div class="daily-day'+(i<dl.streak?' done':i===next&&can?' claim':'')+(i===next?' today':'')+'" data-d="'+i+'">يوم '+(i+1)+'<i class="fas fa-gift"></i><span>+'+d[0]+'</span></div>').join('');
+  const u=S.user,t=today(),dl=u.dailyLogin||{streak:0,lastClaimDate:null},can=dl.lastClaimDate!==t,next=dl.streak>=7?0:dl.streak;
+  $('dailyGrid').innerHTML=CONFIG.daily.map((d,i)=>'<div class="day'+(i<dl.streak?' done':i===next&&can?' claim':'')+'" data-d="'+i+'">يوم '+(i+1)+'<i class="fas fa-gift"></i>+'+d[0]+'</div>').join('');
   $('dailyGrid').querySelectorAll('.claim').forEach(e=>e.onclick=()=>claimDaily(+e.dataset.d));
 
-  // Fly missions
-  const flyMissions=CONFIG.flyMissions||[];
-  const flyDone=u.flyMissions||{};
-  const flyTotal=Number(u.flyTotal||0);
-  $('missionsFly').innerHTML=flyMissions.map(m=>{
-    const claimed=flyDone[m.id];
-    const done=flyTotal>=m.dist;
-    let btn=bLock;
-    if(claimed)btn=bDone;
-    else if(done)btn=bClaim('data-fm="'+m.id+'"');
-    return missionCard('fa-dove','linear-gradient(160deg,#8CEBFF,#59D7F2 45%,#1B7FA8)',esc(m.title),esc(m.desc),rewardHtml(m.reward),btn,[Math.min(flyTotal,m.dist),m.dist]);
-  }).join('');
-  $('missionsFly').querySelectorAll('[data-fm]').forEach(b=>b.onclick=()=>claimFlyMission(b.dataset.fm));
-
-  // Daily missions
   $('missionsDaily').innerHTML=DAILY_M.map(m=>{
     if(m.kind==='wheel'){
       const count=Number(u.wheelSpinCount||0),claimed=!!u.wheelMissionClaimed;
       const action=claimed?bDone:count>=10?'<button class="btn b-sm b-g" data-wm="'+m.id+'"><i class="fas fa-gift"></i> استلم</button>':bLock;
-      return missionCard('fa-dharmachakra','radial-gradient(circle at 30% 25%,#FFF3A8,#FFD52E 45%,#B97A00)',esc(m.title),esc(m.desc),rewardHtml(m.reward),action,[Math.min(count,10),10]);
+      return mCard('fa-dharmachakra','i-gold',esc(m.title),esc(m.desc),rewardHtml(m.reward),action,[Math.min(count,10),10]);
     }
-    return missionCard('fa-paper-plane','radial-gradient(circle at 30% 25%,#CFF4FC,#59D7F2 45%,#1B7FA8)',esc(m.title),esc(m.desc),rewardHtml(m.reward),
+    return mCard('fa-paper-plane','i-sky',esc(m.title),esc(m.desc),rewardHtml(m.reward),
       (u.dailyRewards||{})[m.id]===t?bDone:'<button class="btn b-sm b-s" data-dm="'+m.id+'"><i class="fas fa-external-link-alt"></i> انضم</button>');
   }).join('');
   $('missionsDaily').querySelectorAll('[data-dm]').forEach(b=>b.onclick=()=>doDaily(b.dataset.dm));
   $('missionsDaily').querySelectorAll('[data-wm]').forEach(b=>b.onclick=()=>claimWheelMission());
 
-  // Level missions
   const lv=u.level||1,ld=u.levelMissions||{};
-  $('missionsLevel').innerHTML=LEVEL_M.filter(m=>!ld[m.id]).slice(0,5).map(m=>missionCard('fa-trophy','radial-gradient(circle at 30% 25%,#FFF3A8,#FFD52E 45%,#B97A00)','أوصل المستوى '+m.level,'مكافأة فورية عند الوصول',rewardHtml(m.reward),
+  $('missionsLevel').innerHTML=LEVEL_M.filter(m=>!ld[m.id]).slice(0,5).map(m=>mCard('fa-trophy','i-gold','أوصل المستوى '+m.level,'مكافأة فورية عند الوصول',rewardHtml(m.reward),
     ld[m.id]?bDone:lv>=m.level?bClaim('data-lm="'+m.id+'"'):bLock,[Math.min(lv,m.level),m.level])).join('');
   $('missionsLevel').querySelectorAll('[data-lm]').forEach(b=>b.onclick=()=>claimLevel(b.dataset.lm));
 
-  // Invite missions
   const idn=u.inviteMissions||{},prog=(u.referralCount||0)-(u.inviteBase||0),im=INVITE_M.find(x=>!idn[x.id]);
-  $('missionsInvite').innerHTML=im?missionCard('fa-user-plus','radial-gradient(circle at 30% 25%,#FFF3A8,#FFD52E 45%,#B97A00)','ادعُ '+im.count+(im.count===1?' صديق':' أصدقاء'),'مكافأة عند إتمام العدد',rewardHtml(im.reward),
+  $('missionsInvite').innerHTML=im?mCard('fa-user-plus','i-gold','ادعُ '+im.count+(im.count===1?' صديق':' أصدقاء'),'مكافأة عند إتمام العدد',rewardHtml(im.reward),
     prog>=im.count?bClaim('data-im="'+im.id+'"'):'<button class="btn b-sm b-s" data-go="referral"><i class="fas fa-user-plus"></i> ادعُ</button>',[Math.min(prog,im.count),im.count]):'<div class="card empty">أكملت كل مهام الدعوات</div>';
   $('missionsInvite').querySelectorAll('[data-im]').forEach(b=>b.onclick=()=>claimInvite(b.dataset.im));
   $('missionsInvite').querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go('referral'));
@@ -1423,14 +1256,6 @@ async function claimInvite(id){
   if((u.referralCount||0)-(u.inviteBase||0)<m.count)return toast('لم تكمل الدعوات','err');
   S.busy=true;d[id]=true;u.inviteMissions=d;u.inviteBase=u.referralCount||0;
   await grant(m.reward,{inviteMissions:d,inviteBase:u.inviteBase},{icon:'fa-user-plus',title:'مكافأة الدعوات',sub:'شكراً لدعوة '+m.count+(m.count===1?' صديق':' أصدقاء')});S.busy=false;
-}
-async function claimFlyMission(id){
-  const m=CONFIG.flyMissions.find(x=>x.id===id),u=S.user;if(!m||S.busy)return;
-  const d=u.flyMissions||{};if(d[id])return;
-  if(Number(u.flyTotal||0)<m.dist)return toast('لم تصل للمسافة المطلوبة','err');
-  S.busy=true;d[id]=true;u.flyMissions=d;
-  await grant(m.reward,{flyMissions:d},{icon:'fa-dove',title:'مكافأة الطيران',sub:'قطعت '+m.dist+' متر في اللعبة'});S.busy=false;
-  renderMissions();
 }
 
 /* ═══ INVESTMENT ═══ */
@@ -2238,33 +2063,14 @@ async function watchEnergyAd(){
     await window.show_12008608();
     const elapsed=performance.now()-started;
     if(elapsed<15000){toast('لم تُحتسب الطاقة لأن مشاهدة الإعلان أقل من 15 ثانية','err');return}
-    const u=S.user,now=TIME.now(),current=Energy.cur(u);
+    const u=S.user,now=TIME.now(),current=Energy.cur(u),last=u.energyUpdatedAt||now;
     if(current>=CONFIG.energyMax)return toast('الطاقة ممتلئة بالفعل','info');
-    await Energy.add(1);
-    toast('+1 ⚡');SFX.play('reward');
+    u.energy=current+1;
+    if(u.energy>=CONFIG.energyMax)u.energyUpdatedAt=now;
+    else u.energyUpdatedAt=last+Math.floor((now-last)/(CONFIG.regenMs||600000))*(CONFIG.regenMs||600000);
+    await FB.set({energy:u.energy,energyUpdatedAt:u.energyUpdatedAt});renderEnergy();toast('+1 ⚡');SFX.play('reward');
   }catch(e){toast('لم تكتمل مشاهدة الإعلان','err')}
   finally{S.busy=false;btn.disabled=false;btn.innerHTML=original;renderWheel()}
-}
-
-/* ═══ ENERGY BUY WITH GEMS ═══ */
-async function buyEnergyWithGems(){
-  if(S.busy)return;
-  const u=S.user;
-  if(Energy.cur(u)>=CONFIG.energyMax)return toast('الطاقة ممتلئة بالفعل','info');
-  if(u.gems < 1)return toast('تحتاج جوهرة واحدة على الأقل','err');
-  S.busy=true;
-  try{
-    u.gems -= 1;
-    await Energy.add(1);
-    await FB.set({gems:u.gems});
-    SFX.play('reward');
-    renderAll();
-    toast('+1 ⚡ مقابل 1 💎');
-  }catch(e){
-    toast('حدثت مشكلة، حاول مجدداً','err');
-  }finally{
-    S.busy=false;
-  }
 }
 
 function openContentModal(kind){
@@ -2277,7 +2083,7 @@ function openContentModal(kind){
       '<div class="policy-box"><h4>عن Puppy Merge</h4><p>لعبة دمج وترفيه تجمع فيها العملات والجواهر وتتقدم عبر المستويات والمهام والإحالات.</p></div><div class="policy-box"><h4>المعلومات المستخدمة</h4><p>يستخدم التطبيق معرّف حساب تيليجرام واسم العرض وصورة الحساب إن توفرت، إضافةً إلى الرصيد والطاقة وتقدم اللعب والإحالات وبيانات السحب التي تدخلها.</p></div><div class="policy-box"><h4>الخصوصية</h4><p>قد تتم معالجة البيانات عبر الخدمات اللازمة لتشغيل التطبيق مثل تيليجرام وفايربيس.</p></div>';
   }else{
     $('contentBody').innerHTML=
-      '<div class="policy-box"><h4>كيف تلعب؟</h4><p>بدّل أماكن القطع المتجاورة لتكوين ثلاثة حيوانات متشابهة أو أكثر. كل مستوى تكمله يمنحك +100 عملة، وكل 10 مستويات تحصل على +10 جواهر إضافية.</p></div><div class="policy-box"><h4>لعبة الطيران</h4><p>اضغط لترتفع، تجنب الصبّار، واجمع العملات والجواهر. كل عبور موفق للعائق يمنحك +10 عملات، والفقاعات تعطي 1-5 جواهر.</p></div><div class="policy-box"><h4>نظام الطاقة</h4><p>لديك 25 طاقة، تُستهلك طاقة واحدة عند كل جولة في لعبة الدمج أو الطيران. تتجدد طاقة واحدة كل 10 دقائق تلقائياً. يمكنك زيادة الطاقة بمشاهدة إعلان (+1) أو شراء طاقة بجوهرة واحدة.</p></div><div class="policy-box"><h4>شراء الجواهر</h4><p>اختر تبويب النجوم أو الكريبتو أو Binance Pay أو شام كاش. عند التحويل اليدوي ضع معرّفك في الملاحظة.</p></div><div class="policy-box"><h4>سحب الأموال</h4><p>اختر USDT Crypto للتحويل التلقائي الفوري إلى محفظتك (TRC20)، أو Binance Pay وSham Cash للمعالجة اليدوية خلال 24-72 ساعة.</p></div>';
+      '<div class="policy-box"><h4>كيف تلعب؟</h4><p>بدّل أماكن القطع المتجاورة لتكوين ثلاثة حيوانات متشابهة أو أكثر. كل مستوى تكمله يمنحك +100 عملة، وكل 10 مستويات تحصل على +10 جواهر إضافية.</p></div><div class="policy-box"><h4>لعبة الطيران</h4><p>اضغط لترتفع، تجنب الصبّار، واجمع العملات والجواهر. كل عبور موفق للعائق يمنحك +10 عملات، والفقاعات تعطي 1-5 جواهر.</p></div><div class="policy-box"><h4>شراء الجواهر</h4><p>اختر تبويب النجوم أو الكريبتو أو Binance Pay أو شام كاش. عند التحويل اليدوي ضع معرّفك في الملاحظة.</p></div><div class="policy-box"><h4>سحب الأموال</h4><p>اختر USDT Crypto للتحويل التلقائي الفوري إلى محفظتك (TRC20)، أو Binance Pay وSham Cash للمعالجة اليدوية خلال 24-72 ساعة.</p></div>';
   }
   $('contentModal').classList.add('show');
 }
@@ -2311,6 +2117,7 @@ const FlyGame = (() => {
     SZ.gr=clamp(VH*CFG.grR,CFG.grMin,CFG.grMax);
   }
 
+  /* صورة المستخدم: بدون crossOrigin لأن روابط تيليغرام لا ترسل CORS (الرسم على canvas لا يحتاجه) */
   let imgUrl=null;
   function loadImg(){
     const url=(S.user&&S.user.photoUrl)||(TG.user&&TG.user.photo_url)||null;
@@ -2641,6 +2448,7 @@ const FlyGame = (() => {
     g.restore();
   }
 
+  /* بديل عند عدم توفر صورة المستخدم: أول حرف من اسمه */
   function drawInitialAvatar(g,cx,cy,r){
     const gr=g.createRadialGradient(cx-r*.3,cy-r*.3,r*.15,cx,cy,r);
     gr.addColorStop(0,'#FFF3A8');gr.addColorStop(.55,'#FFD52E');gr.addColorStop(1,'#B97A00');
@@ -2655,6 +2463,7 @@ const FlyGame = (() => {
   function flap(){st.p.vy=CFG.flap}
 
   function tick(now){
+    /* إصلاح التجمّد: تصفير المعرّف عند التوقف حتى تعمل startLoop مجدداً */
     if(st.mode!=='playing'&&st.mode!=='ready'){st.raf=0;return}
     st.raf=requestAnimationFrame(tick);
     const dt=Math.min(0.1,Math.max(0,(now-st.lastT)/1000));
@@ -2683,6 +2492,7 @@ const FlyGame = (() => {
     if(st.mode==='playing'){flap();SFX.play('flap');e.preventDefault()}
   }
 
+  /* حفظ نتيجة الجولة مرة واحدة فقط */
   function commit(dist){
     if(st.committed)return false;
     st.committed=true;
@@ -2918,7 +2728,6 @@ function bind(){
   $('wheelSpinBtn').onclick=spinWheel;
   $('wheelAdBtn').onclick=watchWheelAd;
   $('energyAdBtn').onclick=watchEnergyAd;
-  $('energyBuyBtn').onclick=buyEnergyWithGems;
   $('openPolicy').onclick=()=>openContentModal('policy');$('openHelp').onclick=()=>openContentModal('help');
   $('contentClose').onclick=closeContentModal;$('contentDone').onclick=closeContentModal;
   $('contentModal').onclick=e=>{if(e.target.id==='contentModal')closeContentModal()};
@@ -2929,7 +2738,7 @@ function bind(){
   $('refShare').onclick=()=>TG.share(link(),'🐾 انضم إلى Puppy Merge واربح الجواهر!');
   $('codeCopy').onclick=()=>navigator.clipboard?navigator.clipboard.writeText($('refCode').textContent).then(()=>toast('تم نسخ المعرّف')):toast('تعذر النسخ','err');
   $('codeSubmit').onclick=()=>withBtn($('codeSubmit'),'جاري التحقق...',()=>applyCode($('codeInput').value.trim().replace(/^ref_/,'')));
-  document.addEventListener('click',e=>{if(e.target.closest('.btn,.amt,.g-btn,.dock button,.quick .card,.star-pack,.dep-tab,.home-action-card,.home-feature-card'))SFX.play('tap')});
+  document.addEventListener('click',e=>{if(e.target.closest('.btn,.amt,.g-btn,.dock button,.quick .card,.star-pack,.dep-tab'))SFX.play('tap')});
   $('refCopy').onclick=()=>navigator.clipboard?navigator.clipboard.writeText(link()).then(()=>toast('تم نسخ الرابط')):toast('تعذر النسخ','err');
 
   buildMd();
@@ -2957,10 +2766,10 @@ function bind(){
     }
   });
 
+  /* الطيران */
   $('flyPlayBtn').onclick=()=>{
     SFX.play('tap');
     if(TIME.locked)return toast('اللعب مجمد — وقت الجهاز غير صحيح','err');
-    if(Energy.cur(S.user)<=0)return toast('لا توجد طاقة — انتظر التجديد','err');
     go('fly');
   };
   FlyGame.bind();
@@ -2987,8 +2796,6 @@ async function boot(){
     if(ex){
       S.user = Object.assign(newUser(), ex);
       if(!Array.isArray(S.user.investments)) S.user.investments = [];
-      if(!S.user.flyMissions) S.user.flyMissions = {};
-      if(!S.user.flyTotal) S.user.flyTotal = 0;
     } else {
       S.user = newUser();
       try { await FB.set(S.user, false); } catch(e){}
