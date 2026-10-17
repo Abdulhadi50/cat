@@ -39,13 +39,8 @@ body{font-family:'Baloo Bhaijaan 2',-apple-system,BlinkMacSystemFont,'Segoe UI',
 button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 input{font:inherit;color:inherit;border:none;outline:none;background:none}
 ::-webkit-scrollbar{display:none}
-.app{max-width:480px;margin:0 auto;height:100dvh;display:flex;flex-direction:column;position:relative;overflow:hidden;background:var(--white)}
-.main{flex:1;min-height:0;overflow-y:auto;padding:6px 16px calc(var(--dock-h) + 24px + var(--sb))}
-.screen{display:none}
-.screen.active{display:block;animation:fadeIn .22s ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 
-/* LOADER */
+/* ═══ LOADER ═══ */
 .loader{position:fixed;inset:0;z-index:9999;background:var(--white);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .4s}
 .loader.hide{opacity:0;pointer-events:none}
 .loader-logo{width:88px;height:88px;border-radius:24px;background:var(--pink);display:grid;place-items:center;color:#fff;font-size:40px;box-shadow:0 12px 32px rgba(254,43,84,.35);animation:logoPulse 1.6s ease-in-out infinite}
@@ -54,19 +49,33 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
 .loader-spin{width:28px;height:28px;border:3px solid var(--gray-b);border-top-color:var(--pink);border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* HEADER */
-.app-header{padding:calc(10px + var(--st)) 12px 10px;display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(0,0,0,.04);position:sticky;top:0;z-index:20}
-.balance-strip{display:flex;gap:7px;flex:1;min-width:0}
-.bal-chip{flex:1;display:flex;align-items:center;gap:6px;padding:7px 9px;background:var(--gray-l);border-radius:13px;min-width:0}
-.bal-chip img{width:23px;height:23px;flex-shrink:0}
-.bal-chip .num{font-size:13px;font-weight:800;direction:ltr;line-height:1.1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.bal-chip .lbl{font-size:9px;font-weight:600;color:var(--gray);direction:ltr}
-.header-avatar{width:40px;height:40px;border-radius:50%;padding:0;display:block;border:2px solid #fff;box-shadow:0 3px 12px rgba(0,0,0,.13);overflow:hidden;flex:0 0 40px;background:var(--gray-l)}
+/* ═══ APP SHELL ═══ */
+.app{max-width:480px;margin:0 auto;height:100dvh;display:flex;flex-direction:column;position:relative;overflow:hidden;background:var(--white)}
+.main{flex:1;min-height:0;overflow-y:auto;padding:0 16px calc(var(--dock-h) + 24px + var(--sb))}
+.screen{display:none}
+.screen.active{display:block;animation:fadeIn .22s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+/* ═══ HEADER ═══ */
+.app-header{padding:calc(12px + var(--st)) 16px 12px;display:flex;align-items:center;gap:12px;background:var(--white);position:sticky;top:0;z-index:20}
+.app-header-brand{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+.brand-logo{width:38px;height:38px;border-radius:11px;background:var(--pink);display:grid;place-items:center;color:#fff;font-size:18px;flex-shrink:0;box-shadow:0 4px 10px rgba(254,43,84,.28)}
+.brand-text{min-width:0}
+.brand-name{font-size:16px;font-weight:800;letter-spacing:-.3px;line-height:1.1}
+.brand-tag{font-size:10px;font-weight:600;color:var(--gray);letter-spacing:.2px}
+.header-avatar{width:38px;height:38px;border-radius:50%;background:var(--gray-l);overflow:hidden;border:2px solid var(--white);box-shadow:var(--shadow-sm);flex-shrink:0}
 .header-avatar img{width:100%;height:100%;object-fit:cover;display:block}
 .header-avatar i{display:grid;place-items:center;width:100%;height:100%;color:var(--pink);font-size:16px}
 
-/* HERO */
-.hero{position:relative;border-radius:24px;overflow:hidden;background:linear-gradient(135deg,#0A0A0A 0%,#1F1F23 100%);padding:20px;margin-bottom:16px;box-shadow:var(--shadow-lg);min-height:200px;display:flex;flex-direction:column;justify-content:space-between}
+/* ═══ BALANCE STRIP ═══ */
+.balance-strip{display:flex;gap:8px;padding:0 16px 14px;background:var(--white);position:sticky;top:62px;z-index:19}
+.bal-chip{flex:1;display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--gray-l);border-radius:14px;min-width:0}
+.bal-chip img{width:26px;height:26px;flex-shrink:0}
+.bal-chip .num{font-size:15px;font-weight:800;direction:ltr;line-height:1.1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bal-chip .lbl{font-size:9.5px;font-weight:600;color:var(--gray);direction:ltr}
+
+/* ═══ HERO BANNER ═══ */
+.hero{position:relative;border-radius:24px;overflow:hidden;background:linear-gradient(135deg,#0A0A0A 0%,#1F1F23 100%);padding:20px;margin-bottom:16px;box-shadow:var(--shadow-lg);min-height:220px;display:flex;flex-direction:column;justify-content:space-between}
 .hero::before{content:'';position:absolute;top:-50%;right:-30%;width:80%;height:200%;background:radial-gradient(circle,rgba(254,43,84,.35) 0%,transparent 60%);pointer-events:none}
 .hero::after{content:'';position:absolute;bottom:-30%;left:-20%;width:60%;height:120%;background:radial-gradient(circle,rgba(254,43,84,.2) 0%,transparent 65%);pointer-events:none}
 .hero-content{position:relative;z-index:2}
@@ -85,19 +94,18 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
 .btn-leader:active{transform:scale(.97)}
 .hero-plane{position:absolute;top:20px;left:20px;font-size:80px;color:rgba(254,43,84,.18);transform:rotate(-15deg);pointer-events:none}
 
-/* SECTIONS */
+/* ═══ SECTION ═══ */
 .section{margin-bottom:20px}
 .section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .section-title{font-size:16px;font-weight:800;letter-spacing:-.3px;display:flex;align-items:center;gap:8px}
 .section-title i{color:var(--pink)}
 .section-link{font-size:12px;font-weight:700;color:var(--pink);display:flex;align-items:center;gap:4px}
 
-/* ENERGY */
+/* ═══ ENERGY CARD ═══ */
 .energy-card{background:var(--gray-l);border-radius:20px;padding:16px;margin-bottom:16px}
 .energy-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .energy-info{display:flex;align-items:center;gap:10px}
 .energy-icon{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#FEF3C7,#FDE68A);display:grid;place-items:center;color:#B45309;font-size:18px}
-.energy-icon img{width:29px;height:29px;object-fit:contain}
 .energy-title{font-size:14px;font-weight:800}
 .energy-sub{font-size:11px;color:var(--gray);font-weight:600}
 .energy-count{font-size:20px;font-weight:800;direction:ltr}
@@ -109,57 +117,40 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
 .energy-btn:active{transform:scale(.97)}
 .energy-btn.primary{background:var(--black);color:#fff;border-color:var(--black)}
 
-/* BUTTONS */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;border-radius:16px;height:52px;padding:0 20px;width:100%;font-size:14.5px;transition:transform .1s,opacity .2s;background:var(--white);color:var(--ink);border:1.5px solid var(--gray-b)}
-.btn:active{transform:scale(.98)}
-.btn[disabled]{opacity:.45;pointer-events:none}
-.btn-black{background:var(--black);color:#fff;border-color:var(--black)}
-.btn-pink{background:var(--pink);color:#fff;border-color:var(--pink)}
-.btn-outline{background:var(--white);color:var(--ink);border:1.5px solid var(--gray-b)}
-.btn-gray{background:var(--gray-l);color:var(--ink);border-color:var(--gray-l)}
-.btn-sm{height:40px;padding:0 14px;font-size:12.5px;border-radius:12px;width:auto}
-.btn-gold{background:linear-gradient(135deg,#FBBF24,#F59E0B);color:#fff;border-color:#F59E0B}
-.btn-green{background:linear-gradient(135deg,#22C55E,#16A34A);color:#fff;border-color:#16A34A}
+/* ═══ MISSION PREVIEW CARD ═══ */
+.miss-preview{background:var(--white);border:1.5px solid var(--gray-b);border-radius:18px;padding:14px;margin-bottom:10px;display:flex;align-items:center;gap:12px;transition:transform .12s}
+.miss-preview:active{transform:scale(.99)}
+.miss-ico{width:44px;height:44px;border-radius:13px;background:var(--pink-l);color:var(--pink);display:grid;place-items:center;font-size:18px;flex-shrink:0}
+.miss-body{flex:1;min-width:0}
+.miss-title{font-size:13.5px;font-weight:700;line-height:1.25}
+.miss-prog-bar{height:6px;background:var(--gray-l);border-radius:6px;overflow:hidden;margin-top:8px}
+.miss-prog-bar i{display:block;height:100%;background:var(--pink);border-radius:6px;transition:width .5s}
+.miss-meta{display:flex;justify-content:space-between;font-size:10.5px;color:var(--gray);font-weight:700;margin-top:5px;direction:ltr}
+.miss-reward{display:inline-flex;align-items:center;gap:3px;font-weight:800;color:var(--pink);font-size:12.5px}
+.miss-reward img{width:16px;height:16px}
 
-/* CARDS */
-.card{background:var(--white);border:1.5px solid var(--gray-b);border-radius:18px;padding:16px;margin-bottom:12px}
-.card-flat{background:var(--gray-l);border:none;border-radius:18px;padding:16px;margin-bottom:12px}
+/* ═══ RESULT CARD ═══ */
+.result-card{background:var(--gray-l);border-radius:18px;padding:14px;display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.result-ico{width:44px;height:44px;border-radius:13px;background:var(--white);display:grid;place-items:center;color:var(--pink);font-size:16px;flex-shrink:0}
+.result-meta{flex:1;min-width:0}
+.result-title{font-size:13px;font-weight:700}
+.result-sub{font-size:10.5px;color:var(--gray);font-weight:600;direction:ltr}
+.result-val{font-size:15px;font-weight:800;direction:ltr;color:var(--pink)}
 
-/* INPUT */
-.input{width:100%;height:52px;padding:0 16px;border-radius:14px;background:var(--gray-l);border:1.5px solid transparent;font-weight:700;transition:border-color .15s;direction:ltr;text-align:left}
-.input:focus{border-color:var(--pink);background:var(--white)}
-
-/* AMOUNT GRID */
-.amts,.amt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.amt,.amt-btn{padding:12px 6px;border-radius:14px;background:var(--gray-l);border:1.5px solid transparent;font-size:12px;font-weight:800;color:var(--ink);transition:all .15s;direction:ltr}
-.amt.on,.amt-btn.on{background:var(--pink-l);border-color:var(--pink);color:var(--pink)}
-
-/* INFO LIST */
-.info,.info-list{background:var(--gray-l);border-radius:14px;padding:4px 14px;margin-bottom:12px}
-.info div,.info-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;font-size:13px;font-weight:600;color:var(--gray)}
-.info div+div,.info-row+.info-row{border-top:1px solid var(--gray-b)}
-.info b,.info-row b{color:var(--ink);font-weight:800;direction:ltr}
-
-/* QUICK ACTIONS */
-.quick,.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.quick .card,.quick-card{background:var(--white);border:1.5px solid var(--gray-b);border-radius:18px;padding:16px 12px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;transition:transform .12s;position:relative;overflow:hidden}
-.quick .card:active,.quick-card:active{transform:scale(.97)}
-.ico,.quick-ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:20px;color:#fff;background:var(--pink)}
-.ico.i-gold{background:linear-gradient(135deg,#FBBF24,#F59E0B)}
-.ico.i-sky{background:linear-gradient(135deg,#59D7F2,#1B7FA8)}
-.ico.i-green{background:linear-gradient(135deg,#22C55E,#16A34A)}
-.ico.i-red{background:linear-gradient(135deg,#EF4444,#B91C1C)}
-.ico.i-pink{background:linear-gradient(135deg,#FE2B54,#D91E42)}
-.ico.i-black{background:var(--black)}
+/* ═══ QUICK ACTIONS ═══ */
+.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.quick-card{background:var(--white);border:1.5px solid var(--gray-b);border-radius:18px;padding:16px 12px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;transition:transform .12s;position:relative;overflow:hidden}
+.quick-card:active{transform:scale(.97)}
+.quick-ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:20px;color:#fff}
 .quick-ico.pink{background:var(--pink)}
 .quick-ico.black{background:var(--black)}
 .quick-ico.gold{background:linear-gradient(135deg,#FBBF24,#F59E0B)}
 .quick-ico.green{background:linear-gradient(135deg,#22C55E,#16A34A)}
-.quick-ttl,.quick .ttl{font-size:13px;font-weight:800;color:var(--ink)}
-.quick-sub,.quick .sub{font-size:10.5px;color:var(--gray);font-weight:600}
-.badge{position:absolute;top:10px;left:10px;background:var(--pink);color:#fff;font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:10px}
+.quick-ttl{font-size:13px;font-weight:800}
+.quick-sub{font-size:10.5px;color:var(--gray);font-weight:600}
+.quick-badge{position:absolute;top:10px;left:10px;background:var(--pink);color:#fff;font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:10px}
 
-/* DOCK */
+/* ═══ BOTTOM NAV — GLASS FLOATING ═══ */
 .dock{position:absolute;left:12px;right:12px;bottom:calc(10px + var(--sb));height:var(--dock-h);border-radius:26px;padding:6px;display:flex;z-index:50;background:rgba(255,255,255,.72);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border:1px solid rgba(0,0,0,.06);box-shadow:0 8px 32px rgba(0,0,0,.12),0 2px 8px rgba(0,0,0,.04)}
 .dock button{flex:1;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:9.5px;font-weight:700;color:var(--gray);transition:color .15s,background .2s;position:relative}
 .dock i{font-size:19px;transition:transform .15s}
@@ -167,309 +158,509 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
 .dock .on i{transform:scale(1.06)}
 .dock .on::before{content:'';position:absolute;top:2px;left:50%;transform:translateX(-50%);width:22px;height:3px;border-radius:2px;background:var(--pink)}
 
-/* MODALS */
-.modal{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:24px;animation:fadeIn .2s}
-.modal.show{display:flex}
-.modal .card,.modal-card{background:var(--white);border-radius:24px;padding:28px 22px 22px;max-width:360px;width:100%;text-align:center;animation:modalPop .35s cubic-bezier(.34,1.56,.64,1);box-shadow:var(--shadow-lg);border:none}
-@keyframes modalPop{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
-.modal .ico,.modal-icon{width:72px;height:72px;border-radius:50%;background:var(--pink-l);color:var(--pink);display:grid;place-items:center;font-size:32px;margin:0 auto 16px}
-.modal .ico.i-gold{background:var(--pink-l);color:var(--pink)}
-.modal .ico.i-sky{background:var(--pink-l);color:var(--pink)}
-.modal .ico.i-red{background:#FEE2E2;color:#DC2626}
-.modal .ttl,.modal-title{font-size:20px;font-weight:800;margin-bottom:6px;color:var(--ink)}
-.modal .sub,.modal-sub{font-size:13px;color:var(--gray);font-weight:600;margin-bottom:20px}
-.m-amt,.modal-amount{font-size:32px;font-weight:800;color:var(--pink);margin-bottom:20px;direction:ltr}
+/* ═══ BUTTONS ═══ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;border-radius:16px;height:52px;padding:0 20px;width:100%;font-size:14.5px;transition:transform .1s,opacity .2s}
+.btn:active{transform:scale(.98)}
+.btn[disabled]{opacity:.45;pointer-events:none}
+.btn-black{background:var(--black);color:#fff}
+.btn-pink{background:var(--pink);color:#fff}
+.btn-outline{background:var(--white);color:var(--ink);border:1.5px solid var(--gray-b)}
+.btn-gray{background:var(--gray-l);color:var(--ink)}
+.btn-sm{height:40px;padding:0 14px;font-size:12.5px;border-radius:12px;width:auto}
 
-/* TOAST */
-.toast{position:fixed;top:calc(16px + var(--st));left:50%;transform:translate(-50%,-200px);z-index:2000;padding:13px 18px;border-radius:17px;font-weight:700;font-size:13.5px;background:rgba(15,23,42,.78);color:#fff;border:1px solid rgba(255,255,255,.23);backdrop-filter:blur(22px) saturate(170%);-webkit-backdrop-filter:blur(22px) saturate(170%);box-shadow:0 12px 36px rgba(0,0,0,.2),inset 0 1px rgba(255,255,255,.16);transition:transform .35s cubic-bezier(.34,1.4,.64,1);pointer-events:none;max-width:90%;text-align:center}
-.toast.show{transform:translate(-50%,0)}
-.toast.err,.toast.error{background:rgba(185,28,28,.78);border-color:rgba(254,202,202,.35)}
-.toast.info{background:rgba(30,58,138,.78);border-color:rgba(191,219,254,.35)}
+/* ═══ CARDS ═══ */
+.card{background:var(--white);border:1.5px solid var(--gray-b);border-radius:18px;padding:16px;margin-bottom:12px}
+.card-flat{background:var(--gray-l);border:none;border-radius:18px;padding:16px;margin-bottom:12px}
 
-/* SPINNER */
-.spn{display:inline-block;width:16px;height:16px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite}
+/* ═══ FORM ═══ */
+.input{width:100%;height:52px;padding:0 16px;border-radius:14px;background:var(--gray-l);border:1.5px solid transparent;font-weight:700;transition:border-color .15s;direction:ltr;text-align:left}
+.input:focus{border-color:var(--pink);background:var(--white)}
 
-/* EMPTY */
-.empty{text-align:center;padding:40px 20px;color:var(--gray);font-weight:600;font-size:13.5px}
-.empty i{font-size:36px;color:var(--gray-b);margin-bottom:12px;display:block}
+/* ═══ AMOUNT GRID ═══ */
+.amt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.amt-btn{padding:12px 6px;border-radius:14px;background:var(--gray-l);border:1.5px solid transparent;font-size:12px;font-weight:800;color:var(--ink);transition:all .15s;direction:ltr}
+.amt-btn.on{background:var(--pink-l);border-color:var(--pink);color:var(--pink)}
 
-/* MERGE GAME */
-.g-head{display:flex;gap:10px;margin-bottom:14px}
-.g-btn{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:18px;background:var(--white);border:1.5px solid var(--gray-b);color:var(--ink);transition:transform .1s}
-.g-btn:active{transform:scale(.96)}
-.g-ttl{flex:1;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:800;background:var(--gray-l);color:var(--ink)}
-.g-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
-.g-stats .card{padding:10px;margin:0;text-align:center}
-.g-stats b{display:block;font-size:17px;direction:ltr;font-weight:800;color:var(--pink)}
-.board-wrap{padding:16px 12px 12px;margin-bottom:14px}
-.target{display:block;width:max-content;margin:0 auto 14px;padding:4px 16px;border-radius:10px;font-size:12px;font-weight:800;color:var(--pink);background:var(--pink-l)}
-.board{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;aspect-ratio:1}
-.tile{border-radius:12px;background:var(--gray-l);touch-action:manipulation}
-.tile i{width:100%;height:100%;border-radius:12px;display:grid;place-items:center;font-size:22px;color:#fff;box-shadow:inset 0 -4px 0 rgba(0,0,0,.15),inset 0 3px 0 rgba(255,255,255,.35),0 3px 0 rgba(0,0,0,.1);transition:transform .15s}
-.t0 i{background:linear-gradient(160deg,#C58CE8,#8E24AA)}.t1 i{background:linear-gradient(160deg,#FFD52E,#B97A00)}.t2 i{background:linear-gradient(160deg,#7EFF6A,#2BA845)}
-.t3 i{background:linear-gradient(160deg,#FFB8D1,#C2185B)}.t4 i{background:linear-gradient(160deg,#FFB870,#E65100)}.t5 i{background:linear-gradient(160deg,#A8E2FF,#2874A6)}
-.tile.sel i{transform:scale(1.1);box-shadow:0 0 0 3px var(--pink),0 0 16px rgba(254,43,84,.9)}
-.tile.pop i{animation:pp .3s forwards}
-@keyframes pp{50%{transform:scale(1.25) rotate(8deg)}100%{transform:scale(0);opacity:0}}
-.tile.bad i{animation:sh .3s}
-@keyframes sh{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
-.g-act{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+/* ═══ INFO ROW ═══ */
+.info-list{background:var(--gray-l);border-radius:14px;padding:4px 14px;margin-bottom:12px}
+.info-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;font-size:13px;font-weight:600;color:var(--gray)}
+.info-row+.info-row{border-top:1px solid var(--gray-b)}
+.info-row b{color:var(--ink);font-weight:800;direction:ltr}
 
-/* WHEEL */
-.stage{position:relative;max-width:310px;margin:34px auto 50px}
-.pointer{position:absolute;top:-24px;left:50%;transform:translateX(-50%);z-index:5;font-size:44px;color:var(--pink);filter:drop-shadow(0 4px 8px rgba(254,43,84,.35))}
-.rim{position:relative;aspect-ratio:1;border-radius:50%;padding:16px;border:4px solid var(--pink);background:var(--white);box-shadow:0 8px 24px rgba(254,43,84,.25),inset 0 4px 0 rgba(255,255,255,.6)}
-.rim::before{content:'';position:absolute;inset:5px;border-radius:50%;border:4px dotted rgba(254,43,84,.35)}
-.wheel{width:100%;height:100%;border-radius:50%;border:4px solid #fff;overflow:hidden;box-shadow:inset 0 0 16px rgba(0,0,0,.15);transition:transform 5s cubic-bezier(.17,.67,.24,1)}
-.wheel svg{width:100%;height:100%;display:block}
-.hub{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70px;height:70px;font-size:28px;border:4px solid #fff;background:var(--pink);color:#fff;border-radius:50%;display:grid;place-items:center;box-shadow:0 6px 20px rgba(254,43,84,.4)}
-.spin{height:80px;flex-direction:column;gap:4px;margin-bottom:14px}
-.spin .m{display:flex;gap:8px;font-size:12px}
-.spin .m b{display:flex;gap:5px;align-items:center;padding:2px 10px;border-radius:10px;background:rgba(255,255,255,.25);direction:ltr}
+/* ═══ MISSION FULL CARD ═══ */
+.mission-card{background:var(--white);border:1.5px solid var(--gray-b);border-radius:18px;padding:16px;margin-bottom:10px}
+.mission-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px}
+.mission-ico-lg{width:48px;height:48px;border-radius:14px;background:var(--pink-l);color:var(--pink);display:grid;place-items:center;font-size:20px;flex-shrink:0}
+.mission-body{flex:1;min-width:0}
+.mission-title{font-size:14.5px;font-weight:800;line-height:1.25}
+.mission-desc{font-size:11.5px;color:var(--gray);font-weight:600;margin-top:2px}
+.mission-reward-row{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:var(--pink-l);border-radius:10px;font-size:12px;font-weight:800;color:var(--pink);margin-top:6px}
+.mission-reward-row img{width:16px;height:16px}
+.mission-prog{height:8px;background:var(--gray-l);border-radius:8px;overflow:hidden;margin-bottom:6px}
+.mission-prog i{display:block;height:100%;background:linear-gradient(90deg,var(--pink),#FF5B7C);border-radius:8px;transition:width .5s}
+.mission-prog-meta{display:flex;justify-content:space-between;font-size:11px;font-weight:700;color:var(--gray);direction:ltr;margin-bottom:12px}
+.mission-card.done{border-color:var(--green);background:linear-gradient(180deg,#fff,#F0FDF4)}
+.mission-card.done .mission-ico-lg{background:#DCFCE7;color:#16A34A}
+.mission-card.claimable{border-color:var(--pink)}
 
-/* MISSIONS */
-.sec{display:flex;align-items:center;gap:8px;margin:8px 4px 10px;font-weight:800;font-size:15px;color:var(--ink)}
-.sec .ico{width:28px;height:28px;font-size:12px}
-.daily{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;padding:10px}
-.day{aspect-ratio:1/1.3;border-radius:10px;background:var(--gray-l);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:var(--gray);border:2px solid transparent}
-.day i{font-size:14px;color:var(--pink);margin:2px 0}
-.day.done{background:var(--pink-l);color:var(--pink)}.day.done i{color:var(--pink)}
-.day.claim{background:var(--pink);color:#fff;animation:cl 1.1s infinite}.day.claim i{color:#fff}
-@keyframes cl{50%{box-shadow:0 0 0 7px rgba(254,43,84,0)}0%{box-shadow:0 0 0 0 rgba(254,43,84,.7)}}
-.m-card{display:flex;align-items:center;gap:10px;padding:12px;margin-bottom:10px}
-.m-card .ico{width:50px;height:50px}
-.rw{display:inline-flex;gap:5px;align-items:center;padding:2px 9px;margin-left:3px;border-radius:10px;background:var(--pink-l);font-size:11.5px;font-weight:800;color:var(--pink)}
-.prog{display:flex;gap:6px;align-items:center;font-size:11px;font-weight:800;color:var(--pink);direction:ltr;margin-top:4px}
-.prog .bar{flex:1;height:7px;border-radius:7px;background:var(--gray-l);overflow:hidden}
-.prog .bar i{display:block;height:100%;background:var(--pink);border-radius:7px}
+/* ═══ WALLET ═══ */
+.balance-panel{border-radius:22px;padding:22px;margin-bottom:14px;position:relative;overflow:hidden}
+.balance-panel.coins{background:linear-gradient(135deg,#FFF7E6 0%,#FFEFC6 100%)}
+.balance-panel.gems{background:linear-gradient(135deg,#FFE8EE 0%,#FFD0DD 100%)}
+.balance-panel::after{content:'';position:absolute;top:-40%;right:-20%;width:60%;height:200%;border-radius:50%;background:rgba(255,255,255,.4);pointer-events:none}
+.balance-panel-head{display:flex;align-items:center;gap:12px;position:relative;z-index:1;margin-bottom:14px}
+.balance-panel-head img{width:48px;height:48px}
+.balance-panel-head .lbl{font-size:12px;font-weight:700;color:var(--gray)}
+.balance-panel-head .sub{font-size:10.5px;font-weight:600;color:var(--gray)}
+.balance-panel .big-num{font-size:38px;font-weight:800;direction:ltr;line-height:1;position:relative;z-index:1}
+.balance-panel .eq{font-size:12px;color:var(--gray);font-weight:700;margin-top:6px;position:relative;z-index:1;direction:ltr}
+.balance-panel-actions{display:flex;gap:8px;margin-top:14px;position:relative;z-index:1}
+.balance-panel-actions .btn{height:42px;font-size:13px;border-radius:12px}
 
-/* HERO2 */
-.hero2{border-radius:24px;padding:20px 16px;text-align:center;margin-bottom:14px;color:var(--ink);background:var(--gray-l);border:1.5px solid var(--gray-b)}
-.hero2 .ico{width:46px;height:46px;margin:0 auto 6px}
-.hero2 .big{font-size:34px;font-weight:900;direction:ltr;line-height:1.1}
-.hero2 .ttl{font-size:19px;font-weight:800}
-
-/* EXCHANGE */
-.convert-arrow{text-align:center;padding:8px 0;color:var(--pink);font-size:16px}
-
-/* INVEST */
-.invest-banner{background:linear-gradient(135deg,#22C55E,#16A34A);border-radius:20px;padding:16px;margin-bottom:14px;color:#fff;text-align:center;box-shadow:var(--shadow-md)}
-.invest-banner .paw{font-size:34px;margin-bottom:6px}
-.invest-banner .amount{font-size:38px;font-weight:900;direction:ltr;line-height:1}
-.invest-banner .label{font-size:12px;font-weight:800;margin-top:4px}
-.invest-banner .collect-btn{margin-top:12px;height:52px;background:#fff;color:#16A34A;border-color:#fff}
-.invest-active-card{border-color:var(--green);background:linear-gradient(180deg,#fff,#F0FDF4)}
-.invest-locked{opacity:.75;filter:grayscale(.3)}
-
-/* DEPOSIT TABS */
-.dep-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;padding:4px;background:var(--gray-l);border-radius:22px}
-.dep-tab{flex:1;height:44px;border-radius:18px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;font-weight:800;color:var(--gray);transition:all .2s;background:transparent}
-.dep-tab.active{background:var(--pink);color:#fff;box-shadow:var(--shadow-sm)}
-.dep-tab.active.crypto{background:var(--black);color:#fff}
-.cashier-tabs,.tx-tabs{display:flex;gap:6px;background:var(--gray-l);border-radius:14px;padding:4px;margin-bottom:14px;position:sticky;top:0;z-index:4}
-.tx-tab{flex:1;padding:9px 8px;border-radius:10px;font-size:12.5px;font-weight:700;color:var(--gray);transition:all .15s;text-align:center}
-.tx-tab.on{background:var(--white);color:var(--pink);box-shadow:var(--shadow-sm)}
-.crypto-pending-banner{background:var(--pink-l);border:1.5px solid var(--pink);border-radius:16px;padding:12px;margin-bottom:12px;display:none}
-.crypto-pending-banner.show{display:block}
-.crypto-pending-banner .timer-badge{background:#fff;padding:4px 10px;border-radius:12px;font-weight:800;font-size:12px;direction:ltr;color:var(--pink)}
-.crypto-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
-.payment-method-card{width:100%;display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--gray-b);border-radius:18px;padding:13px 14px;text-align:start;margin-bottom:10px;min-height:76px;box-shadow:var(--shadow-sm);transition:transform .12s,border-color .12s,background .12s}
-.payment-method-card:active{transform:scale(.99)}
-.payment-method-card.selected{border-color:var(--pink);background:var(--pink-l)}
-.payment-method-card>img{width:46px;height:46px;object-fit:contain;border-radius:12px;background:#fff;flex:0 0 46px}
-.payment-method-card>span{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
-.payment-method-card b{font-size:14px;font-weight:800;color:var(--ink)}
-.payment-method-card small{font-size:11px;color:var(--gray);font-weight:600}
-.payment-method-card>i{color:var(--gray);font-size:13px}
-.payment-method-card .selected-mark{color:var(--pink);font-size:18px}
-.cashier-note{font-size:11px;color:var(--gray);font-weight:600;margin:12px 4px 0;line-height:1.6}
-.deposit-method-hero{display:flex;align-items:center;gap:14px;padding:18px 4px 20px}
-.deposit-method-hero img{width:58px;height:58px;object-fit:contain;padding:5px;border-radius:17px;background:#fff;border:1px solid var(--gray-b)}
-.deposit-method-hero h2{font-size:18px;font-weight:800;line-height:1.25}
-.deposit-method-hero p{font-size:11.5px;color:var(--gray);font-weight:600;margin-top:4px}
-.deposit-info-card{padding:16px;margin-bottom:12px}
-.deposit-field-label{display:block;font-size:12px;font-weight:800;margin:4px 0 8px;color:var(--ink)}
-.copy-value-row{direction:ltr;display:flex;align-items:center;gap:8px;border:1px solid var(--gray-b);background:var(--gray-l);border-radius:13px;padding:9px 10px;margin-bottom:15px}
-.copy-value-row b{font-size:13px;word-break:break-all;flex:1;text-align:left}
-.copy-button{width:36px;height:36px;flex:0 0 36px;border-radius:11px;display:grid;place-items:center;background:#fff;border:1px solid var(--gray-b);color:var(--pink)}
-.deposit-important{font-size:11.5px;color:#8A4B00;background:#FFF7E6;border:1px solid #FFE3A6;border-radius:12px;padding:11px 12px;line-height:1.7;font-weight:700;margin-top:3px}
-.codebox{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 8px 8px 14px;margin-bottom:12px;border-radius:16px;background:var(--gray-l);border:1.5px solid var(--gray-b)}
-.codebox b{font-size:14px;direction:ltr;word-break:break-all}
-
-/* WITHDRAW */
-.wd-method{cursor:pointer;transition:border-color .15s,transform .15s}
-.wd-method:active{transform:scale(.99)}
-.wd-method.selected{border-color:var(--pink);background:var(--pink-l)}
-.wd-check{color:var(--pink)!important}
-.flag-ico{width:22px;height:22px;border-radius:50%;object-fit:cover;vertical-align:middle;display:inline-block}
-
-/* HISTORY */
-.hist{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:11px 14px;margin-bottom:8px;border-radius:16px}
-.st{padding:3px 10px;border-radius:10px;font-size:10px;font-weight:800;background:#FEF3C7;color:#92400E}
-.st.completed,.st.approved{background:#DCFCE7;color:#166534}
-.st.rejected{background:#FEE2E2;color:#B91C1C}
-.st.processing{background:#DBEAFE;color:#1E40AF}
-.status-badge{display:inline-block;border-radius:8px;padding:3px 7px;font-size:10px;font-weight:800;white-space:nowrap}
-.status-rejected{color:#B91C1C;background:#FEE2E2}
-.status-approved{color:#166534;background:#DCFCE7}
-.status-pending{color:#92400E;background:#FEF3C7}
-.history-right{display:flex;flex-direction:column;align-items:flex-end;gap:5px;max-width:48%}
-.history-right .tx-amount{font-size:12px;white-space:nowrap}
+/* ═══ TX ROW ═══ */
 .tx-row{display:flex;align-items:center;gap:12px;padding:12px 0}
 .tx-row+.tx-row{border-top:1px solid var(--gray-b)}
-.tx-ico{width:38px;height:38px;border-radius:12px;background:var(--gray-l);display:grid;place-items:center;font-size:14px;flex-shrink:0;color:var(--pink)}
+.tx-ico{width:38px;height:38px;border-radius:12px;background:var(--gray-l);display:grid;place-items:center;font-size:14px;flex-shrink:0}
 .tx-ico.pink{background:var(--pink-l);color:var(--pink)}
 .tx-ico.green{background:#DCFCE7;color:#16A34A}
 .tx-ico.red{background:#FEE2E2;color:#DC2626}
 .tx-ico.gold{background:#FEF3C7;color:#B45309}
 .tx-body{flex:1;min-width:0}
-.tx-title{font-size:13px;font-weight:700;color:var(--ink)}
+.tx-title{font-size:13px;font-weight:700}
 .tx-time{font-size:10.5px;color:var(--gray);font-weight:600;direction:ltr}
 .tx-amount{font-size:14px;font-weight:800;direction:ltr}
 .tx-amount.plus{color:var(--green)}
 .tx-amount.minus{color:var(--red)}
 
-/* PROFILE */
+/* ═══ LEADERBOARD ═══ */
+.podium{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:end;margin-bottom:20px;padding-top:20px}
+.podium-item{text-align:center;position:relative}
+.podium-avatar{width:64px;height:64px;border-radius:50%;margin:0 auto 8px;overflow:hidden;border:3px solid var(--white);background:var(--gray-l);box-shadow:var(--shadow-md);position:relative}
+.podium-item.rank-1 .podium-avatar{width:80px;height:80px;border-color:var(--pink)}
+.podium-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.podium-crown{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:24px;color:#FBBF24;filter:drop-shadow(0 2px 4px rgba(0,0,0,.15))}
+.podium-name{font-size:12px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:2px}
+.podium-dist{font-size:14px;font-weight:800;color:var(--pink);direction:ltr}
+.podium-base{height:8px;border-radius:8px 8px 0 0;margin-top:6px;background:var(--gray-b)}
+.podium-item.rank-1 .podium-base{height:20px;background:linear-gradient(180deg,var(--pink),#FF5B7C)}
+.podium-item.rank-2 .podium-base{height:14px;background:#C0C0C0}
+.podium-item.rank-3 .podium-base{height:10px;background:#CD7F32}
+
+.lb-row{display:flex;align-items:center;gap:12px;padding:12px;border-radius:14px;margin-bottom:6px;transition:background .15s}
+.lb-row.me{background:var(--pink-l);border:1.5px solid var(--pink)}
+.lb-rank{width:28px;height:28px;border-radius:9px;background:var(--gray-l);display:grid;place-items:center;font-size:12px;font-weight:800;flex-shrink:0;direction:ltr}
+.lb-rank.top1{background:linear-gradient(135deg,#FBBF24,#F59E0B);color:#fff}
+.lb-rank.top2{background:#C0C0C0;color:#fff}
+.lb-rank.top3{background:#CD7F32;color:#fff}
+.lb-avatar{width:40px;height:40px;border-radius:50%;overflow:hidden;background:var(--gray-l);flex-shrink:0}
+.lb-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.lb-name{flex:1;font-size:13.5px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lb-dist{font-size:14px;font-weight:800;direction:ltr;color:var(--pink)}
+
+/* ═══ PROFILE ═══ */
 .profile-hero{text-align:center;padding:20px 16px 24px}
-.avatar,.profile-avatar{width:88px;height:88px;border-radius:50%;margin:0 auto 12px;overflow:hidden;border:3px solid var(--pink);background:var(--gray-l);box-shadow:0 8px 24px rgba(254,43,84,.2);display:grid;place-items:center;font-size:34px;color:var(--pink)}
-.avatar img,.profile-avatar img{width:100%;height:100%;object-fit:cover;display:block}
-.profile-name{font-size:20px;font-weight:800;color:var(--ink)}
+.profile-avatar{width:88px;height:88px;border-radius:50%;margin:0 auto 12px;overflow:hidden;border:3px solid var(--pink);background:var(--gray-l);box-shadow:0 8px 24px rgba(254,43,84,.2)}
+.profile-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.profile-avatar i{display:grid;place-items:center;width:100%;height:100%;color:var(--pink);font-size:34px}
+.profile-name{font-size:20px;font-weight:800}
 .profile-id{font-size:11.5px;color:var(--gray);font-weight:600;direction:ltr;margin-top:2px}
-.stats,.profile-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-.stats .card,.profile-stat{background:var(--gray-l);border-radius:16px;padding:14px;text-align:center;border:none;display:flex;gap:10px;align-items:center;margin:0;justify-content:center}
-.stats b,.profile-stat .v{font-size:20px;font-weight:800;direction:ltr;line-height:1;color:var(--pink)}
-.stats .sub,.profile-stat .k{font-size:10.5px;color:var(--gray);font-weight:700;margin-top:4px}
-.menu{padding:0;overflow:hidden;background:var(--white);border:1.5px solid var(--gray-b);border-radius:18px}
-.menu button,.menu-item{display:flex;align-items:center;gap:12px;width:100%;min-height:64px;padding:12px 16px;text-align:start;font-weight:800;transition:background .15s;color:var(--ink)}
-.menu button:active,.menu-item:active{background:var(--gray-l)}
-.menu button+button,.menu-item+.menu-item{border-top:1px solid var(--gray-b)}
-.menu .ico,.menu-ico{width:40px;height:40px;font-size:16px;background:var(--pink-l);color:var(--pink)}
+.profile-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.profile-stat{background:var(--gray-l);border-radius:16px;padding:14px;text-align:center}
+.profile-stat .v{font-size:20px;font-weight:800;direction:ltr;line-height:1}
+.profile-stat .k{font-size:10.5px;color:var(--gray);font-weight:700;margin-top:4px}
+
+.menu-list{background:var(--white);border:1.5px solid var(--gray-b);border-radius:18px;overflow:hidden}
+.menu-item{display:flex;align-items:center;gap:14px;padding:16px;width:100%;text-align:start;transition:background .15s;color:var(--ink)}
+.menu-item:active{background:var(--gray-l)}
+.menu-item+.menu-item{border-top:1px solid var(--gray-b)}
+.menu-ico{width:40px;height:40px;border-radius:12px;background:var(--gray-l);display:grid;place-items:center;font-size:16px;color:var(--pink);flex-shrink:0}
 .menu-label{flex:1;font-size:14px;font-weight:700}
-.menu-arrow,.menu i.fa-chevron-left{color:var(--gray);font-size:14px}
+.menu-arrow{color:var(--gray);font-size:14px}
 
-/* REFERRAL */
+/* ═══ MODAL ═══ */
+.modal{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:24px;animation:fadeIn .2s}
+.modal.show{display:flex}
+.modal-card{background:var(--white);border-radius:24px;padding:28px 22px 22px;max-width:360px;width:100%;text-align:center;animation:modalPop .35s cubic-bezier(.34,1.56,.64,1);box-shadow:var(--shadow-lg)}
+@keyframes modalPop{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+.modal-icon{width:72px;height:72px;border-radius:50%;background:var(--pink-l);color:var(--pink);display:grid;place-items:center;font-size:32px;margin:0 auto 16px}
+.modal-icon.success{background:#DCFCE7;color:#16A34A}
+.modal-icon.error{background:#FEE2E2;color:#DC2626}
+.modal-title{font-size:20px;font-weight:800;margin-bottom:6px}
+.modal-sub{font-size:13px;color:var(--gray);font-weight:600;margin-bottom:20px}
+.modal-amount{font-size:32px;font-weight:800;color:var(--pink);margin-bottom:20px;direction:ltr}
+.modal-actions{display:flex;gap:10px}
+
+/* ═══ TOAST ═══ */
+.toast{position:fixed;top:calc(16px + var(--st));left:50%;transform:translate(-50%,-200px);z-index:2000;padding:12px 20px;border-radius:14px;font-weight:700;font-size:13.5px;background:var(--black);color:#fff;box-shadow:var(--shadow-lg);transition:transform .35s cubic-bezier(.34,1.4,.64,1);pointer-events:none;max-width:90%;text-align:center}
+.toast.show{transform:translate(-50%,0)}
+.toast.success{background:var(--green)}
+.toast.error{background:var(--red)}
+
+/* ═══ LOADING SPINNER ═══ */
+.spn{display:inline-block;width:16px;height:16px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite}
+.spn.dark{border-color:rgba(0,0,0,.15);border-top-color:var(--pink)}
+
+/* ═══ EMPTY STATE ═══ */
+.empty{text-align:center;padding:40px 20px;color:var(--gray);font-weight:600;font-size:13.5px}
+.empty i{font-size:36px;color:var(--gray-b);margin-bottom:12px;display:block}
+
+/* ═══ HIDE SCROLL ═══ */
+.hide{display:none !important}
+
+/* ═══ TX TABS ═══ */
+.tx-tabs{display:flex;gap:6px;background:var(--gray-l);border-radius:14px;padding:4px;margin-bottom:14px}
+.tx-tab{flex:1;padding:9px 8px;border-radius:10px;font-size:12.5px;font-weight:700;color:var(--gray);transition:all .15s;text-align:center}
+.tx-tab.on{background:var(--white);color:var(--pink);box-shadow:var(--shadow-sm)}
+
+/* ═══ CONVERTER ═══ */
+.convert-box{background:var(--white);border:1.5px solid var(--gray-b);border-radius:18px;padding:16px;margin-bottom:12px}
+.convert-row{display:flex;align-items:center;gap:10px;padding:12px 0}
+.convert-icon{width:38px;height:38px}
+.convert-input{flex:1;font-size:20px;font-weight:800;direction:ltr;text-align:right}
+.convert-label{font-size:11px;color:var(--gray);font-weight:700;direction:ltr}
+.convert-arrow{text-align:center;padding:6px 0;color:var(--pink);font-size:16px}
+
+/* ═══ SPIN WHEEL (kept for compatibility) ═══ */
+.spin-wrap{position:relative;max-width:300px;margin:20px auto 30px}
+.spin-pointer{position:absolute;top:-14px;left:50%;transform:translateX(-50%);z-index:5;font-size:36px;color:var(--pink);filter:drop-shadow(0 4px 6px rgba(0,0,0,.15))}
+.spin-rim{position:relative;aspect-ratio:1;border-radius:50%;padding:12px;background:var(--white);border:3px solid var(--pink);box-shadow:0 12px 36px rgba(254,43,84,.25)}
+.spin-wheel{width:100%;height:100%;border-radius:50%;overflow:hidden;transition:transform 5s cubic-bezier(.17,.67,.24,1)}
+.spin-wheel svg{width:100%;height:100%;display:block}
+.spin-hub{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:62px;height:62px;border-radius:50%;background:var(--pink);border:4px solid #fff;display:grid;place-items:center;color:#fff;font-size:22px;box-shadow:0 6px 20px rgba(254,43,84,.4)}
+
+/* ═══ CUSTOM REFINEMENTS ═══ */
+.app-header{padding:calc(10px + var(--st)) 12px 10px;display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(0,0,0,.04);}
+.balance-strip{position:static;top:auto;z-index:auto;padding:0;gap:7px;flex:1;min-width:0;}
+.bal-chip{padding:7px 9px;gap:6px;border-radius:13px;flex:1;}
+.bal-chip img{width:23px;height:23px;}
+.bal-chip .num{font-size:13px;max-width:100%;}
+.bal-chip .lbl{font-size:9px;}
+.header-avatar{width:40px;height:40px;border-radius:50%;padding:0;display:block;border:2px solid #fff;box-shadow:0 3px 12px rgba(0,0,0,.13);overflow:hidden;flex:0 0 40px;}
+.header-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+.header-avatar i{display:grid;place-items:center;width:100%;height:100%;color:var(--pink);font-size:16px;}
+.app.profile-open .app-header{display:none!important;}
+.energy-icon{background:rgba(255,255,255,.75);border:1px solid rgba(245,158,11,.2);}
+.energy-icon img{width:29px;height:29px;object-fit:contain;}
+.miss-ico img,.mission-ico-lg img{width:27px;height:27px;object-fit:contain;}
+.mission-ico-lg{background:#F3F0FF;}
+.mission-reward-row img{width:19px;height:19px;}
+.miss-reward img{width:17px;height:17px;}
+.balance-panel .eq{direction:rtl;font-size:12px;}
+.convert-input[readonly]{color:var(--pink);opacity:1;}
+.convert-row{gap:8px;}
+.convert-label{white-space:nowrap;}
+.cashier-tabs{position:sticky;top:0;z-index:4;}
+.cashier-intro p{font-size:12px;color:var(--gray);font-weight:600;line-height:1.7;margin-top:8px;}
+.payment-method-card{width:100%;display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--gray-b);border-radius:18px;padding:13px 14px;text-align:start;margin-bottom:10px;min-height:76px;box-shadow:var(--shadow-sm);transition:transform .12s,border-color .12s,background .12s;}
+.payment-method-card:active{transform:scale(.99);}
+.payment-method-card.selected{border-color:var(--pink);background:var(--pink-l);}
+.payment-method-card>img{width:46px;height:46px;object-fit:contain;border-radius:12px;background:#fff;flex:0 0 46px;}
+.payment-method-card>span{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;}
+.payment-method-card b{font-size:14px;font-weight:800;}
+.payment-method-card small{font-size:11px;color:var(--gray);font-weight:600;}
+.payment-method-card>i{color:var(--gray);font-size:13px;}
+.payment-method-card .selected-mark{color:var(--pink);font-size:18px;}
+.cashier-note{font-size:11px;color:var(--gray);font-weight:600;margin:12px 4px 0;line-height:1.6;}
+.back-link{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--gray);padding:7px 0 13px;}
+.deposit-method-hero{display:flex;align-items:center;gap:14px;padding:18px 4px 20px;}
+.deposit-method-hero img{width:58px;height:58px;object-fit:contain;padding:5px;border-radius:17px;background:#fff;border:1px solid var(--gray-b);}
+.deposit-method-hero h2{font-size:18px;font-weight:800;line-height:1.25;}
+.deposit-method-hero p{font-size:11.5px;color:var(--gray);font-weight:600;margin-top:4px;}
+.deposit-info-card{padding:16px;margin-bottom:12px;}
+.deposit-field-label{display:block;font-size:12px;font-weight:800;margin:4px 0 8px;}
+.copy-value-row{direction:ltr;display:flex;align-items:center;gap:8px;border:1px solid var(--gray-b);background:var(--gray-l);border-radius:13px;padding:9px 10px;margin-bottom:15px;}
+.copy-value-row b{font-size:13px;word-break:break-all;flex:1;text-align:left;}
+.copy-button{width:36px;height:36px;flex:0 0 36px;border-radius:11px;display:grid;place-items:center;background:#fff;border:1px solid var(--gray-b);color:var(--pink);}
+.deposit-important{font-size:11.5px;color:#8A4B00;background:#FFF7E6;border:1px solid #FFE3A6;border-radius:12px;padding:11px 12px;line-height:1.7;font-weight:700;margin-top:3px;}
+.deposit-info-card .input{margin-bottom:14px;}
+.currency-inline{display:inline-flex;align-items:center;gap:5px;direction:ltr;}
+.currency-inline img{width:18px;height:18px;}
+.history-right{display:flex;flex-direction:column;align-items:flex-end;gap:5px;max-width:48%;}
+.history-right .tx-amount{font-size:12px;white-space:nowrap;}
+.status-badge{display:inline-block;border-radius:8px;padding:3px 7px;font-size:10px;font-weight:800;white-space:nowrap;}
+.status-rejected{color:#B91C1C;background:#FEE2E2;}
+.status-approved{color:#166534;background:#DCFCE7;}
+.status-pending{color:#92400E;background:#FEF3C7;}
+.daily-week-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-bottom:14px;}
+.daily-day{min-width:0;background:#F7F7F9;border:1px solid var(--gray-b);border-radius:13px;padding:9px 4px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:5px;}
+.daily-day.today{border-color:var(--pink);background:var(--pink-l);box-shadow:0 0 0 1px rgba(254,43,84,.08);}
+.daily-day.claimed{border-color:#BBF7D0;background:#F0FDF4;}
+.daily-day-name{font-size:10px;font-weight:800;white-space:nowrap;}
+.daily-day-mark{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#E7E7EC;color:var(--gray);font-size:10px;font-weight:800;}
+.daily-day.today .daily-day-mark{background:var(--pink);color:#fff;}
+.daily-day.claimed .daily-day-mark{background:#16A34A;color:#fff;}
+.daily-prize{display:flex;align-items:center;gap:3px;font-size:10px;font-weight:800;direction:ltr;}
+.daily-prize img{width:13px;height:13px;object-fit:contain;}
+.daily-reward-summary{display:flex;flex-direction:column;gap:4px;padding:0 2px 14px;text-align:center;}
+.daily-reward-summary b{font-size:14px;font-weight:800;}
+.daily-reward-summary span{font-size:11px;color:var(--gray);font-weight:600;}
+.toast{background:rgba(15,23,42,.78);border:1px solid rgba(255,255,255,.23);backdrop-filter:blur(22px) saturate(170%);-webkit-backdrop-filter:blur(22px) saturate(170%);border-radius:17px;padding:13px 18px;color:#fff;box-shadow:0 12px 36px rgba(0,0,0,.2),inset 0 1px rgba(255,255,255,.16);}
+.toast.success{background:rgba(5,150,105,.78);border-color:rgba(167,243,208,.35);}
+.toast.error{background:rgba(185,28,28,.78);border-color:rgba(254,202,202,.35);}
+@media(max-width:360px){.bal-chip{padding:6px 6px;gap:4px}.bal-chip img{width:20px;height:20px}.bal-chip .num{font-size:11.5px}.header-avatar{width:36px;height:36px;flex-basis:36px}.app-header{gap:7px}.daily-week-grid{grid-template-columns:repeat(4,minmax(0,1fr));}.game-balances{right:8px}.game-exit{left:8px}.game-dist{top:calc(24px + var(--st));}}
+
+/* ═══════════════════════════════════════════════════════════
+   COMPAT LAYER — Puppy Merge components in the Sky Rush design
+   ═══════════════════════════════════════════════════════════ */
+:root{--gold-d:var(--pink);--green-d:#16A34A;--sky-d:var(--pink-d);--cream:#F7F7F9;--ink2:var(--gray);--edge:var(--gray-b);--edge-d:#D1D1D6;--sky:var(--pink)}
+.app{background:var(--white)}
+.main{padding-top:4px}
+.sub{font-size:11px;font-weight:600;color:var(--gray)}
+.row{display:flex;align-items:center;gap:10px}
+.grow{flex:1;min-width:0}
+.ttl{font-size:13.5px;font-weight:800;line-height:1.3}
+/* icons */
+.ico{width:46px;height:46px;border-radius:14px;flex-shrink:0;display:grid;place-items:center;font-size:19px;background:var(--pink-l);color:var(--pink)}
+.i-gold{background:linear-gradient(135deg,#FBBF24,#F59E0B);color:#fff}
+.i-sky{background:var(--black);color:#fff}
+.i-green{background:linear-gradient(135deg,#22C55E,#16A34A);color:#fff}
+.i-red{background:var(--pink);color:#fff}
+/* buttons: b-g primary(pink) / b-s dark / b-y outline / b-r danger */
+.b-g{background:var(--pink);color:#fff}
+.b-s{background:var(--black);color:#fff}
+.b-y{background:var(--white);color:var(--ink);border:1.5px solid var(--gray-b)}
+.b-r{background:#FEE2E2;color:#DC2626}
+.b-off{background:var(--gray-l);color:var(--gray)}
+.b-sm{height:40px;padding:0 14px;font-size:12.5px;border-radius:12px;width:auto}
+.btn[disabled]{opacity:.45;pointer-events:none}
+/* loader */
+.loader-logo{font-size:40px}
+/* header */
+.header-avatar{cursor:pointer}
+.hdr-hidden{display:none!important}
+/* section titles */
+.sec{display:flex;align-items:center;gap:8px;margin:10px 2px 12px;font-size:16px;font-weight:800;letter-spacing:-.3px}
+.sec .ico{width:28px;height:28px;border-radius:9px;font-size:12px;background:var(--pink-l)!important;color:var(--pink)!important}
+.hero-leader-note{display:none}
+/* progress bars */
+.bar{height:8px;border-radius:8px;background:var(--gray-l);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:8px;background:linear-gradient(90deg,var(--pink),#FF5B7C);transition:width .5s}
+.energy-bar{margin-bottom:12px}
+.energy-btn.full{grid-column:1/-1}
+.energy-actions.one{grid-template-columns:1fr}
+.energy-count{display:flex;align-items:baseline;gap:2px}
+.energy-icon img{width:29px;height:29px}
+/* quick cards */
+.quick-grid .quick-card{width:100%}
+.quick-card .quick-ico img{width:30px;height:30px}
+.quick-badge{inset-inline-start:auto;left:10px}
+/* missions */
+.m-card{display:flex;align-items:center;gap:12px;padding:14px;margin-bottom:10px;border-radius:18px}
+.m-card .ico{width:46px;height:46px}
+.rw{display:inline-flex;gap:5px;align-items:center;padding:3px 9px;margin:4px 3px 0 0;border-radius:10px;background:var(--pink-l);font-size:11.5px;font-weight:800;color:var(--pink)}
+.rw i{font-size:11px}
+.prog{display:flex;gap:8px;align-items:center;font-size:10.5px;font-weight:700;color:var(--gray);direction:ltr;margin-top:8px}
+.prog .bar{flex:1;height:6px}
+.daily{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;padding:12px 8px}
+.day{aspect-ratio:1/1.3;border-radius:13px;background:#F7F7F9;border:1px solid var(--gray-b);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:var(--gray);text-align:center;line-height:1.3}
+.day i{font-size:14px;color:var(--pink);margin:3px 0}
+.day.done{border-color:#BBF7D0;background:#F0FDF4;color:#16A34A}.day.done i{color:#16A34A}
+.day.claim{border-color:var(--pink);background:var(--pink-l);color:var(--pink);animation:clp 1.2s infinite;cursor:pointer}
+@keyframes clp{0%{box-shadow:0 0 0 0 rgba(254,43,84,.45)}70%,100%{box-shadow:0 0 0 7px rgba(254,43,84,0)}}
+/* hero2 = flat header card used on inner pages */
+.hero2{border-radius:20px;padding:18px 16px;text-align:center;margin-bottom:14px;background:var(--gray-l)}
+.hero2 .ico{width:48px;height:48px;margin:0 auto 8px}
+.hero2 .big{font-size:34px;font-weight:800;direction:ltr;line-height:1.1}
+/* wallet panels (exchange screen = wallet) */
+.balance-panel .btn{height:42px}
+/* amounts, info, inputs */
+.amts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.amt{padding:12px 6px;border-radius:14px;background:var(--gray-l);border:1.5px solid transparent;font-size:12px;font-weight:800;color:var(--ink);transition:all .15s;direction:ltr}
+.amt.on{background:var(--pink-l);border-color:var(--pink);color:var(--pink)}
+.info{background:var(--gray-l);border-radius:14px;padding:4px 14px;margin-bottom:12px}
+.info div{display:flex;justify-content:space-between;align-items:center;padding:10px 0;font-size:13px;font-weight:600;color:var(--gray)}
+.info div+div{border-top:1px solid var(--gray-b)}
+.info b{color:var(--ink);font-weight:800;direction:ltr}
+.inp{width:100%;height:52px;padding:0 16px;border-radius:14px;background:var(--gray-l);border:1.5px solid transparent;font-weight:700;outline:none;direction:ltr;text-align:left;margin-top:8px;transition:border-color .15s}
+.inp:focus{border-color:var(--pink);background:var(--white)}
+/* history + status */
+.hist{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 14px;margin-bottom:8px;border-radius:14px}
+.st{display:inline-block;padding:3px 8px;border-radius:8px;font-size:10px;font-weight:800;white-space:nowrap;background:#FEF3C7;color:#92400E}
+.st.completed,.st.approved{background:#DCFCE7;color:#166534}.st.rejected{background:#FEE2E2;color:#B91C1C}.st.processing{background:var(--gray-l);color:var(--ink)}
+.empty{text-align:center;padding:28px 20px;color:var(--gray);font-weight:600;font-size:13.5px}
+.empty i{font-size:34px;color:var(--gray-b);margin-bottom:10px}
+/* withdraw methods */
+.wd-method{cursor:pointer;transition:border-color .15s,background .15s}
+.wd-method.selected{background:var(--pink-l)}
+.wd-method .wd-check{color:var(--pink)!important}
+/* profile */
+.avatar{width:88px;height:88px;border-radius:50%;border:3px solid var(--pink);background:var(--gray-l);display:grid;place-items:center;margin:0 auto 10px;overflow:hidden;font-size:34px;color:var(--pink);box-shadow:0 8px 24px rgba(254,43,84,.2)}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.profile-avatar img{width:100%;height:100%;object-fit:cover}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.stats .card{margin:0;padding:12px;display:flex;gap:10px;align-items:center;background:var(--gray-l);border:none;border-radius:16px}
+.stats b{font-size:18px;direction:ltr;display:block;line-height:1}
+.menu{padding:0;overflow:hidden}
+.menu button{display:flex;align-items:center;gap:14px;width:100%;padding:14px 16px;text-align:start;font-weight:700;font-size:14px;color:var(--ink)}
+.menu button:active{background:var(--gray-l)}
+.menu button+button{border-top:1px solid var(--gray-b)}
+.menu .ico{width:40px;height:40px;font-size:16px;border-radius:12px;background:var(--gray-l)!important;color:var(--pink)!important}
+.menu .fa-chevron-left{color:var(--gray);font-size:14px}
+/* referral */
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
-.tileR{border-radius:18px;padding:14px 8px;text-align:center;border:1.5px solid var(--gray-b);background:var(--gray-l)}
-.tileR.me{background:var(--pink-l);border-color:var(--pink)}
-.tileR .ico{margin:0 auto 6px;width:40px;height:40px}
-.tileR b{display:block;font-size:26px;direction:ltr;line-height:1.1;color:var(--pink)}
-.tileR .sub{font-size:10.5px;color:var(--gray);font-weight:700}
-.steps{display:flex;gap:6px;margin-bottom:14px}
-.steps div{flex:1;text-align:center;font-size:10.5px;font-weight:800;color:var(--gray)}
+.tileR{border-radius:18px;padding:14px 8px;text-align:center;background:var(--gray-l)}
+.tileR.me{background:var(--pink-l);border:1.5px solid var(--pink)}
+.tileR .ico{margin:0 auto 6px}.tileR b{display:block;font-size:24px;direction:ltr;line-height:1.1}
+.steps{display:flex;gap:6px;margin-bottom:14px}.steps div{flex:1;text-align:center;font-size:10.5px;font-weight:700;color:var(--gray)}
 .steps .ico{width:34px;height:34px;font-size:14px;margin:0 auto 4px}
-.link{background:var(--gray-l);border:1.5px dashed var(--gray-b);border-radius:14px;padding:11px;font:10.5px monospace;word-break:break-all;direction:ltr;text-align:left;margin-bottom:12px;color:var(--gray)}
-.mini{display:flex;align-items:center;margin-top:12px;padding:8px 4px;border-radius:16px;background:var(--gray-l);border:1.5px solid var(--gray-b)}
-.mini>div:not(.sep){flex:1;text-align:center}
-.mini .sep{width:2px;height:34px;background:var(--gray-b)}
-.mini i{color:var(--pink);font-size:13px}
-.mini b{display:block;font-size:18px;line-height:1.1;direction:ltr;color:var(--pink)}
-.mini span{font-size:10.5px;font-weight:700;color:var(--gray)}
-
-/* LEADERBOARD (referral) */
-.lb{display:flex;align-items:center;gap:10px;padding:9px 6px;border-radius:14px}
+.link{background:var(--gray-l);border:1.5px dashed var(--gray-b);border-radius:14px;padding:11px;font:10.5px monospace;word-break:break-all;direction:ltr;text-align:left;margin-bottom:12px}
+.codebox{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 8px 8px 14px;margin-bottom:12px;border-radius:14px;background:var(--gray-l)}
+.codebox b{font-size:20px;letter-spacing:1px;direction:ltr}
+.mini{display:flex;align-items:center;margin-top:12px;padding:8px 4px;border-radius:14px;background:var(--gray-l)}
+.mini>div:not(.sep){flex:1;text-align:center}.mini .sep{width:1px;height:34px;background:var(--gray-b)}
+.mini i{color:var(--pink);font-size:13px}.mini b{display:block;font-size:18px;line-height:1.1;direction:ltr}.mini span{font-size:10.5px;font-weight:600;color:var(--gray)}
+.lb{display:flex;align-items:center;gap:12px;padding:10px 8px;border-radius:14px}
 .lb+.lb{border-top:1px solid var(--gray-b)}
-.lb.me{background:var(--pink-l)}
-.rank{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:13px;color:#fff;background:var(--gray)}
-.rank.r1{background:linear-gradient(135deg,#FBBF24,#F59E0B)}
-.rank.r2{background:#9CA3AF}
-.rank.r3{background:#CD7F32}
-.lb .av{width:42px;height:42px;border-radius:50%;overflow:hidden;display:grid;place-items:center;border:2px solid #fff;background:var(--pink-l);color:var(--pink)}
+.lb.me{background:var(--pink-l);border:1.5px solid var(--pink)}
+.rank{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;font-weight:800;font-size:12px;background:var(--gray-l);color:var(--ink);direction:ltr}
+.rank.r1{background:linear-gradient(135deg,#FBBF24,#F59E0B);color:#fff}.rank.r2{background:#C0C0C0;color:#fff}.rank.r3{background:#CD7F32;color:#fff}
+.lb .av{width:40px;height:40px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:var(--gray-l);color:var(--pink)}
 .lb .av img{width:100%;height:100%;object-fit:cover}
-.cnt{font-weight:800;padding:4px 11px;border-radius:12px;background:#fff;border:1.5px solid var(--gray-b);color:var(--pink)}
-
-/* TEXT MODAL */
-.text-modal .card{max-width:420px;max-height:84dvh;overflow:hidden;display:flex;flex-direction:column;text-align:right;padding:16px;border-radius:24px}
+.cnt{font-weight:800;padding:4px 11px;border-radius:10px;background:var(--pink-l);color:var(--pink);direction:ltr}
+/* deposit tabs (ref tx-tabs look) */
+.dep-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:14px;padding:4px;background:var(--gray-l);border-radius:14px}
+.dep-tab{height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:12.5px;font-weight:700;color:var(--gray);transition:all .15s;background:transparent}
+.dep-tab.active,.dep-tab.active.crypto{background:var(--white);color:var(--pink);box-shadow:var(--shadow-sm)}
+.star-pack{position:relative;cursor:pointer;text-align:start;transition:transform .1s}
+.star-pack:active{transform:scale(.99)}
+.star-pack .ico-star{background:linear-gradient(135deg,#FBBF24,#F59E0B);color:#fff;width:46px;height:46px}
+.star-pack .arrow{color:var(--gray);font-size:14px}
+.pack-tag{display:inline-block;padding:1px 8px;border-radius:8px;font-size:9.5px;font-weight:800;color:#fff;margin-inline-start:6px;vertical-align:middle}
+.pack-tag.hot{background:var(--pink)}.pack-tag.best{background:var(--green-d)}
+.crypto-pending-banner{background:#FFF7E6;border:1.5px solid #FFE3A6;border-radius:16px;padding:12px;margin-bottom:12px;display:none}
+.crypto-pending-banner.show{display:block}.crypto-pending-banner .row{margin-bottom:8px}
+.crypto-pending-banner .timer-badge{background:#fff;padding:4px 10px;border-radius:10px;font-weight:800;font-size:12px;direction:ltr;color:var(--gold-d)}
+.crypto-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.flag-ico{width:22px;height:22px;border-radius:50%;object-fit:cover;vertical-align:middle;display:inline-block}
+/* invest */
+.invest-banner{position:relative;overflow:hidden;background:linear-gradient(135deg,#0A0A0A,#1F1F23);border-radius:24px;padding:18px;margin-bottom:14px;color:#fff;text-align:center;box-shadow:var(--shadow-lg)}
+.invest-banner::before{content:'';position:absolute;top:-50%;right:-30%;width:80%;height:200%;background:radial-gradient(circle,rgba(254,43,84,.35),transparent 60%);pointer-events:none}
+.invest-banner>*{position:relative}
+.invest-banner .paw{font-size:30px;margin-bottom:6px;color:var(--pink)}
+.invest-banner .amount{font-size:38px;font-weight:800;direction:ltr;line-height:1}
+.invest-banner .label{font-size:12px;font-weight:700;margin-top:4px;color:rgba(255,255,255,.7)}
+.invest-banner .collect-btn{margin-top:12px;height:50px;background:#fff;color:var(--black)}
+.invest-active-card{border-color:var(--green);background:linear-gradient(180deg,#fff,#F0FDF4)}
+.invest-locked{opacity:.6}
+/* modals */
+.modal .modal-card .btn{margin-top:0}
+.text-modal .card,.text-modal .modal-card{max-width:420px;max-height:84dvh;overflow:hidden;display:flex;flex-direction:column;text-align:right;padding:18px;border:none;border-radius:24px;background:#fff;width:100%;margin:0;box-shadow:var(--shadow-lg);animation:modalPop .35s cubic-bezier(.34,1.56,.64,1)}
 .content-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.text-modal .content-head .ico{width:44px;height:44px;margin:0;font-size:18px;flex-shrink:0}
+.text-modal .content-head .ico{width:44px;height:44px;margin:0;font-size:18px}
 .content-body{overflow-y:auto;min-height:0;padding:2px 2px 12px;line-height:1.8;text-align:right;user-select:text;-webkit-user-select:text}
-.content-body h4{font-size:15px;margin:10px 0 3px;color:var(--pink)}
-.content-body p{font-size:12.5px;margin:0 0 8px;color:var(--gray)}
-.content-body .policy-box{background:var(--gray-l);border:1.5px solid var(--gray-b);border-radius:13px;padding:10px;margin-bottom:9px}
-
-/* FLY GAME (full screen, unaffected by redesign) */
-.screen#screen-fly,.screen#screen-flyboard{position:fixed;inset:0;z-index:55;padding:0;margin:0;max-width:none;display:none;flex-direction:column;overflow:hidden}
+.content-body h4{font-size:15px;margin:10px 0 3px;color:var(--ink)}
+.content-body p{font-size:12.5px;margin:0 0 8px;color:var(--gray);font-weight:600}
+.content-body .policy-box{background:var(--gray-l);border-radius:13px;padding:10px;margin-bottom:9px}
+.m-amt{font-size:32px;font-weight:800;direction:ltr;color:var(--pink);margin:6px 0 16px}
+.toast.ok{background:rgba(15,23,42,.78)}
+.toast.err{background:rgba(185,28,28,.78);border-color:rgba(254,202,202,.35)}
+html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1)}
+.next-day-timer{font-size:11px;font-weight:700;color:var(--gray);text-align:center;margin-top:6px}
+/* ═══ MERGE GAME ═══ */
+.g-head{display:flex;gap:10px;margin-bottom:14px;align-items:center}
+.g-btn{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:16px;background:var(--gray-l);color:var(--ink)}
+.g-btn:active{transform:scale(.94)}
+.g-ttl{flex:1;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:800;background:var(--gray-l)}
+.g-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.g-stats .card{padding:10px 8px;margin:0;text-align:center;background:var(--gray-l);border:none;border-radius:16px}
+.g-stats b{display:block;font-size:18px;direction:ltr;line-height:1.1}
+.board-wrap{padding:16px 12px 12px;margin-bottom:14px}
+.target{display:block;width:max-content;margin:0 auto 14px;padding:4px 16px;border-radius:20px;font-size:11.5px;font-weight:800;color:#fff;background:var(--pink)}
+.board{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;aspect-ratio:1}
+.tile{border-radius:12px;background:var(--gray-l);touch-action:manipulation}
+.tile i{width:100%;height:100%;border-radius:12px;display:grid;place-items:center;font-size:22px;color:#fff;box-shadow:inset 0 -4px 0 rgba(0,0,0,.15),inset 0 3px 0 rgba(255,255,255,.3);transition:transform .15s}
+.t0 i{background:linear-gradient(160deg,#C58CE8,#8E24AA)}.t1 i{background:linear-gradient(160deg,#FFE28A,#E0A300)}.t2 i{background:linear-gradient(160deg,#7EFF6A,#2BA845)}
+.t3 i{background:linear-gradient(160deg,#FFB8D1,#C2185B)}.t4 i{background:linear-gradient(160deg,#FFB870,#E65100)}.t5 i{background:linear-gradient(160deg,#A8E2FF,#2874A6)}
+.tile.sel i{transform:scale(1.1);box-shadow:0 0 0 3px var(--pink),0 0 16px rgba(254,43,84,.6)}
+.tile.pop i{animation:pp .3s forwards}
+@keyframes pp{50%{transform:scale(1.25) rotate(8deg)}100%{transform:scale(0);opacity:0}}
+.tile.bad i{animation:sh .3s}
+@keyframes sh{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.g-act{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+/* ═══ WHEEL ═══ */
+.stage{position:relative;max-width:300px;margin:34px auto 30px}
+.pointer{position:absolute;top:-18px;left:50%;transform:translateX(-50%);z-index:5;font-size:38px;color:var(--pink);filter:drop-shadow(0 4px 6px rgba(0,0,0,.15))}
+.rim{position:relative;aspect-ratio:1;border-radius:50%;padding:12px;background:var(--white);border:3px solid var(--pink);box-shadow:0 12px 36px rgba(254,43,84,.25)}
+.wheel{width:100%;height:100%;border-radius:50%;overflow:hidden;transition:transform 5s cubic-bezier(.17,.67,.24,1)}
+.wheel svg{width:100%;height:100%;display:block}
+.hub{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:62px;height:62px;border-radius:50%;background:var(--pink)!important;border:4px solid #fff;display:grid;place-items:center;color:#fff;font-size:22px;box-shadow:0 6px 20px rgba(254,43,84,.4)}
+.spin{height:70px;flex-direction:column;gap:4px;margin-bottom:12px}
+.spin .m{display:flex;gap:8px;font-size:12px}
+.spin .m b{display:flex;gap:5px;align-items:center;padding:2px 10px;border-radius:10px;background:rgba(255,255,255,.2);direction:ltr}
+/* ═══ FLY GAME (reference game-screen presentation) ═══ */
+.screen#screen-fly,.screen#screen-flyboard{position:fixed;inset:0;z-index:100;padding:0;margin:0;max-width:none;display:none;flex-direction:column;overflow:hidden}
 .screen#screen-fly.active,.screen#screen-flyboard.active{display:flex;animation:none}
 #screen-fly{background:#87CEEB}
 .fly-canvas-wrap{position:relative;width:100%;height:100%;overflow:hidden;background:#87CEEB}
-#flyCanvas{display:block;width:100%;height:100%;touch-action:none}
-.fly-hud{position:absolute;top:0;left:0;right:0;padding:calc(10px + env(safe-area-inset-top,0px)) 12px 12px;display:flex;justify-content:space-between;align-items:flex-start;pointer-events:none;z-index:5;gap:8px}
-.fly-pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.82);border:2px solid rgba(255,255,255,.95);border-radius:999px;padding:6px 12px;font-weight:800;font-size:13px;color:var(--ink);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 3px 8px rgba(0,0,0,.15)}
-.fly-pill .ico{width:20px;height:20px;font-size:10px}
-.fly-pill b{direction:ltr;font-variant-numeric:tabular-nums}
-.fly-pill.dist{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);font-size:15px;padding:7px 14px;z-index:5}
-.fly-pill.dist b{font-size:17px;margin:0 3px}
-.fly-exit{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));inset-inline-end:12px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.82);border:2px solid #fff;display:grid;place-items:center;color:var(--ink);font-size:16px;pointer-events:auto;box-shadow:0 3px 8px rgba(0,0,0,.15);z-index:6}
+#flyCanvas{display:block;width:100%;height:100%;touch-action:none;will-change:transform}
+.fly-hud{position:absolute;inset:0;padding:0;pointer-events:none;z-index:5}
+.fly-pills-row{position:absolute;top:calc(12px + var(--st));right:12px;display:flex;flex-direction:column;align-items:stretch;gap:5px;max-width:92px}
+.fly-pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.66);border:1px solid rgba(255,255,255,.52);border-radius:10px;padding:5px 8px;min-height:28px;font-weight:800;font-size:11px;line-height:1.1;color:var(--black);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 3px 10px rgba(0,0,0,.08)}
+.fly-pill img{width:17px;height:17px;object-fit:contain;flex-shrink:0}
+.fly-pill b{direction:ltr;font-variant-numeric:tabular-nums;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fly-pill.dist{position:absolute;top:calc(19px + var(--st));left:50%;transform:translateX(-50%);color:#fff;background:transparent;border:none;box-shadow:none;backdrop-filter:none;padding:0;min-height:0;font-size:10px;font-weight:800;text-shadow:0 2px 5px rgba(0,0,0,.5);white-space:nowrap}
+.fly-pill.dist b{font-size:13px;font-weight:900;margin:0 3px}
+.fly-exit{position:absolute;top:calc(12px + var(--st));left:12px;right:auto;width:36px;height:36px;border-radius:12px;background:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.6);display:grid;place-items:center;color:var(--black);font-size:13px;pointer-events:auto;box-shadow:0 3px 10px rgba(0,0,0,.08);z-index:20}
 .fly-exit:active{transform:scale(.92)}
-.fly-pills-row{display:flex;gap:6px;align-items:flex-start}
 #flyFloaters{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:6}
-.fly-floater{position:absolute;font-size:30px;font-weight:900;color:#FFD52E;white-space:nowrap;text-shadow:0 0 3px #fff,0 0 3px #fff,-2px -2px 0 #8A5A00,2px -2px 0 #8A5A00,-2px 2px 0 #8A5A00,2px 2px 0 #8A5A00,0 6px 10px rgba(0,0,0,.4);animation:flyFloatUp 1.15s cubic-bezier(.2,.7,.4,1) forwards}
-.fly-floater.gem{color:#59D7F2;text-shadow:0 0 3px #fff,0 0 3px #fff,-2px -2px 0 #1B7FA8,2px -2px 0 #1B7FA8,-2px 2px 0 #1B7FA8,2px 2px 0 #1B7FA8,0 6px 10px rgba(0,0,0,.4)}
-@keyframes flyFloatUp{0%{transform:translate(-50%,-50%) scale(.4);opacity:0}18%{transform:translate(-50%,-95%) scale(1.18);opacity:1}100%{transform:translate(-50%,-230%) scale(1);opacity:0}}
-.fly-overlay{position:absolute;inset:0;display:none;align-items:center;justify-content:center;padding:20px;z-index:10;overflow-y:auto}
+.fly-floater{position:absolute;font-size:26px;font-weight:800;color:#FFD700;white-space:nowrap;text-shadow:0 0 4px #000,0 2px 6px rgba(0,0,0,.4);animation:flyFloatUp 1.1s cubic-bezier(.2,.7,.4,1) forwards}
+.fly-floater.gem{color:#59D7F2}
+.fly-overlay{position:absolute;inset:0;display:none;align-items:center;justify-content:center;padding:20px;z-index:10;overflow-y:auto;background:rgba(0,0,0,.4);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .fly-overlay.show{display:flex}
-#flyReadyOverlay{z-index:8;background:linear-gradient(180deg,rgba(10,30,60,.10),rgba(10,30,60,.30))}
-.fly-ready-card{width:100%;max-width:320px;text-align:center;padding:22px 18px 18px;margin:0;border-radius:24px;background:#fff}
-.fly-ready-card .ico{width:64px;height:64px;font-size:30px;margin:0 auto 10px;border-radius:50%;background:var(--pink-l);color:var(--pink);display:grid;place-items:center}
-.fly-ready-title{font-size:22px;font-weight:800;color:var(--ink)}
-.fly-ready-sub{font-size:12.5px;font-weight:700;color:var(--gray);margin:4px 0 16px}
-#flyOverOverlay{padding:0;overflow:hidden;background:linear-gradient(180deg,#6EC3E6 0%,#A8DCF0 38%,#DDF1F5 62%,#FFE8B8 100%)}
-.fly-over-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.fly-over-sun{position:absolute;top:8%;inset-inline-end:10%;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,#FFFBE0 30%,rgba(255,225,150,.55) 60%,rgba(255,225,150,0) 72%)}
-.fly-over-bg .cl{position:absolute;color:rgba(255,255,255,.85)}
-.fly-over-dunes{position:absolute;left:0;right:0;bottom:0;width:100%;height:36%}
-.fly-over-content{position:relative;z-index:2;width:100%;max-width:480px;height:100%;display:flex;flex-direction:column;padding:calc(26px + env(safe-area-inset-top,0px)) 18px calc(18px + env(safe-area-inset-bottom,0px));margin:0 auto}
-.fly-over-head{text-align:center;font-size:20px;font-weight:800;color:var(--pink-d)}
-.fly-over-center{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:12px}
-.fly-over-center .card{margin:0;background:#fff;border:1.5px solid var(--gray-b);border-radius:18px}
-.fly-over-distcard{text-align:center;padding:18px 14px}
-.fly-over-dist{direction:ltr;display:flex;align-items:baseline;justify-content:center;gap:8px;line-height:1}
-.fly-over-dist b{font-size:68px;font-weight:900;color:var(--pink)}
-.fly-over-dist span{font-size:20px;font-weight:800;color:var(--gray)}
-.fly-over-best{margin-top:8px;font-size:13px;font-weight:800;color:var(--pink)}
+#flyReadyOverlay{z-index:8;backdrop-filter:blur(4px)}
+.fly-ready-card{width:100%;max-width:340px;text-align:center;padding:26px 22px;margin:0;border:none;border-radius:24px;box-shadow:var(--shadow-lg);animation:modalPop .35s cubic-bezier(.34,1.56,.64,1)}
+.fly-ready-card .ico{width:72px;height:72px;border-radius:50%;font-size:30px;margin:0 auto 14px;background:var(--pink-l)!important;color:var(--pink)!important}
+.fly-ready-title{font-size:20px;font-weight:800}
+.fly-ready-sub{font-size:13px;font-weight:600;color:var(--gray);margin:4px 0 20px}
+#flyOverOverlay{padding:20px;overflow-y:auto}
+.fly-over-bg{display:none}
+.fly-over-content{position:relative;z-index:2;width:100%;max-width:340px;height:auto;margin:auto;display:flex;flex-direction:column;padding:26px 22px 22px;background:#fff;border-radius:24px;box-shadow:var(--shadow-lg);animation:modalPop .35s cubic-bezier(.34,1.56,.64,1)}
+.fly-over-head{text-align:center;font-size:20px;font-weight:800;color:var(--ink);margin-bottom:12px}
+.fly-over-center{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
+.fly-over-center .card{margin:0}
+.fly-over-distcard{text-align:center;padding:4px 0!important;border:none!important;background:none!important}
+.fly-over-dist{direction:ltr;display:flex;align-items:baseline;justify-content:center;gap:8px;line-height:1;margin:6px 0}
+.fly-over-dist b{font-size:56px;font-weight:800;color:var(--ink)}
+.fly-over-dist span{font-size:16px;font-weight:700;color:var(--gray)}
+.fly-over-best{margin-top:6px;font-size:12.5px;font-weight:700;color:var(--pink)}
 .fly-over-rewgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.fly-over-rewgrid .card{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 8px}
-.fly-over-rewgrid b{font-size:24px;direction:ltr;line-height:1;color:var(--pink)}
-.fly-over-rewgrid .sub{color:var(--gray);font-size:11px;font-weight:700}
-.fly-over-actions{display:flex;flex-direction:column;gap:12px;padding-top:12px}
-.fly-link-board{color:#fff;background:var(--black);border-radius:16px;font-size:16px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px}
-#screen-flyboard{background:#fff}
-.fly-board-header{padding:calc(10px + env(safe-area-inset-top,0px)) 12px 12px;display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.92);border-bottom:1px solid var(--gray-b);flex-shrink:0}
+.fly-over-rewgrid .card{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 8px;background:var(--gray-l);border:none;border-radius:14px}
+.fly-over-rewgrid .card .ico{display:none}
+.fly-over-rewgrid .card img{width:26px;height:26px}
+.fly-over-rewgrid b{font-size:18px;direction:ltr;line-height:1;color:var(--pink)}
+.fly-over-actions{display:flex;flex-direction:column;gap:8px}
+.fly-link-board{height:52px;border-radius:16px;border:1.5px solid var(--gray-b);color:var(--ink);font-size:14.5px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px}
+/* fly leaderboard */
+#screen-flyboard{background:var(--white)}
+.fly-board-header{padding:calc(10px + var(--st)) 12px 12px;display:flex;align-items:center;gap:10px;background:var(--white);border-bottom:1px solid rgba(0,0,0,.04);flex-shrink:0}
 .fly-board-title{flex:1;text-align:center;font-weight:800;font-size:16px;color:var(--ink)}
-.fly-board-scroll{flex:1;min-height:0;overflow-y:auto;padding:16px 14px calc(30px + env(safe-area-inset-bottom,0px));-webkit-overflow-scrolling:touch;background:#fff}
-.fly-featured{text-align:center;margin-bottom:22px;padding-top:8px}
-.fly-featured-avatar{width:130px;height:130px;border-radius:50%;margin:14px auto 0;position:relative;overflow:visible}
-.fly-featured-avatar .inner{width:100%;height:100%;border-radius:50%;overflow:hidden;border:4px solid var(--pink);box-shadow:0 8px 20px rgba(254,43,84,.25);background:#fff;position:relative}
-.fly-featured-avatar .inner img{width:100%;height:100%;object-fit:cover;display:block}
-.fly-featured-avatar .inner canvas{width:100%;height:100%;display:block}
-.fly-featured-crown{position:absolute;top:-26px;left:50%;transform:translateX(-50%);font-size:34px;z-index:2;filter:drop-shadow(0 4px 4px rgba(0,0,0,.2))}
-.fly-featured-medal{position:absolute;top:-6px;inset-inline-end:-6px;background:var(--pink);color:#fff;font-size:12px;font-weight:900;padding:5px 12px;border-radius:12px;border:2px solid #fff;box-shadow:0 3px 6px rgba(0,0,0,.2);z-index:2}
-.fly-featured-dist{font-size:64px;font-weight:900;color:var(--pink);line-height:1;margin-top:14px;direction:ltr;letter-spacing:-1px}
-.fly-featured-name{font-size:15px;font-weight:800;color:var(--gray);margin-top:4px}
-.fly-board-row{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--gray-b);border-radius:18px;padding:10px 12px;margin-bottom:9px;box-shadow:var(--shadow-sm)}
-.fly-board-row.me{border-color:var(--pink);background:var(--pink-l)}
-.fly-board-row .rk{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--gray-l);color:var(--ink);font-weight:900;font-size:13px;flex-shrink:0}
+.fly-board-scroll{flex:1;min-height:0;overflow-y:auto;padding:16px 16px calc(30px + var(--sb));-webkit-overflow-scrolling:touch}
+.fly-featured{text-align:center;margin-bottom:20px;padding-top:8px}
+.fly-featured-avatar{width:100px;height:100px;border-radius:50%;margin:20px auto 0;position:relative;overflow:visible}
+.fly-featured-avatar .inner{width:100%;height:100%;border-radius:50%;overflow:hidden;border:3px solid var(--pink);box-shadow:var(--shadow-md);background:var(--gray-l);position:relative}
+.fly-featured-avatar .inner img,.fly-featured-avatar .inner canvas{width:100%;height:100%;object-fit:cover;display:block}
+.fly-featured-crown{position:absolute;top:-24px;left:50%;transform:translateX(-50%);font-size:24px;color:#FBBF24;z-index:2;filter:drop-shadow(0 2px 4px rgba(0,0,0,.15))}
+.fly-featured-medal{position:absolute;top:-4px;inset-inline-end:-6px;background:var(--pink);color:#fff;font-size:11px;font-weight:800;padding:4px 10px;border-radius:10px;border:2px solid #fff;z-index:2}
+.fly-featured-dist{font-size:48px;font-weight:800;color:var(--pink);line-height:1;margin-top:12px;direction:ltr}
+.fly-featured-name{font-size:14px;font-weight:800;margin-top:4px}
+.fly-board-row{display:flex;align-items:center;gap:12px;padding:12px;border-radius:14px;margin-bottom:6px}
+.fly-board-row.me{background:var(--pink-l);border:1.5px solid var(--pink)}
+.fly-board-row .rk{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:var(--gray-l);color:var(--ink);font-weight:800;font-size:12px;flex-shrink:0;direction:ltr}
 .fly-board-row .rk.gold{background:linear-gradient(135deg,#FBBF24,#F59E0B);color:#fff}
-.fly-board-row .rk.silver{background:#9CA3AF;color:#fff}
-.fly-board-row .rk.bronze{background:#CD7F32;color:#fff}
-.fly-board-row .av{width:44px;height:44px;border-radius:50%;overflow:hidden;background:var(--pink-l);border:2px solid #fff;flex-shrink:0}
-.fly-board-row .av img{width:100%;height:100%;object-fit:cover;display:block}
-.fly-board-row .av canvas{width:100%;height:100%;display:block}
-.fly-board-row .nm{flex:1;font-weight:800;color:var(--ink);font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:start}
-.fly-board-row .dist{font-size:20px;font-weight:900;color:var(--pink);direction:ltr;flex-shrink:0}
-.fly-board-empty{text-align:center;padding:40px 20px;color:var(--gray);font-weight:700}
-.fly-board-note{text-align:center;font-size:11px;color:var(--gray);padding:16px 10px 6px;line-height:1.8;font-weight:700;opacity:.7}
+.fly-board-row .rk.silver{background:#C0C0C0;color:#fff}.fly-board-row .rk.bronze{background:#CD7F32;color:#fff}
+.fly-board-row .av{width:40px;height:40px;border-radius:50%;overflow:hidden;background:var(--gray-l);flex-shrink:0}
+.fly-board-row .av img,.fly-board-row .av canvas{width:100%;height:100%;object-fit:cover;display:block}
+.fly-board-row .nm{flex:1;font-weight:700;font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:start}
+.fly-board-row .dist{font-size:14px;font-weight:800;color:var(--pink);direction:ltr;flex-shrink:0}
+.fly-board-empty{text-align:center;padding:40px 20px;color:var(--gray);font-weight:600}
+.fly-board-note{text-align:center;font-size:11px;color:var(--gray);padding:16px 10px 6px;line-height:1.8;font-weight:600}
+@media(max-width:360px){.fly-pills-row{right:8px}.fly-exit{left:8px}.fly-pill.dist{top:calc(24px + var(--st))}}
 
-@media(max-width:360px){
-  .bal-chip{padding:6px 6px;gap:4px}
-  .bal-chip img{width:20px;height:20px}
-  .bal-chip .num{font-size:11.5px}
-  .header-avatar{width:36px;height:36px;flex-basis:36px}
-  .app-header{gap:7px}
-  .daily{grid-template-columns:repeat(4,1fr)}
-  .g-stats{grid-template-columns:repeat(3,1fr)}
-}
+@keyframes flyFloatUp{0%{transform:translate(-50%,-50%) scale(.4);opacity:0}18%{transform:translate(-50%,-95%) scale(1.18);opacity:1}100%{transform:translate(-50%,-230%) scale(1);opacity:0}}
+.energy-btn[disabled]{opacity:.45;pointer-events:none}
+.fly-pill.dist i{display:none}
+
 </style>
-</head>
 <body>
 
 <div class="loader" id="loader">
@@ -479,19 +670,19 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
 </div>
 
 <div class="app" id="app" style="display:none">
-  <!-- HEADER -->
   <div class="app-header" id="appHeader">
     <div class="balance-strip" id="balanceStrip">
-      <div class="bal-chip">
+      <div class="bal-chip coin-chip">
         <img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt="">
         <div class="bal-copy"><div class="num" id="coinTop">0</div><div class="lbl">عملات</div></div>
       </div>
-      <div class="bal-chip">
+      <div class="bal-chip gem-chip">
         <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="">
         <div class="bal-copy"><div class="num" id="gemTop">0</div><div class="lbl">جواهر</div></div>
       </div>
     </div>
     <button class="header-avatar" id="headerAvatar" aria-label="الملف الشخصي"><i class="fas fa-user"></i></button>
+    <span id="gemUsd" hidden></span><span id="energyTop" hidden></span>
   </div>
 
   <div class="main" id="mainScroll">
@@ -499,29 +690,14 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
     <!-- HOME -->
     <section class="screen active" id="screen-home">
       <div class="hero">
-        <i class="fas fa-dog hero-plane"></i>
+        <i class="fas fa-paw hero-plane"></i>
         <div class="hero-content">
-          <div class="hero-tag"><i class="fas fa-paw"></i> دمج الجراء</div>
-          <div class="hero-title">ادمج <span>الجراء</span><br>واكسب الكنوز</div>
-          <div class="hero-desc">بدّل القطع لتكوين 3 حيوانات متشابهة واكسب النقاط!</div>
-        </div>
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <div class="val" id="homeLevel">1</div>
-            <div class="key">المستوى</div>
-          </div>
-          <div class="hero-stat">
-            <div class="val" id="heroTotalScore">0</div>
-            <div class="key">النقاط</div>
-          </div>
-          <div class="hero-stat">
-            <div class="val" id="heroRefs">0</div>
-            <div class="key">إحالات</div>
-          </div>
+          <div class="hero-tag"><i class="fas fa-trophy"></i> المستوى <span id="homeLevel">1</span></div>
+          <div class="hero-title">Puppy <span>Merge</span></div>
+          <div class="hero-desc">ادمج 3 جراء متشابهة واكسب كنوز المملكة!</div>
         </div>
         <div class="hero-actions">
           <button class="btn-play" id="playBtn"><i class="fas fa-play"></i> ابدأ اللعب</button>
-          <button class="btn-leader" id="flyPlayBtn" aria-label="لعبة الطيران"><i class="fas fa-dove"></i></button>
         </div>
       </div>
 
@@ -534,57 +710,67 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
               <div class="energy-sub" id="energyTimer">ممتلئة</div>
             </div>
           </div>
-          <div class="energy-count"><span id="energyCur">10</span><small> / <span id="energyMax">10</span></small><span id="energyTop" style="display:none">10</span></div>
+          <div class="energy-count"><span id="energyCur">10</span><small> / <span id="energyMax">10</span></small></div>
         </div>
         <div class="energy-bar"><i id="energyFill" style="width:100%"></i></div>
-        <div class="energy-actions">
-          <button class="energy-btn" id="energyAdBtn"><i class="fas fa-play-circle"></i> إعلان +1</button>
-          <button class="energy-btn primary" id="flyQuickBtn"><i class="fas fa-dove"></i> لعبة الطيران</button>
+        <div class="energy-actions one">
+          <button class="energy-btn primary" id="energyAdBtn"><i class="fas fa-play-circle"></i> مشاهدة إعلان +1 طاقة</button>
+        </div>
+      </div>
+
+      <div class="hero" style="min-height:180px">
+        <i class="fas fa-dove hero-plane"></i>
+        <div class="hero-content">
+          <div class="hero-tag"><i class="fas fa-bolt"></i> لعبة الطيران</div>
+          <div class="hero-title">Puppy <span>Fly</span></div>
+          <div class="hero-desc">حلّق بين الصبّار واجمع العملات والجواهر!</div>
+        </div>
+        <div class="hero-actions">
+          <button class="btn-play" id="flyPlayBtn"><i class="fas fa-play"></i> ابدأ اللعب</button>
         </div>
       </div>
 
       <div class="section">
-        <div class="section-head">
-          <div class="section-title"><i class="fas fa-bolt"></i> إجراءات سريعة</div>
-        </div>
-        <div class="quick">
-          <button class="quick-card" data-go="wheel">
-            <span class="quick-ico gold"><i class="fas fa-dharmachakra"></i></span>
-            <div class="quick-ttl">عجلة الحظ</div>
-            <div class="quick-sub">لفّتان يومياً</div>
-            <span class="badge" id="wheelBadge" style="display:none">مجاناً</span>
-          </button>
-          <button class="quick-card" data-go="missions">
-            <span class="quick-ico pink"><i class="fas fa-list-check"></i></span>
-            <div class="quick-ttl">المهام</div>
-            <div class="quick-sub">مكافآت يومية</div>
-          </button>
-          <button class="quick-card" data-go="invest">
-            <span class="quick-ico green"><i class="fas fa-paw"></i></span>
-            <div class="quick-ttl">استثمار الجراء</div>
-            <div class="quick-sub">أرباح تلقائية</div>
-          </button>
-          <button class="quick-card" data-go="deposit">
-            <span class="quick-ico black"><i class="fas fa-gem"></i></span>
-            <div class="quick-ttl">شراء الجواهر</div>
-            <div class="quick-sub">نجوم أو كريبتو</div>
-          </button>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-head">
-          <div class="section-title"><i class="fas fa-share-nodes"></i> دعوة الأصدقاء</div>
-          <button class="section-link" data-go="referral">الكل <i class="fas fa-chevron-left"></i></button>
-        </div>
-        <div class="card" style="text-align:center">
-          <div class="sub" style="margin-bottom:10px;color:var(--gray);font-weight:700">ادعُ أصدقاءك واربح جواهر عند وصولهم للمستويات</div>
-          <button class="btn btn-pink" data-go="referral"><i class="fas fa-user-plus"></i> دعوة صديق</button>
+        <div class="quick-grid">
+          <button class="quick-card" data-go="wheel"><div class="quick-ico gold"><i class="fas fa-dharmachakra"></i></div><div class="quick-ttl">عجلة الحظ</div><div class="quick-sub">لفّتان يومياً</div><span class="quick-badge" id="wheelBadge" style="display:none">مجاناً</span></button>
+          <button class="quick-card" data-go="missions"><div class="quick-ico black"><i class="fas fa-list-check"></i></div><div class="quick-ttl">المهام</div><div class="quick-sub">مكافآت يومية</div></button>
+          <button class="quick-card" data-go="invest"><div class="quick-ico green"><i class="fas fa-paw"></i></div><div class="quick-ttl">استثمار الجراء</div><div class="quick-sub">اربح الجواهر تلقائياً</div></button>
+          <button class="quick-card" data-go="deposit"><div class="quick-ico pink"><i class="fas fa-gem"></i></div><div class="quick-ttl">شراء الجواهر</div><div class="quick-sub">نجوم • كريبتو • Binance • شام كاش</div></button>
         </div>
       </div>
     </section>
 
-    <!-- MERGE GAME -->
+    <!-- GAME HUB -->
+    <section class="screen" id="screen-gamehub">
+      <div class="hero" style="min-height:180px">
+        <i class="fas fa-paw hero-plane"></i>
+        <div class="hero-content">
+          <div class="hero-tag"><i class="fas fa-gamepad"></i> اللعبة</div>
+          <div class="hero-title">Puppy <span>Merge</span></div>
+          <div class="hero-desc">ادمج 3 جراء متشابهة واكسب كنوز المملكة!</div>
+        </div>
+        <div class="hero-actions">
+          <button class="btn-play" data-click="playBtn"><i class="fas fa-play"></i> ابدأ اللعب</button>
+        </div>
+      </div>
+      <div class="hero" style="min-height:180px">
+        <i class="fas fa-dove hero-plane"></i>
+        <div class="hero-content">
+          <div class="hero-tag"><i class="fas fa-bolt"></i> لعبة الطيران</div>
+          <div class="hero-title">Puppy <span>Fly</span></div>
+          <div class="hero-desc">حلّق بين الصبّار واجمع العملات والجواهر!</div>
+        </div>
+        <div class="hero-actions">
+          <button class="btn-play" data-click="flyPlayBtn"><i class="fas fa-play"></i> ابدأ اللعب</button>
+        </div>
+      </div>
+      <div class="menu-list">
+        <button class="menu-item" data-go="wheel"><div class="menu-ico"><i class="fas fa-dharmachakra"></i></div><div class="menu-label">عجلة الحظ</div><i class="fas fa-chevron-left menu-arrow"></i></button>
+        <button class="menu-item" data-go="invest"><div class="menu-ico"><i class="fas fa-paw"></i></div><div class="menu-label">استثمار الجراء</div><i class="fas fa-chevron-left menu-arrow"></i></button>
+      </div>
+    </section>
+
+    <!-- GAME (Merge) -->
     <section class="screen" id="screen-game">
       <div class="g-head">
         <button class="g-btn" id="gameBack"><i class="fas fa-arrow-right"></i></button>
@@ -592,95 +778,106 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
         <button class="g-btn" id="gameRestart"><i class="fas fa-rotate"></i></button>
       </div>
       <div class="g-stats">
-        <div class="card"><div class="sub" style="font-size:11px;color:var(--gray);font-weight:700">النقاط</div><b id="gameScore">0</b></div>
-        <div class="card"><div class="sub" style="font-size:11px;color:var(--gray);font-weight:700">الهدف</div><b id="gameTarget">100</b></div>
-        <div class="card"><div class="sub" style="font-size:11px;color:var(--gray);font-weight:700">الحركات</div><b id="gameMoves">20</b></div>
+        <div class="card"><div class="sub">النقاط</div><b id="gameScore">0</b></div>
+        <div class="card"><div class="sub">الهدف</div><b id="gameTarget">100</b></div>
+        <div class="card"><div class="sub">الحركات</div><b id="gameMoves">20</b></div>
       </div>
       <div class="card board-wrap">
         <div class="target" id="boardTarget">الهدف: 100 نقطة</div>
         <div class="board" id="board"></div>
       </div>
       <div class="g-act">
-        <button class="btn btn-outline btn-sm" id="hintBtn" style="height:52px;border-radius:16px;font-size:13px"><i class="fas fa-lightbulb"></i> تلميح (30)</button>
-        <button class="btn btn-outline btn-sm" id="shuffleBtn" style="height:52px;border-radius:16px;font-size:13px"><i class="fas fa-shuffle"></i> خلط (50)</button>
+        <button class="btn b-s" id="hintBtn"><i class="fas fa-lightbulb"></i> تلميح (30)</button>
+        <button class="btn b-y" id="shuffleBtn"><i class="fas fa-shuffle"></i> خلط (50)</button>
       </div>
     </section>
 
     <!-- WHEEL -->
     <section class="screen" id="screen-wheel">
-      <div class="section-head">
-        <div class="section-title"><i class="fas fa-dharmachakra"></i> عجلة الحظ</div>
-      </div>
+      <div class="sec"><span class="ico i-gold"><i class="fas fa-dharmachakra"></i></span> عجلة الحظ</div>
       <div class="stage">
         <div class="pointer"><i class="fas fa-caret-down"></i></div>
         <div class="rim">
           <div class="wheel" id="wheel"><svg viewBox="0 0 200 200" id="wheelSvg"></svg></div>
-          <div class="hub"><i class="fas fa-paw"></i></div>
+          <div class="ico i-gold hub"><i class="fas fa-paw"></i></div>
         </div>
       </div>
-      <button class="btn btn-pink spin" id="wheelSpinBtn">
-        <span style="font-size:16px"><i class="fas fa-dharmachakra"></i> لف العجلة</span>
+      <button class="btn b-g spin" id="wheelSpinBtn">
+        <span style="font-size:18px"><i class="fas fa-dharmachakra"></i> لف العجلة</span>
         <span class="m"><b><i class="fas fa-ticket"></i> <span id="spinsLeft">2</span> لفات</b></span>
       </button>
-      <button class="btn btn-black" id="wheelAdBtn" style="height:58px;flex-direction:column;gap:1px;margin-top:10px">
+      <button class="btn b-s" id="wheelAdBtn" style="height:58px;flex-direction:column;gap:1px;margin-top:10px">
         <span><i class="fas fa-circle-play"></i> شاهد إعلان واربح</span>
-        <small style="font-size:11px;font-weight:800;opacity:.85"><i class="fas fa-clock"></i> <span id="wheelAdTimer">متاح</span></small>
+        <small style="font-size:11px;font-weight:800"><i class="fas fa-clock"></i> <span id="wheelAdTimer">متاح</span></small>
       </button>
     </section>
 
     <!-- MISSIONS -->
     <section class="screen" id="screen-missions">
-      <div class="section-head"><div class="section-title"><i class="fas fa-calendar-check"></i> التسجيل اليومي</div></div>
+      <div class="sec"><span class="ico i-gold"><i class="fas fa-calendar-check"></i></span> التسجيل اليومي</div>
       <div class="card daily" id="dailyGrid"></div>
-      <div class="section-head"><div class="section-title"><i class="fas fa-list-check"></i> المهام اليومية</div></div>
+      <div class="sec"><span class="ico i-gold"><i class="fas fa-list-check"></i></span> المهام اليومية</div>
       <div id="missionsDaily"></div>
-      <div class="section-head"><div class="section-title"><i class="fas fa-medal"></i> مهام المستويات</div></div>
+      <div class="sec"><span class="ico i-gold"><i class="fas fa-medal"></i></span> مهام المستويات</div>
       <div id="missionsLevel"></div>
-      <div class="section-head"><div class="section-title"><i class="fas fa-user-plus"></i> مهام الدعوات</div></div>
+      <div class="sec"><span class="ico i-gold"><i class="fas fa-user-plus"></i></span> مهام الدعوات</div>
       <div id="missionsInvite"></div>
     </section>
 
     <!-- EXCHANGE -->
     <section class="screen" id="screen-exchange">
-      <div class="hero2">
-        <div class="ico i-pink"><i class="fas fa-right-left"></i></div>
-        <div class="ttl">تبديل العملات</div>
-        <div class="sub" style="color:var(--gray);font-size:12px;font-weight:700">الاتجاه: 1000 🪙 = 10 💎</div>
+      <div class="balance-panel coins">
+        <div class="balance-panel-head">
+          <img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt="">
+          <div><div class="lbl">رصيد العملات</div><div class="sub">يمكن تحويل العملات إلى جواهر من البطاقة التالية</div></div>
+        </div>
+        <div class="big-num" id="walCoins">0</div>
+        <div class="eq">1,000 عملة = 10 جواهر</div>
       </div>
-      <div class="card">
-        <div class="section-title" style="margin-bottom:10px;font-size:14px">اختر عدد العملات</div>
-        <div class="amts" id="exAmounts">
-          <button class="amt" data-amt="10000">10,000 🪙</button>
-          <button class="amt" data-amt="50000">50,000 🪙</button>
-          <button class="amt" data-amt="100000">100,000 🪙</button>
-          <button class="amt" data-amt="250000">250,000 🪙</button>
-          <button class="amt" data-amt="500000">500,000 🪙</button>
-          <button class="amt" data-amt="1000000">1,000,000 🪙</button>
+      <div class="balance-panel gems">
+        <div class="balance-panel-head">
+          <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="">
+          <div><div class="lbl">رصيد الجواهر</div><div class="sub">اشترِ الجواهر أو اسحب أرباحك</div></div>
+        </div>
+        <div class="big-num" id="walGems">0</div>
+        <div class="eq" id="walGemsEq">≈ $0.00</div>
+        <div class="balance-panel-actions">
+          <button class="btn btn-pink" data-go="deposit"><i class="fas fa-arrow-down"></i> إيداع</button>
+          <button class="btn btn-outline" data-go="withdraw"><i class="fas fa-arrow-up"></i> سحب</button>
         </div>
       </div>
-      <div class="info">
-        <div>العملات المُحوّلة<b id="exChosen">0 🪙</b></div>
-        <div>الجواهر المستقبلة<b id="exReceive">0 💎</b></div>
-        <div>رصيدك<b id="exBal">0 🪙</b></div>
+      <div class="section-head"><div class="section-title"><i class="fas fa-right-left"></i> تحويل العملات إلى جواهر</div></div>
+      <div class="card">
+        <div class="ttl" style="margin-bottom:10px">اختر عدد العملات</div>
+        <div class="amts" id="exAmounts">
+          <button class="amt" data-amt="10000">10,000 🪙</button><button class="amt" data-amt="50000">50,000 🪙</button><button class="amt" data-amt="100000">100,000 🪙</button>
+          <button class="amt" data-amt="250000">250,000 🪙</button><button class="amt" data-amt="500000">500,000 🪙</button><button class="amt" data-amt="1000000">1,000,000 🪙</button>
+        </div>
       </div>
-      <button class="btn btn-pink" id="exSubmit"><i class="fas fa-right-left"></i> تبديل الآن</button>
+      <div class="info"><div>العملات المُحوّلة<b id="exChosen">0 🪙</b></div><div>الجواهر المستقبلة<b id="exReceive">0 💎</b></div><div>رصيدك<b id="exBal">0 🪙</b></div></div>
+      <button class="btn b-g" id="exSubmit"><i class="fas fa-right-left"></i> تبديل الآن</button>
     </section>
 
     <!-- INVEST -->
     <section class="screen" id="screen-invest">
       <div class="hero2">
         <div class="ico i-green"><i class="fas fa-paw"></i></div>
-        <div class="ttl">استثمار الجراء</div>
-        <div class="sub" style="color:var(--gray);font-size:12px;font-weight:700">اشترِ خطة واكسب أرباحاً تلقائياً</div>
+        <div class="ttl" style="font-size:19px">استثمار الجراء</div>
+        <div class="sub">اشترِ خطة بالجواهر واكسب أرباحاً تلقائياً</div>
       </div>
+
       <div class="invest-banner" id="investBanner" style="display:none">
         <div class="paw"><i class="fas fa-paw"></i></div>
         <div class="amount" id="investTotalPending">0</div>
         <div class="label">💎 متاح للجمع الآن</div>
-        <button class="btn collect-btn" id="investCollectAllBtn" style="margin-top:12px"><i class="fas fa-hand-holding-heart"></i> جمع الكل</button>
+        <button class="btn collect-btn" id="investCollectAllBtn" style="margin-top:12px">
+          <i class="fas fa-hand-holding-heart"></i> جمع الكل
+        </button>
       </div>
+
       <div id="investActiveList"></div>
-      <div class="section-head"><div class="section-title"><i class="fas fa-store"></i> الخطط المتاحة</div></div>
+
+      <div class="sec"><span class="ico i-green"><i class="fas fa-store"></i></span> الخطط المتاحة</div>
       <div id="investPlansList"></div>
     </section>
 
@@ -688,61 +885,68 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
     <section class="screen" id="screen-deposit">
       <div class="hero2">
         <div class="ico i-gold"><i class="fas fa-gem"></i></div>
-        <div class="ttl">شراء الجواهر</div>
-        <div class="sub" style="color:var(--gray);font-size:12px;font-weight:700">اختر طريقة الشراء المناسبة</div>
+        <div class="ttl" style="font-size:19px">شراء الجواهر</div>
+        <div class="sub">اختر طريقة الشراء المناسبة لك</div>
       </div>
 
       <div class="dep-tabs">
-        <button class="dep-tab active" id="depTabStars" data-tab="stars"><i class="fas fa-star"></i> Stars</button>
-        <button class="dep-tab" id="depTabCrypto" data-tab="crypto"><i class="fas fa-coins"></i> USDT</button>
-        <button class="dep-tab" data-tab="binance"><i class="fas fa-wallet"></i> Binance</button>
-        <button class="dep-tab" data-tab="sham"><i class="fas fa-money-bill-wave"></i> شام كاش</button>
+        <button class="dep-tab active" id="depTabStars" data-tab="stars"><i class="fas fa-star"></i> Stars </button>
+        <button class="dep-tab" id="depTabCrypto" data-tab="crypto"><i class="fas fa-coins"></i> USDT </button>
+        <button class="dep-tab" data-tab="binance"><i class="fas fa-wallet"></i> Binance Pay</button>
+        <button class="dep-tab" data-tab="sham"><i class="fas fa-money-bill-wave"></i> Sham Cash </button>
       </div>
 
       <div id="dep-tab-stars">
         <div class="card">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <div class="row" style="margin-bottom:12px">
             <span class="ico i-gold" style="width:52px;height:52px"><i class="fas fa-star"></i></span>
-            <div style="flex:1">
-              <div style="font-size:15px;font-weight:800;color:var(--ink)">100 ⭐ = 10,000 💎</div>
-              <div style="font-size:11px;color:var(--gray);font-weight:600">كل نجمة تساوي 100 جوهرة</div>
+            <div class="grow">
+              <div class="ttl">100 ⭐ = 10,000 💎</div>
+              <div class="sub">كل نجمة تساوي 100 جوهرة</div>
             </div>
           </div>
+          <div class="sub" style="text-align:center">اختر الباقة المناسبة لك</div>
         </div>
         <div id="starPackages" style="display:grid;gap:10px"></div>
         <div class="info" style="margin-top:14px">
-          <div>رصيدك الحالي<b id="depGemsStars">0 💎</b></div>
-          <div>طريقة الدفع<b>نجوم تلغرام ⭐</b></div>
+          <div>رصيدك الحالي <b id="depGemsStars">0 💎</b></div>
+          <div>طريقة الدفع <b>نجوم تلغرام ⭐</b></div>
+        </div>
+        <div class="card" style="text-align:center;font-size:12px;color:var(--ink2)">
+          <i class="fas fa-shield-halved" style="color:var(--sky-d)"></i>
+          دفع آمن عبر تلغرام مباشرة. تصل الجواهر لحسابك فوراً بعد الدفع.
         </div>
       </div>
 
       <div id="dep-tab-crypto" style="display:none">
         <div class="crypto-pending-banner" id="cryptoPendingBanner">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+          <div class="row">
             <span class="ico i-gold" style="width:44px;height:44px;font-size:18px"><i class="fas fa-hourglass-half"></i></span>
-            <div style="flex:1">
-              <div style="font-size:14px;font-weight:800;color:var(--ink)">لديك فاتورة معلقة</div>
-              <div style="font-size:11px;color:var(--gray);font-weight:600">اضغط "تحقق الآن" لمراجعة الحالة</div>
+            <div class="grow">
+              <div class="ttl">لديك فاتورة معلقة</div>
+              <div class="sub">اضغط "تحقق الآن" لمراجعة حالة الدفع</div>
             </div>
             <div class="timer-badge" id="cryptoPendingTimer">--:--</div>
           </div>
           <div class="crypto-actions">
-            <button class="btn btn-green btn-sm" id="cryptoCheckBtn" style="height:40px"><i class="fas fa-rotate"></i> تحقق الآن</button>
-            <button class="btn btn-outline btn-sm" id="cryptoCancelBtn" style="height:40px"><i class="fas fa-xmark"></i> إلغاء</button>
+            <button class="btn b-g b-sm" id="cryptoCheckBtn" style="height:40px"><i class="fas fa-rotate"></i> تحقق الآن</button>
+            <button class="btn b-r b-sm" id="cryptoCancelBtn" style="height:40px"><i class="fas fa-xmark"></i> إلغاء الطلب</button>
           </div>
         </div>
+
         <div class="card">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-            <span class="ico i-pink" style="width:52px;height:52px"><i class="fas fa-coins"></i></span>
-            <div style="flex:1">
-              <div style="font-size:14px;font-weight:800;color:var(--ink)">الدفع بالكريبتو</div>
-              <div style="font-size:11px;color:var(--gray);font-weight:600">USDC / USDT / BTC / ZEC</div>
+          <div class="row" style="margin-bottom:12px">
+            <span class="ico i-sky" style="width:52px;height:52px"><i class="fas fa-coins"></i></span>
+            <div class="grow">
+              <div class="ttl">ادفع بالكريبتو 💎</div>
+              <div class="sub">USDC / USDT / BTC / ZEC — بدون رسوم إضافية</div>
             </div>
           </div>
         </div>
+
         <div class="card">
-          <div class="section-title" style="margin-bottom:10px;font-size:14px">اختر مبلغ الشراء</div>
-          <div class="amts" id="cryptoAmounts">
+          <div class="ttl" style="margin-bottom:10px">اختر مبلغ الشراء (بالدولار)</div>
+          <div class="amts" id="cryptoAmounts" style="grid-template-columns:repeat(3,1fr)">
             <button class="amt" data-usd="1">$1</button>
             <button class="amt" data-usd="5">$5</button>
             <button class="amt" data-usd="10">$10</button>
@@ -750,15 +954,24 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
             <button class="amt" data-usd="50">$50</button>
             <button class="amt" data-usd="100">$100</button>
           </div>
-          <div style="font-size:11.5px;color:var(--gray);font-weight:700;text-align:center;margin-top:12px">أو أدخل مبلغاً مخصصاً</div>
-          <input class="input" id="cryptoCustomUsd" type="number" min="1" max="1000" step="1" placeholder="$1 - $1000" inputmode="decimal" style="margin-top:8px">
+          <div class="sub" style="text-align:center;margin-top:12px">أو أدخل مبلغاً مخصصاً</div>
+          <input class="inp" id="cryptoCustomUsd" type="number" min="1" max="1000" step="1" placeholder="$1 - $1000" inputmode="decimal">
         </div>
+
         <div class="info">
-          <div>مبلغ الشراء<b id="cryptoChosenUsd">$0.00</b></div>
-          <div>الجواهر المستقبلة<b id="cryptoReceiveGems">0 💎</b></div>
-          <div>رصيدك الحالي<b id="depGemsCrypto">0 💎</b></div>
+          <div>مبلغ الشراء <b id="cryptoChosenUsd">$0.00</b></div>
+          <div>الجواهر المستقبلة <b id="cryptoReceiveGems">0 💎</b></div>
+          <div>رصيدك الحالي <b id="depGemsCrypto">0 💎</b></div>
         </div>
-        <button class="btn btn-pink" id="cryptoPayBtn" style="margin-top:10px" disabled><i class="fas fa-credit-card"></i> إكمال الدفع بالكريبتو</button>
+
+        <button class="btn b-g" id="cryptoPayBtn" style="margin-top:10px" disabled>
+          <i class="fas fa-credit-card"></i> إكمال الدفع بالكريبتو
+        </button>
+
+        <div class="card" style="text-align:center;font-size:12px;color:var(--ink2);margin-top:12px">
+          <i class="fas fa-shield-halved" style="color:var(--sky-d)"></i>
+          دفع آمن ومشفر. تصل الجواهر لحسابك فوراً بعد التأكيد.
+        </div>
       </div>
 
       <div id="dep-tab-binance" style="display:none"></div>
@@ -767,110 +980,102 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
 
     <!-- WITHDRAW -->
     <section class="screen" id="screen-withdraw">
-      <div class="hero2">
-        <div class="sub" style="color:var(--gray);font-size:11px;font-weight:800">رصيدك القابل للسحب</div>
-        <div class="big" style="color:var(--pink)"><i class="fas fa-gem"></i> <span id="wdGems">0</span></div>
-        <div class="ttl" id="wdUsd" style="color:var(--gray);font-size:14px">$0.00</div>
+      <div class="hero2"><div class="sub">رصيدك القابل للسحب</div><div class="big"><i class="fas fa-gem" style="color:var(--sky-d)"></i> <span id="wdGems">0</span></div><div class="ttl" id="wdUsd">$0.00</div></div>
+      <div class="ttl" style="margin:4px 0 10px">اختر طريقة السحب</div>
+
+      <div class="card row wd-method selected" data-method="usdt_crypto" role="button" tabindex="0" style="border-color:var(--gold-d)">
+        <span class="ico i-green" style="width:46px;height:46px;font-size:22px"><i class="fas fa-coins"></i></span>
+        <div class="grow">
+          <div class="ttl">USDT Crypto <span class="pack-tag best" style="font-size:9px">تلقائي</span></div>
+          <div class="sub">الحد الأدنى 5,000 💎 = $0.40</div>
+        </div>
+        <i class="fas fa-circle-check wd-check" style="color:var(--green-d);font-size:22px"></i>
       </div>
 
-      <div class="section-head"><div class="section-title"><i class="fas fa-money-bill-transfer"></i> طريقة السحب</div></div>
+      <div class="card row wd-method" data-method="binance" role="button" tabindex="0">
+        <img src="https://up6.cc/2026/09/178982889076391.png" alt="Binance" style="width:46px;height:46px;object-fit:contain;border-radius:12px" onerror="this.style.display='none'">
+        <div class="grow"><div class="ttl">Binance Pay</div><div class="sub">الحد الأدنى 5,000 💎 = $0.40</div></div>
+        <i class="fas fa-circle-check wd-check" style="color:var(--green-d);font-size:22px;visibility:hidden"></i>
+      </div>
 
-      <button class="payment-method-card wd-method selected" data-method="usdt_crypto">
-        <span class="ico i-green" style="width:46px;height:46px;font-size:22px"><i class="fas fa-coins"></i></span>
-        <span style="flex:1;display:flex;flex-direction:column;gap:3px">
-          <b>USDT Crypto <span style="background:var(--green);color:#fff;font-size:9px;padding:1px 6px;border-radius:6px">تلقائي</span></b>
-          <small>الحد الأدنى 5,000 💎 = $0.40</small>
-        </span>
-        <i class="fas fa-circle-check wd-check"></i>
-      </button>
-
-      <button class="payment-method-card wd-method" data-method="binance">
-        <img src="https://up6.cc/2026/09/178982889076391.png" onerror="this.src='https://cryptologos.cc/logos/binance-coin-bnb-logo.png'" alt="Binance">
-        <span><b>Binance Pay</b><small>الحد الأدنى 5,000 💎 = $0.40</small></span>
-        <i class="fas fa-circle-check wd-check" style="visibility:hidden"></i>
-      </button>
-
-      <button class="payment-method-card wd-method" data-method="sham_cash">
-        <img src="https://up6.cc/2026/09/178975725154411.png" onerror="this.src='https://img.icons8.com/color/96/money-transfer.png'" alt="Sham Cash">
-        <span><b>شام كاش</b><small>الحد الأدنى 1,000 💎 = 10 SYP</small></span>
-        <i class="fas fa-circle-check wd-check" style="visibility:hidden"></i>
-      </button>
+      <div class="card row wd-method" data-method="sham_cash" role="button" tabindex="0">
+        <img src="https://up6.cc/2026/09/178975725154411.png" alt="Sham Cash" style="width:46px;height:46px;object-fit:contain;border-radius:12px" onerror="this.style.display='none'">
+        <div class="grow"><div class="ttl">Sham Cash — شام كاش</div><div class="sub">الحد الأدنى 1,000 💎 = 10 SYP</div></div>
+        <i class="fas fa-circle-check wd-check" style="color:var(--green-d);font-size:22px;visibility:hidden"></i>
+      </div>
 
       <div class="card">
-        <div class="section-title" style="margin-bottom:10px;font-size:14px">اختر المبلغ</div>
+        <div class="ttl" style="margin-bottom:10px">اختر المبلغ</div>
         <div class="amts" id="wdAmounts" style="grid-template-columns:1fr 1fr">
-          <button class="amt" data-amt="5000">5,000 💎</button>
-          <button class="amt" data-amt="10000">10,000 💎</button>
-          <button class="amt" data-amt="50000">50,000 💎</button>
-          <button class="amt" data-amt="100000">100,000 💎</button>
+          <button class="amt" data-amt="5000">5,000 💎</button><button class="amt" data-amt="10000">10,000 💎</button>
+          <button class="amt" data-amt="50000">50,000 💎</button><button class="amt" data-amt="100000">100,000 💎</button>
         </div>
       </div>
 
       <div class="card">
-        <div class="section-title" style="margin-bottom:6px;font-size:14px" id="wdAccountTitle">عنوان محفظة USDT (TRC20)</div>
-        <div style="font-size:11.5px;color:var(--gray);font-weight:600;margin-bottom:8px" id="wdAccountHelp">أدخل عنوان محفظة TRC20 لاستلام السحب تلقائياً</div>
-        <input class="input" id="wdAccount" placeholder="T..." autocomplete="off">
+        <div class="ttl" id="wdAccountTitle">عنوان محفظة USDT (TRC20)</div>
+        <div class="sub" id="wdAccountHelp">أدخل عنوان محفظة TRC20 لاستلام السحب تلقائياً</div>
+        <input class="inp" id="wdAccount" placeholder="T..." autocomplete="off">
       </div>
 
-      <div class="info">
-        <div>المبلغ المختار<b id="wdChosen">0 💎</b></div>
-        <div>ما يعادل<b id="wdReceive">$0.00</b></div>
-      </div>
-      <button class="btn btn-pink" id="wdSubmit"><i class="fas fa-paper-plane"></i> تقديم طلب السحب</button>
+      <div class="info"><div>المبلغ المختار<b id="wdChosen">0 💎</b></div><div>ما يعادل<b id="wdReceive">$0.00</b></div></div>
+      <button class="btn b-g" id="wdSubmit"><i class="fas fa-paper-plane"></i> تقديم طلب السحب</button>
 
-      <div class="card" style="text-align:center;font-size:11.5px;color:var(--gray);font-weight:600;margin-top:10px">
-        <i class="fas fa-info-circle" style="color:var(--pink)"></i>
-        <div style="margin-top:6px"><b style="color:var(--ink)">USDT Crypto:</b> يُرسل تلقائياً خلال دقائق (TRC20).</div>
-        <div style="margin-top:4px"><b style="color:var(--ink)">Binance / شام كاش:</b> يُعالج يدوياً خلال 24-72 ساعة.</div>
+      <div class="card" style="text-align:center;font-size:11.5px;color:var(--ink2);border-color:var(--sky-d);margin-top:10px">
+        <i class="fas fa-info-circle" style="color:var(--sky-d)"></i>
+        <div style="margin-top:6px"><b>USDT Crypto:</b> يُرسل المبلغ تلقائياً خلال دقائق (TRC20).</div>
+        <div style="margin-top:4px"><b>Binance Pay / شام كاش:</b> يُعالج يدوياً خلال 24-72 ساعة.</div>
       </div>
 
-      <div class="section-head" style="margin-top:16px"><div class="section-title"><i class="fas fa-clock-rotate-left"></i> سجل السحوبات</div></div>
+      <div class="sec" style="margin-top:16px"><span class="ico i-gold"><i class="fas fa-clock-rotate-left"></i></span> سجل السحوبات</div>
       <div id="wdHistory"></div>
     </section>
 
     <!-- PROFILE -->
     <section class="screen" id="screen-profile">
       <div class="profile-hero">
-        <div class="avatar" id="profAvatar"><i class="fas fa-user"></i></div>
+        <div class="profile-avatar" id="profAvatar"><i class="fas fa-user"></i></div>
         <div class="profile-name" id="profName">لاعب</div>
         <div class="profile-id"><i class="fas fa-fingerprint"></i> <span id="profId">--------</span></div>
       </div>
       <div class="stats">
-        <div class="card"><span class="ico i-gold" style="width:36px;height:36px;font-size:14px"><i class="fas fa-coins"></i></span><div><b id="profCoins">0</b><div class="sub">عملات</div></div></div>
-        <div class="card"><span class="ico i-pink" style="width:36px;height:36px;font-size:14px"><i class="fas fa-gem"></i></span><div><b id="profGems">0</b><div class="sub">جواهر</div></div></div>
-        <div class="card"><span class="ico i-green" style="width:36px;height:36px;font-size:14px"><i class="fas fa-trophy"></i></span><div><b id="profLevel">1</b><div class="sub">المستوى</div></div></div>
-        <div class="card"><span class="ico i-black" style="width:36px;height:36px;font-size:14px"><i class="fas fa-users"></i></span><div><b id="profRefs">0</b><div class="sub">إحالات</div></div></div>
+        <div class="card"><span class="ico i-gold"><i class="fas fa-coins"></i></span><div><b id="profCoins">0</b><span class="sub">عملات</span></div></div>
+        <div class="card"><span class="ico i-sky"><i class="fas fa-gem"></i></span><div><b id="profGems">0</b><span class="sub">جواهر</span></div></div>
+        <div class="card"><span class="ico i-green"><i class="fas fa-trophy"></i></span><div><b id="profLevel">1</b><span class="sub">المستوى</span></div></div>
+        <div class="card"><span class="ico i-sky"><i class="fas fa-users"></i></span><div><b id="profRefs">0</b><span class="sub">إحالات</span></div></div>
       </div>
-      <div class="menu">
-        <button data-go="deposit"><span class="menu-ico i-gold"><i class="fas fa-gem"></i></span><span class="menu-label">شراء الجواهر</span><i class="fas fa-chevron-left menu-arrow"></i></button>
-        <button data-go="exchange"><span class="menu-ico i-green"><i class="fas fa-right-left"></i></span><span class="menu-label">تبديل العملات</span><i class="fas fa-chevron-left menu-arrow"></i></button>
-        <button data-go="withdraw"><span class="menu-ico i-pink"><i class="fas fa-money-bill-transfer"></i></span><span class="menu-label">سحب الأموال</span><i class="fas fa-chevron-left menu-arrow"></i></button>
-        <button id="openPolicy"><span class="menu-ico i-gold"><i class="fas fa-shield-halved"></i></span><span class="menu-label">سياسة الخصوصية</span><i class="fas fa-chevron-left menu-arrow"></i></button>
-        <button id="openHelp"><span class="menu-ico i-green"><i class="fas fa-circle-question"></i></span><span class="menu-label">مركز الدعم</span><i class="fas fa-chevron-left menu-arrow"></i></button>
+      <div class="card menu">
+<button data-go="referral"><span class="ico i-gold"><i class="fas fa-user-plus"></i></span><span class="grow">دعوة الأصدقاء</span><i class="fas fa-chevron-left"></i></button>
+        <button data-go="deposit"><span class="ico i-gold"><i class="fas fa-gem"></i></span><span class="grow">شراء الجواهر</span><i class="fas fa-chevron-left"></i></button>
+        <button data-go="exchange"><span class="ico i-green"><i class="fas fa-right-left"></i></span><span class="grow">تبديل العملات</span><i class="fas fa-chevron-left"></i></button>
+        <button data-go="withdraw"><span class="ico i-gold"><i class="fas fa-money-bill-transfer"></i></span><span class="grow">سحب الأموال</span><i class="fas fa-chevron-left"></i></button>
+        <button id="openPolicy"><span class="ico i-sky"><i class="fas fa-shield-halved"></i></span><span class="grow">معلومات التطبيق وسياسة الخصوصية</span><i class="fas fa-chevron-left"></i></button>
+        <button id="openHelp"><span class="ico i-green"><i class="fas fa-circle-question"></i></span><span class="grow">مركز المساعدة</span><i class="fas fa-chevron-left"></i></button>
       </div>
     </section>
 
     <!-- REFERRAL -->
     <section class="screen" id="screen-referral">
-      <div class="section-head"><div class="section-title"><i class="fas fa-user-plus"></i> دعوة الأصدقاء</div></div>
+      <div class="sec"><span class="ico i-gold"><i class="fas fa-user-plus"></i></span> دعوة الأصدقاء</div>
       <div class="card" id="enterCard" style="display:none">
-        <div class="section-title" style="font-size:14px">هل دعاك صديق؟</div>
-        <div class="sub" style="color:var(--gray);font-size:11.5px;font-weight:600;margin-bottom:8px">أدخل معرّف الدعوة لتحصل على +20 💎</div>
-        <input class="input" id="codeInput" inputmode="numeric" placeholder="معرّف الدعوة">
-        <button class="btn btn-pink" id="codeSubmit" style="margin-top:10px"><i class="fas fa-check"></i> تأكيد الكود</button>
+        <div class="ttl">هل دعاك صديق؟</div><div class="sub">أدخل معرّف الدعوة لتحصل على +20 💎</div>
+        <input class="inp" id="codeInput" inputmode="numeric" placeholder="معرّف الدعوة">
+        <button class="btn b-g" id="codeSubmit" style="margin-top:10px"><i class="fas fa-check"></i> تأكيد الكود</button>
       </div>
       <div class="card">
         <div class="duo">
-          <div class="tileR me"><div class="ico i-pink"><i class="fas fa-gem"></i></div><b>+50</b><div class="sub">إجمالي مكافآت الدعوة</div></div>
-          <div class="tileR"><div class="ico i-green"><i class="fas fa-gift"></i></div><b>+20</b><div class="sub">هدية ترحيب لصديقك</div></div>
+          <div class="tileR me"><div class="ico i-sky"><i class="fas fa-gem"></i></div><b>+50</b><span class="sub">إجمالي مكافآت الدعوة (مقسمة)</span></div>
+          <div class="tileR"><div class="ico i-green"><i class="fas fa-gift"></i></div><b>+20</b><span class="sub">هدية ترحيب لصديقك</span></div>
         </div>
-        <div class="card" style="margin-bottom:10px;padding:10px;background:var(--gray-l);border:none">
-          <div class="section-title" style="font-size:13px;margin-bottom:6px"><i class="fas fa-list-check"></i> شروط المكافآت</div>
-          <div style="display:flex;align-items:center;padding:4px 0;font-size:12px;font-weight:700;gap:8px">
-            <span class="rw" style="margin:0">+25 💎</span><span style="flex:1;color:var(--ink)">عند وصول صديقك للمستوى 5</span>
+        <div class="card" style="margin-bottom:10px;padding:10px;background:#FFF9E8">
+          <div class="ttl" style="margin-bottom:6px;font-size:13px"><i class="fas fa-list-check"></i> شروط المكافآت</div>
+          <div class="row" style="padding:4px 0;font-size:12px;font-weight:700">
+            <span class="rw" style="margin:0">+25 💎</span>
+            <span class="grow">عند وصول صديقك للمستوى 5</span>
           </div>
-          <div style="display:flex;align-items:center;padding:4px 0;font-size:12px;font-weight:700;gap:8px">
-            <span class="rw" style="margin:0">+25 💎</span><span style="flex:1;color:var(--ink)">عند وصول صديقك للمستوى 10</span>
+          <div class="row" style="padding:4px 0;font-size:12px;font-weight:700">
+            <span class="rw" style="margin:0">+25 💎</span>
+            <span class="grow">عند وصول صديقك للمستوى 10</span>
           </div>
         </div>
         <div class="steps">
@@ -878,29 +1083,24 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
           <div><div class="ico i-green"><i class="fas fa-user-check"></i></div>صديقك ينضم</div>
           <div><div class="ico i-green"><i class="fas fa-gem"></i></div>تستلم المكافآت</div>
         </div>
-        <div style="font-size:11.5px;color:var(--gray);font-weight:700;margin-bottom:6px">معرّف الدعوة الخاص بك</div>
-        <div class="codebox"><b id="refCode">...</b><button class="btn btn-pink btn-sm" id="codeCopy"><i class="fas fa-copy"></i> نسخ</button></div>
+        <div class="sub" style="margin-bottom:6px">معرّف الدعوة الخاص بك</div>
+        <div class="codebox"><b id="refCode">...</b><button class="btn b-y b-sm" id="codeCopy"><i class="fas fa-copy"></i> نسخ</button></div>
         <div class="link" id="refLink">...</div>
-        <button class="btn btn-pink" id="refShare"><i class="fas fa-paper-plane"></i> مشاركة الرابط</button>
+        <button class="btn b-g" id="refShare"><i class="fas fa-paper-plane"></i> مشاركة الرابط</button>
         <div style="height:10px"></div>
-        <button class="btn btn-black" id="refCopy"><i class="fas fa-copy"></i> نسخ الرابط</button>
-        <div class="mini">
-          <div><i class="fas fa-users"></i><b id="refCount">0</b><span>عدد الدعوات</span></div>
-          <div class="sep"></div>
-          <div><i class="fas fa-gem"></i><b id="refEarn">0</b><span>أرباح الدعوات</span></div>
-        </div>
+        <button class="btn b-y" id="refCopy"><i class="fas fa-copy"></i> نسخ الرابط</button>
+        <div class="mini"><div><i class="fas fa-users"></i><b id="refCount">0</b><span>عدد الدعوات</span></div><div class="sep"></div><div><i class="fas fa-gem"></i><b id="refEarn">0</b><span>أرباح الدعوات</span></div></div>
       </div>
-      <div class="section-head"><div class="section-title"><i class="fas fa-crown"></i> أعلى 10 دعوات</div></div>
+      <div class="sec"><span class="ico i-gold"><i class="fas fa-crown"></i></span> أعلى 10 دعوات</div>
       <div class="card" id="lbList" style="padding:8px"><div class="empty">جاري التحميل...</div></div>
     </section>
   </div>
 
-  <!-- DOCK -->
   <nav class="dock">
     <button class="on" data-nav="home"><i class="fas fa-house"></i><span>الرئيسية</span></button>
-    <button data-nav="missions"><i class="fas fa-list-check"></i><span>المهام</span></button>
-    <button data-nav="wheel"><i class="fas fa-dharmachakra"></i><span>العجلة</span></button>
-    <button data-nav="referral"><i class="fas fa-user-plus"></i><span>الإحالة</span></button>
+    <button data-nav="gamehub"><i class="fas fa-gamepad"></i><span>اللعبة</span></button>
+    <button data-nav="missions"><i class="fas fa-bullseye"></i><span>المهام</span></button>
+    <button data-nav="exchange"><i class="fas fa-wallet"></i><span>الرصيد</span></button>
     <button data-nav="profile"><i class="fas fa-user"></i><span>حسابي</span></button>
   </nav>
 
@@ -910,20 +1110,20 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
       <canvas id="flyCanvas"></canvas>
       <div class="fly-hud">
         <div class="fly-pills-row">
-          <div class="fly-pill"><span class="ico i-gold"><i class="fas fa-coins"></i></span><b id="flyHudCoins">0</b></div>
-          <div class="fly-pill"><span class="ico i-pink"><i class="fas fa-gem"></i></span><b id="flyHudDiamonds">0</b></div>
+          <div class="fly-pill"><img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt=""><b id="flyHudCoins">0</b></div>
+          <div class="fly-pill"><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt=""><b id="flyHudDiamonds">0</b></div>
         </div>
       </div>
-      <div class="fly-pill dist"><i class="fas fa-ruler-horizontal" style="color:var(--pink);font-size:13px"></i><b id="flyHudDist">0</b><span style="font-size:11px;opacity:.7">م</span></div>
+      <div class="fly-pill dist"><i class="fas fa-ruler-horizontal" style="color:var(--sky-d);font-size:13px"></i><b id="flyHudDist">0</b><span style="font-size:11px;opacity:.7">م</span></div>
       <button class="fly-exit" id="flyExit"><i class="fas fa-arrow-right"></i></button>
       <div id="flyFloaters"></div>
 
       <div class="fly-overlay show" id="flyReadyOverlay">
         <div class="card fly-ready-card">
-          <div class="ico"><i class="fas fa-dove"></i></div>
+          <span class="ico i-sky"><i class="fas fa-dove"></i></span>
           <div class="fly-ready-title">جاهز للطيران؟</div>
           <div class="fly-ready-sub">اضغط على الشاشة لترتفع وتجنّب الصبّار</div>
-          <button class="btn btn-pink" id="flyBtnStart"><i class="fas fa-play"></i> ابدأ الطيران</button>
+          <button class="btn b-s" id="flyBtnStart"><i class="fas fa-play"></i> ابدأ الطيران</button>
         </div>
       </div>
 
@@ -943,26 +1143,26 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
           <div class="fly-over-head">انتهت الجولة</div>
           <div class="fly-over-center">
             <div class="card fly-over-distcard">
-              <div class="sub" style="color:var(--gray);font-weight:700">المسافة التي قطعتها</div>
+              <div class="sub">المسافة التي قطعتها</div>
               <div class="fly-over-dist"><b id="flyOverDist">0</b><span>متر</span></div>
               <div class="fly-over-best" id="flyOverBest"></div>
             </div>
             <div class="fly-over-rewgrid">
-              <div class="card"><span class="ico i-gold"><i class="fas fa-coins"></i></span><b id="flyOverCoins">0</b><span class="sub">عملات</span></div>
-              <div class="card"><span class="ico i-pink"><i class="fas fa-gem"></i></span><b id="flyOverGems">0</b><span class="sub">جواهر</span></div>
+              <div class="card"><img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt=""><b id="flyOverCoins">0</b><span class="sub">عملات</span></div>
+              <div class="card"><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt=""><b id="flyOverGems">0</b><span class="sub">جواهر</span></div>
             </div>
           </div>
           <div class="fly-over-actions">
-            <button class="btn btn-pink" id="flyBtnReplay"><i class="fas fa-rotate-right"></i> العب مرة أخرى</button>
+            <button class="btn b-s" id="flyBtnReplay"><i class="fas fa-rotate-right"></i> العب مرة أخرى</button>
             <button class="fly-link-board" id="flyBtnBoard"><i class="fas fa-ranking-star"></i> لوحة المتصدرين</button>
-            <button class="btn btn-black" id="flyBtnHome"><i class="fas fa-house"></i> الرئيسية</button>
+            <button class="btn b-y" id="flyBtnHome"><i class="fas fa-house"></i> الرئيسية</button>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FLY LEADERBOARD -->
+  <!-- FLY LEADERBOARD SCREEN -->
   <section class="screen" id="screen-flyboard">
     <div class="fly-board-header">
       <button class="g-btn" id="flyBoardBack"><i class="fas fa-arrow-right"></i></button>
@@ -973,39 +1173,28 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
   </section>
 </div>
 
-<!-- MODAL -->
-<div class="modal" id="modal">
-  <div class="card">
-    <div class="ico" id="mIcon"><i class="fas fa-check"></i></div>
-    <div class="ttl" id="mTitle"></div>
-    <div class="sub" id="mSub"></div>
-    <div class="m-amt" id="mAmt"></div>
+<div class="modal" id="modal"><div class="modal-card">
+    <div class="modal-icon success" id="mIcon"><i class="fas fa-check"></i></div>
+    <div class="modal-title" id="mTitle"></div>
+    <div class="modal-sub" id="mSub"></div>
+    <div class="modal-amount" id="mAmt" style="display:none"></div>
     <button class="btn btn-pink" id="mBtn"><i class="fas fa-check"></i> <span>موافق</span></button>
-  </div>
-</div>
-
-<!-- CONTENT MODAL -->
-<div class="modal text-modal" id="contentModal" style="z-index:1600">
+  </div></div>
+  <div class="modal text-modal" id="contentModal" style="z-index:1600">
   <div class="card">
-    <div class="content-head">
-      <span class="ico" id="contentIcon"><i class="fas fa-circle-info"></i></span>
-      <div class="ttl" style="font-size:18px;flex:1" id="contentTitle">معلومات التطبيق</div>
-      <button class="g-btn" id="contentClose" aria-label="إغلاق"><i class="fas fa-xmark"></i></button>
-    </div>
+    <div class="content-head"><span class="ico i-sky" id="contentIcon"><i class="fas fa-circle-info"></i></span><div class="grow ttl" style="font-size:18px" id="contentTitle">معلومات التطبيق</div><button class="g-btn" id="contentClose" aria-label="إغلاق"><i class="fas fa-xmark"></i></button></div>
     <div class="content-body" id="contentBody"></div>
-    <button class="btn btn-pink" id="contentDone"><i class="fas fa-check"></i> إغلاق</button>
+    <button class="btn btn-black" id="contentDone"><i class="fas fa-check"></i> إغلاق</button>
   </div>
 </div>
-
 <div class="toast" id="toast"></div>
 
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-
 <script>
 'use strict';
 
-/* ═══ CONFIG (unchanged from source) ═══ */
+/* ═══ CONFIG ═══ */
 const CONFIG={
   firebase:{apiKey: "AIzaSyDvhuuNg7ANjHHseUwYGJt2NoYs-SmWrGs",
   authDomain: "puppy-marge.firebaseapp.com",
@@ -1031,7 +1220,7 @@ const CONFIG={
   gameWin:{coinsPerLevel: 100, gemsEvery10: 10},
   wd:{min:5000,rate:0.00008,shamMin:1000,shamSypPerGem:0.01},
   spins:2,
-  prizes:[1000,1500,2500,3500,5000,6500,8000,10000].map((v,i)=>['coins',v,['#FE2B54','#FBBF24','#22C55E'][i%3]]),
+  prizes:[1000,1500,2500,3500,5000,6500,8000,10000].map((v,i)=>['coins',v,['#F4B900','#35C915','#2FB8DC'][i%3]]),
   daily:[[200,20],[300,30],[500,50],[700,70],[1000,100],[1500,150],[3000,300]],
   tg:'https://t.me/PuppyMerge',
   api:{base:'https://puppy-merge-api.starlimitedcom.workers.dev'},
@@ -1051,11 +1240,11 @@ const CONFIG={
     pendingTimeoutMs: 30 * 60 * 1000,
   },
   investPlans:[
-    {id:'p1', name:'خطة الجرو',    icon:'fa-paw',      days:7,  price:5000,   totalReturn:5500,   color:'#22C55E'},
-    {id:'p2', name:'خطة النشيط',   icon:'fa-dog',      days:12, price:20000,  totalReturn:22600,  color:'#FE2B54'},
-    {id:'p3', name:'خطة المحترف',  icon:'fa-bone',     days:18, price:50000,  totalReturn:58000,  color:'#FBBF24'},
-    {id:'p4', name:'خطة الخبير',   icon:'fa-crown',    days:24, price:70000,  totalReturn:84000,  color:'#EF4444'},
-    {id:'p5', name:'خطة الأسطورة', icon:'fa-gem',      days:30, price:100000, totalReturn:125000, color:'#A855F7'},
+    {id:'p1', name:'خطة الجرو',    icon:'fa-paw',      days:7,  price:5000,   totalReturn:5500,   color:'#4BE51E'},
+    {id:'p2', name:'خطة النشيط',   icon:'fa-dog',      days:12, price:20000,  totalReturn:22600,  color:'#59D7F2'},
+    {id:'p3', name:'خطة المحترف',  icon:'fa-bone',     days:18, price:50000,  totalReturn:58000,  color:'#FFD52E'},
+    {id:'p4', name:'خطة الخبير',   icon:'fa-crown',    days:24, price:70000,  totalReturn:84000,  color:'#FF8F8F'},
+    {id:'p5', name:'خطة الأسطورة', icon:'fa-gem',      days:30, price:100000, totalReturn:125000, color:'#C58CE8'},
   ],
   fly:{
     gravity:1850, flap:-520, maxFall:950, scroll:200, fixedDt:1/120, pxPerM:26,
@@ -1077,7 +1266,7 @@ const usd=g=>(g*CONFIG.wd.rate).toFixed(2);
 const today=()=>new Date(TIME.now()).toISOString().slice(0,10);
 const pad=n=>String(n).padStart(2,'0');
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
-const rewardHtml=r=>(r.gems?'<span class="rw"><i class="fas fa-gem"></i>'+r.gems+'</span>':'')+(r.coins?'<span class="rw"><i class="fas fa-coins"></i>'+r.coins+'</span>':'');
+const rewardHtml=r=>(r.gems?'<span class="rw"><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="" style="width:16px;height:16px">'+r.gems+'</span>':'')+(r.coins?'<span class="rw"><img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt="" style="width:16px;height:16px">'+r.coins+'</span>':'');
 const rewardTxt=r=>'+'+(r.coins||0)+' 🪙'+(r.gems?' + '+r.gems+' 💎':'');
 
 /* ═══ SFX ═══ */
@@ -1094,7 +1283,7 @@ const SFX={ctx:null,
 const TG={app:null,user:null,id:null,start:null,
   init(){this.app=window.Telegram&&Telegram.WebApp;
     if(!this.app||!this.app.initDataUnsafe||!this.app.initDataUnsafe.user)return false;
-    try{this.app.ready();this.app.expand();this.app.disableVerticalSwipes&&this.app.disableVerticalSwipes();this.app.setHeaderColor('#FFFFFF');this.app.setBackgroundColor('#FFFFFF')}catch(e){}
+    try{this.app.ready();this.app.expand();this.app.disableVerticalSwipes&&this.app.disableVerticalSwipes();this.app.setHeaderColor('#A8DCF0');this.app.setBackgroundColor('#A8DCF0')}catch(e){}
     this.user=this.app.initDataUnsafe.user;this.id=String(this.user.id);this.start=this.app.initDataUnsafe.start_param||null;return true},
   open(u){this.app.openTelegramLink&&/^https:\/\/t\.me\//i.test(u)?this.app.openTelegramLink(u):window.open(u,'_blank')},
   openExternal(u){try{this.app&&this.app.openLink?this.app.openLink(u):window.open(u,'_blank')}catch(e){window.open(u,'_blank')}},
@@ -1109,7 +1298,7 @@ const FB={
 };
 const save=(extra={})=>FB.set(Object.assign({coins:S.user.coins,gems:S.user.gems,updatedAt:Date.now()},extra));
 
-/* ═══ TIME ═══ */
+/* ═══ TIME ANTI-CHEAT ═══ */
 const TIME={serverAt:0,perfAt:0,synced:false,locked:false,
   now(){return this.synced?this.serverAt+(performance.now()-this.perfAt):Date.now()},
   async sync(){if(!db)return;try{const r=db.collection(CONFIG.timeCol).doc('t_'+TG.id),t0=performance.now();
@@ -1133,7 +1322,7 @@ const newUser=()=>({telegramId:TG.id,name:(TG.user.first_name||'')+(TG.user.last
 let tt;
 function toast(msg,type='ok'){const e=$('toast');e.textContent=msg;e.className='toast '+type;void e.offsetWidth;e.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('show'),2600)}
 function showModal(o){
-  $('mIcon').className='ico '+(o.type==='lose'?'i-red':o.type==='info'?'i-sky':'i-gold');
+  $('mIcon').className='modal-icon'+(o.type==='lose'?' error':o.type==='info'?'':' success');
   $('mIcon').innerHTML='<i class="fas '+(o.icon||'fa-check')+'"></i>';
   $('mTitle').textContent=o.title||'';$('mSub').textContent=o.sub||'';
   $('mAmt').textContent=o.amount||'';$('mAmt').style.display=o.amount?'block':'none';
@@ -1158,45 +1347,31 @@ const Energy={
 function renderEnergy(){
   if(!S.user)return;
   const c=Energy.cur(S.user),m=CONFIG.energyMax;
-  $('energyCur').textContent=c;$('energyMax').textContent=m;
-  const et=$('energyTop'); if(et) et.textContent=c;
+  $('energyCur').textContent=c;$('energyMax').textContent=m;$('energyTop').textContent=c;
   $('energyFill').style.width=(c/m*100)+'%';
   const r=Energy.next(S.user);
-  $('energyTimer').textContent=c>=m?'ممتلئة':'التجديد بعد '+Math.floor(r/60000)+':'+pad(Math.floor(r%60000/1000));
+  $('energyTimer').textContent=c>=m?'ممتلئة':Math.floor(r/60000)+':'+pad(Math.floor(r%60000/1000));
 }
 
 /* ═══ RENDER ═══ */
 function renderAll(){
   const u=S.user;if(!u)return;
-  // Header
-  $('gemTop').textContent=fmt(u.gems);
-  $('coinTop').textContent=fmt(u.coins);
-  const ha=$('headerAvatar');
-  if(ha){
-    if(u.photoUrl) ha.innerHTML='<img src="'+esc(u.photoUrl)+'" referrerpolicy="no-referrer" onerror="this.parentElement.innerHTML=\'<i class=\\\'fas fa-user\\\'></i>\'">';
-    else ha.innerHTML='<i class="fas fa-user"></i>';
-  }
-  // Home hero
-  const hl=$('homeLevel'); if(hl) hl.textContent=u.level||1;
-  const hts=$('heroTotalScore'); if(hts) hts.textContent=fmt(u.totalScore||0);
-  const hr=$('heroRefs'); if(hr) hr.textContent=fmt(u.referralCount||0);
-  // Profile
+  $('gemTop').textContent=fmt(u.gems);$('gemUsd').textContent='$'+usd(u.gems||0);
+  $('coinTop').textContent=fmt(u.coins);$('homeLevel').textContent=u.level||1;
   $('profName').textContent=u.name||'لاعب';$('profId').textContent=u.telegramId;
   $('profCoins').textContent=fmt(u.coins);$('profGems').textContent=fmt(u.gems);$('profLevel').textContent=u.level||1;$('profRefs').textContent=u.referralCount||0;
   $('profAvatar').innerHTML=u.photoUrl?'<img src="'+esc(u.photoUrl)+'" referrerpolicy="no-referrer" onerror="this.parentElement.innerHTML=\'<i class=\\\'fas fa-user\\\'></i>\'">':'<i class="fas fa-user"></i>';
-  // Withdraw
   $('wdGems').textContent=fmt(u.gems);$('wdUsd').textContent='$'+usd(u.gems||0);
-  // Referral
-  const rl=$('refLink'); if(rl) rl.textContent='https://t.me/'+CONFIG.bot.username+'/'+CONFIG.bot.appName+'?startapp=ref_'+(u.referralCode||TG.id);
-  const exb=$('exBal'); if(exb) exb.textContent=fmt(u.coins)+' 🪙';
-  const rc=$('refCount'); if(rc) rc.textContent=u.referralCount||0;
-  const re=$('refEarn'); if(re) re.textContent=fmt(u.referralEarnings||0);
-  const rcode=$('refCode'); if(rcode) rcode.textContent=u.referralCode||TG.id;
-  const ent=$('enterCard'); if(ent) ent.style.display=u.referralUsed?'none':'block';
-  const wb=$('wheelBadge'); if(wb) wb.style.display=spinsLeft()>0?'inline-block':'none';
+  $('refLink').textContent='https://t.me/'+CONFIG.bot.username+'/'+CONFIG.bot.appName+'?startapp=ref_'+(u.referralCode||TG.id);
+  $('exBal').textContent=fmt(u.coins)+' 🪙';
+  $('refCount').textContent=u.referralCount||0;$('refEarn').textContent=fmt(u.referralEarnings||0);$('refCode').textContent=u.referralCode||TG.id;
+  $('enterCard').style.display=u.referralUsed?'none':'block';
+  $('wheelBadge').style.display=spinsLeft()>0?'inline-block':'none';
+  (function(){const _c=$('walCoins'),_g=$('walGems'),_e=$('walGemsEq'),_a=$('headerAvatar');if(_c)_c.textContent=fmt(u.coins);if(_g)_g.textContent=fmt(u.gems);if(_e)_e.textContent='≈ $'+usd(u.gems||0);
+    if(_a)_a.innerHTML=u.photoUrl?'<img src="'+esc(u.photoUrl)+'" referrerpolicy="no-referrer" alt="" onerror="this.parentElement.innerHTML=\'<i class=\\\'fas fa-user\\\'></i>\'">':'<i class="fas fa-user"></i>'})();
   renderEnergy();renderMissions();renderWheel();updateEx();updateWd();
-  if($('screen-deposit') && $('screen-deposit').classList.contains('active'))renderStarPackages();
-  if($('screen-invest') && $('screen-invest').classList.contains('active'))renderInvestments();
+  if($('screen-deposit').classList.contains('active'))renderStarPackages();
+  if($('screen-invest').classList.contains('active'))renderInvestments();
   updatePendingBanner();
 }
 function showScreen(name){
@@ -1204,20 +1379,22 @@ function showScreen(name){
   const el=$('screen-'+name);
   if(el) el.classList.add('active');
 }
+const NAV_PARENT={game:'gamehub',wheel:'gamehub',invest:'gamehub',deposit:'exchange',withdraw:'exchange',referral:'profile'};
 function go(s){
   const el=$('screen-'+s);if(!el)return;
   document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));el.classList.add('active');
-  document.querySelectorAll('.dock button').forEach(b=>b.classList.toggle('on',b.dataset.nav===s));
+  document.querySelectorAll('.dock button').forEach(b=>b.classList.toggle('on',b.dataset.nav===(NAV_PARENT[s]||s)));
+  $('app').classList.toggle('profile-open',s==='profile');
   $('mainScroll').scrollTop=0;
   if(s==='withdraw')loadWdHistory();
   if(s==='referral')loadLeaderboard();
   if(s==='deposit'){renderStarPackages();setDepTab('stars');}
   if(s==='invest')renderInvestments();
   if(s==='fly'){FlyGame.enter();return;}
-  if(s !== 'deposit' && typeof cryptoPollTimer !== 'undefined' && cryptoPollTimer){ stopPaymentPolling(); }
+  if(s !== 'deposit' && cryptoPollTimer){ stopPaymentPolling(); }
 }
 
-/* ═══ MERGE GAME ═══ */
+/* ═══ GAME (Merge) ═══ */
 const TILES=['fa-cat','fa-dog','fa-frog','fa-dove','fa-fish','fa-horse'];
 const Game={size:6,board:[],els:[],score:0,moves:0,target:0,level:1,sel:null,busy:false,ended:false,
   async start(n){
@@ -1358,7 +1535,7 @@ function wheelTimer(){
     const adRemain=wheelAdRemaining(),ab=$('wheelAdBtn');
     if(ab){
       ab.disabled=S.busy||adRemain>0;
-      const wt=$('wheelAdTimer'); if(wt) wt.textContent=adRemain<=0?'متاح':pad(Math.floor(adRemain/3600000))+':'+pad(Math.floor(adRemain%3600000/60000))+':'+pad(Math.floor(adRemain%60000/1000));
+      $('wheelAdTimer').textContent=adRemain<=0?'متاح':pad(Math.floor(adRemain/3600000))+':'+pad(Math.floor(adRemain%3600000/60000))+':'+pad(Math.floor(adRemain%60000/1000));
     }
     return;
   }
@@ -1378,7 +1555,7 @@ function wheelTimer(){
   const adRemain=wheelAdRemaining(),ab=$('wheelAdBtn');
   if(ab){
     ab.disabled=S.busy||adRemain>0;
-    const wt=$('wheelAdTimer'); if(wt) wt.textContent=adRemain<=0?'متاح':pad(Math.floor(adRemain/3600000))+':'+pad(Math.floor(adRemain%3600000/60000))+':'+pad(Math.floor(adRemain%60000/1000));
+    $('wheelAdTimer').textContent=adRemain<=0?'متاح':pad(Math.floor(adRemain/3600000))+':'+pad(Math.floor(adRemain%3600000/60000))+':'+pad(Math.floor(adRemain%60000/1000));
   }
 }
 function trustedTimeReady(){if(!TIME.synced)return toast('تعذر التحقق من الوقت، تحقق من الاتصال ثم أعد المحاولة','err'),false;if(Math.abs(TIME.now()-Date.now())>60000)TIME.locked=true;if(TIME.locked)return toast('اضبط ساعة الجهاز تلقائياً لإكمال اللعب','err'),false;return true}
@@ -1434,12 +1611,12 @@ const LEVEL_M = (() => {
 const INVITE_M=[[1,5],[3,15],[5,30],[10,60],[20,100]].map(([n,g])=>({id:'inv'+n,count:n,reward:{gems:g}}));
 
 function mCard(icon,cls,title,desc,reward,btn,prog){
-  return'<div class="card m-card"><span class="ico '+cls+'"><i class="fas '+icon+'"></i></span><div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:800;color:var(--ink)">'+title+'</div><div style="font-size:11px;color:var(--gray);font-weight:600">'+desc+'</div><div>'+reward+'</div>'+
+  return'<div class="card m-card"><span class="ico '+cls+'"><i class="fas '+icon+'"></i></span><div class="grow"><div class="ttl">'+title+'</div><div class="sub">'+desc+'</div><div>'+reward+'</div>'+
     (prog?'<div class="prog">'+prog[0]+' / '+prog[1]+'<span class="bar"><i style="width:'+Math.min(100,prog[0]/prog[1]*100)+'%"></i></span></div>':'')+'</div>'+btn+'</div>';
 }
-const bDone='<button class="btn btn-sm btn-gray" disabled><i class="fas fa-check"></i> تم</button>';
-const bLock='<button class="btn btn-sm btn-gray" disabled><i class="fas fa-lock"></i></button>';
-const bClaim=a=>'<button class="btn btn-sm btn-pink" '+a+'><i class="fas fa-hand-holding-heart"></i> استلم</button>';
+const bDone='<button class="btn b-sm b-off" disabled><i class="fas fa-check"></i> تم</button>';
+const bLock='<button class="btn b-sm b-off" disabled><i class="fas fa-lock"></i></button>';
+const bClaim=a=>'<button class="btn b-sm b-g" '+a+'><i class="fas fa-hand-holding-heart"></i> استلم</button>';
 
 function renderMissions(){
   const u=S.user,t=today(),dl=u.dailyLogin||{streak:0,lastClaimDate:null},can=dl.lastClaimDate!==t,next=dl.streak>=7?0:dl.streak;
@@ -1449,11 +1626,11 @@ function renderMissions(){
   $('missionsDaily').innerHTML=DAILY_M.map(m=>{
     if(m.kind==='wheel'){
       const count=Number(u.wheelSpinCount||0),claimed=!!u.wheelMissionClaimed;
-      const action=claimed?bDone:count>=10?'<button class="btn btn-sm btn-pink" data-wm="'+m.id+'"><i class="fas fa-gift"></i> استلم</button>':bLock;
+      const action=claimed?bDone:count>=10?'<button class="btn b-sm b-g" data-wm="'+m.id+'"><i class="fas fa-gift"></i> استلم</button>':bLock;
       return mCard('fa-dharmachakra','i-gold',esc(m.title),esc(m.desc),rewardHtml(m.reward),action,[Math.min(count,10),10]);
     }
-    return mCard('fa-paper-plane','i-pink',esc(m.title),esc(m.desc),rewardHtml(m.reward),
-      (u.dailyRewards||{})[m.id]===t?bDone:'<button class="btn btn-sm btn-pink" data-dm="'+m.id+'"><i class="fas fa-external-link-alt"></i> انضم</button>');
+    return mCard('fa-paper-plane','i-sky',esc(m.title),esc(m.desc),rewardHtml(m.reward),
+      (u.dailyRewards||{})[m.id]===t?bDone:'<button class="btn b-sm b-s" data-dm="'+m.id+'"><i class="fas fa-external-link-alt"></i> انضم</button>');
   }).join('');
   $('missionsDaily').querySelectorAll('[data-dm]').forEach(b=>b.onclick=()=>doDaily(b.dataset.dm));
   $('missionsDaily').querySelectorAll('[data-wm]').forEach(b=>b.onclick=()=>claimWheelMission());
@@ -1465,7 +1642,7 @@ function renderMissions(){
 
   const idn=u.inviteMissions||{},prog=(u.referralCount||0)-(u.inviteBase||0),im=INVITE_M.find(x=>!idn[x.id]);
   $('missionsInvite').innerHTML=im?mCard('fa-user-plus','i-gold','ادعُ '+im.count+(im.count===1?' صديق':' أصدقاء'),'مكافأة عند إتمام العدد',rewardHtml(im.reward),
-    prog>=im.count?bClaim('data-im="'+im.id+'"'):'<button class="btn btn-sm btn-pink" data-go="referral"><i class="fas fa-user-plus"></i> ادعُ</button>',[Math.min(prog,im.count),im.count]):'<div class="card empty">أكملت كل مهام الدعوات</div>';
+    prog>=im.count?bClaim('data-im="'+im.id+'"'):'<button class="btn b-sm b-s" data-go="referral"><i class="fas fa-user-plus"></i> ادعُ</button>',[Math.min(prog,im.count),im.count]):'<div class="card empty">أكملت كل مهام الدعوات</div>';
   $('missionsInvite').querySelectorAll('[data-im]').forEach(b=>b.onclick=()=>claimInvite(b.dataset.im));
   $('missionsInvite').querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go('referral'));
 }
@@ -1511,12 +1688,14 @@ async function claimInvite(id){
 
 /* ═══ INVESTMENT ═══ */
 function getPlanById(id){return CONFIG.investPlans.find(p=>p.id===id)}
+
 function isInvestmentActive(inv){
   const plan=getPlanById(inv.planId);
   if(!plan)return false;
   const endAt = inv.startedAt + plan.days * 86400 * 1000;
   return Date.now() < endAt || inv.collected < plan.totalReturn;
 }
+
 function getPending(inv, plan){
   const now = Date.now();
   const endAt = inv.startedAt + plan.days * 86400 * 1000;
@@ -1525,11 +1704,13 @@ function getPending(inv, plan){
   const totalMined = (plan.totalReturn / (plan.days * 24 * 3600)) * (elapsedMs / 1000);
   return Math.max(0, Math.floor(totalMined) - inv.collected);
 }
+
 function isPlanActive(planId){
   const u=S.user;
   const investments = Array.isArray(u.investments) ? u.investments : [];
   return investments.some(inv => inv.planId === planId && isInvestmentActive(inv));
 }
+
 function renderInvestments(){
   const u=S.user;if(!u)return;
   const investments = Array.isArray(u.investments) ? u.investments : [];
@@ -1557,7 +1738,7 @@ function renderInvestments(){
   if (active.length === 0) {
     activeEl.innerHTML = '';
   } else {
-    activeEl.innerHTML = '<div class="section-head"><div class="section-title"><i class="fas fa-paw"></i> استثماراتي النشطة</div></div>' +
+    activeEl.innerHTML = '<div class="sec"><span class="ico i-green"><i class="fas fa-paw"></i></span> استثماراتي النشطة</div>' +
       active.map(({inv,plan,pending,isDone})=>{
         const now = Date.now();
         const endAt = inv.startedAt + plan.days * 86400 * 1000;
@@ -1567,25 +1748,25 @@ function renderInvestments(){
         const collectedPct = Math.min(100, (inv.collected / plan.totalReturn) * 100);
 
         return `<div class="card invest-active-card">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-            <span class="ico" style="background:${plan.color};width:50px;height:50px;font-size:22px"><i class="fas ${plan.icon}"></i></span>
-            <div style="flex:1;min-width:0">
-              <div style="font-size:14px;font-weight:800;color:var(--ink)">${esc(plan.name)}</div>
-              <div style="font-size:11px;color:var(--gray);font-weight:700">${daysElapsed} / ${plan.days} يوم ${isDone ? '· <span style="color:var(--green);font-weight:800">اكتمل</span>' : ''}</div>
+          <div class="row" style="margin-bottom:10px">
+            <span class="ico" style="background:radial-gradient(circle at 30% 25%,${plan.color},${plan.color}bb);width:50px;height:50px;font-size:22px"><i class="fas ${plan.icon}"></i></span>
+            <div class="grow">
+              <div class="ttl">${esc(plan.name)}</div>
+              <div class="sub">${daysElapsed} / ${plan.days} يوم ${isDone ? '· <span style="color:var(--green-d);font-weight:800">اكتمل</span>' : ''}</div>
             </div>
             <div style="text-align:center;min-width:60px">
-              <div style="font-size:22px;font-weight:900;color:var(--green);direction:ltr" data-invest-pending="${inv.id}">${fmt(pending)}</div>
-              <div style="font-size:9.5px;font-weight:800;color:var(--gray)">💎 متاح</div>
+              <div style="font-size:22px;font-weight:900;color:var(--green-d);direction:ltr" data-invest-pending="${inv.id}">${fmt(pending)}</div>
+              <div style="font-size:9.5px;font-weight:800;color:var(--ink2)">💎 متاح</div>
             </div>
           </div>
-          <div style="height:8px;border-radius:8px;background:var(--gray-l);overflow:hidden;margin-bottom:6px"><i style="display:block;height:100%;width:${collectedPct}%;background:${plan.color};border-radius:8px"></i></div>
-          <div style="display:flex;justify-content:space-between;font-size:10px;font-weight:800;color:var(--gray);margin-bottom:8px">
+          <div class="bar" style="height:8px;margin-bottom:6px"><i style="width:${collectedPct}%;background:linear-gradient(180deg,${plan.color},${plan.color}cc)"></i></div>
+          <div style="display:flex;justify-content:space-between;font-size:10px;font-weight:800;color:var(--ink2);margin-bottom:8px">
             <span>تم جمع: ${fmt(inv.collected)} / ${fmt(plan.totalReturn)}</span>
             <span>${collectedPct.toFixed(0)}%</span>
           </div>
           ${isDone && inv.collected >= plan.totalReturn ?
-            '<div style="text-align:center;font-size:12px;font-weight:800;color:var(--gray);padding:10px"><i class="fas fa-check-circle" style="color:var(--green)"></i> اكتمل الاستثمار</div>' :
-            `<div style="text-align:center;font-size:11.5px;font-weight:800;color:var(--gray);padding:8px"><i class="fas fa-hand-holding-heart" style="color:var(--green)"></i> استخدم زر "جمع الكل" بالأعلى</div>`
+            '<div style="text-align:center;font-size:12px;font-weight:800;color:var(--ink2);padding:10px"><i class="fas fa-check-circle" style="color:var(--green-d)"></i> اكتمل الاستثمار — يمكنك شراء الخطة مرة أخرى</div>' :
+            `<div style="text-align:center;font-size:11.5px;font-weight:800;color:var(--ink2);padding:8px"><i class="fas fa-hand-holding-heart" style="color:var(--green-d)"></i> استخدم زر "جمع الكل" بالأعلى لسحب الأرباح</div>`
           }
         </div>`;
       }).join('');
@@ -1600,23 +1781,23 @@ function renderInvestments(){
 
     let btnHTML;
     if(isActive){
-      btnHTML = '<button class="btn btn-gray" disabled style="height:48px"><i class="fas fa-lock"></i> الخطة نشطة حالياً</button>';
+      btnHTML = '<button class="btn b-off" disabled style="height:48px"><i class="fas fa-lock"></i> الخطة نشطة حالياً</button>';
     } else if(!canAfford){
-      btnHTML = '<button class="btn btn-gray" disabled style="height:48px"><i class="fas fa-ban"></i> رصيد غير كافٍ</button>';
+      btnHTML = '<button class="btn b-off" disabled style="height:48px"><i class="fas fa-ban"></i> رصيد غير كافٍ</button>';
     } else {
-      btnHTML = `<button class="btn btn-pink" data-invest-buy="${plan.id}" style="height:48px"><i class="fas fa-shopping-cart"></i> شراء الخطة</button>`;
+      btnHTML = `<button class="btn b-g" data-invest-buy="${plan.id}" style="height:48px"><i class="fas fa-shopping-cart"></i> شراء الخطة</button>`;
     }
 
     return `<div class="card ${isActive ? 'invest-locked' : ''}" style="margin-bottom:10px">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-        <span class="ico" style="background:${plan.color};width:50px;height:50px;font-size:22px"><i class="fas ${plan.icon}"></i></span>
-        <div style="flex:1;min-width:0">
-          <div style="font-size:14px;font-weight:800;color:var(--ink)">${esc(plan.name)}</div>
-          <div style="font-size:11px;color:var(--gray);font-weight:700">${plan.days} أيام · ربح ${profitPct}%</div>
+      <div class="row" style="margin-bottom:10px">
+        <span class="ico" style="background:radial-gradient(circle at 30% 25%,${plan.color},${plan.color}bb);width:50px;height:50px;font-size:22px"><i class="fas ${plan.icon}"></i></span>
+        <div class="grow">
+          <div class="ttl">${esc(plan.name)}</div>
+          <div class="sub">${plan.days} أيام · ربح ${profitPct}%</div>
         </div>
         <div style="text-align:center">
-          <div style="font-size:18px;font-weight:900;color:var(--pink);direction:ltr">${fmt(plan.price)}</div>
-          <div style="font-size:10px;font-weight:800;color:var(--gray)">💎 سعر</div>
+          <div style="font-size:18px;font-weight:900;color:var(--gold-d);direction:ltr">${fmt(plan.price)}</div>
+          <div style="font-size:10px;font-weight:800;color:var(--ink2)">💎 سعر</div>
         </div>
       </div>
       <div class="info" style="margin-bottom:10px">
@@ -1631,6 +1812,7 @@ function renderInvestments(){
     b.onclick=()=>buyPlan(b.dataset.investBuy);
   });
 }
+
 function updateInvestmentsUI(){
   if(!$('screen-invest').classList.contains('active'))return;
   const u=S.user;if(!u)return;
@@ -1662,6 +1844,7 @@ function updateInvestmentsUI(){
 
   if(needsRerender) renderInvestments();
 }
+
 async function buyPlan(planId){
   if(S.busy)return;
   const plan = getPlanById(planId);
@@ -1671,6 +1854,7 @@ async function buyPlan(planId){
   if(isPlanActive(planId)){
     return toast('هذه الخطة نشطة حالياً — انتظر انتهاءها','err');
   }
+
   if(u.gems < plan.price) return toast('رصيد الجواهر غير كافٍ','err');
 
   S.busy = true;
@@ -1702,6 +1886,7 @@ async function buyPlan(planId){
     S.busy = false;
   }
 }
+
 async function collectAllInvestments(){
   if(S.busy)return;
   const u = S.user;
@@ -1741,17 +1926,16 @@ function pick(sel,key,cb){
   });
 }
 function clearPick(sel){document.querySelectorAll(sel+' .amt').forEach(x=>x.classList.remove('on'))}
-function updateEx(){
-  const a=$('exChosen'),b=$('exReceive'); if(a) a.textContent=fmt(S.ex)+' 🪙'; if(b) b.textContent=fmt(Math.floor(S.ex*CONFIG.ex.rate))+' 💎';
-}
+function updateEx(){$('exChosen').textContent=fmt(S.ex)+' 🪙';$('exReceive').textContent=fmt(Math.floor(S.ex*CONFIG.ex.rate))+' 💎'}
 function updateWd(){
-  const a=$('wdChosen'),b=$('wdReceive'); if(a) a.textContent=fmt(S.wd)+' 💎';
-  if(b) b.textContent=S.wdMethod==='sham_cash'?(fmt(Math.round(S.wd*CONFIG.wd.shamSypPerGem))+' SYP'):'$'+usd(S.wd);
+  $('wdChosen').textContent=fmt(S.wd)+' 💎';
+  $('wdReceive').textContent=S.wdMethod==='sham_cash'?(fmt(Math.round(S.wd*CONFIG.wd.shamSypPerGem))+' SYP'):'$'+usd(S.wd);
 }
 function setWdMethod(method){
   S.wdMethod=method;S.wd=0;clearPick('#wdAmounts');
   document.querySelectorAll('.wd-method').forEach(el=>{
     const on=el.dataset.method===method;el.classList.toggle('selected',on);
+    el.style.borderColor=on?'var(--pink)':'var(--gray-b)';
     const check=el.querySelector('.wd-check');if(check)check.style.visibility=on?'visible':'hidden';
   });
   const amountBox=$('wdAmounts');
@@ -1824,8 +2008,10 @@ async function doWithdraw(){
       if(!resp.ok||!data.ok){
         throw new Error(data.error||'فشل إرسال طلب السحب');
       }
+
       u.gems-=a;
       await save();
+
       await db.collection(CONFIG.wdCol).add({
         userId:TG.id,
         userName:u.name||'لاعب',
@@ -1847,6 +2033,7 @@ async function doWithdraw(){
         meta:{method:'usdt_crypto',payout:'$'+usdAmount+' USDT'},
         createdAt:Date.now()
       });
+
       SFX.play('reward');
       S.wd=0;
       $('wdAccount').value='';
@@ -1876,39 +2063,41 @@ async function doWithdraw(){
 }
 
 async function loadWdHistory(){
-  const l=$('wdHistory');if(!db)return;l.innerHTML='<div class="empty"><i class="fas fa-spinner fa-spin"></i></div>';
+  const l=$('wdHistory');if(!db)return;l.innerHTML='<div class="empty">...</div>';
   try{
     const q=await db.collection(CONFIG.wdCol).where('userId','==',TG.id).limit(50).get();
     if(q.empty){l.innerHTML='<div class="empty"><i class="fas fa-inbox"></i><br>لا يوجد سجل سحب بعد</div>';return}
     const it=[];q.forEach(d=>it.push(d.data()));it.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
     const map={pending:'قيد المراجعة',approved:'مقبول',processing:'قيد التنفيذ',completed:'مكتمل',rejected:'مرفوض'};
     const methodNames={usdt_crypto:'USDT Crypto',sham_cash:'شام كاش',binance:'Binance'};
-    l.innerHTML=it.slice(0,15).map(w=>'<div class="card hist"><div><div style="font-size:13px;font-weight:800;direction:ltr;text-align:right;color:var(--ink)">'+fmt(w.amount)+' 💎 → '+esc(w.payout||'$0')+'</div><div style="font-size:10.5px;color:var(--gray);font-weight:600">'+
+    l.innerHTML=it.slice(0,15).map(w=>'<div class="card hist"><div><div class="ttl" style="direction:ltr;text-align:right">'+fmt(w.amount)+' 💎 → '+esc(w.payout||'$0')+'</div><div class="sub">'+
       new Date(w.createdAt||Date.now()).toLocaleDateString('ar-EG',{day:'numeric',month:'short',year:'numeric'})+' • '+(methodNames[w.method]||'Binance')+'</div></div><span class="st '+esc(w.status||'pending')+'">'+(map[w.status]||'قيد المراجعة')+'</span></div>').join('');
-  }catch(e){l.innerHTML='<div class="empty"><i class="fas fa-exclamation-triangle"></i><br>تعذر التحميل</div>'}
+  }catch(e){l.innerHTML='<div class="empty">تعذر التحميل</div>'}
 }
 
 /* ═══ STAR DEPOSIT ═══ */
 function renderStarPackages(){
   const el=$('starPackages');if(!el)return;
   const gems=S.user.gems||0;
-  const a=$('depGemsStars'); if(a) a.textContent=fmt(gems)+' 💎';
-  const b=$('depGemsCrypto'); if(b) b.textContent=fmt(gems)+' 💎';
+  $('depGemsStars').textContent=fmt(gems)+' 💎';
+  $('depGemsCrypto').textContent=fmt(gems)+' 💎';
 
   el.innerHTML=CONFIG.starPackages.map(p=>{
-    const tag=p.hot?'<span style="background:var(--red);color:#fff;font-size:9px;padding:1px 6px;border-radius:6px;margin-inline-start:4px">الأكثر طلباً</span>'
-      :p.best?'<span style="background:var(--green);color:#fff;font-size:9px;padding:1px 6px;border-radius:6px;margin-inline-start:4px">أفضل قيمة</span>':'';
-    return`<button class="payment-method-card" data-stars="${p.stars}" data-gems="${p.gems}" style="border-color:${p.hot?'var(--pink)':'var(--gray-b)'}">
-      <span class="ico i-gold" style="width:46px;height:46px;font-size:20px"><i class="fas fa-star"></i></span>
-      <span style="flex:1;display:flex;flex-direction:column;gap:3px">
-        <b>${p.label} ${tag}</b>
-        <small>احصل على ${fmt(p.gems)} 💎</small>
-      </span>
-      <i class="fas fa-chevron-left"></i>
+    const tag=p.hot?'<span class="pack-tag hot">الأكثر طلباً</span>'
+      :p.best?'<span class="pack-tag best">أفضل قيمة</span>':'';
+    return`<button class="card star-pack" data-stars="${p.stars}" data-gems="${p.gems}" style="margin:0;border-color:${p.hot?'var(--gold-d)':'var(--edge)'}">
+      <div class="row">
+        <span class="ico ico-star"><i class="fas fa-star"></i></span>
+        <div class="grow">
+          <div class="ttl">${p.label} ${tag}</div>
+          <div class="sub">احصل على ${fmt(p.gems)} 💎</div>
+        </div>
+        <i class="fas fa-chevron-left arrow"></i>
+      </div>
     </button>`;
   }).join('');
 
-  el.querySelectorAll('[data-stars]').forEach(b=>{
+  el.querySelectorAll('.star-pack').forEach(b=>{
     b.onclick=()=>startStarPayment(+b.dataset.stars);
   });
 }
@@ -1980,18 +2169,17 @@ function setDepTab(tab){
 
 function updateCryptoAmounts(){
   const gems = Math.floor(cryptoUsd * CONFIG.shieldz.gemsPerUsd);
-  const a=$('cryptoChosenUsd'),b=$('cryptoReceiveGems'),c=$('depGemsCrypto'),d=$('cryptoPayBtn');
-  if(a) a.textContent = '$' + cryptoUsd.toFixed(2);
-  if(b) b.textContent = fmt(gems) + ' 💎';
-  if(c) c.textContent = fmt((S.user && S.user.gems) || 0) + ' 💎';
-  if(d) d.disabled = cryptoUsd < CONFIG.shieldz.minUsd || S.busy;
+  $('cryptoChosenUsd').textContent = '$' + cryptoUsd.toFixed(2);
+  $('cryptoReceiveGems').textContent = fmt(gems) + ' 💎';
+  $('depGemsCrypto').textContent = fmt((S.user && S.user.gems) || 0) + ' 💎';
+  $('cryptoPayBtn').disabled = cryptoUsd < CONFIG.shieldz.minUsd || S.busy;
 }
 
 function pickCryptoAmount(el){
   document.querySelectorAll('#cryptoAmounts .amt').forEach(b => b.classList.remove('on'));
   el.classList.add('on');
   cryptoUsd = parseFloat(el.dataset.usd) || 0;
-  const c=$('cryptoCustomUsd'); if(c) c.value = '';
+  $('cryptoCustomUsd').value = '';
   updateCryptoAmounts();
   SFX.play('tap');
 }
@@ -2184,7 +2372,7 @@ function startPaymentPolling(invoiceId, gems){
   }, CONFIG.shieldz.pollIntervalMs);
 }
 
-/* ═══ MANUAL DEPOSIT INFO ═══ */
+/* ═══ MANUAL DEPOSIT INFO (Binance / Sham Cash) ═══ */
 const MD={
   binance:{K:'Binance',acc:'1121748571',minTxt:'الحد الأدنى للتحويل $0.50',cls:'i-gold',icon:'fa-wallet',
     title:'الإيداع عبر Binance Pay',accLbl:'معرّف Binance Pay'},
@@ -2195,16 +2383,16 @@ function buildMd(){
   Object.keys(MD).forEach(k=>{
     const m=MD[k],K=m.K;
     $('dep-tab-'+k).innerHTML=
-    '<div class="payment-method-card" style="margin-bottom:12px"><span class="ico '+m.cls+'" style="width:52px;height:52px;font-size:22px"><i class="fas '+m.icon+'"></i></span>'+
-    '<span style="flex:1;display:flex;flex-direction:column;gap:3px"><b>'+m.title+'</b><small>'+m.minTxt+'</small></span></div>'+
-    '<div class="card"><div style="font-size:12px;font-weight:800;color:var(--ink);margin-bottom:6px">'+m.accLbl+' — حوّل المبلغ إلى هذا المعرّف</div>'+
-    '<div class="codebox"><b id="mdAcc'+K+'">'+m.acc+'</b>'+
-    '<button class="btn btn-pink btn-sm" data-copy="mdAcc'+K+'"><i class="fas fa-copy"></i> نسخ</button></div></div>'+
-    '<div class="card" style="border-color:var(--pink)"><div style="font-size:13px;font-weight:800;color:var(--ink)">مهم: أضف معرّف حسابك في الملاحظة</div>'+
-    '<div style="font-size:11.5px;color:var(--gray);font-weight:600;margin:4px 0 10px">انسخ معرّفك والصقه في خانة الملاحظة (Note) عند التحويل حتى يمكن التعرّف على حسابك.</div>'+
+    '<div class="card"><div class="row" style="margin-bottom:12px"><span class="ico '+m.cls+'" style="width:52px;height:52px"><i class="fas '+m.icon+'"></i></span>'+
+    '<div class="grow"><div class="ttl">'+m.title+'</div><div class="sub">'+m.minTxt+'</div></div></div>'+
+    '<div class="sub" style="margin-bottom:6px">'+m.accLbl+' — حوّل المبلغ إلى هذا المعرّف</div>'+
+    '<div class="codebox"><b id="mdAcc'+K+'" style="font-size:13px;letter-spacing:0;word-break:break-all">'+m.acc+'</b>'+
+    '<button class="btn b-y b-sm" data-copy="mdAcc'+K+'"><i class="fas fa-copy"></i> نسخ</button></div></div>'+
+    '<div class="card" style="border-color:var(--red)"><div class="ttl">مهم: أضف معرّف حسابك في الملاحظة</div>'+
+    '<div class="sub" style="margin:4px 0 10px">انسخ معرّفك والصقه في خانة الملاحظة (Note) عند التحويل حتى يمكن التعرّف على حسابك.</div>'+
     '<div class="codebox"><b id="mdUid'+K+'" style="direction:ltr">'+esc(TG.id)+'</b>'+
-    '<button class="btn btn-pink btn-sm" data-copy="mdUid'+K+'"><i class="fas fa-copy"></i> نسخ المعرّف</button></div></div>'+
-    '<div class="card" style="text-align:center;font-size:12px;color:var(--gray);margin-top:12px"><i class="fas fa-shield-halved" style="color:var(--pink)"></i> بعد إتمام التحويل، تُراجع الدفعة وتُضاف الجواهر إلى حسابك بعد التحقق.</div>';
+    '<button class="btn b-y b-sm" data-copy="mdUid'+K+'"><i class="fas fa-copy"></i> نسخ المعرّف</button></div></div>'+
+    '<div class="card" style="text-align:center;font-size:12px;color:var(--ink2);margin-top:12px"><i class="fas fa-shield-halved" style="color:var(--sky-d)"></i> بعد إتمام التحويل، تُراجع الدفعة وتُضاف الجواهر إلى حسابك بعد التحقق.</div>';
   });
 }
 function copyText(t){
@@ -2279,8 +2467,8 @@ async function loadLeaderboard(){
     S.lb=it.length?it.map((o,i)=>{
       const r=i+1,x=o.x,me=o.id===TG.id;
       return'<div class="lb'+(me?' me':'')+'"><div class="rank'+(r<=3?' r'+r:'')+'">'+(r===1?'<i class="fas fa-crown"></i>':r)+'</div>'+
-        '<div class="av">'+(x.photoUrl?'<img src="'+esc(x.photoUrl)+'" referrerpolicy="no-referrer" onerror="this.outerHTML=\'<i class=\\\'fas fa-user\\\'></i>\'">':'<i class="fas fa-user"></i>')+'</div>'+
-        '<div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:800;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc(x.name||'لاعب')+(me?' <span class="rw">أنت</span>':'')+'</div></div>'+
+        '<div class="av">'+(x.photoUrl?'<img src="'+esc(x.photoUrl)+'" referrerpolicy="no-referrer" onerror="this.outerHTML=\'<i class=\\\'fas fa-dog\\\'></i>\'">':'<i class="fas fa-dog"></i>')+'</div>'+
+        '<div class="grow"><div class="ttl">'+esc(x.name||'لاعب')+(me?' <span class="rw">أنت</span>':'')+'</div></div>'+
         '<div class="cnt">'+x.referralCount+'</div></div>';
     }).join(''):'<div class="empty"><i class="fas fa-crown"></i><br>لا يوجد مدعون بعد — كن الأول!</div>';
     S.lbAt=Date.now();l.innerHTML=S.lb;
@@ -2290,12 +2478,14 @@ async function loadLeaderboard(){
   }
 }
 
-/* ═══ ENERGY AD ═══ */
+/* ═══ LANGUAGE ═══ */
+function initLang(){document.documentElement.lang='ar';document.documentElement.dir='rtl';try{localStorage.setItem('pm_lang','ar')}catch(e){}}
+
 async function watchEnergyAd(){
   const btn=$('energyAdBtn');if(S.busy)return;
   if(Energy.cur(S.user)>=CONFIG.energyMax)return toast('الطاقة ممتلئة بالفعل','info');
   if(typeof window.show_12008608!=='function')return toast('الإعلان غير متاح حالياً، حاول لاحقاً','err');
-  S.busy=true;btn.disabled=true;const original=btn.innerHTML;btn.innerHTML='<span class="spn"></span> جاري المشاهدة';
+  S.busy=true;btn.disabled=true;const original=btn.innerHTML;btn.innerHTML='<span class="spn"></span> جاري مشاهدة الإعلان';
   const started=performance.now();
   try{
     await window.show_12008608();
@@ -2311,30 +2501,24 @@ async function watchEnergyAd(){
   finally{S.busy=false;btn.disabled=false;btn.innerHTML=original;renderWheel()}
 }
 
-/* ═══ CONTENT MODAL ═══ */
 function openContentModal(kind){
   const policy=kind==='policy';
-  $('contentIcon').className='ico '+(policy?'i-pink':'i-green');
+  $('contentIcon').className='ico '+(policy?'i-sky':'i-green');
   $('contentIcon').innerHTML='<i class="fas '+(policy?'fa-shield-halved':'fa-circle-question')+'"></i>';
   $('contentTitle').textContent=policy?'معلومات التطبيق وسياسة الخصوصية':'مركز المساعدة';
   if(policy){
     $('contentBody').innerHTML=
-      '<div class="policy-box"><h4>عن Puppy Merge</h4><p>لعبة دمج وترفيه تجمع فيها العملات والجواهر وتتقدم عبر المستويات والمهام والإحالات.</p></div>'+
-      '<div class="policy-box"><h4>المعلومات المستخدمة</h4><p>يستخدم التطبيق معرّف حساب تيليجرام واسم العرض وصورة الحساب إن توفرت، إضافةً إلى الرصيد والطاقة وتقدم اللعب والإحالات وبيانات السحب التي تدخلها.</p></div>'+
-      '<div class="policy-box"><h4>الخصوصية</h4><p>قد تتم معالجة البيانات عبر الخدمات اللازمة لتشغيل التطبيق مثل تيليجرام وفايربيس.</p></div>';
+      '<div class="policy-box"><h4>عن Puppy Merge</h4><p>لعبة دمج وترفيه تجمع فيها العملات والجواهر وتتقدم عبر المستويات والمهام والإحالات.</p></div><div class="policy-box"><h4>المعلومات المستخدمة</h4><p>يستخدم التطبيق معرّف حساب تيليجرام واسم العرض وصورة الحساب إن توفرت، إضافةً إلى الرصيد والطاقة وتقدم اللعب والإحالات وبيانات السحب التي تدخلها.</p></div><div class="policy-box"><h4>الخصوصية</h4><p>قد تتم معالجة البيانات عبر الخدمات اللازمة لتشغيل التطبيق مثل تيليجرام وفايربيس.</p></div>';
   }else{
     $('contentBody').innerHTML=
-      '<div class="policy-box"><h4>كيف تلعب؟</h4><p>بدّل أماكن القطع المتجاورة لتكوين ثلاثة حيوانات متشابهة أو أكثر. كل مستوى تكمله يمنحك +100 عملة، وكل 10 مستويات تحصل على +10 جواهر إضافية.</p></div>'+
-      '<div class="policy-box"><h4>لعبة الطيران</h4><p>اضغط لترتفع، تجنب الصبّار، واجمع العملات والجواهر. كل عبور موفق للعائق يمنحك +10 عملات، والفقاعات تعطي 1-5 جواهر.</p></div>'+
-      '<div class="policy-box"><h4>شراء الجواهر</h4><p>اختر تبويب النجوم أو الكريبتو أو Binance Pay أو شام كاش. عند التحويل اليدوي ضع معرّفك في الملاحظة.</p></div>'+
-      '<div class="policy-box"><h4>سحب الأموال</h4><p>اختر USDT Crypto للتحويل التلقائي الفوري إلى محفظتك (TRC20)، أو Binance Pay وSham Cash للمعالجة اليدوية خلال 24-72 ساعة.</p></div>';
+      '<div class="policy-box"><h4>كيف تلعب؟</h4><p>بدّل أماكن القطع المتجاورة لتكوين ثلاثة حيوانات متشابهة أو أكثر. كل مستوى تكمله يمنحك +100 عملة، وكل 10 مستويات تحصل على +10 جواهر إضافية.</p></div><div class="policy-box"><h4>لعبة الطيران</h4><p>اضغط لترتفع، تجنب الصبّار، واجمع العملات والجواهر. كل عبور موفق للعائق يمنحك +10 عملات، والفقاعات تعطي 1-5 جواهر.</p></div><div class="policy-box"><h4>شراء الجواهر</h4><p>اختر تبويب النجوم أو الكريبتو أو Binance Pay أو شام كاش. عند التحويل اليدوي ضع معرّفك في الملاحظة.</p></div><div class="policy-box"><h4>سحب الأموال</h4><p>اختر USDT Crypto للتحويل التلقائي الفوري إلى محفظتك (TRC20)، أو Binance Pay وSham Cash للمعالجة اليدوية خلال 24-72 ساعة.</p></div>';
   }
   $('contentModal').classList.add('show');
 }
 function closeContentModal(){$('contentModal').classList.remove('show')}
 
 /* =========================================================
-   FLY GAME (unchanged logic, canvas preserved)
+   FLY GAME
    ========================================================= */
 const FlyGame = (() => {
   const cvs = document.getElementById('flyCanvas');
@@ -2361,6 +2545,7 @@ const FlyGame = (() => {
     SZ.gr=clamp(VH*CFG.grR,CFG.grMin,CFG.grMax);
   }
 
+  /* صورة المستخدم: بدون crossOrigin لأن روابط تيليغرام لا ترسل CORS (الرسم على canvas لا يحتاجه) */
   let imgUrl=null;
   function loadImg(){
     const url=(S.user&&S.user.photoUrl)||(TG.user&&TG.user.photo_url)||null;
@@ -2418,7 +2603,7 @@ const FlyGame = (() => {
     for(let i=0;i<8;i++){
       const a=(Math.PI*2*i)/8+rng()*0.5,sp=90+rng()*120;
       st.par.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-60,life:.55+rng()*.35,max:.9,
-        col:i%3===0?'#fff':(i%2===0?'#FFB8D1':'#FE2B54'),r:2+rng()*2.5});
+        col:i%3===0?'#fff':(i%2===0?'#8CEBFF':'#59D7F2'),r:2+rng()*2.5});
     }
   }
 
@@ -2428,14 +2613,18 @@ const FlyGame = (() => {
     st.p.y+=st.p.vy*dt;
     const targetRot=clamp((st.p.vy/CFG.maxFall)*1.15,-.52,1.15);
     st.p.rot+=(targetRot-st.p.rot)*Math.min(1,dt*11);
+
     const dx=CFG.scroll*dt;
     st.worldX+=dx;
     st.dist=st.worldX/CFG.pxPerM;
+
     for(const o of st.obs)o.x-=dx;
     for(const b of st.bub)b.x-=dx;
+
     if(st.obs.length&&st.obs[0].x+st.obs[0].w<-60)st.obs.shift();
     const last=st.obs[st.obs.length-1];
     if(!last||last.x<VW-SZ.sp)spawnObs(last?last.x+SZ.sp:VW+80);
+
     for(const o of st.obs){
       if(!o.passed&&o.x+o.w<st.p.x-st.p.r){
         o.passed=true;st.pairs++;
@@ -2448,6 +2637,7 @@ const FlyGame = (() => {
         }
       }
     }
+
     const gY=VH-SZ.gr;
     const pr=st.p.r*0.88;
     for(const o of st.obs){
@@ -2457,6 +2647,7 @@ const FlyGame = (() => {
     }
     if(st.p.y+st.p.r>=gY){st.p.y=gY-st.p.r;over();return}
     if(st.p.y-st.p.r<0){st.p.y=st.p.r;if(st.p.vy<0)st.p.vy=0}
+
     for(const b of st.bub){
       if(b.collected)continue;
       const ddx=b.x-st.p.x,ddy=b.y-st.p.y,rr=b.r+st.p.r*0.95;
@@ -2470,6 +2661,7 @@ const FlyGame = (() => {
       }
     }
     if(st.bub.length)st.bub=st.bub.filter(b=>!b.collected&&b.x+b.r>-60);
+
     if(st.par.length){
       for(const pa of st.par){pa.vy+=420*dt;pa.x+=pa.vx*dt;pa.y+=pa.vy*dt;pa.life-=dt}
       st.par=st.par.filter(p=>p.life>0);
@@ -2615,11 +2807,11 @@ const FlyGame = (() => {
       if(b.collected)continue;
       const bob=Math.sin(t*2.4+b.seed)*4,cy=b.y+bob;
       const rg=g.createRadialGradient(b.x,cy,b.r*0.3,b.x,cy,b.r*1.9);
-      rg.addColorStop(0,'rgba(254,43,84,.55)');rg.addColorStop(1,'rgba(254,43,84,0)');
+      rg.addColorStop(0,'rgba(140,235,255,.75)');rg.addColorStop(1,'rgba(140,235,255,0)');
       g.fillStyle=rg;g.beginPath();g.arc(b.x,cy,b.r*1.9,0,Math.PI*2);g.fill();
       const bg=g.createRadialGradient(b.x-b.r*0.32,cy-b.r*0.32,b.r*0.1,b.x,cy,b.r);
-      bg.addColorStop(0,'rgba(255,255,255,.95)');bg.addColorStop(0.55,'rgba(254,43,84,.65)');
-      bg.addColorStop(1,'rgba(217,30,66,.6)');
+      bg.addColorStop(0,'rgba(255,255,255,.95)');bg.addColorStop(0.55,'rgba(140,235,255,.6)');
+      bg.addColorStop(1,'rgba(70,180,225,.5)');
       g.fillStyle=bg;g.beginPath();g.arc(b.x,cy,b.r,0,Math.PI*2);g.fill();
       g.strokeStyle='rgba(255,255,255,.95)';g.lineWidth=2;
       g.beginPath();g.arc(b.x,cy,b.r,0,Math.PI*2);g.stroke();
@@ -2636,7 +2828,7 @@ const FlyGame = (() => {
   function drawDiamond(g,x,y,s){
     g.save();g.translate(x,y);
     const gr=g.createLinearGradient(0,-s,0,s);
-    gr.addColorStop(0,'#FFE5EB');gr.addColorStop(.5,'#FE2B54');gr.addColorStop(1,'#B91C3B');
+    gr.addColorStop(0,'#E8FBFF');gr.addColorStop(.5,'#8CEBFF');gr.addColorStop(1,'#1B7FA8');
     g.fillStyle=gr;
     g.beginPath();g.moveTo(0,-s);g.lineTo(s*0.85,-s*0.15);g.lineTo(0,s);g.lineTo(-s*0.85,-s*0.15);g.closePath();
     g.fill();g.strokeStyle='#fff';g.lineWidth=1.5;g.stroke();
@@ -2663,7 +2855,7 @@ const FlyGame = (() => {
 
     g.save();g.translate(p.x,p.y);g.rotate(p.rot);
     const gl=g.createRadialGradient(0,0,r*0.85,0,0,r*1.7);
-    gl.addColorStop(0,'rgba(254,43,84,.55)');gl.addColorStop(1,'rgba(254,43,84,0)');
+    gl.addColorStop(0,'rgba(255,213,46,.55)');gl.addColorStop(1,'rgba(255,213,46,0)');
     g.fillStyle=gl;g.beginPath();g.arc(0,0,r*1.7,0,Math.PI*2);g.fill();
 
     g.save();g.translate(r*0.1,r*0.14);g.fillStyle='rgba(0,0,0,.28)';
@@ -2676,7 +2868,7 @@ const FlyGame = (() => {
       g.restore();
       g.strokeStyle='#fff';g.lineWidth=Math.max(2,r*0.1);
       g.beginPath();g.arc(0,0,r-g.lineWidth/2,0,Math.PI*2);g.stroke();
-      g.strokeStyle='rgba(254,43,84,.7)';g.lineWidth=Math.max(1,r*0.05);
+      g.strokeStyle='rgba(255,213,46,.7)';g.lineWidth=Math.max(1,r*0.05);
       g.beginPath();g.arc(0,0,r,0,Math.PI*2);g.stroke();
     } else {
       drawInitialAvatar(g,0,0,r);
@@ -2684,12 +2876,13 @@ const FlyGame = (() => {
     g.restore();
   }
 
+  /* بديل عند عدم توفر صورة المستخدم: أول حرف من اسمه */
   function drawInitialAvatar(g,cx,cy,r){
     const gr=g.createRadialGradient(cx-r*.3,cy-r*.3,r*.15,cx,cy,r);
-    gr.addColorStop(0,'#FFB8D1');gr.addColorStop(.55,'#FE2B54');gr.addColorStop(1,'#B91C3B');
+    gr.addColorStop(0,'#FFF3A8');gr.addColorStop(.55,'#FFD52E');gr.addColorStop(1,'#B97A00');
     g.fillStyle=gr;g.beginPath();g.arc(cx,cy,r,0,Math.PI*2);g.fill();
     const nm=((S.user&&S.user.name)||'').trim(),ch=nm?Array.from(nm)[0].toUpperCase():'?';
-    g.fillStyle='#fff';g.font='900 '+Math.round(r*1.1)+'px "Baloo Bhaijaan 2",sans-serif';
+    g.fillStyle='#5A3A00';g.font='900 '+Math.round(r*1.1)+'px "Baloo Bhaijaan 2",sans-serif';
     g.textAlign='center';g.textBaseline='middle';g.fillText(ch,cx,cy+r*.06);
     g.strokeStyle='#fff';g.lineWidth=Math.max(2,r*.1);
     g.beginPath();g.arc(cx,cy,r-g.lineWidth/2,0,Math.PI*2);g.stroke();
@@ -2698,6 +2891,7 @@ const FlyGame = (() => {
   function flap(){st.p.vy=CFG.flap}
 
   function tick(now){
+    /* إصلاح التجمّد: تصفير المعرّف عند التوقف حتى تعمل startLoop مجدداً */
     if(st.mode!=='playing'&&st.mode!=='ready'){st.raf=0;return}
     st.raf=requestAnimationFrame(tick);
     const dt=Math.min(0.1,Math.max(0,(now-st.lastT)/1000));
@@ -2726,6 +2920,7 @@ const FlyGame = (() => {
     if(st.mode==='playing'){flap();SFX.play('flap');e.preventDefault()}
   }
 
+  /* حفظ نتيجة الجولة مرة واحدة فقط */
   function commit(dist){
     if(st.committed)return false;
     st.committed=true;
@@ -2813,7 +3008,9 @@ const FlyGame = (() => {
     });
     window.addEventListener('resize',()=>{if($('screen-fly').classList.contains('active'))resize()});
     window.addEventListener('orientationchange',()=>{if($('screen-fly').classList.contains('active'))setTimeout(resize,150)});
-    document.addEventListener('visibilitychange',()=>{st.lastT=performance.now()});
+    document.addEventListener('visibilitychange',()=>{
+      st.lastT=performance.now();
+    });
   }
 
   return {enter,exit,replay,bind,resize,st,preload:loadImg};
@@ -2837,7 +3034,7 @@ const FlyBoard = {
   },
   async render(){
     const el=$('flyBoardScroll');
-    el.innerHTML='<div class="fly-board-empty"><i class="fas fa-spinner fa-spin"></i> جاري التحميل...</div>';
+    el.innerHTML='<div class="fly-board-empty">جاري التحميل...</div>';
     let entries=[];
     try{
       if(db){
@@ -2861,7 +3058,7 @@ const FlyBoard = {
     const top=entries.slice(0,50);
 
     if(top.length===0){
-      el.innerHTML='<div class="fly-board-empty"><i class="fas fa-trophy" style="font-size:36px;color:var(--gray-b);display:block;margin-bottom:12px"></i>لا يوجد سجل بعد — كن أول المتصدرين!</div>';
+      el.innerHTML='<div class="fly-board-empty">لا يوجد سجل بعد — كن أول المتصدرين!</div>';
       return;
     }
 
@@ -2893,7 +3090,7 @@ const FlyBoard = {
       html+=`<div class="fly-board-row${e.isMe?' me':''}">
         <div class="rk ${rkCls}">${r}</div>
         <div class="av">${rowPhoto}</div>
-        <div class="nm">${esc(e.name)}${e.isMe?' <span style="background:var(--pink);color:#fff;font-size:10px;padding:1px 6px;border-radius:6px;margin-inline-start:4px;font-weight:900">أنت</span>':''}</div>
+        <div class="nm">${esc(e.name)}${e.isMe?' <span style="background:#FFD52E;color:#5A3A00;font-size:10px;padding:1px 6px;border-radius:6px;margin-inline-start:4px;font-weight:900">أنت</span>':''}</div>
         <div class="dist">${fmt(e.best)} م</div>
       </div>`;
     });
@@ -2917,17 +3114,17 @@ const FlyBoard = {
 
 function drawAvatarHelper(g,cx,cy,r,variant){
   variant=variant||0;
-  const c1=['#FFB8D1','#D9F6FF','#FFE5EB','#E8FFD9','#FFE8D9'][variant%5];
-  const c2=['#FE2B54','#59D7F2','#FF8FB5','#7FE05A','#FFA95C'][variant%5];
-  const c3=['#B91C3B','#1B7FA8','#B8356A','#3E8A12','#B95A00'][variant%5];
+  const c1=['#FFF3A8','#D9F6FF','#FFD9E8','#E8FFD9','#FFE8D9'][variant%5];
+  const c2=['#FFD52E','#59D7F2','#FF8FB5','#7FE05A','#FFA95C'][variant%5];
+  const c3=['#B97A00','#1B7FA8','#B8356A','#3E8A12','#B95A00'][variant%5];
   const gr=g.createRadialGradient(cx-r*0.3,cy-r*0.3,r*0.15,cx,cy,r);
   gr.addColorStop(0,c1);gr.addColorStop(0.55,c2);gr.addColorStop(1,c3);
   g.fillStyle=gr;g.beginPath();g.arc(cx,cy,r,0,Math.PI*2);g.fill();
   g.save();g.beginPath();g.arc(cx,cy,r,0,Math.PI*2);g.clip();
-  g.fillStyle='#fff';
+  g.fillStyle='#6B4200';
   g.beginPath();g.moveTo(cx-r*0.72,cy-r*0.30);g.lineTo(cx-r*0.50,cy-r*0.92);g.lineTo(cx-r*0.12,cy-r*0.46);g.closePath();g.fill();
   g.beginPath();g.moveTo(cx+r*0.72,cy-r*0.30);g.lineTo(cx+r*0.50,cy-r*0.92);g.lineTo(cx+r*0.12,cy-r*0.46);g.closePath();g.fill();
-  g.fillStyle='#FFF3D0';g.beginPath();g.ellipse(cx,cy+r*0.06,r*0.72,r*0.68,0,0,Math.PI*2);g.fill();
+  g.fillStyle='#E8B866';g.beginPath();g.ellipse(cx,cy+r*0.06,r*0.72,r*0.68,0,0,Math.PI*2);g.fill();
   g.fillStyle='#FFF3D0';g.beginPath();g.ellipse(cx,cy+r*0.36,r*0.42,r*0.32,0,0,Math.PI*2);g.fill();
   g.fillStyle='#2A1B00';g.beginPath();g.arc(cx-r*0.28,cy-r*0.04,r*0.11,0,Math.PI*2);g.arc(cx+r*0.28,cy-r*0.04,r*0.11,0,Math.PI*2);g.fill();
   g.fillStyle='#fff';g.beginPath();g.arc(cx-r*0.25,cy-r*0.08,r*0.04,0,Math.PI*2);g.arc(cx+r*0.31,cy-r*0.08,r*0.04,0,Math.PI*2);g.fill();
@@ -2935,21 +3132,18 @@ function drawAvatarHelper(g,cx,cy,r,variant){
   g.strokeStyle='#2A1B00';g.lineWidth=Math.max(1.5,r*0.06);g.lineCap='round';
   g.beginPath();g.arc(cx-r*0.11,cy+r*0.30,r*0.13,0,Math.PI);g.stroke();
   g.beginPath();g.arc(cx+r*0.11,cy+r*0.30,r*0.13,0,Math.PI);g.stroke();
-  g.fillStyle='#FE2B54';g.beginPath();g.ellipse(cx,cy+r*0.50,r*0.11,r*0.09,0,0,Math.PI);g.fill();
+  g.fillStyle='#FF6B7E';g.beginPath();g.ellipse(cx,cy+r*0.50,r*0.11,r*0.09,0,0,Math.PI);g.fill();
   g.restore();
   g.strokeStyle='#fff';g.lineWidth=Math.max(2,r*0.10);
   g.beginPath();g.arc(cx,cy,r-g.lineWidth/2,0,Math.PI*2);g.stroke();
 }
 
-/* ═══ BIND ═══ */
+/* ═══ BOOT ═══ */
 function bind(){
   document.querySelectorAll('[data-nav]').forEach(b=>b.onclick=()=>go(b.dataset.nav));
   document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go(b.dataset.go));
-
-  // Header avatar
-  const ha=$('headerAvatar'); if(ha) ha.onclick=()=>go('profile');
-
-  // Play buttons
+  document.querySelectorAll('[data-click]').forEach(b=>b.onclick=()=>{const t=$(b.dataset.click);t&&t.click()});
+  $('headerAvatar').onclick=()=>go('profile');
   $('playBtn').onclick=async()=>{
     SFX.play('tap');
     if(TIME.locked)return toast('اللعب مجمد — وقت الجهاز غير صحيح','err');
@@ -2964,35 +3158,24 @@ function bind(){
   $('wheelSpinBtn').onclick=spinWheel;
   $('wheelAdBtn').onclick=watchWheelAd;
   $('energyAdBtn').onclick=watchEnergyAd;
-  $('openPolicy').onclick=()=>openContentModal('policy');
-  $('openHelp').onclick=()=>openContentModal('help');
-  $('contentClose').onclick=closeContentModal;
-  $('contentDone').onclick=closeContentModal;
+  $('openPolicy').onclick=()=>openContentModal('policy');$('openHelp').onclick=()=>openContentModal('help');
+  $('contentClose').onclick=closeContentModal;$('contentDone').onclick=closeContentModal;
   $('contentModal').onclick=e=>{if(e.target.id==='contentModal')closeContentModal()};
-
-  pick('#exAmounts','ex',updateEx);
-  pick('#wdAmounts','wd',updateWd);
-  document.querySelectorAll('.wd-method').forEach(el=>{el.onclick=()=>setWdMethod(el.dataset.method)});
-
-  $('exSubmit').onclick=doExchange;
-  $('wdSubmit').onclick=doWithdraw;
-
+  pick('#exAmounts','ex',updateEx);pick('#wdAmounts','wd',updateWd);
+  document.querySelectorAll('.wd-method').forEach(el=>{el.onclick=()=>setWdMethod(el.dataset.method);el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setWdMethod(el.dataset.method)}}});
+  $('exSubmit').onclick=doExchange;$('wdSubmit').onclick=doWithdraw;
   const link=()=>$('refLink').textContent;
   $('refShare').onclick=()=>TG.share(link(),'🐾 انضم إلى Puppy Merge واربح الجواهر!');
   $('codeCopy').onclick=()=>navigator.clipboard?navigator.clipboard.writeText($('refCode').textContent).then(()=>toast('تم نسخ المعرّف')):toast('تعذر النسخ','err');
   $('codeSubmit').onclick=()=>withBtn($('codeSubmit'),'جاري التحقق...',()=>applyCode($('codeInput').value.trim().replace(/^ref_/,'')));
+  document.addEventListener('click',e=>{if(e.target.closest('.btn,.btn-play,.energy-btn,.amt,.g-btn,.dock button,.quick-card,.menu-item,.menu button,.star-pack,.dep-tab,.header-avatar'))SFX.play('tap')});
   $('refCopy').onclick=()=>navigator.clipboard?navigator.clipboard.writeText(link()).then(()=>toast('تم نسخ الرابط')):toast('تعذر النسخ','err');
-
-  document.addEventListener('click',e=>{
-    if(e.target.closest('.btn,.amt,.g-btn,.dock button,.quick-card,.payment-method-card,.dep-tab,.menu-item,.menu button'))SFX.play('tap')
-  });
 
   buildMd();
   document.querySelectorAll('.dep-tab').forEach(b=>b.onclick=()=>setDepTab(b.dataset.tab));
-  document.addEventListener('click',e=>{const b=e.target.closest('[data-copy]');if(b){const el=$(b.dataset.copy);if(el)copyText(el.textContent.trim())}});
+  document.addEventListener('click',e=>{const b=e.target.closest('[data-copy]');if(b)copyText($(b.dataset.copy).textContent.trim())});
   document.querySelectorAll('#cryptoAmounts .amt').forEach(b=>b.onclick=()=>pickCryptoAmount(b));
-  const cu=$('cryptoCustomUsd');
-  if(cu) cu.oninput=function(){
+  $('cryptoCustomUsd').oninput=function(){
     const v=parseFloat(this.value);
     if(!isNaN(v)&&v>=CONFIG.shieldz.minUsd&&v<=CONFIG.shieldz.maxUsd){
       cryptoUsd=v;
@@ -3013,26 +3196,18 @@ function bind(){
     }
   });
 
-  // Fly game triggers
+  /* الطيران */
   $('flyPlayBtn').onclick=()=>{
     SFX.play('tap');
     if(TIME.locked)return toast('اللعب مجمد — وقت الجهاز غير صحيح','err');
     go('fly');
   };
-  const fq=$('flyQuickBtn');
-  if(fq) fq.onclick=()=>{
-    SFX.play('tap');
-    if(TIME.locked)return toast('اللعب مجمد — وقت الجهاز غير صحيح','err');
-    go('fly');
-  };
-
   FlyGame.bind();
 }
 
-/* ═══ BOOT ═══ */
 async function boot(){
   if(!TG.init()){
-    $('loader').innerHTML='<div style="padding:30px;text-align:center"><div style="width:100px;height:100px;border-radius:24px;background:var(--pink);margin:0 auto 16px;display:grid;place-items:center;color:#fff;font-size:46px"><i class="fas fa-paw"></i></div><h2 style="font-size:22px;font-weight:800;margin-bottom:10px">Puppy Merge</h2><p style="color:var(--gray);margin-bottom:20px">هذا التطبيق يعمل فقط داخل تليجرام.</p><a href="https://t.me/'+CONFIG.bot.username+'/'+CONFIG.bot.appName+'" style="display:inline-block;background:var(--pink);color:#fff;padding:12px 24px;border-radius:16px;text-decoration:none;font-weight:800">افتح البوت</a></div>';
+    $('loader').innerHTML='<div style="padding:30px"><div class="ico i-gold" style="margin:0 auto 16px;width:100px;height:100px;font-size:46px"><i class="fas fa-paw"></i></div><h2>Puppy Merge</h2><p style="margin:10px 0 20px">هذا التطبيق يعمل فقط داخل تليجرام.</p><a href="https://t.me/'+CONFIG.bot.username+'/'+CONFIG.bot.appName+'" class="btn b-y" style="text-decoration:none">افتح البوت</a></div>';
     return;
   }
 
@@ -3071,6 +3246,7 @@ async function boot(){
   try { bind(); } catch(e){ console.warn('Bind:', e); }
   try { renderAll(); } catch(e){ console.warn('Render:', e); }
   try { FlyGame.preload(); } catch(e){}
+  try { initLang(); } catch(e){ console.warn('Lang:', e); }
 
   setInterval(()=>{ 
     try { renderEnergy(); wheelTimer(); updateInvestmentsUI(); } catch(e){}
