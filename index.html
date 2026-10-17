@@ -29,7 +29,6 @@ input{font:inherit;color:inherit}
 .grow{flex:1;min-width:0}
 .ttl{font-size:14px;font-weight:800}
 .ico{width:46px;height:46px;border-radius:50%;flex-shrink:0;display:grid;place-items:center;font-size:20px;color:#fff;box-shadow:inset 0 -3px 0 rgba(0,0,0,.2),inset 0 3px 0 rgba(255,255,255,.4),0 3px 0 rgba(0,0,0,.12)}
-.ico img{width:70%;height:70%;object-fit:contain;display:block}
 .i-gold{background:radial-gradient(circle at 30% 25%,#FFF3A8,#FFD52E 45%,#B97A00)}
 .i-sky{background:radial-gradient(circle at 30% 25%,#CFF4FC,#59D7F2 45%,#1B7FA8)}
 .i-green{background:radial-gradient(circle at 30% 25%,#B7FFB8,#4BE51E 45%,#238A12)}
@@ -51,14 +50,12 @@ input{font:inherit;color:inherit}
 .b-off{background:#D5D5D5;color:var(--ink);box-shadow:0 4px 0 #A5A5A5;text-shadow:none}
 .loader{position:fixed;inset:0;z-index:9999;background:linear-gradient(180deg,#1A1F3A,#2A2F52);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;color:#fff;text-align:center;transition:opacity .4s}
 .loader.hide{opacity:0;pointer-events:none}
-.loader .ico{width:120px;height:120px;font-size:56px;animation:pu 1.4s infinite;background:transparent;box-shadow:none}
-.loader .ico img{width:100%;height:100%}
+.loader .ico{width:120px;height:120px;font-size:56px;animation:pu 1.4s infinite}
 @keyframes pu{50%{transform:scale(1.07)}}
-.top{display:flex;gap:10px;padding:10px 12px 6px;align-items:center}
-.pill{flex:1;min-width:0;height:40px;border-radius:0;padding:0;display:flex;align-items:center;gap:6px;font-weight:800;background:transparent;border:none;box-shadow:none}
-.pill .ico{width:34px;height:34px;font-size:14px;background:transparent!important;box-shadow:none!important}
-.pill .ico img{width:100%;height:100%}
-.pill b{font-size:15px;direction:ltr;display:block;line-height:1.1;color:var(--ink)}
+.top{display:flex;gap:6px;padding:10px 10px 6px}
+.pill{flex:1;min-width:0;height:44px;border-radius:22px;padding:0 8px 0 4px;display:flex;align-items:center;gap:6px;font-weight:800;background:linear-gradient(180deg,#fff,var(--cream) 60%,#E8FAFF);border:2px solid var(--edge);box-shadow:0 3px 0 var(--edge-d),inset 0 2px 0 rgba(255,255,255,.7)}
+.pill .ico{width:32px;height:32px;font-size:14px}
+.pill b{font-size:14px;direction:ltr;display:block;line-height:1.1}
 .pill small{font-size:9px;color:var(--ink2);direction:ltr;display:block}
 .hero{border-radius:28px;padding:18px 16px;margin-bottom:12px;text-align:center;border:3px solid var(--gold-d);background:linear-gradient(160deg,#FFE95C,#FFD52E 55%,#F4B900);box-shadow:0 6px 0 #8A5A00,0 12px 24px rgba(0,0,0,.15),inset 0 3px 0 rgba(255,255,255,.6)}
 .hero .lv{display:inline-flex;gap:6px;align-items:center;background:#fff;padding:4px 14px;border-radius:16px;font-weight:800;font-size:12px;margin-bottom:10px}
@@ -118,21 +115,17 @@ input{font:inherit;color:inherit}
 .m-card{display:flex;align-items:center;gap:10px;padding:12px;margin-bottom:10px}
 .m-card .ico{width:50px;height:50px}
 .rw{display:inline-flex;gap:5px;align-items:center;padding:2px 9px;margin-left:3px;border-radius:10px;background:rgba(255,213,46,.35);border:1.5px solid rgba(139,90,0,.3);font-size:11.5px;font-weight:800;color:var(--gold-d)}
-.rw img{width:14px;height:14px;object-fit:contain;vertical-align:middle}
 .prog{display:flex;gap:6px;align-items:center;font-size:11px;font-weight:800;color:var(--sky-d);direction:ltr;margin-top:4px}
 .prog .bar{flex:1;height:7px}
 .hero2{border-radius:28px;padding:20px 16px;text-align:center;margin-bottom:14px;color:var(--ink);border:3px solid var(--edge);background:linear-gradient(160deg,#FFFDF0,#FFF3B8 55%,#CFF4FC);box-shadow:0 6px 0 var(--edge-d),0 12px 24px rgba(0,0,0,.1),inset 0 3px 0 rgba(255,255,255,.8)}
 .hero2 .ico{width:46px;height:46px;margin:0 auto 6px}
 .hero2 .big{font-size:34px;font-weight:900;direction:ltr;line-height:1.1}
-.hero2 .big img{width:28px;height:28px;object-fit:contain;vertical-align:middle}
 .amts{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
 .amt{padding:10px 4px;border-radius:12px;background:#FFF9E8;border:2px solid #CFF4FC;font-size:12px;font-weight:800;color:var(--gold-d)}
-.amt img{width:13px;height:13px;object-fit:contain;vertical-align:middle}
 .amt.on{background:linear-gradient(180deg,#FFE95C,#F4B900);color:var(--ink);border-color:var(--gold-d)}
 .info{background:#FFF9E8;border-radius:14px;padding:6px 12px;margin-bottom:12px;border:1.5px solid #CFF4FC}
 .info div{display:flex;justify-content:space-between;padding:7px 0;font-size:13px;font-weight:700;color:var(--ink2)}
 .info div+div{border-top:1px dashed #CFF4FC}.info b{color:var(--ink);direction:ltr}
-.info b img{width:14px;height:14px;object-fit:contain;vertical-align:middle}
 .inp{width:100%;height:52px;padding:0 16px;border-radius:16px;background:#FFF9E8;border:2px solid #CFF4FC;font-weight:800;outline:none;direction:ltr;text-align:left;margin-top:8px}
 .inp:focus{border-color:var(--gold)}
 .hist{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:11px 14px;margin-bottom:8px;border-radius:16px;border-width:2px}
@@ -178,8 +171,7 @@ input{font:inherit;color:inherit}
 .content-body p{font-size:12.5px;margin:0 0 8px;color:var(--ink2)}
 .content-body .policy-box{background:#FFF9E8;border:1.5px solid var(--edge);border-radius:13px;padding:10px;margin-bottom:9px}
 .modal .ico{width:80px;height:80px;font-size:38px;margin:0 auto 12px}
-.m-amt{font-size:32px;font-weight:900;direction:ltr;color:var(--gold-d);margin:6px 0 16px;display:flex;align-items:center;justify-content:center;gap:8px}
-.m-amt img{width:30px;height:30px;object-fit:contain}
+.m-amt{font-size:32px;font-weight:900;direction:ltr;color:var(--gold-d);margin:6px 0 16px}
 .toast{position:fixed;top:16px;left:50%;transform:translate(-50%,-200px);z-index:2000;padding:11px 18px;border-radius:22px;font-weight:800;font-size:13.5px;max-width:90%;background:#fff;border:2.5px solid var(--edge);box-shadow:0 5px 0 var(--edge-d);transition:transform .35s cubic-bezier(.34,1.4,.64,1);pointer-events:none}
 .toast.show{transform:translate(-50%,0)}
 .toast.err{border-color:var(--red)}
@@ -221,7 +213,6 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 .invest-banner .paw{font-size:34px;margin-bottom:6px;animation:bn 2s infinite}
 .invest-banner .amount{font-size:38px;font-weight:900;direction:ltr;line-height:1;text-shadow:0 3px 0 rgba(0,0,0,.25)}
 .invest-banner .label{font-size:12px;font-weight:800;margin-top:4px;text-shadow:0 1px 0 rgba(0,0,0,.2)}
-.invest-banner .label img{width:14px;height:14px;object-fit:contain;vertical-align:middle}
 .invest-banner .collect-btn{margin-top:12px;height:52px;background:linear-gradient(180deg,#fff,#FFF9E8);color:var(--green-d);box-shadow:0 5px 0 rgba(0,0,0,.2),inset 0 3px 0 rgba(255,255,255,.7)}
 .invest-active-card{border-color:var(--green-d);background:linear-gradient(180deg,#fff,#E8FFE8 60%,#DFF7DF)}
 .invest-locked{opacity:.75;filter:grayscale(.3)}
@@ -235,8 +226,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 #flyCanvas{display:block;width:100%;height:100%;touch-action:none}
 .fly-hud{position:absolute;top:0;left:0;right:0;padding:calc(10px + env(safe-area-inset-top,0px)) 12px 12px;display:flex;justify-content:space-between;align-items:flex-start;pointer-events:none;z-index:5;gap:8px}
 .fly-pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.82);border:2px solid rgba(255,255,255,.95);border-radius:999px;padding:6px 12px;font-weight:800;font-size:13px;color:var(--ink);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 3px 8px rgba(0,0,0,.15)}
-.fly-pill .ico{width:20px;height:20px;font-size:10px;background:transparent!important;box-shadow:none!important}
-.fly-pill .ico img{width:100%;height:100%}
+.fly-pill .ico{width:20px;height:20px;font-size:10px}
 .fly-pill b{direction:ltr;font-variant-numeric:tabular-nums}
 .fly-pill.dist{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);font-size:15px;padding:7px 14px;z-index:5}
 .fly-pill.dist b{font-size:17px;margin:0 3px}
@@ -272,8 +262,6 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 .fly-over-best{margin-top:8px;font-size:13px;font-weight:800;color:var(--sky-d)}
 .fly-over-rewgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .fly-over-rewgrid .card{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 8px}
-.fly-over-rewgrid .ico{background:transparent!important;box-shadow:none!important}
-.fly-over-rewgrid .ico img{width:100%;height:100%}
 .fly-over-rewgrid b{font-size:24px;direction:ltr;line-height:1}
 .fly-over-actions{display:flex;flex-direction:column;gap:12px;padding-top:12px}
 .fly-link-board{color:var(--ink);font-size:16px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:8px;padding:8px}
@@ -310,15 +298,15 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 <body>
 
 <div class="loader" id="loader">
-  <div class="ico i-gold"><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt=""></div>
+  <div class="ico i-gold"><i class="fas fa-paw"></i></div>
   <h2>Puppy Merge</h2><div>دمج الجراء</div>
 </div>
 
 <div class="app" id="app" style="display:none">
   <div class="sky" aria-hidden="true"><i class="fas fa-cloud"></i><i class="fas fa-cloud"></i><i class="fas fa-cloud"></i><i class="fas fa-cloud"></i></div><div class="grass"></div>
   <div class="top">
-    <div class="pill"><span class="ico"><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="جواهر"></span><div><b id="gemTop">0</b><small id="gemUsd">$0.00</small></div></div>
-    <div class="pill"><span class="ico"><img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt="رصيد"></span><b id="coinTop">0</b></div>
+    <div class="pill"><span class="ico i-sky"><i class="fas fa-gem"></i></span><div><b id="gemTop">0</b><small id="gemUsd">$0.00</small></div></div>
+    <div class="pill"><span class="ico i-gold"><i class="fas fa-coins"></i></span><b id="coinTop">0</b></div>
     <div class="pill" style="flex:0 0 auto;min-width:78px"><span class="ico i-green"><i class="fas fa-bolt"></i></span><b id="energyTop">10</b></div>
   </div>
 
@@ -372,8 +360,8 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 
       <button class="card" data-go="deposit" style="width:100%;text-align:start;margin-top:10px">
         <div class="row">
-          <span class="ico i-gold" style="width:50px;height:50px;font-size:22px"><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="جواهر"></span>
-          <div class="grow"><div class="ttl">شراء الجواهر</div><div class="sub">نجوم أو كريبتو أو Binance أو شام كاش</div></div>
+          <span class="ico i-gold" style="width:50px;height:50px;font-size:22px"><i class="fas fa-gem"></i></span>
+          <div class="grow"><div class="ttl">شراء الجواهر</div><div class="sub">نجوم ⭐ أو كريبتو 💎 أو Binance أو شام كاش</div></div>
           <i class="fas fa-chevron-left" style="color:var(--ink2)"></i>
         </div>
       </button>
@@ -435,15 +423,15 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 
     <!-- EXCHANGE -->
     <section class="screen" id="screen-exchange">
-      <div class="hero2"><div class="ico i-green"><i class="fas fa-right-left"></i></div><div class="ttl" style="font-size:19px">تبديل العملات</div><div class="sub">اتجاه واحد فقط: 1000 <img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" style="width:14px;height:14px;vertical-align:middle"> = 10 <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" style="width:14px;height:14px;vertical-align:middle"></div></div>
+      <div class="hero2"><div class="ico i-green"><i class="fas fa-right-left"></i></div><div class="ttl" style="font-size:19px">تبديل العملات</div><div class="sub">اتجاه واحد فقط: 1000 🪙 = 10 💎</div></div>
       <div class="card">
         <div class="ttl" style="margin-bottom:10px">اختر عدد العملات</div>
         <div class="amts" id="exAmounts">
-          <button class="amt" data-amt="10000">10,000 <img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt=""> </button><button class="amt" data-amt="50000">50,000 <img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt=""> </button><button class="amt" data-amt="100000">100,000 <img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt=""> </button>
-          <button class="amt" data-amt="250000">250,000 <img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt=""> </button><button class="amt" data-amt="500000">500,000 <img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt=""> </button><button class="amt" data-amt="1000000">1,000,000 <img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt=""> </button>
+          <button class="amt" data-amt="10000">10,000 🪙</button><button class="amt" data-amt="50000">50,000 🪙</button><button class="amt" data-amt="100000">100,000 🪙</button>
+          <button class="amt" data-amt="250000">250,000 🪙</button><button class="amt" data-amt="500000">500,000 🪙</button><button class="amt" data-amt="1000000">1,000,000 🪙</button>
         </div>
       </div>
-      <div class="info"><div>العملات المُحوّلة<b id="exChosen">0 <img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" style="width:14px;height:14px;vertical-align:middle"> </b></div><div>الجواهر المستقبلة<b id="exReceive">0 <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" style="width:14px;height:14px;vertical-align:middle"> </b></div><div>رصيدك<b id="exBal">0 <img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" style="width:14px;height:14px;vertical-align:middle"> </b></div></div>
+      <div class="info"><div>العملات المُحوّلة<b id="exChosen">0 🪙</b></div><div>الجواهر المستقبلة<b id="exReceive">0 💎</b></div><div>رصيدك<b id="exBal">0 🪙</b></div></div>
       <button class="btn b-g" id="exSubmit"><i class="fas fa-right-left"></i> تبديل الآن</button>
     </section>
 
@@ -458,7 +446,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
       <div class="invest-banner" id="investBanner" style="display:none">
         <div class="paw"><i class="fas fa-paw"></i></div>
         <div class="amount" id="investTotalPending">0</div>
-        <div class="label"><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" style="width:14px;height:14px;vertical-align:middle"> متاح للجمع الآن</div>
+        <div class="label">💎 متاح للجمع الآن</div>
         <button class="btn collect-btn" id="investCollectAllBtn" style="margin-top:12px">
           <i class="fas fa-hand-holding-heart"></i> جمع الكل
         </button>
@@ -473,7 +461,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
     <!-- DEPOSIT -->
     <section class="screen" id="screen-deposit">
       <div class="hero2">
-        <div class="ico i-gold"><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="جواهر"></div>
+        <div class="ico i-gold"><i class="fas fa-gem"></i></div>
         <div class="ttl" style="font-size:19px">شراء الجواهر</div>
         <div class="sub">اختر طريقة الشراء المناسبة لك</div>
       </div>
@@ -490,7 +478,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
           <div class="row" style="margin-bottom:12px">
             <span class="ico i-gold" style="width:52px;height:52px"><i class="fas fa-star"></i></span>
             <div class="grow">
-              <div class="ttl">100 <i class="fas fa-star" style="color:#FFD52E"></i> = 10,000 <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" style="width:16px;height:16px;vertical-align:middle"></div>
+              <div class="ttl">100 ⭐ = 10,000 💎</div>
               <div class="sub">كل نجمة تساوي 100 جوهرة</div>
             </div>
           </div>
@@ -498,8 +486,8 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
         </div>
         <div id="starPackages" style="display:grid;gap:10px"></div>
         <div class="info" style="margin-top:14px">
-          <div>رصيدك الحالي <b id="depGemsStars">0 <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" style="width:14px;height:14px;vertical-align:middle"></b></div>
-          <div>طريقة الدفع <b>نجوم تلغرام <i class="fas fa-star" style="color:#FFD52E"></i></b></div>
+          <div>رصيدك الحالي <b id="depGemsStars">0 💎</b></div>
+          <div>طريقة الدفع <b>نجوم تلغرام ⭐</b></div>
         </div>
         <div class="card" style="text-align:center;font-size:12px;color:var(--ink2)">
           <i class="fas fa-shield-halved" style="color:var(--sky-d)"></i>
@@ -527,7 +515,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
           <div class="row" style="margin-bottom:12px">
             <span class="ico i-sky" style="width:52px;height:52px"><i class="fas fa-coins"></i></span>
             <div class="grow">
-              <div class="ttl">ادفع بالكريبتو <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" style="width:14px;height:14px;vertical-align:middle"></div>
+              <div class="ttl">ادفع بالكريبتو 💎</div>
               <div class="sub">USDC / USDT / BTC / ZEC — بدون رسوم إضافية</div>
             </div>
           </div>
@@ -549,8 +537,8 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 
         <div class="info">
           <div>مبلغ الشراء <b id="cryptoChosenUsd">$0.00</b></div>
-          <div>الجواهر المستقبلة <b id="cryptoReceiveGems">0 <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" style="width:14px;height:14px;vertical-align:middle"></b></div>
-          <div>رصيدك الحالي <b id="depGemsCrypto">0 <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" style="width:14px;height:14px;vertical-align:middle"></b></div>
+          <div>الجواهر المستقبلة <b id="cryptoReceiveGems">0 💎</b></div>
+          <div>رصيدك الحالي <b id="depGemsCrypto">0 💎</b></div>
         </div>
 
         <button class="btn b-g" id="cryptoPayBtn" style="margin-top:10px" disabled>
@@ -569,35 +557,35 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 
     <!-- WITHDRAW -->
     <section class="screen" id="screen-withdraw">
-      <div class="hero2"><div class="sub">رصيدك القابل للسحب</div><div class="big"><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" style="width:28px;height:28px;vertical-align:middle"> <span id="wdGems">0</span></div><div class="ttl" id="wdUsd">$0.00</div></div>
+      <div class="hero2"><div class="sub">رصيدك القابل للسحب</div><div class="big"><i class="fas fa-gem" style="color:var(--sky-d)"></i> <span id="wdGems">0</span></div><div class="ttl" id="wdUsd">$0.00</div></div>
       <div class="ttl" style="margin:4px 0 10px">اختر طريقة السحب</div>
 
       <div class="card row wd-method selected" data-method="usdt_crypto" role="button" tabindex="0" style="border-color:var(--gold-d)">
         <span class="ico i-green" style="width:46px;height:46px;font-size:22px"><i class="fas fa-coins"></i></span>
         <div class="grow">
           <div class="ttl">USDT Crypto <span class="pack-tag best" style="font-size:9px">تلقائي</span></div>
-          <div class="sub">الحد الأدنى 5,000 <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" style="width:12px;height:12px;vertical-align:middle"> = $0.40</div>
+          <div class="sub">الحد الأدنى 5,000 💎 = $0.40</div>
         </div>
         <i class="fas fa-circle-check wd-check" style="color:var(--green-d);font-size:22px"></i>
       </div>
 
       <div class="card row wd-method" data-method="binance" role="button" tabindex="0">
         <img src="https://up6.cc/2026/09/178982889076391.png" alt="Binance" style="width:46px;height:46px;object-fit:contain;border-radius:12px" onerror="this.style.display='none'">
-        <div class="grow"><div class="ttl">Binance Pay</div><div class="sub">الحد الأدنى 5,000 <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" style="width:12px;height:12px;vertical-align:middle"> = $0.40</div></div>
+        <div class="grow"><div class="ttl">Binance Pay</div><div class="sub">الحد الأدنى 5,000 💎 = $0.40</div></div>
         <i class="fas fa-circle-check wd-check" style="color:var(--green-d);font-size:22px;visibility:hidden"></i>
       </div>
 
       <div class="card row wd-method" data-method="sham_cash" role="button" tabindex="0">
         <img src="https://up6.cc/2026/09/178975725154411.png" alt="Sham Cash" style="width:46px;height:46px;object-fit:contain;border-radius:12px" onerror="this.style.display='none'">
-        <div class="grow"><div class="ttl">Sham Cash — شام كاش</div><div class="sub">الحد الأدنى 1,000 <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" style="width:12px;height:12px;vertical-align:middle"> = 10 SYP</div></div>
+        <div class="grow"><div class="ttl">Sham Cash — شام كاش</div><div class="sub">الحد الأدنى 1,000 💎 = 10 SYP</div></div>
         <i class="fas fa-circle-check wd-check" style="color:var(--green-d);font-size:22px;visibility:hidden"></i>
       </div>
 
       <div class="card">
         <div class="ttl" style="margin-bottom:10px">اختر المبلغ</div>
         <div class="amts" id="wdAmounts" style="grid-template-columns:1fr 1fr">
-          <button class="amt" data-amt="5000">5,000 <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt=""> </button><button class="amt" data-amt="10000">10,000 <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt=""> </button>
-          <button class="amt" data-amt="50000">50,000 <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt=""> </button><button class="amt" data-amt="100000">100,000 <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt=""> </button>
+          <button class="amt" data-amt="5000">5,000 💎</button><button class="amt" data-amt="10000">10,000 💎</button>
+          <button class="amt" data-amt="50000">50,000 💎</button><button class="amt" data-amt="100000">100,000 💎</button>
         </div>
       </div>
 
@@ -607,7 +595,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
         <input class="inp" id="wdAccount" placeholder="T..." autocomplete="off">
       </div>
 
-      <div class="info"><div>المبلغ المختار<b id="wdChosen">0 <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" style="width:14px;height:14px;vertical-align:middle"></b></div><div>ما يعادل<b id="wdReceive">$0.00</b></div></div>
+      <div class="info"><div>المبلغ المختار<b id="wdChosen">0 💎</b></div><div>ما يعادل<b id="wdReceive">$0.00</b></div></div>
       <button class="btn b-g" id="wdSubmit"><i class="fas fa-paper-plane"></i> تقديم طلب السحب</button>
 
       <div class="card" style="text-align:center;font-size:11.5px;color:var(--ink2);border-color:var(--sky-d);margin-top:10px">
@@ -628,13 +616,13 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
         <div class="sub"><i class="fas fa-fingerprint"></i> <span id="profId">--------</span></div>
       </div>
       <div class="stats">
-        <div class="card"><span class="ico i-gold"><img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt="رصيد"></span><div><b id="profCoins">0</b><span class="sub">عملات</span></div></div>
-        <div class="card"><span class="ico i-sky"><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="جواهر"></span><div><b id="profGems">0</b><span class="sub">جواهر</span></div></div>
+        <div class="card"><span class="ico i-gold"><i class="fas fa-coins"></i></span><div><b id="profCoins">0</b><span class="sub">عملات</span></div></div>
+        <div class="card"><span class="ico i-sky"><i class="fas fa-gem"></i></span><div><b id="profGems">0</b><span class="sub">جواهر</span></div></div>
         <div class="card"><span class="ico i-green"><i class="fas fa-trophy"></i></span><div><b id="profLevel">1</b><span class="sub">المستوى</span></div></div>
         <div class="card"><span class="ico i-sky"><i class="fas fa-users"></i></span><div><b id="profRefs">0</b><span class="sub">إحالات</span></div></div>
       </div>
       <div class="card menu">
-        <button data-go="deposit"><span class="ico i-gold"><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="جواهر"></span><span class="grow">شراء الجواهر</span><i class="fas fa-chevron-left"></i></button>
+        <button data-go="deposit"><span class="ico i-gold"><i class="fas fa-gem"></i></span><span class="grow">شراء الجواهر</span><i class="fas fa-chevron-left"></i></button>
         <button data-go="exchange"><span class="ico i-green"><i class="fas fa-right-left"></i></span><span class="grow">تبديل العملات</span><i class="fas fa-chevron-left"></i></button>
         <button data-go="withdraw"><span class="ico i-gold"><i class="fas fa-money-bill-transfer"></i></span><span class="grow">سحب الأموال</span><i class="fas fa-chevron-left"></i></button>
         <button id="openPolicy"><span class="ico i-sky"><i class="fas fa-shield-halved"></i></span><span class="grow">معلومات التطبيق وسياسة الخصوصية</span><i class="fas fa-chevron-left"></i></button>
@@ -646,23 +634,23 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
     <section class="screen" id="screen-referral">
       <div class="sec"><span class="ico i-gold"><i class="fas fa-user-plus"></i></span> دعوة الأصدقاء</div>
       <div class="card" id="enterCard" style="display:none">
-        <div class="ttl">هل دعاك صديق؟</div><div class="sub">أدخل معرّف الدعوة لتحصل على +20 <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" style="width:13px;height:13px;vertical-align:middle"></div>
+        <div class="ttl">هل دعاك صديق؟</div><div class="sub">أدخل معرّف الدعوة لتحصل على +20 💎</div>
         <input class="inp" id="codeInput" inputmode="numeric" placeholder="معرّف الدعوة">
         <button class="btn b-g" id="codeSubmit" style="margin-top:10px"><i class="fas fa-check"></i> تأكيد الكود</button>
       </div>
       <div class="card">
         <div class="duo">
-          <div class="tileR me"><div class="ico i-sky"><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="جواهر"></div><b>+50</b><span class="sub">إجمالي مكافآت الدعوة (مقسمة)</span></div>
+          <div class="tileR me"><div class="ico i-sky"><i class="fas fa-gem"></i></div><b>+50</b><span class="sub">إجمالي مكافآت الدعوة (مقسمة)</span></div>
           <div class="tileR"><div class="ico i-green"><i class="fas fa-gift"></i></div><b>+20</b><span class="sub">هدية ترحيب لصديقك</span></div>
         </div>
         <div class="card" style="margin-bottom:10px;padding:10px;background:#FFF9E8">
           <div class="ttl" style="margin-bottom:6px;font-size:13px"><i class="fas fa-list-check"></i> شروط المكافآت</div>
           <div class="row" style="padding:4px 0;font-size:12px;font-weight:700">
-            <span class="rw" style="margin:0">+25 <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt=""></span>
+            <span class="rw" style="margin:0">+25 💎</span>
             <span class="grow">عند وصول صديقك للمستوى 5</span>
           </div>
           <div class="row" style="padding:4px 0;font-size:12px;font-weight:700">
-            <span class="rw" style="margin:0">+25 <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt=""></span>
+            <span class="rw" style="margin:0">+25 💎</span>
             <span class="grow">عند وصول صديقك للمستوى 10</span>
           </div>
         </div>
@@ -677,7 +665,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
         <button class="btn b-g" id="refShare"><i class="fas fa-paper-plane"></i> مشاركة الرابط</button>
         <div style="height:10px"></div>
         <button class="btn b-y" id="refCopy"><i class="fas fa-copy"></i> نسخ الرابط</button>
-        <div class="mini"><div><i class="fas fa-users"></i><b id="refCount">0</b><span>عدد الدعوات</span></div><div class="sep"></div><div><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" style="width:18px;height:18px;vertical-align:middle"><b id="refEarn">0</b><span>أرباح الدعوات</span></div></div>
+        <div class="mini"><div><i class="fas fa-users"></i><b id="refCount">0</b><span>عدد الدعوات</span></div><div class="sep"></div><div><i class="fas fa-gem"></i><b id="refEarn">0</b><span>أرباح الدعوات</span></div></div>
       </div>
       <div class="sec"><span class="ico i-gold"><i class="fas fa-crown"></i></span> أعلى 10 دعوات</div>
       <div class="card" id="lbList" style="padding:8px"><div class="empty">جاري التحميل...</div></div>
@@ -698,8 +686,8 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
       <canvas id="flyCanvas"></canvas>
       <div class="fly-hud">
         <div class="fly-pills-row">
-          <div class="fly-pill"><span class="ico"><img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt="عملات"></span><b id="flyHudCoins">0</b></div>
-          <div class="fly-pill"><span class="ico"><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="جواهر"></span><b id="flyHudDiamonds">0</b></div>
+          <div class="fly-pill"><span class="ico i-gold"><i class="fas fa-coins"></i></span><b id="flyHudCoins">0</b></div>
+          <div class="fly-pill"><span class="ico i-sky"><i class="fas fa-gem"></i></span><b id="flyHudDiamonds">0</b></div>
         </div>
       </div>
       <div class="fly-pill dist"><i class="fas fa-ruler-horizontal" style="color:var(--sky-d);font-size:13px"></i><b id="flyHudDist">0</b><span style="font-size:11px;opacity:.7">م</span></div>
@@ -736,8 +724,8 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
               <div class="fly-over-best" id="flyOverBest"></div>
             </div>
             <div class="fly-over-rewgrid">
-              <div class="card"><span class="ico"><img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt="عملات"></span><b id="flyOverCoins">0</b><span class="sub">عملات</span></div>
-              <div class="card"><span class="ico"><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="جواهر"></span><b id="flyOverGems">0</b><span class="sub">جواهر</span></div>
+              <div class="card"><span class="ico i-gold"><i class="fas fa-coins"></i></span><b id="flyOverCoins">0</b><span class="sub">عملات</span></div>
+              <div class="card"><span class="ico i-sky"><i class="fas fa-gem"></i></span><b id="flyOverGems">0</b><span class="sub">جواهر</span></div>
             </div>
           </div>
           <div class="fly-over-actions">
@@ -854,23 +842,8 @@ const usd=g=>(g*CONFIG.wd.rate).toFixed(2);
 const today=()=>new Date(TIME.now()).toISOString().slice(0,10);
 const pad=n=>String(n).padStart(2,'0');
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
-
-/* ═══ أيقونات موحدة ═══ */
-const GEM_ICON = '<img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="جواهر" style="width:1em;height:1em;vertical-align:middle">';
-const COIN_ICON = '<img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt="رصيد" style="width:1em;height:1em;vertical-align:middle">';
-
-const rewardHtml=r=>{
-  let html='';
-  if(r.gems) html+='<span class="rw">'+GEM_ICON+' '+r.gems+'</span>';
-  if(r.coins) html+='<span class="rw">'+COIN_ICON+' '+r.coins+'</span>';
-  return html;
-};
-const rewardTxt=r=>{
-  let txt='';
-  if(r.coins) txt+='+'+r.coins+' '+COIN_ICON;
-  if(r.gems) txt+=(txt?' + ':'+')+r.gems+' '+GEM_ICON;
-  return txt;
-};
+const rewardHtml=r=>(r.gems?'<span class="rw"><i class="fas fa-gem"></i>'+r.gems+'</span>':'')+(r.coins?'<span class="rw"><i class="fas fa-coins"></i>'+r.coins+'</span>':'');
+const rewardTxt=r=>'+'+(r.coins||0)+' 🪙'+(r.gems?' + '+r.gems+' 💎':'');
 
 /* ═══ SFX ═══ */
 const SFX={ctx:null,
@@ -928,7 +901,7 @@ function showModal(o){
   $('mIcon').className='ico '+(o.type==='lose'?'i-red':o.type==='info'?'i-sky':'i-gold');
   $('mIcon').innerHTML='<i class="fas '+(o.icon||'fa-check')+'"></i>';
   $('mTitle').textContent=o.title||'';$('mSub').textContent=o.sub||'';
-  $('mAmt').innerHTML=o.amount||'';$('mAmt').style.display=o.amount?'flex':'none';
+  $('mAmt').textContent=o.amount||'';$('mAmt').style.display=o.amount?'block':'none';
   $('mBtn').querySelector('span').textContent=o.btn||'موافق';
   $('mBtn').onclick=()=>{closeModal();o.onClose&&o.onClose()};
   $('modal').classList.add('show');
@@ -966,7 +939,7 @@ function renderAll(){
   $('profAvatar').innerHTML=u.photoUrl?'<img src="'+esc(u.photoUrl)+'" referrerpolicy="no-referrer" onerror="this.parentElement.innerHTML=\'<i class=\\\'fas fa-dog\\\'></i>\'">':'<i class="fas fa-dog"></i>';
   $('wdGems').textContent=fmt(u.gems);$('wdUsd').textContent='$'+usd(u.gems||0);
   $('refLink').textContent='https://t.me/'+CONFIG.bot.username+'/'+CONFIG.bot.appName+'?startapp=ref_'+(u.referralCode||TG.id);
-  $('exBal').innerHTML=fmt(u.coins)+' '+COIN_ICON;
+  $('exBal').textContent=fmt(u.coins)+' 🪙';
   $('refCount').textContent=u.referralCount||0;$('refEarn').textContent=fmt(u.referralEarnings||0);$('refCode').textContent=u.referralCode||TG.id;
   $('enterCard').style.display=u.referralUsed?'none':'block';
   $('wheelBadge').style.display=spinsLeft()>0?'inline-block':'none';
@@ -1076,8 +1049,8 @@ const Game={size:6,board:[],els:[],score:0,moves:0,target:0,level:1,sel:null,bus
     await save({totalScore:u.totalScore,completedLevels:u.completedLevels,level:u.level});
     SFX.play('win');renderAll();
     checkReferralMilestones(TG.id, next).catch(e=>console.warn(e));
-    const rewardLines = `+${coinReward} ${COIN_ICON}` + (gemReward ? ` +${gemReward} ${GEM_ICON}` : '');
-    showModal({icon:gemReward?'fa-gem':'fa-trophy',title:gemReward?'مستوى مميز!':'المستوى '+this.level,sub:rewardLines,amount:'',btn:'التالي',
+    const rewardLines = `+${coinReward} 🪙` + (gemReward ? ` +${gemReward} 💎` : '');
+    showModal({icon:gemReward?'fa-gem':'fa-trophy',title:gemReward?'🎉 مستوى مميز!':'المستوى '+this.level,sub:rewardLines,amount:'',btn:'التالي',
       onClose:()=>Energy.cur(S.user)>0?Game.start(next):(go('home'),toast('لا توجد طاقة — انتظر التجديد','info'))});
   },
   async lose(){
@@ -1170,7 +1143,7 @@ async function performWheelSpin(fromAd=false){
   SFX.play('wheel');rot=Math.ceil(rot/360)*360+360*6+(360-(i*A+A/2));$('wheel').style.transform='rotate('+rot+'deg)';
   await sleep(5100);
   SFX.play('win');S.busy=false;renderAll();
-  showModal({icon:type==='gems'?'fa-gem':'fa-coins',title:'+'+fmt(val)+(type==='gems'?' '+GEM_ICON:' '+COIN_ICON),sub:'',amount:'',btn:'موافق'});
+  showModal({icon:type==='gems'?'fa-gem':'fa-coins',title:'+'+fmt(val)+(type==='gems'?' 💎':' 🪙'),sub:'',amount:'',btn:'موافق'});
 }
 async function spinWheel(){
   if(S.busy)return;
@@ -1268,7 +1241,7 @@ async function claimWheelMission(){
   const u=S.user;if(S.busy||u.wheelMissionClaimed)return;
   if(Number(u.wheelSpinCount||0)<10)return toast('أكمل 10 لفات أولاً','err');
   S.busy=true;u.wheelMissionClaimed=true;
-  await grant({coins:5000},{wheelMissionClaimed:true},{icon:'fa-dharmachakra',title:'+5,000 '+COIN_ICON,sub:''});
+  await grant({coins:5000},{wheelMissionClaimed:true},{icon:'fa-dharmachakra',title:'+5,000 🪙',sub:''});
   S.busy=false;renderMissions();
 }
 async function claimLevel(id){
@@ -1355,7 +1328,7 @@ function renderInvestments(){
             </div>
             <div style="text-align:center;min-width:60px">
               <div style="font-size:22px;font-weight:900;color:var(--green-d);direction:ltr" data-invest-pending="${inv.id}">${fmt(pending)}</div>
-              <div style="font-size:9.5px;font-weight:800;color:var(--ink2)">${GEM_ICON} متاح</div>
+              <div style="font-size:9.5px;font-weight:800;color:var(--ink2)">💎 متاح</div>
             </div>
           </div>
           <div class="bar" style="height:8px;margin-bottom:6px"><i style="width:${collectedPct}%;background:linear-gradient(180deg,${plan.color},${plan.color}cc)"></i></div>
@@ -1396,12 +1369,12 @@ function renderInvestments(){
         </div>
         <div style="text-align:center">
           <div style="font-size:18px;font-weight:900;color:var(--gold-d);direction:ltr">${fmt(plan.price)}</div>
-          <div style="font-size:10px;font-weight:800;color:var(--ink2)">${GEM_ICON} سعر</div>
+          <div style="font-size:10px;font-weight:800;color:var(--ink2)">💎 سعر</div>
         </div>
       </div>
       <div class="info" style="margin-bottom:10px">
-        <div>الربح الصافي<b>+${fmt(profit)} ${GEM_ICON}</b></div>
-        <div>إجمالي الاسترداد<b>${fmt(plan.totalReturn)} ${GEM_ICON}</b></div>
+        <div>الربح الصافي<b>+${fmt(profit)} 💎</b></div>
+        <div>إجمالي الاسترداد<b>${fmt(plan.totalReturn)} 💎</b></div>
       </div>
       ${btnHTML}
     </div>`;
@@ -1473,9 +1446,9 @@ async function buyPlan(planId){
     renderAll();
     showModal({
       icon:'fa-paw',
-      title:'تم شراء الخطة!',
+      title:'✅ تم شراء الخطة!',
       sub: plan.name + ' · ' + plan.days + ' أيام',
-      amount: '-' + fmt(plan.price) + ' ' + GEM_ICON,
+      amount: '-' + fmt(plan.price) + ' 💎',
       btn:'رائع',
     });
   }catch(e){
@@ -1508,7 +1481,7 @@ async function collectAllInvestments(){
     await FB.set({gems: u.gems, investments: u.investments});
     SFX.play('reward');
     renderAll();
-    toast('+' + fmt(total) + ' ' + GEM_ICON);
+    toast('+' + fmt(total) + ' 💎');
   }catch(e){
     console.error(e);
     toast('حدثت مشكلة، حاول مجدداً','err');
@@ -1525,9 +1498,9 @@ function pick(sel,key,cb){
   });
 }
 function clearPick(sel){document.querySelectorAll(sel+' .amt').forEach(x=>x.classList.remove('on'))}
-function updateEx(){$('exChosen').innerHTML=fmt(S.ex)+' '+COIN_ICON;$('exReceive').innerHTML=fmt(Math.floor(S.ex*CONFIG.ex.rate))+' '+GEM_ICON}
+function updateEx(){$('exChosen').textContent=fmt(S.ex)+' 🪙';$('exReceive').textContent=fmt(Math.floor(S.ex*CONFIG.ex.rate))+' 💎'}
 function updateWd(){
-  $('wdChosen').innerHTML=fmt(S.wd)+' '+GEM_ICON;
+  $('wdChosen').textContent=fmt(S.wd)+' 💎';
   $('wdReceive').textContent=S.wdMethod==='sham_cash'?(fmt(Math.round(S.wd*CONFIG.wd.shamSypPerGem))+' SYP'):'$'+usd(S.wd);
 }
 function setWdMethod(method){
@@ -1543,17 +1516,17 @@ function setWdMethod(method){
   const wdHelp=$('wdAccountHelp');
 
   if(method==='usdt_crypto'){
-    amountBox.innerHTML='<button class="amt" data-amt="5000">5,000 '+GEM_ICON+'</button><button class="amt" data-amt="10000">10,000 '+GEM_ICON+'</button><button class="amt" data-amt="50000">50,000 '+GEM_ICON+'</button><button class="amt" data-amt="100000">100,000 '+GEM_ICON+'</button>';
+    amountBox.innerHTML='<button class="amt" data-amt="5000">5,000 💎</button><button class="amt" data-amt="10000">10,000 💎</button><button class="amt" data-amt="50000">50,000 💎</button><button class="amt" data-amt="100000">100,000 💎</button>';
     wdTitle.textContent='عنوان محفظة USDT (TRC20)';
     wdHelp.textContent='أدخل عنوان محفظة TRC20 لاستلام السحب تلقائياً';
     wdInput.placeholder='T...';
   } else if(method==='sham_cash'){
-    amountBox.innerHTML='<button class="amt" data-amt="1000">1,000 '+GEM_ICON+'</button><button class="amt" data-amt="2000">2,000 '+GEM_ICON+'</button><button class="amt" data-amt="5000">5,000 '+GEM_ICON+'</button><button class="amt" data-amt="10000">10,000 '+GEM_ICON+'</button>';
+    amountBox.innerHTML='<button class="amt" data-amt="1000">1,000 💎</button><button class="amt" data-amt="2000">2,000 💎</button><button class="amt" data-amt="5000">5,000 💎</button><button class="amt" data-amt="10000">10,000 💎</button>';
     wdTitle.textContent='معرّف شام كاش';
     wdHelp.textContent='أدخل معرّف شام كاش لاستلام السحب';
     wdInput.placeholder='معرّف شام كاش';
   } else {
-    amountBox.innerHTML='<button class="amt" data-amt="5000">5,000 '+GEM_ICON+'</button><button class="amt" data-amt="10000">10,000 '+GEM_ICON+'</button><button class="amt" data-amt="50000">50,000 '+GEM_ICON+'</button><button class="amt" data-amt="100000">100,000 '+GEM_ICON+'</button>';
+    amountBox.innerHTML='<button class="amt" data-amt="5000">5,000 💎</button><button class="amt" data-amt="10000">10,000 💎</button><button class="amt" data-amt="50000">50,000 💎</button><button class="amt" data-amt="100000">100,000 💎</button>';
     wdTitle.textContent='معرّف Binance Pay';
     wdHelp.textContent='أدخل معرّف Binance Pay أو البريد الإلكتروني لاستلام السحب';
     wdInput.placeholder='Binance Pay ID أو البريد الإلكتروني';
@@ -1574,7 +1547,7 @@ async function doExchange(){
     u.coins-=a;u.gems+=g;await save();
     await db.collection(CONFIG.txCol).add({userId:TG.id,type:'exchange',amount:-a,currency:'coins',meta:{toGems:g},createdAt:Date.now()});
     SFX.play('reward');S.ex=0;clearPick('#exAmounts');renderAll();
-    showModal({icon:'fa-right-left',title:'تم التبديل!',sub:'حوّلت '+fmt(a)+' عملة إلى جواهر',amount:'+'+fmt(g)+' '+GEM_ICON,btn:'رائع'});
+    showModal({icon:'fa-right-left',title:'تم التبديل!',sub:'حوّلت '+fmt(a)+' عملة إلى جواهر',amount:'+'+fmt(g)+' 💎',btn:'رائع'});
   });
 }
 
@@ -1641,9 +1614,9 @@ async function doWithdraw(){
       loadWdHistory();
       showModal({
         icon:'fa-coins',
-        title:'تم إرسال طلب السحب',
+        title:'✅ تم إرسال طلب السحب',
         sub:'سيتحول المبلغ تلقائياً خلال دقائق',
-        amount:fmt(a)+' '+GEM_ICON+' ≈ $'+usdAmount+' USDT',
+        amount:fmt(a)+' 💎 ≈ $'+usdAmount+' USDT',
         btn:'رائع'
       });
     });
@@ -1657,7 +1630,7 @@ async function doWithdraw(){
     await db.collection(CONFIG.wdCol).add({userId:TG.id,userName:u.name||'لاعب',username:u.username||null,method,amount:a,payout,account:acc,status:'pending',createdAt:Date.now()});
     await db.collection(CONFIG.txCol).add({userId:TG.id,type:'withdraw',amount:-a,currency:'gems',meta:{method,payout},createdAt:Date.now()});
     SFX.play('reward');S.wd=0;$('wdAccount').value='';clearPick('#wdAmounts');renderAll();loadWdHistory();
-    showModal({icon:'fa-check',title:'تم إرسال طلب السحب',sub:'سيتم معالجة طلبك خلال 24-72 ساعة',amount:fmt(a)+' '+GEM_ICON+' ≈ '+payout,btn:'حسناً'});
+    showModal({icon:'fa-check',title:'تم إرسال طلب السحب',sub:'سيتم معالجة طلبك خلال 24-72 ساعة',amount:fmt(a)+' 💎 ≈ '+payout,btn:'حسناً'});
   });
 }
 
@@ -1669,7 +1642,7 @@ async function loadWdHistory(){
     const it=[];q.forEach(d=>it.push(d.data()));it.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
     const map={pending:'قيد المراجعة',approved:'مقبول',processing:'قيد التنفيذ',completed:'مكتمل',rejected:'مرفوض'};
     const methodNames={usdt_crypto:'USDT Crypto',sham_cash:'شام كاش',binance:'Binance'};
-    l.innerHTML=it.slice(0,15).map(w=>'<div class="card hist"><div><div class="ttl" style="direction:ltr;text-align:right">'+fmt(w.amount)+' '+GEM_ICON+' → '+esc(w.payout||'$0')+'</div><div class="sub">'+
+    l.innerHTML=it.slice(0,15).map(w=>'<div class="card hist"><div><div class="ttl" style="direction:ltr;text-align:right">'+fmt(w.amount)+' 💎 → '+esc(w.payout||'$0')+'</div><div class="sub">'+
       new Date(w.createdAt||Date.now()).toLocaleDateString('ar-EG',{day:'numeric',month:'short',year:'numeric'})+' • '+(methodNames[w.method]||'Binance')+'</div></div><span class="st '+esc(w.status||'pending')+'">'+(map[w.status]||'قيد المراجعة')+'</span></div>').join('');
   }catch(e){l.innerHTML='<div class="empty">تعذر التحميل</div>'}
 }
@@ -1678,8 +1651,8 @@ async function loadWdHistory(){
 function renderStarPackages(){
   const el=$('starPackages');if(!el)return;
   const gems=S.user.gems||0;
-  $('depGemsStars').innerHTML=fmt(gems)+' '+GEM_ICON;
-  $('depGemsCrypto').innerHTML=fmt(gems)+' '+GEM_ICON;
+  $('depGemsStars').textContent=fmt(gems)+' 💎';
+  $('depGemsCrypto').textContent=fmt(gems)+' 💎';
 
   el.innerHTML=CONFIG.starPackages.map(p=>{
     const tag=p.hot?'<span class="pack-tag hot">الأكثر طلباً</span>'
@@ -1689,7 +1662,7 @@ function renderStarPackages(){
         <span class="ico ico-star"><i class="fas fa-star"></i></span>
         <div class="grow">
           <div class="ttl">${p.label} ${tag}</div>
-          <div class="sub">احصل على ${fmt(p.gems)} ${GEM_ICON}</div>
+          <div class="sub">احصل على ${fmt(p.gems)} 💎</div>
         </div>
         <i class="fas fa-chevron-left arrow"></i>
       </div>
@@ -1725,9 +1698,9 @@ async function startStarPayment(stars){
         SFX.play('reward');
         showModal({
           icon:'fa-star',
-          title:'تم الدفع بنجاح!',
+          title:'✅ تم الدفع بنجاح!',
           sub:`حصلت على ${fmt(data.gems)} جوهرة`,
-          amount:'+'+fmt(data.gems)+' '+GEM_ICON,
+          amount:'+'+fmt(data.gems)+' 💎',
           btn:'رائع',
           onClose:async()=>{
             try{
@@ -1769,8 +1742,8 @@ function setDepTab(tab){
 function updateCryptoAmounts(){
   const gems = Math.floor(cryptoUsd * CONFIG.shieldz.gemsPerUsd);
   $('cryptoChosenUsd').textContent = '$' + cryptoUsd.toFixed(2);
-  $('cryptoReceiveGems').innerHTML = fmt(gems) + ' ' + GEM_ICON;
-  $('depGemsCrypto').innerHTML = fmt((S.user && S.user.gems) || 0) + ' ' + GEM_ICON;
+  $('cryptoReceiveGems').textContent = fmt(gems) + ' 💎';
+  $('depGemsCrypto').textContent = fmt((S.user && S.user.gems) || 0) + ' 💎';
   $('cryptoPayBtn').disabled = cryptoUsd < CONFIG.shieldz.minUsd || S.busy;
 }
 
@@ -1862,7 +1835,7 @@ async function checkPendingInvoiceNow(){
       } catch (e) {}
       renderAll();
       renderStarPackages();
-      showModal({ icon: 'fa-coins', title: 'تم استلام الدفع!', sub: 'تمت إضافة الجواهر لحسابك', amount: '+' + fmt(gems) + ' ' + GEM_ICON, btn: 'رائع' });
+      showModal({ icon: 'fa-coins', title: '✅ تم استلام الدفع!', sub: 'تمت إضافة الجواهر لحسابك', amount: '+' + fmt(gems) + ' 💎', btn: 'رائع' });
     } else if (data.status === 'expired' || data.status === 'failed') {
       cryptoPendingInvoice = null;
       stopPaymentPolling();
@@ -1941,7 +1914,7 @@ function startPaymentPolling(invoiceId, gems){
         if (fresh) S.user = Object.assign(S.user, fresh);
         renderAll(); renderStarPackages();
       }).catch(() => { renderAll(); renderStarPackages(); });
-      showModal({ icon: 'fa-coins', title: 'تم استلام الدفع!', sub: 'تمت إضافة الجواهر لحسابك', amount: '+' + fmt(gems) + ' ' + GEM_ICON, btn: 'رائع' });
+      showModal({ icon: 'fa-coins', title: '✅ تم استلام الدفع!', sub: 'تمت إضافة الجواهر لحسابك', amount: '+' + fmt(gems) + ' 💎', btn: 'رائع' });
     }
   };
 
@@ -2014,7 +1987,7 @@ async function applyCode(code){
     await FB.set({ referralUsed:true, referredBy:rid, gems:u.gems, referralMilestones:u.referralMilestones });
     const inc=firebase.firestore.FieldValue.increment;
     await db.collection(CONFIG.col).doc(rid).update({ referralCount:inc(1), updatedAt:Date.now() });
-    SFX.play('reward');toast('+'+CONFIG.ref.newUser+' جوهرة من الإحالة!');renderAll();return true;
+    SFX.play('reward');toast('🎉 +'+CONFIG.ref.newUser+' جوهرة من الإحالة!');renderAll();return true;
   }catch(e){u.referralUsed=false;toast('تعذر التحقق من الكود','err');return false}
 }
 
@@ -2144,6 +2117,7 @@ const FlyGame = (() => {
     SZ.gr=clamp(VH*CFG.grR,CFG.grMin,CFG.grMax);
   }
 
+  /* صورة المستخدم: بدون crossOrigin لأن روابط تيليغرام لا ترسل CORS (الرسم على canvas لا يحتاجه) */
   let imgUrl=null;
   function loadImg(){
     const url=(S.user&&S.user.photoUrl)||(TG.user&&TG.user.photo_url)||null;
@@ -2384,7 +2358,7 @@ const FlyGame = (() => {
     for(let i=1;i<=3;i++){const lx=x+3+(w-6)*(i/4);g.beginPath();g.moveTo(lx,bodyY+5);g.lineTo(lx,bodyY+bodyH-5);g.stroke()}
     g.strokeStyle='rgba(255,255,255,.2)';g.lineWidth=2;
     g.beginPath();g.moveTo(x+w*0.32,bodyY+8);g.lineTo(x+w*0.32,bodyY+bodyH-8);g.stroke();
-    g.fillStyle='#FFF3D0';g.strokeStyle='rgba(120,80,30,.7)';g.lineWidth=0.8;
+    const rng=mulberry32(seed);g.fillStyle='#FFF3D0';g.strokeStyle='rgba(120,80,30,.7)';g.lineWidth=0.8;
     const step=22,count=Math.max(1,Math.floor(bodyH/step));
     for(let i=0;i<count;i++){const sy=bodyY+14+i*step;if(sy>bodyY+bodyH-6)break;
       g.beginPath();g.moveTo(x+3,sy);g.lineTo(x-4,sy+2);g.lineTo(x+3,sy+5);g.closePath();g.fill();g.stroke();
@@ -2474,6 +2448,7 @@ const FlyGame = (() => {
     g.restore();
   }
 
+  /* بديل عند عدم توفر صورة المستخدم: أول حرف من اسمه */
   function drawInitialAvatar(g,cx,cy,r){
     const gr=g.createRadialGradient(cx-r*.3,cy-r*.3,r*.15,cx,cy,r);
     gr.addColorStop(0,'#FFF3A8');gr.addColorStop(.55,'#FFD52E');gr.addColorStop(1,'#B97A00');
@@ -2488,6 +2463,7 @@ const FlyGame = (() => {
   function flap(){st.p.vy=CFG.flap}
 
   function tick(now){
+    /* إصلاح التجمّد: تصفير المعرّف عند التوقف حتى تعمل startLoop مجدداً */
     if(st.mode!=='playing'&&st.mode!=='ready'){st.raf=0;return}
     st.raf=requestAnimationFrame(tick);
     const dt=Math.min(0.1,Math.max(0,(now-st.lastT)/1000));
@@ -2516,6 +2492,7 @@ const FlyGame = (() => {
     if(st.mode==='playing'){flap();SFX.play('flap');e.preventDefault()}
   }
 
+  /* حفظ نتيجة الجولة مرة واحدة فقط */
   function commit(dist){
     if(st.committed)return false;
     st.committed=true;
@@ -2758,7 +2735,7 @@ function bind(){
   document.querySelectorAll('.wd-method').forEach(el=>{el.onclick=()=>setWdMethod(el.dataset.method);el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setWdMethod(el.dataset.method)}}});
   $('exSubmit').onclick=doExchange;$('wdSubmit').onclick=doWithdraw;
   const link=()=>$('refLink').textContent;
-  $('refShare').onclick=()=>TG.share(link(),'انضم إلى Puppy Merge واربح الجواهر!');
+  $('refShare').onclick=()=>TG.share(link(),'🐾 انضم إلى Puppy Merge واربح الجواهر!');
   $('codeCopy').onclick=()=>navigator.clipboard?navigator.clipboard.writeText($('refCode').textContent).then(()=>toast('تم نسخ المعرّف')):toast('تعذر النسخ','err');
   $('codeSubmit').onclick=()=>withBtn($('codeSubmit'),'جاري التحقق...',()=>applyCode($('codeInput').value.trim().replace(/^ref_/,'')));
   document.addEventListener('click',e=>{if(e.target.closest('.btn,.amt,.g-btn,.dock button,.quick .card,.star-pack,.dep-tab'))SFX.play('tap')});
