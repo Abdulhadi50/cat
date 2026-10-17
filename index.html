@@ -3,2493 +3,557 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta name="theme-color" content="#FFFFFF">
-<title>Sky Rush — حلّق واربح</title>
+<title>Sky Rush</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script src='//libtl.com/sdk.js' data-zone='12008608' data-sdk='show_12008608'></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{
-  --white:#FFFFFF;
-  --pink:#FE2B54;
-  --pink-d:#D91E42;
-  --pink-l:#FFE5EB;
-  --black:#000000;
-  --ink:#0A0A0A;
-  --gray:#8A8A8E;
-  --gray-l:#F2F2F4;
-  --gray-b:#E5E5EA;
-  --green:#22C55E;
-  --red:#EF4444;
-  --gold:#FFB800;
-  --radius:18px;
-  --radius-sm:12px;
-  --radius-lg:24px;
-  --shadow-sm:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
-  --shadow-md:0 4px 14px rgba(0,0,0,.08);
-  --shadow-lg:0 12px 32px rgba(0,0,0,.12);
-  --dock-h:70px;
-  --sb:env(safe-area-inset-bottom,0px);
-  --st:env(safe-area-inset-top,0px);
-}
+:root{--pink:#FE2B54;--pl:#FFE5EB;--gray:#8A8A8E;--gl:#F2F2F4;--gb:#E5E5EA;--green:#22C55E;--red:#EF4444;--yel:#F59E0B;--sb:env(safe-area-inset-bottom,0px);--st:env(safe-area-inset-top,0px)}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow:hidden}
-body{font-family:'Baloo Bhaijaan 2',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--white);color:var(--ink);font-size:15px;line-height:1.5;user-select:none;-webkit-user-select:none;overscroll-behavior:none;-webkit-font-smoothing:antialiased}
+body{font-family:'Baloo Bhaijaan 2',sans-serif;background:#fff;color:#0A0A0A;font-size:15px;user-select:none;-webkit-user-select:none;overscroll-behavior:none}
 button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 input{font:inherit;color:inherit;border:none;outline:none;background:none}
 ::-webkit-scrollbar{display:none}
-
-/* ═══ LOADER ═══ */
-.loader{position:fixed;inset:0;z-index:9999;background:var(--white);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .4s}
-.loader.hide{opacity:0;pointer-events:none}
-.loader-logo{width:88px;height:88px;border-radius:24px;background:var(--pink);display:grid;place-items:center;color:#fff;font-size:40px;box-shadow:0 12px 32px rgba(254,43,84,.35);animation:logoPulse 1.6s ease-in-out infinite}
-@keyframes logoPulse{50%{transform:scale(1.08)}}
-.loader-title{font-size:22px;font-weight:800;letter-spacing:-.5px}
-.loader-spin{width:28px;height:28px;border:3px solid var(--gray-b);border-top-color:var(--pink);border-radius:50%;animation:spin .7s linear infinite}
+.hide{display:none!important}
+.i{width:22px;height:22px;object-fit:contain;display:block;flex-shrink:0}
+.i.s{width:16px;height:16px}.i.l{width:40px;height:40px}.i.xl{width:52px;height:52px}
+.loader{position:fixed;inset:0;z-index:9999;background:#fff;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;transition:opacity .4s;font-weight:800;font-size:22px}
+.loader.hide{opacity:0;pointer-events:none;display:flex!important}
+.sp{width:26px;height:26px;border:3px solid var(--gb);border-top-color:var(--pink);border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-
-/* ═══ APP SHELL ═══ */
-.app{max-width:480px;margin:0 auto;height:100dvh;display:flex;flex-direction:column;position:relative;overflow:hidden;background:var(--white)}
-.main{flex:1;min-height:0;overflow-y:auto;padding:0 16px calc(var(--dock-h) + 24px + var(--sb))}
-.screen{display:none}
-.screen.active{display:block;animation:fadeIn .22s ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-
-/* ═══ HEADER ═══ */
-.app-header{padding:calc(12px + var(--st)) 16px 12px;display:flex;align-items:center;gap:12px;background:var(--white);position:sticky;top:0;z-index:20}
-.app-header-balances{display:flex;align-items:center;gap:8px;flex:1}
-.header-bal{display:flex;align-items:center;gap:6px;padding:8px 12px;background:var(--gray-l);border-radius:12px;flex:1;min-width:0}
-.header-bal img{width:22px;height:22px;flex-shrink:0}
-.header-bal .num{font-size:14px;font-weight:800;direction:ltr;line-height:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.header-avatar{width:38px;height:38px;border-radius:50%;background:var(--gray-l);overflow:hidden;border:2px solid var(--white);box-shadow:var(--shadow-sm);flex-shrink:0}
-.header-avatar img{width:100%;height:100%;object-fit:cover;display:block}
-.header-avatar i{display:grid;place-items:center;width:100%;height:100%;color:var(--pink);font-size:16px}
-
-/* ═══ HERO BANNER ═══ */
-.hero{position:relative;border-radius:24px;overflow:hidden;background:linear-gradient(135deg,#0A0A0A 0%,#1F1F23 100%);padding:20px;margin-bottom:16px;box-shadow:var(--shadow-lg);min-height:220px;display:flex;flex-direction:column;justify-content:space-between}
-.hero::before{content:'';position:absolute;top:-50%;right:-30%;width:80%;height:200%;background:radial-gradient(circle,rgba(254,43,84,.35) 0%,transparent 60%);pointer-events:none}
-.hero-content{position:relative;z-index:2}
-.hero-tag{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:var(--pink);color:#fff;border-radius:20px;font-size:10.5px;font-weight:700;margin-bottom:10px}
-.hero-title{font-size:26px;font-weight:800;color:#fff;line-height:1.15;letter-spacing:-.5px;margin-bottom:6px}
-.hero-title span{color:var(--pink)}
-.hero-desc{font-size:12.5px;color:rgba(255,255,255,.7);font-weight:500;margin-bottom:16px;line-height:1.5}
-.hero-stats{display:flex;gap:8px;margin-bottom:16px}
-.hero-stat{flex:1;background:rgba(255,255,255,.08);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:10px 8px;text-align:center}
-.hero-stat .val{font-size:18px;font-weight:800;color:#fff;direction:ltr;line-height:1}
-.hero-stat .key{font-size:9.5px;color:rgba(255,255,255,.55);font-weight:600;margin-top:4px}
-.hero-actions{display:flex;gap:10px;position:relative;z-index:2}
-.btn-play{flex:1;height:52px;border-radius:16px;background:var(--white);color:var(--black);font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .1s;box-shadow:0 6px 20px rgba(255,255,255,.15)}
-.btn-play:active{transform:scale(.97)}
-.btn-leader{width:52px;height:52px;border-radius:16px;background:var(--pink);color:#fff;display:grid;place-items:center;font-size:18px;transition:transform .1s;box-shadow:0 6px 20px rgba(254,43,84,.4)}
-.btn-leader:active{transform:scale(.97)}
-.hero-plane{position:absolute;top:20px;left:20px;font-size:80px;color:rgba(254,43,84,.18);transform:rotate(-15deg);pointer-events:none}
-
-/* ═══ SECTION ═══ */
-.section{margin-bottom:20px}
-.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.section-title{font-size:16px;font-weight:800;letter-spacing:-.3px;display:flex;align-items:center;gap:8px}
-.section-title img{width:22px;height:22px}
-.section-link{font-size:12px;font-weight:700;color:var(--pink);display:flex;align-items:center;gap:4px}
-
-/* ═══ ENERGY CARD ═══ */
-.energy-card{background:var(--gray-l);border-radius:20px;padding:16px;margin-bottom:16px}
-.energy-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.energy-info{display:flex;align-items:center;gap:10px}
-.energy-icon{width:42px;height:42px;border-radius:13px;background:#fff;display:grid;place-items:center;flex-shrink:0}
-.energy-icon img{width:28px;height:28px}
-.energy-title{font-size:14px;font-weight:800}
-.energy-sub{font-size:11px;color:var(--gray);font-weight:600}
-.energy-count{font-size:20px;font-weight:800;direction:ltr}
-.energy-count small{font-size:13px;color:var(--gray);font-weight:700}
-.energy-bar{height:8px;background:#fff;border-radius:8px;overflow:hidden;margin-bottom:12px}
-.energy-bar i{display:block;height:100%;background:linear-gradient(90deg,#FE2B54,#FF5B7C);border-radius:8px;transition:width .5s}
-.energy-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.energy-btn{height:40px;border-radius:12px;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px;background:var(--white);color:var(--ink);transition:transform .1s;border:1.5px solid var(--gray-b)}
-.energy-btn:active{transform:scale(.97)}
-.energy-btn.primary{background:var(--black);color:#fff;border-color:var(--black)}
-.energy-btn img{width:16px;height:16px}
-
-/* ═══ MISSION PREVIEW CARD ═══ */
-.miss-preview{background:var(--white);border:1.5px solid var(--gray-b);border-radius:18px;padding:14px;margin-bottom:10px;display:flex;align-items:center;gap:12px;transition:transform .12s;width:100%;text-align:start}
-.miss-preview:active{transform:scale(.99)}
-.miss-ico{width:44px;height:44px;border-radius:13px;background:var(--pink-l);color:var(--pink);display:grid;place-items:center;font-size:18px;flex-shrink:0}
-.miss-ico img{width:26px;height:26px}
-.miss-body{flex:1;min-width:0}
-.miss-title{font-size:13.5px;font-weight:700;line-height:1.25}
-.miss-prog-bar{height:6px;background:var(--gray-l);border-radius:6px;overflow:hidden;margin-top:8px}
-.miss-prog-bar i{display:block;height:100%;background:var(--pink);border-radius:6px;transition:width .5s}
-.miss-meta{display:flex;justify-content:space-between;font-size:10.5px;color:var(--gray);font-weight:700;margin-top:5px;direction:ltr}
-.miss-reward{display:inline-flex;align-items:center;gap:3px;font-weight:800;color:var(--pink);font-size:12.5px}
-.miss-reward img{width:16px;height:16px}
-
-/* ═══ BOTTOM NAV ═══ */
-.dock{position:absolute;left:12px;right:12px;bottom:calc(10px + var(--sb));height:var(--dock-h);border-radius:26px;padding:6px;display:flex;z-index:50;background:rgba(255,255,255,.72);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border:1px solid rgba(0,0,0,.06);box-shadow:0 8px 32px rgba(0,0,0,.12),0 2px 8px rgba(0,0,0,.04)}
-.dock button{flex:1;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:9.5px;font-weight:700;color:var(--gray);transition:color .15s,background .2s;position:relative}
-.dock button .dock-icon{width:22px;height:22px;object-fit:contain;opacity:.55;transition:opacity .15s,transform .15s}
-.dock button.on .dock-icon{opacity:1;transform:scale(1.06)}
-.dock button span{font-size:9.5px}
-.dock button.on{color:var(--pink)}
-.dock button.on::before{content:'';position:absolute;top:2px;left:50%;transform:translateX(-50%);width:22px;height:3px;border-radius:2px;background:var(--pink)}
-
-/* ═══ BUTTONS ═══ */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;border-radius:16px;height:52px;padding:0 20px;width:100%;font-size:14.5px;transition:transform .1s,opacity .2s}
-.btn:active{transform:scale(.98)}
-.btn[disabled]{opacity:.45;pointer-events:none}
-.btn-black{background:var(--black);color:#fff}
-.btn-pink{background:var(--pink);color:#fff}
-.btn-outline{background:var(--white);color:var(--ink);border:1.5px solid var(--gray-b)}
-.btn-gray{background:var(--gray-l);color:var(--ink)}
-.btn-sm{height:40px;padding:0 14px;font-size:12.5px;border-radius:12px;width:auto}
-
-/* ═══ CARDS ═══ */
-.card{background:var(--white);border:1.5px solid var(--gray-b);border-radius:18px;padding:16px;margin-bottom:12px}
-.card-flat{background:var(--gray-l);border:none;border-radius:18px;padding:16px;margin-bottom:12px}
-
-/* ═══ FORM ═══ */
-.input{width:100%;height:52px;padding:0 16px;border-radius:14px;background:var(--gray-l);border:1.5px solid transparent;font-weight:700;transition:border-color .15s;direction:ltr;text-align:left}
-.input:focus{border-color:var(--pink);background:var(--white)}
-
-/* ═══ AMOUNT GRID ═══ */
-.amt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.amt-btn{padding:12px 6px;border-radius:14px;background:var(--gray-l);border:1.5px solid transparent;font-size:12px;font-weight:800;color:var(--ink);transition:all .15s;direction:ltr}
-.amt-btn.on{background:var(--pink-l);border-color:var(--pink);color:var(--pink)}
-
-/* ═══ INFO ROW ═══ */
-.info-list{background:var(--gray-l);border-radius:14px;padding:4px 14px;margin-bottom:12px}
-.info-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;font-size:13px;font-weight:600;color:var(--gray)}
-.info-row+.info-row{border-top:1px solid var(--gray-b)}
-.info-row b{color:var(--ink);font-weight:800;direction:ltr}
-
-/* ═══ MISSION FULL CARD ═══ */
-.mission-card{background:var(--white);border:1.5px solid var(--gray-b);border-radius:18px;padding:16px;margin-bottom:10px}
-.mission-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px}
-.mission-ico-lg{width:48px;height:48px;border-radius:14px;background:var(--pink-l);display:grid;place-items:center;flex-shrink:0}
-.mission-ico-lg img{width:26px;height:26px}
-.mission-body{flex:1;min-width:0}
-.mission-title{font-size:14.5px;font-weight:800;line-height:1.25}
-.mission-desc{font-size:11.5px;color:var(--gray);font-weight:600;margin-top:2px}
-.mission-reward-row{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:var(--pink-l);border-radius:10px;font-size:12px;font-weight:800;color:var(--pink);margin-top:6px}
-.mission-reward-row img{width:16px;height:16px}
-.mission-prog{height:8px;background:var(--gray-l);border-radius:8px;overflow:hidden;margin-bottom:6px}
-.mission-prog i{display:block;height:100%;background:linear-gradient(90deg,var(--pink),#FF5B7C);border-radius:8px;transition:width .5s}
-.mission-prog-meta{display:flex;justify-content:space-between;font-size:11px;font-weight:700;color:var(--gray);direction:ltr;margin-bottom:12px}
-.mission-card.done{border-color:var(--green);background:linear-gradient(180deg,#fff,#F0FDF4)}
-.mission-card.done .mission-ico-lg{background:#DCFCE7}
-.mission-card.claimable{border-color:var(--pink)}
-
-/* ═══ WALLET ═══ */
-.balance-panel{border-radius:22px;padding:22px;margin-bottom:14px;position:relative;overflow:hidden}
-.balance-panel.coins{background:linear-gradient(135deg,#FFF7E6 0%,#FFEFC6 100%)}
-.balance-panel.gems{background:linear-gradient(135deg,#FFE8EE 0%,#FFD0DD 100%)}
-.balance-panel::after{content:'';position:absolute;top:-40%;right:-20%;width:60%;height:200%;border-radius:50%;background:rgba(255,255,255,.4);pointer-events:none}
-.balance-panel-head{display:flex;align-items:center;gap:12px;position:relative;z-index:1;margin-bottom:14px}
-.balance-panel-head img{width:48px;height:48px}
-.balance-panel-head .lbl{font-size:12px;font-weight:700;color:var(--gray)}
-.balance-panel-head .sub{font-size:10.5px;font-weight:600;color:var(--gray)}
-.balance-panel .big-num{font-size:38px;font-weight:800;direction:ltr;line-height:1;position:relative;z-index:1}
-.balance-panel .eq{font-size:12px;color:var(--gray);font-weight:700;margin-top:6px;position:relative;z-index:1;direction:ltr}
-.balance-panel-actions{display:flex;gap:8px;margin-top:14px;position:relative;z-index:1}
-.balance-panel-actions .btn{height:42px;font-size:13px;border-radius:12px}
-
-/* ═══ LEADERBOARD ═══ */
-.podium{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:end;margin-bottom:20px;padding-top:20px}
-.podium-item{text-align:center;position:relative}
-.podium-avatar{width:64px;height:64px;border-radius:50%;margin:0 auto 8px;overflow:hidden;border:3px solid var(--white);background:var(--gray-l);box-shadow:var(--shadow-md);position:relative}
-.podium-item.rank-1 .podium-avatar{width:80px;height:80px;border-color:var(--pink)}
-.podium-avatar img{width:100%;height:100%;object-fit:cover;display:block}
-.podium-crown{position:absolute;top:-22px;left:50%;transform:translateX(-50%);width:28px;height:28px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.15))}
-.podium-name{font-size:12px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:2px}
-.podium-dist{font-size:14px;font-weight:800;color:var(--pink);direction:ltr}
-.podium-base{height:8px;border-radius:8px 8px 0 0;margin-top:6px;background:var(--gray-b)}
-.podium-item.rank-1 .podium-base{height:20px;background:linear-gradient(180deg,var(--pink),#FF5B7C)}
-.podium-item.rank-2 .podium-base{height:14px;background:#C0C0C0}
-.podium-item.rank-3 .podium-base{height:10px;background:#CD7F32}
-
-.lb-row{display:flex;align-items:center;gap:12px;padding:12px;border-radius:14px;margin-bottom:6px;transition:background .15s}
-.lb-row.me{background:var(--pink-l);border:1.5px solid var(--pink)}
-.lb-rank{width:28px;height:28px;border-radius:9px;background:var(--gray-l);display:grid;place-items:center;font-size:12px;font-weight:800;flex-shrink:0;direction:ltr}
-.lb-rank.top1{background:linear-gradient(135deg,#FBBF24,#F59E0B);color:#fff}
-.lb-rank.top2{background:#C0C0C0;color:#fff}
-.lb-rank.top3{background:#CD7F32;color:#fff}
-.lb-avatar{width:40px;height:40px;border-radius:50%;overflow:hidden;background:var(--gray-l);flex-shrink:0}
-.lb-avatar img{width:100%;height:100%;object-fit:cover;display:block}
-.lb-name{flex:1;font-size:13.5px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.lb-dist{font-size:14px;font-weight:800;direction:ltr;color:var(--pink)}
-
-/* ═══ PROFILE ═══ */
-.profile-hero{text-align:center;padding:20px 16px 24px}
-.profile-avatar{width:88px;height:88px;border-radius:50%;margin:0 auto 12px;overflow:hidden;border:3px solid var(--pink);background:var(--gray-l);box-shadow:0 8px 24px rgba(254,43,84,.2)}
-.profile-avatar img{width:100%;height:100%;object-fit:cover;display:block}
-.profile-avatar i{display:grid;place-items:center;width:100%;height:100%;color:var(--pink);font-size:34px}
-.profile-name{font-size:20px;font-weight:800}
-.profile-id{font-size:11.5px;color:var(--gray);font-weight:600;direction:ltr;margin-top:2px}
-
-.menu-list{background:var(--white);border:1.5px solid var(--gray-b);border-radius:18px;overflow:hidden}
-.menu-item{display:flex;align-items:center;gap:14px;padding:16px;width:100%;text-align:start;transition:background .15s;color:var(--ink)}
-.menu-item:active{background:var(--gray-l)}
-.menu-item+.menu-item{border-top:1px solid var(--gray-b)}
-.menu-ico{width:40px;height:40px;border-radius:12px;background:var(--gray-l);display:grid;place-items:center;flex-shrink:0}
-.menu-ico img{width:22px;height:22px}
-.menu-ico i{color:var(--pink);font-size:16px}
-.menu-label{flex:1;font-size:14px;font-weight:700}
-.menu-arrow{color:var(--gray);font-size:14px}
-
-/* ═══ MODAL ═══ */
-.modal{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:24px;animation:fadeIn .2s}
-.modal.show{display:flex}
-.modal-card{background:var(--white);border-radius:24px;padding:28px 22px 22px;max-width:360px;width:100%;text-align:center;animation:modalPop .35s cubic-bezier(.34,1.56,.64,1);box-shadow:var(--shadow-lg)}
-@keyframes modalPop{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
-.modal-icon{width:72px;height:72px;border-radius:50%;background:var(--pink-l);color:var(--pink);display:grid;place-items:center;font-size:32px;margin:0 auto 16px}
-.modal-icon.success{background:#DCFCE7;color:#16A34A}
-.modal-icon.error{background:#FEE2E2;color:#DC2626}
-.modal-title{font-size:20px;font-weight:800;margin-bottom:6px}
-.modal-sub{font-size:13px;color:var(--gray);font-weight:600;margin-bottom:20px;line-height:1.6}
-.modal-amount{font-size:32px;font-weight:800;color:var(--pink);margin-bottom:20px;direction:ltr}
-.modal-actions{display:flex;gap:10px}
-
-/* ═══ TOAST (glass) ═══ */
-.toast{position:fixed;top:calc(16px + var(--st));left:50%;transform:translate(-50%,-200px);z-index:2000;padding:12px 20px;border-radius:18px;font-weight:700;font-size:13.5px;background:rgba(10,10,10,.85);color:#fff;box-shadow:0 8px 32px rgba(0,0,0,.25);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,.15);transition:transform .35s cubic-bezier(.34,1.4,.64,1);pointer-events:none;max-width:90%;text-align:center}
-.toast.show{transform:translate(-50%,0)}
-.toast.success{background:rgba(34,197,94,.9);border-color:rgba(34,197,94,.4)}
-.toast.error{background:rgba(239,68,68,.9);border-color:rgba(239,68,68,.4)}
-
-/* ═══ SPINNER ═══ */
-.spn{display:inline-block;width:16px;height:16px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite}
-.spn.dark{border-color:rgba(0,0,0,.15);border-top-color:var(--pink)}
-
-/* ═══ EMPTY ═══ */
-.empty{text-align:center;padding:40px 20px;color:var(--gray);font-weight:600;font-size:13.5px}
-.empty img{width:40px;height:40px;margin:0 auto 12px;display:block;opacity:.4}
-
-/* ═══ GAME SCREEN ═══ */
-#screen-game{position:fixed;inset:0;z-index:100;display:none;background:#87CEEB;padding:0}
-#screen-game.active{display:block}
-.game-canvas-wrap{position:relative;width:100%;height:100%;overflow:hidden;background:#87CEEB}
-#gameCanvas{display:block;width:100%;height:100%;touch-action:none}
-.game-hud{position:absolute;top:0;right:0;padding:calc(12px + var(--st)) 14px 12px;display:flex;flex-direction:column;gap:6px;pointer-events:none;z-index:5;align-items:flex-end}
-.game-hud-row{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-radius:999px;padding:6px 12px;font-weight:800;font-size:13px;color:var(--black);box-shadow:0 4px 14px rgba(0,0,0,.15);min-width:96px;justify-content:flex-start}
-.game-hud-row img{width:20px;height:20px;flex-shrink:0}
-.game-hud-row b{direction:ltr;margin-left:auto}
-.game-dist{position:absolute;top:calc(12px + var(--st));left:50%;transform:translateX(-50%);color:#fff;font-weight:900;font-size:20px;direction:ltr;text-shadow:0 2px 8px rgba(0,0,0,.5);z-index:5;letter-spacing:-.5px}
-.game-exit{position:absolute;top:calc(12px + var(--st));left:14px;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);display:grid;place-items:center;color:var(--black);font-size:15px;pointer-events:auto;box-shadow:0 4px 14px rgba(0,0,0,.15);z-index:6}
-.game-exit:active{transform:scale(.92)}
-
-.game-overlay{position:absolute;inset:0;display:none;align-items:center;justify-content:center;padding:20px;z-index:10;background:rgba(0,0,0,.4);backdrop-filter:blur(6px)}
-.game-overlay.show{display:flex}
-.game-modal{background:var(--white);border-radius:24px;padding:26px 22px;max-width:340px;width:100%;text-align:center;animation:modalPop .35s cubic-bezier(.34,1.56,.64,1)}
-.game-modal-icon{width:72px;height:72px;border-radius:50%;background:var(--pink-l);display:grid;place-items:center;margin:0 auto 14px}
-.game-modal-icon img{width:40px;height:40px}
-.game-modal-title{font-size:20px;font-weight:800;margin-bottom:6px}
-.game-modal-sub{font-size:13px;color:var(--gray);font-weight:600;margin-bottom:20px}
-
-.game-over-dist{text-align:center;margin-bottom:20px}
-.game-over-dist .lbl{font-size:12px;color:var(--gray);font-weight:700}
-.game-over-dist .val{font-size:56px;font-weight:800;direction:ltr;line-height:1;margin:6px 0;color:var(--pink)}
-.game-over-dist .unit{font-size:16px;color:var(--gray);font-weight:700}
-.game-over-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
-.game-over-stat{background:var(--gray-l);border-radius:14px;padding:12px;text-align:center}
-.game-over-stat .v{font-size:18px;font-weight:800;direction:ltr;line-height:1;color:var(--pink);display:flex;align-items:center;justify-content:center;gap:4px}
-.game-over-stat .v img{width:18px;height:18px}
-.game-over-stat .k{font-size:10.5px;color:var(--gray);font-weight:700;margin-top:4px}
-
-/* ═══ FLOATERS ═══ */
-#floaters{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:6}
-.floater{position:absolute;font-size:26px;font-weight:800;color:#FFD700;white-space:nowrap;text-shadow:0 0 4px #000,0 2px 6px rgba(0,0,0,.4);animation:floatUp 1.1s cubic-bezier(.2,.7,.4,1) forwards}
-@keyframes floatUp{0%{transform:translate(-50%,-50%) scale(.4);opacity:0}18%{transform:translate(-50%,-95%) scale(1.18);opacity:1}100%{transform:translate(-50%,-230%) scale(1);opacity:0}}
-
-/* ═══ CONVERTER ═══ */
-.convert-box{background:var(--white);border:1.5px solid var(--gray-b);border-radius:18px;padding:16px;margin-bottom:12px}
-.convert-row{display:flex;align-items:center;gap:10px;padding:12px 0}
-.convert-icon{width:38px;height:38px}
-.convert-input{flex:1;font-size:20px;font-weight:800;direction:ltr;text-align:right}
-.convert-label{font-size:11px;color:var(--gray);font-weight:700}
-.convert-arrow{text-align:center;padding:6px 0;color:var(--pink);font-size:16px}
-
-/* ═══ DEPOSIT / WITHDRAW ═══ */
-.pay-method{background:var(--white);border:1.5px solid var(--gray-b);border-radius:18px;padding:16px;margin-bottom:10px;display:flex;align-items:center;gap:12px;transition:border-color .15s,transform .1s;width:100%;text-align:start}
-.pay-method:active{transform:scale(.99)}
-.pay-method.on{border-color:var(--pink);background:var(--pink-l)}
-.pay-method img{width:44px;height:44px;object-fit:contain;border-radius:10px;flex-shrink:0}
-.pay-method .pm-body{flex:1;min-width:0}
-.pay-method .pm-title{font-size:14px;font-weight:800}
-.pay-method .pm-sub{font-size:11px;color:var(--gray);font-weight:600;margin-top:2px}
-
-/* Deposit instructions page */
-.manual-page{background:var(--white);border:1.5px solid var(--gray-b);border-radius:18px;padding:16px;margin-bottom:12px}
-.manual-page .mp-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
-.manual-page .mp-head img{width:44px;height:44px;object-fit:contain}
-.manual-page .mp-head .mp-title{font-size:15px;font-weight:800}
-.manual-page .mp-head .mp-sub{font-size:11px;color:var(--gray);font-weight:600}
-.manual-page .mp-label{font-size:11.5px;color:var(--gray);font-weight:700;margin-bottom:6px;margin-top:12px}
-.manual-page .mp-code{background:var(--gray-l);border-radius:12px;padding:12px 14px;font-size:13px;font-weight:800;direction:ltr;text-align:left;word-break:break-all;display:flex;justify-content:space-between;align-items:center;gap:8px}
-.manual-page .mp-code .copy-btn{background:var(--black);color:#fff;padding:6px 12px;border-radius:8px;font-size:11px;font-weight:800;flex-shrink:0}
-.manual-page .mp-warn{background:#FFF3E0;border:1.5px solid #FFB74D;border-radius:12px;padding:10px 12px;font-size:11.5px;color:#E65100;font-weight:600;margin-top:12px;line-height:1.6}
-
-/* Tx status colors */
-.tx-status{font-size:10.5px;font-weight:800;padding:4px 10px;border-radius:8px}
-.tx-status.pending{background:#FEF3C7;color:#B45309}
-.tx-status.approved,.tx-status.completed{background:#DCFCE7;color:#16A34A}
-.tx-status.rejected{background:#FEE2E2;color:#DC2626}
-
-/* Hide header on profile screen */
-body.hide-balance .app-header-balances{visibility:hidden}
+.app{max-width:480px;margin:0 auto;height:100dvh;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.bar{padding:calc(10px + var(--st)) 16px 10px;display:flex;align-items:center;gap:8px}
+.chip{flex:1;display:flex;align-items:center;gap:8px;padding:7px 12px;background:var(--gl);border-radius:14px;min-width:0}
+.chip b{font-size:15px;font-weight:800;direction:ltr}
+.av{width:40px;height:40px;border-radius:50%;background:var(--gl);overflow:hidden;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.15);display:grid;place-items:center;flex-shrink:0}
+.av img{width:100%;height:100%;object-fit:cover}
+.main{flex:1;min-height:0;overflow-y:auto;padding:4px 16px calc(100px + var(--sb))}
+.screen{display:none}.screen.active{display:block;animation:fi .22s}
+@keyframes fi{from{opacity:0;transform:translateY(4px)}to{opacity:1}}
+.hero{border-radius:24px;background:linear-gradient(135deg,#0A0A0A,#26262B);padding:20px;margin-bottom:14px;color:#fff;position:relative;overflow:hidden}
+.hero:before{content:'';position:absolute;top:-50%;right:-30%;width:80%;height:200%;background:radial-gradient(circle,rgba(254,43,84,.4),transparent 60%)}
+.hero>*{position:relative}
+.hero h1{font-size:26px;font-weight:800;line-height:1.2;margin-bottom:6px}.hero h1 span{color:var(--pink)}
+.hero p{font-size:12.5px;opacity:.7;margin-bottom:14px}
+.hstats{display:flex;gap:8px;margin-bottom:14px}
+.hstats div{flex:1;background:rgba(255,255,255,.09);border-radius:14px;padding:10px 6px;text-align:center}
+.hstats b{display:block;font-size:18px;direction:ltr}.hstats small{font-size:10px;opacity:.6}
+.row{display:flex;gap:10px}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700;border-radius:16px;height:50px;padding:0 18px;width:100%;font-size:14.5px;transition:transform .1s}
+.btn:active{transform:scale(.97)}.btn[disabled]{opacity:.45;pointer-events:none}
+.bk{background:#000;color:#fff}.bp{background:var(--pink);color:#fff}.bo{background:#fff;border:1.5px solid var(--gb)}.bg{background:var(--gl)}.bw{background:#fff;color:#000}
+.btn.sm{height:40px;font-size:12.5px;border-radius:12px}
+.card{background:#fff;border:1.5px solid var(--gb);border-radius:18px;padding:14px;margin-bottom:12px}
+.flat{background:var(--gl);border:none}
+.sec{font-size:16px;font-weight:800;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.energy .top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.energy .top div:nth-child(2){flex:1}.energy small{color:var(--gray);font-size:11px;font-weight:600;display:block}
+.eb{height:8px;background:#fff;border-radius:8px;overflow:hidden;margin-bottom:10px}.eb i{display:block;height:100%;background:linear-gradient(90deg,#FBBF24,#F59E0B);transition:width .5s}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mi{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.mi .ic{width:46px;height:46px;border-radius:14px;background:var(--pl);display:grid;place-items:center;flex-shrink:0}
+.mi .bd{flex:1;min-width:0}.mi .t{font-size:13.5px;font-weight:700;line-height:1.25}.mi .d{font-size:11px;color:var(--gray);font-weight:600}
+.pr{height:7px;background:var(--gl);border-radius:7px;overflow:hidden;margin:7px 0 4px}.pr i{display:block;height:100%;background:var(--pink);transition:width .5s}
+.pm{display:flex;justify-content:space-between;font-size:11px;font-weight:700;color:var(--gray);direction:ltr}
+.rw{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:var(--pl);color:var(--pink);border-radius:10px;font-size:12px;font-weight:800;margin-top:5px;direction:ltr}
+.days{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.day{background:var(--gl);border-radius:14px;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;border:1.5px solid transparent;display:flex;flex-direction:column;align-items:center;gap:4px}
+.day b{font-size:13px;direction:ltr}.day.cur{border-color:var(--pink);background:var(--pl)}.day.done{opacity:.45}.day.big{grid-column:span 1}
+.bal{border-radius:22px;padding:18px;margin-bottom:12px;display:flex;align-items:center;gap:14px}
+.bal.c{background:linear-gradient(135deg,#FFF7E6,#FFEFC6)}.bal.g{background:linear-gradient(135deg,#FFE8EE,#FFD0DD)}
+.bal b{font-size:32px;font-weight:800;direction:ltr;line-height:1;display:block}.bal small{font-size:12px;color:var(--gray);font-weight:700;direction:ltr;display:block}
+.inp{width:100%;height:50px;padding:0 14px;border-radius:14px;background:var(--gl);border:1.5px solid transparent;font-weight:700;direction:ltr;text-align:left}.inp:focus{border-color:var(--pink);background:#fff}
+.tabs{display:flex;gap:6px;background:var(--gl);border-radius:14px;padding:4px;margin-bottom:12px}
+.tab{flex:1;padding:9px;border-radius:10px;font-size:13px;font-weight:700;color:var(--gray);text-align:center}.tab.on{background:#fff;color:var(--pink);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.meth{display:flex;align-items:center;gap:12px;width:100%;text-align:start;padding:12px;border:1.5px solid var(--gb);border-radius:16px;margin-bottom:8px;background:#fff}
+.meth.on{border-color:var(--pink);background:var(--pl)}.meth img.lg{width:42px;height:42px;border-radius:12px;object-fit:cover}
+.meth .t{font-weight:800;font-size:14px}.meth .d{font-size:11px;color:var(--gray);font-weight:600}
+.amts{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px}
+.amt{padding:10px 2px;border-radius:12px;background:var(--gl);font-size:11.5px;font-weight:800;border:1.5px solid transparent;direction:ltr}.amt.on{background:var(--pl);border-color:var(--pink);color:var(--pink)}
+.info{background:var(--gl);border-radius:14px;padding:2px 14px;margin-bottom:12px}
+.info div{display:flex;justify-content:space-between;align-items:center;padding:10px 0;font-size:13px;font-weight:600;color:var(--gray)}.info div+div{border-top:1px solid var(--gb)}.info b{color:#000;direction:ltr;display:flex;align-items:center;gap:5px}
+.copy{display:flex;align-items:center;gap:8px;background:var(--gl);border-radius:14px;padding:10px 14px;margin-bottom:10px}
+.copy small{display:block;font-size:11px;color:var(--gray);font-weight:700}.copy b{font-size:14px;direction:ltr;word-break:break-all;display:block}.copy>div{flex:1;min-width:0}
+.hrow{display:flex;align-items:center;gap:10px;padding:11px 0}.hrow+.hrow{border-top:1px solid var(--gb)}
+.hrow .bd{flex:1;min-width:0}.hrow .t{font-size:13px;font-weight:700}.hrow .d{font-size:10.5px;color:var(--gray);font-weight:600}
+.st{font-size:10.5px;font-weight:800;padding:4px 10px;border-radius:8px}
+.st.pending{background:#FEF3C7;color:#B45309}.st.ok{background:#DCFCE7;color:#15803D}.st.no{background:#FEE2E2;color:#DC2626}
+.empty{text-align:center;padding:26px;color:var(--gray);font-weight:600;font-size:13px}
+.pod{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:end;margin:20px 0}.pod div{text-align:center}.pod .av{margin:0 auto 6px;width:60px;height:60px}.pod .r1 .av{width:76px;height:76px;border-color:var(--pink)}
+.pod small{display:block;font-size:12px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pod b{color:var(--pink);font-size:14px;direction:ltr}
+.lb{display:flex;align-items:center;gap:10px;padding:10px;border-radius:14px;margin-bottom:6px}.lb.me{background:var(--pl);border:1.5px solid var(--pink)}
+.lb .rk{width:28px;height:28px;border-radius:9px;background:var(--gl);display:grid;place-items:center;font-size:12px;font-weight:800}.lb .nm{flex:1;font-weight:700;font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.lb b{color:var(--pink);direction:ltr}
+.ph{text-align:center;padding:16px 0 20px}.ph .av{width:88px;height:88px;margin:0 auto 10px;border-color:var(--pink)}.ph b{font-size:20px;display:block}.ph small{color:var(--gray);direction:ltr;display:block}
+.menu{border:1.5px solid var(--gb);border-radius:18px;overflow:hidden}.menu button{display:flex;align-items:center;gap:14px;padding:15px;width:100%;text-align:start;font-weight:700}.menu button+button{border-top:1px solid var(--gb)}.menu span{flex:1}
+.dock{position:absolute;left:12px;right:12px;bottom:calc(10px + var(--sb));height:66px;border-radius:26px;padding:6px;display:flex;z-index:50;background:rgba(255,255,255,.75);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border:1px solid rgba(0,0,0,.06);box-shadow:0 8px 32px rgba(0,0,0,.12)}
+.dock button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:9.5px;font-weight:700;color:var(--gray)}.dock .on{color:var(--pink)}.dock .i{width:21px;height:21px}
+.modal{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:24px}.modal.show{display:flex}
+.mc{max-height:92vh;overflow-y:auto;background:#fff;border-radius:24px;padding:26px 20px 20px;max-width:340px;width:100%;text-align:center;animation:pop .3s cubic-bezier(.34,1.56,.64,1)}
+@keyframes pop{from{transform:scale(.85);opacity:0}}
+.mc .ic{width:68px;height:68px;border-radius:50%;background:var(--pl);display:grid;place-items:center;margin:0 auto 14px}.mc .ic.ok{background:#DCFCE7}.mc h3{font-size:19px;margin-bottom:6px}.mc p{font-size:13px;color:var(--gray);font-weight:600;margin-bottom:16px;white-space:pre-line}
+.mc .am{font-size:28px;font-weight:800;color:var(--pink);margin-bottom:16px;display:flex;justify-content:center;align-items:center;gap:8px;direction:ltr}
+.toast{position:fixed;top:calc(12px + var(--st));left:50%;transform:translate(-50%,-160px);z-index:2000;display:flex;align-items:center;gap:10px;padding:10px 18px 10px 14px;border-radius:18px;font-weight:700;font-size:13px;color:#fff;background:rgba(20,20,24,.55);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);border:1px solid rgba(255,255,255,.25);box-shadow:0 10px 30px rgba(0,0,0,.25);transition:transform .35s cubic-bezier(.34,1.4,.64,1);pointer-events:none;max-width:92%}
+.toast.show{transform:translate(-50%,0)}.toast:before{content:'';width:4px;align-self:stretch;border-radius:4px;background:#fff}.toast.success:before{background:var(--green)}.toast.error:before{background:var(--red)}
+#screen-game{position:fixed;inset:0;z-index:100;display:none;background:#87CEEB}#screen-game.active{display:block}
+#gc{display:block;width:100%;height:100%;touch-action:none}
+.hud{position:absolute;top:calc(10px + var(--st));right:12px;display:flex;flex-direction:column;gap:5px;align-items:flex-end;pointer-events:none;z-index:5}
+.pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.9);border-radius:999px;padding:3px 10px;font-weight:800;font-size:12px;box-shadow:0 2px 8px rgba(0,0,0,.15)}.pill b{direction:ltr}.pill .i{width:16px;height:16px}
+.dist{position:absolute;top:calc(12px + var(--st));left:50%;transform:translateX(-50%);color:#fff;font-weight:800;font-size:19px;direction:ltr;text-shadow:0 1px 4px rgba(0,0,0,.55);z-index:5;pointer-events:none}
+.pause{position:absolute;top:calc(10px + var(--st));left:12px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center;z-index:6;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.ov{position:absolute;inset:0;display:none;align-items:center;justify-content:center;padding:20px;z-index:10;background:rgba(0,0,0,.4);backdrop-filter:blur(5px)}.ov.show{display:flex}
+#fl{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:6}
+.floater{position:absolute;font-size:24px;font-weight:800;color:#FFD700;text-shadow:0 0 4px #000;animation:fu 1.1s forwards}.floater.gem{color:#59D7F2}
+@keyframes fu{0%{transform:translate(-50%,-50%) scale(.4);opacity:0}18%{transform:translate(-50%,-95%) scale(1.15);opacity:1}100%{transform:translate(-50%,-230%);opacity:0}}
+.big{font-size:52px;font-weight:800;direction:ltr;line-height:1;margin:6px 0}
 </style>
 </head>
 <body>
+<div class="loader" id="loader"><img class="i xl" src="https://img.icons8.com/fluency/96/airplane-mode-on.png"><div>Sky Rush</div><div class="sp"></div></div>
 
-<!-- ═══ LOADER ═══ -->
-<div class="loader" id="loader">
-  <div class="loader-logo"><i class="fas fa-plane"></i></div>
-  <div class="loader-title">Sky Rush</div>
-  <div class="loader-spin"></div>
-</div>
-
-<!-- ═══ APP ═══ -->
-<div class="app" id="app" style="display:none">
-
-  <!-- Header: balances + avatar -->
-  <div class="app-header" id="appHeader">
-    <div class="app-header-balances">
-      <div class="header-bal">
-        <img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt="">
-        <span class="num" id="hdrCoins">0</span>
-      </div>
-      <div class="header-bal">
-        <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="">
-        <span class="num" id="hdrGems">0</span>
-      </div>
-    </div>
-    <div class="header-avatar" id="headerAvatar"><i class="fas fa-user"></i></div>
+<div class="app hide" id="app">
+  <div class="bar" id="bar">
+    <div class="chip"><img class="i" src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png"><b id="hC">0</b></div>
+    <div class="chip"><img class="i" src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png"><b id="hG">0</b></div>
+    <div class="av" id="hAv"></div>
   </div>
+  <div class="main" id="main">
 
-  <!-- Main -->
-  <div class="main" id="mainScroll">
-
-    <!-- ══════════════ HOME ══════════════ -->
     <section class="screen active" id="screen-home">
       <div class="hero">
-        <i class="fas fa-plane hero-plane"></i>
-        <div class="hero-content">
-          <div class="hero-tag"><i class="fas fa-bolt"></i> لعبة الطيران</div>
-          <div class="hero-title">حلّق فوق <span>السحاب</span><br>واجمع الجواهر</div>
-          <div class="hero-desc">تجنّب الصبار، اجمع العملات، واكسر رقمك القياسي!</div>
+        <h1>حلّق فوق <span>السحاب</span><br>واجمع الجواهر</h1>
+        <p>تجنّب الصبار، اجمع العملات، واكسر رقمك القياسي</p>
+        <div class="hstats">
+          <div><b id="sBest">0</b><small>أفضل مسافة (م)</small></div>
+          <div><b id="sRounds">0</b><small>جولات</small></div>
+          <div><b id="sGems">0</b><small>جواهر مكتسبة</small></div>
         </div>
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <div class="val" id="heroBest">0</div>
-            <div class="key">أفضل مسافة (م)</div>
-          </div>
-          <div class="hero-stat">
-            <div class="val" id="heroRounds">0</div>
-            <div class="key">جولات</div>
-          </div>
-          <div class="hero-stat">
-            <div class="val" id="heroGems">0</div>
-            <div class="key">جواهر مكتسبة</div>
-          </div>
-        </div>
-        <div class="hero-actions">
-          <button class="btn-play" id="playBtn"><i class="fas fa-play"></i> ابدأ الطيران</button>
-          <button class="btn-leader" id="leaderBtn" aria-label="المتصدرين"><i class="fas fa-trophy"></i></button>
+        <div class="row"><button class="btn bw" id="play"><img class="i" src="https://img.icons8.com/ios-filled/50/000000/play.png">ابدأ الطيران</button>
+        <button class="btn bp" style="width:54px;padding:0" data-nav="leaderboard"><img class="i" src="https://img.icons8.com/ios-filled/50/FFFFFF/trophy.png"></button></div>
+      </div>
+      <div class="card flat energy">
+        <div class="top"><img class="i l" src="https://img.icons8.com/liquid-glass-color/999/flash-on.png">
+          <div><b>الطاقة</b><small id="eSub"></small></div><b style="font-size:20px;direction:ltr"><span id="eC">0</span> / <span id="eM">0</span></b></div>
+        <div class="eb"><i id="eF"></i></div>
+        <div class="grid2">
+          <button class="btn bo sm" id="eAd"><img class="i s" src="https://img.icons8.com/ios-filled/50/000000/tv.png">إعلان +1</button>
+          <button class="btn bk sm" id="eBuy"><img class="i s" src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png">شراء +1</button>
         </div>
       </div>
-
-      <!-- Energy -->
-      <div class="energy-card">
-        <div class="energy-head">
-          <div class="energy-info">
-            <div class="energy-icon"><img src="https://img.icons8.com/liquid-glass-color/999/flash-on.png" alt=""></div>
-            <div>
-              <div class="energy-title">الطاقة</div>
-              <div class="energy-sub" id="energySub">جاهز للطيران</div>
-            </div>
-          </div>
-          <div class="energy-count"><span id="energyCur">25</span><small> / <span id="energyMax">25</span></small></div>
-        </div>
-        <div class="energy-bar"><i id="energyFill" style="width:100%"></i></div>
-        <div class="energy-actions">
-          <button class="energy-btn" id="energyAdBtn"><i class="fas fa-play-circle"></i> إعلان +1</button>
-          <button class="energy-btn primary" id="energyBuyBtn"><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="" style="width:14px;height:14px"> شراء +1</button>
-        </div>
-      </div>
-
-      <!-- Missions preview -->
-      <div class="section">
-        <div class="section-head">
-          <div class="section-title"><img src="https://img.icons8.com/liquid-glass-color/999/target.png" alt=""> مهامك اليومية</div>
-          <button class="section-link" data-nav="missions">الكل <i class="fas fa-chevron-left"></i></button>
-        </div>
-        <div id="homeMissions"></div>
-      </div>
-
-      <!-- Latest result -->
-      <div class="section">
-        <div class="section-head">
-          <div class="section-title"><i class="fas fa-clock-rotate-left" style="color:var(--pink)"></i> آخر نتيجة</div>
-        </div>
-        <div id="lastResult"></div>
-      </div>
+      <div class="sec"><img class="i" src="https://img.icons8.com/fluency/96/goal.png">مهامك اليومية</div>
+      <div id="homeM"></div>
+      <div class="sec"><img class="i" src="https://img.icons8.com/fluency/96/time-machine.png">آخر نتيجة</div>
+      <div id="last"></div>
     </section>
 
-    <!-- ══════════════ GAME HUB ══════════════ -->
-    <section class="screen" id="screen-gamehub">
-      <div class="hero" style="min-height:180px">
-        <i class="fas fa-plane hero-plane"></i>
-        <div class="hero-content">
-          <div class="hero-tag"><i class="fas fa-gamepad"></i> اللعبة</div>
-          <div class="hero-title">Sky <span>Rush</span></div>
-          <div class="hero-desc">اضغط للارتفاع، أفلت للسقوط. اجمع الجواهر!</div>
-        </div>
-        <div class="hero-actions">
-          <button class="btn-play" id="gamehubPlayBtn"><i class="fas fa-play"></i> ابدأ اللعب</button>
-        </div>
-      </div>
-      <div class="card">
-        <div class="section-title" style="margin-bottom:12px"><i class="fas fa-chart-line" style="color:var(--pink)"></i> إحصائياتك</div>
-        <div class="info-list">
-          <div class="info-row">أفضل مسافة <b id="hubBest">0 م</b></div>
-          <div class="info-row">إجمالي الجولات <b id="hubRounds">0</b></div>
-          <div class="info-row">إجمالي المسافة <b id="hubTotal">0 م</b></div>
-        </div>
-        <button class="btn btn-pink" id="hubLeaderBtn"><i class="fas fa-trophy"></i> لوحة المتصدرين</button>
-      </div>
-    </section>
-
-    <!-- ══════════════ MISSIONS ══════════════ -->
     <section class="screen" id="screen-missions">
-      <div class="section">
-        <div class="section-head">
-          <div class="section-title"><img src="https://img.icons8.com/liquid-glass-color/999/target.png" alt=""> مهام الطيران</div>
-        </div>
-        <div id="missionsFly"></div>
-      </div>
-      <div class="section">
-        <div class="section-head">
-          <div class="section-title"><img src="https://img.icons8.com/liquid-glass-color/999/gift.png" alt=""> مكافأة اليومية</div>
-        </div>
-        <div class="card" id="dailyRewardCard"></div>
-      </div>
+      <div class="sec"><img class="i" src="https://img.icons8.com/fluency/96/calendar.png">المكافأة اليومية</div>
+      <div class="card" id="daily"></div>
+      <div class="sec"><img class="i" src="https://img.icons8.com/fluency/96/goal.png">المهام</div>
+      <div id="missions"></div>
     </section>
 
-    <!-- ══════════════ WALLET (updated) ══════════════ -->
     <section class="screen" id="screen-wallet">
-      <!-- Coins panel -->
-      <div class="balance-panel coins">
-        <div class="balance-panel-head">
-          <img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt="">
-          <div>
-            <div class="lbl">رصيد العملات</div>
-            <div class="sub">قابلة للتحويل إلى جواهر</div>
-          </div>
-        </div>
-        <div class="big-num" id="walCoins">0</div>
-      </div>
-
-      <!-- Gems panel -->
-      <div class="balance-panel gems">
-        <div class="balance-panel-head">
-          <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="">
-          <div>
-            <div class="lbl">رصيد الجواهر</div>
-            <div class="sub">قابلة للسحب</div>
-          </div>
-        </div>
-        <div class="big-num" id="walGems">0</div>
-        <div class="eq" id="walGemsEq">≈ 0.00$</div>
-      </div>
-
-      <!-- Convert coins -> gems -->
-      <div class="section">
-        <div class="section-head">
-          <div class="section-title"><i class="fas fa-right-left" style="color:var(--pink)"></i> تحويل العملات إلى جواهر</div>
-        </div>
-        <div class="convert-box">
-          <div class="convert-row">
-            <img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" class="convert-icon" alt="">
-            <input class="convert-input" id="convCoins" type="number" min="0" placeholder="0" inputmode="numeric">
-            <div class="convert-label">عملات</div>
-          </div>
-          <div class="convert-arrow"><i class="fas fa-arrow-down"></i></div>
-          <div class="convert-row">
-            <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" class="convert-icon" alt="">
-            <input class="convert-input" id="convGems" type="number" min="0" placeholder="0" inputmode="numeric">
-            <div class="convert-label">جواهر</div>
-          </div>
-          <div class="info-list" style="margin-top:10px">
-            <div class="info-row">معدل التحويل <b>10,000 🪙 = 100 💎</b></div>
-            <div class="info-row">الحد الأدنى <b>5,000 🪙</b></div>
-            <div class="info-row">قيمة الجوهرة <b>0.10$</b></div>
-          </div>
-          <button class="btn btn-black" id="convBtn" style="margin-top:6px"><i class="fas fa-exchange-alt"></i> تحويل الآن</button>
-        </div>
-      </div>
-
-      <!-- Deposits / Withdrawals history -->
-      <div class="section">
-        <div class="section-head">
-          <div class="section-title"><i class="fas fa-list" style="color:var(--pink)"></i> سجل الإيداع</div>
-        </div>
-        <div class="card" id="depositHistory" style="padding:6px 14px"></div>
-      </div>
-      <div class="section">
-        <div class="section-head">
-          <div class="section-title"><i class="fas fa-list" style="color:var(--pink)"></i> سجل السحب</div>
-        </div>
-        <div class="card" id="withdrawHistory" style="padding:6px 14px"></div>
-      </div>
-    </section>
-
-    <!-- ══════════════ LEADERBOARD ══════════════ -->
-    <section class="screen" id="screen-leaderboard">
-      <div class="section">
-        <div class="section-head">
-          <div class="section-title"><i class="fas fa-trophy" style="color:var(--pink)"></i> المتصدرون</div>
-        </div>
-        <div id="podiumArea"></div>
-        <div id="lbList"></div>
-      </div>
-    </section>
-
-    <!-- ══════════════ DEPOSIT ══════════════ -->
-    <section class="screen" id="screen-deposit">
-      <div class="section">
-        <div class="section-head">
-          <div class="section-title"><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt=""> اشترِ جواهر</div>
-        </div>
-        <div class="miss-preview" style="cursor:default">
-          <div class="miss-ico"><i class="fas fa-info-circle"></i></div>
-          <div class="miss-body">
-            <div class="miss-title">معدل الشراء</div>
-            <div class="miss-desc" style="font-size:11.5px;color:var(--gray);font-weight:600">كل 1$ = 900 جوهرة</div>
-          </div>
-        </div>
-        <div id="depositPackages" style="display:grid;gap:10px"></div>
-      </div>
-
-      <div class="section">
-        <div class="section-head">
-          <div class="section-title"><i class="fas fa-wallet" style="color:var(--pink)"></i> طرق الدفع</div>
-        </div>
-        <button class="pay-method" data-manual="binance">
-          <img src="https://up6.cc/2026/09/178982889076391.png" alt="Binance" onerror="this.style.display='none'">
-          <div class="pm-body">
-            <div class="pm-title">Binance Pay</div>
-            <div class="pm-sub">تحويل يدوي — أدخل معرّفك في الملاحظة</div>
-          </div>
-          <i class="fas fa-chevron-left" style="color:var(--gray)"></i>
-        </button>
-        <button class="pay-method" data-manual="sham">
-          <img src="https://up6.cc/2026/09/178975725154411.png" alt="Sham Cash" onerror="this.style.display='none'">
-          <div class="pm-body">
-            <div class="pm-title">شام كاش</div>
-            <div class="pm-sub">تحويل يدوي — أدخل معرّفك في الملاحظة</div>
-          </div>
-          <i class="fas fa-chevron-left" style="color:var(--gray)"></i>
-        </button>
-      </div>
-    </section>
-
-    <!-- ══════════════ DEPOSIT MANUAL — BINANCE ══════════════ -->
-    <section class="screen" id="screen-deposit-binance">
-      <div class="section">
-        <div class="section-head">
-          <div class="section-title"><i class="fas fa-arrow-right" style="cursor:pointer" data-back="deposit"></i> إيداع Binance</div>
-        </div>
-        <div class="manual-page">
-          <div class="mp-head">
-            <img src="https://up6.cc/2026/09/178982889076391.png" alt="Binance" onerror="this.style.display='none'">
-            <div>
-              <div class="mp-title">Binance Pay</div>
-              <div class="mp-sub">تحويل يدوي — يُراجع خلال 24 ساعة</div>
-            </div>
-          </div>
-          <div class="mp-label">معرّف الإيداع (Binance Pay ID)</div>
-          <div class="mp-code">
-            <span id="binanceAccId">1121748571</span>
-            <button class="copy-btn" data-copy="binanceAccId">نسخ</button>
-          </div>
-          <div class="mp-label">معرّفك الخاص (ضعه في ملاحظة التحويل)</div>
-          <div class="mp-code">
-            <span id="binanceUid">----</span>
-            <button class="copy-btn" data-copy="binanceUid">نسخ</button>
-          </div>
-          <div class="mp-warn">
-            <i class="fas fa-exclamation-triangle"></i> تأكد من إدخال معرّفك في الملاحظة (Note) أثناء التحويل ليتمكن الفريق من مطابقة الدفعة بحسابك.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════════════ DEPOSIT MANUAL — SHAM CASH ══════════════ -->
-    <section class="screen" id="screen-deposit-sham">
-      <div class="section">
-        <div class="section-head">
-          <div class="section-title"><i class="fas fa-arrow-right" style="cursor:pointer" data-back="deposit"></i> إيداع شام كاش</div>
-        </div>
-        <div class="manual-page">
-          <div class="mp-head">
-            <img src="https://up6.cc/2026/09/178975725154411.png" alt="Sham Cash" onerror="this.style.display='none'">
-            <div>
-              <div class="mp-title">شام كاش</div>
-              <div class="mp-sub">تحويل يدوي — يُراجع خلال 24 ساعة</div>
-            </div>
-          </div>
-          <div class="mp-label">معرّف الإيداع (Sham Cash ID)</div>
-          <div class="mp-code">
-            <span id="shamAccId">334a08ea2d1bbed05f214a7f08e37ae4</span>
-            <button class="copy-btn" data-copy="shamAccId">نسخ</button>
-          </div>
-          <div class="mp-label">معرّفك الخاص (ضعه في ملاحظة التحويل)</div>
-          <div class="mp-code">
-            <span id="shamUid">----</span>
-            <button class="copy-btn" data-copy="shamUid">نسخ</button>
-          </div>
-          <div class="mp-warn">
-            <i class="fas fa-exclamation-triangle"></i> تأكد من إدخال معرّفك في الملاحظة (Note) أثناء التحويل ليتمكن الفريق من مطابقة الدفعة بحسابك.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════════════ WITHDRAW (merged with deposit) ══════════════ -->
-    <section class="screen" id="screen-withdraw">
-      <div class="balance-panel gems">
-        <div class="balance-panel-head">
-          <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="">
-          <div>
-            <div class="lbl">رصيدك القابل للسحب</div>
-            <div class="sub">اختر طريقة السحب</div>
-          </div>
-        </div>
-        <div class="big-num" id="wdGems">0</div>
-        <div class="eq" id="wdUsd">≈ 0.00$</div>
-      </div>
-
-      <div class="section">
-        <div class="section-head">
-          <div class="section-title"><i class="fas fa-money-bill-transfer" style="color:var(--pink)"></i> طرق السحب</div>
-        </div>
-        <button class="pay-method" data-wd-method="binance">
-          <img src="https://up6.cc/2026/09/178982889076391.png" alt="Binance" onerror="this.style.display='none'">
-          <div class="pm-body">
-            <div class="pm-title">Binance Pay</div>
-            <div class="pm-sub">الحد الأدنى 5,000 💎</div>
-          </div>
-          <i class="fas fa-check-circle" style="color:var(--pink);font-size:18px;visibility:hidden"></i>
-        </button>
-        <button class="pay-method" data-wd-method="sham">
-          <img src="https://up6.cc/2026/09/178975725154411.png" alt="Sham Cash" onerror="this.style.display='none'">
-          <div class="pm-body">
-            <div class="pm-title">شام كاش</div>
-            <div class="pm-sub">الحد الأدنى 1,000 💎</div>
-          </div>
-          <i class="fas fa-check-circle" style="color:var(--pink);font-size:18px;visibility:hidden"></i>
-        </button>
-      </div>
-
-      <div class="section">
-        <div class="section-head">
-          <div class="section-title"><img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt=""> المبلغ</div>
-        </div>
-        <div class="amt-grid" id="wdAmounts">
-          <button class="amt-btn" data-amt="1000">1,000</button>
-          <button class="amt-btn" data-amt="5000">5,000</button>
-          <button class="amt-btn" data-amt="10000">10,000</button>
-          <button class="amt-btn" data-amt="50000">50,000</button>
-          <button class="amt-btn" data-amt="100000">100,000</button>
-        </div>
-      </div>
+      <div class="bal c"><img class="i xl" src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png"><div><small style="direction:rtl">رصيد العملات</small><b id="wC">0</b></div></div>
+      <div class="bal g"><img class="i xl" src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png"><div><small style="direction:rtl">رصيد الجواهر</small><b id="wG">0</b><small id="wUsd"></small></div></div>
 
       <div class="card">
-        <div class="section-title" style="margin-bottom:10px;font-size:14px" id="wdAccountLabel">عنوان محفظة USDT (TRC20)</div>
-        <input class="input" id="wdAccount" placeholder="أدخل العنوان" autocomplete="off">
+        <div class="sec" style="margin-top:0"><img class="i" src="https://img.icons8.com/ios-filled/50/FE2B54/data-in-both-directions.png">تبديل العملات بجواهر</div>
+        <input class="inp" id="cv" type="number" inputmode="numeric" placeholder="عدد العملات (الحد الأدنى 5,000)">
+        <div class="info" style="margin-top:10px"><div>ستحصل على<b id="cvOut">0 <img class="i s" src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png"></b></div><div>المعدل<b>10,000 <img class="i s" src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png"> = 100 <img class="i s" src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png"></b></div></div>
+        <button class="btn bk" id="cvBtn">تبديل الآن</button>
       </div>
 
-      <div class="info-list">
-        <div class="info-row">المبلغ المختار <b id="wdChosen">0 💎</b></div>
-        <div class="info-row">ما يعادل <b id="wdReceive">$0.00</b></div>
+      <div class="tabs"><button class="tab on" data-tab="dep">إيداع</button><button class="tab" data-tab="wd">سحب</button></div>
+
+      <div id="tab-dep">
+        <div class="info"><div>سعر الجوهرة<b>1$ = 900 <img class="i s" src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png"></b></div></div>
+        <button class="meth" data-dep="binance"><img class="lg" src="" data-logo="binance"><div style="flex:1"><div class="t">Binance Pay</div><div class="d">دفع يدوي</div></div></button>
+        <button class="meth" data-dep="sham"><img class="lg" src="" data-logo="sham"><div style="flex:1"><div class="t">شام كاش</div><div class="d">دفع يدوي</div></div></button>
       </div>
 
-      <button class="btn btn-pink" id="wdSubmit"><i class="fas fa-paper-plane"></i> تقديم طلب السحب</button>
-
-      <div class="section" style="margin-top:20px">
-        <div class="section-head">
-          <div class="section-title"><i class="fas fa-clock-rotate-left" style="color:var(--pink)"></i> سجل السحوبات</div>
-        </div>
-        <div class="card" id="wdHistory" style="padding:6px 14px"></div>
+      <div id="tab-wd" class="hide">
+        <div id="wdM"></div>
+        <div class="amts" id="wdA"></div>
+        <input class="inp" id="wdAcc" style="margin-bottom:10px" autocomplete="off">
+        <div class="info"><div>المبلغ<b id="wdCh">0</b></div><div>ما يعادل<b id="wdRc">0</b></div></div>
+        <button class="btn bp" id="wdGo">تقديم طلب السحب</button>
       </div>
+
+      <div class="sec" style="margin-top:16px"><img class="i" src="https://img.icons8.com/fluency/96/time-machine.png">سجل الإيداع والسحب</div>
+      <div class="card" id="hist" style="padding:4px 14px"></div>
     </section>
 
-    <!-- ══════════════ PROFILE ══════════════ -->
+    <section class="screen" id="screen-dep">
+      <div id="depBody"></div>
+    </section>
+
+    <section class="screen" id="screen-leaderboard">
+      <div class="sec"><img class="i" src="https://img.icons8.com/fluency/96/trophy.png">المتصدرون</div>
+      <div id="pod"></div><div id="lbl"></div>
+    </section>
+
     <section class="screen" id="screen-profile">
-      <div class="profile-hero">
-        <div class="profile-avatar" id="profAvatar"><i class="fas fa-user"></i></div>
-        <div class="profile-name" id="profName">لاعب</div>
-        <div class="profile-id" id="profId">--------</div>
-      </div>
-      <div class="menu-list">
-        <button class="menu-item" data-go="wallet"><div class="menu-ico"><img src="https://img.icons8.com/liquid-glass-color/999/wallet.png" alt=""></div><div class="menu-label">المحفظة</div><i class="fas fa-chevron-left menu-arrow"></i></button>
-        <button class="menu-item" data-go="deposit"><div class="menu-ico"><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt=""></div><div class="menu-label">شراء الجواهر</div><i class="fas fa-chevron-left menu-arrow"></i></button>
-        <button class="menu-item" data-go="withdraw"><div class="menu-ico"><i class="fas fa-money-bill-transfer" style="color:var(--pink)"></i></div><div class="menu-label">سحب الأرباح</div><i class="fas fa-chevron-left menu-arrow"></i></button>
-        <button class="menu-item" id="openPolicy"><div class="menu-ico"><img src="https://img.icons8.com/liquid-glass-color/999/shield.png" alt=""></div><div class="menu-label">سياسة الخصوصية</div><i class="fas fa-chevron-left menu-arrow"></i></button>
-        <button class="menu-item" id="openHelp"><div class="menu-ico"><img src="https://img.icons8.com/liquid-glass-color/999/help.png" alt=""></div><div class="menu-label">مركز المساعدة</div><i class="fas fa-chevron-left menu-arrow"></i></button>
+      <div class="ph"><div class="av" id="pAv"></div><b id="pName"></b><small id="pId"></small></div>
+      <div class="menu">
+        <button id="oPol"><img class="i" src="https://img.icons8.com/ios-filled/50/FE2B54/shield.png"><span>سياسة الخصوصية</span></button>
+        <button id="oHelp"><img class="i" src="https://img.icons8.com/ios-filled/50/FE2B54/help.png"><span>مركز المساعدة</span></button>
       </div>
     </section>
-
   </div>
 
-  <!-- Bottom Nav -->
-  <nav class="dock">
-    <button class="on" data-nav="home"><img class="dock-icon" src="https://img.icons8.com/liquid-glass-color/999/home.png" alt=""><span>الرئيسية</span></button>
-    <button data-nav="gamehub"><img class="dock-icon" src="https://img.icons8.com/liquid-glass-color/999/controller.png" alt=""><span>اللعبة</span></button>
-    <button data-nav="missions"><img class="dock-icon" src="https://img.icons8.com/liquid-glass-color/999/target.png" alt=""><span>المهام</span></button>
-    <button data-nav="wallet"><img class="dock-icon" src="https://img.icons8.com/liquid-glass-color/999/wallet.png" alt=""><span>الرصيد</span></button>
-    <button data-nav="profile"><img class="dock-icon" src="https://img.icons8.com/liquid-glass-color/999/user.png" alt=""><span>حسابي</span></button>
-  </nav>
+  <nav class="dock" id="dock"></nav>
 
-  <!-- Fullscreen Game -->
   <section id="screen-game">
-    <div class="game-canvas-wrap">
-      <canvas id="gameCanvas"></canvas>
-      <div class="game-hud">
-        <div class="game-hud-row">
-          <img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt="">
-          <b id="hudCoins">0</b>
-        </div>
-        <div class="game-hud-row">
-          <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="">
-          <b id="hudGems">0</b>
-        </div>
-      </div>
-      <div class="game-dist"><span id="hudDist">0</span>م</div>
-      <button class="game-exit" id="gamePause"><i class="fas fa-pause"></i></button>
-      <div id="floaters"></div>
-
-      <!-- Ready overlay -->
-      <div class="game-overlay show" id="gameReadyOverlay">
-        <div class="game-modal">
-          <div class="game-modal-icon"><i class="fas fa-plane" style="color:var(--pink);font-size:32px"></i></div>
-          <div class="game-modal-title">جاهز للطيران؟</div>
-          <div class="game-modal-sub">اضغط على الشاشة للارتفاع وتجنّب الصبار</div>
-          <button class="btn btn-black" id="gameStartBtn"><i class="fas fa-play"></i> ابدأ</button>
-        </div>
-      </div>
-
-      <!-- Pause overlay -->
-      <div class="game-overlay" id="gamePauseOverlay">
-        <div class="game-modal">
-          <div class="game-modal-icon"><i class="fas fa-pause" style="color:var(--pink);font-size:28px"></i></div>
-          <div class="game-modal-title">اللعبة متوقفة</div>
-          <div class="game-modal-sub">اضغط متابعة للعودة</div>
-          <button class="btn btn-black" id="gameResumeBtn"><i class="fas fa-play"></i> متابعة</button>
-          <button class="btn btn-outline" id="gameExitPaused" style="margin-top:8px"><i class="fas fa-times"></i> خروج</button>
-        </div>
-      </div>
-
-      <!-- Game over -->
-      <div class="game-overlay" id="gameOverOverlay">
-        <div class="game-modal">
-          <div class="game-modal-icon" style="background:#FEE2E2"><i class="fas fa-flag-checkered" style="color:#DC2626;font-size:30px"></i></div>
-          <div class="game-modal-title">انتهت الجولة</div>
-          <div class="game-modal-sub">أحسنت! نتيجة رائعة</div>
-          <div class="game-over-dist">
-            <div class="lbl">المسافة المقطوعة</div>
-            <div class="val" id="overDist">0</div>
-            <div class="unit">متر</div>
-          </div>
-          <div class="game-over-stats">
-            <div class="game-over-stat">
-              <div class="v"><img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt=""><span id="overCoins">0</span></div>
-              <div class="k">عملات</div>
-            </div>
-            <div class="game-over-stat">
-              <div class="v"><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt=""><span id="overGems">0</span></div>
-              <div class="k">جواهر</div>
-            </div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:8px">
-            <button class="btn btn-black" id="gameReplayBtn"><i class="fas fa-rotate-right"></i> العب مرة أخرى</button>
-            <button class="btn btn-outline" id="gameLeaderBtn"><i class="fas fa-trophy"></i> المتصدرين</button>
-            <button class="btn btn-outline" id="gameHomeBtn"><i class="fas fa-house"></i> الرئيسية</button>
-          </div>
-        </div>
-      </div>
+    <canvas id="gc"></canvas>
+    <div class="hud">
+      <div class="pill"><img class="i" src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png"><b id="hudC">0</b></div>
+      <div class="pill"><img class="i" src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png"><b id="hudG">0</b></div>
     </div>
+    <div class="dist"><span id="hudD">0</span> م</div>
+    <button class="pause" id="pauseBtn"><img class="i" src="https://img.icons8.com/ios-filled/50/000000/pause.png"></button>
+    <div id="fl"></div>
+    <div class="ov show" id="ovReady"><div class="mc"><div class="ic"><img class="i l" src="https://img.icons8.com/fluency/96/airplane-mode-on.png"></div><h3>جاهز للطيران؟</h3><p>اضغط على الشاشة للارتفاع وتجنّب الصبار</p><button class="btn bk" id="startBtn">ابدأ</button><button class="btn bo" style="margin-top:8px" id="readyExit">رجوع</button></div></div>
+    <div class="ov" id="ovPause"><div class="mc"><div class="ic"><img class="i l" src="https://img.icons8.com/fluency/96/pause.png"></div><h3>اللعبة متوقفة</h3><p>تابع اللعب أو أنهِ الجولة</p><button class="btn bk" id="resumeBtn">استئناف</button><button class="btn bo" style="margin-top:8px" id="quitBtn">إنهاء الجولة</button></div></div>
+    <div class="ov" id="ovOver"><div class="mc"><h3>انتهت الجولة</h3><p>المسافة المقطوعة</p><div class="big" id="oD">0</div><p>متر</p>
+      <div class="grid2" style="margin-bottom:14px"><div class="card flat" style="margin:0"><div class="am" style="font-size:18px;margin:0"><img class="i" src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png"><span id="oC">0</span></div></div><div class="card flat" style="margin:0"><div class="am" style="font-size:18px;margin:0"><img class="i" src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png"><span id="oG">0</span></div></div></div>
+      <button class="btn bk" id="againBtn">العب مرة أخرى</button><button class="btn bo" style="margin-top:8px" id="lbBtn">المتصدرين</button><button class="btn bo" style="margin-top:8px" id="homeBtn">الرئيسية</button></div></div>
   </section>
-
 </div>
 
-<!-- Modal -->
-<div class="modal" id="modal">
-  <div class="modal-card">
-    <div class="modal-icon" id="modalIcon"><i class="fas fa-check"></i></div>
-    <div class="modal-title" id="modalTitle"></div>
-    <div class="modal-sub" id="modalSub"></div>
-    <div class="modal-amount" id="modalAmount" style="display:none"></div>
-    <button class="btn btn-pink" id="modalBtn"><span>حسناً</span></button>
-  </div>
-</div>
-
-<!-- Toast -->
+<div class="modal" id="modal"><div class="mc"><div class="ic" id="mIc"></div><h3 id="mT"></h3><p id="mS"></p><div class="am" id="mA"></div><button class="btn bp" id="mB">حسناً</button></div></div>
 <div class="toast" id="toast"></div>
 
-<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-
 <script>
 'use strict';
-
-/* ═══ CONFIG ═══ */
-const CONFIG = {
-  firebase: {
-    apiKey: "AIzaSyDvhuuNg7ANjHHseUwYGJt2NoYs-SmWrGs",
-    authDomain: "puppy-marge.firebaseapp.com",
-    projectId: "puppy-marge",
-    storageBucket: "puppy-marge.firebasestorage.app",
-    messagingSenderId: "907422647300",
-    appId: "1:907422647300:web:efa524fcfef96288c4a151"
+const GEM='https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png', COIN='https://img.icons8.com/liquid-glass-color/999/cheap-2.png';
+const CONFIG={
+  firebase:{apiKey:"AIzaSyDvhuuNg7ANjHHseUwYGJt2NoYs-SmWrGs",authDomain:"puppy-marge.firebaseapp.com",projectId:"puppy-marge",storageBucket:"puppy-marge.firebasestorage.app",messagingSenderId:"907422647300",appId:"1:907422647300:web:efa524fcfef96288c4a151"},
+  bot:{username:'PuppyMerge_bot',appName:'PuppyMerge'},
+  col:'puppy_users',wdCol:'puppy_withdrawals',txCol:'puppy_transactions',timeCol:'_puppy_time',flyCol:'puppy_fly_scores',depCol:'puppy_deposits',
+  energyMax:25,regenMs:600000,
+  rate:0.0001, shamSyp:0.01, // 1000 جوهرة = 0.10$
+  logos:{
+    binance:'https://img.icons8.com/color/96/binance.png',
+    sham:'https://img.icons8.com/fluency/96/money-transfer.png' // ضع رابط شعار شام كاش القديم هنا
   },
-  bot: { username: 'PuppyMerge_bot', appName: 'PuppyMerge' },
-  col: 'puppy_users',
-  wdCol: 'puppy_withdrawals',
-  txCol: 'puppy_transactions',
-  timeCol: '_puppy_time',
-  flyCol: 'puppy_fly_scores',
-  depCol: 'puppy_deposits',
-
-  energyMax: 25,
-  regenMs: 600000,
-  gemUsd: 0.10, // 100 gems = $0.10
-
-  // Coins -> Gems conversion (10000 coins -> 100 gems)
-  convMinCoins: 5000,
-  convRate: 0.01, // coins * 0.01 = gems
-
-  wd: {
-    min: 5000,
-    rate: 0.00008,
-    shamMin: 1000,
-    shamSypPerGem: 0.01
+  methods:{
+    binance:{name:'Binance Pay',min:5000,acc:'1121748571',label:'Binance Pay ID',ph:'Binance Pay ID'},
+    sham:{name:'شام كاش',min:1000,acc:'334a08ea2d1bbed05f214a7f08e37ae4',label:'Sham Cash ID',ph:'معرف شام كاش'}
   },
-
-  gemsPerUsd: 900,
-  depositPackages: [
-    { usd: 1,  gems: 900 },
-    { usd: 2,  gems: 1800 },
-    { usd: 5,  gems: 4500 },
-    { usd: 10, gems: 9000 },
-    { usd: 20, gems: 18000 },
-    { usd: 50, gems: 45000 },
+  fly:{gravity:1850,flap:-520,maxFall:950,scroll:200,fixedDt:1/120,pxPerM:26,pRMin:16,pRMax:28,oWMin:56,oWMax:88,oWR:.16,gapR:.31,gapMin:158,gapMax:270,spR:.75,spMin:250,spMax:340,grR:.13,grMin:70,grMax:115,coinPerPair:10,dMin:1,dMax:5,bMin:5,bMax:10},
+  missions:[
+    {id:'s500',type:'single',target:500,coins:300,title:'حلّق 500 متر في جولة واحدة'},
+    {id:'r5',type:'rounds',target:5,coins:200,title:'العب 5 جولات'},
+    {id:'t3000',type:'total',target:3000,coins:500,title:'اجمع 3,000 متر إجمالاً'},
+    {id:'s1000',type:'single',target:1000,gems:3,title:'حلّق 1000 متر في جولة واحدة'},
+    {id:'r10',type:'rounds',target:10,coins:400,title:'العب 10 جولات'},
+    {id:'t5000',type:'total',target:5000,gems:5,title:'اجمع 5,000 متر إجمالاً'},
+    {id:'s2000',type:'single',target:2000,gems:8,title:'حلّق 2000 متر في جولة واحدة'},
+    {id:'r50',type:'rounds',target:50,coins:2000,title:'العب 50 جولة'},
+    {id:'t10000',type:'total',target:10000,gems:10,title:'اجمع 10,000 متر إجمالاً'},
+    {id:'r100',type:'rounds',target:100,gems:15,title:'العب 100 جولة'}
   ],
-
-  manual: {
-    binance: { acc: '1121748571', label: 'Binance Pay ID' },
-    sham:    { acc: '334a08ea2d1bbed05f214a7f08e37ae4', label: 'Sham Cash ID' }
-  },
-
-  api: { base: 'https://puppy-merge-api.starlimitedcom.workers.dev' },
-  shieldz: { pollIntervalMs: 5000, pollMaxAttempts: 60, pendingTimeoutMs: 30 * 60 * 1000 },
-
-  fly: {
-    gravity: 1850, flap: -520, maxFall: 950, scroll: 200, fixedDt: 1/120, pxPerM: 26,
-    pRMin: 16, pRMax: 28, oWMin: 56, oWMax: 88, oWR: 0.16,
-    gapR: 0.31, gapMin: 158, gapMax: 270,
-    spR: 0.75, spMin: 250, spMax: 340,
-    grR: 0.13, grMin: 70, grMax: 115,
-    coinPerPair: 10, dMin: 1, dMax: 5,
-    bubbleIntervalMin: 5, bubbleIntervalMax: 10
-  },
-
-  // Missions with gems rewards reduced
-  missions: [
-    { id: 'fly_single_1000', type: 'single',  target: 1000,  reward: 15, rewardType: 'gems', title: 'حلق 1000 متر في جولة واحدة', desc: 'حقّق مسافة 1000 متر في جولة واحدة صحيحة' },
-    { id: 'fly_total_5000',  type: 'total',   target: 5000,  reward: 500, rewardType: 'coins', title: 'اجمع 5000 متر خلال جولاتك', desc: 'اجمع مسافة 5000 متر في مجموع جولاتك' },
-    { id: 'fly_rounds_10',   type: 'rounds',  target: 10,    reward: 300, rewardType: 'coins', title: 'العب 10 جولات', desc: 'أكمل 10 جولات صحيحة على الأقل' },
-    { id: 'fly_total_10000', type: 'total',   target: 10000, reward: 50,  rewardType: 'gems', title: 'حلق 10,000 متر إجمالاً', desc: 'اجمع مسافة 10,000 متر في مجموع جولاتك' },
-    { id: 'fly_single_2500', type: 'single',  target: 2500,  reward: 1000, rewardType: 'coins', title: 'حلق 2500 متر في جولة', desc: 'حقّق مسافة 2500 متر في جولة واحدة' },
-    { id: 'fly_rounds_25',   type: 'rounds',  target: 25,    reward: 25,  rewardType: 'gems', title: 'العب 25 جولة', desc: 'أكمل 25 جولة صحيحة' },
-  ],
-
-  // 7-day daily rewards: mixed coins/gems
-  daily: [
-    { coins: 500,  gems: 0,   label: '500 عملة' },
-    { coins: 0,    gems: 5,   label: '5 جواهر' },
-    { coins: 1000, gems: 0,   label: '1000 عملة' },
-    { coins: 0,    gems: 10,  label: '10 جواهر' },
-    { coins: 2000, gems: 0,   label: '2000 عملة' },
-    { coins: 0,    gems: 20,  label: '20 جواهر' },
-    { coins: 5000, gems: 0,   label: '5000 عملة' },
-  ],
+  daily:[{c:200},{g:2},{c:400},{g:4},{c:800},{g:6},{c:1500,g:10}],
+  dayNames:['اليوم 1','اليوم 2','اليوم 3','اليوم 4','اليوم 5','اليوم 6','اليوم 7']
 };
+const $=id=>document.getElementById(id);
+const fmt=n=>Number(n||0).toLocaleString('en-US');
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const pad=n=>String(n).padStart(2,'0');
+const ic=(n,c='000000',cls='')=>`<img class="i ${cls}" src="https://img.icons8.com/ios-filled/50/${c}/${n}.png">`;
+const gi=(c='s')=>`<img class="i ${c}" src="${GEM}">`, ci=(c='s')=>`<img class="i ${c}" src="${COIN}">`;
+const dayStr=d=>new Date(d).toISOString().slice(0,10);
+const today=()=>dayStr(TIME.now());
+const usd=g=>(g*CONFIG.rate).toFixed(2);
 
-const $ = id => document.getElementById(id);
-const fmt = n => Number(n || 0).toLocaleString('en-US');
-const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const sleep = ms => new Promise(r => setTimeout(r, ms));
-const usd = g => (g * CONFIG.wd.rate).toFixed(2);
-const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
-const today = () => new Date(TIME.now()).toISOString().slice(0,10);
-const pad = n => String(n).padStart(2,'0');
+const TG={app:null,user:null,id:null,
+  init(){this.app=window.Telegram&&Telegram.WebApp;if(!this.app||!this.app.initDataUnsafe||!this.app.initDataUnsafe.user)return false;
+    try{this.app.ready();this.app.expand();this.app.disableVerticalSwipes&&this.app.disableVerticalSwipes();this.app.setHeaderColor('#FFFFFF');this.app.setBackgroundColor('#FFFFFF')}catch(e){}
+    this.user=this.app.initDataUnsafe.user;this.id=String(this.user.id);return true}};
 
-/* ═══ TELEGRAM ═══ */
-const TG = {
-  app: null, user: null, id: null, start: null,
-  init() {
-    this.app = window.Telegram && Telegram.WebApp;
-    if (!this.app || !this.app.initDataUnsafe || !this.app.initDataUnsafe.user) return false;
-    try {
-      this.app.ready();
-      this.app.expand();
-      this.app.disableVerticalSwipes && this.app.disableVerticalSwipes();
-      this.app.setHeaderColor('#FFFFFF');
-      this.app.setBackgroundColor('#FFFFFF');
-    } catch(e) {}
-    this.user = this.app.initDataUnsafe.user;
-    this.id = String(this.user.id);
-    this.start = this.app.initDataUnsafe.start_param || null;
-    return true;
-  },
-  open(u) {
-    this.app.openTelegramLink && /^https:\/\/t\.me\//i.test(u)
-      ? this.app.openTelegramLink(u)
-      : window.open(u, '_blank');
-  },
-  openExternal(u) {
-    try { this.app && this.app.openLink ? this.app.openLink(u) : window.open(u, '_blank'); }
-    catch(e) { window.open(u, '_blank'); }
-  }
+let db=null;
+const FB={init(){firebase.apps.length||firebase.initializeApp(CONFIG.firebase);db=firebase.firestore()},
+  ref(){return db.collection(CONFIG.col).doc(TG.id)},
+  async get(){const s=await this.ref().get({source:'server'});return s.exists?s.data():null},
+  async set(d,m=true){if(db)await this.ref().set(d,{merge:m})}};
+
+const TIME={serverAt:0,perfAt:0,synced:false,now(){return this.synced?this.serverAt+(performance.now()-this.perfAt):Date.now()},
+  async sync(){if(!db)return;try{const r=db.collection(CONFIG.timeCol).doc('t_'+TG.id);const t0=performance.now();
+    await r.set({ping:firebase.firestore.FieldValue.serverTimestamp()},{merge:true});const s=await r.get({source:'server'});const t1=performance.now();
+    const ts=s.data()&&s.data().ping;if(ts){this.serverAt=ts.toMillis()+(t1-t0)/2;this.perfAt=t1;this.synced=true}}catch(e){}}};
+
+const S={user:null,busy:false,nav:'home',wdM:'binance',wd:0,lb:[],lbAt:0};
+const newUser=()=>({telegramId:TG.id,name:(TG.user.first_name||'')+(TG.user.last_name?' '+TG.user.last_name:''),username:TG.user.username||null,photoUrl:TG.user.photo_url||null,
+  coins:0,gems:0,energy:CONFIG.energyMax,energyUpdatedAt:TIME.now(),flyBest:0,flyCoins:0,flyGems:0,flyTotal:0,flyRounds:0,flyMissions:{},flyLastRoundAt:0,
+  dailyLogin:{streak:0,lastClaimDate:null},createdAt:Date.now(),updatedAt:Date.now()});
+
+/* UI */
+let tt;
+function toast(msg,type=''){const e=$('toast');e.textContent=msg;e.className='toast '+type;void e.offsetWidth;e.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('show'),2600)}
+function showModal(o){$('mIc').className='ic '+(o.type||'');$('mIc').innerHTML=o.icon||ic('checkmark','16A34A','l');$('mT').textContent=o.title||'';$('mS').textContent=o.sub||'';
+  $('mA').innerHTML=o.amount||'';$('mA').style.display=o.amount?'flex':'none';$('mB').textContent=o.btn||'حسناً';
+  $('mB').onclick=()=>{closeModal();o.onClose&&o.onClose()};$('modal').classList.add('show')}
+const closeModal=()=>$('modal').classList.remove('show');
+$('modal').onclick=e=>{if(e.target.id==='modal')closeModal()};
+const avatar=u=>u.photoUrl?`<img src="${esc(u.photoUrl)}" referrerpolicy="no-referrer" onerror="this.style.display='none'">`:ic('user','FE2B54');
+
+/* ENERGY */
+const Energy={
+  last(u,now){const r=Number(u.energyUpdatedAt||now);return r>now+60000?now:r},
+  cur(u){const st=Number(u.energy||0);if(st>=CONFIG.energyMax)return CONFIG.energyMax;const now=TIME.now();return Math.min(CONFIG.energyMax,st+Math.floor(Math.max(0,now-this.last(u,now))/CONFIG.regenMs))},
+  next(u){if(this.cur(u)>=CONFIG.energyMax)return 0;const now=TIME.now();return CONFIG.regenMs-(Math.max(0,now-this.last(u,now))%CONFIG.regenMs)},
+  async change(n){const u=S.user,c=this.cur(u),now=TIME.now(),last=this.last(u,now),full=c>=CONFIG.energyMax;
+    u.energy=clamp(c+n,0,CONFIG.energyMax);
+    u.energyUpdatedAt=(n<0&&full)||u.energy>=CONFIG.energyMax?now:last+Math.floor((now-last)/CONFIG.regenMs)*CONFIG.regenMs;
+    renderEnergy();await FB.set({energy:u.energy,energyUpdatedAt:u.energyUpdatedAt})},
+  async use(){if(this.cur(S.user)<1)return false;await this.change(-1);return true},
+  async add(){if(this.cur(S.user)>=CONFIG.energyMax)return false;await this.change(1);return true}
 };
-
-/* ═══ FIREBASE ═══ */
-let db = null;
-const FB = {
-  init() {
-    try {
-      firebase.apps.length || firebase.initializeApp(CONFIG.firebase);
-      db = firebase.firestore();
-    } catch(e) { console.warn(e); }
-  },
-  ref() { return db.collection(CONFIG.col).doc(TG.id); },
-  async get() {
-    const s = await this.ref().get({ source: 'server' });
-    return s.exists ? s.data() : null;
-  },
-  async set(d, merge = true) { if (db) await this.ref().set(d, { merge }); }
-};
-const save = (extra = {}) => FB.set(Object.assign({
-  coins: S.user.coins, gems: S.user.gems, updatedAt: Date.now()
-}, extra));
-
-/* ═══ TIME ═══ */
-const TIME = {
-  serverAt: 0, perfAt: 0, synced: false, locked: false,
-  now() { return this.synced ? this.serverAt + (performance.now() - this.perfAt) : Date.now(); },
-  async sync() {
-    if (!db) return;
-    try {
-      const r = db.collection(CONFIG.timeCol).doc('t_' + TG.id);
-      const t0 = performance.now();
-      await r.set({ ping: firebase.firestore.FieldValue.serverTimestamp() }, { merge: true });
-      const s = await r.get({ source: 'server' });
-      const t1 = performance.now();
-      const ts = s.data() && s.data().ping;
-      if (ts) {
-        this.serverAt = ts.toMillis() + (t1 - t0) / 2;
-        this.perfAt = t1;
-        this.synced = true;
-        this.locked = Math.abs(this.serverAt - Date.now()) > 60000;
-      }
-    } catch(e) {}
-  }
-};
-
-/* ═══ STATE ═══ */
-const S = {
-  user: null, busy: false, nav: 'home',
-  wd: 0, wdMethod: 'binance',
-  lb: [], lbAt: 0,
-  convCoins: 0
-};
-
-const newUser = () => ({
-  telegramId: TG.id,
-  name: (TG.user.first_name || '') + (TG.user.last_name ? ' ' + TG.user.last_name : ''),
-  username: TG.user.username || null,
-  photoUrl: TG.user.photo_url || null,
-  coins: 0, gems: 0,
-  energy: CONFIG.energyMax, energyUpdatedAt: TIME.now(),
-  flyBest: 0, flyCoins: 0, flyGems: 0, flyTotal: 0, flyRounds: 0,
-  flyMissions: {}, flyLastRoundAt: 0, flyLastDist: 0,
-  dailyLogin: { streak: 0, lastClaimDate: null },
-  referralCode: TG.id, referredBy: null, referralCount: 0,
-  createdAt: Date.now(), updatedAt: Date.now()
-});
-
-/* ═══ UI ═══ */
-let toastTimer;
-function toast(msg, type = '') {
-  const e = $('toast');
-  e.textContent = msg;
-  e.className = 'toast ' + type;
-  void e.offsetWidth;
-  e.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => e.classList.remove('show'), 2600);
-}
-
-function showModal(o) {
-  $('modalIcon').className = 'modal-icon ' + (o.type || '');
-  $('modalIcon').innerHTML = '<i class="fas ' + (o.icon || 'fa-check') + '"></i>';
-  $('modalTitle').textContent = o.title || '';
-  $('modalSub').textContent = o.sub || '';
-  $('modalAmount').textContent = o.amount || '';
-  $('modalAmount').style.display = o.amount ? 'block' : 'none';
-  $('modalBtn').querySelector('span').textContent = o.btn || 'حسناً';
-  $('modalBtn').onclick = () => { closeModal(); o.onClose && o.onClose(); };
-  $('modal').classList.add('show');
-}
-function closeModal() { $('modal').classList.remove('show'); }
-$('modal').onclick = e => { if (e.target.id === 'modal') closeModal(); };
-
-/* ═══ ENERGY ═══ */
-const Energy = {
-  cur(u) {
-    const st = Number(u.energy || 0);
-    if (st >= CONFIG.energyMax) return CONFIG.energyMax;
-    const now = TIME.now();
-    const rawLast = Number(u.energyUpdatedAt || now);
-    const last = rawLast > now + 60000 ? now : rawLast;
-    const elapsed = Math.max(0, now - last);
-    return Math.min(CONFIG.energyMax, Math.max(0, st + Math.floor(elapsed / CONFIG.regenMs)));
-  },
-  next(u) {
-    if (this.cur(u) >= CONFIG.energyMax) return 0;
-    const now = TIME.now();
-    const rawLast = Number(u.energyUpdatedAt || now);
-    const last = rawLast > now + 60000 ? now : rawLast;
-    const elapsed = Math.max(0, now - last);
-    return CONFIG.regenMs - (elapsed % CONFIG.regenMs);
-  },
-  async use(n = 1) {
-    const c = this.cur(S.user);
-    if (c < n) return false;
-    const now = TIME.now();
-    const rawLast = Number(S.user.energyUpdatedAt || now);
-    const last = rawLast > now + 60000 ? now : rawLast;
-    const wasFull = c >= CONFIG.energyMax;
-    S.user.energy = c - n;
-    if (wasFull) S.user.energyUpdatedAt = now;
-    else S.user.energyUpdatedAt = last + Math.floor((now - last) / CONFIG.regenMs) * CONFIG.regenMs;
-    await FB.set({ energy: S.user.energy, energyUpdatedAt: S.user.energyUpdatedAt });
-    renderEnergy();
-    return true;
-  },
-  async add(n = 1) {
-    const u = S.user;
-    if (!u) return false;
-    const current = this.cur(u);
-    if (current >= CONFIG.energyMax) return false;
-    const now = TIME.now();
-    const rawLast = Number(u.energyUpdatedAt || now);
-    const last = rawLast > now + 60000 ? now : rawLast;
-    u.energy = current + n;
-    if (u.energy >= CONFIG.energyMax) u.energyUpdatedAt = now;
-    else u.energyUpdatedAt = last + Math.floor((now - last) / CONFIG.regenMs) * CONFIG.regenMs;
-    await FB.set({ energy: u.energy, energyUpdatedAt: u.energyUpdatedAt });
-    renderEnergy();
-    return true;
-  }
-};
-
-function renderEnergy() {
-  if (!S.user) return;
-  const c = Energy.cur(S.user), m = CONFIG.energyMax;
-  $('energyCur').textContent = c;
-  $('energyMax').textContent = m;
-  $('energyFill').style.width = (c / m * 100) + '%';
-  const r = Energy.next(S.user);
-  $('energySub').textContent = c >= m ? 'ممتلئة بالكامل' : 'التجديد بعد ' + Math.floor(r / 60000) + ':' + pad(Math.floor(r % 60000 / 1000));
-}
-
-/* ═══ RENDER ═══ */
-function renderAll() {
-  const u = S.user;
-  if (!u) return;
-
-  $('hdrCoins').textContent = fmt(u.coins);
-  $('hdrGems').textContent = fmt(u.gems);
-
-  const av = $('headerAvatar');
-  if (u.photoUrl) av.innerHTML = '<img src="' + esc(u.photoUrl) + '" referrerpolicy="no-referrer" onerror="this.parentElement.innerHTML=\'<i class=\\\'fas fa-user\\\'></i>\'">';
-  else av.innerHTML = '<i class="fas fa-user"></i>';
-
-  $('heroBest').textContent = fmt(u.flyBest || 0);
-  $('heroRounds').textContent = fmt(u.flyRounds || 0);
-  $('heroGems').textContent = fmt(u.flyGems || 0);
-
-  $('hubBest').textContent = fmt(u.flyBest || 0) + ' م';
-  $('hubRounds').textContent = fmt(u.flyRounds || 0);
-  $('hubTotal').textContent = fmt(u.flyTotal || 0) + ' م';
-
-  $('walCoins').textContent = fmt(u.coins);
-  $('walGems').textContent = fmt(u.gems);
-  $('walGemsEq').textContent = '≈ $' + ((u.gems || 0) * CONFIG.gemUsd).toFixed(2);
-
-  $('wdGems').textContent = fmt(u.gems);
-  $('wdUsd').textContent = '≈ $' + ((u.gems || 0) * CONFIG.gemUsd).toFixed(2);
-
-  $('profName').textContent = u.name || 'لاعب';
-  $('profId').textContent = u.telegramId || '----';
-  const pav = $('profAvatar');
-  if (u.photoUrl) pav.innerHTML = '<img src="' + esc(u.photoUrl) + '" referrerpolicy="no-referrer" onerror="this.parentElement.innerHTML=\'<i class=\\\'fas fa-user\\\'></i>\'">';
-  else pav.innerHTML = '<i class="fas fa-user"></i>';
-
-  $('binanceUid').textContent = TG.id;
-  $('shamUid').textContent = TG.id;
-
-  renderEnergy();
-  renderHomeMissions();
-  renderMissionsPage();
-  renderDailyReward();
-  renderLastResult();
-  renderDepositPackages();
-  renderWithdrawMethods();
-  updateConverter();
-  loadDepositHistory();
-  loadWithdrawHistory();
-}
-
-function renderHomeMissions() {
-  const el = $('homeMissions');
-  if (!el) return;
-  const u = S.user;
-  const preview = CONFIG.missions.slice(0, 2).map(m => {
-    const prog = getMissionProgress(m);
-    const claimed = (u.flyMissions || {})[m.id];
-    return `
-      <div class="miss-preview">
-        <div class="miss-ico"><i class="fas fa-plane"></i></div>
-        <div class="miss-body">
-          <div class="miss-title">${esc(m.title)}</div>
-          <div class="miss-prog-bar"><i style="width:${Math.min(100, prog/m.target*100)}%"></i></div>
-          <div class="miss-meta">
-            <span>${fmt(prog)} / ${fmt(m.target)}</span>
-            <span class="miss-reward">+${m.reward} ${m.rewardType === 'gems' ? '<img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="">' : '<img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt="">'}${claimed ? ' ✓' : ''}</span>
-          </div>
-        </div>
-      </div>
-    `;
-  }).join('');
-  el.innerHTML = preview;
-}
-
-function renderLastResult() {
-  const el = $('lastResult');
-  if (!el) return;
-  const u = S.user;
-  if (!u.flyLastRoundAt) {
-    el.innerHTML = '<div class="card-flat empty"><i class="fas fa-plane" style="font-size:24px;color:var(--gray-b)"></i>لا توجد جولات بعد — ابدأ اللعب!</div>';
-    return;
-  }
-  el.innerHTML = `
-    <div class="miss-preview" style="cursor:default">
-      <div class="miss-ico"><i class="fas fa-flag-checkered"></i></div>
-      <div class="miss-body">
-        <div class="miss-title">آخر جولة</div>
-        <div class="miss-desc">${new Date(u.flyLastRoundAt).toLocaleDateString('ar-EG')}</div>
-      </div>
-      <div style="font-size:15px;font-weight:800;color:var(--pink);direction:ltr">${fmt(u.flyLastDist || 0)} م</div>
-    </div>
-  `;
-}
-
-/* ═══ MISSIONS ═══ */
-function getMissionProgress(m) {
-  const u = S.user;
-  if (!u) return 0;
-  switch (m.type) {
-    case 'single': return Number(u.flyBest || 0);
-    case 'total':  return Number(u.flyTotal || 0);
-    case 'rounds': return Number(u.flyRounds || 0);
-  }
-  return 0;
-}
-
-function renderMissionsPage() {
-  const el = $('missionsFly');
-  if (!el) return;
-  const u = S.user;
-  const fm = u.flyMissions || {};
-
-  el.innerHTML = CONFIG.missions.map(m => {
-    const prog = getMissionProgress(m);
-    const done = prog >= m.target;
-    const claimed = !!fm[m.id];
-    let statusClass = '', btnHTML = '';
-
-    if (claimed) {
-      statusClass = 'done';
-      btnHTML = '<button class="btn btn-gray" disabled><i class="fas fa-check"></i> تم الاستلام</button>';
-    } else if (done) {
-      statusClass = 'claimable';
-      const rewardIcon = m.rewardType === 'gems' ? 'ruby-gemstone' : 'cheap-2';
-      btnHTML = `<button class="btn btn-pink" data-claim="${m.id}">استلم ${m.reward} <img src="https://img.icons8.com/liquid-glass-color/999/${rewardIcon}.png" style="width:16px;height:16px;vertical-align:middle" alt=""></button>`;
-    } else {
-      btnHTML = '<button class="btn btn-gray" disabled><i class="fas fa-lock"></i> لم يكتمل بعد</button>';
-    }
-
-    const rewardIcon = m.rewardType === 'gems' ? 'ruby-gemstone' : 'cheap-2';
-    return `
-      <div class="mission-card ${statusClass}">
-        <div class="mission-head">
-          <div class="mission-ico-lg"><i class="fas fa-plane"></i></div>
-          <div class="mission-body">
-            <div class="mission-title">${esc(m.title)}</div>
-            <div class="mission-desc">${esc(m.desc)}</div>
-            <div class="mission-reward-row">
-              <img src="https://img.icons8.com/liquid-glass-color/999/${rewardIcon}.png" alt="">
-              +${m.reward}
-            </div>
-          </div>
-        </div>
-        <div class="mission-prog"><i style="width:${Math.min(100, prog/m.target*100)}%"></i></div>
-        <div class="mission-prog-meta">
-          <span>${fmt(prog)} / ${fmt(m.target)}</span>
-          <span>${Math.min(100, Math.round(prog/m.target*100))}%</span>
-        </div>
-        ${btnHTML}
-      </div>
-    `;
-  }).join('');
-
-  el.querySelectorAll('[data-claim]').forEach(b => {
-    b.onclick = () => claimMission(b.dataset.claim);
-  });
-}
-
-async function claimMission(id) {
-  if (S.busy) return;
-  const m = CONFIG.missions.find(x => x.id === id);
-  if (!m) return;
-  const u = S.user;
-  const fm = u.flyMissions || {};
-  if (fm[id]) return toast('تم استلام هذه المكافأة مسبقاً', 'error');
-
-  const prog = getMissionProgress(m);
-  if (prog < m.target) return toast('لم تكمل هذه المهمة بعد', 'error');
-
-  S.busy = true;
-  try {
-    if (m.rewardType === 'gems') {
-      u.gems = Number(u.gems || 0) + m.reward;
-    } else {
-      u.coins = Number(u.coins || 0) + m.reward;
-    }
-    fm[id] = true;
-    u.flyMissions = fm;
-    await FB.set({ gems: u.gems, coins: u.coins, flyMissions: fm });
-    await db.collection(CONFIG.txCol).add({
-      userId: TG.id, type: 'mission_reward', missionId: id,
-      amount: m.reward, currency: m.rewardType, createdAt: Date.now()
-    });
-    renderAll();
-    const rewardIcon = m.rewardType === 'gems' ? 'ruby-gemstone' : 'cheap-2';
-    showModal({
-      type: 'success', icon: 'fa-award',
-      title: 'مكافأة المهمة!', sub: esc(m.title),
-      amount: '+' + m.reward, btn: 'رائع'
-    });
-  } catch(e) {
-    console.error(e);
-    toast('تعذر استلام المكافأة', 'error');
-  } finally {
-    S.busy = false;
-  }
-}
-
-function renderDailyReward() {
-  const el = $('dailyRewardCard');
-  if (!el) return;
-  const u = S.user;
-  const dl = u.dailyLogin || { streak: 0, lastClaimDate: null };
-  const t = today();
-  const claimed = dl.lastClaimDate === t;
-  const nextIdx = dl.streak >= 7 ? 0 : dl.streak;
-  const reward = CONFIG.daily[nextIdx];
-
-  // 7-day grid
-  const daysGrid = CONFIG.daily.map((r, i) => {
-    const isDone = i < dl.streak;
-    const isNext = i === nextIdx && !claimed;
-    const isToday = i === nextIdx;
-    const rewardIcon = r.gems > 0 ? 'ruby-gemstone' : 'cheap-2';
-    const rewardText = r.gems > 0 ? r.gems : r.coins;
-    return `
-      <div style="flex:1;aspect-ratio:1/1.4;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9.5px;font-weight:800;${isDone ? 'background:linear-gradient(160deg,#FE2B54,#FF5B7C);color:#fff;' : isNext ? 'background:#FFF0F4;border:2px solid var(--pink);color:var(--pink);' : isToday ? 'background:#F2F2F4;color:var(--gray);' : 'background:#F2F2F4;color:var(--gray);'}">
-        <span style="font-size:9px">يوم ${i+1}</span>
-        <img src="https://img.icons8.com/liquid-glass-color/999/${rewardIcon}.png" style="width:20px;height:20px;margin:4px 0" alt="">
-        <span style="font-size:9px;direction:ltr">${rewardText}</span>
-      </div>
-    `;
-  }).join('');
-
-  el.innerHTML = `
-    <div style="display:flex;gap:5px;margin-bottom:14px">${daysGrid}</div>
-    <button class="btn ${claimed ? 'btn-gray' : 'btn-pink'}" id="dailyClaimBtn" ${claimed ? 'disabled' : ''}>
-      <i class="fas fa-gift"></i> ${claimed ? 'تم الاستلام — عد غداً' : 'استلم مكافأة اليوم ' + (nextIdx + 1)}
-    </button>
-  `;
-
-  const btn = $('dailyClaimBtn');
-  if (btn && !claimed) btn.onclick = claimDaily;
-}
-
-async function claimDaily() {
-  if (S.busy) return;
-  const u = S.user;
-  const dl = u.dailyLogin || { streak: 0, lastClaimDate: null };
-  const t = today();
-  if (dl.lastClaimDate === t) return toast('استلمت مكافأة اليوم', 'error');
-
-  const nextIdx = dl.streak >= 7 ? 0 : dl.streak;
-  const r = CONFIG.daily[nextIdx];
-
-  S.busy = true;
-  try {
-    u.coins = Number(u.coins || 0) + (r.coins || 0);
-    u.gems = Number(u.gems || 0) + (r.gems || 0);
-    dl.streak = nextIdx === 6 ? 0 : nextIdx + 1;
-    dl.lastClaimDate = t;
-    u.dailyLogin = dl;
-    await FB.set({ coins: u.coins, gems: u.gems, dailyLogin: dl });
-    await db.collection(CONFIG.txCol).add({
-      userId: TG.id, type: 'daily_reward',
-      amount: r.gems || r.coins, currency: r.gems ? 'gems' : 'coins', createdAt: Date.now()
-    });
-    renderAll();
-    showModal({
-      type: 'success', icon: 'fa-calendar-check',
-      title: 'مكافأة اليوم', sub: 'استمر غداً لمكافأة أكبر',
-      amount: r.gems ? '+' + r.gems : '+' + r.coins, btn: 'رائع'
-    });
-  } catch(e) {
-    console.error(e);
-    toast('تعذر استلام المكافأة', 'error');
-  } finally {
-    S.busy = false;
-  }
-}
-
-/* ═══ LEADERBOARD ═══ */
-async function loadLeaderboard(force = false) {
-  const el = $('lbList');
-  const podEl = $('podiumArea');
-  if (!el) return;
-
-  if (!force && S.lb.length && Date.now() - S.lbAt < 60000) {
-    renderLeaderboard();
-    return;
-  }
-
-  el.innerHTML = '<div class="empty"><i class="fas fa-spinner fa-spin"></i>جاري التحميل...</div>';
-  podEl.innerHTML = '';
-
-  try {
-    if (!db) throw new Error('DB not ready');
-    const snap = await db.collection(CONFIG.flyCol).orderBy('best', 'desc').limit(100).get();
-    const arr = [];
-    snap.forEach(d => {
-      const x = d.data();
-      arr.push({
-        id: d.id,
-        name: x.name || 'لاعب',
-        photoUrl: x.photoUrl || null,
-        best: Number(x.best || 0)
-      });
-    });
-    S.lb = arr;
-    S.lbAt = Date.now();
-    renderLeaderboard();
-  } catch(e) {
-    console.warn(e);
-    el.innerHTML = '<div class="empty"><i class="fas fa-exclamation-triangle"></i>تعذر تحميل القائمة</div>';
-  }
-}
-
-function renderLeaderboard() {
-  const el = $('lbList');
-  const podEl = $('podiumArea');
-  const arr = S.lb;
-  const me = TG.id;
-
-  if (!arr.length) {
-    el.innerHTML = '<div class="empty"><i class="fas fa-trophy"></i>لا يوجد متصدرون بعد<br>كن الأول!</div>';
-    podEl.innerHTML = '';
-    return;
-  }
-
-  const top3 = arr.slice(0, 3);
-  const order = [1, 0, 2];
-  podEl.innerHTML = `<div class="podium">${
-    order.map(idx => {
-      const p = top3[idx];
-      if (!p) return '<div></div>';
-      const rank = idx + 1;
-      const crownIcon = rank === 1 ? '<i class="fas fa-crown podium-crown" style="color:#FBBF24"></i>' : '';
-      return `
-        <div class="podium-item rank-${rank}">
-          ${crownIcon}
-          <div class="podium-avatar">
-            ${p.photoUrl ? '<img src="' + esc(p.photoUrl) + '" referrerpolicy="no-referrer" onerror="this.outerHTML=\'<i class=\\\'fas fa-user\\\'></i>\'">' : '<i class="fas fa-user" style="display:grid;place-items:center;width:100%;height:100%;color:var(--pink);font-size:24px"></i>'}
-          </div>
-          <div class="podium-name">${esc(p.name)}</div>
-          <div class="podium-dist">${fmt(p.best)} م</div>
-          <div class="podium-base"></div>
-        </div>
-      `;
-    }).join('')
-  }</div>`;
-
-  el.innerHTML = arr.map((p, i) => {
-    const rank = i + 1;
-    const isMe = p.id === me;
-    const rk = rank === 1 ? 'top1' : rank === 2 ? 'top2' : rank === 3 ? 'top3' : '';
-    return `
-      <div class="lb-row ${isMe ? 'me' : ''}">
-        <div class="lb-rank ${rk}">${rank}</div>
-        <div class="lb-avatar">
-          ${p.photoUrl ? '<img src="' + esc(p.photoUrl) + '" referrerpolicy="no-referrer" onerror="this.outerHTML=\'<i class=\\\'fas fa-user\\\'></i>\'">' : '<i class="fas fa-user" style="display:grid;place-items:center;width:100%;height:100%;color:var(--pink)"></i>'}
-        </div>
-        <div class="lb-name">${esc(p.name)}${isMe ? ' <span style="color:var(--pink);font-size:11px">• أنت</span>' : ''}</div>
-        <div class="lb-dist">${fmt(p.best)} م</div>
-      </div>
-    `;
-  }).join('');
-}
-
-/* ═══ DEPOSIT ═══ */
-function renderDepositPackages() {
-  const el = $('depositPackages');
-  if (!el) return;
-  el.innerHTML = CONFIG.depositPackages.map(p => `
-    <button class="miss-preview" data-manual="binance" style="cursor:pointer">
-      <div class="miss-ico" style="background:#DCFCE7;color:#16A34A;font-size:14px;font-weight:800;direction:ltr">$${p.usd}</div>
-      <div class="miss-body">
-        <div class="miss-title" style="direction:ltr;text-align:right">+${fmt(p.gems)}</div>
-        <div class="miss-desc" style="font-size:11.5px;color:var(--gray);font-weight:600">جواهر</div>
-      </div>
-      <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" style="width:22px;height:22px" alt="">
-    </button>
-  `).join('');
-}
-
-/* ═══ WITHDRAW ═══ */
-function renderWithdrawMethods() {
-  const el = $('wdMethods');
-  // not used anymore, we render directly in HTML
-  updateWdMethodUI();
-}
-
-function updateWdMethodUI() {
-  document.querySelectorAll('[data-wd-method]').forEach(b => {
-    const isOn = b.dataset.wdMethod === S.wdMethod;
-    b.classList.toggle('on', isOn);
-    const check = b.querySelector('.fa-check-circle');
-    if (check) check.style.visibility = isOn ? 'visible' : 'hidden';
-  });
-  // update label
-  const lbl = $('wdAccountLabel');
-  const inp = $('wdAccount');
-  if (S.wdMethod === 'binance') {
-    lbl.textContent = 'معرّف Binance Pay';
-    inp.placeholder = 'Binance Pay ID أو البريد';
-  } else {
-    lbl.textContent = 'معرّف شام كاش';
-    inp.placeholder = 'Sham Cash ID';
-  }
-  updateWd();
-}
-
-function updateWd() {
-  $('wdChosen').textContent = fmt(S.wd) + ' 💎';
-  $('wdReceive').textContent = '≈ $' + (S.wd * CONFIG.gemUsd).toFixed(2);
-}
-
-async function doWithdraw() {
-  if (S.busy) return;
-  const u = S.user;
-  const acc = $('wdAccount').value.trim();
-  const a = S.wd;
-  const method = S.wdMethod;
-
-  const min = method === 'sham' ? CONFIG.wd.shamMin : CONFIG.wd.min;
-  if (!a || a < min) return toast('الحد الأدنى ' + fmt(min) + ' 💎', 'error');
-  if (a > u.gems) return toast('رصيد الجواهر غير كافٍ', 'error');
-  if (acc.length < 4) return toast('أدخل معرّفاً صحيحاً', 'error');
-
-  S.busy = true;
-  const btn = $('wdSubmit');
-  const old = btn.innerHTML;
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spn"></span> جاري الإرسال...';
-
-  try {
-    u.gems -= a;
-    await FB.set({ gems: u.gems });
-    const payout = method === 'sham'
-      ? fmt(Math.round(a * CONFIG.wd.shamSypPerGem)) + ' SYP'
-      : '$' + usd(a);
-    await db.collection(CONFIG.wdCol).add({
-      userId: TG.id, userName: u.name, method,
-      amount: a, payout, account: acc, status: 'pending',
-      createdAt: Date.now()
-    });
-    await db.collection(CONFIG.txCol).add({
-      userId: TG.id, type: 'withdraw',
-      amount: -a, currency: 'gems',
-      meta: { method }, createdAt: Date.now()
-    });
-
-    S.wd = 0;
-    document.querySelectorAll('#wdAmounts .amt-btn').forEach(b => b.classList.remove('on'));
-    $('wdAccount').value = '';
-    updateWd();
-    renderAll();
-    loadWithdrawHistory();
-    showModal({
-      type: 'success', icon: 'fa-check',
-      title: 'تم تقديم طلب السحب',
-      sub: 'سيتم المراجعة خلال 24-72 ساعة',
-      amount: fmt(a) + ' 💎', btn: 'رائع'
-    });
-  } catch(e) {
-    console.error(e);
-    toast(e.message || 'تعذر السحب', 'error');
-  } finally {
-    S.busy = false;
-    btn.disabled = false;
-    btn.innerHTML = old;
-  }
-}
-
-async function loadWithdrawHistory() {
-  const el = $('wdHistory');
-  if (!el || !db) return;
-  el.innerHTML = '<div class="empty" style="padding:16px"><i class="fas fa-spinner fa-spin"></i></div>';
-  try {
-    const snap = await db.collection(CONFIG.wdCol).where('userId', '==', TG.id).limit(30).get();
-    const arr = [];
-    snap.forEach(d => arr.push(d.data()));
-    arr.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-    if (!arr.length) {
-      el.innerHTML = '<div class="empty" style="padding:16px"><i class="fas fa-inbox"></i>لا يوجد سجل سحب</div>';
-      return;
-    }
-    const statusMap = { pending: 'قيد المراجعة', approved: 'مقبول', processing: 'قيد التنفيذ', completed: 'مكتمل', rejected: 'مرفوض' };
-    const methodNames = { binance: 'Binance', sham: 'شام كاش', usdt_crypto: 'USDT' };
-    el.innerHTML = arr.slice(0, 15).map(w => `
-      <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--gray-b)">
-        <div style="width:36px;height:36px;border-radius:10px;background:var(--pink-l);display:grid;place-items:center;flex-shrink:0"><i class="fas fa-arrow-up" style="color:var(--pink);font-size:14px"></i></div>
-        <div style="flex:1;min-width:0">
-          <div style="font-size:12.5px;font-weight:700">${fmt(w.amount)} 💎 → ${methodNames[w.method] || w.method}</div>
-          <div style="font-size:10.5px;color:var(--gray);font-weight:600">${new Date(w.createdAt || Date.now()).toLocaleDateString('ar-EG')}</div>
-        </div>
-        <div class="tx-status ${w.status || 'pending'}">${statusMap[w.status] || w.status}</div>
-      </div>
-    `).join('');
-  } catch(e) {
-    el.innerHTML = '<div class="empty" style="padding:16px"><i class="fas fa-exclamation-triangle"></i>تعذر التحميل</div>';
-  }
-}
-
-/* ═══ DEPOSIT HISTORY ═══ */
-async function loadDepositHistory() {
-  const el = $('depositHistory');
-  if (!el || !db) return;
-  el.innerHTML = '<div class="empty" style="padding:16px"><i class="fas fa-spinner fa-spin"></i></div>';
-  try {
-    const snap = await db.collection(CONFIG.depCol).where('userId', '==', TG.id).limit(30).get();
-    const arr = [];
-    snap.forEach(d => arr.push(d.data()));
-    arr.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-    if (!arr.length) {
-      el.innerHTML = '<div class="empty" style="padding:16px"><i class="fas fa-inbox"></i>لا يوجد سجل إيداع</div>';
-      return;
-    }
-    const statusMap = { pending: 'قيد المراجعة', approved: 'مقبول', completed: 'مكتمل', rejected: 'مرفوض' };
-    const methodNames = { binance: 'Binance', sham: 'شام كاش' };
-    el.innerHTML = arr.slice(0, 15).map(w => `
-      <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--gray-b)">
-        <div style="width:36px;height:36px;border-radius:10px;background:#DCFCE7;display:grid;place-items:center;flex-shrink:0"><i class="fas fa-arrow-down" style="color:#16A34A;font-size:14px"></i></div>
-        <div style="flex:1;min-width:0">
-          <div style="font-size:12.5px;font-weight:700">+${fmt(w.gems || 0)} 💎</div>
-          <div style="font-size:10.5px;color:var(--gray);font-weight:600">${methodNames[w.method] || w.method} · ${new Date(w.createdAt || Date.now()).toLocaleDateString('ar-EG')}</div>
-        </div>
-        <div class="tx-status ${w.status || 'pending'}">${statusMap[w.status] || w.status}</div>
-      </div>
-    `).join('');
-  } catch(e) {
-    el.innerHTML = '<div class="empty" style="padding:16px"><i class="fas fa-exclamation-triangle"></i>تعذر التحميل</div>';
-  }
-}
-
-/* ═══ CONVERTER ═══ */
-function updateConverter() {
-  const c = Number($('convCoins').value || 0);
-  $('convGems').value = c > 0 ? Math.floor(c * CONFIG.convRate) : '';
-}
-
-async function doConvert() {
-  if (S.busy) return;
-  const c = parseInt($('convCoins').value || 0, 10);
-  if (!c || c < CONFIG.convMinCoins) return toast('الحد الأدنى ' + fmt(CONFIG.convMinCoins) + ' عملة', 'error');
-  if (c > S.user.coins) return toast('رصيد العملات غير كافٍ', 'error');
-
-  const gemsGain = Math.floor(c * CONFIG.convRate);
-  S.busy = true;
-  const btn = $('convBtn');
-  const old = btn.innerHTML;
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spn"></span> جاري التحويل...';
-
-  try {
-    const u = S.user;
-    u.coins -= c;
-    u.gems += gemsGain;
-    await FB.set({ coins: u.coins, gems: u.gems });
-    await db.collection(CONFIG.txCol).add({
-      userId: TG.id, type: 'convert',
-      amount: -c, currency: 'coins',
-      meta: { gems: gemsGain }, createdAt: Date.now()
-    });
-    $('convCoins').value = '';
-    $('convGems').value = '';
-    renderAll();
-    showModal({
-      type: 'success', icon: 'fa-right-left',
-      title: 'تم التحويل!',
-      sub: 'حولت ' + fmt(c) + ' عملة إلى جواهر',
-      amount: '+' + fmt(gemsGain), btn: 'رائع'
-    });
-  } catch(e) {
-    console.error(e);
-    toast('تعذر التحويل', 'error');
-  } finally {
-    S.busy = false;
-    btn.disabled = false;
-    btn.innerHTML = old;
-  }
-}
-
-/* ═══ FLY GAME ═══ */
-const FlyGame = (() => {
-  const cvs = $('gameCanvas');
-  const ctx = cvs.getContext('2d');
-  let VW = 0, VH = 0, DPR = 1, SZ = {};
-  const CFG = CONFIG.fly;
-  const st = {
-    mode: 'idle', raf: 0, lastT: 0, acc: 0,
-    p: { x: 0, y: 0, vy: 0, rot: 0, r: 20 },
-    readyY: 0, readyT: 0, worldX: 0,
-    obs: [], bub: [], par: [], stars: [], clouds: [],
-    dist: 0, rC: 0, rD: 0, pairs: 0, nextB: 8,
-    img: null, imgOk: false, committed: false
-  };
-
-  function mulberry32(a) {
-    return function() {
-      a |= 0; a = a + 0x6D2B79F5 | 0;
-      let t = Math.imul(a ^ a >>> 15, 1 | a);
-      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
-      return ((t ^ t >>> 14) >>> 0) / 4294967296;
-    };
-  }
-
-  function resize() {
-    const r = cvs.parentElement.getBoundingClientRect();
-    VW = r.width; VH = r.height;
-    if (VW <= 0 || VH <= 0) { setTimeout(resize, 50); return; }
-    DPR = Math.min(window.devicePixelRatio || 1, 2);
-    cvs.width = Math.round(VW * DPR);
-    cvs.height = Math.round(VH * DPR);
-    cvs.style.width = VW + 'px';
-    cvs.style.height = VH + 'px';
-    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-    SZ.pR = clamp(VH * 0.033, CFG.pRMin, CFG.pRMax);
-    SZ.oW = clamp(VW * CFG.oWR, CFG.oWMin, CFG.oWMax);
-    SZ.gap = clamp(VH * CFG.gapR, CFG.gapMin, CFG.gapMax);
-    SZ.sp = clamp(VW * CFG.spR, CFG.spMin, CFG.spMax);
-    SZ.gr = clamp(VH * CFG.grR, CFG.grMin, CFG.grMax);
-  }
-
-  function loadImg() {
-    const url = (S.user && S.user.photoUrl) || (TG.user && TG.user.photo_url) || null;
-    if (!url) { st.img = null; st.imgOk = false; return; }
-    const im = new Image();
-    im.referrerPolicy = 'no-referrer';
-    im.onload = () => { st.img = im; st.imgOk = true; };
-    im.onerror = () => { st.imgOk = false; };
-    im.src = url;
-  }
-
-  function reset() {
-    st.p.x = VW * 0.28; st.p.y = VH * 0.45;
-    st.p.vy = 0; st.p.rot = 0; st.p.r = SZ.pR;
-    st.readyY = VH * 0.45; st.readyT = 0; st.worldX = 0;
-    st.obs = []; st.bub = []; st.par = [];
-    st.dist = 0; st.rC = 0; st.rD = 0; st.pairs = 0;
-    st.committed = false;
-    st.nextB = CFG.bubbleIntervalMin + Math.floor(Math.random() * (CFG.bubbleIntervalMax - CFG.bubbleIntervalMin + 1));
-    buildStars(); buildClouds();
-    let x = VW + 100;
-    for (let i = 0; i < 3; i++) { spawnObs(x); x += SZ.sp; }
-    hud();
-  }
-
-  function buildStars() {
-    st.stars = [];
-    const n = Math.round((VW * VH * 0.5) / 20000);
-    const rng = mulberry32(99);
-    for (let i = 0; i < n; i++) st.stars.push({
-      x: rng() * VW, y: rng() * VH * 0.45,
-      r: .5 + rng() * 1.1, tw: rng() * Math.PI * 2, sp: .6 + rng() * 1.2
-    });
-  }
-
-  function buildClouds() {
-    st.clouds = [
-      { x: .10, y: .15, s: 1.1 }, { x: .45, y: .28, s: .8 },
-      { x: .78, y: .12, s: 1 }, { x: 1.15, y: .22, s: .9 },
-      { x: 1.55, y: .18, s: 1.2 }, { x: 1.9, y: .30, s: .75 }
-    ];
-  }
-
-  function spawnObs(x) {
-    const g = SZ.gap, gY = VH - SZ.gr;
-    const minT = 60, maxT = gY - 60 - g;
-    const r = Math.max(20, maxT - minT);
-    const gapY = minT + Math.random() * r;
-    st.obs.push({ x, w: SZ.oW, gapY, gapH: g, passed: false, seed: Math.random() * 9999 | 0 });
-  }
-
-  function spawnBub(x) {
-    const gY = VH - SZ.gr, m = 90;
-    const y = m + Math.random() * Math.max(40, gY - m * 2);
-    st.bub.push({ x, y, r: Math.max(22, VH * 0.034), seed: Math.random() * Math.PI * 2, collected: false });
-  }
-
-  function hud() {
-    $('hudCoins').textContent = fmt(st.rC);
-    $('hudGems').textContent = fmt(st.rD);
-    $('hudDist').textContent = fmt(Math.floor(st.dist));
-  }
-
-  function floater(text, x, y, type) {
-    const el = document.createElement('div');
-    el.className = 'floater';
-    el.textContent = text;
-    el.style.left = clamp(x, 30, VW - 30) + 'px';
-    el.style.top = clamp(y, 60, VH - 60) + 'px';
-    $('floaters').appendChild(el);
-    setTimeout(() => el.remove(), 1150);
-  }
-
-  function spawnBurst(x, y) {
-    const rng = mulberry32((x * 31 + y * 17) | 0);
-    for (let i = 0; i < 8; i++) {
-      const a = (Math.PI * 2 * i) / 8 + rng() * 0.5;
-      const sp = 90 + rng() * 120;
-      st.par.push({
-        x, y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 60,
-        life: .55 + rng() * .35, max: .9,
-        col: i % 3 === 0 ? '#fff' : (i % 2 === 0 ? '#FE2B54' : '#FF5B7C'),
-        r: 2 + rng() * 2.5
-      });
-    }
-  }
-
-  function step(dt) {
-    st.p.vy += CFG.gravity * dt;
-    if (st.p.vy > CFG.maxFall) st.p.vy = CFG.maxFall;
-    st.p.y += st.p.vy * dt;
-    const targetRot = clamp((st.p.vy / CFG.maxFall) * 1.15, -.52, 1.15);
-    st.p.rot += (targetRot - st.p.rot) * Math.min(1, dt * 11);
-
-    const dx = CFG.scroll * dt;
-    st.worldX += dx;
-    st.dist = st.worldX / CFG.pxPerM;
-
-    for (const o of st.obs) o.x -= dx;
-    for (const b of st.bub) b.x -= dx;
-
-    if (st.obs.length && st.obs[0].x + st.obs[0].w < -60) st.obs.shift();
-    const last = st.obs[st.obs.length - 1];
-    if (!last || last.x < VW - SZ.sp) spawnObs(last ? last.x + SZ.sp : VW + 80);
-
-    for (const o of st.obs) {
-      if (!o.passed && o.x + o.w < st.p.x - st.p.r) {
-        o.passed = true; st.pairs++;
-        st.rC += CFG.coinPerPair;
-        floater('+' + CFG.coinPerPair, st.p.x + st.p.r * 1.2, st.p.y - st.p.r * 1.6);
-        hud();
-        if (st.pairs >= st.nextB) {
-          spawnBub(VW + 60);
-          st.nextB = st.pairs + CFG.bubbleIntervalMin + Math.floor(Math.random() * (CFG.bubbleIntervalMax - CFG.bubbleIntervalMin + 1));
-        }
-      }
-    }
-
-    const gY = VH - SZ.gr;
-    const pr = st.p.r * 0.88;
-    for (const o of st.obs) {
-      if (st.p.x + pr < o.x || st.p.x - pr > o.x + o.w) continue;
-      if (circleRect(st.p.x, st.p.y, pr, o.x, 0, o.w, o.gapY) ||
-          circleRect(st.p.x, st.p.y, pr, o.x, o.gapY + o.gapH, o.w, gY - (o.gapY + o.gapH))) {
-        over(); return;
-      }
-    }
-    if (st.p.y + st.p.r >= gY) { st.p.y = gY - st.p.r; over(); return; }
-    if (st.p.y - st.p.r < 0) { st.p.y = st.p.r; if (st.p.vy < 0) st.p.vy = 0; }
-
-    for (const b of st.bub) {
-      if (b.collected) continue;
-      const ddx = b.x - st.p.x, ddy = b.y - st.p.y, rr = b.r + st.p.r * 0.95;
-      if (ddx * ddx + ddy * ddy < rr * rr) {
-        b.collected = true;
-        const reward = CFG.dMin + Math.floor(Math.random() * (CFG.dMax - CFG.dMin + 1));
-        st.rD += reward;
-        floater('+' + reward, b.x, b.y - 12);
-        spawnBurst(b.x, b.y);
-        hud();
-      }
-    }
-    if (st.bub.length) st.bub = st.bub.filter(b => !b.collected && b.x + b.r > -60);
-
-    if (st.par.length) {
-      for (const pa of st.par) {
-        pa.vy += 420 * dt; pa.x += pa.vx * dt; pa.y += pa.vy * dt; pa.life -= dt;
-      }
-      st.par = st.par.filter(p => p.life > 0);
-    }
-  }
-
-  function circleRect(cx, cy, r, rx, ry, rw, rh) {
-    if (rw <= 0 || rh <= 0) return false;
-    const nx = Math.max(rx, Math.min(cx, rx + rw));
-    const ny = Math.max(ry, Math.min(cy, ry + rh));
-    const dx = cx - nx, dy = cy - ny;
-    return dx * dx + dy * dy < r * r;
-  }
-
-  function render() {
-    const g = ctx;
-    g.clearRect(0, 0, VW, VH);
-    drawSky(g); drawStars(g); drawSun(g); drawPyramids(g);
-    drawClouds(g); drawDunes(g); drawGround(g);
-    drawObs(g); drawBubbles(g); drawParticles(g); drawPlayer(g);
-  }
-
-  function drawSky(g) {
-    const gr = g.createLinearGradient(0, 0, 0, VH);
-    gr.addColorStop(0, '#7EC8E3');
-    gr.addColorStop(0.35, '#A8DCF0');
-    gr.addColorStop(0.65, '#C9EDF7');
-    gr.addColorStop(0.85, '#F2E5B8');
-    gr.addColorStop(1, '#FFE8B8');
-    g.fillStyle = gr; g.fillRect(0, 0, VW, VH);
-  }
-  function drawStars(g) {
-    const t = performance.now() / 1000;
-    for (const s of st.stars) {
-      const a = 0.20 + 0.35 * (0.5 + 0.5 * Math.sin(t * s.sp + s.tw));
-      g.globalAlpha = a; g.fillStyle = '#fff';
-      g.beginPath(); g.arc(s.x, s.y, s.r, 0, Math.PI * 2); g.fill();
-    }
-    g.globalAlpha = 1;
-  }
-  function drawSun(g) {
-    const x = VW * 0.74, y = VH * 0.20, r = Math.min(VW, VH) * 0.055;
-    const rg = g.createRadialGradient(x, y, r * 0.4, x, y, r * 3.2);
-    rg.addColorStop(0, 'rgba(255,240,200,.95)');
-    rg.addColorStop(0.5, 'rgba(255,215,150,.4)');
-    rg.addColorStop(1, 'rgba(255,215,150,0)');
-    g.fillStyle = rg; g.beginPath(); g.arc(x, y, r * 3.2, 0, Math.PI * 2); g.fill();
-    g.fillStyle = 'rgba(255,250,220,.98)';
-    g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fill();
-  }
-  function drawPyramids(g) {
-    const gY = VH - SZ.gr, f = 0.10, tw = VW * 1.5, off = -((st.worldX * f) % tw);
-    const pats = [
-      { x: .18, w: 210, h: 230, c: 'rgba(232,200,150,.55)' },
-      { x: .55, w: 270, h: 290, c: 'rgba(220,185,130,.6)' },
-      { x: 1.02, w: 170, h: 190, c: 'rgba(240,210,160,.55)' }
-    ];
-    for (let rep = 0; rep < 2; rep++) {
-      const ox = off + rep * tw;
-      for (const py of pats) {
-        const cx = ox + py.x * VW;
-        if (cx < -400 || cx > VW + 400) continue;
-        drawPyr(g, cx, gY, py.w, py.h, py.c);
-      }
-    }
-  }
-  function drawPyr(g, cx, by, w, h, col) {
-    g.fillStyle = col;
-    g.beginPath(); g.moveTo(cx - w / 2, by); g.lineTo(cx, by - h); g.lineTo(cx + w / 2, by); g.closePath(); g.fill();
-    g.fillStyle = 'rgba(255,220,170,.28)';
-    g.beginPath(); g.moveTo(cx, by - h); g.lineTo(cx + w / 2, by); g.lineTo(cx + w * 0.14, by); g.closePath(); g.fill();
-  }
-  function drawClouds(g) {
-    const f = 0.28, tw = VW * 2.2, off = -((st.worldX * f) % tw);
-    g.fillStyle = 'rgba(255,255,255,.7)';
-    for (let rep = 0; rep < 2; rep++) {
-      const ox = off + rep * tw;
-      for (const c of st.clouds) {
-        const cx = ox + c.x * VW, cy = c.y * VH;
-        if (cx < -220 || cx > VW + 220) continue;
-        drawCloudShape(g, cx, cy, 56 * c.s);
-      }
-    }
-  }
-  function drawCloudShape(g, x, y, s) {
-    g.beginPath();
-    g.arc(x, y, s, 0, Math.PI * 2);
-    g.arc(x + s * 0.9, y + s * 0.15, s * 0.75, 0, Math.PI * 2);
-    g.arc(x - s * 0.9, y + s * 0.2, s * 0.7, 0, Math.PI * 2);
-    g.arc(x + s * 0.25, y - s * 0.42, s * 0.6, 0, Math.PI * 2);
-    g.fill();
-  }
-  function drawDunes(g) {
-    const gY = VH - SZ.gr, f = 0.55, tw = VW * 1.15, off = -((st.worldX * f) % tw);
-    g.fillStyle = 'rgba(230,195,140,.7)';
-    for (let rep = 0; rep < 2; rep++) {
-      const ox = off + rep * tw;
-      g.beginPath(); g.moveTo(ox, gY);
-      const steps = 26;
-      for (let i = 0; i <= steps; i++) {
-        const t = i / steps;
-        const x = ox + t * tw;
-        const y = gY - 28 - Math.sin(t * Math.PI * 2) * 18 - Math.sin(t * Math.PI * 5.3) * 7;
-        g.lineTo(x, y);
-      }
-      g.lineTo(ox + tw, gY); g.closePath(); g.fill();
-    }
-  }
-  function drawGround(g) {
-    const gY = VH - SZ.gr;
-    const gr = g.createLinearGradient(0, gY, 0, VH);
-    gr.addColorStop(0, '#F5D6A0');
-    gr.addColorStop(0.5, '#E0B87A');
-    gr.addColorStop(1, '#B58447');
-    g.fillStyle = gr; g.fillRect(0, gY, VW, SZ.gr);
-    g.fillStyle = '#FFF6DC'; g.fillRect(0, gY, VW, 3);
-    g.fillStyle = 'rgba(160,120,60,.35)'; g.fillRect(0, gY + 3, VW, 2);
-    const off = -((st.worldX) % 46);
-    g.strokeStyle = 'rgba(160,120,60,.28)'; g.lineWidth = 1.5;
-    for (let x = off - 46; x < VW + 46; x += 46) {
-      g.beginPath();
-      g.moveTo(x, gY + 14); g.lineTo(x + 14, gY + 14);
-      g.moveTo(x + 22, gY + 34); g.lineTo(x + 38, gY + 34);
-      g.moveTo(x + 8, gY + 54); g.lineTo(x + 22, gY + 54);
-      g.stroke();
-    }
-  }
-  function drawObs(g) {
-    const gY = VH - SZ.gr;
-    for (const o of st.obs) {
-      drawCactus(g, o.x, 0, o.w, o.gapY, o.seed, true);
-      const by = o.gapY + o.gapH;
-      drawCactus(g, o.x, by, o.w, gY - by, o.seed + 100, false);
-    }
-  }
-  function roundRectPath(g, x, y, w, h, r) {
-    r = Math.min(r, w / 2, h / 2);
-    g.beginPath();
-    g.moveTo(x + r, y);
-    g.arcTo(x + w, y, x + w, y + h, r);
-    g.arcTo(x + w, y + h, x, y + h, r);
-    g.arcTo(x, y + h, x, y, r);
-    g.arcTo(x, y, x + w, y, r);
-    g.closePath();
-  }
-  function drawCactus(g, x, y, w, h, seed, isTop) {
-    if (h <= 4) return;
-    const dirtH = Math.min(26, h * 0.32);
-    const bodyY = isTop ? y + dirtH : y;
-    const bodyH = h - dirtH;
-    const grad = g.createLinearGradient(x, 0, x + w, 0);
-    grad.addColorStop(0, '#3F9142');
-    grad.addColorStop(0.35, '#5FB863');
-    grad.addColorStop(0.65, '#4CAF50');
-    grad.addColorStop(1, '#235C25');
-    g.fillStyle = grad;
-    roundRectPath(g, x + 3, bodyY, w - 6, bodyH, 9); g.fill();
-    g.strokeStyle = 'rgba(20,60,20,.55)'; g.lineWidth = 1.5;
-    roundRectPath(g, x + 3, bodyY, w - 6, bodyH, 9); g.stroke();
-    // thorns
-    g.fillStyle = '#FFF3D0'; g.strokeStyle = 'rgba(120,80,30,.7)'; g.lineWidth = 0.8;
-    const step = 22, count = Math.max(1, Math.floor(bodyH / step));
-    for (let i = 0; i < count; i++) {
-      const sy = bodyY + 14 + i * step;
-      if (sy > bodyY + bodyH - 6) break;
-      g.beginPath(); g.moveTo(x + 3, sy); g.lineTo(x - 4, sy + 2); g.lineTo(x + 3, sy + 5); g.closePath(); g.fill(); g.stroke();
-      g.beginPath(); g.moveTo(x + w - 3, sy); g.lineTo(x + w + 4, sy + 2); g.lineTo(x + w - 3, sy + 5); g.closePath(); g.fill(); g.stroke();
-    }
-    const dy = isTop ? y : y + h - dirtH;
-    const dg = g.createLinearGradient(0, dy, 0, dy + dirtH);
-    dg.addColorStop(0, '#A8876A'); dg.addColorStop(1, '#6B4A2A');
-    g.fillStyle = dg;
-    roundRectPath(g, x - 2, dy, w + 4, dirtH, 8); g.fill();
-  }
-  function drawBubbles(g) {
-    const t = performance.now() / 1000;
-    for (const b of st.bub) {
-      if (b.collected) continue;
-      const bob = Math.sin(t * 2.4 + b.seed) * 4, cy = b.y + bob;
-      const rg = g.createRadialGradient(b.x, cy, b.r * 0.3, b.x, cy, b.r * 1.9);
-      rg.addColorStop(0, 'rgba(140,235,255,.75)');
-      rg.addColorStop(1, 'rgba(140,235,255,0)');
-      g.fillStyle = rg; g.beginPath(); g.arc(b.x, cy, b.r * 1.9, 0, Math.PI * 2); g.fill();
-      const bg = g.createRadialGradient(b.x - b.r * 0.32, cy - b.r * 0.32, b.r * 0.1, b.x, cy, b.r);
-      bg.addColorStop(0, 'rgba(255,255,255,.95)');
-      bg.addColorStop(0.55, 'rgba(140,235,255,.6)');
-      bg.addColorStop(1, 'rgba(70,180,225,.5)');
-      g.fillStyle = bg;
-      g.beginPath(); g.arc(b.x, cy, b.r, 0, Math.PI * 2); g.fill();
-      g.strokeStyle = 'rgba(255,255,255,.95)'; g.lineWidth = 2;
-      g.beginPath(); g.arc(b.x, cy, b.r, 0, Math.PI * 2); g.stroke();
-      drawDiamond(g, b.x, cy, b.r * 0.6);
-    }
-  }
-  function drawDiamond(g, x, y, s) {
-    g.save(); g.translate(x, y);
-    const gr = g.createLinearGradient(0, -s, 0, s);
-    gr.addColorStop(0, '#E8FBFF');
-    gr.addColorStop(.5, '#8CEBFF');
-    gr.addColorStop(1, '#1B7FA8');
-    g.fillStyle = gr;
-    g.beginPath();
-    g.moveTo(0, -s); g.lineTo(s * 0.85, -s * 0.15);
-    g.lineTo(0, s); g.lineTo(-s * 0.85, -s * 0.15);
-    g.closePath(); g.fill();
-    g.strokeStyle = '#fff'; g.lineWidth = 1.5; g.stroke();
-    g.restore();
-  }
-  function drawParticles(g) {
-    for (const p of st.par) {
-      const a = clamp(p.life / p.max, 0, 1);
-      g.globalAlpha = a; g.fillStyle = p.col;
-      g.beginPath(); g.arc(p.x, p.y, p.r * (0.5 + a * 0.5), 0, Math.PI * 2); g.fill();
-    }
-    g.globalAlpha = 1;
-  }
-  function drawPlayer(g) {
-    const p = st.p, r = p.r;
-    const gY = VH - SZ.gr;
-    const ss = clamp(1 - (gY - p.y) / (VH * 0.8), 0.15, 0.7);
-    g.save(); g.globalAlpha = 0.22 * ss; g.fillStyle = '#000';
-    g.beginPath(); g.ellipse(p.x + 4, gY - 4, r * 0.9 * ss, r * 0.28 * ss, 0, 0, Math.PI * 2); g.fill();
-    g.restore();
-
-    g.save(); g.translate(p.x, p.y); g.rotate(p.rot);
-    const gl = g.createRadialGradient(0, 0, r * 0.85, 0, 0, r * 1.7);
-    gl.addColorStop(0, 'rgba(255,213,46,.55)');
-    gl.addColorStop(1, 'rgba(255,213,46,0)');
-    g.fillStyle = gl; g.beginPath(); g.arc(0, 0, r * 1.7, 0, Math.PI * 2); g.fill();
-
-    if (st.imgOk && st.img && st.img.naturalWidth > 0) {
-      g.save();
-      g.beginPath(); g.arc(0, 0, r, 0, Math.PI * 2); g.clip();
-      g.drawImage(st.img, -r, -r, r * 2, r * 2);
-      g.restore();
-      g.strokeStyle = '#fff'; g.lineWidth = Math.max(2, r * 0.1);
-      g.beginPath(); g.arc(0, 0, r - g.lineWidth / 2, 0, Math.PI * 2); g.stroke();
-      g.strokeStyle = 'rgba(255,213,46,.7)'; g.lineWidth = Math.max(1, r * 0.05);
-      g.beginPath(); g.arc(0, 0, r, 0, Math.PI * 2); g.stroke();
-    } else {
-      g.fillStyle = '#FE2B54';
-      g.beginPath(); g.arc(0, 0, r, 0, Math.PI * 2); g.fill();
-      g.strokeStyle = '#fff'; g.lineWidth = Math.max(2, r * 0.1);
-      g.beginPath(); g.arc(0, 0, r - g.lineWidth / 2, 0, Math.PI * 2); g.stroke();
-      g.fillStyle = '#fff';
-      g.font = '900 ' + Math.round(r * 1.1) + 'px "Baloo Bhaijaan 2"';
-      g.textAlign = 'center'; g.textBaseline = 'middle';
-      const ch = ((S.user && S.user.name) || 'P')[0].toUpperCase();
-      g.fillText(ch, 0, r * 0.06);
-    }
-    g.restore();
-  }
-
-  function flap() { st.p.vy = CFG.flap; }
-
-  function tick(now) {
-    if (st.mode !== 'playing' && st.mode !== 'ready') { st.raf = 0; return; }
-    st.raf = requestAnimationFrame(tick);
-    const dt = Math.min(0.1, Math.max(0, (now - st.lastT) / 1000));
-    st.lastT = now;
-    if (st.mode === 'playing') {
-      st.acc += dt;
-      let it = 0;
-      while (st.acc >= CFG.fixedDt && it < 400) {
-        step(CFG.fixedDt); st.acc -= CFG.fixedDt; it++;
-        if (st.mode !== 'playing') break;
-      }
-      if (it >= 400) st.acc = 0;
-      $('hudDist').textContent = fmt(Math.floor(st.dist));
-    } else if (st.mode === 'ready') {
-      st.readyT += dt;
-      st.p.y = st.readyY + Math.sin(st.readyT * 3) * 8;
-      st.p.rot = Math.sin(st.readyT * 3) * 0.10;
-    }
-    render();
-  }
-  function startLoop() { stopLoop(); st.lastT = performance.now(); st.acc = 0; st.raf = requestAnimationFrame(tick); }
-  function stopLoop() { if (st.raf) { cancelAnimationFrame(st.raf); st.raf = 0; } }
-
-  async function begin() {
-    if (st.mode !== 'ready') return;
-    if (Energy.cur(S.user) <= 0) { toast('لا توجد طاقة', 'error'); return; }
-    const ok = await Energy.use(1);
-    if (!ok) { toast('لا توجد طاقة', 'error'); return; }
-    st.mode = 'playing';
-    $('gameReadyOverlay').classList.remove('show');
-    st.lastT = performance.now(); st.acc = 0;
-    flap();
-  }
-
-  function onDown(e) {
-    if (st.mode === 'playing') { flap(); e.preventDefault(); }
-  }
-
-  async function commit(dist) {
-    if (st.committed) return false;
-    st.committed = true;
-    const u = S.user;
-    if (!u) return false;
-    const rec = dist > (u.flyBest || 0);
-    if (rec) u.flyBest = dist;
-    u.coins = (u.coins || 0) + st.rC;
-    u.gems = (u.gems || 0) + st.rD;
-    u.flyCoins = (u.flyCoins || 0) + st.rC;
-    u.flyGems = (u.flyGems || 0) + st.rD;
-    u.flyTotal = (u.flyTotal || 0) + dist;
-    u.flyRounds = (u.flyRounds || 0) + 1;
-    u.flyLastDist = dist;
-    u.flyLastRoundAt = Date.now();
-    const patch = {
-      flyBest: u.flyBest, flyCoins: u.flyCoins, flyGems: u.flyGems,
-      flyTotal: u.flyTotal, flyRounds: u.flyRounds,
-      flyLastDist: u.flyLastDist, flyLastRoundAt: u.flyLastRoundAt,
-      coins: u.coins, gems: u.gems
-    };
-    try { await FB.set(patch); } catch(e) {}
-
-    try {
-      if (db && dist > 0) {
-        await db.collection(CONFIG.flyCol).doc(TG.id).set({
-          userId: TG.id,
-          name: u.name || 'لاعب',
-          photoUrl: u.photoUrl || null,
-          best: u.flyBest,
-          updatedAt: Date.now()
-        }, { merge: true });
-      }
-    } catch(e) {}
-    return rec;
-  }
-
-  async function over() {
-    if (st.mode === 'over') return;
-    st.mode = 'over';
-    stopLoop();
-    const dist = Math.floor(st.dist);
-    const rec = await commit(dist);
-    $('overDist').textContent = fmt(dist);
-    $('overCoins').textContent = '+' + fmt(st.rC);
-    $('overGems').textContent = '+' + fmt(st.rD);
-    $('gameOverOverlay').classList.add('show');
-    renderAll();
-    loadLeaderboard(true);
-  }
-
-  function enter() {
-    $('screen-game').classList.add('active');
-    document.body.classList.add('hide-balance');
-    loadImg();
-    requestAnimationFrame(() => {
-      resize();
-      reset();
-      st.mode = 'ready';
-      $('gameReadyOverlay').classList.add('show');
-      $('gamePauseOverlay').classList.remove('show');
-      $('gameOverOverlay').classList.remove('show');
-      $('floaters').innerHTML = '';
-      startLoop();
-    });
-  }
-
-  function exit() {
-    stopLoop();
-    if (st.mode === 'playing') { commit(Math.floor(st.dist)); renderAll(); }
-    st.mode = 'idle';
-    $('screen-game').classList.remove('active');
-    document.body.classList.remove('hide-balance');
-    $('gameReadyOverlay').classList.remove('show');
-    $('gamePauseOverlay').classList.remove('show');
-    $('gameOverOverlay').classList.remove('show');
-  }
-
-  function pause() {
-    if (st.mode !== 'playing') return;
-    st.mode = 'paused';
-    stopLoop();
-    $('gamePauseOverlay').classList.add('show');
-  }
-
-  function resume() {
-    if (st.mode !== 'paused') return;
-    st.mode = 'playing';
-    st.lastT = performance.now();
-    st.acc = 0;
-    $('gamePauseOverlay').classList.remove('show');
-    startLoop();
-  }
-
-  function replay() {
-    $('gameOverOverlay').classList.remove('show');
-    resize();
-    reset();
-    st.mode = 'ready';
-    $('gameReadyOverlay').classList.add('show');
-    $('floaters').innerHTML = '';
-    startLoop();
-  }
-
-  function bind() {
-    const wrap = cvs.parentElement;
-    wrap.style.touchAction = 'none';
-    wrap.addEventListener('pointerdown', e => {
-      if (e.target.closest('button')) return;
-      if (!$('gameOverOverlay').classList.contains('show') && !$('gameReadyOverlay').classList.contains('show') && !$('gamePauseOverlay').classList.contains('show'))
-        onDown(e);
-    }, { passive: false });
-    wrap.addEventListener('contextmenu', e => e.preventDefault());
-
-    $('gamePause').addEventListener('click', e => {
-      e.stopPropagation();
-      if (st.mode === 'playing') pause();
-      else if (st.mode === 'paused') resume();
-    });
-    $('gameStartBtn').addEventListener('click', e => { e.stopPropagation(); begin(); });
-    $('gameReplayBtn').addEventListener('click', e => { e.stopPropagation(); replay(); });
-    $('gameHomeBtn').addEventListener('click', e => { e.stopPropagation(); exit(); });
-    $('gameLeaderBtn').addEventListener('click', e => { e.stopPropagation(); exit(); go('leaderboard'); });
-    $('gameResumeBtn').addEventListener('click', e => { e.stopPropagation(); resume(); });
-    $('gameExitPaused').addEventListener('click', e => { e.stopPropagation(); exit(); });
-
-    window.addEventListener('keydown', e => {
-      if (!$('screen-game').classList.contains('active')) return;
-      if (e.code === 'Space' || e.code === 'ArrowUp') {
-        if (st.mode === 'ready') { e.preventDefault(); begin(); }
-        else if (st.mode === 'playing') { e.preventDefault(); onDown(e); }
-      }
-    });
-    window.addEventListener('resize', () => {
-      if ($('screen-game').classList.contains('active')) resize();
-    });
-  }
-
-  return { enter, exit, replay, bind, resize, preload: loadImg, pause, resume, st };
-})();
-
-/* ═══ ENERGY ACTIONS ═══ */
-async function watchEnergyAd() {
-  if (S.busy) return;
-  if (Energy.cur(S.user) >= CONFIG.energyMax) return toast('الطاقة ممتلئة بالفعل');
-  if (typeof window.show_12008608 !== 'function') return toast('الإعلان غير متاح حالياً', 'error');
-  S.busy = true;
-  const btn = $('energyAdBtn');
-  const old = btn.innerHTML;
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spn dark"></span>';
-  const started = performance.now();
-  try {
-    await window.show_12008608();
-    if (performance.now() - started < 15000) {
-      toast('لم تُحتسب المكافأة (أقل من 15 ثانية)', 'error');
-    } else {
-      await Energy.add(1);
-      toast('+1 طاقة', 'success');
-    }
-  } catch(e) {
-    toast('لم تكتمل المشاهدة', 'error');
-  } finally {
-    S.busy = false;
-    btn.disabled = false;
-    btn.innerHTML = old;
-  }
-}
-
-async function buyEnergyWithGems() {
-  if (S.busy) return;
-  const u = S.user;
-  if (Energy.cur(u) >= CONFIG.energyMax) return toast('الطاقة ممتلئة');
-  if ((u.gems || 0) < 1) return toast('تحتاج جوهرة واحدة', 'error');
-  S.busy = true;
-  try {
-    u.gems -= 1;
-    await Energy.add(1);
-    await FB.set({ gems: u.gems });
-    toast('+1 طاقة مقابل 1 جوهرة', 'success');
-    renderAll();
-  } catch(e) {
-    toast('تعذر الشراء', 'error');
-  } finally {
-    S.busy = false;
-  }
-}
-
-/* ═══ INFO MODAL ═══ */
-function showInfo(type) {
-  const isPolicy = type === 'policy';
-  showModal({
-    type: '',
-    icon: isPolicy ? 'fa-shield-halved' : 'fa-circle-question',
-    title: isPolicy ? 'معلومات التطبيق وسياسة الخصوصية' : 'مركز المساعدة',
-    sub: isPolicy
-      ? 'Puppy Merge / Sky Rush هي لعبة دمج وترفيه.\nنستخدم بيانات تيليجرام (المعرّف، الاسم، الصورة) لربط حسابك فقط.\nلا نشارك بياناتك مع أي طرف ثالث.\nالرصيد إعلامي وليس منتجاً مالياً.'
-      : 'مركز المساعدة:\n• تواصل معنا على @PuppyMerge\n• التحقق من الدفع يستغرق 24-72 ساعة\n• الحد الأدنى للسحب: 1000 جوهرة (شام كاش) أو 5000 جوهرة (باينانس)',
-    btn: 'حسناً'
-  });
-}
-
-/* ═══ NAVIGATION ═══ */
-function go(screen) {
-  const el = $('screen-' + screen);
-  if (!el) return;
-  document.querySelectorAll('.screen').forEach(x => x.classList.remove('active'));
-  el.classList.add('active');
-  document.querySelectorAll('.dock button').forEach(b => b.classList.toggle('on', b.dataset.nav === screen));
-  $('mainScroll').scrollTop = 0;
-  S.nav = screen;
-
-  if (screen === 'profile') document.body.classList.add('hide-balance');
-  else document.body.classList.remove('hide-balance');
-
-  if (screen === 'wallet') { loadDepositHistory(); loadWithdrawHistory(); }
-  if (screen === 'leaderboard') loadLeaderboard();
-  if (screen === 'withdraw') { updateWdMethodUI(); loadWithdrawHistory(); }
-  if (screen === 'deposit') renderDepositPackages();
-}
-
-/* ═══ BOOT ═══ */
-function bind() {
-  document.querySelectorAll('[data-nav]').forEach(b => {
-    b.onclick = () => { SFX.tap(); go(b.dataset.nav); };
-  });
-  document.querySelectorAll('[data-go]').forEach(b => {
-    b.onclick = () => { SFX.tap(); go(b.dataset.go); };
-  });
-  document.querySelectorAll('[data-back]').forEach(b => {
-    b.onclick = () => go(b.dataset.back);
-  });
-  document.querySelectorAll('[data-manual]').forEach(b => {
-    b.onclick = () => {
-      const t = b.dataset.manual;
-      if (t === 'binance') go('deposit-binance');
-      else if (t === 'sham') go('deposit-sham');
-    };
-  });
-  document.querySelectorAll('[data-wd-method]').forEach(b => {
-    b.onclick = () => {
-      S.wdMethod = b.dataset.wdMethod;
-      updateWdMethodUI();
-      SFX.tap();
-    };
-  });
-  document.querySelectorAll('[data-copy]').forEach(b => {
-    b.onclick = () => {
-      const el = $(b.dataset.copy);
-      if (!el) return;
-      try {
-        navigator.clipboard.writeText(el.textContent.trim());
-        toast('تم النسخ', 'success');
-      } catch(e) { toast('تعذر النسخ', 'error'); }
-    };
-  });
-
-  $('playBtn').onclick = () => { SFX.tap(); FlyGame.enter(); };
-  $('gamehubPlayBtn').onclick = () => { SFX.tap(); FlyGame.enter(); };
-  $('leaderBtn').onclick = () => { SFX.tap(); go('leaderboard'); };
-  $('hubLeaderBtn').onclick = () => { SFX.tap(); go('leaderboard'); };
-
-  $('energyAdBtn').onclick = watchEnergyAd;
-  $('energyBuyBtn').onclick = buyEnergyWithGems;
-
-  $('convCoins').oninput = updateConverter;
-  $('convBtn').onclick = doConvert;
-
-  document.querySelectorAll('#wdAmounts .amt-btn').forEach(b => {
-    b.onclick = () => {
-      document.querySelectorAll('#wdAmounts .amt-btn').forEach(x => x.classList.remove('on'));
-      b.classList.add('on');
-      S.wd = +b.dataset.amt;
-      updateWd();
-      SFX.tap();
-    };
-  });
-  $('wdSubmit').onclick = doWithdraw;
-
-  $('openPolicy').onclick = () => showInfo('policy');
-  $('openHelp').onclick = () => showInfo('help');
-
-  document.addEventListener('click', e => {
-    if (e.target.closest('.btn, .dock button, .miss-preview, .menu-item, .amt-btn')) SFX.tap();
-  });
-
+function renderEnergy(){if(!S.user)return;const c=Energy.cur(S.user),m=CONFIG.energyMax;$('eC').textContent=c;$('eM').textContent=m;$('eF').style.width=(c/m*100)+'%';
+  const r=Energy.next(S.user);$('eSub').textContent=c>=m?'ممتلئة':'التجديد بعد '+Math.floor(r/60000)+':'+pad(Math.floor(r%60000/1000))}
+
+/* MISSIONS */
+const prog=m=>{const u=S.user;return Number(m.type==='single'?u.flyBest:m.type==='total'?u.flyTotal:u.flyRounds)||0};
+const rwHTML=m=>(m.coins?`+${fmt(m.coins)} ${ci()}`:'')+(m.gems?` +${fmt(m.gems)} ${gi()}`:'');
+function renderMissions(){const fm=S.user.flyMissions||{};
+  $('homeM').innerHTML=CONFIG.missions.filter(m=>!fm[m.id]).slice(0,2).map(m=>{const p=prog(m);return `<div class="card mi"><div class="ic"><img class="i" src="https://img.icons8.com/fluency/96/airplane-mode-on.png"></div><div class="bd"><div class="t">${esc(m.title)}</div><div class="pr"><i style="width:${Math.min(100,p/m.target*100)}%"></i></div><div class="pm"><span>${fmt(Math.min(p,m.target))} / ${fmt(m.target)}</span><span style="display:flex;gap:4px;align-items:center">${rwHTML(m)}</span></div></div></div>`}).join('')||'<div class="empty">أكملت جميع المهام</div>';
+  $('missions').innerHTML=CONFIG.missions.map(m=>{const p=prog(m),done=p>=m.target,cl=!!fm[m.id];
+    const b=cl?`<button class="btn bg sm" disabled>تم الاستلام</button>`:done?`<button class="btn bp sm" data-claim="${m.id}">استلام المكافأة</button>`:`<button class="btn bg sm" disabled>لم تكتمل</button>`;
+    return `<div class="card" style="${cl?'opacity:.6':done?'border-color:var(--pink)':''}"><div class="mi" style="margin-bottom:8px"><div class="ic"><img class="i" src="https://img.icons8.com/fluency/96/${m.type==='rounds'?'controller':m.type==='total'?'route':'speed'}.png"></div><div class="bd"><div class="t">${esc(m.title)}</div><div class="rw">${rwHTML(m)}</div></div></div><div class="pr"><i style="width:${Math.min(100,p/m.target*100)}%"></i></div><div class="pm" style="margin-bottom:10px"><span>${fmt(Math.min(p,m.target))} / ${fmt(m.target)}</span><span>${Math.min(100,Math.round(p/m.target*100))}%</span></div>${b}</div>`}).join('');
+  $('missions').querySelectorAll('[data-claim]').forEach(b=>b.onclick=()=>claimMission(b.dataset.claim))}
+async function claimMission(id){if(S.busy)return;const m=CONFIG.missions.find(x=>x.id===id),u=S.user,fm=u.flyMissions||{};
+  if(!m||fm[id]||prog(m)<m.target)return;S.busy=true;
+  try{u.coins=(u.coins||0)+(m.coins||0);u.gems=(u.gems||0)+(m.gems||0);fm[id]=true;u.flyMissions=fm;
+    await FB.set({coins:u.coins,gems:u.gems,flyMissions:fm});renderAll();
+    showModal({type:'ok',icon:ic('prize','16A34A','l'),title:'مكافأة المهمة',sub:m.title,amount:rwHTML(m)})}
+  catch(e){toast('تعذر استلام المكافأة','error')}finally{S.busy=false}}
+
+function renderDaily(){const dl=S.user.dailyLogin||{streak:0,lastClaimDate:null},t=today();const claimed=dl.lastClaimDate===t;
+  const y=dayStr(TIME.now()-864e5);let streak=dl.streak||0;if(!claimed&&dl.lastClaimDate!==y)streak=0;if(streak>=7)streak=0;
+  $('daily').innerHTML=`<div class="days">${CONFIG.daily.map((r,i)=>{const done=i<streak;const cur=!claimed&&i===streak;
+    return `<div class="day ${cur?'cur':''} ${done?'done':''}" ${i===6?'style="grid-column:span 1"':''}><span>${CONFIG.dayNames[i]}</span>${r.c?`<b>${ci('')}${fmt(r.c)}</b>`:''}${r.g?`<b>${gi('')}${r.g}</b>`:''}</div>`}).join('')}</div>
+  <button class="btn ${claimed?'bg':'bp'}" id="dBtn" ${claimed?'disabled':''}>${claimed?'تم استلام مكافأة اليوم':'استلم مكافأة اليوم'}</button>`;
+  if(!claimed)$('dBtn').onclick=()=>claimDaily(streak)}
+async function claimDaily(streak){if(S.busy)return;const u=S.user,dl=u.dailyLogin||{},t=today();if(dl.lastClaimDate===t)return;
+  const r=CONFIG.daily[streak];S.busy=true;
+  try{u.coins=(u.coins||0)+(r.c||0);u.gems=(u.gems||0)+(r.g||0);u.dailyLogin={streak:streak+1>=7?0:streak+1,lastClaimDate:t};
+    await FB.set({coins:u.coins,gems:u.gems,dailyLogin:u.dailyLogin});renderAll();
+    showModal({type:'ok',icon:ic('calendar','16A34A','l'),title:'مكافأة اليوم',sub:'عد غداً لمكافأة جديدة',amount:(r.c?`+${fmt(r.c)} ${ci('')}`:'')+(r.g?` +${r.g} ${gi('')}`:'')})}
+  catch(e){toast('تعذر استلام المكافأة','error')}finally{S.busy=false}}
+
+/* WALLET */
+function updConv(){const c=Number($('cv').value||0);$('cvOut').innerHTML=Math.floor(c/100)+' '+gi()}
+async function doConvert(){if(S.busy)return;const u=S.user,c=Math.floor(Number($('cv').value||0));
+  if(c<5000)return toast('الحد الأدنى للتبديل 5,000 عملة','error');if(c>u.coins)return toast('رصيد العملات غير كافٍ','error');
+  const g=Math.floor(c/100),spend=g*100;S.busy=true;
+  try{u.coins-=spend;u.gems+=g;await FB.set({coins:u.coins,gems:u.gems});$('cv').value='';updConv();renderAll();
+    showModal({type:'ok',icon:ic('data-in-both-directions','16A34A','l'),title:'تم التبديل',sub:'تم تبديل '+fmt(spend)+' عملة',amount:'+'+g+' '+gi('')})}
+  catch(e){toast('تعذر التبديل','error')}finally{S.busy=false}}
+
+function renderWd(){const mm=CONFIG.methods;
+  $('wdM').innerHTML=Object.keys(mm).map(k=>`<button class="meth ${S.wdM===k?'on':''}" data-m="${k}"><img class="lg" src="${CONFIG.logos[k]}"><div style="flex:1"><div class="t">${mm[k].name}</div><div class="d">الحد الأدنى ${fmt(mm[k].min)} جوهرة</div></div></button>`).join('');
+  $('wdM').querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{S.wdM=b.dataset.m;S.wd=0;renderWd();wdSum()});
+  const amts=S.wdM==='sham'?[1000,5000,10000,50000]:[5000,10000,50000,100000];
+  $('wdA').innerHTML=amts.map(a=>`<button class="amt ${S.wd===a?'on':''}" data-a="${a}">${fmt(a)}</button>`).join('');
+  $('wdA').querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{S.wd=+b.dataset.a;renderWd();wdSum()});
+  $('wdAcc').placeholder=mm[S.wdM].ph}
+const payout=(m,a)=>m==='sham'?fmt(Math.round(a*CONFIG.shamSyp))+' SYP':'$'+usd(a);
+function wdSum(){$('wdCh').innerHTML=fmt(S.wd)+' '+gi();$('wdRc').textContent=payout(S.wdM,S.wd)}
+async function doWithdraw(){if(S.busy)return;const u=S.user,m=S.wdM,cfg=CONFIG.methods[m],a=S.wd,acc=$('wdAcc').value.trim();
+  if(!a||a<cfg.min)return toast('الحد الأدنى '+fmt(cfg.min)+' جوهرة','error');if(a>u.gems)return toast('رصيد الجواهر غير كافٍ','error');if(acc.length<4)return toast('أدخل معرّفاً صحيحاً','error');
+  S.busy=true;const btn=$('wdGo'),old=btn.innerHTML;btn.disabled=true;btn.innerHTML='<div class="sp" style="width:18px;height:18px;border-width:2px"></div>';
+  try{u.gems-=a;await FB.set({gems:u.gems});
+    await db.collection(CONFIG.wdCol).add({userId:TG.id,userName:u.name,method:m,methodName:cfg.name,amount:a,payout:payout(m,a),account:acc,status:'pending',createdAt:Date.now()});
+    await db.collection(CONFIG.txCol).add({userId:TG.id,type:'withdraw',amount:-a,currency:'gems',meta:{method:m},createdAt:Date.now()});
+    S.wd=0;$('wdAcc').value='';renderWd();wdSum();renderAll();loadHist();
+    showModal({type:'ok',icon:`<img class="i l" src="${CONFIG.logos[m]}" style="border-radius:10px">`,title:'تم تقديم طلب السحب',sub:'طريقة السحب: '+cfg.name+'\nسيتم المراجعة خلال 24-72 ساعة',amount:fmt(a)+' '+gi('')})}
+  catch(e){u.gems+=a;toast('تعذر السحب','error')}finally{S.busy=false;btn.disabled=false;btn.innerHTML=old}}
+
+async function loadHist(){const el=$('hist');if(!db)return;el.innerHTML='<div class="empty"><div class="sp" style="margin:auto"></div></div>';
+  try{const [w,d]=await Promise.all([db.collection(CONFIG.wdCol).where('userId','==',TG.id).limit(30).get(),db.collection(CONFIG.depCol).where('userId','==',TG.id).limit(30).get()]);
+    const arr=[];w.forEach(x=>arr.push({k:'w',...x.data()}));d.forEach(x=>arr.push({k:'d',...x.data()}));
+    arr.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+    if(!arr.length){el.innerHTML='<div class="empty">لا يوجد سجل بعد</div>';return}
+    const stm={pending:['pending','قيد المراجعة'],processing:['pending','قيد المراجعة'],approved:['ok','مقبول'],completed:['ok','مقبول'],paid:['ok','مقبول'],rejected:['no','مرفوض'],failed:['no','مرفوض']};
+    el.innerHTML=arr.slice(0,20).map(x=>{const s=stm[x.status]||stm[x.k==='d'?'completed':'pending'];const dep=x.k==='d';const m=x.method;
+      return `<div class="hrow"><img class="i l" style="width:36px;height:36px;border-radius:10px" src="${m&&CONFIG.logos[m]?CONFIG.logos[m]:(dep?'https://img.icons8.com/fluency/96/download.png':'https://img.icons8.com/fluency/96/upload.png')}"><div class="bd"><div class="t">${dep?'إيداع':'سحب'}${x.methodName||(m&&CONFIG.methods[m]?' - '+CONFIG.methods[m].name:'')?' - '+esc(x.methodName||CONFIG.methods[m].name):''}</div><div class="d">${new Date(x.createdAt||Date.now()).toLocaleDateString('ar-EG')} - ${fmt(x.amount||x.gems||0)}</div></div><span class="st ${s[0]}">${s[1]}</span></div>`}).join('')}
+  catch(e){el.innerHTML='<div class="empty">تعذر التحميل</div>'}}
+
+function showDeposit(k){const c=CONFIG.methods[k];
+  $('depBody').innerHTML=`<div class="card flat" style="display:flex;align-items:center;gap:12px"><img style="width:52px;height:52px;border-radius:14px" src="${CONFIG.logos[k]}"><div><b style="font-size:17px">إيداع عبر ${c.name}</b><div style="font-size:12px;color:var(--gray);font-weight:600">1$ = 900 جوهرة</div></div></div>
+  <div class="copy"><div><small>${c.label}</small><b>${esc(c.acc)}</b></div><button class="btn bp sm" style="width:auto" data-cp="${esc(c.acc)}">نسخ</button></div>
+  <div class="copy"><div><small>معرّفك (ضعه في الملاحظة عند الدفع)</small><b>${esc(TG.id)}</b></div><button class="btn bp sm" style="width:auto" data-cp="${esc(TG.id)}">نسخ</button></div>
+  <div class="card"><div class="t" style="font-weight:800;margin-bottom:6px">خطوات الإيداع</div><div style="font-size:12.5px;color:var(--gray);font-weight:600;line-height:1.9">1. حوّل المبلغ إلى المعرّف أعلاه.<br>2. اكتب معرّفك الخاص في خانة الملاحظة أثناء الدفع ليتم التعرف عليك.<br>3. بعد المراجعة تُضاف الجواهر إلى رصيدك تلقائياً.</div></div>
+  <button class="btn bo" id="depBack">رجوع</button>`;
+  $('depBody').querySelectorAll('[data-cp]').forEach(b=>b.onclick=()=>{try{navigator.clipboard.writeText(b.dataset.cp)}catch(e){}toast('تم النسخ','success')});
+  $('depBack').onclick=()=>go('wallet');go('dep')}
+
+/* LEADERBOARD */
+async function loadLB(){const el=$('lbl');if(S.lb.length&&Date.now()-S.lbAt<60000)return renderLB();
+  el.innerHTML='<div class="empty"><div class="sp" style="margin:auto"></div></div>';$('pod').innerHTML='';
+  try{const snap=await db.collection(CONFIG.flyCol).orderBy('best','desc').limit(100).get();S.lb=[];snap.forEach(d=>{const x=d.data();S.lb.push({id:d.id,name:x.name||'لاعب',photoUrl:x.photoUrl||null,best:Number(x.best||0)})});S.lbAt=Date.now();renderLB()}
+  catch(e){el.innerHTML='<div class="empty">تعذر تحميل القائمة</div>'}}
+function renderLB(){const a=S.lb;if(!a.length){$('lbl').innerHTML='<div class="empty">لا يوجد متصدرون بعد</div>';return}
+  $('pod').innerHTML='<div class="pod">'+[1,0,2].map(i=>{const p=a[i];if(!p)return '<div></div>';return `<div class="${i===0?'r1':''}"><div class="av">${avatar(p)}</div><small>${esc(p.name)}</small><b>${fmt(p.best)} م</b></div>`}).join('')+'</div>';
+  $('lbl').innerHTML=a.map((p,i)=>`<div class="lb ${p.id===TG.id?'me':''}"><div class="rk">${i+1}</div><div class="av" style="width:38px;height:38px">${avatar(p)}</div><div class="nm">${esc(p.name)}</div><b>${fmt(p.best)} م</b></div>`).join('')}
+
+/* RENDER */
+function renderAll(){const u=S.user;if(!u)return;
+  $('hC').textContent=fmt(u.coins);$('hG').textContent=fmt(u.gems);$('hAv').innerHTML=avatar(u);
+  $('sBest').textContent=fmt(u.flyBest);$('sRounds').textContent=fmt(u.flyRounds);$('sGems').textContent=fmt(u.flyGems);
+  $('wC').textContent=fmt(u.coins);$('wG').textContent=fmt(u.gems);$('wUsd').textContent='≈ $'+usd(u.gems||0);
+  $('pName').textContent=u.name||'لاعب';$('pId').textContent=u.telegramId;$('pAv').innerHTML=avatar(u);
+  $('last').innerHTML=u.flyLastRoundAt?`<div class="card flat mi" style="margin:0"><div class="ic" style="background:#fff"><img class="i" src="https://img.icons8.com/fluency/96/finish-flag.png"></div><div class="bd"><div class="t">آخر جولة</div><div class="d">${new Date(u.flyLastRoundAt).toLocaleDateString('ar-EG')}</div></div><b style="color:var(--pink);direction:ltr">${fmt(u.flyLastDist||0)} م</b></div>`:'<div class="card flat empty">لا توجد جولات بعد، ابدأ اللعب</div>';
+  renderEnergy();renderMissions();renderDaily()}
+
+/* NAV */
+const NAV=[['home','home','الرئيسية'],['missions','task','المهام'],['wallet','wallet','الرصيد'],['leaderboard','trophy','المتصدرون'],['profile','user','حسابي']];
+function renderDock(){$('dock').innerHTML=NAV.map(n=>`<button data-nav="${n[0]}" class="${S.nav===n[0]?'on':''}">${ic(n[1],S.nav===n[0]?'FE2B54':'8A8A8E')}<span>${n[2]}</span></button>`).join('');
+  $('dock').querySelectorAll('[data-nav]').forEach(b=>b.onclick=()=>go(b.dataset.nav))}
+function go(s){const el=$('screen-'+s);if(!el)return;document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));el.classList.add('active');
+  S.nav=s==='dep'?'wallet':s;renderDock();$('main').scrollTop=0;$('bar').classList.toggle('hide',s==='profile');
+  if(s==='wallet'){renderWd();loadHist()}if(s==='leaderboard')loadLB()}
+
+/* GAME */
+const FlyGame=(()=>{
+  const cvs=$('gc'),ctx=cvs.getContext('2d'),CFG=CONFIG.fly;let VW=0,VH=0,SZ={};
+  const st={mode:'idle',raf:0,lastT:0,acc:0,starting:false,p:{x:0,y:0,vy:0,rot:0,r:20},readyY:0,readyT:0,worldX:0,obs:[],bub:[],par:[],clouds:[],dist:0,rC:0,rD:0,pairs:0,nextB:8,img:null,imgOk:false,committed:false};
+  const rng32=a=>()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+  function resize(){const r=cvs.parentElement.getBoundingClientRect();VW=r.width;VH=r.height;if(VW<=0||VH<=0){setTimeout(resize,50);return}
+    const D=Math.min(devicePixelRatio||1,2);cvs.width=Math.round(VW*D);cvs.height=Math.round(VH*D);ctx.setTransform(D,0,0,D,0,0);
+    SZ.pR=clamp(VH*.033,CFG.pRMin,CFG.pRMax);SZ.oW=clamp(VW*CFG.oWR,CFG.oWMin,CFG.oWMax);SZ.gap=clamp(VH*CFG.gapR,CFG.gapMin,CFG.gapMax);SZ.sp=clamp(VW*CFG.spR,CFG.spMin,CFG.spMax);SZ.gr=clamp(VH*CFG.grR,CFG.grMin,CFG.grMax)}
+  function loadImg(){const u=(S.user&&S.user.photoUrl)||(TG.user&&TG.user.photo_url);if(!u)return;const im=new Image();im.referrerPolicy='no-referrer';im.onload=()=>{st.img=im;st.imgOk=true};im.src=u}
+  const rb=()=>CFG.bMin+Math.floor(Math.random()*(CFG.bMax-CFG.bMin+1));
+  function reset(){st.p.x=VW*.28;st.p.y=VH*.45;st.p.vy=0;st.p.rot=0;st.p.r=SZ.pR;st.readyY=VH*.45;st.readyT=0;st.worldX=0;st.obs=[];st.bub=[];st.par=[];st.dist=0;st.rC=0;st.rD=0;st.pairs=0;st.committed=false;st.nextB=rb();
+    st.clouds=[[.1,.15,1.1],[.45,.28,.8],[.78,.12,1],[1.15,.22,.9],[1.55,.18,1.2],[1.9,.3,.75]];
+    let x=VW+100;for(let i=0;i<3;i++){spawnObs(x);x+=SZ.sp}hud()}
+  function spawnObs(x){const g=SZ.gap,gY=VH-SZ.gr,minT=60,maxT=gY-60-g;st.obs.push({x,w:SZ.oW,gapY:minT+Math.random()*Math.max(20,maxT-minT),gapH:g,passed:false})}
+  function spawnBub(x){const gY=VH-SZ.gr,m=90;st.bub.push({x,y:m+Math.random()*Math.max(40,gY-m*2),r:Math.max(22,VH*.034),seed:Math.random()*6.28,collected:false})}
+  function hud(){$('hudC').textContent=fmt(st.rC);$('hudG').textContent=fmt(st.rD);$('hudD').textContent=fmt(Math.floor(st.dist))}
+  function floater(t,x,y,type){const e=document.createElement('div');e.className='floater'+(type==='gem'?' gem':'');e.textContent=t;e.style.left=clamp(x,30,VW-30)+'px';e.style.top=clamp(y,60,VH-60)+'px';$('fl').appendChild(e);setTimeout(()=>e.remove(),1150)}
+  function burst(x,y){const r=rng32((x*31+y*17)|0);for(let i=0;i<8;i++){const a=6.28*i/8+r()*.5,sp=90+r()*120;st.par.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-60,life:.55+r()*.35,max:.9,col:i%3?'#59D7F2':'#fff',r:2+r()*2.5})}}
+  function cr(cx,cy,r,rx,ry,rw,rh){if(rw<=0||rh<=0)return false;const nx=Math.max(rx,Math.min(cx,rx+rw)),ny=Math.max(ry,Math.min(cy,ry+rh)),dx=cx-nx,dy=cy-ny;return dx*dx+dy*dy<r*r}
+  function step(dt){const p=st.p;p.vy=Math.min(CFG.maxFall,p.vy+CFG.gravity*dt);p.y+=p.vy*dt;p.rot+=(clamp(p.vy/CFG.maxFall*1.15,-.52,1.15)-p.rot)*Math.min(1,dt*11);
+    const dx=CFG.scroll*dt;st.worldX+=dx;st.dist=st.worldX/CFG.pxPerM;st.obs.forEach(o=>o.x-=dx);st.bub.forEach(b=>b.x-=dx);
+    if(st.obs.length&&st.obs[0].x+st.obs[0].w<-60)st.obs.shift();
+    const last=st.obs[st.obs.length-1];if(!last||last.x<VW-SZ.sp)spawnObs(last?last.x+SZ.sp:VW+80);
+    for(const o of st.obs)if(!o.passed&&o.x+o.w<p.x-p.r){o.passed=true;st.pairs++;st.rC+=CFG.coinPerPair;floater('+'+CFG.coinPerPair,p.x+p.r*1.2,p.y-p.r*1.6,'c');hud();
+      if(st.pairs>=st.nextB){spawnBub(VW+60);st.nextB=st.pairs+rb()}}
+    const gY=VH-SZ.gr,pr=p.r*.88;
+    for(const o of st.obs){if(p.x+pr<o.x||p.x-pr>o.x+o.w)continue;if(cr(p.x,p.y,pr,o.x,0,o.w,o.gapY)||cr(p.x,p.y,pr,o.x,o.gapY+o.gapH,o.w,gY-(o.gapY+o.gapH))){over();return}}
+    if(p.y+p.r>=gY){p.y=gY-p.r;over();return}if(p.y-p.r<0){p.y=p.r;if(p.vy<0)p.vy=0}
+    for(const b of st.bub){if(b.collected)continue;const ddx=b.x-p.x,ddy=b.y-p.y,rr=b.r+p.r*.95;if(ddx*ddx+ddy*ddy<rr*rr){b.collected=true;const rw=CFG.dMin+Math.floor(Math.random()*(CFG.dMax-CFG.dMin+1));st.rD+=rw;floater('+'+rw,b.x,b.y-12,'gem');burst(b.x,b.y);hud()}}
+    st.bub=st.bub.filter(b=>!b.collected&&b.x+b.r>-60);
+    if(st.par.length){st.par.forEach(a=>{a.vy+=420*dt;a.x+=a.vx*dt;a.y+=a.vy*dt;a.life-=dt});st.par=st.par.filter(a=>a.life>0)}}
+  function rr(g,x,y,w,h,r){r=Math.min(r,w/2,h/2);g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath()}
+  function cactus(g,x,y,w,h,isTop){if(h<=4)return;const bw=w-8,bx=x+4;
+    const gr=g.createLinearGradient(x,0,x+w,0);gr.addColorStop(0,'#2E7D32');gr.addColorStop(.4,'#4CAF50');gr.addColorStop(1,'#1B5E20');g.fillStyle=gr;rr(g,bx,y,bw,h,9);g.fill();
+    g.strokeStyle='#1B5E20';g.lineWidth=2;g.stroke();g.strokeStyle='rgba(255,255,255,.2)';g.lineWidth=1.4;
+    for(let i=1;i<4;i++){const lx=bx+bw*i/4;g.beginPath();g.moveTo(lx,y+6);g.lineTo(lx,y+h-6);g.stroke()}
+    g.strokeStyle='#FFF8DC';g.lineWidth=1.6;
+    for(let sy=y+(isTop?10:22);sy<y+h-8;sy+=24){g.beginPath();g.moveTo(bx,sy);g.lineTo(bx-6,sy-3);g.moveTo(bx+bw,sy+8);g.lineTo(bx+bw+6,sy+5);g.stroke()}
+    const tipY=isTop?y+h:y;g.fillStyle='#FFF8DC';
+    for(let i=0;i<4;i++){const tx=bx+bw*(i+.5)/4;g.beginPath();g.moveTo(tx-4,tipY);g.lineTo(tx,tipY+(isTop?9:-9));g.lineTo(tx+4,tipY);g.fill()}}
+  function render(){const g=ctx,gY=VH-SZ.gr;g.clearRect(0,0,VW,VH);
+    const sk=g.createLinearGradient(0,0,0,VH);sk.addColorStop(0,'#4FB3F6');sk.addColorStop(.7,'#B8E4FB');sk.addColorStop(1,'#E8F6FD');g.fillStyle=sk;g.fillRect(0,0,VW,VH);
+    g.fillStyle='#FFF6B0';g.beginPath();g.arc(VW*.78,VH*.16,Math.min(VW,VH)*.05,0,6.28);g.fill();
+    const tw=VW*1.5,off=-((st.worldX*.1)%tw);
+    for(let rep=0;rep<2;rep++)[[.18,210,230,'#D9B26A'],[.55,270,290,'#C9A05A'],[1.02,170,190,'#E0BC7A']].forEach(([px,w,h,c])=>{const cx=off+rep*tw+px*VW;if(cx<-400||cx>VW+400)return;
+      g.fillStyle=c;g.beginPath();g.moveTo(cx-w/2,gY);g.lineTo(cx,gY-h);g.lineTo(cx+w/2,gY);g.fill();g.fillStyle='rgba(0,0,0,.12)';g.beginPath();g.moveTo(cx,gY-h);g.lineTo(cx+w/2,gY);g.lineTo(cx+w*.14,gY);g.fill()});
+    const ct=VW*2.2,co=-((st.worldX*.28)%ct);g.fillStyle='rgba(255,255,255,.85)';
+    for(let rep=0;rep<2;rep++)st.clouds.forEach(c=>{const x=co+rep*ct+c[0]*VW,y=c[1]*VH,s=56*c[2];if(x<-220||x>VW+220)return;g.beginPath();g.arc(x,y,s,0,6.28);g.arc(x+s*.9,y+s*.15,s*.75,0,6.28);g.arc(x-s*.9,y+s*.2,s*.7,0,6.28);g.fill()});
+    const gr=g.createLinearGradient(0,gY,0,VH);gr.addColorStop(0,'#6FCF4A');gr.addColorStop(1,'#3E9B2B');g.fillStyle=gr;g.fillRect(0,gY,VW,SZ.gr);g.fillStyle='#2F7D20';g.fillRect(0,gY,VW,4);
+    g.strokeStyle='rgba(0,0,0,.12)';g.lineWidth=1.5;const go=-(st.worldX%46);for(let x=go-46;x<VW+46;x+=46){g.beginPath();g.moveTo(x,gY+16);g.lineTo(x+14,gY+16);g.moveTo(x+22,gY+38);g.lineTo(x+38,gY+38);g.stroke()}
+    st.obs.forEach(o=>{cactus(g,o.x,0,o.w,o.gapY,true);const by=o.gapY+o.gapH;cactus(g,o.x,by,o.w,gY-by,false)});
+    const t=performance.now()/1000;
+    st.bub.forEach(b=>{const cy=b.y+Math.sin(t*2.4+b.seed)*4;const rg=g.createRadialGradient(b.x,cy,b.r*.3,b.x,cy,b.r*1.9);rg.addColorStop(0,'rgba(254,43,84,.5)');rg.addColorStop(1,'rgba(254,43,84,0)');g.fillStyle=rg;g.beginPath();g.arc(b.x,cy,b.r*1.9,0,6.28);g.fill();
+      g.fillStyle='rgba(254,43,84,.8)';g.beginPath();g.arc(b.x,cy,b.r,0,6.28);g.fill();g.strokeStyle='#fff';g.lineWidth=2;g.stroke();
+      const s=b.r*.6;g.fillStyle='#fff';g.beginPath();g.moveTo(b.x,cy-s);g.lineTo(b.x+s*.85,cy-s*.15);g.lineTo(b.x,cy+s);g.lineTo(b.x-s*.85,cy-s*.15);g.fill()});
+    st.par.forEach(a=>{const k=clamp(a.life/a.max,0,1);g.globalAlpha=k;g.fillStyle=a.col;g.beginPath();g.arc(a.x,a.y,a.r*(.5+k*.5),0,6.28);g.fill()});g.globalAlpha=1;
+    const p=st.p,r=p.r;g.save();g.translate(p.x,p.y);g.rotate(p.rot);
+    if(st.imgOk&&st.img&&st.img.naturalWidth>0){g.save();g.beginPath();g.arc(0,0,r,0,6.28);g.clip();g.drawImage(st.img,-r,-r,r*2,r*2);g.restore()}else{g.fillStyle='#FE2B54';g.beginPath();g.arc(0,0,r,0,6.28);g.fill()}
+    g.strokeStyle='#fff';g.lineWidth=Math.max(2,r*.1);g.beginPath();g.arc(0,0,r-g.lineWidth/2,0,6.28);g.stroke();g.restore()}
+  function tick(now){if(st.mode!=='playing'&&st.mode!=='ready'){st.raf=0;return}st.raf=requestAnimationFrame(tick);
+    const dt=Math.min(.1,Math.max(0,(now-st.lastT)/1000));st.lastT=now;
+    if(st.mode==='playing'){st.acc+=dt;let it=0;while(st.acc>=CFG.fixedDt&&it<400){step(CFG.fixedDt);st.acc-=CFG.fixedDt;it++;if(st.mode!=='playing')break}if(it>=400)st.acc=0;$('hudD').textContent=fmt(Math.floor(st.dist))}
+    else{st.readyT+=dt;st.p.y=st.readyY+Math.sin(st.readyT*3)*8;st.p.rot=Math.sin(st.readyT*3)*.1}render()}
+  const startLoop=()=>{stopLoop();st.lastT=performance.now();st.acc=0;st.raf=requestAnimationFrame(tick)};
+  const stopLoop=()=>{if(st.raf){cancelAnimationFrame(st.raf);st.raf=0}};
+  async function begin(){
+    if(st.mode!=='ready'||st.starting)return;st.starting=true;$('startBtn').disabled=true; // يمنع خصم الطاقة مرتين
+    try{if(Energy.cur(S.user)<=0){toast('لا توجد طاقة، انتظر التجديد','error');return}
+      st.mode='playing';$('ovReady').classList.remove('show');st.lastT=performance.now();st.acc=0;st.p.vy=CFG.flap;SFX.flap();
+      Energy.use().then(ok=>{if(!ok)toast('لا توجد طاقة','error')}).catch(()=>{})}
+    finally{st.starting=false;$('startBtn').disabled=false}}
+  async function commit(dist){if(st.committed)return false;st.committed=true;const u=S.user;if(!u)return false;
+    const rec=dist>(u.flyBest||0);if(rec)u.flyBest=dist;u.coins=(u.coins||0)+st.rC;u.gems=(u.gems||0)+st.rD;u.flyCoins=(u.flyCoins||0)+st.rC;u.flyGems=(u.flyGems||0)+st.rD;
+    u.flyTotal=(u.flyTotal||0)+dist;u.flyRounds=(u.flyRounds||0)+1;u.flyLastDist=dist;u.flyLastRoundAt=Date.now();
+    try{await FB.set({flyBest:u.flyBest,flyCoins:u.flyCoins,flyGems:u.flyGems,flyTotal:u.flyTotal,flyRounds:u.flyRounds,flyLastDist:dist,flyLastRoundAt:u.flyLastRoundAt,coins:u.coins,gems:u.gems})}catch(e){}
+    try{if(db&&dist>0)await db.collection(CONFIG.flyCol).doc(TG.id).set({userId:TG.id,name:u.name||'لاعب',photoUrl:u.photoUrl||null,best:u.flyBest,updatedAt:Date.now()},{merge:true})}catch(e){}
+    return rec}
+  async function over(){if(st.mode==='over')return;st.mode='over';stopLoop();const d=Math.floor(st.dist);
+    $('oD').textContent=fmt(d);$('oC').textContent='+'+fmt(st.rC);$('oG').textContent='+'+fmt(st.rD);$('ovOver').classList.add('show');
+    await commit(d);renderAll();S.lbAt=0}
+  function enter(){$('screen-game').classList.add('active');loadImg();requestAnimationFrame(()=>{resize();toReady()})}
+  function toReady(){reset();st.mode='ready';$('ovReady').classList.add('show');$('ovOver').classList.remove('show');$('ovPause').classList.remove('show');$('fl').innerHTML='';startLoop()}
+  function exit(){stopLoop();if(st.mode==='playing'||st.mode==='paused'){commit(Math.floor(st.dist)).then(renderAll)}st.mode='idle';$('screen-game').classList.remove('active');['ovReady','ovPause','ovOver'].forEach(i=>$(i).classList.remove('show'));renderAll()}
+  function pause(){if(st.mode!=='playing')return;st.mode='paused';stopLoop();$('ovPause').classList.add('show')}
+  function resume(){if(st.mode!=='paused')return;$('ovPause').classList.remove('show');st.mode='playing';startLoop()}
+  function bind(){const w=cvs.parentElement;
+    w.addEventListener('pointerdown',e=>{if(e.target.closest('button')||st.mode!=='playing')return;st.p.vy=CFG.flap;e.preventDefault()},{passive:false});
+    w.addEventListener('contextmenu',e=>e.preventDefault());
+    $('startBtn').onclick=begin;$('readyExit').onclick=exit;$('pauseBtn').onclick=pause;$('resumeBtn').onclick=resume;$('quitBtn').onclick=exit;
+    $('againBtn').onclick=toReady;$('homeBtn').onclick=exit;$('lbBtn').onclick=()=>{exit();go('leaderboard')};
+    addEventListener('keydown',e=>{if(!$('screen-game').classList.contains('active'))return;if(e.code==='Space'||e.code==='ArrowUp'){e.preventDefault();if(st.mode==='ready')begin();else if(st.mode==='playing')st.p.vy=CFG.flap}});
+    addEventListener('resize',()=>{if($('screen-game').classList.contains('active'))resize()});
+    document.addEventListener('visibilitychange',()=>{if(document.hidden)pause()})}
+  return{enter,bind,preload:loadImg}})();
+
+const SFX={ctx:null,tone(f,d,t='sine',v=.1,w=0){try{this.ctx=this.ctx||new(window.AudioContext||window.webkitAudioContext)();const c=this.ctx,s=c.currentTime+w,o=c.createOscillator(),g=c.createGain();o.type=t;o.frequency.value=f;g.gain.setValueAtTime(.0001,s);g.gain.linearRampToValueAtTime(v,s+.01);g.gain.exponentialRampToValueAtTime(.001,s+d);o.connect(g);g.connect(c.destination);o.start(s);o.stop(s+d+.05)}catch(e){}},
+  tap(){this.tone(520,.05)},flap(){this.tone(600,.05)},reward(){[880,1108,1320,1760].forEach((f,i)=>this.tone(f,.12,'square',.1,i*.05))}};
+
+/* ENERGY ACTIONS */
+async function watchAd(){if(S.busy)return;if(Energy.cur(S.user)>=CONFIG.energyMax)return toast('الطاقة ممتلئة');if(typeof window.show_12008608!=='function')return toast('الإعلان غير متاح حالياً','error');
+  S.busy=true;const b=$('eAd'),old=b.innerHTML;b.disabled=true;const t0=performance.now();
+  try{await window.show_12008608();if(performance.now()-t0<15000)toast('لم تُحتسب المكافأة (أقل من 15 ثانية)','error');else{await Energy.add();SFX.reward();toast('تمت إضافة طاقة','success')}}
+  catch(e){toast('لم تكتمل المشاهدة','error')}finally{S.busy=false;b.disabled=false;b.innerHTML=old}}
+async function buyEnergy(){if(S.busy)return;const u=S.user;if(Energy.cur(u)>=CONFIG.energyMax)return toast('الطاقة ممتلئة');if((u.gems||0)<1)return toast('تحتاج جوهرة واحدة','error');
+  S.busy=true;try{u.gems-=1;await Energy.add();await FB.set({gems:u.gems});SFX.reward();toast('تمت إضافة طاقة مقابل جوهرة واحدة','success');renderAll()}catch(e){u.gems+=1;toast('تعذر الشراء','error')}finally{S.busy=false}}
+
+/* BIND */
+function bind(){
+  $('play').onclick=()=>{SFX.tap();FlyGame.enter()};
+  document.querySelectorAll('.hero [data-nav]').forEach(b=>b.onclick=()=>go(b.dataset.nav));
+  $('hAv').onclick=()=>go('profile');
+  $('eAd').onclick=watchAd;$('eBuy').onclick=buyEnergy;
+  $('cv').oninput=updConv;$('cvBtn').onclick=doConvert;
+  document.querySelectorAll('[data-logo]').forEach(i=>i.src=CONFIG.logos[i.dataset.logo]);
+  document.querySelectorAll('[data-dep]').forEach(b=>b.onclick=()=>showDeposit(b.dataset.dep));
+  document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===t));$('tab-dep').classList.toggle('hide',t.dataset.tab!=='dep');$('tab-wd').classList.toggle('hide',t.dataset.tab!=='wd')});
+  $('wdGo').onclick=doWithdraw;
+  $('oPol').onclick=()=>showModal({icon:ic('shield','FE2B54','l'),title:'سياسة الخصوصية',sub:'نستخدم بيانات تيليجرام للحساب. لا نشارك بياناتك مع أي طرف ثالث.'});
+  $('oHelp').onclick=()=>showModal({icon:ic('help','FE2B54','l'),title:'مركز المساعدة',sub:'للاستفسارات: تواصل معنا على @PuppyMerge'});
+  document.addEventListener('click',e=>{if(e.target.closest('.btn,.dock button,.meth,.tab'))SFX.tap()});
   FlyGame.bind();
-}
+  if(TG.app&&TG.app.onEvent)TG.app.onEvent('backButtonClicked',()=>{if(S.nav!=='home')go('home')})}
 
-async function boot() {
-  if (!TG.init()) {
-    $('loader').innerHTML = '<div style="padding:30px;text-align:center"><div style="font-size:44px;color:var(--pink);margin-bottom:12px"><i class="fas fa-plane"></i></div><h2 style="margin-bottom:8px">Sky Rush</h2><p style="color:#888;margin-bottom:16px">افتح التطبيق من تيليجرام</p></div>';
-    return;
-  }
-  const safety = setTimeout(() => {
-    try { $('loader').classList.add('hide'); $('app').style.display = 'flex'; } catch(e) {}
-  }, 4000);
-
-  try { FB.init(); } catch(e) {}
-  try { await Promise.race([TIME.sync(), sleep(3000)]); } catch(e) {}
-
-  try {
-    const ex = await Promise.race([FB.get(), sleep(5000).then(() => null)]);
-    if (ex) {
-      S.user = Object.assign(newUser(), ex);
-      if (!S.user.flyMissions) S.user.flyMissions = {};
-      if (!S.user.dailyLogin) S.user.dailyLogin = { streak: 0, lastClaimDate: null };
-    } else {
-      S.user = newUser();
-      try { await FB.set(S.user, false); } catch(e) {}
-    }
-  } catch(e) {
-    S.user = newUser();
-  }
-
-  clearTimeout(safety);
-  $('loader').classList.add('hide');
-  $('app').style.display = 'flex';
-
-  try { bind(); } catch(e) {}
-  try { renderAll(); } catch(e) {}
-  try { FlyGame.preload(); } catch(e) {}
-
-  setInterval(() => { try { renderEnergy(); } catch(e) {} }, 1000);
-  setInterval(() => TIME.sync(), 300000);
-}
-document.addEventListener('DOMContentLoaded', boot);
+async function boot(){
+  if(!TG.init()){$('loader').innerHTML='<div style="padding:30px;text-align:center"><h2>Sky Rush</h2><p style="color:#888;margin:10px 0 16px;font-size:14px">هذا التطبيق يعمل فقط داخل تيليجرام</p><a href="https://t.me/'+CONFIG.bot.username+'/'+CONFIG.bot.appName+'" style="background:var(--pink);color:#fff;padding:12px 24px;border-radius:14px;text-decoration:none;font-size:14px">افتح التطبيق</a></div>';return}
+  const safety=setTimeout(()=>{$('loader').classList.add('hide');$('app').classList.remove('hide')},4000);
+  try{FB.init()}catch(e){}
+  try{await Promise.race([TIME.sync(),sleep(3000)])}catch(e){}
+  try{const ex=await Promise.race([FB.get(),sleep(5000).then(()=>null)]);
+    if(ex){S.user=Object.assign(newUser(),ex);S.user.flyMissions=S.user.flyMissions||{};S.user.dailyLogin=S.user.dailyLogin||{streak:0,lastClaimDate:null}}
+    else{S.user=newUser();try{await FB.set(S.user,false)}catch(e){}}}catch(e){S.user=newUser()}
+  clearTimeout(safety);$('loader').classList.add('hide');$('app').classList.remove('hide');
+  renderDock();try{bind()}catch(e){console.warn(e)}try{renderAll();renderWd();wdSum();FlyGame.preload()}catch(e){console.warn(e)}
+  setInterval(()=>{try{renderEnergy()}catch(e){}},1000);setInterval(()=>TIME.sync(),300000)}
+document.addEventListener('DOMContentLoaded',boot);
 </script>
 </body>
 </html>
