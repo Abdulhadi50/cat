@@ -58,33 +58,24 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
 
 /* ═══ HEADER ═══ */
 .app-header{padding:calc(12px + var(--st)) 16px 12px;display:flex;align-items:center;gap:12px;background:var(--white);position:sticky;top:0;z-index:20}
-.app-header-brand{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
-.brand-logo{width:38px;height:38px;border-radius:11px;background:var(--pink);display:grid;place-items:center;color:#fff;font-size:18px;flex-shrink:0;box-shadow:0 4px 10px rgba(254,43,84,.28)}
-.brand-text{min-width:0}
-.brand-name{font-size:16px;font-weight:800;letter-spacing:-.3px;line-height:1.1}
-.brand-tag{font-size:10px;font-weight:600;color:var(--gray);letter-spacing:.2px}
+.app-header-balances{display:flex;align-items:center;gap:8px;flex:1}
+.header-bal{display:flex;align-items:center;gap:6px;padding:8px 12px;background:var(--gray-l);border-radius:12px;flex:1;min-width:0}
+.header-bal img{width:22px;height:22px;flex-shrink:0}
+.header-bal .num{font-size:14px;font-weight:800;direction:ltr;line-height:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .header-avatar{width:38px;height:38px;border-radius:50%;background:var(--gray-l);overflow:hidden;border:2px solid var(--white);box-shadow:var(--shadow-sm);flex-shrink:0}
 .header-avatar img{width:100%;height:100%;object-fit:cover;display:block}
 .header-avatar i{display:grid;place-items:center;width:100%;height:100%;color:var(--pink);font-size:16px}
 
-/* ═══ BALANCE STRIP ═══ */
-.balance-strip{display:flex;gap:8px;padding:0 16px 14px;background:var(--white);position:sticky;top:62px;z-index:19}
-.bal-chip{flex:1;display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--gray-l);border-radius:14px;min-width:0}
-.bal-chip img{width:26px;height:26px;flex-shrink:0}
-.bal-chip .num{font-size:15px;font-weight:800;direction:ltr;line-height:1.1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.bal-chip .lbl{font-size:9.5px;font-weight:600;color:var(--gray);direction:ltr}
-
 /* ═══ HERO BANNER ═══ */
 .hero{position:relative;border-radius:24px;overflow:hidden;background:linear-gradient(135deg,#0A0A0A 0%,#1F1F23 100%);padding:20px;margin-bottom:16px;box-shadow:var(--shadow-lg);min-height:220px;display:flex;flex-direction:column;justify-content:space-between}
 .hero::before{content:'';position:absolute;top:-50%;right:-30%;width:80%;height:200%;background:radial-gradient(circle,rgba(254,43,84,.35) 0%,transparent 60%);pointer-events:none}
-.hero::after{content:'';position:absolute;bottom:-30%;left:-20%;width:60%;height:120%;background:radial-gradient(circle,rgba(254,43,84,.2) 0%,transparent 65%);pointer-events:none}
 .hero-content{position:relative;z-index:2}
 .hero-tag{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:var(--pink);color:#fff;border-radius:20px;font-size:10.5px;font-weight:700;margin-bottom:10px}
 .hero-title{font-size:26px;font-weight:800;color:#fff;line-height:1.15;letter-spacing:-.5px;margin-bottom:6px}
 .hero-title span{color:var(--pink)}
 .hero-desc{font-size:12.5px;color:rgba(255,255,255,.7);font-weight:500;margin-bottom:16px;line-height:1.5}
 .hero-stats{display:flex;gap:8px;margin-bottom:16px}
-.hero-stat{flex:1;background:rgba(255,255,255,.08);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:10px 8px;text-align:center}
+.hero-stat{flex:1;background:rgba(255,255,255,.08);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:10px 8px;text-align:center}
 .hero-stat .val{font-size:18px;font-weight:800;color:#fff;direction:ltr;line-height:1}
 .hero-stat .key{font-size:9.5px;color:rgba(255,255,255,.55);font-weight:600;margin-top:4px}
 .hero-actions{display:flex;gap:10px;position:relative;z-index:2}
@@ -98,29 +89,32 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
 .section{margin-bottom:20px}
 .section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .section-title{font-size:16px;font-weight:800;letter-spacing:-.3px;display:flex;align-items:center;gap:8px}
-.section-title i{color:var(--pink)}
+.section-title img{width:22px;height:22px}
 .section-link{font-size:12px;font-weight:700;color:var(--pink);display:flex;align-items:center;gap:4px}
 
 /* ═══ ENERGY CARD ═══ */
 .energy-card{background:var(--gray-l);border-radius:20px;padding:16px;margin-bottom:16px}
 .energy-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .energy-info{display:flex;align-items:center;gap:10px}
-.energy-icon{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#FEF3C7,#FDE68A);display:grid;place-items:center;color:#B45309;font-size:18px}
+.energy-icon{width:42px;height:42px;border-radius:13px;background:#fff;display:grid;place-items:center;flex-shrink:0}
+.energy-icon img{width:28px;height:28px}
 .energy-title{font-size:14px;font-weight:800}
 .energy-sub{font-size:11px;color:var(--gray);font-weight:600}
 .energy-count{font-size:20px;font-weight:800;direction:ltr}
 .energy-count small{font-size:13px;color:var(--gray);font-weight:700}
 .energy-bar{height:8px;background:#fff;border-radius:8px;overflow:hidden;margin-bottom:12px}
-.energy-bar i{display:block;height:100%;background:linear-gradient(90deg,#FBBF24,#F59E0B);border-radius:8px;transition:width .5s}
+.energy-bar i{display:block;height:100%;background:linear-gradient(90deg,#FE2B54,#FF5B7C);border-radius:8px;transition:width .5s}
 .energy-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .energy-btn{height:40px;border-radius:12px;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px;background:var(--white);color:var(--ink);transition:transform .1s;border:1.5px solid var(--gray-b)}
 .energy-btn:active{transform:scale(.97)}
 .energy-btn.primary{background:var(--black);color:#fff;border-color:var(--black)}
+.energy-btn img{width:16px;height:16px}
 
 /* ═══ MISSION PREVIEW CARD ═══ */
-.miss-preview{background:var(--white);border:1.5px solid var(--gray-b);border-radius:18px;padding:14px;margin-bottom:10px;display:flex;align-items:center;gap:12px;transition:transform .12s}
+.miss-preview{background:var(--white);border:1.5px solid var(--gray-b);border-radius:18px;padding:14px;margin-bottom:10px;display:flex;align-items:center;gap:12px;transition:transform .12s;width:100%;text-align:start}
 .miss-preview:active{transform:scale(.99)}
 .miss-ico{width:44px;height:44px;border-radius:13px;background:var(--pink-l);color:var(--pink);display:grid;place-items:center;font-size:18px;flex-shrink:0}
+.miss-ico img{width:26px;height:26px}
 .miss-body{flex:1;min-width:0}
 .miss-title{font-size:13.5px;font-weight:700;line-height:1.25}
 .miss-prog-bar{height:6px;background:var(--gray-l);border-radius:6px;overflow:hidden;margin-top:8px}
@@ -129,34 +123,14 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
 .miss-reward{display:inline-flex;align-items:center;gap:3px;font-weight:800;color:var(--pink);font-size:12.5px}
 .miss-reward img{width:16px;height:16px}
 
-/* ═══ RESULT CARD ═══ */
-.result-card{background:var(--gray-l);border-radius:18px;padding:14px;display:flex;align-items:center;gap:12px;margin-bottom:10px}
-.result-ico{width:44px;height:44px;border-radius:13px;background:var(--white);display:grid;place-items:center;color:var(--pink);font-size:16px;flex-shrink:0}
-.result-meta{flex:1;min-width:0}
-.result-title{font-size:13px;font-weight:700}
-.result-sub{font-size:10.5px;color:var(--gray);font-weight:600;direction:ltr}
-.result-val{font-size:15px;font-weight:800;direction:ltr;color:var(--pink)}
-
-/* ═══ QUICK ACTIONS ═══ */
-.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.quick-card{background:var(--white);border:1.5px solid var(--gray-b);border-radius:18px;padding:16px 12px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;transition:transform .12s;position:relative;overflow:hidden}
-.quick-card:active{transform:scale(.97)}
-.quick-ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:20px;color:#fff}
-.quick-ico.pink{background:var(--pink)}
-.quick-ico.black{background:var(--black)}
-.quick-ico.gold{background:linear-gradient(135deg,#FBBF24,#F59E0B)}
-.quick-ico.green{background:linear-gradient(135deg,#22C55E,#16A34A)}
-.quick-ttl{font-size:13px;font-weight:800}
-.quick-sub{font-size:10.5px;color:var(--gray);font-weight:600}
-.quick-badge{position:absolute;top:10px;left:10px;background:var(--pink);color:#fff;font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:10px}
-
-/* ═══ BOTTOM NAV — GLASS FLOATING ═══ */
+/* ═══ BOTTOM NAV ═══ */
 .dock{position:absolute;left:12px;right:12px;bottom:calc(10px + var(--sb));height:var(--dock-h);border-radius:26px;padding:6px;display:flex;z-index:50;background:rgba(255,255,255,.72);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border:1px solid rgba(0,0,0,.06);box-shadow:0 8px 32px rgba(0,0,0,.12),0 2px 8px rgba(0,0,0,.04)}
 .dock button{flex:1;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:9.5px;font-weight:700;color:var(--gray);transition:color .15s,background .2s;position:relative}
-.dock i{font-size:19px;transition:transform .15s}
-.dock .on{color:var(--pink)}
-.dock .on i{transform:scale(1.06)}
-.dock .on::before{content:'';position:absolute;top:2px;left:50%;transform:translateX(-50%);width:22px;height:3px;border-radius:2px;background:var(--pink)}
+.dock button .dock-icon{width:22px;height:22px;object-fit:contain;opacity:.55;transition:opacity .15s,transform .15s}
+.dock button.on .dock-icon{opacity:1;transform:scale(1.06)}
+.dock button span{font-size:9.5px}
+.dock button.on{color:var(--pink)}
+.dock button.on::before{content:'';position:absolute;top:2px;left:50%;transform:translateX(-50%);width:22px;height:3px;border-radius:2px;background:var(--pink)}
 
 /* ═══ BUTTONS ═══ */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;border-radius:16px;height:52px;padding:0 20px;width:100%;font-size:14.5px;transition:transform .1s,opacity .2s}
@@ -190,7 +164,8 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
 /* ═══ MISSION FULL CARD ═══ */
 .mission-card{background:var(--white);border:1.5px solid var(--gray-b);border-radius:18px;padding:16px;margin-bottom:10px}
 .mission-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px}
-.mission-ico-lg{width:48px;height:48px;border-radius:14px;background:var(--pink-l);color:var(--pink);display:grid;place-items:center;font-size:20px;flex-shrink:0}
+.mission-ico-lg{width:48px;height:48px;border-radius:14px;background:var(--pink-l);display:grid;place-items:center;flex-shrink:0}
+.mission-ico-lg img{width:26px;height:26px}
 .mission-body{flex:1;min-width:0}
 .mission-title{font-size:14.5px;font-weight:800;line-height:1.25}
 .mission-desc{font-size:11.5px;color:var(--gray);font-weight:600;margin-top:2px}
@@ -200,7 +175,7 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
 .mission-prog i{display:block;height:100%;background:linear-gradient(90deg,var(--pink),#FF5B7C);border-radius:8px;transition:width .5s}
 .mission-prog-meta{display:flex;justify-content:space-between;font-size:11px;font-weight:700;color:var(--gray);direction:ltr;margin-bottom:12px}
 .mission-card.done{border-color:var(--green);background:linear-gradient(180deg,#fff,#F0FDF4)}
-.mission-card.done .mission-ico-lg{background:#DCFCE7;color:#16A34A}
+.mission-card.done .mission-ico-lg{background:#DCFCE7}
 .mission-card.claimable{border-color:var(--pink)}
 
 /* ═══ WALLET ═══ */
@@ -217,28 +192,13 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
 .balance-panel-actions{display:flex;gap:8px;margin-top:14px;position:relative;z-index:1}
 .balance-panel-actions .btn{height:42px;font-size:13px;border-radius:12px}
 
-/* ═══ TX ROW ═══ */
-.tx-row{display:flex;align-items:center;gap:12px;padding:12px 0}
-.tx-row+.tx-row{border-top:1px solid var(--gray-b)}
-.tx-ico{width:38px;height:38px;border-radius:12px;background:var(--gray-l);display:grid;place-items:center;font-size:14px;flex-shrink:0}
-.tx-ico.pink{background:var(--pink-l);color:var(--pink)}
-.tx-ico.green{background:#DCFCE7;color:#16A34A}
-.tx-ico.red{background:#FEE2E2;color:#DC2626}
-.tx-ico.gold{background:#FEF3C7;color:#B45309}
-.tx-body{flex:1;min-width:0}
-.tx-title{font-size:13px;font-weight:700}
-.tx-time{font-size:10.5px;color:var(--gray);font-weight:600;direction:ltr}
-.tx-amount{font-size:14px;font-weight:800;direction:ltr}
-.tx-amount.plus{color:var(--green)}
-.tx-amount.minus{color:var(--red)}
-
 /* ═══ LEADERBOARD ═══ */
 .podium{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:end;margin-bottom:20px;padding-top:20px}
 .podium-item{text-align:center;position:relative}
 .podium-avatar{width:64px;height:64px;border-radius:50%;margin:0 auto 8px;overflow:hidden;border:3px solid var(--white);background:var(--gray-l);box-shadow:var(--shadow-md);position:relative}
 .podium-item.rank-1 .podium-avatar{width:80px;height:80px;border-color:var(--pink)}
 .podium-avatar img{width:100%;height:100%;object-fit:cover;display:block}
-.podium-crown{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:24px;color:#FBBF24;filter:drop-shadow(0 2px 4px rgba(0,0,0,.15))}
+.podium-crown{position:absolute;top:-22px;left:50%;transform:translateX(-50%);width:28px;height:28px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.15))}
 .podium-name{font-size:12px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:2px}
 .podium-dist{font-size:14px;font-weight:800;color:var(--pink);direction:ltr}
 .podium-base{height:8px;border-radius:8px 8px 0 0;margin-top:6px;background:var(--gray-b)}
@@ -264,16 +224,14 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
 .profile-avatar i{display:grid;place-items:center;width:100%;height:100%;color:var(--pink);font-size:34px}
 .profile-name{font-size:20px;font-weight:800}
 .profile-id{font-size:11.5px;color:var(--gray);font-weight:600;direction:ltr;margin-top:2px}
-.profile-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-.profile-stat{background:var(--gray-l);border-radius:16px;padding:14px;text-align:center}
-.profile-stat .v{font-size:20px;font-weight:800;direction:ltr;line-height:1}
-.profile-stat .k{font-size:10.5px;color:var(--gray);font-weight:700;margin-top:4px}
 
 .menu-list{background:var(--white);border:1.5px solid var(--gray-b);border-radius:18px;overflow:hidden}
 .menu-item{display:flex;align-items:center;gap:14px;padding:16px;width:100%;text-align:start;transition:background .15s;color:var(--ink)}
 .menu-item:active{background:var(--gray-l)}
 .menu-item+.menu-item{border-top:1px solid var(--gray-b)}
-.menu-ico{width:40px;height:40px;border-radius:12px;background:var(--gray-l);display:grid;place-items:center;font-size:16px;color:var(--pink);flex-shrink:0}
+.menu-ico{width:40px;height:40px;border-radius:12px;background:var(--gray-l);display:grid;place-items:center;flex-shrink:0}
+.menu-ico img{width:22px;height:22px}
+.menu-ico i{color:var(--pink);font-size:16px}
 .menu-label{flex:1;font-size:14px;font-weight:700}
 .menu-arrow{color:var(--gray);font-size:14px}
 
@@ -286,82 +244,96 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
 .modal-icon.success{background:#DCFCE7;color:#16A34A}
 .modal-icon.error{background:#FEE2E2;color:#DC2626}
 .modal-title{font-size:20px;font-weight:800;margin-bottom:6px}
-.modal-sub{font-size:13px;color:var(--gray);font-weight:600;margin-bottom:20px}
+.modal-sub{font-size:13px;color:var(--gray);font-weight:600;margin-bottom:20px;line-height:1.6}
 .modal-amount{font-size:32px;font-weight:800;color:var(--pink);margin-bottom:20px;direction:ltr}
 .modal-actions{display:flex;gap:10px}
 
-/* ═══ TOAST ═══ */
-.toast{position:fixed;top:calc(16px + var(--st));left:50%;transform:translate(-50%,-200px);z-index:2000;padding:12px 20px;border-radius:14px;font-weight:700;font-size:13.5px;background:var(--black);color:#fff;box-shadow:var(--shadow-lg);transition:transform .35s cubic-bezier(.34,1.4,.64,1);pointer-events:none;max-width:90%;text-align:center}
+/* ═══ TOAST (glass) ═══ */
+.toast{position:fixed;top:calc(16px + var(--st));left:50%;transform:translate(-50%,-200px);z-index:2000;padding:12px 20px;border-radius:18px;font-weight:700;font-size:13.5px;background:rgba(10,10,10,.85);color:#fff;box-shadow:0 8px 32px rgba(0,0,0,.25);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,.15);transition:transform .35s cubic-bezier(.34,1.4,.64,1);pointer-events:none;max-width:90%;text-align:center}
 .toast.show{transform:translate(-50%,0)}
-.toast.success{background:var(--green)}
-.toast.error{background:var(--red)}
+.toast.success{background:rgba(34,197,94,.9);border-color:rgba(34,197,94,.4)}
+.toast.error{background:rgba(239,68,68,.9);border-color:rgba(239,68,68,.4)}
 
-/* ═══ LOADING SPINNER ═══ */
+/* ═══ SPINNER ═══ */
 .spn{display:inline-block;width:16px;height:16px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite}
 .spn.dark{border-color:rgba(0,0,0,.15);border-top-color:var(--pink)}
 
-/* ═══ EMPTY STATE ═══ */
+/* ═══ EMPTY ═══ */
 .empty{text-align:center;padding:40px 20px;color:var(--gray);font-weight:600;font-size:13.5px}
-.empty i{font-size:36px;color:var(--gray-b);margin-bottom:12px;display:block}
+.empty img{width:40px;height:40px;margin:0 auto 12px;display:block;opacity:.4}
 
 /* ═══ GAME SCREEN ═══ */
 #screen-game{position:fixed;inset:0;z-index:100;display:none;background:#87CEEB;padding:0}
 #screen-game.active{display:block}
 .game-canvas-wrap{position:relative;width:100%;height:100%;overflow:hidden;background:#87CEEB}
 #gameCanvas{display:block;width:100%;height:100%;touch-action:none}
-.game-hud{position:absolute;top:0;left:0;right:0;padding:calc(12px + var(--st)) 14px 12px;display:flex;justify-content:space-between;align-items:flex-start;pointer-events:none;z-index:5;gap:8px}
-.game-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:999px;padding:8px 14px;font-weight:800;font-size:14px;color:var(--black);box-shadow:0 4px 14px rgba(0,0,0,.15)}
-.game-pill img{width:22px;height:22px}
-.game-pill b{direction:ltr}
-.game-dist{position:absolute;top:calc(12px + var(--st));left:50%;transform:translateX(-50%);background:rgba(0,0,0,.75);color:#fff;backdrop-filter:blur(10px);border-radius:999px;padding:9px 20px;font-weight:800;font-size:17px;direction:ltr;z-index:5}
-.game-exit{position:absolute;top:calc(12px + var(--st));inset-inline-end:14px;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);display:grid;place-items:center;color:var(--black);font-size:15px;pointer-events:auto;box-shadow:0 4px 14px rgba(0,0,0,.15);z-index:6}
+.game-hud{position:absolute;top:0;right:0;padding:calc(12px + var(--st)) 14px 12px;display:flex;flex-direction:column;gap:6px;pointer-events:none;z-index:5;align-items:flex-end}
+.game-hud-row{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-radius:999px;padding:6px 12px;font-weight:800;font-size:13px;color:var(--black);box-shadow:0 4px 14px rgba(0,0,0,.15);min-width:96px;justify-content:flex-start}
+.game-hud-row img{width:20px;height:20px;flex-shrink:0}
+.game-hud-row b{direction:ltr;margin-left:auto}
+.game-dist{position:absolute;top:calc(12px + var(--st));left:50%;transform:translateX(-50%);color:#fff;font-weight:900;font-size:20px;direction:ltr;text-shadow:0 2px 8px rgba(0,0,0,.5);z-index:5;letter-spacing:-.5px}
+.game-exit{position:absolute;top:calc(12px + var(--st));left:14px;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);display:grid;place-items:center;color:var(--black);font-size:15px;pointer-events:auto;box-shadow:0 4px 14px rgba(0,0,0,.15);z-index:6}
 .game-exit:active{transform:scale(.92)}
 
 .game-overlay{position:absolute;inset:0;display:none;align-items:center;justify-content:center;padding:20px;z-index:10;background:rgba(0,0,0,.4);backdrop-filter:blur(6px)}
 .game-overlay.show{display:flex}
 .game-modal{background:var(--white);border-radius:24px;padding:26px 22px;max-width:340px;width:100%;text-align:center;animation:modalPop .35s cubic-bezier(.34,1.56,.64,1)}
-.game-modal-icon{width:72px;height:72px;border-radius:50%;background:var(--pink-l);color:var(--pink);display:grid;place-items:center;font-size:30px;margin:0 auto 14px}
+.game-modal-icon{width:72px;height:72px;border-radius:50%;background:var(--pink-l);display:grid;place-items:center;margin:0 auto 14px}
+.game-modal-icon img{width:40px;height:40px}
 .game-modal-title{font-size:20px;font-weight:800;margin-bottom:6px}
 .game-modal-sub{font-size:13px;color:var(--gray);font-weight:600;margin-bottom:20px}
 
 .game-over-dist{text-align:center;margin-bottom:20px}
 .game-over-dist .lbl{font-size:12px;color:var(--gray);font-weight:700}
-.game-over-dist .val{font-size:56px;font-weight:800;direction:ltr;line-height:1;margin:6px 0}
+.game-over-dist .val{font-size:56px;font-weight:800;direction:ltr;line-height:1;margin:6px 0;color:var(--pink)}
 .game-over-dist .unit{font-size:16px;color:var(--gray);font-weight:700}
 .game-over-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
 .game-over-stat{background:var(--gray-l);border-radius:14px;padding:12px;text-align:center}
-.game-over-stat .v{font-size:18px;font-weight:800;direction:ltr;line-height:1;color:var(--pink)}
+.game-over-stat .v{font-size:18px;font-weight:800;direction:ltr;line-height:1;color:var(--pink);display:flex;align-items:center;justify-content:center;gap:4px}
+.game-over-stat .v img{width:18px;height:18px}
 .game-over-stat .k{font-size:10.5px;color:var(--gray);font-weight:700;margin-top:4px}
 
 /* ═══ FLOATERS ═══ */
 #floaters{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:6}
 .floater{position:absolute;font-size:26px;font-weight:800;color:#FFD700;white-space:nowrap;text-shadow:0 0 4px #000,0 2px 6px rgba(0,0,0,.4);animation:floatUp 1.1s cubic-bezier(.2,.7,.4,1) forwards}
-.floater.gem{color:#59D7F2}
 @keyframes floatUp{0%{transform:translate(-50%,-50%) scale(.4);opacity:0}18%{transform:translate(-50%,-95%) scale(1.18);opacity:1}100%{transform:translate(-50%,-230%) scale(1);opacity:0}}
-
-/* ═══ HIDE SCROLL ═══ */
-.hide{display:none !important}
-
-/* ═══ TX TABS ═══ */
-.tx-tabs{display:flex;gap:6px;background:var(--gray-l);border-radius:14px;padding:4px;margin-bottom:14px}
-.tx-tab{flex:1;padding:9px 8px;border-radius:10px;font-size:12.5px;font-weight:700;color:var(--gray);transition:all .15s;text-align:center}
-.tx-tab.on{background:var(--white);color:var(--pink);box-shadow:var(--shadow-sm)}
 
 /* ═══ CONVERTER ═══ */
 .convert-box{background:var(--white);border:1.5px solid var(--gray-b);border-radius:18px;padding:16px;margin-bottom:12px}
 .convert-row{display:flex;align-items:center;gap:10px;padding:12px 0}
 .convert-icon{width:38px;height:38px}
 .convert-input{flex:1;font-size:20px;font-weight:800;direction:ltr;text-align:right}
-.convert-label{font-size:11px;color:var(--gray);font-weight:700;direction:ltr}
+.convert-label{font-size:11px;color:var(--gray);font-weight:700}
 .convert-arrow{text-align:center;padding:6px 0;color:var(--pink);font-size:16px}
 
-/* ═══ SPIN WHEEL (kept for compatibility) ═══ */
-.spin-wrap{position:relative;max-width:300px;margin:20px auto 30px}
-.spin-pointer{position:absolute;top:-14px;left:50%;transform:translateX(-50%);z-index:5;font-size:36px;color:var(--pink);filter:drop-shadow(0 4px 6px rgba(0,0,0,.15))}
-.spin-rim{position:relative;aspect-ratio:1;border-radius:50%;padding:12px;background:var(--white);border:3px solid var(--pink);box-shadow:0 12px 36px rgba(254,43,84,.25)}
-.spin-wheel{width:100%;height:100%;border-radius:50%;overflow:hidden;transition:transform 5s cubic-bezier(.17,.67,.24,1)}
-.spin-wheel svg{width:100%;height:100%;display:block}
-.spin-hub{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:62px;height:62px;border-radius:50%;background:var(--pink);border:4px solid #fff;display:grid;place-items:center;color:#fff;font-size:22px;box-shadow:0 6px 20px rgba(254,43,84,.4)}
+/* ═══ DEPOSIT / WITHDRAW ═══ */
+.pay-method{background:var(--white);border:1.5px solid var(--gray-b);border-radius:18px;padding:16px;margin-bottom:10px;display:flex;align-items:center;gap:12px;transition:border-color .15s,transform .1s;width:100%;text-align:start}
+.pay-method:active{transform:scale(.99)}
+.pay-method.on{border-color:var(--pink);background:var(--pink-l)}
+.pay-method img{width:44px;height:44px;object-fit:contain;border-radius:10px;flex-shrink:0}
+.pay-method .pm-body{flex:1;min-width:0}
+.pay-method .pm-title{font-size:14px;font-weight:800}
+.pay-method .pm-sub{font-size:11px;color:var(--gray);font-weight:600;margin-top:2px}
+
+/* Deposit instructions page */
+.manual-page{background:var(--white);border:1.5px solid var(--gray-b);border-radius:18px;padding:16px;margin-bottom:12px}
+.manual-page .mp-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.manual-page .mp-head img{width:44px;height:44px;object-fit:contain}
+.manual-page .mp-head .mp-title{font-size:15px;font-weight:800}
+.manual-page .mp-head .mp-sub{font-size:11px;color:var(--gray);font-weight:600}
+.manual-page .mp-label{font-size:11.5px;color:var(--gray);font-weight:700;margin-bottom:6px;margin-top:12px}
+.manual-page .mp-code{background:var(--gray-l);border-radius:12px;padding:12px 14px;font-size:13px;font-weight:800;direction:ltr;text-align:left;word-break:break-all;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.manual-page .mp-code .copy-btn{background:var(--black);color:#fff;padding:6px 12px;border-radius:8px;font-size:11px;font-weight:800;flex-shrink:0}
+.manual-page .mp-warn{background:#FFF3E0;border:1.5px solid #FFB74D;border-radius:12px;padding:10px 12px;font-size:11.5px;color:#E65100;font-weight:600;margin-top:12px;line-height:1.6}
+
+/* Tx status colors */
+.tx-status{font-size:10.5px;font-weight:800;padding:4px 10px;border-radius:8px}
+.tx-status.pending{background:#FEF3C7;color:#B45309}
+.tx-status.approved,.tx-status.completed{background:#DCFCE7;color:#16A34A}
+.tx-status.rejected{background:#FEE2E2;color:#DC2626}
+
+/* Hide header on profile screen */
+body.hide-balance .app-header-balances{visibility:hidden}
 </style>
 </head>
 <body>
@@ -376,37 +348,22 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
 <!-- ═══ APP ═══ -->
 <div class="app" id="app" style="display:none">
 
-  <!-- ═══ HEADER (dynamic per screen) ═══ -->
+  <!-- Header: balances + avatar -->
   <div class="app-header" id="appHeader">
-    <div class="app-header-brand">
-      <div class="brand-logo"><i class="fas fa-plane"></i></div>
-      <div class="brand-text">
-        <div class="brand-name" id="headerTitle">Sky Rush</div>
-        <div class="brand-tag" id="headerSub">حلّق واربح الجواهر</div>
+    <div class="app-header-balances">
+      <div class="header-bal">
+        <img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt="">
+        <span class="num" id="hdrCoins">0</span>
+      </div>
+      <div class="header-bal">
+        <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="">
+        <span class="num" id="hdrGems">0</span>
       </div>
     </div>
     <div class="header-avatar" id="headerAvatar"><i class="fas fa-user"></i></div>
   </div>
 
-  <!-- ═══ BALANCE STRIP ═══ -->
-  <div class="balance-strip" id="balanceStrip">
-    <div class="bal-chip">
-      <img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt="coins">
-      <div>
-        <div class="num" id="hdrCoins">0</div>
-        <div class="lbl">عملات</div>
-      </div>
-    </div>
-    <div class="bal-chip">
-      <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="gems">
-      <div>
-        <div class="num" id="hdrGems">0</div>
-        <div class="lbl">جواهر</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══ MAIN SCROLL ═══ -->
+  <!-- Main -->
   <div class="main" id="mainScroll">
 
     <!-- ══════════════ HOME ══════════════ -->
@@ -442,7 +399,7 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
       <div class="energy-card">
         <div class="energy-head">
           <div class="energy-info">
-            <div class="energy-icon"><i class="fas fa-bolt"></i></div>
+            <div class="energy-icon"><img src="https://img.icons8.com/liquid-glass-color/999/flash-on.png" alt=""></div>
             <div>
               <div class="energy-title">الطاقة</div>
               <div class="energy-sub" id="energySub">جاهز للطيران</div>
@@ -453,52 +410,23 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
         <div class="energy-bar"><i id="energyFill" style="width:100%"></i></div>
         <div class="energy-actions">
           <button class="energy-btn" id="energyAdBtn"><i class="fas fa-play-circle"></i> إعلان +1</button>
-          <button class="energy-btn primary" id="energyBuyBtn"><i class="fas fa-gem"></i> شراء +1</button>
+          <button class="energy-btn primary" id="energyBuyBtn"><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="" style="width:14px;height:14px"> شراء +1</button>
         </div>
       </div>
 
       <!-- Missions preview -->
       <div class="section">
         <div class="section-head">
-          <div class="section-title"><i class="fas fa-bullseye"></i> مهامك اليومية</div>
+          <div class="section-title"><img src="https://img.icons8.com/liquid-glass-color/999/target.png" alt=""> مهامك اليومية</div>
           <button class="section-link" data-nav="missions">الكل <i class="fas fa-chevron-left"></i></button>
         </div>
         <div id="homeMissions"></div>
       </div>
 
-      <!-- Quick actions -->
-      <div class="section">
-        <div class="section-head">
-          <div class="section-title"><i class="fas fa-grip"></i> إجراءات سريعة</div>
-        </div>
-        <div class="quick-grid">
-          <button class="quick-card" data-nav="wallet">
-            <div class="quick-ico gold"><i class="fas fa-wallet"></i></div>
-            <div class="quick-ttl">الرصيد</div>
-            <div class="quick-sub">إدارة أموالك</div>
-          </button>
-          <button class="quick-card" data-nav="missions">
-            <div class="quick-ico pink"><i class="fas fa-list-check"></i></div>
-            <div class="quick-ttl">المهام</div>
-            <div class="quick-sub">مكافآت يومية</div>
-          </button>
-          <button class="quick-card" data-go="deposit">
-            <div class="quick-ico green"><i class="fas fa-plus"></i></div>
-            <div class="quick-ttl">إيداع</div>
-            <div class="quick-sub">اشترِ جواهر</div>
-          </button>
-          <button class="quick-card" data-nav="profile">
-            <div class="quick-ico black"><i class="fas fa-user"></i></div>
-            <div class="quick-ttl">حسابي</div>
-            <div class="quick-sub">إعدادات</div>
-          </button>
-        </div>
-      </div>
-
       <!-- Latest result -->
       <div class="section">
         <div class="section-head">
-          <div class="section-title"><i class="fas fa-clock-rotate-left"></i> آخر نتيجة</div>
+          <div class="section-title"><i class="fas fa-clock-rotate-left" style="color:var(--pink)"></i> آخر نتيجة</div>
         </div>
         <div id="lastResult"></div>
       </div>
@@ -523,8 +451,6 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
           <div class="info-row">أفضل مسافة <b id="hubBest">0 م</b></div>
           <div class="info-row">إجمالي الجولات <b id="hubRounds">0</b></div>
           <div class="info-row">إجمالي المسافة <b id="hubTotal">0 م</b></div>
-          <div class="info-row">إجمالي الجواهر <b id="hubGems">0</b></div>
-          <div class="info-row">إجمالي العملات <b id="hubCoins">0</b></div>
         </div>
         <button class="btn btn-pink" id="hubLeaderBtn"><i class="fas fa-trophy"></i> لوحة المتصدرين</button>
       </div>
@@ -534,97 +460,83 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
     <section class="screen" id="screen-missions">
       <div class="section">
         <div class="section-head">
-          <div class="section-title"><i class="fas fa-plane"></i> مهام الطيران</div>
+          <div class="section-title"><img src="https://img.icons8.com/liquid-glass-color/999/target.png" alt=""> مهام الطيران</div>
         </div>
         <div id="missionsFly"></div>
       </div>
       <div class="section">
         <div class="section-head">
-          <div class="section-title"><i class="fas fa-calendar-check"></i> مكافأة اليومية</div>
+          <div class="section-title"><img src="https://img.icons8.com/liquid-glass-color/999/gift.png" alt=""> مكافأة اليومية</div>
         </div>
         <div class="card" id="dailyRewardCard"></div>
       </div>
     </section>
 
-    <!-- ══════════════ WALLET ══════════════ -->
+    <!-- ══════════════ WALLET (updated) ══════════════ -->
     <section class="screen" id="screen-wallet">
+      <!-- Coins panel -->
       <div class="balance-panel coins">
         <div class="balance-panel-head">
           <img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt="">
           <div>
             <div class="lbl">رصيد العملات</div>
-            <div class="sub">تُستخدم لشراء الطاقة والتلميحات</div>
+            <div class="sub">قابلة للتحويل إلى جواهر</div>
           </div>
         </div>
         <div class="big-num" id="walCoins">0</div>
-        <div class="eq" id="walCoinsEq">≈ 0.00$</div>
       </div>
 
+      <!-- Gems panel -->
       <div class="balance-panel gems">
         <div class="balance-panel-head">
           <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="">
           <div>
             <div class="lbl">رصيد الجواهر</div>
-            <div class="sub">قابلة للتحويل إلى عملات أو سحب</div>
+            <div class="sub">قابلة للسحب</div>
           </div>
         </div>
         <div class="big-num" id="walGems">0</div>
         <div class="eq" id="walGemsEq">≈ 0.00$</div>
-        <div class="balance-panel-actions">
-          <button class="btn btn-pink" id="walDepositBtn"><i class="fas fa-plus"></i> إيداع</button>
-          <button class="btn btn-outline" id="walWithdrawBtn"><i class="fas fa-arrow-up"></i> سحب</button>
-        </div>
       </div>
 
-      <!-- Convert -->
+      <!-- Convert coins -> gems -->
       <div class="section">
         <div class="section-head">
-          <div class="section-title"><i class="fas fa-right-left"></i> تحويل الجواهر إلى عملات</div>
+          <div class="section-title"><i class="fas fa-right-left" style="color:var(--pink)"></i> تحويل العملات إلى جواهر</div>
         </div>
         <div class="convert-box">
-          <div class="convert-row">
-            <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" class="convert-icon" alt="">
-            <input class="convert-input" id="convGems" type="number" min="0" placeholder="0" inputmode="numeric">
-            <div class="convert-label">جواهر</div>
-          </div>
-          <div class="convert-arrow"><i class="fas fa-arrow-down"></i></div>
           <div class="convert-row">
             <img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" class="convert-icon" alt="">
             <input class="convert-input" id="convCoins" type="number" min="0" placeholder="0" inputmode="numeric">
             <div class="convert-label">عملات</div>
           </div>
+          <div class="convert-arrow"><i class="fas fa-arrow-down"></i></div>
+          <div class="convert-row">
+            <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" class="convert-icon" alt="">
+            <input class="convert-input" id="convGems" type="number" min="0" placeholder="0" inputmode="numeric">
+            <div class="convert-label">جواهر</div>
+          </div>
           <div class="info-list" style="margin-top:10px">
-            <div class="info-row">معدل التحويل <b>1,000 💎 = 10,000 🪙</b></div>
+            <div class="info-row">معدل التحويل <b>10,000 🪙 = 100 💎</b></div>
+            <div class="info-row">الحد الأدنى <b>5,000 🪙</b></div>
+            <div class="info-row">قيمة الجوهرة <b>0.10$</b></div>
           </div>
           <button class="btn btn-black" id="convBtn" style="margin-top:6px"><i class="fas fa-exchange-alt"></i> تحويل الآن</button>
         </div>
       </div>
 
-      <!-- Deposit quick access -->
+      <!-- Deposits / Withdrawals history -->
       <div class="section">
         <div class="section-head">
-          <div class="section-title"><i class="fas fa-credit-card"></i> طرق الشراء</div>
+          <div class="section-title"><i class="fas fa-list" style="color:var(--pink)"></i> سجل الإيداع</div>
         </div>
-        <div class="quick-grid">
-          <button class="quick-card" data-go="deposit">
-            <div class="quick-ico green"><i class="fas fa-shield-halved"></i></div>
-            <div class="quick-ttl">ShieldEZ</div>
-            <div class="quick-sub">دفع سريع</div>
-          </button>
-          <button class="quick-card" data-go="deposit">
-            <div class="quick-ico gold"><i class="fas fa-wallet"></i></div>
-            <div class="quick-ttl">Binance</div>
-            <div class="quick-sub">دفع يدوي</div>
-          </button>
-        </div>
+        <div class="card" id="depositHistory" style="padding:6px 14px"></div>
       </div>
-
-      <!-- Transactions -->
       <div class="section">
         <div class="section-head">
-          <div class="section-title"><i class="fas fa-list"></i> سجل المعاملات</div>
+          <div class="section-title"><i class="fas fa-list" style="color:var(--pink)"></i> سجل السحب</div>
         </div>
-        <div class="card" id="txList" style="padding:6px 14px"></div>
+        <div class="card" id="withdrawHistory" style="padding:6px 14px"></div>
       </div>
     </section>
 
@@ -632,8 +544,7 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
     <section class="screen" id="screen-leaderboard">
       <div class="section">
         <div class="section-head">
-          <div class="section-title"><i class="fas fa-trophy"></i> المتصدرون</div>
-          <button class="section-link" id="lbRefresh"><i class="fas fa-rotate"></i> تحديث</button>
+          <div class="section-title"><i class="fas fa-trophy" style="color:var(--pink)"></i> المتصدرون</div>
         </div>
         <div id="podiumArea"></div>
         <div id="lbList"></div>
@@ -644,13 +555,13 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
     <section class="screen" id="screen-deposit">
       <div class="section">
         <div class="section-head">
-          <div class="section-title"><i class="fas fa-gem"></i> اشترِ جواهر</div>
+          <div class="section-title"><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt=""> اشترِ جواهر</div>
         </div>
         <div class="miss-preview" style="cursor:default">
-          <div class="miss-ico" style="background:#FEF3C7;color:#B45309"><i class="fas fa-info-circle"></i></div>
+          <div class="miss-ico"><i class="fas fa-info-circle"></i></div>
           <div class="miss-body">
             <div class="miss-title">معدل الشراء</div>
-            <div class="miss-desc" style="font-size:11.5px;color:var(--gray);font-weight:600">كل 1$ = 900 💎</div>
+            <div class="miss-desc" style="font-size:11.5px;color:var(--gray);font-weight:600">كل 1$ = 900 جوهرة</div>
           </div>
         </div>
         <div id="depositPackages" style="display:grid;gap:10px"></div>
@@ -658,41 +569,97 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
 
       <div class="section">
         <div class="section-head">
-          <div class="section-title"><i class="fas fa-wallet"></i> طرق الدفع</div>
+          <div class="section-title"><i class="fas fa-wallet" style="color:var(--pink)"></i> طرق الدفع</div>
         </div>
-        <div class="quick-grid">
-          <button class="quick-card" data-go="deposit-shieldz">
-            <div class="quick-ico green"><i class="fas fa-shield-halved"></i></div>
-            <div class="quick-ttl">ShieldEZ</div>
-            <div class="quick-sub">دفع فوري</div>
-          </button>
-          <button class="quick-card" data-go="deposit-binance">
-            <div class="quick-ico gold"><i class="fas fa-wallet"></i></div>
-            <div class="quick-ttl">Binance Pay</div>
-            <div class="quick-sub">دفع يدوي</div>
-          </button>
-          <button class="quick-card" data-go="deposit-sham">
-            <div class="quick-ico pink"><i class="fas fa-money-bill-wave"></i></div>
-            <div class="quick-ttl">شام كاش</div>
-            <div class="quick-sub">دفع يدوي</div>
-          </button>
-          <button class="quick-card" data-go="deposit-stars">
-            <div class="quick-ico pink"><i class="fas fa-star"></i></div>
-            <div class="quick-ttl">Stars</div>
-            <div class="quick-sub">تيليجرام</div>
-          </button>
+        <button class="pay-method" data-manual="binance">
+          <img src="https://up6.cc/2026/09/178982889076391.png" alt="Binance" onerror="this.style.display='none'">
+          <div class="pm-body">
+            <div class="pm-title">Binance Pay</div>
+            <div class="pm-sub">تحويل يدوي — أدخل معرّفك في الملاحظة</div>
+          </div>
+          <i class="fas fa-chevron-left" style="color:var(--gray)"></i>
+        </button>
+        <button class="pay-method" data-manual="sham">
+          <img src="https://up6.cc/2026/09/178975725154411.png" alt="Sham Cash" onerror="this.style.display='none'">
+          <div class="pm-body">
+            <div class="pm-title">شام كاش</div>
+            <div class="pm-sub">تحويل يدوي — أدخل معرّفك في الملاحظة</div>
+          </div>
+          <i class="fas fa-chevron-left" style="color:var(--gray)"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ══════════════ DEPOSIT MANUAL — BINANCE ══════════════ -->
+    <section class="screen" id="screen-deposit-binance">
+      <div class="section">
+        <div class="section-head">
+          <div class="section-title"><i class="fas fa-arrow-right" style="cursor:pointer" data-back="deposit"></i> إيداع Binance</div>
+        </div>
+        <div class="manual-page">
+          <div class="mp-head">
+            <img src="https://up6.cc/2026/09/178982889076391.png" alt="Binance" onerror="this.style.display='none'">
+            <div>
+              <div class="mp-title">Binance Pay</div>
+              <div class="mp-sub">تحويل يدوي — يُراجع خلال 24 ساعة</div>
+            </div>
+          </div>
+          <div class="mp-label">معرّف الإيداع (Binance Pay ID)</div>
+          <div class="mp-code">
+            <span id="binanceAccId">1121748571</span>
+            <button class="copy-btn" data-copy="binanceAccId">نسخ</button>
+          </div>
+          <div class="mp-label">معرّفك الخاص (ضعه في ملاحظة التحويل)</div>
+          <div class="mp-code">
+            <span id="binanceUid">----</span>
+            <button class="copy-btn" data-copy="binanceUid">نسخ</button>
+          </div>
+          <div class="mp-warn">
+            <i class="fas fa-exclamation-triangle"></i> تأكد من إدخال معرّفك في الملاحظة (Note) أثناء التحويل ليتمكن الفريق من مطابقة الدفعة بحسابك.
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ══════════════ WITHDRAW ══════════════ -->
+    <!-- ══════════════ DEPOSIT MANUAL — SHAM CASH ══════════════ -->
+    <section class="screen" id="screen-deposit-sham">
+      <div class="section">
+        <div class="section-head">
+          <div class="section-title"><i class="fas fa-arrow-right" style="cursor:pointer" data-back="deposit"></i> إيداع شام كاش</div>
+        </div>
+        <div class="manual-page">
+          <div class="mp-head">
+            <img src="https://up6.cc/2026/09/178975725154411.png" alt="Sham Cash" onerror="this.style.display='none'">
+            <div>
+              <div class="mp-title">شام كاش</div>
+              <div class="mp-sub">تحويل يدوي — يُراجع خلال 24 ساعة</div>
+            </div>
+          </div>
+          <div class="mp-label">معرّف الإيداع (Sham Cash ID)</div>
+          <div class="mp-code">
+            <span id="shamAccId">334a08ea2d1bbed05f214a7f08e37ae4</span>
+            <button class="copy-btn" data-copy="shamAccId">نسخ</button>
+          </div>
+          <div class="mp-label">معرّفك الخاص (ضعه في ملاحظة التحويل)</div>
+          <div class="mp-code">
+            <span id="shamUid">----</span>
+            <button class="copy-btn" data-copy="shamUid">نسخ</button>
+          </div>
+          <div class="mp-warn">
+            <i class="fas fa-exclamation-triangle"></i> تأكد من إدخال معرّفك في الملاحظة (Note) أثناء التحويل ليتمكن الفريق من مطابقة الدفعة بحسابك.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ WITHDRAW (merged with deposit) ══════════════ -->
     <section class="screen" id="screen-withdraw">
       <div class="balance-panel gems">
         <div class="balance-panel-head">
           <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="">
           <div>
             <div class="lbl">رصيدك القابل للسحب</div>
-            <div class="sub">اختر طريقة السحب المناسبة</div>
+            <div class="sub">اختر طريقة السحب</div>
           </div>
         </div>
         <div class="big-num" id="wdGems">0</div>
@@ -701,16 +668,32 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
 
       <div class="section">
         <div class="section-head">
-          <div class="section-title"><i class="fas fa-money-bill-transfer"></i> طرق السحب</div>
+          <div class="section-title"><i class="fas fa-money-bill-transfer" style="color:var(--pink)"></i> طرق السحب</div>
         </div>
-        <div id="wdMethods"></div>
+        <button class="pay-method" data-wd-method="binance">
+          <img src="https://up6.cc/2026/09/178982889076391.png" alt="Binance" onerror="this.style.display='none'">
+          <div class="pm-body">
+            <div class="pm-title">Binance Pay</div>
+            <div class="pm-sub">الحد الأدنى 5,000 💎</div>
+          </div>
+          <i class="fas fa-check-circle" style="color:var(--pink);font-size:18px;visibility:hidden"></i>
+        </button>
+        <button class="pay-method" data-wd-method="sham">
+          <img src="https://up6.cc/2026/09/178975725154411.png" alt="Sham Cash" onerror="this.style.display='none'">
+          <div class="pm-body">
+            <div class="pm-title">شام كاش</div>
+            <div class="pm-sub">الحد الأدنى 1,000 💎</div>
+          </div>
+          <i class="fas fa-check-circle" style="color:var(--pink);font-size:18px;visibility:hidden"></i>
+        </button>
       </div>
 
       <div class="section">
         <div class="section-head">
-          <div class="section-title"><i class="fas fa-coins"></i> المبلغ</div>
+          <div class="section-title"><img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt=""> المبلغ</div>
         </div>
         <div class="amt-grid" id="wdAmounts">
+          <button class="amt-btn" data-amt="1000">1,000</button>
           <button class="amt-btn" data-amt="5000">5,000</button>
           <button class="amt-btn" data-amt="10000">10,000</button>
           <button class="amt-btn" data-amt="50000">50,000</button>
@@ -719,7 +702,7 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
       </div>
 
       <div class="card">
-        <div class="section-title" style="margin-bottom:10px;font-size:14px" id="wdAccountLabel">عنوان المحفظة</div>
+        <div class="section-title" style="margin-bottom:10px;font-size:14px" id="wdAccountLabel">عنوان محفظة USDT (TRC20)</div>
         <input class="input" id="wdAccount" placeholder="أدخل العنوان" autocomplete="off">
       </div>
 
@@ -732,7 +715,7 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
 
       <div class="section" style="margin-top:20px">
         <div class="section-head">
-          <div class="section-title"><i class="fas fa-clock-rotate-left"></i> سجل السحوبات</div>
+          <div class="section-title"><i class="fas fa-clock-rotate-left" style="color:var(--pink)"></i> سجل السحوبات</div>
         </div>
         <div class="card" id="wdHistory" style="padding:6px 14px"></div>
       </div>
@@ -745,70 +728,69 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
         <div class="profile-name" id="profName">لاعب</div>
         <div class="profile-id" id="profId">--------</div>
       </div>
-      <div class="profile-stats">
-        <div class="profile-stat">
-          <div class="v" id="profBest">0</div>
-          <div class="k">أفضل مسافة (م)</div>
-        </div>
-        <div class="profile-stat">
-          <div class="v" id="profRounds">0</div>
-          <div class="k">إجمالي الجولات</div>
-        </div>
-        <div class="profile-stat">
-          <div class="v" id="profGems">0</div>
-          <div class="k">جواهر مكتسبة</div>
-        </div>
-        <div class="profile-stat">
-          <div class="v" id="profCoins">0</div>
-          <div class="k">عملات مكتسبة</div>
-        </div>
-      </div>
       <div class="menu-list">
-        <button class="menu-item" data-go="wallet"><div class="menu-ico"><i class="fas fa-wallet"></i></div><div class="menu-label">المحفظة</div><i class="fas fa-chevron-left menu-arrow"></i></button>
-        <button class="menu-item" data-go="deposit"><div class="menu-ico"><i class="fas fa-gem"></i></div><div class="menu-label">شراء الجواهر</div><i class="fas fa-chevron-left menu-arrow"></i></button>
-        <button class="menu-item" data-go="withdraw"><div class="menu-ico"><i class="fas fa-money-bill-transfer"></i></div><div class="menu-label">سحب الأرباح</div><i class="fas fa-chevron-left menu-arrow"></i></button>
-        <button class="menu-item" id="openPolicy"><div class="menu-ico"><i class="fas fa-shield-halved"></i></div><div class="menu-label">سياسة الخصوصية</div><i class="fas fa-chevron-left menu-arrow"></i></button>
-        <button class="menu-item" id="openHelp"><div class="menu-ico"><i class="fas fa-circle-question"></i></div><div class="menu-label">مركز المساعدة</div><i class="fas fa-chevron-left menu-arrow"></i></button>
+        <button class="menu-item" data-go="wallet"><div class="menu-ico"><img src="https://img.icons8.com/liquid-glass-color/999/wallet.png" alt=""></div><div class="menu-label">المحفظة</div><i class="fas fa-chevron-left menu-arrow"></i></button>
+        <button class="menu-item" data-go="deposit"><div class="menu-ico"><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt=""></div><div class="menu-label">شراء الجواهر</div><i class="fas fa-chevron-left menu-arrow"></i></button>
+        <button class="menu-item" data-go="withdraw"><div class="menu-ico"><i class="fas fa-money-bill-transfer" style="color:var(--pink)"></i></div><div class="menu-label">سحب الأرباح</div><i class="fas fa-chevron-left menu-arrow"></i></button>
+        <button class="menu-item" id="openPolicy"><div class="menu-ico"><img src="https://img.icons8.com/liquid-glass-color/999/shield.png" alt=""></div><div class="menu-label">سياسة الخصوصية</div><i class="fas fa-chevron-left menu-arrow"></i></button>
+        <button class="menu-item" id="openHelp"><div class="menu-ico"><img src="https://img.icons8.com/liquid-glass-color/999/help.png" alt=""></div><div class="menu-label">مركز المساعدة</div><i class="fas fa-chevron-left menu-arrow"></i></button>
       </div>
     </section>
 
   </div>
 
-  <!-- ═══ BOTTOM NAV ═══ -->
+  <!-- Bottom Nav -->
   <nav class="dock">
-    <button class="on" data-nav="home"><i class="fas fa-house"></i><span>الرئيسية</span></button>
-    <button data-nav="gamehub"><i class="fas fa-gamepad"></i><span>اللعبة</span></button>
-    <button data-nav="missions"><i class="fas fa-bullseye"></i><span>المهام</span></button>
-    <button data-nav="wallet"><i class="fas fa-wallet"></i><span>الرصيد</span></button>
-    <button data-nav="profile"><i class="fas fa-user"></i><span>حسابي</span></button>
+    <button class="on" data-nav="home"><img class="dock-icon" src="https://img.icons8.com/liquid-glass-color/999/home.png" alt=""><span>الرئيسية</span></button>
+    <button data-nav="gamehub"><img class="dock-icon" src="https://img.icons8.com/liquid-glass-color/999/controller.png" alt=""><span>اللعبة</span></button>
+    <button data-nav="missions"><img class="dock-icon" src="https://img.icons8.com/liquid-glass-color/999/target.png" alt=""><span>المهام</span></button>
+    <button data-nav="wallet"><img class="dock-icon" src="https://img.icons8.com/liquid-glass-color/999/wallet.png" alt=""><span>الرصيد</span></button>
+    <button data-nav="profile"><img class="dock-icon" src="https://img.icons8.com/liquid-glass-color/999/user.png" alt=""><span>حسابي</span></button>
   </nav>
 
-  <!-- ══════════════ FULLSCREEN GAME ══════════════ -->
+  <!-- Fullscreen Game -->
   <section id="screen-game">
     <div class="game-canvas-wrap">
       <canvas id="gameCanvas"></canvas>
       <div class="game-hud">
-        <div class="game-pill"><img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt=""><b id="hudCoins">0</b></div>
-        <div class="game-pill"><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt=""><b id="hudGems">0</b></div>
+        <div class="game-hud-row">
+          <img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt="">
+          <b id="hudCoins">0</b>
+        </div>
+        <div class="game-hud-row">
+          <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="">
+          <b id="hudGems">0</b>
+        </div>
       </div>
-      <div class="game-dist"><span id="hudDist">0</span> م</div>
-      <button class="game-exit" id="gameExit"><i class="fas fa-times"></i></button>
+      <div class="game-dist"><span id="hudDist">0</span>م</div>
+      <button class="game-exit" id="gamePause"><i class="fas fa-pause"></i></button>
       <div id="floaters"></div>
 
       <!-- Ready overlay -->
       <div class="game-overlay show" id="gameReadyOverlay">
         <div class="game-modal">
-          <div class="game-modal-icon"><i class="fas fa-plane"></i></div>
+          <div class="game-modal-icon"><i class="fas fa-plane" style="color:var(--pink);font-size:32px"></i></div>
           <div class="game-modal-title">جاهز للطيران؟</div>
           <div class="game-modal-sub">اضغط على الشاشة للارتفاع وتجنّب الصبار</div>
           <button class="btn btn-black" id="gameStartBtn"><i class="fas fa-play"></i> ابدأ</button>
         </div>
       </div>
 
-      <!-- Game over overlay -->
+      <!-- Pause overlay -->
+      <div class="game-overlay" id="gamePauseOverlay">
+        <div class="game-modal">
+          <div class="game-modal-icon"><i class="fas fa-pause" style="color:var(--pink);font-size:28px"></i></div>
+          <div class="game-modal-title">اللعبة متوقفة</div>
+          <div class="game-modal-sub">اضغط متابعة للعودة</div>
+          <button class="btn btn-black" id="gameResumeBtn"><i class="fas fa-play"></i> متابعة</button>
+          <button class="btn btn-outline" id="gameExitPaused" style="margin-top:8px"><i class="fas fa-times"></i> خروج</button>
+        </div>
+      </div>
+
+      <!-- Game over -->
       <div class="game-overlay" id="gameOverOverlay">
         <div class="game-modal">
-          <div class="game-modal-icon" style="background:#FEE2E2;color:#DC2626"><i class="fas fa-flag-checkered"></i></div>
+          <div class="game-modal-icon" style="background:#FEE2E2"><i class="fas fa-flag-checkered" style="color:#DC2626;font-size:30px"></i></div>
           <div class="game-modal-title">انتهت الجولة</div>
           <div class="game-modal-sub">أحسنت! نتيجة رائعة</div>
           <div class="game-over-dist">
@@ -818,11 +800,11 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
           </div>
           <div class="game-over-stats">
             <div class="game-over-stat">
-              <div class="v" id="overCoins">0</div>
+              <div class="v"><img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt=""><span id="overCoins">0</span></div>
               <div class="k">عملات</div>
             </div>
             <div class="game-over-stat">
-              <div class="v" id="overGems">0</div>
+              <div class="v"><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt=""><span id="overGems">0</span></div>
               <div class="k">جواهر</div>
             </div>
           </div>
@@ -838,7 +820,7 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
 
 </div>
 
-<!-- ═══ MODAL ═══ -->
+<!-- Modal -->
 <div class="modal" id="modal">
   <div class="modal-card">
     <div class="modal-icon" id="modalIcon"><i class="fas fa-check"></i></div>
@@ -849,19 +831,17 @@ input{font:inherit;color:inherit;border:none;outline:none;background:none}
   </div>
 </div>
 
-<!-- ═══ TOAST ═══ -->
+<!-- Toast -->
 <div class="toast" id="toast"></div>
 
-<!-- ═══ FIREBASE ═══ -->
+<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
 <script>
 'use strict';
 
-/* ═══════════════════════════════════════════════════════════
-   CONFIG
-   ═══════════════════════════════════════════════════════════ */
+/* ═══ CONFIG ═══ */
 const CONFIG = {
   firebase: {
     apiKey: "AIzaSyDvhuuNg7ANjHHseUwYGJt2NoYs-SmWrGs",
@@ -872,7 +852,6 @@ const CONFIG = {
     appId: "1:907422647300:web:efa524fcfef96288c4a151"
   },
   bot: { username: 'PuppyMerge_bot', appName: 'PuppyMerge' },
-  // Collections (preserve existing Puppy Merge data for account continuity)
   col: 'puppy_users',
   wdCol: 'puppy_withdrawals',
   txCol: 'puppy_transactions',
@@ -880,22 +859,21 @@ const CONFIG = {
   flyCol: 'puppy_fly_scores',
   depCol: 'puppy_deposits',
 
-  // Energy
   energyMax: 25,
-  regenMs: 600000, // 10 min per 1 energy
+  regenMs: 600000,
+  gemUsd: 0.10, // 100 gems = $0.10
 
-  // Conversion (preserved from original)
-  ex: { min: 10000, rate: 0.01 }, // 1000 coins -> 10 gems (reversed in UI)
+  // Coins -> Gems conversion (10000 coins -> 100 gems)
+  convMinCoins: 5000,
+  convRate: 0.01, // coins * 0.01 = gems
 
-  // Withdraw
   wd: {
     min: 5000,
-    rate: 0.00008, // 12,500 gems = $1
+    rate: 0.00008,
     shamMin: 1000,
     shamSypPerGem: 0.01
   },
 
-  // Deposit packages (900 gems per $1)
   gemsPerUsd: 900,
   depositPackages: [
     { usd: 1,  gems: 900 },
@@ -906,30 +884,14 @@ const CONFIG = {
     { usd: 50, gems: 45000 },
   ],
 
-  // Star packages (preserved from original)
-  starPackages: [
-    { stars: 50,   gems: 4000,  label: '50 نجمة' },
-    { stars: 100,  gems: 9000,  label: '100 نجمة', hot: true },
-    { stars: 250,  gems: 24000, label: '250 نجمة' },
-    { stars: 500,  gems: 49000, label: '500 نجمة' },
-    { stars: 1000, gems: 99000, label: '1000 نجمة', best: true },
-  ],
-
-  // Manual deposit info (Binance / Sham Cash)
   manual: {
     binance: { acc: '1121748571', label: 'Binance Pay ID' },
     sham:    { acc: '334a08ea2d1bbed05f214a7f08e37ae4', label: 'Sham Cash ID' }
   },
 
-  // Backend API (ShieldEZ)
   api: { base: 'https://puppy-merge-api.starlimitedcom.workers.dev' },
-  shieldz: {
-    pollIntervalMs: 5000,
-    pollMaxAttempts: 60,
-    pendingTimeoutMs: 30 * 60 * 1000
-  },
+  shieldz: { pollIntervalMs: 5000, pollMaxAttempts: 60, pendingTimeoutMs: 30 * 60 * 1000 },
 
-  // Fly game physics (unchanged)
   fly: {
     gravity: 1850, flap: -520, maxFall: 950, scroll: 200, fixedDt: 1/120, pxPerM: 26,
     pRMin: 16, pRMax: 28, oWMin: 56, oWMax: 88, oWR: 0.16,
@@ -940,24 +902,28 @@ const CONFIG = {
     bubbleIntervalMin: 5, bubbleIntervalMax: 10
   },
 
-  // Missions
+  // Missions with gems rewards reduced
   missions: [
-    { id: 'fly_single_1000', type: 'single',  target: 1000,  reward: 25,  title: 'حلق 1000 متر في جولة واحدة', desc: 'حقّق مسافة 1000 متر في جولة واحدة صحيحة' },
-    { id: 'fly_total_5000',  type: 'total',   target: 5000,  reward: 50,  title: 'اجمع 5000 متر خلال جولاتك', desc: 'اجمع مسافة 5000 متر في مجموع جولاتك' },
-    { id: 'fly_rounds_10',   type: 'rounds',  target: 10,    reward: 30,  title: 'العب 10 جولات', desc: 'أكمل 10 جولات صحيحة على الأقل' },
-    { id: 'fly_total_10000', type: 'total',   target: 10000, reward: 100, title: 'حلق 10,000 متر إجمالاً', desc: 'اجمع مسافة 10,000 متر في مجموع جولاتك' }
+    { id: 'fly_single_1000', type: 'single',  target: 1000,  reward: 15, rewardType: 'gems', title: 'حلق 1000 متر في جولة واحدة', desc: 'حقّق مسافة 1000 متر في جولة واحدة صحيحة' },
+    { id: 'fly_total_5000',  type: 'total',   target: 5000,  reward: 500, rewardType: 'coins', title: 'اجمع 5000 متر خلال جولاتك', desc: 'اجمع مسافة 5000 متر في مجموع جولاتك' },
+    { id: 'fly_rounds_10',   type: 'rounds',  target: 10,    reward: 300, rewardType: 'coins', title: 'العب 10 جولات', desc: 'أكمل 10 جولات صحيحة على الأقل' },
+    { id: 'fly_total_10000', type: 'total',   target: 10000, reward: 50,  rewardType: 'gems', title: 'حلق 10,000 متر إجمالاً', desc: 'اجمع مسافة 10,000 متر في مجموع جولاتك' },
+    { id: 'fly_single_2500', type: 'single',  target: 2500,  reward: 1000, rewardType: 'coins', title: 'حلق 2500 متر في جولة', desc: 'حقّق مسافة 2500 متر في جولة واحدة' },
+    { id: 'fly_rounds_25',   type: 'rounds',  target: 25,    reward: 25,  rewardType: 'gems', title: 'العب 25 جولة', desc: 'أكمل 25 جولة صحيحة' },
   ],
 
-  // Daily rewards
-  daily: [ [200,20], [300,30], [500,50], [700,70], [1000,100], [1500,150], [3000,300] ],
-
-  hintPrice: 30,
-  shufflePrice: 50,
+  // 7-day daily rewards: mixed coins/gems
+  daily: [
+    { coins: 500,  gems: 0,   label: '500 عملة' },
+    { coins: 0,    gems: 5,   label: '5 جواهر' },
+    { coins: 1000, gems: 0,   label: '1000 عملة' },
+    { coins: 0,    gems: 10,  label: '10 جواهر' },
+    { coins: 2000, gems: 0,   label: '2000 عملة' },
+    { coins: 0,    gems: 20,  label: '20 جواهر' },
+    { coins: 5000, gems: 0,   label: '5000 عملة' },
+  ],
 };
 
-/* ═══════════════════════════════════════════════════════════
-   HELPERS
-   ═══════════════════════════════════════════════════════════ */
 const $ = id => document.getElementById(id);
 const fmt = n => Number(n || 0).toLocaleString('en-US');
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -967,9 +933,7 @@ const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
 const today = () => new Date(TIME.now()).toISOString().slice(0,10);
 const pad = n => String(n).padStart(2,'0');
 
-/* ═══════════════════════════════════════════════════════════
-   TELEGRAM
-   ═══════════════════════════════════════════════════════════ */
+/* ═══ TELEGRAM ═══ */
 const TG = {
   app: null, user: null, id: null, start: null,
   init() {
@@ -998,9 +962,7 @@ const TG = {
   }
 };
 
-/* ═══════════════════════════════════════════════════════════
-   FIREBASE
-   ═══════════════════════════════════════════════════════════ */
+/* ═══ FIREBASE ═══ */
 let db = null;
 const FB = {
   init() {
@@ -1020,9 +982,7 @@ const save = (extra = {}) => FB.set(Object.assign({
   coins: S.user.coins, gems: S.user.gems, updatedAt: Date.now()
 }, extra));
 
-/* ═══════════════════════════════════════════════════════════
-   TIME (anti-cheat)
-   ═══════════════════════════════════════════════════════════ */
+/* ═══ TIME ═══ */
 const TIME = {
   serverAt: 0, perfAt: 0, synced: false, locked: false,
   now() { return this.synced ? this.serverAt + (performance.now() - this.perfAt) : Date.now(); },
@@ -1045,14 +1005,12 @@ const TIME = {
   }
 };
 
-/* ═══════════════════════════════════════════════════════════
-   STATE
-   ═══════════════════════════════════════════════════════════ */
+/* ═══ STATE ═══ */
 const S = {
   user: null, busy: false, nav: 'home',
-  wd: 0, wdMethod: 'usdt_crypto',
+  wd: 0, wdMethod: 'binance',
   lb: [], lbAt: 0,
-  convGems: 0
+  convCoins: 0
 };
 
 const newUser = () => ({
@@ -1063,15 +1021,13 @@ const newUser = () => ({
   coins: 0, gems: 0,
   energy: CONFIG.energyMax, energyUpdatedAt: TIME.now(),
   flyBest: 0, flyCoins: 0, flyGems: 0, flyTotal: 0, flyRounds: 0,
-  flyMissions: {}, flyLastRoundAt: 0,
+  flyMissions: {}, flyLastRoundAt: 0, flyLastDist: 0,
   dailyLogin: { streak: 0, lastClaimDate: null },
   referralCode: TG.id, referredBy: null, referralCount: 0,
   createdAt: Date.now(), updatedAt: Date.now()
 });
 
-/* ═══════════════════════════════════════════════════════════
-   UI
-   ═══════════════════════════════════════════════════════════ */
+/* ═══ UI ═══ */
 let toastTimer;
 function toast(msg, type = '') {
   const e = $('toast');
@@ -1097,9 +1053,7 @@ function showModal(o) {
 function closeModal() { $('modal').classList.remove('show'); }
 $('modal').onclick = e => { if (e.target.id === 'modal') closeModal(); };
 
-/* ═══════════════════════════════════════════════════════════
-   ENERGY
-   ═══════════════════════════════════════════════════════════ */
+/* ═══ ENERGY ═══ */
 const Energy = {
   cur(u) {
     const st = Number(u.energy || 0);
@@ -1159,54 +1113,41 @@ function renderEnergy() {
   $('energySub').textContent = c >= m ? 'ممتلئة بالكامل' : 'التجديد بعد ' + Math.floor(r / 60000) + ':' + pad(Math.floor(r % 60000 / 1000));
 }
 
-/* ═══════════════════════════════════════════════════════════
-   RENDER
-   ═══════════════════════════════════════════════════════════ */
+/* ═══ RENDER ═══ */
 function renderAll() {
   const u = S.user;
   if (!u) return;
 
-  // Header balances
   $('hdrCoins').textContent = fmt(u.coins);
   $('hdrGems').textContent = fmt(u.gems);
 
-  // Header avatar
   const av = $('headerAvatar');
   if (u.photoUrl) av.innerHTML = '<img src="' + esc(u.photoUrl) + '" referrerpolicy="no-referrer" onerror="this.parentElement.innerHTML=\'<i class=\\\'fas fa-user\\\'></i>\'">';
   else av.innerHTML = '<i class="fas fa-user"></i>';
 
-  // Home hero
   $('heroBest').textContent = fmt(u.flyBest || 0);
   $('heroRounds').textContent = fmt(u.flyRounds || 0);
   $('heroGems').textContent = fmt(u.flyGems || 0);
 
-  // Game hub
   $('hubBest').textContent = fmt(u.flyBest || 0) + ' م';
   $('hubRounds').textContent = fmt(u.flyRounds || 0);
   $('hubTotal').textContent = fmt(u.flyTotal || 0) + ' م';
-  $('hubGems').textContent = fmt(u.flyGems || 0);
-  $('hubCoins').textContent = fmt(u.flyCoins || 0);
 
-  // Wallet
   $('walCoins').textContent = fmt(u.coins);
   $('walGems').textContent = fmt(u.gems);
-  $('walCoinsEq').textContent = '≈ ' + ((u.coins || 0) / 12500).toFixed(2) + '$';
-  $('walGemsEq').textContent = '≈ ' + usd(u.gems || 0) + '$';
+  $('walGemsEq').textContent = '≈ $' + ((u.gems || 0) * CONFIG.gemUsd).toFixed(2);
 
-  // Withdraw
   $('wdGems').textContent = fmt(u.gems);
-  $('wdUsd').textContent = '≈ ' + usd(u.gems || 0) + '$';
+  $('wdUsd').textContent = '≈ $' + ((u.gems || 0) * CONFIG.gemUsd).toFixed(2);
 
-  // Profile
   $('profName').textContent = u.name || 'لاعب';
   $('profId').textContent = u.telegramId || '----';
-  $('profBest').textContent = fmt(u.flyBest || 0);
-  $('profRounds').textContent = fmt(u.flyRounds || 0);
-  $('profGems').textContent = fmt(u.flyGems || 0);
-  $('profCoins').textContent = fmt(u.flyCoins || 0);
   const pav = $('profAvatar');
   if (u.photoUrl) pav.innerHTML = '<img src="' + esc(u.photoUrl) + '" referrerpolicy="no-referrer" onerror="this.parentElement.innerHTML=\'<i class=\\\'fas fa-user\\\'></i>\'">';
   else pav.innerHTML = '<i class="fas fa-user"></i>';
+
+  $('binanceUid').textContent = TG.id;
+  $('shamUid').textContent = TG.id;
 
   renderEnergy();
   renderHomeMissions();
@@ -1216,17 +1157,17 @@ function renderAll() {
   renderDepositPackages();
   renderWithdrawMethods();
   updateConverter();
+  loadDepositHistory();
+  loadWithdrawHistory();
 }
 
 function renderHomeMissions() {
-  const u = S.user;
   const el = $('homeMissions');
   if (!el) return;
-
+  const u = S.user;
   const preview = CONFIG.missions.slice(0, 2).map(m => {
     const prog = getMissionProgress(m);
     const claimed = (u.flyMissions || {})[m.id];
-    const done = prog >= m.target;
     return `
       <div class="miss-preview">
         <div class="miss-ico"><i class="fas fa-plane"></i></div>
@@ -1235,13 +1176,12 @@ function renderHomeMissions() {
           <div class="miss-prog-bar"><i style="width:${Math.min(100, prog/m.target*100)}%"></i></div>
           <div class="miss-meta">
             <span>${fmt(prog)} / ${fmt(m.target)}</span>
-            <span class="miss-reward"><img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="">+${m.reward}${claimed ? ' ✓' : ''}</span>
+            <span class="miss-reward">+${m.reward} ${m.rewardType === 'gems' ? '<img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="">' : '<img src="https://img.icons8.com/liquid-glass-color/999/cheap-2.png" alt="">'}${claimed ? ' ✓' : ''}</span>
           </div>
         </div>
       </div>
     `;
   }).join('');
-
   el.innerHTML = preview;
 }
 
@@ -1250,24 +1190,22 @@ function renderLastResult() {
   if (!el) return;
   const u = S.user;
   if (!u.flyLastRoundAt) {
-    el.innerHTML = '<div class="card-flat empty" style="padding:24px"><i class="fas fa-plane"></i>لا توجد جولات بعد — ابدأ اللعب!</div>';
+    el.innerHTML = '<div class="card-flat empty"><i class="fas fa-plane" style="font-size:24px;color:var(--gray-b)"></i>لا توجد جولات بعد — ابدأ اللعب!</div>';
     return;
   }
   el.innerHTML = `
-    <div class="result-card">
-      <div class="result-ico"><i class="fas fa-flag-checkered"></i></div>
-      <div class="result-meta">
-        <div class="result-title">آخر جولة</div>
-        <div class="result-sub">${new Date(u.flyLastRoundAt).toLocaleDateString('ar-EG')}</div>
+    <div class="miss-preview" style="cursor:default">
+      <div class="miss-ico"><i class="fas fa-flag-checkered"></i></div>
+      <div class="miss-body">
+        <div class="miss-title">آخر جولة</div>
+        <div class="miss-desc">${new Date(u.flyLastRoundAt).toLocaleDateString('ar-EG')}</div>
       </div>
-      <div class="result-val">${fmt(u.flyLastDist || 0)} م</div>
+      <div style="font-size:15px;font-weight:800;color:var(--pink);direction:ltr">${fmt(u.flyLastDist || 0)} م</div>
     </div>
   `;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   MISSIONS
-   ═══════════════════════════════════════════════════════════ */
+/* ═══ MISSIONS ═══ */
 function getMissionProgress(m) {
   const u = S.user;
   if (!u) return 0;
@@ -1296,11 +1234,13 @@ function renderMissionsPage() {
       btnHTML = '<button class="btn btn-gray" disabled><i class="fas fa-check"></i> تم الاستلام</button>';
     } else if (done) {
       statusClass = 'claimable';
-      btnHTML = `<button class="btn btn-pink" data-claim="${m.id}"><i class="fas fa-hand-holding-heart"></i> استلم ${m.reward} 💎</button>`;
+      const rewardIcon = m.rewardType === 'gems' ? 'ruby-gemstone' : 'cheap-2';
+      btnHTML = `<button class="btn btn-pink" data-claim="${m.id}">استلم ${m.reward} <img src="https://img.icons8.com/liquid-glass-color/999/${rewardIcon}.png" style="width:16px;height:16px;vertical-align:middle" alt=""></button>`;
     } else {
       btnHTML = '<button class="btn btn-gray" disabled><i class="fas fa-lock"></i> لم يكتمل بعد</button>';
     }
 
+    const rewardIcon = m.rewardType === 'gems' ? 'ruby-gemstone' : 'cheap-2';
     return `
       <div class="mission-card ${statusClass}">
         <div class="mission-head">
@@ -1309,8 +1249,8 @@ function renderMissionsPage() {
             <div class="mission-title">${esc(m.title)}</div>
             <div class="mission-desc">${esc(m.desc)}</div>
             <div class="mission-reward-row">
-              <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" alt="">
-              +${m.reward} جوهرة
+              <img src="https://img.icons8.com/liquid-glass-color/999/${rewardIcon}.png" alt="">
+              +${m.reward}
             </div>
           </div>
         </div>
@@ -1342,23 +1282,28 @@ async function claimMission(id) {
 
   S.busy = true;
   try {
-    u.gems = Number(u.gems || 0) + m.reward;
+    if (m.rewardType === 'gems') {
+      u.gems = Number(u.gems || 0) + m.reward;
+    } else {
+      u.coins = Number(u.coins || 0) + m.reward;
+    }
     fm[id] = true;
     u.flyMissions = fm;
-    await FB.set({ gems: u.gems, flyMissions: fm });
+    await FB.set({ gems: u.gems, coins: u.coins, flyMissions: fm });
     await db.collection(CONFIG.txCol).add({
       userId: TG.id, type: 'mission_reward', missionId: id,
-      amount: m.reward, currency: 'gems', createdAt: Date.now()
+      amount: m.reward, currency: m.rewardType, createdAt: Date.now()
     });
     renderAll();
+    const rewardIcon = m.rewardType === 'gems' ? 'ruby-gemstone' : 'cheap-2';
     showModal({
       type: 'success', icon: 'fa-award',
       title: 'مكافأة المهمة!', sub: esc(m.title),
-      amount: '+' + m.reward + ' 💎', btn: 'رائع'
+      amount: '+' + m.reward, btn: 'رائع'
     });
   } catch(e) {
     console.error(e);
-    toast('تعذر استلام المكافأة، حاول مجدداً', 'error');
+    toast('تعذر استلام المكافأة', 'error');
   } finally {
     S.busy = false;
   }
@@ -1374,18 +1319,26 @@ function renderDailyReward() {
   const nextIdx = dl.streak >= 7 ? 0 : dl.streak;
   const reward = CONFIG.daily[nextIdx];
 
+  // 7-day grid
+  const daysGrid = CONFIG.daily.map((r, i) => {
+    const isDone = i < dl.streak;
+    const isNext = i === nextIdx && !claimed;
+    const isToday = i === nextIdx;
+    const rewardIcon = r.gems > 0 ? 'ruby-gemstone' : 'cheap-2';
+    const rewardText = r.gems > 0 ? r.gems : r.coins;
+    return `
+      <div style="flex:1;aspect-ratio:1/1.4;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9.5px;font-weight:800;${isDone ? 'background:linear-gradient(160deg,#FE2B54,#FF5B7C);color:#fff;' : isNext ? 'background:#FFF0F4;border:2px solid var(--pink);color:var(--pink);' : isToday ? 'background:#F2F2F4;color:var(--gray);' : 'background:#F2F2F4;color:var(--gray);'}">
+        <span style="font-size:9px">يوم ${i+1}</span>
+        <img src="https://img.icons8.com/liquid-glass-color/999/${rewardIcon}.png" style="width:20px;height:20px;margin:4px 0" alt="">
+        <span style="font-size:9px;direction:ltr">${rewardText}</span>
+      </div>
+    `;
+  }).join('');
+
   el.innerHTML = `
-    <div style="text-align:center;padding:8px 0 14px">
-      <div style="font-size:44px;margin-bottom:6px">${claimed ? '✅' : '🎁'}</div>
-      <div style="font-size:16px;font-weight:800;margin-bottom:4px">
-        ${claimed ? 'استلمت مكافأة اليوم' : 'مكافأة اليوم ' + (nextIdx + 1)}
-      </div>
-      <div style="font-size:12.5px;color:var(--gray);font-weight:600">
-        ${claimed ? 'عد غداً لمكافأة أكبر' : '+' + reward[0] + ' 🪙 + ' + reward[1] + ' 💎'}
-      </div>
-    </div>
+    <div style="display:flex;gap:5px;margin-bottom:14px">${daysGrid}</div>
     <button class="btn ${claimed ? 'btn-gray' : 'btn-pink'}" id="dailyClaimBtn" ${claimed ? 'disabled' : ''}>
-      <i class="fas fa-gift"></i> ${claimed ? 'تم الاستلام' : 'استلم المكافأة'}
+      <i class="fas fa-gift"></i> ${claimed ? 'تم الاستلام — عد غداً' : 'استلم مكافأة اليوم ' + (nextIdx + 1)}
     </button>
   `;
 
@@ -1401,25 +1354,25 @@ async function claimDaily() {
   if (dl.lastClaimDate === t) return toast('استلمت مكافأة اليوم', 'error');
 
   const nextIdx = dl.streak >= 7 ? 0 : dl.streak;
-  const [c, g] = CONFIG.daily[nextIdx];
+  const r = CONFIG.daily[nextIdx];
 
   S.busy = true;
   try {
-    u.coins = Number(u.coins || 0) + c;
-    u.gems = Number(u.gems || 0) + g;
+    u.coins = Number(u.coins || 0) + (r.coins || 0);
+    u.gems = Number(u.gems || 0) + (r.gems || 0);
     dl.streak = nextIdx === 6 ? 0 : nextIdx + 1;
     dl.lastClaimDate = t;
     u.dailyLogin = dl;
     await FB.set({ coins: u.coins, gems: u.gems, dailyLogin: dl });
     await db.collection(CONFIG.txCol).add({
       userId: TG.id, type: 'daily_reward',
-      amount: c, currency: 'coins', meta: { gems: g }, createdAt: Date.now()
+      amount: r.gems || r.coins, currency: r.gems ? 'gems' : 'coins', createdAt: Date.now()
     });
     renderAll();
     showModal({
       type: 'success', icon: 'fa-calendar-check',
       title: 'مكافأة اليوم', sub: 'استمر غداً لمكافأة أكبر',
-      amount: '+' + c + ' 🪙 + ' + g + ' 💎', btn: 'رائع'
+      amount: r.gems ? '+' + r.gems : '+' + r.coins, btn: 'رائع'
     });
   } catch(e) {
     console.error(e);
@@ -1429,9 +1382,7 @@ async function claimDaily() {
   }
 }
 
-/* ═══════════════════════════════════════════════════════════
-   LEADERBOARD
-   ═══════════════════════════════════════════════════════════ */
+/* ═══ LEADERBOARD ═══ */
 async function loadLeaderboard(force = false) {
   const el = $('lbList');
   const podEl = $('podiumArea');
@@ -1479,17 +1430,17 @@ function renderLeaderboard() {
     return;
   }
 
-  // Podium (top 3)
   const top3 = arr.slice(0, 3);
-  const order = [1, 0, 2]; // 2nd, 1st, 3rd
+  const order = [1, 0, 2];
   podEl.innerHTML = `<div class="podium">${
     order.map(idx => {
       const p = top3[idx];
       if (!p) return '<div></div>';
       const rank = idx + 1;
+      const crownIcon = rank === 1 ? '<i class="fas fa-crown podium-crown" style="color:#FBBF24"></i>' : '';
       return `
         <div class="podium-item rank-${rank}">
-          ${rank === 1 ? '<i class="fas fa-crown podium-crown"></i>' : ''}
+          ${crownIcon}
           <div class="podium-avatar">
             ${p.photoUrl ? '<img src="' + esc(p.photoUrl) + '" referrerpolicy="no-referrer" onerror="this.outerHTML=\'<i class=\\\'fas fa-user\\\'></i>\'">' : '<i class="fas fa-user" style="display:grid;place-items:center;width:100%;height:100%;color:var(--pink);font-size:24px"></i>'}
           </div>
@@ -1501,7 +1452,6 @@ function renderLeaderboard() {
     }).join('')
   }</div>`;
 
-  // List (all)
   el.innerHTML = arr.map((p, i) => {
     const rank = i + 1;
     const isMe = p.id === me;
@@ -1510,7 +1460,7 @@ function renderLeaderboard() {
       <div class="lb-row ${isMe ? 'me' : ''}">
         <div class="lb-rank ${rk}">${rank}</div>
         <div class="lb-avatar">
-          ${p.photoUrl ? '<img src="' + esc(p.photoUrl) + '" referrerpolicy="no-referrer" onerror="this.outerHTML=\'<i class=\\\'fas fa-user\\\' style=\\\'display:grid;place-items:center;width:100%;height:100%;color:var(--pink)\\\'></i>\'">' : '<i class="fas fa-user" style="display:grid;place-items:center;width:100%;height:100%;color:var(--pink)"></i>'}
+          ${p.photoUrl ? '<img src="' + esc(p.photoUrl) + '" referrerpolicy="no-referrer" onerror="this.outerHTML=\'<i class=\\\'fas fa-user\\\'></i>\'">' : '<i class="fas fa-user" style="display:grid;place-items:center;width:100%;height:100%;color:var(--pink)"></i>'}
         </div>
         <div class="lb-name">${esc(p.name)}${isMe ? ' <span style="color:var(--pink);font-size:11px">• أنت</span>' : ''}</div>
         <div class="lb-dist">${fmt(p.best)} م</div>
@@ -1519,110 +1469,104 @@ function renderLeaderboard() {
   }).join('');
 }
 
-/* ═══════════════════════════════════════════════════════════
-   DEPOSIT
-   ═══════════════════════════════════════════════════════════ */
+/* ═══ DEPOSIT ═══ */
 function renderDepositPackages() {
   const el = $('depositPackages');
   if (!el) return;
   el.innerHTML = CONFIG.depositPackages.map(p => `
-    <button class="miss-preview" data-pkg='${JSON.stringify(p)}' style="cursor:pointer">
-      <div class="miss-ico" style="background:#DCFCE7;color:#16A34A;font-size:18px;font-weight:800;direction:ltr">$${p.usd}</div>
+    <button class="miss-preview" data-manual="binance" style="cursor:pointer">
+      <div class="miss-ico" style="background:#DCFCE7;color:#16A34A;font-size:14px;font-weight:800;direction:ltr">$${p.usd}</div>
       <div class="miss-body">
-        <div class="miss-title" style="direction:ltr;text-align:right">+${fmt(p.gems)} 💎</div>
-        <div class="miss-desc" style="font-size:11.5px;color:var(--gray);font-weight:600">معدل: 900 💎 لكل 1$</div>
+        <div class="miss-title" style="direction:ltr;text-align:right">+${fmt(p.gems)}</div>
+        <div class="miss-desc" style="font-size:11.5px;color:var(--gray);font-weight:600">جواهر</div>
       </div>
-      <i class="fas fa-chevron-left" style="color:var(--gray)"></i>
+      <img src="https://img.icons8.com/liquid-glass-color/999/ruby-gemstone.png" style="width:22px;height:22px" alt="">
     </button>
   `).join('');
-
-  el.querySelectorAll('[data-pkg]').forEach(b => {
-    b.onclick = () => handleDepositPackage(JSON.parse(b.dataset.pkg));
-  });
 }
 
-async function handleDepositPackage(pkg) {
-  if (S.busy) return;
-  // Try ShieldEZ first (existing integration)
-  if (typeof startShieldzPayment === 'function') {
-    startShieldzPayment(pkg);
-  } else {
-    toast('بوابة الدفع غير متاحة حالياً', 'error');
-  }
-}
-
-/* ═══════════════════════════════════════════════════════════
-   WITHDRAW
-   ═══════════════════════════════════════════════════════════ */
+/* ═══ WITHDRAW ═══ */
 function renderWithdrawMethods() {
   const el = $('wdMethods');
-  if (!el) return;
-  const methods = [
-    { id: 'usdt_crypto', label: 'USDT Crypto (TRC20)', sub: 'تلقائي — الحد الأدنى 5,000 💎', icon: 'fa-coins', iconCls: 'green' },
-    { id: 'binance', label: 'Binance Pay', sub: 'يدوي — الحد الأدنى 5,000 💎', icon: 'fa-wallet', iconCls: 'gold' },
-    { id: 'sham_cash', label: 'شام كاش', sub: 'يدوي — الحد الأدنى 1,000 💎', icon: 'fa-money-bill-wave', iconCls: 'pink' },
-  ];
-  el.innerHTML = methods.map(m => `
-    <button class="miss-preview ${S.wdMethod === m.id ? 'selected' : ''}" data-wd-method="${m.id}" style="cursor:pointer;${S.wdMethod === m.id ? 'border-color:var(--pink);background:var(--pink-l)' : ''}">
-      <div class="miss-ico ${m.iconCls}" style="background:var(--${m.iconCls === 'green' ? 'green' : m.iconCls === 'gold' ? 'gold' : 'pink'}-l, var(--gray-l));color:var(--${m.iconCls})">
-        <i class="fas ${m.icon}"></i>
-      </div>
-      <div class="miss-body">
-        <div class="miss-title">${m.label}</div>
-        <div class="miss-desc" style="font-size:11.5px;color:var(--gray);font-weight:600">${m.sub}</div>
-      </div>
-      ${S.wdMethod === m.id ? '<i class="fas fa-check-circle" style="color:var(--pink);font-size:18px"></i>' : '<i class="fas fa-chevron-left" style="color:var(--gray)"></i>'}
-    </button>
-  `).join('');
+  // not used anymore, we render directly in HTML
+  updateWdMethodUI();
+}
 
-  el.querySelectorAll('[data-wd-method]').forEach(b => {
-    b.onclick = () => { S.wdMethod = b.dataset.wdMethod; renderWithdrawMethods(); };
+function updateWdMethodUI() {
+  document.querySelectorAll('[data-wd-method]').forEach(b => {
+    const isOn = b.dataset.wdMethod === S.wdMethod;
+    b.classList.toggle('on', isOn);
+    const check = b.querySelector('.fa-check-circle');
+    if (check) check.style.visibility = isOn ? 'visible' : 'hidden';
   });
+  // update label
+  const lbl = $('wdAccountLabel');
+  const inp = $('wdAccount');
+  if (S.wdMethod === 'binance') {
+    lbl.textContent = 'معرّف Binance Pay';
+    inp.placeholder = 'Binance Pay ID أو البريد';
+  } else {
+    lbl.textContent = 'معرّف شام كاش';
+    inp.placeholder = 'Sham Cash ID';
+  }
+  updateWd();
 }
 
-/* ═══════════════════════════════════════════════════════════
-   CONVERTER
-   ═══════════════════════════════════════════════════════════ */
-function updateConverter() {
-  const g = Number($('convGems').value || 0);
-  $('convCoins').value = g > 0 ? Math.floor(g * 10) : '';
+function updateWd() {
+  $('wdChosen').textContent = fmt(S.wd) + ' 💎';
+  $('wdReceive').textContent = '≈ $' + (S.wd * CONFIG.gemUsd).toFixed(2);
 }
 
-async function doConvert() {
+async function doWithdraw() {
   if (S.busy) return;
-  const g = parseInt($('convGems').value || 0, 10);
-  if (!g || g < 1) return toast('أدخل عدداً صحيحاً من الجواهر', 'error');
-  if (g > S.user.gems) return toast('رصيد الجواهر غير كافٍ', 'error');
+  const u = S.user;
+  const acc = $('wdAccount').value.trim();
+  const a = S.wd;
+  const method = S.wdMethod;
 
-  const coinsGain = g * 10; // 1 gem = 10 coins (preserved from original: 1000 coins -> 10 gems = 0.01 ratio)
+  const min = method === 'sham' ? CONFIG.wd.shamMin : CONFIG.wd.min;
+  if (!a || a < min) return toast('الحد الأدنى ' + fmt(min) + ' 💎', 'error');
+  if (a > u.gems) return toast('رصيد الجواهر غير كافٍ', 'error');
+  if (acc.length < 4) return toast('أدخل معرّفاً صحيحاً', 'error');
+
   S.busy = true;
-  const btn = $('convBtn');
+  const btn = $('wdSubmit');
   const old = btn.innerHTML;
   btn.disabled = true;
-  btn.innerHTML = '<span class="spn"></span> جاري التحويل...';
+  btn.innerHTML = '<span class="spn"></span> جاري الإرسال...';
 
   try {
-    const u = S.user;
-    u.gems -= g;
-    u.coins += coinsGain;
-    await FB.set({ gems: u.gems, coins: u.coins });
-    await db.collection(CONFIG.txCol).add({
-      userId: TG.id, type: 'convert',
-      amount: -g, currency: 'gems',
-      meta: { coins: coinsGain, rate: 10 }, createdAt: Date.now()
+    u.gems -= a;
+    await FB.set({ gems: u.gems });
+    const payout = method === 'sham'
+      ? fmt(Math.round(a * CONFIG.wd.shamSypPerGem)) + ' SYP'
+      : '$' + usd(a);
+    await db.collection(CONFIG.wdCol).add({
+      userId: TG.id, userName: u.name, method,
+      amount: a, payout, account: acc, status: 'pending',
+      createdAt: Date.now()
     });
-    $('convGems').value = '';
-    $('convCoins').value = '';
+    await db.collection(CONFIG.txCol).add({
+      userId: TG.id, type: 'withdraw',
+      amount: -a, currency: 'gems',
+      meta: { method }, createdAt: Date.now()
+    });
+
+    S.wd = 0;
+    document.querySelectorAll('#wdAmounts .amt-btn').forEach(b => b.classList.remove('on'));
+    $('wdAccount').value = '';
+    updateWd();
     renderAll();
+    loadWithdrawHistory();
     showModal({
-      type: 'success', icon: 'fa-right-left',
-      title: 'تم التحويل!',
-      sub: 'حولت ' + fmt(g) + ' جوهرة إلى عملات',
-      amount: '+' + fmt(coinsGain) + ' 🪙', btn: 'رائع'
+      type: 'success', icon: 'fa-check',
+      title: 'تم تقديم طلب السحب',
+      sub: 'سيتم المراجعة خلال 24-72 ساعة',
+      amount: fmt(a) + ' 💎', btn: 'رائع'
     });
   } catch(e) {
     console.error(e);
-    toast('تعذر التحويل، حاول مجدداً', 'error');
+    toast(e.message || 'تعذر السحب', 'error');
   } finally {
     S.busy = false;
     btn.disabled = false;
@@ -1630,208 +1574,7 @@ async function doConvert() {
   }
 }
 
-/* ═══════════════════════════════════════════════════════════
-   TRANSACTIONS
-   ═══════════════════════════════════════════════════════════ */
-async function loadTransactions() {
-  const el = $('txList');
-  if (!el || !db) return;
-  el.innerHTML = '<div class="empty"><i class="fas fa-spinner fa-spin"></i></div>';
-  try {
-    const snap = await db.collection(CONFIG.txCol)
-      .where('userId', '==', TG.id)
-      .limit(30).get();
-    const arr = [];
-    snap.forEach(d => arr.push(d.data()));
-    arr.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-
-    if (!arr.length) {
-      el.innerHTML = '<div class="empty"><i class="fas fa-receipt"></i>لا توجد معاملات بعد</div>';
-      return;
-    }
-
-    const typeMap = {
-      mission_reward: { title: 'مكافأة مهمة', icon: 'fa-award', cls: 'pink' },
-      daily_reward:   { title: 'مكافأة يومية', icon: 'fa-calendar-check', cls: 'gold' },
-      convert:        { title: 'تحويل', icon: 'fa-right-left', cls: 'gold' },
-      deposit:        { title: 'إيداع', icon: 'fa-arrow-down', cls: 'green' },
-      withdraw:       { title: 'سحب', icon: 'fa-arrow-up', cls: 'red' },
-      referral_milestone: { title: 'مكافأة إحالة', icon: 'fa-users', cls: 'pink' },
-    };
-
-    el.innerHTML = arr.map(tx => {
-      const meta = typeMap[tx.type] || { title: tx.type, icon: 'fa-circle', cls: '' };
-      const amt = Number(tx.amount || 0);
-      const sign = amt >= 0 ? '+' : '';
-      const cls = amt >= 0 ? 'plus' : 'minus';
-      const curr = tx.currency === 'gems' ? '💎' : tx.currency === 'coins' ? '🪙' : '';
-      return `
-        <div class="tx-row">
-          <div class="tx-ico ${meta.cls}"><i class="fas ${meta.icon}"></i></div>
-          <div class="tx-body">
-            <div class="tx-title">${meta.title}</div>
-            <div class="tx-time">${new Date(tx.createdAt || Date.now()).toLocaleDateString('ar-EG')}</div>
-          </div>
-          <div class="tx-amount ${cls}">${sign}${fmt(Math.abs(amt))} ${curr}</div>
-        </div>
-      `;
-    }).join('');
-  } catch(e) {
-    console.warn(e);
-    el.innerHTML = '<div class="empty"><i class="fas fa-exclamation-triangle"></i>تعذر التحميل</div>';
-  }
-}
-
-/* ═══════════════════════════════════════════════════════════
-   SHIELDZ PAYMENT
-   ═══════════════════════════════════════════════════════════ */
-let shieldzPollTimer = null;
-
-function startShieldzPayment(pkg) {
-  // NOTE: create-invoice endpoint must exist on the backend.
-  // If it doesn't, this will fail gracefully and inform the user.
-  const url = CONFIG.api.base + '/api/shieldz/create-invoice';
-  S.busy = true;
-  showModal({
-    type: '', icon: 'fa-spinner fa-spin',
-    title: 'جاري تحضير الدفع...',
-    sub: 'يتم إنشاء فاتورة بمبلغ ' + pkg.usd + '$',
-    btn: 'موافق', onClose: () => {}
-  });
-  // Try creating invoice
-  fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      userId: TG.id,
-      amount_usd: pkg.usd,
-      gems: pkg.gems,
-      idempotency_key: 'sr_' + TG.id + '_' + Date.now()
-    })
-  })
-  .then(r => r.json().catch(() => ({})))
-  .then(data => {
-    if (!data.ok || !data.pay_url) throw new Error(data.error || 'تعذر إنشاء الفاتورة');
-    TG.openExternal(data.pay_url);
-    closeModal();
-    // Start polling
-    pollShieldzInvoice(data.invoice_id, pkg.gems);
-  })
-  .catch(err => {
-    console.error(err);
-    closeModal();
-    toast('تعذر بدء الدفع: ' + err.message, 'error');
-    S.busy = false;
-  });
-}
-
-function pollShieldzInvoice(invoiceId, gems) {
-  if (shieldzPollTimer) clearInterval(shieldzPollTimer);
-  let attempts = 0;
-  shieldzPollTimer = setInterval(async () => {
-    attempts++;
-    if (attempts > CONFIG.shieldz.pollMaxAttempts) {
-      clearInterval(shieldzPollTimer);
-      shieldzPollTimer = null;
-      S.busy = false;
-      toast('انتهى وقت المراقبة. تحقق لاحقاً من الرصيد.', 'error');
-      return;
-    }
-    try {
-      const r = await fetch(CONFIG.api.base + '/api/shieldz/invoice/' + encodeURIComponent(invoiceId));
-      const data = await r.json().catch(() => ({}));
-      if (data.status === 'paid') {
-        clearInterval(shieldzPollTimer);
-        shieldzPollTimer = null;
-        S.busy = false;
-        // Reload fresh user from server (backend credited gems)
-        try {
-          const fresh = await FB.get();
-          if (fresh) S.user = Object.assign(S.user, fresh);
-        } catch(e) {}
-        renderAll();
-        showModal({
-          type: 'success', icon: 'fa-check',
-          title: 'تم الدفع بنجاح!',
-          sub: 'تمت إضافة الجواهر لحسابك',
-          amount: '+' + fmt(gems) + ' 💎', btn: 'رائع'
-        });
-      } else if (data.status === 'expired' || data.status === 'failed') {
-        clearInterval(shieldzPollTimer);
-        shieldzPollTimer = null;
-        S.busy = false;
-        toast('فشلت عملية الدفع أو انتهت صلاحيتها', 'error');
-      }
-    } catch(e) {}
-  }, CONFIG.shieldz.pollIntervalMs);
-}
-
-/* ═══════════════════════════════════════════════════════════
-   STAR PAYMENT (preserved)
-   ═══════════════════════════════════════════════════════════ */
-async function startStarPayment(pkg) {
-  if (S.busy) return;
-  if (!TG.app || !TG.app.openInvoice) return toast('افتح التطبيق من داخل تيليجرام', 'error');
-  S.busy = true;
-  try {
-    const r = await fetch(CONFIG.api.base + '/api/create-invoice', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userId: TG.id, stars: pkg.stars })
-    });
-    const data = await r.json();
-    if (!data.ok || !data.invoiceLink) throw new Error(data.error || 'فشل الإنشاء');
-    TG.app.openInvoice(data.invoiceLink, async (status) => {
-      S.busy = false;
-      if (status === 'paid') {
-        try { const fresh = await FB.get(); if (fresh) S.user = Object.assign(S.user, fresh); } catch(e){}
-        renderAll();
-        showModal({ type: 'success', icon: 'fa-star', title: 'تم الدفع!', sub: 'حصلت على ' + fmt(data.gems) + ' جوهرة', amount: '+' + fmt(data.gems) + ' 💎', btn: 'رائع' });
-      } else if (status === 'cancelled') toast('تم إلغاء الدفع', 'error');
-    });
-  } catch(e) {
-    S.busy = false;
-    toast('تعذر بدء الدفع', 'error');
-  }
-}
-
-/* ═══════════════════════════════════════════════════════════
-   NAVIGATION
-   ═══════════════════════════════════════════════════════════ */
-function go(screen) {
-  const el = $('screen-' + screen);
-  if (!el) return;
-  document.querySelectorAll('.screen').forEach(x => x.classList.remove('active'));
-  el.classList.add('active');
-  document.querySelectorAll('.dock button').forEach(b => b.classList.toggle('on', b.dataset.nav === screen));
-  $('mainScroll').scrollTop = 0;
-  S.nav = screen;
-
-  // Dynamic header
-  const titles = {
-    home: ['Sky Rush', 'حلّق واربح الجواهر'],
-    gamehub: ['اللعبة', 'Sky Rush'],
-    missions: ['المهام', 'أكمل وحقّق المكافآت'],
-    wallet: ['الرصيد', 'إدارة أموالك'],
-    leaderboard: ['المتصدرون', 'أفضل اللاعبين'],
-    deposit: ['إيداع', 'اشترِ جواهر'],
-    withdraw: ['سحب', 'اسحب أرباحك'],
-    profile: ['حسابي', 'ملفك الشخصي']
-  };
-  const [t, s] = titles[screen] || ['Sky Rush', ''];
-  $('headerTitle').textContent = t;
-  $('headerSub').textContent = s;
-
-  // Load data per screen
-  if (screen === 'wallet') loadTransactions();
-  if (screen === 'leaderboard') loadLeaderboard();
-  if (screen === 'withdraw') { renderWithdrawMethods(); loadWdHistory(); }
-}
-
-/* ═══════════════════════════════════════════════════════════
-   WITHDRAW HISTORY
-   ═══════════════════════════════════════════════════════════ */
-async function loadWdHistory() {
+async function loadWithdrawHistory() {
   const el = $('wdHistory');
   if (!el || !db) return;
   el.innerHTML = '<div class="empty" style="padding:16px"><i class="fas fa-spinner fa-spin"></i></div>';
@@ -1845,14 +1588,15 @@ async function loadWdHistory() {
       return;
     }
     const statusMap = { pending: 'قيد المراجعة', approved: 'مقبول', processing: 'قيد التنفيذ', completed: 'مكتمل', rejected: 'مرفوض' };
+    const methodNames = { binance: 'Binance', sham: 'شام كاش', usdt_crypto: 'USDT' };
     el.innerHTML = arr.slice(0, 15).map(w => `
-      <div class="tx-row">
-        <div class="tx-ico pink"><i class="fas fa-money-bill-transfer"></i></div>
-        <div class="tx-body">
-          <div class="tx-title">${fmt(w.amount)} 💎 → ${esc(w.payout || '$0')}</div>
-          <div class="tx-time">${new Date(w.createdAt || Date.now()).toLocaleDateString('ar-EG')}</div>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--gray-b)">
+        <div style="width:36px;height:36px;border-radius:10px;background:var(--pink-l);display:grid;place-items:center;flex-shrink:0"><i class="fas fa-arrow-up" style="color:var(--pink);font-size:14px"></i></div>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:12.5px;font-weight:700">${fmt(w.amount)} 💎 → ${methodNames[w.method] || w.method}</div>
+          <div style="font-size:10.5px;color:var(--gray);font-weight:600">${new Date(w.createdAt || Date.now()).toLocaleDateString('ar-EG')}</div>
         </div>
-        <div style="font-size:10.5px;font-weight:800;padding:4px 10px;border-radius:8px;background:var(--gray-l);color:var(--gray)">${statusMap[w.status] || w.status}</div>
+        <div class="tx-status ${w.status || 'pending'}">${statusMap[w.status] || w.status}</div>
       </div>
     `).join('');
   } catch(e) {
@@ -1860,89 +1604,78 @@ async function loadWdHistory() {
   }
 }
 
-async function doWithdraw() {
+/* ═══ DEPOSIT HISTORY ═══ */
+async function loadDepositHistory() {
+  const el = $('depositHistory');
+  if (!el || !db) return;
+  el.innerHTML = '<div class="empty" style="padding:16px"><i class="fas fa-spinner fa-spin"></i></div>';
+  try {
+    const snap = await db.collection(CONFIG.depCol).where('userId', '==', TG.id).limit(30).get();
+    const arr = [];
+    snap.forEach(d => arr.push(d.data()));
+    arr.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+    if (!arr.length) {
+      el.innerHTML = '<div class="empty" style="padding:16px"><i class="fas fa-inbox"></i>لا يوجد سجل إيداع</div>';
+      return;
+    }
+    const statusMap = { pending: 'قيد المراجعة', approved: 'مقبول', completed: 'مكتمل', rejected: 'مرفوض' };
+    const methodNames = { binance: 'Binance', sham: 'شام كاش' };
+    el.innerHTML = arr.slice(0, 15).map(w => `
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--gray-b)">
+        <div style="width:36px;height:36px;border-radius:10px;background:#DCFCE7;display:grid;place-items:center;flex-shrink:0"><i class="fas fa-arrow-down" style="color:#16A34A;font-size:14px"></i></div>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:12.5px;font-weight:700">+${fmt(w.gems || 0)} 💎</div>
+          <div style="font-size:10.5px;color:var(--gray);font-weight:600">${methodNames[w.method] || w.method} · ${new Date(w.createdAt || Date.now()).toLocaleDateString('ar-EG')}</div>
+        </div>
+        <div class="tx-status ${w.status || 'pending'}">${statusMap[w.status] || w.status}</div>
+      </div>
+    `).join('');
+  } catch(e) {
+    el.innerHTML = '<div class="empty" style="padding:16px"><i class="fas fa-exclamation-triangle"></i>تعذر التحميل</div>';
+  }
+}
+
+/* ═══ CONVERTER ═══ */
+function updateConverter() {
+  const c = Number($('convCoins').value || 0);
+  $('convGems').value = c > 0 ? Math.floor(c * CONFIG.convRate) : '';
+}
+
+async function doConvert() {
   if (S.busy) return;
-  const u = S.user;
-  const acc = $('wdAccount').value.trim();
-  const a = S.wd;
-  const method = S.wdMethod;
+  const c = parseInt($('convCoins').value || 0, 10);
+  if (!c || c < CONFIG.convMinCoins) return toast('الحد الأدنى ' + fmt(CONFIG.convMinCoins) + ' عملة', 'error');
+  if (c > S.user.coins) return toast('رصيد العملات غير كافٍ', 'error');
 
-  const min = method === 'sham_cash' ? CONFIG.wd.shamMin : CONFIG.wd.min;
-  if (!a || a < min) return toast('الحد الأدنى ' + fmt(min) + ' 💎', 'error');
-  if (a > u.gems) return toast('رصيد الجواهر غير كافٍ', 'error');
-
-  if (method === 'usdt_crypto' && !/^T[a-zA-Z0-9]{33}$/.test(acc)) {
-    return toast('عنوان TRC20 غير صحيح (يبدأ بـ T)', 'error');
-  }
-  if (method !== 'usdt_crypto' && acc.length < 4) {
-    return toast('أدخل معرّفاً صحيحاً', 'error');
-  }
-
+  const gemsGain = Math.floor(c * CONFIG.convRate);
   S.busy = true;
-  const btn = $('wdSubmit');
+  const btn = $('convBtn');
   const old = btn.innerHTML;
   btn.disabled = true;
-  btn.innerHTML = '<span class="spn"></span> جاري الإرسال...';
+  btn.innerHTML = '<span class="spn"></span> جاري التحويل...';
 
   try {
-    if (method === 'usdt_crypto') {
-      const resp = await fetch(CONFIG.api.base + '/api/crypto/withdraw', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId: TG.id,
-          amount: parseFloat((a * CONFIG.wd.rate).toFixed(2)),
-          to_address: acc,
-          asset_id: 'usdt_trc20'
-        })
-      });
-      const data = await resp.json().catch(() => ({}));
-      if (!resp.ok || !data.ok) throw new Error(data.error || 'فشل السحب');
-      u.gems -= a;
-      await FB.set({ gems: u.gems });
-      await db.collection(CONFIG.wdCol).add({
-        userId: TG.id, userName: u.name, method: 'usdt_crypto',
-        amount: a, payout: '$' + (a * CONFIG.wd.rate).toFixed(2) + ' USDT',
-        account: acc, status: 'processing',
-        withdrawalId: data.withdrawal_id || null,
-        txHash: data.tx_hash || null,
-        createdAt: Date.now()
-      });
-    } else {
-      u.gems -= a;
-      await FB.set({ gems: u.gems });
-      const payout = method === 'sham_cash'
-        ? fmt(Math.round(a * CONFIG.wd.shamSypPerGem)) + ' SYP'
-        : '$' + usd(a);
-      await db.collection(CONFIG.wdCol).add({
-        userId: TG.id, userName: u.name, method,
-        amount: a, payout, account: acc, status: 'pending',
-        createdAt: Date.now()
-      });
-    }
-
+    const u = S.user;
+    u.coins -= c;
+    u.gems += gemsGain;
+    await FB.set({ coins: u.coins, gems: u.gems });
     await db.collection(CONFIG.txCol).add({
-      userId: TG.id, type: 'withdraw',
-      amount: -a, currency: 'gems',
-      meta: { method }, createdAt: Date.now()
+      userId: TG.id, type: 'convert',
+      amount: -c, currency: 'coins',
+      meta: { gems: gemsGain }, createdAt: Date.now()
     });
-
-    S.wd = 0;
-    document.querySelectorAll('#wdAmounts .amt-btn').forEach(b => b.classList.remove('on'));
-    $('wdAccount').value = '';
-    $('wdChosen').textContent = '0 💎';
-    $('wdReceive').textContent = '$0.00';
+    $('convCoins').value = '';
+    $('convGems').value = '';
     renderAll();
-    loadWdHistory();
     showModal({
-      type: 'success', icon: 'fa-check',
-      title: 'تم تقديم طلب السحب',
-      sub: method === 'usdt_crypto' ? 'سيتم التحويل خلال دقائق' : 'سيتم المراجعة خلال 24-72 ساعة',
-      amount: fmt(a) + ' 💎', btn: 'رائع'
+      type: 'success', icon: 'fa-right-left',
+      title: 'تم التحويل!',
+      sub: 'حولت ' + fmt(c) + ' عملة إلى جواهر',
+      amount: '+' + fmt(gemsGain), btn: 'رائع'
     });
   } catch(e) {
     console.error(e);
-    toast(e.message || 'تعذر السحب', 'error');
+    toast('تعذر التحويل', 'error');
   } finally {
     S.busy = false;
     btn.disabled = false;
@@ -1950,9 +1683,7 @@ async function doWithdraw() {
   }
 }
 
-/* ═══════════════════════════════════════════════════════════
-   FLY GAME
-   ═══════════════════════════════════════════════════════════ */
+/* ═══ FLY GAME ═══ */
 const FlyGame = (() => {
   const cvs = $('gameCanvas');
   const ctx = cvs.getContext('2d');
@@ -2057,7 +1788,7 @@ const FlyGame = (() => {
 
   function floater(text, x, y, type) {
     const el = document.createElement('div');
-    el.className = 'floater' + (type === 'gem' ? ' gem' : '');
+    el.className = 'floater';
     el.textContent = text;
     el.style.left = clamp(x, 30, VW - 30) + 'px';
     el.style.top = clamp(y, 60, VH - 60) + 'px';
@@ -2073,7 +1804,7 @@ const FlyGame = (() => {
       st.par.push({
         x, y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 60,
         life: .55 + rng() * .35, max: .9,
-        col: i % 3 === 0 ? '#fff' : (i % 2 === 0 ? '#8CEBFF' : '#59D7F2'),
+        col: i % 3 === 0 ? '#fff' : (i % 2 === 0 ? '#FE2B54' : '#FF5B7C'),
         r: 2 + rng() * 2.5
       });
     }
@@ -2101,7 +1832,7 @@ const FlyGame = (() => {
       if (!o.passed && o.x + o.w < st.p.x - st.p.r) {
         o.passed = true; st.pairs++;
         st.rC += CFG.coinPerPair;
-        floater('+' + CFG.coinPerPair, st.p.x + st.p.r * 1.2, st.p.y - st.p.r * 1.6, 'coin');
+        floater('+' + CFG.coinPerPair, st.p.x + st.p.r * 1.2, st.p.y - st.p.r * 1.6);
         hud();
         if (st.pairs >= st.nextB) {
           spawnBub(VW + 60);
@@ -2129,7 +1860,7 @@ const FlyGame = (() => {
         b.collected = true;
         const reward = CFG.dMin + Math.floor(Math.random() * (CFG.dMax - CFG.dMin + 1));
         st.rD += reward;
-        floater('+' + reward, b.x, b.y - 12, 'gem');
+        floater('+' + reward, b.x, b.y - 12);
         spawnBurst(b.x, b.y);
         hud();
       }
@@ -2162,11 +1893,11 @@ const FlyGame = (() => {
 
   function drawSky(g) {
     const gr = g.createLinearGradient(0, 0, 0, VH);
-    gr.addColorStop(0, '#FE2B54');
-    gr.addColorStop(0.35, '#FF6B8A');
-    gr.addColorStop(0.65, '#FFB0C4');
-    gr.addColorStop(0.85, '#FFE0E8');
-    gr.addColorStop(1, '#FFF0F4');
+    gr.addColorStop(0, '#7EC8E3');
+    gr.addColorStop(0.35, '#A8DCF0');
+    gr.addColorStop(0.65, '#C9EDF7');
+    gr.addColorStop(0.85, '#F2E5B8');
+    gr.addColorStop(1, '#FFE8B8');
     g.fillStyle = gr; g.fillRect(0, 0, VW, VH);
   }
   function drawStars(g) {
@@ -2181,19 +1912,19 @@ const FlyGame = (() => {
   function drawSun(g) {
     const x = VW * 0.74, y = VH * 0.20, r = Math.min(VW, VH) * 0.055;
     const rg = g.createRadialGradient(x, y, r * 0.4, x, y, r * 3.2);
-    rg.addColorStop(0, 'rgba(255,250,230,.95)');
-    rg.addColorStop(0.5, 'rgba(255,235,200,.4)');
-    rg.addColorStop(1, 'rgba(255,235,200,0)');
+    rg.addColorStop(0, 'rgba(255,240,200,.95)');
+    rg.addColorStop(0.5, 'rgba(255,215,150,.4)');
+    rg.addColorStop(1, 'rgba(255,215,150,0)');
     g.fillStyle = rg; g.beginPath(); g.arc(x, y, r * 3.2, 0, Math.PI * 2); g.fill();
-    g.fillStyle = 'rgba(255,255,255,.98)';
+    g.fillStyle = 'rgba(255,250,220,.98)';
     g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fill();
   }
   function drawPyramids(g) {
     const gY = VH - SZ.gr, f = 0.10, tw = VW * 1.5, off = -((st.worldX * f) % tw);
     const pats = [
-      { x: .18, w: 210, h: 230, c: 'rgba(200,60,90,.45)' },
-      { x: .55, w: 270, h: 290, c: 'rgba(180,40,70,.5)' },
-      { x: 1.02, w: 170, h: 190, c: 'rgba(220,80,110,.45)' }
+      { x: .18, w: 210, h: 230, c: 'rgba(232,200,150,.55)' },
+      { x: .55, w: 270, h: 290, c: 'rgba(220,185,130,.6)' },
+      { x: 1.02, w: 170, h: 190, c: 'rgba(240,210,160,.55)' }
     ];
     for (let rep = 0; rep < 2; rep++) {
       const ox = off + rep * tw;
@@ -2207,12 +1938,12 @@ const FlyGame = (() => {
   function drawPyr(g, cx, by, w, h, col) {
     g.fillStyle = col;
     g.beginPath(); g.moveTo(cx - w / 2, by); g.lineTo(cx, by - h); g.lineTo(cx + w / 2, by); g.closePath(); g.fill();
-    g.fillStyle = 'rgba(255,220,230,.28)';
+    g.fillStyle = 'rgba(255,220,170,.28)';
     g.beginPath(); g.moveTo(cx, by - h); g.lineTo(cx + w / 2, by); g.lineTo(cx + w * 0.14, by); g.closePath(); g.fill();
   }
   function drawClouds(g) {
     const f = 0.28, tw = VW * 2.2, off = -((st.worldX * f) % tw);
-    g.fillStyle = 'rgba(255,255,255,.75)';
+    g.fillStyle = 'rgba(255,255,255,.7)';
     for (let rep = 0; rep < 2; rep++) {
       const ox = off + rep * tw;
       for (const c of st.clouds) {
@@ -2232,7 +1963,7 @@ const FlyGame = (() => {
   }
   function drawDunes(g) {
     const gY = VH - SZ.gr, f = 0.55, tw = VW * 1.15, off = -((st.worldX * f) % tw);
-    g.fillStyle = 'rgba(255,200,215,.6)';
+    g.fillStyle = 'rgba(230,195,140,.7)';
     for (let rep = 0; rep < 2; rep++) {
       const ox = off + rep * tw;
       g.beginPath(); g.moveTo(ox, gY);
@@ -2249,13 +1980,14 @@ const FlyGame = (() => {
   function drawGround(g) {
     const gY = VH - SZ.gr;
     const gr = g.createLinearGradient(0, gY, 0, VH);
-    gr.addColorStop(0, '#FFF0F4');
-    gr.addColorStop(0.5, '#FFD9E2');
-    gr.addColorStop(1, '#FFB0C4');
+    gr.addColorStop(0, '#F5D6A0');
+    gr.addColorStop(0.5, '#E0B87A');
+    gr.addColorStop(1, '#B58447');
     g.fillStyle = gr; g.fillRect(0, gY, VW, SZ.gr);
-    g.fillStyle = '#FE2B54'; g.fillRect(0, gY, VW, 3);
+    g.fillStyle = '#FFF6DC'; g.fillRect(0, gY, VW, 3);
+    g.fillStyle = 'rgba(160,120,60,.35)'; g.fillRect(0, gY + 3, VW, 2);
     const off = -((st.worldX) % 46);
-    g.strokeStyle = 'rgba(254,43,84,.2)'; g.lineWidth = 1.5;
+    g.strokeStyle = 'rgba(160,120,60,.28)'; g.lineWidth = 1.5;
     for (let x = off - 46; x < VW + 46; x += 46) {
       g.beginPath();
       g.moveTo(x, gY + 14); g.lineTo(x + 14, gY + 14);
@@ -2288,31 +2020,26 @@ const FlyGame = (() => {
     const bodyY = isTop ? y + dirtH : y;
     const bodyH = h - dirtH;
     const grad = g.createLinearGradient(x, 0, x + w, 0);
-    grad.addColorStop(0, '#1F1F23');
-    grad.addColorStop(0.35, '#3A3A40');
-    grad.addColorStop(0.65, '#2A2A2F');
-    grad.addColorStop(1, '#0A0A0A');
+    grad.addColorStop(0, '#3F9142');
+    grad.addColorStop(0.35, '#5FB863');
+    grad.addColorStop(0.65, '#4CAF50');
+    grad.addColorStop(1, '#235C25');
     g.fillStyle = grad;
     roundRectPath(g, x + 3, bodyY, w - 6, bodyH, 9); g.fill();
-    g.strokeStyle = 'rgba(254,43,84,.4)'; g.lineWidth = 1.5;
+    g.strokeStyle = 'rgba(20,60,20,.55)'; g.lineWidth = 1.5;
     roundRectPath(g, x + 3, bodyY, w - 6, bodyH, 9); g.stroke();
-    g.strokeStyle = 'rgba(255,255,255,.15)'; g.lineWidth = 1.4;
-    for (let i = 1; i <= 3; i++) {
-      const lx = x + 3 + (w - 6) * (i / 4);
-      g.beginPath(); g.moveTo(lx, bodyY + 5); g.lineTo(lx, bodyY + bodyH - 5); g.stroke();
-    }
-    const rng = mulberry32(seed);
-    g.fillStyle = '#FE2B54';
+    // thorns
+    g.fillStyle = '#FFF3D0'; g.strokeStyle = 'rgba(120,80,30,.7)'; g.lineWidth = 0.8;
     const step = 22, count = Math.max(1, Math.floor(bodyH / step));
     for (let i = 0; i < count; i++) {
       const sy = bodyY + 14 + i * step;
       if (sy > bodyY + bodyH - 6) break;
-      g.beginPath(); g.arc(x + w / 2, sy, 2, 0, Math.PI * 2); g.fill();
+      g.beginPath(); g.moveTo(x + 3, sy); g.lineTo(x - 4, sy + 2); g.lineTo(x + 3, sy + 5); g.closePath(); g.fill(); g.stroke();
+      g.beginPath(); g.moveTo(x + w - 3, sy); g.lineTo(x + w + 4, sy + 2); g.lineTo(x + w - 3, sy + 5); g.closePath(); g.fill(); g.stroke();
     }
     const dy = isTop ? y : y + h - dirtH;
     const dg = g.createLinearGradient(0, dy, 0, dy + dirtH);
-    dg.addColorStop(0, '#5A5A60');
-    dg.addColorStop(1, '#1F1F23');
+    dg.addColorStop(0, '#A8876A'); dg.addColorStop(1, '#6B4A2A');
     g.fillStyle = dg;
     roundRectPath(g, x - 2, dy, w + 4, dirtH, 8); g.fill();
   }
@@ -2322,13 +2049,13 @@ const FlyGame = (() => {
       if (b.collected) continue;
       const bob = Math.sin(t * 2.4 + b.seed) * 4, cy = b.y + bob;
       const rg = g.createRadialGradient(b.x, cy, b.r * 0.3, b.x, cy, b.r * 1.9);
-      rg.addColorStop(0, 'rgba(254,43,84,.55)');
-      rg.addColorStop(1, 'rgba(254,43,84,0)');
+      rg.addColorStop(0, 'rgba(140,235,255,.75)');
+      rg.addColorStop(1, 'rgba(140,235,255,0)');
       g.fillStyle = rg; g.beginPath(); g.arc(b.x, cy, b.r * 1.9, 0, Math.PI * 2); g.fill();
       const bg = g.createRadialGradient(b.x - b.r * 0.32, cy - b.r * 0.32, b.r * 0.1, b.x, cy, b.r);
       bg.addColorStop(0, 'rgba(255,255,255,.95)');
-      bg.addColorStop(0.55, 'rgba(254,43,84,.65)');
-      bg.addColorStop(1, 'rgba(217,30,66,.6)');
+      bg.addColorStop(0.55, 'rgba(140,235,255,.6)');
+      bg.addColorStop(1, 'rgba(70,180,225,.5)');
       g.fillStyle = bg;
       g.beginPath(); g.arc(b.x, cy, b.r, 0, Math.PI * 2); g.fill();
       g.strokeStyle = 'rgba(255,255,255,.95)'; g.lineWidth = 2;
@@ -2339,9 +2066,9 @@ const FlyGame = (() => {
   function drawDiamond(g, x, y, s) {
     g.save(); g.translate(x, y);
     const gr = g.createLinearGradient(0, -s, 0, s);
-    gr.addColorStop(0, '#FFFFFF');
-    gr.addColorStop(.5, '#FFD9E2');
-    gr.addColorStop(1, '#FE2B54');
+    gr.addColorStop(0, '#E8FBFF');
+    gr.addColorStop(.5, '#8CEBFF');
+    gr.addColorStop(1, '#1B7FA8');
     g.fillStyle = gr;
     g.beginPath();
     g.moveTo(0, -s); g.lineTo(s * 0.85, -s * 0.15);
@@ -2368,8 +2095,8 @@ const FlyGame = (() => {
 
     g.save(); g.translate(p.x, p.y); g.rotate(p.rot);
     const gl = g.createRadialGradient(0, 0, r * 0.85, 0, 0, r * 1.7);
-    gl.addColorStop(0, 'rgba(254,43,84,.55)');
-    gl.addColorStop(1, 'rgba(254,43,84,0)');
+    gl.addColorStop(0, 'rgba(255,213,46,.55)');
+    gl.addColorStop(1, 'rgba(255,213,46,0)');
     g.fillStyle = gl; g.beginPath(); g.arc(0, 0, r * 1.7, 0, Math.PI * 2); g.fill();
 
     if (st.imgOk && st.img && st.img.naturalWidth > 0) {
@@ -2379,7 +2106,7 @@ const FlyGame = (() => {
       g.restore();
       g.strokeStyle = '#fff'; g.lineWidth = Math.max(2, r * 0.1);
       g.beginPath(); g.arc(0, 0, r - g.lineWidth / 2, 0, Math.PI * 2); g.stroke();
-      g.strokeStyle = '#FE2B54'; g.lineWidth = Math.max(1, r * 0.05);
+      g.strokeStyle = 'rgba(255,213,46,.7)'; g.lineWidth = Math.max(1, r * 0.05);
       g.beginPath(); g.arc(0, 0, r, 0, Math.PI * 2); g.stroke();
     } else {
       g.fillStyle = '#FE2B54';
@@ -2423,14 +2150,13 @@ const FlyGame = (() => {
 
   async function begin() {
     if (st.mode !== 'ready') return;
-    // Energy check + use
-    if (Energy.cur(S.user) <= 0) { toast('لا توجد طاقة — انتظر التجديد', 'error'); return; }
+    if (Energy.cur(S.user) <= 0) { toast('لا توجد طاقة', 'error'); return; }
     const ok = await Energy.use(1);
     if (!ok) { toast('لا توجد طاقة', 'error'); return; }
     st.mode = 'playing';
     $('gameReadyOverlay').classList.remove('show');
     st.lastT = performance.now(); st.acc = 0;
-    flap(); SFX.flap();
+    flap();
   }
 
   function onDown(e) {
@@ -2460,7 +2186,6 @@ const FlyGame = (() => {
     };
     try { await FB.set(patch); } catch(e) {}
 
-    // Update fly leaderboard doc
     try {
       if (db && dist > 0) {
         await db.collection(CONFIG.flyCol).doc(TG.id).set({
@@ -2471,7 +2196,7 @@ const FlyGame = (() => {
           updatedAt: Date.now()
         }, { merge: true });
       }
-    } catch(e) { console.warn(e); }
+    } catch(e) {}
     return rec;
   }
 
@@ -2491,12 +2216,14 @@ const FlyGame = (() => {
 
   function enter() {
     $('screen-game').classList.add('active');
+    document.body.classList.add('hide-balance');
     loadImg();
     requestAnimationFrame(() => {
       resize();
       reset();
       st.mode = 'ready';
       $('gameReadyOverlay').classList.add('show');
+      $('gamePauseOverlay').classList.remove('show');
       $('gameOverOverlay').classList.remove('show');
       $('floaters').innerHTML = '';
       startLoop();
@@ -2508,8 +2235,26 @@ const FlyGame = (() => {
     if (st.mode === 'playing') { commit(Math.floor(st.dist)); renderAll(); }
     st.mode = 'idle';
     $('screen-game').classList.remove('active');
+    document.body.classList.remove('hide-balance');
     $('gameReadyOverlay').classList.remove('show');
+    $('gamePauseOverlay').classList.remove('show');
     $('gameOverOverlay').classList.remove('show');
+  }
+
+  function pause() {
+    if (st.mode !== 'playing') return;
+    st.mode = 'paused';
+    stopLoop();
+    $('gamePauseOverlay').classList.add('show');
+  }
+
+  function resume() {
+    if (st.mode !== 'paused') return;
+    st.mode = 'playing';
+    st.lastT = performance.now();
+    st.acc = 0;
+    $('gamePauseOverlay').classList.remove('show');
+    startLoop();
   }
 
   function replay() {
@@ -2527,20 +2272,22 @@ const FlyGame = (() => {
     wrap.style.touchAction = 'none';
     wrap.addEventListener('pointerdown', e => {
       if (e.target.closest('button')) return;
-      if (!$('gameOverOverlay').classList.contains('show') && !$('gameReadyOverlay').classList.contains('show'))
+      if (!$('gameOverOverlay').classList.contains('show') && !$('gameReadyOverlay').classList.contains('show') && !$('gamePauseOverlay').classList.contains('show'))
         onDown(e);
     }, { passive: false });
     wrap.addEventListener('contextmenu', e => e.preventDefault());
 
-    $('gameExit').addEventListener('click', e => { e.stopPropagation(); exit(); });
+    $('gamePause').addEventListener('click', e => {
+      e.stopPropagation();
+      if (st.mode === 'playing') pause();
+      else if (st.mode === 'paused') resume();
+    });
     $('gameStartBtn').addEventListener('click', e => { e.stopPropagation(); begin(); });
     $('gameReplayBtn').addEventListener('click', e => { e.stopPropagation(); replay(); });
     $('gameHomeBtn').addEventListener('click', e => { e.stopPropagation(); exit(); });
-    $('gameLeaderBtn').addEventListener('click', e => {
-      e.stopPropagation();
-      exit();
-      go('leaderboard');
-    });
+    $('gameLeaderBtn').addEventListener('click', e => { e.stopPropagation(); exit(); go('leaderboard'); });
+    $('gameResumeBtn').addEventListener('click', e => { e.stopPropagation(); resume(); });
+    $('gameExitPaused').addEventListener('click', e => { e.stopPropagation(); exit(); });
 
     window.addEventListener('keydown', e => {
       if (!$('screen-game').classList.contains('active')) return;
@@ -2554,128 +2301,10 @@ const FlyGame = (() => {
     });
   }
 
-  return { enter, exit, replay, bind, resize, preload: loadImg };
+  return { enter, exit, replay, bind, resize, preload: loadImg, pause, resume, st };
 })();
 
-/* ═══════════════════════════════════════════════════════════
-   SFX
-   ═══════════════════════════════════════════════════════════ */
-const SFX = {
-  ctx: null,
-  tone(f, d, t = 'square', v = .15, w = 0) {
-    try {
-      this.ctx = this.ctx || new (window.AudioContext || window.webkitAudioContext)();
-      const c = this.ctx, s = c.currentTime + w;
-      const o = c.createOscillator(), g = c.createGain();
-      o.type = t; o.frequency.value = f;
-      g.gain.setValueAtTime(.0001, s);
-      g.gain.linearRampToValueAtTime(v, s + .01);
-      g.gain.exponentialRampToValueAtTime(.001, s + d);
-      o.connect(g); g.connect(c.destination);
-      o.start(s); o.stop(s + d + .05);
-    } catch(e) {}
-  },
-  tap() { this.tone(520, .05, 'sine'); },
-  flap() { this.tone(600, .05, 'sine', .1); },
-  reward() {
-    [880, 1108, 1320, 1760].forEach((f, i) => this.tone(f, .12, 'square', .12, i * .05));
-  }
-};
-
-/* ═══════════════════════════════════════════════════════════
-   BIND
-   ═══════════════════════════════════════════════════════════ */
-function bind() {
-  // Nav
-  document.querySelectorAll('[data-nav]').forEach(b => {
-    b.onclick = () => { SFX.tap(); go(b.dataset.nav); };
-  });
-  document.querySelectorAll('[data-go]').forEach(b => {
-    b.onclick = () => { SFX.tap(); go(b.dataset.go); };
-  });
-
-  // Home play
-  $('playBtn').onclick = () => { SFX.tap(); FlyGame.enter(); };
-  $('gamehubPlayBtn').onclick = () => { SFX.tap(); FlyGame.enter(); };
-  $('leaderBtn').onclick = () => { SFX.tap(); go('leaderboard'); };
-  $('hubLeaderBtn').onclick = () => { SFX.tap(); go('leaderboard'); };
-
-  // Energy actions
-  $('energyAdBtn').onclick = watchEnergyAd;
-  $('energyBuyBtn').onclick = buyEnergyWithGems;
-
-  // Wallet actions
-  $('walDepositBtn').onclick = () => go('deposit');
-  $('walWithdrawBtn').onclick = () => go('withdraw');
-
-  // Converter
-  $('convGems').oninput = updateConverter;
-  $('convCoins').oninput = () => {
-    const c = Number($('convCoins').value || 0);
-    $('convGems').value = c > 0 ? Math.floor(c / 10) : '';
-  };
-  $('convBtn').onclick = doConvert;
-
-  // Withdraw
-  document.querySelectorAll('#wdAmounts .amt-btn').forEach(b => {
-    b.onclick = () => {
-      document.querySelectorAll('#wdAmounts .amt-btn').forEach(x => x.classList.remove('on'));
-      b.classList.add('on');
-      S.wd = +b.dataset.amt;
-      $('wdChosen').textContent = fmt(S.wd) + ' 💎';
-      $('wdReceive').textContent = S.wdMethod === 'sham_cash'
-        ? fmt(Math.round(S.wd * CONFIG.wd.shamSypPerGem)) + ' SYP'
-        : '$' + usd(S.wd);
-      SFX.tap();
-    };
-  });
-  $('wdSubmit').onclick = doWithdraw;
-
-  // Leaderboard refresh
-  $('lbRefresh').onclick = () => { SFX.tap(); loadLeaderboard(true); };
-
-  // Info modals
-  $('openPolicy').onclick = () => showInfo('policy');
-  $('openHelp').onclick = () => showInfo('help');
-
-  // Global SFX
-  document.addEventListener('click', e => {
-    if (e.target.closest('.btn, .dock button, .quick-card, .miss-preview, .menu-item, .amt-btn')) SFX.tap();
-  });
-
-  // Fly game bind
-  FlyGame.bind();
-
-  // Bank / deposit click delegation
-  document.addEventListener('click', e => {
-    const t = e.target.closest('[data-go="deposit-stars"]');
-    if (t) {
-      const pkg = CONFIG.starPackages[1];
-      startStarPayment(pkg);
-    }
-    const m = e.target.closest('[data-go="deposit-binance"]');
-    if (m) showManualDeposit('binance');
-    const s = e.target.closest('[data-go="deposit-sham"]');
-    if (s) showManualDeposit('sham');
-    const sh = e.target.closest('[data-go="deposit-shieldz"]');
-    if (sh) {
-      const pkg = CONFIG.depositPackages[1];
-      startShieldzPayment(pkg);
-    }
-  });
-
-  // Back button (Telegram)
-  if (TG.app && TG.app.onEvent) {
-    TG.app.onEvent('backButtonClicked', () => {
-      if ($('screen-game').classList.contains('active')) FlyGame.exit();
-      else if (S.nav !== 'home') go('home');
-    });
-  }
-}
-
-/* ═══════════════════════════════════════════════════════════
-   ENERGY ACTIONS
-   ═══════════════════════════════════════════════════════════ */
+/* ═══ ENERGY ACTIONS ═══ */
 async function watchEnergyAd() {
   if (S.busy) return;
   if (Energy.cur(S.user) >= CONFIG.energyMax) return toast('الطاقة ممتلئة بالفعل');
@@ -2684,7 +2313,7 @@ async function watchEnergyAd() {
   const btn = $('energyAdBtn');
   const old = btn.innerHTML;
   btn.disabled = true;
-  btn.innerHTML = '<span class="spn dark"></span> جاري المشاهدة';
+  btn.innerHTML = '<span class="spn dark"></span>';
   const started = performance.now();
   try {
     await window.show_12008608();
@@ -2692,8 +2321,7 @@ async function watchEnergyAd() {
       toast('لم تُحتسب المكافأة (أقل من 15 ثانية)', 'error');
     } else {
       await Energy.add(1);
-      SFX.reward();
-      toast('+1 طاقة ⚡', 'success');
+      toast('+1 طاقة', 'success');
     }
   } catch(e) {
     toast('لم تكتمل المشاهدة', 'error');
@@ -2714,8 +2342,7 @@ async function buyEnergyWithGems() {
     u.gems -= 1;
     await Energy.add(1);
     await FB.set({ gems: u.gems });
-    SFX.reward();
-    toast('+1 طاقة مقابل 1 💎', 'success');
+    toast('+1 طاقة مقابل 1 جوهرة', 'success');
     renderAll();
   } catch(e) {
     toast('تعذر الشراء', 'error');
@@ -2724,56 +2351,117 @@ async function buyEnergyWithGems() {
   }
 }
 
-/* ═══════════════════════════════════════════════════════════
-   INFO MODAL
-   ═══════════════════════════════════════════════════════════ */
+/* ═══ INFO MODAL ═══ */
 function showInfo(type) {
   const isPolicy = type === 'policy';
   showModal({
     type: '',
     icon: isPolicy ? 'fa-shield-halved' : 'fa-circle-question',
-    title: isPolicy ? 'سياسة الخصوصية' : 'مركز المساعدة',
+    title: isPolicy ? 'معلومات التطبيق وسياسة الخصوصية' : 'مركز المساعدة',
     sub: isPolicy
-      ? 'نستخدم بيانات تيليجرام للحساب. لا نشارك بياناتك مع أي طرف ثالث.'
-      : 'للاستفسارات: تواصل معنا على @PuppyMerge',
+      ? 'Puppy Merge / Sky Rush هي لعبة دمج وترفيه.\nنستخدم بيانات تيليجرام (المعرّف، الاسم، الصورة) لربط حسابك فقط.\nلا نشارك بياناتك مع أي طرف ثالث.\nالرصيد إعلامي وليس منتجاً مالياً.'
+      : 'مركز المساعدة:\n• تواصل معنا على @PuppyMerge\n• التحقق من الدفع يستغرق 24-72 ساعة\n• الحد الأدنى للسحب: 1000 جوهرة (شام كاش) أو 5000 جوهرة (باينانس)',
     btn: 'حسناً'
   });
 }
 
-function showManualDeposit(method) {
-  const info = CONFIG.manual[method];
-  if (!info) return;
-  showModal({
-    type: '',
-    icon: 'fa-wallet',
-    title: method === 'binance' ? 'إيداع Binance Pay' : 'إيداع شام كاش',
-    sub: 'حوّل المبلغ إلى:\n' + info.acc + '\n\nثم أرسل إثبات التحويل للإدارة. ستُضاف الجواهر بعد المراجعة.',
-    btn: 'نسخ المعرّف'
-  });
-  // Replace action with copy
-  setTimeout(() => {
-    const btn = $('modalBtn');
-    btn.onclick = () => {
-      try { navigator.clipboard.writeText(info.acc); } catch(e) {}
-      closeModal();
-      toast('تم نسخ المعرّف', 'success');
-    };
-  }, 10);
+/* ═══ NAVIGATION ═══ */
+function go(screen) {
+  const el = $('screen-' + screen);
+  if (!el) return;
+  document.querySelectorAll('.screen').forEach(x => x.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.dock button').forEach(b => b.classList.toggle('on', b.dataset.nav === screen));
+  $('mainScroll').scrollTop = 0;
+  S.nav = screen;
+
+  if (screen === 'profile') document.body.classList.add('hide-balance');
+  else document.body.classList.remove('hide-balance');
+
+  if (screen === 'wallet') { loadDepositHistory(); loadWithdrawHistory(); }
+  if (screen === 'leaderboard') loadLeaderboard();
+  if (screen === 'withdraw') { updateWdMethodUI(); loadWithdrawHistory(); }
+  if (screen === 'deposit') renderDepositPackages();
 }
 
-/* ═══════════════════════════════════════════════════════════
-   BOOT
-   ═══════════════════════════════════════════════════════════ */
+/* ═══ BOOT ═══ */
+function bind() {
+  document.querySelectorAll('[data-nav]').forEach(b => {
+    b.onclick = () => { SFX.tap(); go(b.dataset.nav); };
+  });
+  document.querySelectorAll('[data-go]').forEach(b => {
+    b.onclick = () => { SFX.tap(); go(b.dataset.go); };
+  });
+  document.querySelectorAll('[data-back]').forEach(b => {
+    b.onclick = () => go(b.dataset.back);
+  });
+  document.querySelectorAll('[data-manual]').forEach(b => {
+    b.onclick = () => {
+      const t = b.dataset.manual;
+      if (t === 'binance') go('deposit-binance');
+      else if (t === 'sham') go('deposit-sham');
+    };
+  });
+  document.querySelectorAll('[data-wd-method]').forEach(b => {
+    b.onclick = () => {
+      S.wdMethod = b.dataset.wdMethod;
+      updateWdMethodUI();
+      SFX.tap();
+    };
+  });
+  document.querySelectorAll('[data-copy]').forEach(b => {
+    b.onclick = () => {
+      const el = $(b.dataset.copy);
+      if (!el) return;
+      try {
+        navigator.clipboard.writeText(el.textContent.trim());
+        toast('تم النسخ', 'success');
+      } catch(e) { toast('تعذر النسخ', 'error'); }
+    };
+  });
+
+  $('playBtn').onclick = () => { SFX.tap(); FlyGame.enter(); };
+  $('gamehubPlayBtn').onclick = () => { SFX.tap(); FlyGame.enter(); };
+  $('leaderBtn').onclick = () => { SFX.tap(); go('leaderboard'); };
+  $('hubLeaderBtn').onclick = () => { SFX.tap(); go('leaderboard'); };
+
+  $('energyAdBtn').onclick = watchEnergyAd;
+  $('energyBuyBtn').onclick = buyEnergyWithGems;
+
+  $('convCoins').oninput = updateConverter;
+  $('convBtn').onclick = doConvert;
+
+  document.querySelectorAll('#wdAmounts .amt-btn').forEach(b => {
+    b.onclick = () => {
+      document.querySelectorAll('#wdAmounts .amt-btn').forEach(x => x.classList.remove('on'));
+      b.classList.add('on');
+      S.wd = +b.dataset.amt;
+      updateWd();
+      SFX.tap();
+    };
+  });
+  $('wdSubmit').onclick = doWithdraw;
+
+  $('openPolicy').onclick = () => showInfo('policy');
+  $('openHelp').onclick = () => showInfo('help');
+
+  document.addEventListener('click', e => {
+    if (e.target.closest('.btn, .dock button, .miss-preview, .menu-item, .amt-btn')) SFX.tap();
+  });
+
+  FlyGame.bind();
+}
+
 async function boot() {
   if (!TG.init()) {
-    $('loader').innerHTML = '<div style="padding:30px;text-align:center"><div style="font-size:44px;color:var(--pink);margin-bottom:12px"><i class="fas fa-plane"></i></div><h2 style="margin-bottom:8px">Sky Rush</h2><p style="color:#888;margin-bottom:16px">هذا التطبيق يعمل فقط داخل تيليجرام</p><a href="https://t.me/' + CONFIG.bot.username + '/' + CONFIG.bot.appName + '" style="display:inline-block;background:var(--pink);color:#fff;padding:12px 24px;border-radius:14px;text-decoration:none;font-weight:800">افتح التطبيق</a></div>';
+    $('loader').innerHTML = '<div style="padding:30px;text-align:center"><div style="font-size:44px;color:var(--pink);margin-bottom:12px"><i class="fas fa-plane"></i></div><h2 style="margin-bottom:8px">Sky Rush</h2><p style="color:#888;margin-bottom:16px">افتح التطبيق من تيليجرام</p></div>';
     return;
   }
   const safety = setTimeout(() => {
     try { $('loader').classList.add('hide'); $('app').style.display = 'flex'; } catch(e) {}
   }, 4000);
 
-  try { FB.init(); } catch(e) { console.warn(e); }
+  try { FB.init(); } catch(e) {}
   try { await Promise.race([TIME.sync(), sleep(3000)]); } catch(e) {}
 
   try {
@@ -2794,15 +2482,13 @@ async function boot() {
   $('loader').classList.add('hide');
   $('app').style.display = 'flex';
 
-  try { bind(); } catch(e) { console.warn(e); }
-  try { renderAll(); } catch(e) { console.warn(e); }
+  try { bind(); } catch(e) {}
+  try { renderAll(); } catch(e) {}
   try { FlyGame.preload(); } catch(e) {}
 
-  // Tick
   setInterval(() => { try { renderEnergy(); } catch(e) {} }, 1000);
   setInterval(() => TIME.sync(), 300000);
 }
-
 document.addEventListener('DOMContentLoaded', boot);
 </script>
 </body>
