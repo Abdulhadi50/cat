@@ -232,58 +232,6 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 .game-sub{font-size:10px;font-weight:700;color:var(--ink2);margin-bottom:6px}
 .game-card .btn{height:40px;font-size:12.5px;padding:0 6px;margin-top:auto}
 
-/* ===== SCRATCH CARD (Home quick tile) ===== */
-.quick .scratch-tile{border-color:#B97A00;background:linear-gradient(160deg,#FFF9D6,#FFE95C 55%,#F4B900);box-shadow:0 5px 0 #8A5A00,0 8px 16px rgba(0,0,0,.1),inset 0 3px 0 rgba(255,255,255,.6)}
-.quick .scratch-tile .ico{background:radial-gradient(circle at 30% 25%,#FFF3A8,#FFD52E 45%,#B97A00)}
-
-/* ===== SCRATCH SCREEN ===== */
-.scratch-stage{position:relative;margin:0 auto 12px;max-width:340px}
-.scratch-frame{position:relative;border-radius:24px;padding:14px;border:4px solid #8A5A00;background:conic-gradient(from 45deg,#FFD52E,#FFF3A8,#FFD52E,#E0A300,#FFD52E);box-shadow:0 8px 0 #8A5A00,0 16px 30px rgba(0,0,0,.22),inset 0 4px 0 rgba(255,255,255,.6)}
-.scratch-frame.locked{filter:grayscale(.5) brightness(.9)}
-.scratch-frame::before{content:'';position:absolute;inset:5px;border-radius:18px;border:3px dotted rgba(255,255,255,.9);pointer-events:none;z-index:1}
-.scratch-inner{position:relative;border-radius:16px;background:#fff;overflow:hidden;aspect-ratio:1;box-shadow:inset 0 0 20px rgba(0,0,0,.25)}
-#scratchCanvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:crosshair;z-index:3;border-radius:16px;transition:opacity .5s}
-#scratchCanvas.revealed{opacity:0;pointer-events:none}
-.prize-layer{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;z-index:2;padding:20px}
-.prize-layer.coin{background:radial-gradient(circle at 30% 20%,#FFF9E8,#FFE95C 55%,#F4B900)}
-.prize-layer.gem{background:radial-gradient(circle at 30% 20%,#E8FBFF,#8CEBFF 55%,#2FB8DC)}
-.prize-ico{width:80px;height:80px;border-radius:50%;display:grid;place-items:center;font-size:34px;color:#fff;box-shadow:0 5px 0 rgba(0,0,0,.2),inset 0 -3px 0 rgba(0,0,0,.2),inset 0 3px 0 rgba(255,255,255,.4)}
-.prize-ico.coin{background:radial-gradient(circle at 30% 25%,#FFF3A8,#FFD52E 45%,#B97A00)}
-.prize-ico.gem{background:radial-gradient(circle at 30% 25%,#CFF4FC,#59D7F2 45%,#1B7FA8)}
-.prize-val{font-size:34px;font-weight:900;direction:ltr;line-height:1;color:#5A3A00;text-shadow:0 2px 0 rgba(255,255,255,.5)}
-.prize-lbl{font-size:12px;font-weight:800;color:var(--ink2)}
-
-/* Overlay states */
-.overlay-state{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;z-index:6;padding:24px;background:rgba(255,253,240,.4);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);cursor:pointer}
-.overlay-state.hide{display:none}
-.overlay-state .big-ico{font-size:44px;color:#8A5A00;opacity:.85;margin-bottom:2px}
-.overlay-state .msg{font-size:15px;font-weight:900;color:#5A3A00;line-height:1.4}
-.overlay-state .sub-msg{font-size:11.5px;font-weight:800;color:#8A5A00;opacity:.75}
-.overlay-state.wait-state{background:rgba(10,20,40,.55);cursor:default}
-.overlay-state.wait-state .big-ico{color:#FFD52E}
-.overlay-state.wait-state .msg{color:#fff}
-.overlay-state.wait-state .sub-msg{color:rgba(255,255,255,.85)}
-.overlay-state.wait-state .countdown{font-size:44px;font-weight:900;direction:ltr;color:#FFD52E;text-shadow:0 3px 0 rgba(0,0,0,.35);letter-spacing:2px;font-variant-numeric:tabular-nums}
-.overlay-state.wait-state .countdown-lbl{font-size:12px;font-weight:800;color:rgba(255,255,255,.85);margin-top:4px}
-
-/* Ad button under card */
-.ad-actions{max-width:340px;margin:0 auto 12px;display:none}
-.ad-actions.show{display:block}
-.ad-btn-wrap{position:relative}
-.ad-counter-badge{
-  position:absolute;top:-8px;right:12px;
-  background:var(--red);color:#fff;
-  font-size:10px;font-weight:900;
-  padding:3px 10px;border-radius:10px;
-  box-shadow:0 2px 0 #8B0000,0 3px 8px rgba(0,0,0,.15);
-  direction:ltr;
-  border:1.5px solid #fff;
-}
-.ad-remaining{
-  text-align:center;font-size:11px;font-weight:800;
-  color:var(--ink2);margin-top:8px;
-}
-
 /* ========== FLY GAME ========== */
 .screen#screen-fly,.screen#screen-flyboard{position:fixed;inset:0;z-index:55;padding:0;margin:0;max-width:none;display:none;flex-direction:column;overflow:hidden}
 .screen#screen-fly.active,.screen#screen-flyboard.active{display:flex;animation:none}
@@ -420,7 +368,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 
       <div class="quick">
         <button class="card" data-go="wheel"><span class="ico i-gold"><i class="fas fa-dharmachakra"></i></span><div class="ttl">عجلة الحظ</div><div class="sub">لفّتان يومياً</div><span class="badge" id="wheelBadge" style="display:none">مجاناً</span></button>
-        <button class="card scratch-tile" data-go="scratch"><span class="ico i-gold"><i class="fas fa-hand-sparkles"></i></span><div class="ttl">اقشط واربح</div><div class="sub">3 بطاقات يومياً</div><span class="badge" id="scratchBadge" style="display:none">مجاناً</span></button>
+        <button class="card" data-go="missions"><span class="ico i-sky"><i class="fas fa-list-check"></i></span><div class="ttl">المهام</div><div class="sub">مكافآت يومية</div></button>
       </div>
 
       <button class="card" data-go="invest" style="width:100%;text-align:start;margin-top:10px;border-color:var(--green-d)">
@@ -480,46 +428,6 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
         <span><i class="fas fa-circle-play"></i> شاهد إعلان واربح</span>
         <small style="font-size:11px;font-weight:800"><i class="fas fa-clock"></i> <span id="wheelAdTimer">متاح (3/3)</span></small>
       </button>
-    </section>
-
-    <!-- SCRATCH -->
-    <section class="screen" id="screen-scratch">
-      <div class="sec"><span class="ico i-gold"><i class="fas fa-hand-sparkles"></i></span> اقشط واربح</div>
-
-      <div class="card" style="text-align:center;padding:18px 16px;margin-bottom:14px">
-        <div class="ico i-gold" style="width:56px;height:56px;margin:0 auto 6px;font-size:24px"><i class="fas fa-ticket"></i></div>
-        <div class="ttl" style="font-size:18px">بطاقتك اليومية</div>
-        <div class="sub" style="margin-top:4px">اقشط البطاقة كاملة لكشف جائزتك</div>
-      </div>
-
-      <div class="scratch-stage">
-        <div class="scratch-frame" id="scratchFrame">
-          <div class="scratch-inner">
-            <div class="prize-layer coin" id="prizeLayer">
-              <div class="prize-ico coin" id="prizeIco"><i class="fas fa-coins"></i></div>
-              <div class="prize-val" id="prizeVal">—</div>
-              <div class="prize-lbl" id="prizeLbl">جائزة سرية</div>
-            </div>
-            <canvas id="scratchCanvas"></canvas>
-            <div class="overlay-state" id="overlayState">
-              <div class="big-ico"><i class="fas fa-hand-pointer"></i></div>
-              <div class="msg" id="overlayMsg">اقشط البطاقة</div>
-              <div class="sub-msg" id="overlaySubMsg">اسحب إصبعك فوق البطاقة لكشف الجائزة</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Ad button under card -->
-      <div class="ad-actions" id="adActions">
-        <div class="ad-btn-wrap">
-          <button class="btn b-s" id="btnWatchAd">
-            <i class="fas fa-circle-play"></i> شاهد إعلان واقشط مرة أخرى
-          </button>
-          <span class="ad-counter-badge" id="adBadge">2/2</span>
-        </div>
-        <div class="ad-remaining" id="adRemaining"></div>
-      </div>
     </section>
 
     <!-- MISSIONS -->
@@ -959,15 +867,6 @@ const CONFIG={
     coinPerPair:5, dMin:1, dMax:10,
     bubbleIntervalMin:5, bubbleIntervalMax:10,
   },
-  scratch:{
-    freeCooldownMs: 24*60*60*1000,  // 24h free reset
-    adCooldownMs:   24*60*60*1000,  // 24h ad reset (after last ad)
-    maxAdPerDay:    2,
-    prizes: [
-      { type:'coins', min:500, max:5000, weight:60, icon:'fa-coins', cls:'coin', label:'عملات' },
-      { type:'gems',  min:2,   max:15,   weight:40, icon:'fa-gem',   cls:'gem',  label:'جواهر' },
-    ],
-  },
 };
 
 /* ═══ HELPERS ═══ */
@@ -1051,7 +950,6 @@ const save=(extra={})=>FB.set(Object.assign({
   flyTotal:S.user.flyTotal,
   referralCount:S.user.referralCount,
   referralEarnings:S.user.referralEarnings,
-  scratchState:S.user.scratchState,
   updatedAt:Date.now()
 }, extra));
 
@@ -1074,7 +972,6 @@ const newUser=()=>({telegramId:TG.id,name:(TG.user.first_name||'')+(TG.user.last
   wheelSpins:CONFIG.spins,wheelLastDate:null,wheelSpinCount:0,wheelMissionClaimed:false,wheelAdTimes:[],
   dailyRewards:{},dailyLogin:{streak:0,lastClaimDate:null},levelMissions:{},inviteMissions:{},inviteBase:0,lang:null,
   flyBest:0,flyCoins:0,flyGems:0,flyTotal:0,
-  scratchState:{ freeUsedAt:0, adUsedTimes:[] },
   createdAt:Date.now(),updatedAt:Date.now()});
 
 /* ═══ UI ═══ */
@@ -1164,11 +1061,9 @@ function renderAll(){
   $('refCount').textContent=u.referralCount||0;$('refEarn').textContent=fmt(u.referralEarnings||0);$('refCode').textContent=u.referralCode||TG.id;
   $('enterCard').style.display=u.referralUsed?'none':'block';
   $('wheelBadge').style.display=spinsLeft()>0?'inline-block':'none';
-  $('scratchBadge').style.display=scratchFreeReady()?'inline-block':'none';
   renderEnergy();renderMissions();renderWheel();updateEx();updateWd();
   if($('screen-deposit').classList.contains('active'))renderStarPackages();
   if($('screen-invest').classList.contains('active'))renderInvestments();
-  if($('screen-scratch').classList.contains('active'))ScratchGame.render();
   updatePendingBanner();
 }
 function showScreen(name){
@@ -1186,7 +1081,6 @@ function go(s){
   if(s==='deposit'){renderStarPackages();setDepTab('stars');}
   if(s==='invest')renderInvestments();
   if(s==='wheel'){S.busy=false;renderWheel();}
-  if(s==='scratch'){ScratchGame.onEnter();}
   if(s==='fly'){FlyGame.enter();return;}
   if(s !== 'deposit' && cryptoPollTimer){ stopPaymentPolling(); }
 }
@@ -1426,383 +1320,6 @@ async function watchWheelAd(){
     await performWheelSpin(true);
   }catch(e){S.busy=false;renderAll();toast('لم تكتمل مشاهدة الإعلان','err')}
 }
-
-/* ═══ SCRATCH GAME (اقشط واربح) ═══ */
-function scratchState(u){
-  if(!u) u=S.user;
-  if(!u) return {freeUsedAt:0, adUsedTimes:[]};
-  if(!u.scratchState || typeof u.scratchState!=='object') u.scratchState={freeUsedAt:0, adUsedTimes:[]};
-  if(!Array.isArray(u.scratchState.adUsedTimes)) u.scratchState.adUsedTimes=[];
-  return u.scratchState;
-}
-function scratchFreeCooldownRemain(){
-  const st=scratchState();
-  if(!st.freeUsedAt) return 0;
-  return Math.max(0, (st.freeUsedAt + CONFIG.scratch.freeCooldownMs) - TIME.now());
-}
-function scratchAdsLeftToday(){
-  const st=scratchState();
-  const now=TIME.now();
-  st.adUsedTimes = st.adUsedTimes.filter(t => now - t < CONFIG.scratch.adCooldownMs);
-  return Math.max(0, CONFIG.scratch.maxAdPerDay - st.adUsedTimes.length);
-}
-function scratchAdResetRemain(){
-  const st=scratchState();
-  if(!st.adUsedTimes.length) return 0;
-  const last = Math.max(...st.adUsedTimes);
-  return Math.max(0, (last + CONFIG.scratch.adCooldownMs) - TIME.now());
-}
-function scratchFreeReady(){
-  return scratchFreeCooldownRemain() <= 0 && scratchAdsLeftToday() === CONFIG.scratch.maxAdPerDay;
-}
-function scratchPickPrize(){
-  const prizes=CONFIG.scratch.prizes;
-  const total=prizes.reduce((s,p)=>s+p.weight,0);
-  let r=Math.random()*total;
-  for(const p of prizes){ if(r<p.weight) return p; r-=p.weight; }
-  return prizes[0];
-}
-function scratchRand(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
-function scratchFormatCountdown(ms){
-  if(ms<=0) return '00:00:00';
-  const s=Math.floor(ms/1000);
-  return String(Math.floor(s/3600)).padStart(2,'0')+':'+
-         String(Math.floor((s%3600)/60)).padStart(2,'0')+':'+
-         String(s%60).padStart(2,'0');
-}
-
-const ScratchGame = (() => {
-  let mode='idle'; // ready | adReady | waiting | done
-  let cooldownTimer=null;
-  let currentCard=null;
-  let revealed=false;
-  let scratching=false;
-  let bound=false;
-  let lastCheck=0;
-  let drawing=false;
-  let lastX=0, lastY=0;
-
-  function clearCooldownTimer(){
-    if(cooldownTimer){ clearInterval(cooldownTimer); cooldownTimer=null; }
-  }
-
-  function setOverlayHtml(html, cls){
-    const ov=$('overlayState');
-    ov.classList.remove('hide','wait-state');
-    if(cls) ov.classList.add(cls);
-    ov.innerHTML = html;
-  }
-  function hideOverlay(){ $('overlayState').classList.add('hide'); }
-
-  function renderPrizeLayer(card){
-    $('prizeLayer').className = 'prize-layer ' + card.cls;
-    const ico = $('prizeIco');
-    ico.className = 'prize-ico ' + card.cls;
-    ico.innerHTML = '<i class="fas ' + card.icon + '"></i>';
-    $('prizeVal').textContent = '+' + card.amount.toLocaleString('en-US');
-    $('prizeLbl').textContent = card.label;
-  }
-
-  function makeCard(){
-    const p = scratchPickPrize();
-    const amount = scratchRand(p.min, p.max);
-    return { ...p, amount };
-  }
-
-  function updateAdButton(){
-    const wrap = $('adActions');
-    const badge = $('adBadge');
-    const remainingEl = $('adRemaining');
-    const btn = $('btnWatchAd');
-    const st = scratchState();
-    const adsLeft = scratchAdsLeftToday();
-
-    // Show button only when: free card used AND ads left > 0
-    if(st.freeUsedAt > 0 && adsLeft > 0){
-      wrap.classList.add('show');
-      badge.textContent = adsLeft + '/' + CONFIG.scratch.maxAdPerDay;
-      btn.disabled = false;
-      remainingEl.textContent = 'اضغط للمشاهدة — متبقي ' + adsLeft + ' إعلان';
-    } else {
-      wrap.classList.remove('show');
-    }
-  }
-
-  function showFreeReady(){
-    mode = 'ready';
-    $('scratchFrame').classList.remove('locked');
-    prepareCard(true);
-    updateAdButton();
-  }
-
-  function showAdReady(){
-    mode = 'adReady';
-    $('scratchFrame').classList.add('locked');
-    hideOverlay();
-    updateAdButton();
-  }
-
-  function showWaiting(){
-    mode = 'waiting';
-    $('scratchFrame').classList.add('locked');
-    updateAdButton();
-    renderWaiting();
-    clearCooldownTimer();
-    cooldownTimer = setInterval(renderWaiting, 1000);
-  }
-
-  function renderWaiting(){
-    if(mode !== 'waiting') return;
-    const freeRemain = scratchFreeCooldownRemain();
-    const st = scratchState();
-    const adsLeft = scratchAdsLeftToday();
-
-    // If free expired & no cards used → show free ready
-    if(freeRemain <= 0 && st.adUsedTimes.length === 0 && !st.freeUsedAt){
-      clearCooldownTimer();
-      showFreeReady();
-      return;
-    }
-
-    // If ads available and free used → show adReady (button handles it)
-    if(adsLeft > 0 && st.freeUsedAt > 0){
-      clearCooldownTimer();
-      showAdReady();
-      return;
-    }
-
-    const adReset = scratchAdResetRemain();
-    const remain = Math.max(freeRemain, adReset);
-    const html =
-      '<div class="countdown">' + scratchFormatCountdown(remain) + '</div>' +
-      '<div class="countdown-lbl">' + (adReset > 0 ? 'الإعلان القادم بعد' : 'بطاقة جديدة بعد') + '</div>';
-    setOverlayHtml(html, 'wait-state');
-  }
-
-  function drawScratchCover(){
-    const cvs = $('scratchCanvas');
-    const rect = cvs.getBoundingClientRect();
-    if(rect.width===0||rect.height===0) return;
-    cvs.width = rect.width;
-    cvs.height = rect.height;
-    const ctx = cvs.getContext('2d');
-
-    const gr = ctx.createLinearGradient(0, 0, cvs.width, cvs.height);
-    gr.addColorStop(0, '#E8CF9A');
-    gr.addColorStop(0.25, '#C9A968');
-    gr.addColorStop(0.5, '#E8CF9A');
-    gr.addColorStop(0.75, '#B97A00');
-    gr.addColorStop(1, '#E8CF9A');
-    ctx.fillStyle = gr;
-    ctx.fillRect(0, 0, cvs.width, cvs.height);
-
-    const shine = ctx.createLinearGradient(0, cvs.height, cvs.width, 0);
-    shine.addColorStop(0, 'rgba(255,255,255,0)');
-    shine.addColorStop(0.45, 'rgba(255,255,255,0)');
-    shine.addColorStop(0.5, 'rgba(255,255,255,.35)');
-    shine.addColorStop(0.55, 'rgba(255,255,255,0)');
-    shine.addColorStop(1, 'rgba(255,255,255,0)');
-    ctx.fillStyle = shine;
-    ctx.fillRect(0, 0, cvs.width, cvs.height);
-
-    ctx.fillStyle = 'rgba(138,90,0,.18)';
-    for(let x = 0; x < cvs.width; x += 8){
-      for(let y = 0; y < cvs.height; y += 8){
-        ctx.beginPath();
-        ctx.arc(x + (y % 16 === 0 ? 4 : 0), y, 0.9, 0, Math.PI*2);
-        ctx.fill();
-      }
-    }
-    cvs.classList.remove('revealed');
-  }
-
-  function getScratchPercent(){
-    const cvs = $('scratchCanvas');
-    const ctx = cvs.getContext('2d');
-    try {
-      const data = ctx.getImageData(0, 0, cvs.width, cvs.height).data;
-      let cleared = 0, total = 0;
-      for(let i = 3; i < data.length; i += 4*60){
-        total++;
-        if(data[i] < 40) cleared++;
-      }
-      return (cleared/total) * 100;
-    } catch(e){ return 0; }
-  }
-
-  function scratchAt(x, y, radius){
-    const cvs = $('scratchCanvas');
-    const ctx = cvs.getContext('2d');
-    ctx.globalCompositeOperation = 'destination-out';
-    ctx.beginPath();
-    ctx.arc(x, y, radius, 0, Math.PI*2);
-    ctx.fill();
-  }
-  function scratchLine(x1, y1, x2, y2, radius){
-    const cvs = $('scratchCanvas');
-    const ctx = cvs.getContext('2d');
-    ctx.globalCompositeOperation = 'destination-out';
-    ctx.lineWidth = radius*2;
-    ctx.lineCap = 'round';
-    ctx.beginPath();
-    ctx.moveTo(x1, y1);
-    ctx.lineTo(x2, y2);
-    ctx.stroke();
-  }
-
-  function checkReveal(){
-    if(revealed || mode !== 'ready') return;
-    const pct = getScratchPercent();
-    if(pct >= 60) revealCard();
-  }
-
-  async function revealCard(){
-    if(revealed) return;
-    revealed = true;
-    const cvs = $('scratchCanvas');
-    cvs.classList.add('revealed');
-
-    const card = currentCard;
-    if(card.type === 'coins') S.user.coins += card.amount;
-    else S.user.gems += card.amount;
-
-    const st = scratchState();
-    const now = TIME.now();
-    if(!st.freeUsedAt){
-      st.freeUsedAt = now;
-    } else {
-      st.adUsedTimes.push(now);
-    }
-    S.user.scratchState = st;
-    await save({ scratchState: st });
-    renderBalanceAll();
-
-    setTimeout(() => {
-      const adsLeft = scratchAdsLeftToday();
-      if(adsLeft > 0){
-        showAdReady();
-      } else {
-        showWaiting();
-      }
-    }, 700);
-  }
-
-  function renderBalanceAll(){
-    try { renderAll(); } catch(e) {}
-  }
-
-  function prepareCard(autoOpen){
-    const card = makeCard();
-    currentCard = card;
-    revealed = false;
-    scratching = false;
-    renderPrizeLayer(card);
-    requestAnimationFrame(() => {
-      drawScratchCover();
-      bindCanvas();
-      if(autoOpen){
-        setOverlayHtml(
-          '<div class="big-ico"><i class="fas fa-hand-pointer"></i></div>' +
-          '<div class="msg">اقشط البطاقة</div>' +
-          '<div class="sub-msg">اسحب إصبعك فوق البطاقة لكشف الجائزة</div>',
-          ''
-        );
-      }
-    });
-  }
-
-  function bindCanvas(){
-    const cvs = $('scratchCanvas');
-    if(bound) return;
-    bound = true;
-
-    function pos(e){
-      const rect = cvs.getBoundingClientRect();
-      const p = e.touches ? e.touches[0] : e;
-      return { x: p.clientX - rect.left, y: p.clientY - rect.top };
-    }
-    function start(e){
-      if(mode !== 'ready' || revealed) return;
-      if(!scratching){
-        hideOverlay();
-        scratching = true;
-      }
-      drawing = true;
-      const p = pos(e);
-      lastX = p.x; lastY = p.y;
-      scratchAt(p.x, p.y, 24);
-      throttle();
-    }
-    function move(e){
-      if(!drawing || revealed) return;
-      e.preventDefault();
-      const p = pos(e);
-      scratchLine(lastX, lastY, p.x, p.y, 24);
-      lastX = p.x; lastY = p.y;
-      throttle();
-    }
-    function end(){
-      if(drawing){ drawing = false; checkReveal(); }
-    }
-    function throttle(){
-      const now = performance.now();
-      if(now - lastCheck > 120){ lastCheck = now; checkReveal(); }
-    }
-
-    cvs.addEventListener('pointerdown', start);
-    cvs.addEventListener('pointermove', move);
-    cvs.addEventListener('pointerup', end);
-    cvs.addEventListener('pointerleave', end);
-    cvs.addEventListener('pointercancel', end);
-    cvs.addEventListener('touchstart', (e)=>{ e.preventDefault(); start(e); }, {passive:false});
-    cvs.addEventListener('touchmove', move, {passive:false});
-    cvs.addEventListener('touchend', end);
-  }
-
-  function bindButton(){
-    $('btnWatchAd').onclick = () => {
-      const adsLeft = scratchAdsLeftToday();
-      if(adsLeft <= 0) return;
-      if(typeof window.show_12008608!=='function') return toast('الإعلان غير متاح حالياً','err');
-      mode = 'ready';
-      $('scratchFrame').classList.remove('locked');
-      prepareCard(true);
-      updateAdButton();
-      SFX.play('tap');
-      try {
-        window.show_12008608().catch(()=>{});
-      } catch(e){}
-    };
-    $('overlayState').addEventListener('click', () => {
-      if(mode === 'ready' && !scratching){
-        hideOverlay();
-        scratching = true;
-      }
-    });
-  }
-
-  function onEnter(){
-    bindButton();
-    const st = scratchState();
-    const freeRemain = scratchFreeCooldownRemain();
-    const adsLeft = scratchAdsLeftToday();
-
-    if(freeRemain <= 0 && !st.freeUsedAt){
-      showFreeReady();
-    } else if(st.freeUsedAt > 0 && adsLeft > 0){
-      showAdReady();
-    } else {
-      showWaiting();
-    }
-  }
-
-  function render(){
-    // Soft re-render of the ad button (no state changes)
-    updateAdButton();
-  }
-
-  return { onEnter, render };
-})();
 
 /* ═══ MISSIONS ═══ */
 const DAILY_M=[{id:'tg_channel',title:'انضم لقناة تيليجرام',desc:'انضم للقناة الرسمية @PuppyMerge',reward:{gems:10}},{id:'wheel_10',kind:'wheel',title:'أدر عجلة الحظ 10 مرات',desc:'أكمل 10 لفات',reward:{coins:5000}}];
@@ -2688,7 +2205,9 @@ function openContentModal(kind){
 }
 function closeContentModal(){$('contentModal').classList.remove('show')}
 
-/* ═══ FLY GAME ═══ */
+/* =========================================================
+   FLY GAME
+   ========================================================= */
 const FlyGame = (() => {
   const cvs = document.getElementById('flyCanvas');
   const ctx = cvs.getContext('2d');
@@ -3456,12 +2975,6 @@ async function boot(){
       S.user = Object.assign(newUser(), ex);
       if(!Array.isArray(S.user.investments)) S.user.investments = [];
       if(!Array.isArray(S.user.wheelAdTimes)) S.user.wheelAdTimes = [];
-      if(!S.user.scratchState || typeof S.user.scratchState !== 'object'){
-        S.user.scratchState = { freeUsedAt: 0, adUsedTimes: [] };
-      }
-      if(!Array.isArray(S.user.scratchState.adUsedTimes)){
-        S.user.scratchState.adUsedTimes = [];
-      }
       /* Normalize energy: don't touch or refill */
       S.user.energy = Number(S.user.energy ?? CONFIG.energyMax);
       S.user.energyUpdatedAt = Number(S.user.energyUpdatedAt || TIME.now());
