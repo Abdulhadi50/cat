@@ -126,6 +126,8 @@ input{font:inherit;color:inherit}
 .info{background:#FFF9E8;border-radius:14px;padding:6px 12px;margin-bottom:12px;border:1.5px solid #CFF4FC}
 .info div{display:flex;justify-content:space-between;padding:7px 0;font-size:13px;font-weight:700;color:var(--ink2)}
 .info div+div{border-top:1px dashed #CFF4FC}.info b{color:var(--ink);direction:ltr}
+.info .fee-row{color:#C62828}.info .fee-row b{color:#C62828}
+.info .net-row{color:#238A12}.info .net-row b{color:#238A12;font-size:14px}
 .inp{width:100%;height:52px;padding:0 16px;border-radius:16px;background:#FFF9E8;border:2px solid #CFF4FC;font-weight:800;outline:none;direction:ltr;text-align:left;margin-top:8px}
 .inp:focus{border-color:var(--gold)}
 .hist{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:11px 14px;margin-bottom:8px;border-radius:16px;border-width:2px}
@@ -238,24 +240,17 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 #screen-fly{background:#87CEEB}
 .fly-canvas-wrap{position:relative;width:100%;height:100%;overflow:hidden;background:#87CEEB}
 #flyCanvas{display:block;width:100%;height:100%;touch-action:none}
-
-/* New thin balances stack, top-right */
 .fly-balances{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));right:12px;display:flex;flex-direction:column;gap:5px;align-items:flex-end;z-index:5;pointer-events:none}
 .fly-balance{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.82);border:1.5px solid rgba(255,255,255,.95);border-radius:999px;padding:3px 12px 3px 10px;font-weight:800;font-size:12px;color:var(--ink);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 2px 6px rgba(0,0,0,.12);min-width:84px;direction:ltr;justify-content:flex-start;line-height:1.1}
 .fly-balance i{font-size:11px}
 .fly-balance.coins i{color:#B97A00}
 .fly-balance.gems i{color:#1B7FA8}
 .fly-balance b{direction:ltr;font-variant-numeric:tabular-nums}
-
-/* Distance: no background, small, no icon */
 .fly-dist-center{position:absolute;top:calc(12px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);font-size:13px;font-weight:900;color:#2A1B00;text-shadow:0 1px 2px rgba(255,255,255,.95),0 2px 6px rgba(255,255,255,.6);z-index:5;pointer-events:none;direction:ltr}
 .fly-dist-center b{font-size:15px}
 .fly-dist-center span{font-size:10px;opacity:.75;margin-inline-start:2px}
-
-/* Pause button top-left (visual) */
 .fly-pause{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));left:12px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.85);border:1.5px solid #fff;display:grid;place-items:center;color:var(--ink);font-size:14px;pointer-events:auto;box-shadow:0 2px 6px rgba(0,0,0,.15);z-index:6;transition:transform .1s}
 .fly-pause:active{transform:scale(.9)}
-
 #flyFloaters{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:6}
 .fly-floater{position:absolute;font-size:30px;font-weight:900;color:#FFD52E;white-space:nowrap;text-shadow:0 0 3px #fff,0 0 3px #fff,-2px -2px 0 #8A5A00,2px -2px 0 #8A5A00,-2px 2px 0 #8A5A00,2px 2px 0 #8A5A00,0 6px 10px rgba(0,0,0,.4);animation:flyFloatUp 1.15s cubic-bezier(.2,.7,.4,1) forwards}
 .fly-floater.gem{color:#59D7F2;text-shadow:0 0 3px #fff,0 0 3px #fff,-2px -2px 0 #1B7FA8,2px -2px 0 #1B7FA8,-2px 2px 0 #1B7FA8,2px 2px 0 #1B7FA8,0 6px 10px rgba(0,0,0,.4)}
@@ -268,7 +263,6 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 .fly-ready-card .ico{width:64px;height:64px;font-size:30px;margin:0 auto 10px}
 .fly-ready-title{font-size:22px;font-weight:800}
 .fly-ready-sub{font-size:12.5px;font-weight:700;color:var(--ink2);margin:4px 0 16px}
-
 #flyOverOverlay{padding:0;overflow:hidden;background:linear-gradient(180deg,#6EC3E6 0%,#A8DCF0 38%,#DDF1F5 62%,#FFE8B8 100%)}
 .fly-over-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .fly-over-sun{position:absolute;top:8%;inset-inline-end:10%;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,#FFFBE0 30%,rgba(255,225,150,.55) 60%,rgba(255,225,150,0) 72%)}
@@ -288,7 +282,6 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 .fly-over-rewgrid b{font-size:24px;direction:ltr;line-height:1}
 .fly-over-actions{display:flex;flex-direction:column;gap:12px;padding-top:12px}
 .fly-link-board{color:var(--ink);font-size:16px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:8px;padding:8px}
-
 #screen-flyboard{background:linear-gradient(180deg,#E8F6FC 0%,#FFFDF0 100%)}
 .fly-board-header{padding:calc(10px + env(safe-area-inset-top,0px)) 12px 12px;display:flex;align-items:center;gap:10px;background:linear-gradient(180deg,#fff,#FFFDF0);border-bottom:2px solid var(--edge);flex-shrink:0}
 .fly-board-title{flex:1;text-align:center;font-weight:800;font-size:16px;color:var(--ink)}
@@ -387,8 +380,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
         </div>
       </button>
     </section>
-
-    <!-- GAME (Merge) -->
+        <!-- GAME (Merge) -->
     <section class="screen" id="screen-game">
       <div class="g-head">
         <button class="g-btn" id="gameBack"><i class="fas fa-arrow-right"></i></button>
@@ -463,18 +455,13 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
         <div class="ttl" style="font-size:19px">استثمار الجراء</div>
         <div class="sub">اشترِ خطة بالجواهر واكسب أرباحاً تلقائياً</div>
       </div>
-
       <div class="invest-banner" id="investBanner" style="display:none">
         <div class="paw"><i class="fas fa-paw"></i></div>
         <div class="amount" id="investTotalPending">0</div>
         <div class="label">💎 متاح للجمع الآن</div>
-        <button class="btn collect-btn" id="investCollectAllBtn" style="margin-top:12px">
-          <i class="fas fa-hand-holding-heart"></i> جمع الكل
-        </button>
+        <button class="btn collect-btn" id="investCollectAllBtn" style="margin-top:12px"><i class="fas fa-hand-holding-heart"></i> جمع الكل</button>
       </div>
-
       <div id="investActiveList"></div>
-
       <div class="sec"><span class="ico i-green"><i class="fas fa-store"></i></span> الخطط المتاحة</div>
       <div id="investPlansList"></div>
     </section>
@@ -486,7 +473,6 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
         <div class="ttl" style="font-size:19px">شراء الجواهر</div>
         <div class="sub">اختر طريقة الشراء المناسبة لك</div>
       </div>
-
       <div class="dep-tabs">
         <button class="dep-tab active" id="depTabStars" data-tab="stars"><i class="fas fa-star"></i> Stars </button>
         <button class="dep-tab" id="depTabCrypto" data-tab="crypto"><i class="fas fa-coins"></i> USDT </button>
@@ -531,7 +517,6 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
             <button class="btn b-r b-sm" id="cryptoCancelBtn" style="height:40px"><i class="fas fa-xmark"></i> إلغاء الطلب</button>
           </div>
         </div>
-
         <div class="card">
           <div class="row" style="margin-bottom:12px">
             <span class="ico i-sky" style="width:52px;height:52px"><i class="fas fa-coins"></i></span>
@@ -541,7 +526,6 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
             </div>
           </div>
         </div>
-
         <div class="card">
           <div class="ttl" style="margin-bottom:10px">اختر مبلغ الشراء (بالدولار)</div>
           <div class="amts" id="cryptoAmounts" style="grid-template-columns:repeat(3,1fr)">
@@ -555,17 +539,14 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
           <div class="sub" style="text-align:center;margin-top:12px">أو أدخل مبلغاً مخصصاً</div>
           <input class="inp" id="cryptoCustomUsd" type="number" min="1" max="1000" step="1" placeholder="$1 - $1000" inputmode="decimal">
         </div>
-
         <div class="info">
           <div>مبلغ الشراء <b id="cryptoChosenUsd">$0.00</b></div>
           <div>الجواهر المستقبلة <b id="cryptoReceiveGems">0 💎</b></div>
           <div>رصيدك الحالي <b id="depGemsCrypto">0 💎</b></div>
         </div>
-
         <button class="btn b-g" id="cryptoPayBtn" style="margin-top:10px" disabled>
           <i class="fas fa-credit-card"></i> إكمال الدفع بالكريبتو
         </button>
-
         <div class="card" style="text-align:center;font-size:12px;color:var(--ink2);margin-top:12px">
           <i class="fas fa-shield-halved" style="color:var(--sky-d)"></i>
           دفع آمن ومشفر. تصل الجواهر لحسابك فوراً بعد التأكيد.
@@ -576,7 +557,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
       <div id="dep-tab-sham" style="display:none"></div>
     </section>
 
-    <!-- WITHDRAW -->
+    <!-- WITHDRAW (معدّل: عمولة تلقائية على Binance) -->
     <section class="screen" id="screen-withdraw">
       <div class="hero2"><div class="sub">رصيدك القابل للسحب</div><div class="big"><i class="fas fa-gem" style="color:var(--sky-d)"></i> <span id="wdGems">0</span></div><div class="ttl" id="wdUsd">$0.00</div></div>
       <div class="ttl" style="margin:4px 0 10px">اختر طريقة السحب</div>
@@ -592,7 +573,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 
       <div class="card row wd-method selected" data-method="binance" role="button" tabindex="0" style="border-color:var(--gold-d)">
         <img src="https://up6.cc/2026/09/178982889076391.png" alt="Binance" style="width:46px;height:46px;object-fit:contain;border-radius:12px" onerror="this.style.display='none'">
-        <div class="grow"><div class="ttl">Binance Pay</div><div class="sub">الحد الأدنى 5,000 💎 = $0.40</div></div>
+        <div class="grow"><div class="ttl">Binance Pay</div><div class="sub">الحد الأدنى 5,000 💎 = $0.40 (صافي بعد العمولة)</div></div>
         <i class="fas fa-circle-check wd-check" style="color:var(--green-d);font-size:22px"></i>
       </div>
 
@@ -616,13 +597,21 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
         <input class="inp" id="wdAccount" placeholder="Binance Pay ID أو البريد الإلكتروني" autocomplete="off">
       </div>
 
-      <div class="info"><div>المبلغ المختار<b id="wdChosen">0 💎</b></div><div>ما يعادل<b id="wdReceive">$0.00</b></div></div>
+      <!-- صندوق المعلومات المعدّل: يعرض القيمة الإجمالية + العمولة + الصافي -->
+      <div class="info">
+        <div>المبلغ المختار<b id="wdChosen">0 💎</b></div>
+        <div id="wdGrossRow" style="display:none">القيمة الإجمالية<b id="wdGross">$0.00</b></div>
+        <div id="wdFeeRow" class="fee-row" style="display:none">العمولة (20%)<b id="wdFee">-$0.00</b></div>
+        <div id="wdNetRow" class="net-row" style="display:none">الصافي للاستلام<b id="wdNet">$0.00</b></div>
+        <div id="wdReceiveRow">ما يعادل<b id="wdReceive">$0.00</b></div>
+      </div>
       <button class="btn b-g" id="wdSubmit"><i class="fas fa-paper-plane"></i> تقديم طلب السحب</button>
 
       <div class="card" style="text-align:center;font-size:11.5px;color:var(--ink2);border-color:var(--sky-d);margin-top:10px">
         <i class="fas fa-info-circle" style="color:var(--sky-d)"></i>
         <div style="margin-top:6px"><b>USDT Crypto:</b> قريباً — غير متاح مؤقتاً.</div>
-        <div style="margin-top:4px"><b>Binance Pay / شام كاش:</b> يُعالج يدوياً خلال 24-72 ساعة.</div>
+        <div style="margin-top:4px"><b>Binance Pay:</b> عمولة 20% — يُعالج خلال 24-72 ساعة.</div>
+        <div style="margin-top:4px"><b>شام كاش:</b> بدون عمولة — يُعالج خلال 24-72 ساعة.</div>
       </div>
 
       <div class="sec" style="margin-top:16px"><span class="ico i-gold"><i class="fas fa-clock-rotate-left"></i></span> سجل السحوبات</div>
@@ -705,14 +694,12 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
   <section class="screen" id="screen-fly">
     <div class="fly-canvas-wrap">
       <canvas id="flyCanvas"></canvas>
-
       <div class="fly-balances">
         <div class="fly-balance coins"><i class="fas fa-coins"></i><b id="flyHudCoins">0</b></div>
         <div class="fly-balance gems"><i class="fas fa-gem"></i><b id="flyHudDiamonds">0</b></div>
       </div>
       <div class="fly-dist-center"><b id="flyHudDist">0</b><span>م</span></div>
       <button class="fly-pause" id="flyPause" aria-label="إيقاف"><i class="fas fa-pause"></i></button>
-
       <div id="flyFloaters"></div>
 
       <div class="fly-overlay show" id="flyReadyOverlay">
@@ -827,7 +814,8 @@ const CONFIG={
   gameWin:{coinsPerLevel: 100, gemsEvery10: 10},
   wd:{
     min:5000,
-    rate:0.00008,      /* 5000 💎 = $0.40 */
+    rate:0.0001,          /* 100 💎 = $0.01 (سعر العرض الموحد) */
+    binanceFee:0.20,      /* 20% عمولة Binance → 5000 💎 = $0.40 صافي */
     shamMin:1000,
     shamSypPerGem:0.01
   },
@@ -875,13 +863,29 @@ const fmt=n=>Number(n||0).toLocaleString('en-US');
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 
-/* USD display: floor to nearest 100 gems step → shows 0.00 until 100 gems reached */
+/* ─── USD HELPERS (سعر موحّد + عمولة تلقائية على Binance) ─── */
+
+/* القيمة الإجمالية للجواهر (سعر العرض): كل 100 💎 = $0.01 */
 function usd(g){
   const n = Math.floor(Number(g||0));
-  const step = 100;
-  const v = Math.floor(n/step)*step * CONFIG.wd.rate;
+  const v = Math.floor(n / 100) * 0.01;
   return v.toFixed(2);
 }
+
+/* المبلغ الصافي لسحب Binance Pay بعد عمولة 20%: 5000 💎 = $0.40 */
+function usdBinanceNet(g){
+  const gross = parseFloat(usd(g));
+  const net = gross * (1 - CONFIG.wd.binanceFee);
+  return net.toFixed(2);
+}
+
+/* مبلغ العمولة بالدولار */
+function usdBinanceFee(g){
+  const gross = parseFloat(usd(g));
+  const fee = gross * CONFIG.wd.binanceFee;
+  return fee.toFixed(2);
+}
+
 const today=()=>new Date(TIME.now()).toISOString().slice(0,10);
 const pad=n=>String(n).padStart(2,'0');
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -924,7 +928,6 @@ const FB={
   async get(){const s=await this.ref().get({source:'server'});return s.exists?s.data():null},
   async set(d,merge=true){if(db)await this.ref().set(d,{merge})}
 };
-/* Always save full persistent state. */
 const save=(extra={})=>FB.set(Object.assign({
   coins:S.user.coins,
   gems:S.user.gems,
@@ -1046,7 +1049,6 @@ function renderEnergy(){
   const r=Energy.next(S.user);
   $('energyTimer').textContent=c>=m?'ممتلئة':Math.floor(r/60000)+':'+pad(Math.floor(r%60000/1000));
 }
-
 /* ═══ RENDER ═══ */
 function renderAll(){
   const u=S.user;if(!u)return;
@@ -1653,7 +1655,7 @@ async function collectAllInvestments(){
   }
 }
 
-/* ═══ EXCHANGE / WITHDRAW ═══ */
+/* ═══ EXCHANGE / WITHDRAW (معدّل بالعمولة التلقائية) ═══ */
 function pick(sel,key,cb){
   document.querySelectorAll(sel+' .amt').forEach(b=>b.onclick=()=>{
     document.querySelectorAll(sel+' .amt').forEach(x=>x.classList.remove('on'));b.classList.add('on');
@@ -1662,10 +1664,68 @@ function pick(sel,key,cb){
 }
 function clearPick(sel){document.querySelectorAll(sel+' .amt').forEach(x=>x.classList.remove('on'))}
 function updateEx(){$('exChosen').textContent=fmt(S.ex)+' 🪙';$('exReceive').textContent=fmt(Math.floor(S.ex*CONFIG.ex.rate))+' 💎'}
+
+/* ═══════════════════════════════════════════════════════
+   updateWd — تحديث ديناميكي يعرض:
+   - القيمة الإجمالية (سعر العرض 100💎 = $0.01)
+   - العمولة (20% لـ Binance فقط)
+   - الصافي للاستلام
+   - أو مبلغ شام كاش بالليرة
+   ═══════════════════════════════════════════════════════ */
 function updateWd(){
-  $('wdChosen').textContent=fmt(S.wd)+' 💎';
-  $('wdReceive').textContent=S.wdMethod==='sham_cash'?(fmt(Math.round(S.wd*CONFIG.wd.shamSypPerGem))+' SYP'):'$'+usd(S.wd);
+  const chosen = $('wdChosen');
+  const grossRow = $('wdGrossRow');
+  const feeRow = $('wdFeeRow');
+  const netRow = $('wdNetRow');
+  const receiveRow = $('wdReceiveRow');
+  const receive = $('wdReceive');
+
+  chosen.textContent = fmt(S.wd) + ' 💎';
+
+  // إخفاء كل الصفوف أولاً
+  grossRow.style.display = 'none';
+  feeRow.style.display = 'none';
+  netRow.style.display = 'none';
+  receiveRow.style.display = 'flex';
+
+  if(!S.wd){
+    receive.textContent = '—';
+    return;
+  }
+
+  if(S.wdMethod === 'sham_cash'){
+    // شام كاش: بدون عمولة
+    receiveRow.style.display = 'none';
+    netRow.style.display = 'flex';
+    $('wdNet').textContent = fmt(Math.round(S.wd * CONFIG.wd.shamSypPerGem)) + ' SYP';
+    // تغيير التسمية
+    netRow.querySelector('span, div, b') // no-op
+    netRow.childNodes[0].textContent = 'الصافي للاستلام (بدون عمولة)';
+  }
+  else if(S.wdMethod === 'binance'){
+    // Binance: عرض الإجمالي + العمولة + الصافي
+    const gross = usd(S.wd);
+    const fee = usdBinanceFee(S.wd);
+    const net = usdBinanceNet(S.wd);
+
+    grossRow.style.display = 'flex';
+    feeRow.style.display = 'flex';
+    netRow.style.display = 'flex';
+    receiveRow.style.display = 'none';
+
+    $('wdGross').textContent = '$' + gross;
+    $('wdFee').textContent = '-$' + fee;
+    $('wdNet').textContent = '$' + net;
+
+    // استعادة التسمية الأصلية
+    netRow.childNodes[0].textContent = 'الصافي للاستلام';
+  }
+  else {
+    // USDT (معطّل حالياً — للاحتياط)
+    receive.textContent = '$' + usd(S.wd);
+  }
 }
+
 function setWdMethod(method){
   if(method==='usdt_crypto'){
     toast('السحب التلقائي عبر USDT قريباً','info');
@@ -1714,6 +1774,11 @@ async function doExchange(){
   });
 }
 
+/* ═══════════════════════════════════════════════════════
+   doWithdraw — السحب النهائي مع خصم العمولة
+   - Binance: يحسب الصافي بعد العمولة ويظهرها في المودال
+   - Sham Cash: كما هو
+   ═══════════════════════════════════════════════════════ */
 async function doWithdraw(){
   if(S.wdMethod==='usdt_crypto')return toast('السحب التلقائي عبر USDT قريباً','info');
   const a=S.wd,u=S.user,acc=$('wdAccount').value.trim(),method=S.wdMethod;
@@ -1721,13 +1786,31 @@ async function doWithdraw(){
   if(!a||a<min)return toast('الحد الأدنى '+fmt(min)+' جوهرة','err');
   if(a>u.gems)return toast('رصيد الجواهر غير كافٍ','err');
   if(acc.length<4)return toast(method==='sham_cash'?'أدخل معرّف شام كاش صحيح':'أدخل معرّف Binance صحيح','err');
+
   await withBtn($('wdSubmit'),'جاري الإرسال...',async()=>{
-    const payout=method==='sham_cash'?(fmt(Math.round(a*CONFIG.wd.shamSypPerGem))+' SYP'):'$'+usd(a);
+    let payout,modalSub='سيتم معالجة طلبك خلال 24-72 ساعة';
+    if(method==='sham_cash'){
+      payout=fmt(Math.round(a*CONFIG.wd.shamSypPerGem))+' SYP';
+    } else if(method==='binance'){
+      const gross=usd(a),fee=usdBinanceFee(a),net=usdBinanceNet(a);
+      payout='$'+net;
+      modalSub='الإجمالي: $'+gross+' — العمولة (20%): -$'+fee+' — الصافي: $'+net;
+    } else {
+      payout='$'+usd(a);
+    }
+
     u.gems-=a;await save();
-    await db.collection(CONFIG.wdCol).add({userId:TG.id,userName:u.name||'لاعب',username:u.username||null,method,amount:a,payout,account:acc,status:'pending',createdAt:Date.now()});
+    await db.collection(CONFIG.wdCol).add({
+      userId:TG.id,userName:u.name||'لاعب',username:u.username||null,
+      method,amount:a,payout,account:acc,status:'pending',
+      grossUsd:method==='binance'?usd(a):null,
+      feeUsd:method==='binance'?usdBinanceFee(a):null,
+      netUsd:method==='binance'?usdBinanceNet(a):null,
+      createdAt:Date.now()
+    });
     await db.collection(CONFIG.txCol).add({userId:TG.id,type:'withdraw',amount:-a,currency:'gems',meta:{method,payout},createdAt:Date.now()});
     SFX.play('reward');S.wd=0;$('wdAccount').value='';clearPick('#wdAmounts');renderAll();loadWdHistory();
-    showModal({icon:'fa-check',title:'تم إرسال طلب السحب',sub:'سيتم معالجة طلبك خلال 24-72 ساعة',amount:fmt(a)+' 💎 ≈ '+payout,btn:'حسناً'});
+    showModal({icon:'fa-check',title:'تم إرسال طلب السحب',sub:modalSub,amount:fmt(a)+' 💎 ≈ '+payout,btn:'حسناً'});
   });
 }
 
@@ -2041,7 +2124,7 @@ function startPaymentPolling(invoiceId, gems){
   }, CONFIG.shieldz.pollIntervalMs);
 }
 
-/* ═══ MANUAL DEPOSIT INFO (Binance / Sham Cash) ═══ */
+/* ═══ MANUAL DEPOSIT INFO ═══ */
 const MD={
   binance:{K:'Binance',acc:'1121748571',minTxt:'الحد الأدنى للتحويل $0.50',cls:'i-gold',icon:'fa-wallet',
     title:'الإيداع عبر Binance Pay',accLbl:'معرّف Binance Pay'},
@@ -2199,15 +2282,13 @@ function openContentModal(kind){
       '<div class="policy-box"><h4>عن Puppy Merge</h4><p>لعبة دمج وترفيه تجمع فيها العملات والجواهر وتتقدم عبر المستويات والمهام والإحالات.</p></div><div class="policy-box"><h4>المعلومات المستخدمة</h4><p>يستخدم التطبيق معرّف حساب تيليجرام واسم العرض وصورة الحساب إن توفرت، إضافةً إلى الرصيد والطاقة وتقدم اللعب والإحالات وبيانات السحب التي تدخلها.</p></div><div class="policy-box"><h4>الخصوصية</h4><p>قد تتم معالجة البيانات عبر الخدمات اللازمة لتشغيل التطبيق مثل تيليجرام وفايربيس.</p></div>';
   }else{
     $('contentBody').innerHTML=
-      '<div class="policy-box"><h4>كيف تلعب؟</h4><p>بدّل أماكن القطع المتجاورة لتكوين ثلاثة حيوانات متشابهة أو أكثر. كل مستوى تكمله يمنحك +100 عملة، وكل 10 مستويات تحصل على +10 جواهر إضافية.</p></div><div class="policy-box"><h4>لعبة الطيران</h4><p>اضغط لترتفع، تجنب الصبّار، واجمع العملات والجواهر. كل عبور موفق للعائق يمنحك +5 عملات، والفقاعات تعطي 1-10 جواهر.</p></div><div class="policy-box"><h4>شراء الجواهر</h4><p>اختر تبويب النجوم أو الكريبتو أو Binance Pay أو شام كاش. عند التحويل اليدوي ضع معرّفك في الملاحظة.</p></div><div class="policy-box"><h4>سحب الأموال</h4><p>السحب التلقائي عبر USDT غير متاح مؤقتاً. استخدم Binance Pay أو Sham Cash — تُعالج يدوياً خلال 24-72 ساعة.</p></div>';
+      '<div class="policy-box"><h4>كيف تلعب؟</h4><p>بدّل أماكن القطع المتجاورة لتكوين ثلاثة حيوانات متشابهة أو أكثر. كل مستوى تكمله يمنحك +100 عملة، وكل 10 مستويات تحصل على +10 جواهر إضافية.</p></div><div class="policy-box"><h4>لعبة الطيران</h4><p>اضغط لترتفع، تجنب الصبّار، واجمع العملات والجواهر. كل عبور موفق للعائق يمنحك +5 عملات، والفقاعات تعطي 1-10 جواهر.</p></div><div class="policy-box"><h4>شراء الجواهر</h4><p>اختر تبويب النجوم أو الكريبتو أو Binance Pay أو شام كاش. عند التحويل اليدوي ضع معرّفك في الملاحظة.</p></div><div class="policy-box"><h4>سحب الأموال</h4><p>سعر الجوهرة: 100 💎 = $0.01. سحب Binance Pay يتضمن عمولة 20% (5000 💎 = $0.40 صافي). شام كاش بدون عمولة. USDT Crypto قريباً.</p></div>';
   }
   $('contentModal').classList.add('show');
 }
 function closeContentModal(){$('contentModal').classList.remove('show')}
 
-/* =========================================================
-   FLY GAME
-   ========================================================= */
+/* ═══ FLY GAME ═══ */
 const FlyGame = (() => {
   const cvs = document.getElementById('flyCanvas');
   const ctx = cvs.getContext('2d');
@@ -2632,7 +2713,6 @@ const FlyGame = (() => {
     if(st.mode==='over')return;
     st.mode='over';
     const dist=Math.floor(st.dist),rec=commit(dist);
-    /* Energy consumed on game over, not on start */
     Energy.use(1).catch(()=>{});
     $('flyOverDist').textContent=fmt(dist);
     $('flyOverCoins').textContent='+'+fmt(st.rC);
@@ -2697,7 +2777,7 @@ const FlyGame = (() => {
     go(target||'home');
   }
 
-  async function replay(){
+  function replay(){
     if(Energy.cur(S.user)<=0){
       showNoEnergy();
       return;
@@ -2975,7 +3055,6 @@ async function boot(){
       S.user = Object.assign(newUser(), ex);
       if(!Array.isArray(S.user.investments)) S.user.investments = [];
       if(!Array.isArray(S.user.wheelAdTimes)) S.user.wheelAdTimes = [];
-      /* Normalize energy: don't touch or refill */
       S.user.energy = Number(S.user.energy ?? CONFIG.energyMax);
       S.user.energyUpdatedAt = Number(S.user.energyUpdatedAt || TIME.now());
     } else {
