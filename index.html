@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#A8DCF0">
 <title>Puppy Merge — دمج الجراء</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<script src='//libtl.com/sdk.js' data-zone='12008608' data-sdk='show_12008608'></script>
+<script src="https://sad.adsgram.ai/js/sad.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
@@ -112,6 +112,8 @@ input,select{font:inherit;color:inherit}
 .day.done{background:linear-gradient(160deg,#FFE95C,#F4B900);color:#fff}.day.done i{color:#fff}
 .day.claim{background:linear-gradient(160deg,#76F344,#35C915);color:#fff;animation:cl 1.1s infinite}.day.claim i{color:#fff}
 @keyframes cl{50%{box-shadow:0 0 0 7px rgba(75,229,30,0)}0%{box-shadow:0 0 0 0 rgba(75,229,30,.7)}}
+.adsgram-task-card{padding:13px;background:linear-gradient(180deg,#fff,#E8FAFF);border-color:var(--edge)}
+.adsgram-task{display:block;min-height:70px;--adsgram-task-font-size:14px;--adsgram-task-icon-size:38px;--adsgram-task-icon-title-gap:8px;--adsgram-task-icon-border-radius:12px;--adsgram-task-button-width:100%}
 .m-card{display:flex;align-items:center;gap:10px;padding:12px;margin-bottom:10px}
 .m-card .ico{width:50px;height:50px}
 .rw{display:inline-flex;gap:5px;align-items:center;padding:2px 9px;margin-left:3px;border-radius:10px;background:rgba(255,213,46,.35);border:1.5px solid rgba(139,90,0,.3);font-size:11.5px;font-weight:800;color:var(--gold-d)}
@@ -416,6 +418,12 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
     <section class="screen" id="screen-missions">
       <div class="sec"><span class="ico i-gold"><i class="fas fa-calendar-check"></i></span> التسجيل اليومي</div>
       <div class="card daily" id="dailyGrid"></div>
+      <div class="sec"><span class="ico i-sky"><i class="fas fa-bullseye"></i></span> مهمة AdsGram</div>
+      <div class="card adsgram-task-card">
+        <div class="ttl">مهمة إعلانية اختيارية</div>
+        <div class="sub" style="margin:4px 0 10px">يمكنك تنفيذ المهمة اختيارياً، وبقية وظائف التطبيق متاحة دون إكمالها.</div>
+        <adsgram-task id="adsgramTask" block-id="task-56001" class="adsgram-task"></adsgram-task>
+      </div>
       <div class="sec"><span class="ico i-gold"><i class="fas fa-list-check"></i></span> مهام التواصل الاجتماعي</div>
       <div id="missionsDaily"></div>
       <div class="sec"><span class="ico i-gold"><i class="fas fa-medal"></i></span> مهام المستويات</div>
@@ -766,6 +774,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 'use strict';
 
 const CONFIG={
+  adsgram:{botId:'8929643678',platformId:'53087',rewardBlockId:'55999',interstitialBlockId:'int-56000',taskBlockId:'task-56001'},
   firebase:{apiKey: "AIzaSyDvhuuNg7ANjHHseUwYGJt2NoYs-SmWrGs",
   authDomain: "puppy-marge.firebaseapp.com",
   projectId: "puppy-marge",
@@ -878,12 +887,58 @@ const SFX={ctx:null,
     m.forEach(([f,d,w,t])=>this.tone(f,d,t||'square',.2,w||0))}
 };
 
-function showRewardedAd() {
-  if (typeof window.show_12008608 !== 'function') return;
-  try {
-    const p = window.show_12008608();
-    if (p && typeof p.then === 'function') p.catch(() => {});
-  } catch (e) {}
+/* AdsGram SDK helpers: botId/platformId are dashboard identifiers; SDK init uses blockId. */
+const AdsGram = {
+  controllers: Object.create(null),
+  getController(blockId) {
+    if (!window.Adsgram || typeof window.Adsgram.init !== 'function') {
+      throw new Error('AdsGram SDK لم يتم تحميله');
+    }
+    if (!this.controllers[blockId]) {
+      this.controllers[blockId] = window.Adsgram.init({ blockId, debug: false });
+    }
+    return this.controllers[blockId];
+  },
+  async showRewarded() {
+    try {
+      const result = await this.getController(CONFIG.adsgram.rewardBlockId).show();
+      return !!(result && result.done === true && result.error !== true);
+    } catch (error) {
+      console.warn('AdsGram Reward error:', error);
+      return false;
+    }
+  },
+  async showInterstitial() {
+    try {
+      await this.getController(CONFIG.adsgram.interstitialBlockId).show();
+    } catch (error) {
+      console.info('AdsGram Interstitial unavailable/skipped:', error);
+    }
+  },
+  shouldShowInterstitial() {
+    try {
+      const key = 'adsgram_merge_level_wins';
+      const count = Number(sessionStorage.getItem(key) || 0) + 1;
+      sessionStorage.setItem(key, String(count));
+      if (count % 3 !== 0) return false;
+      const last = Number(localStorage.getItem('adsgram_last_interstitial_at') || 0);
+      if (Date.now() - last < 5 * 60 * 1000) return false;
+      localStorage.setItem('adsgram_last_interstitial_at', String(Date.now()));
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+};
+
+function bindAdsgramTaskEvents() {
+  const task = document.getElementById('adsgramTask');
+  if (!task || task.dataset.adsgramEventsBound === '1') return;
+  task.dataset.adsgramEventsBound = '1';
+  task.addEventListener('reward', () => toast('اكتملت مهمة AdsGram بنجاح'));
+  task.addEventListener('onError', event => console.warn('AdsGram Task error:', event));
+  task.addEventListener('onBannerNotFound', () => console.info('AdsGram Task: لا توجد مهمة متاحة حالياً'));
+  task.addEventListener('onTooLongSession', () => toast('انتهت جلسة الإعلانات. أعد فتح التطبيق للمحاولة مجدداً', 'info'));
 }
 
 const TG={app:null,user:null,id:null,start:null,isAdmin:false,
@@ -1157,9 +1212,11 @@ const Game={size:6,board:[],els:[],score:0,moves:0,target:0,level:1,sel:null,bus
     SFX.play('win');renderAll();
     checkReferralMilestones(TG.id, next).catch(e=>console.warn(e));
     const rewardLines = `+${coinReward} 🪙` + (gemReward ? ` +${gemReward} 💎` : '');
+    const interstitialDue = AdsGram.shouldShowInterstitial();
     showModal({icon:gemReward?'fa-gem':'fa-trophy',title:gemReward?'🎉 مستوى مميز!':'المستوى '+this.level,sub:rewardLines,amount:'',btn:'التالي',
-      onClose:()=>{
+      onClose:async()=>{
         if(Energy.cur(S.user)<=0){showNoEnergy();return;}
+        if(interstitialDue) await AdsGram.showInterstitial();
         Game.start(next);
       }});
   },
@@ -1291,12 +1348,11 @@ async function watchWheelAd(){
   if(!trustedTimeReady())return;
   const status=wheelAdStatus();
   if(!status.available)return toast('استنفدت 3 إعلانات لهذه الساعة','err');
-  if(typeof window.show_12008608!=='function')return toast('الإعلان غير متاح حالياً، حاول لاحقاً','err');
-  S.busy=true;renderWheel();const started=performance.now();
+  if(!window.Adsgram||typeof window.Adsgram.init!=='function')return toast('الإعلانات غير متاحة حالياً، حاول لاحقاً','err');
+  S.busy=true;renderWheel();
   try{
-    await window.show_12008608();
-    const elapsed=performance.now()-started;
-    if(elapsed<15000){S.busy=false;renderAll();return toast('لم تُحتسب المكافأة لأن مشاهدة الإعلان أقل من 15 ثانية','err')}
+    const watched=await AdsGram.showRewarded();
+    if(!watched){S.busy=false;renderAll();return toast('لم تكتمل مشاهدة الإعلان، لم تُمنح اللفة','err')}
     await performWheelSpin(true);
   }catch(e){S.busy=false;renderAll();toast('لم تكتمل مشاهدة الإعلان','err')}
 }
@@ -1394,7 +1450,6 @@ async function claimDaily(i){
   S.busy=true;const[c,g]=CONFIG.daily[i];dl.streak=i===6?0:i+1;dl.lastClaimDate=t;u.dailyLogin=dl;
   await grant({coins:c,gems:g},{dailyLogin:dl},{icon:'fa-calendar-check',title:'مكافأة اليوم '+(i+1),sub:i===6?'أكملت الأسبوع! تسلسل جديد غداً':'عد غداً لمكافأة أكبر'});
   S.busy=false;
-  showRewardedAd();
 }
 async function claimLevel(id){
   const m=LEVEL_M.find(x=>x.id===id),u=S.user;if(!m||S.busy||(u.level||1)<m.level)return;
@@ -1402,7 +1457,6 @@ async function claimLevel(id){
   S.busy=true;d[id]=true;u.levelMissions=d;
   await grant(m.reward,{levelMissions:d},{icon:'fa-medal',title:'مكافأة المستوى '+m.level,sub:'استلمت مكافأة إنجاز'});
   S.busy=false;
-  showRewardedAd();
 }
 async function claimInvite(id){
   const m=INVITE_M.find(x=>x.id===id),u=S.user;if(!m||S.busy)return;
@@ -1411,7 +1465,6 @@ async function claimInvite(id){
   S.busy=true;d[id]=true;u.inviteMissions=d;u.inviteBase=u.referralCount||0;
   await grant(m.reward,{inviteMissions:d,inviteBase:u.inviteBase},{icon:'fa-user-plus',title:'مكافأة الدعوات',sub:'شكراً لدعوة '+m.count+(m.count===1?' صديق':' أصدقاء')});
   S.busy=false;
-  showRewardedAd();
 }
 
 function renderAdminPanel(){
@@ -2230,13 +2283,11 @@ function initLang(){document.documentElement.lang='ar';document.documentElement.
 async function watchEnergyAd(){
   const btn=$('energyAdBtn');if(S.busy)return;
   if(Energy.cur(S.user)>=CONFIG.energyMax)return toast('الطاقة ممتلئة بالفعل','info');
-  if(typeof window.show_12008608!=='function')return toast('الإعلان غير متاح حالياً، حاول لاحقاً','err');
+  if(!window.Adsgram||typeof window.Adsgram.init!=='function')return toast('الإعلانات غير متاحة حالياً، حاول لاحقاً','err');
   S.busy=true;btn.disabled=true;const original=btn.innerHTML;btn.innerHTML='<span class="spn"></span> جاري مشاهدة الإعلان';
-  const started=performance.now();
   try{
-    await window.show_12008608();
-    const elapsed=performance.now()-started;
-    if(elapsed<15000){toast('لم تُحتسب الطاقة لأن مشاهدة الإعلان أقل من 15 ثانية','err');return}
+    const watched=await AdsGram.showRewarded();
+    if(!watched){toast('لم تكتمل مشاهدة الإعلان، لم تُمنح الطاقة','err');return}
     const u=S.user,now=TIME.now(),current=Energy.cur(u),last=u.energyUpdatedAt||now;
     if(current>=CONFIG.energyMax)return toast('الطاقة ممتلئة بالفعل','info');
     u.energy=current+1;
@@ -2915,6 +2966,7 @@ function drawAvatarHelper(g,cx,cy,r,variant){
 }
 
 function bind(){
+  bindAdsgramTaskEvents();
   document.querySelectorAll('[data-nav]').forEach(b=>b.onclick=()=>go(b.dataset.nav));
   document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go(b.dataset.go));
 
