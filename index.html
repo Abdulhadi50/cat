@@ -422,7 +422,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
       <div class="card adsgram-task-card">
         <div class="ttl">مهمة إعلانية اختيارية</div>
         <div class="sub" style="margin:4px 0 10px">يمكنك تنفيذ المهمة اختيارياً، وبقية وظائف التطبيق متاحة دون إكمالها.</div>
-        <adsgram-task id="adsgramTask" data-block-id="task-56001" class="adsgram-task"></adsgram-task>
+        <adsgram-task id="adsgramTask" block-id="task-56001" class="adsgram-task"></adsgram-task>
       </div>
       <div class="sec"><span class="ico i-gold"><i class="fas fa-list-check"></i></span> مهام التواصل الاجتماعي</div>
       <div id="missionsDaily"></div>
@@ -541,7 +541,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
         </div>
         <div class="info">
           <div>مبلغ الشراء <b id="cryptoChosenUsd">$0.00</b></div>
-          <div>الجواهر المستقبلة <b id="cryptoReceiveGems">0 💎</b></div>
+          <div>الجواهر المستقلة <b id="cryptoReceiveGems">0 💎</b></div>
           <div>رصيدك الحالي <b id="depGemsCrypto">0 💎</b></div>
         </div>
         <button class="btn b-g" id="cryptoPayBtn" style="margin-top:10px" disabled>
@@ -774,7 +774,13 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
 'use strict';
 
 const CONFIG={
-  adsgram:{botId:'8929643678',platformId:'53087',rewardBlockId:'55999',interstitialBlockId:'int-56000',taskBlockId:'task-56001'},
+  adsgram:{
+    botId:'8929643678',
+    platformId:'53087',
+    rewardBlockId:'55999', // تأكد من أن نوعه في لوحة التحكم هو Reward وليس Task
+    interstitialBlockId:'int-56000',
+    taskBlockId:'task-56001'
+  },
   firebase:{apiKey: "AIzaSyDvhuuNg7ANjHHseUwYGJt2NoYs-SmWrGs",
   authDomain: "puppy-marge.firebaseapp.com",
   projectId: "puppy-marge",
@@ -895,7 +901,12 @@ const AdsGram = {
       throw new Error('AdsGram SDK لم يتم تحميله');
     }
     if (!this.controllers[blockId]) {
-      this.controllers[blockId] = window.Adsgram.init({ blockId, debug: false });
+      try {
+        this.controllers[blockId] = window.Adsgram.init({ blockId, debug: false });
+      } catch (e) {
+        console.error('AdsGram Init Error:', e);
+        throw e;
+      }
     }
     return this.controllers[blockId];
   },
