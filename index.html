@@ -316,7 +316,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
   <div class="top">
     <div class="pill"><span class="ico i-sky"><i class="fas fa-gem"></i></span><div><b id="gemTop">0</b><small id="gemUsd">$0.00</small></div></div>
     <div class="pill"><span class="ico i-gold"><i class="fas fa-coins"></i></span><b id="coinTop">0</b></div>
-    <div class="pill" style="flex:0 0 auto;min-width:78px"><span class="ico i-green"><i class="fas fa-bolt"></i></span><b id="energyTop">25</b></div>
+    <div class="pill" style="flex:0 0 auto;min-width:78px"><span class="ico i-green"><i class="fas fa-bolt"></i></span><b id="energyTop">10</b></div>
   </div>
 
   <div class="main" id="mainScroll">
@@ -341,7 +341,7 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
       <div class="card">
         <div class="row" style="margin-bottom:10px">
           <span class="ico i-red" style="width:52px;height:52px"><i class="fas fa-bolt"></i></span>
-          <div class="grow"><div class="ttl">الطاقة</div><div class="en-val"><span id="energyCur">25</span><small> / <span id="energyMax">25</span></small></div></div>
+          <div class="grow"><div class="ttl">الطاقة</div><div class="en-val"><span id="energyCur">10</span><small> / <span id="energyMax">10</span></small></div></div>
           <div class="timer" id="energyTimer">ممتلئة</div>
         </div>
         <div class="bar"><i id="energyFill" style="width:100%"></i></div>
@@ -426,13 +426,13 @@ html[dir=ltr] .fa-chevron-left,html[dir=ltr] .fa-arrow-right{transform:scaleX(-1
     </section>
 
     <section class="screen" id="screen-exchange">
-      <div class="hero2"><div class="ico i-green"><i class="fas fa-right-left"></i></div><div class="ttl" style="font-size:19px">تبديل العملات</div><div class="sub">اتجاه واحد فقط: 1000 🪙 = 10 💎</div></div>
+      <div class="hero2"><div class="ico i-green"><i class="fas fa-right-left"></i></div><div class="ttl" style="font-size:19px">تبديل العملات</div><div class="sub">اتجاه واحد فقط: 25,000 🪙 = 100 💎</div></div>
       <div class="card">
         <div class="ttl" style="margin-bottom:10px">اختر عدد العملات</div>
         <div class="amts" id="exAmounts">
-          <button class="amt" data-amt="10000">10,000 🪙</button><button class="amt" data-amt="50000">50,000 🪙</button><button class="amt" data-amt="100000">100,000 🪙</button>
-          <button class="amt" data-amt="250000">250,000 🪙</button><button class="amt" data-amt="500000">500,000 🪙</button><button class="amt" data-amt="1000000">1,000,000 🪙</button>
-        </div>
+  <button class="amt" data-amt="25000">25,000 🪙</button><button class="amt" data-amt="50000">50,000 🪙</button><button class="amt" data-amt="100000">100,000 🪙</button>
+  <button class="amt" data-amt="250000">250,000 🪙</button><button class="amt" data-amt="500000">500,000 🪙</button><button class="amt" data-amt="1000000">1,000,000🪙</button>
+</div>
       </div>
       <div class="info"><div>العملات المُحوّلة<b id="exChosen">0 🪙</b></div><div>الجواهر المستقبلة<b id="exReceive">0 💎</b></div><div>رصيدك<b id="exBal">0 🪙</b></div></div>
       <button class="btn b-g" id="exSubmit"><i class="fas fa-right-left"></i> تبديل الآن</button>
@@ -778,7 +778,7 @@ const CONFIG={
   flyCol:'puppy_fly_scores',
   socialTasksCol:'puppy_social_tasks',
   admin:{telegram:'qo_ij2'},
-  energyMax:25,regenMs:600000,hintPrice:30,shufflePrice:50,
+  energyMax:10,regenMs:600000,hintPrice:30,shufflePrice:50,
   ref:{
     newUser:20,
     milestones:[
@@ -786,7 +786,7 @@ const CONFIG={
       {level:10, reward:25},
     ]
   },
-  ex:{min:10000,rate:0.01},
+  ex:{min:25000,rate:0.004},
   score:{divisor:1000,perUnit:100},
   levelCoins:n=>100+n*50,
   gameWin:{coinsPerLevel: 100, gemsEvery10: 10},
@@ -798,7 +798,7 @@ const CONFIG={
     shamSypPerGem:0.01
   },
   spins:2,
-  prizes:[500,800,1000,1500,2000,3000,4000,5000].map((v,i)=>['coins',v,['#F4B900','#35C915','#2FB8DC'][i%3]]),
+  prizes:[100,250,400,600,800,1000,1500,2500].map((v,i)=>['coins',v,['#F4B900','#35C915','#2FB8DC'][i%3]]),
   daily:[[200,20],[300,30],[500,50],[700,70],[1000,100],[1500,150],[3000,300]],
   tg:'https://t.me/PuppyMerge',
   api:{base:'https://puppy-merge-api.starlimitedcom.workers.dev'},
